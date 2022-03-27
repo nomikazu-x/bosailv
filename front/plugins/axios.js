@@ -1,14 +1,17 @@
 export default ({ $axios }) => {
   // リクエストログ
-  // $axios.onRequest((config) => {
-  //   console.log(config)
-  // })
-  // // レスポンスログ
-  // $axios.onResponse((config) => {
-  //   console.log(config)
-  // })
-  // // エラーログ
-  // $axios.onError((e) => {
-  //   console.log(e.response)
-  // })
+  $axios.onRequest((config) => {
+    // eslint-disable-next-line no-console
+    console.log(config)
+  })
+  // レスポンスログ
+  $axios.onResponse((config) => {
+    // eslint-disable-next-line no-console
+    console.log(config)
+  })
+  // エラーログ
+  $axios.onError((e) => {
+    // eslint-disable-next-line no-console
+    console.log(e.response)
+  })
 }
