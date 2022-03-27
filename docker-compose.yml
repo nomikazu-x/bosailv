@@ -22,6 +22,7 @@ services:
       # Dockerfileに渡す値を指定
       args:
         WORKDIR: $WORKDIR
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     # 環境変数
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
