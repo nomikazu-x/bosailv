@@ -5,7 +5,8 @@ module.exports = {
     node: true
   },
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
+    sourceType: 'module'
   },
   extends: [
     '@nuxtjs',
@@ -19,5 +20,10 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
+    semi: [2, "never"],
+    "no-console": "off",
+    'vue/max-attributes-per-line': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
+    'prefer-promise-reject-errors': 'off'
   }
 }
