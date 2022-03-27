@@ -36,6 +36,15 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
+  # Rspec
+  gem 'rspec-rails' # Tips: https://qiita.com/amatsukix/items/578f85cf4565ca2a797c
+  gem 'factory_bot_rails'
+  gem 'faker'
+
+  # RuboCop
+  gem 'rubocop'
+  gem 'rubocop-rails'
+
   # デバッグbinding.pry Doc: https://github.com/deivid-rodriguez/pry-byebug
   gem 'pry-byebug', '~> 3.9'
 end
