@@ -1,0 +1,55 @@
+# Composeファイルのバージョンを指定
+version: '3.9'
+
+# 以下で各コンテナの設定を行う
+services:
+  # 必要なDBコンテナを立ち上げている
+  db:
+    # dbサービスはDockerfileを持っていないので、ベースイメージを指定
+    image: mysql:8.0
+    # 環境変数
+    environment:
+      TZ: UTC
+      MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
+    # データベースの値を永続化
+    volumes:
+      - ./api/tmp/db:/var/lib/mysql
+
+  api:
+    # サービスのベースイメージにDockerfileを指定
+    build:
+      context: ./api
+      # Dockerfileに渡す値を指定
+      args:
+        WORKDIR: $WORKDIR
+    # 環境変数
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
+    # 値を永続化
+    volumes:
+      - ./api:/$WORKDIR
+    # dbサービスを先に起動するように定義
+    depends_on:
+      - db
+    # 公開ポート番号を指定
+    ports:
+      - "$API_PORT:$CONTAINER_PORT"
+
+  front:
+    # サービスのベースイメージにDockerfileを指定
+    build:
+      context: ./front
+      # Dockerfileに渡す値を指定
+      args:
+        WORKDIR: $WORKDIR
+        CONTAINER_PORT: $CONTAINER_PORT
+    command: yarn run dev
+    # 値を永続化
+    volumes:
+      - ./front:/$WORKDIR
+    # 公開ポート番号を指定
+    ports:
+      - "$FRONT_PORT:$CONTAINER_PORT"
+    # apiサービスを先に起動するように定義
+    depends_on:
+      - api
