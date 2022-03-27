@@ -25,6 +25,7 @@ services:
     # 環境変数
     environment:
       MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
+      API_DOMAIN: "localhost:$FRONT_PORT"
     # 値を永続化
     volumes:
       - ./api:/$WORKDIR
@@ -43,6 +44,7 @@ services:
       args:
         WORKDIR: $WORKDIR
         CONTAINER_PORT: $CONTAINER_PORT
+        API_URL: "http://localhost:$API_PORT"
     command: yarn run dev
     # 値を永続化
     volumes:
