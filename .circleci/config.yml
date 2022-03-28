@@ -5,7 +5,7 @@ jobs:
   # buildするjob
   build:
     machine:
-      image: circleci/classic:edge
+      image: ubuntu-1604:202101-01
     steps:
       - checkout
       - run:
@@ -14,7 +14,7 @@ jobs:
   # testするjob
   test:
     machine:
-      image: circleci/classic:edge
+      image: ubuntu-1604:202101-01
     steps:
       - checkout
       - run:
