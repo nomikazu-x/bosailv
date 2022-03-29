@@ -23,6 +23,13 @@ gem 'dotenv-rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+# Use Devise
+gem 'devise', '< 4.8.0'
+gem 'devise-i18n'
+
+# Use Devise Token Auth
+gem 'devise_token_auth'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
