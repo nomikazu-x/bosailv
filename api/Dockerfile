@@ -1,12 +1,9 @@
 FROM ruby:3.0.0-alpine
 
-# Dockerfile内で使用する変数名を指定
-ARG WORKDIR
-
 # 必要なパッケージをダウンロード
 ENV RUNTIME_PACKAGES="linux-headers libxml2-dev make gcc libc-dev nodejs tzdata mysql-dev mysql-client git" \
     DEV_PACKAGES="build-base curl-dev" \
-    HOME=/${WORKDIR} \
+    HOME=/app \
     LANG=C.UTF-8 \
     TZ=Asia/Tokyo
 

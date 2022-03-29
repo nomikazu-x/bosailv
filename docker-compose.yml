@@ -10,7 +10,7 @@ services:
     # 環境変数
     environment:
       TZ: UTC
-      MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_ROOT_PASSWORD: password
     # データベースの値を永続化
     volumes:
       - ./api/tmp/db:/var/lib/mysql
@@ -21,21 +21,21 @@ services:
       context: ./api
       # Dockerfileに渡す値を指定
       args:
-        WORKDIR: $WORKDIR
+        WORKDIR: app
     command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     # 環境変数
     environment:
-      MYSQL_ROOT_PASSWORD: $MYSQL_PASSWORD
-      API_DOMAIN: "localhost:$FRONT_PORT"
+      MYSQL_ROOT_PASSWORD: password
+      API_DOMAIN: "localhost:8080"
     # 値を永続化
     volumes:
-      - ./api:/$WORKDIR
+      - ./api:/app
     # dbサービスを先に起動するように定義
     depends_on:
       - db
     # 公開ポート番号を指定
     ports:
-      - "$API_PORT:$CONTAINER_PORT"
+      - 3000:3000
 
   front:
     # サービスのベースイメージにDockerfileを指定
@@ -43,16 +43,16 @@ services:
       context: ./front
       # Dockerfileに渡す値を指定
       args:
-        WORKDIR: $WORKDIR
-        CONTAINER_PORT: $CONTAINER_PORT
-        API_URL: "http://localhost:$API_PORT"
+        WORKDIR: app
+        CONTAINER_PORT: 3000
+        API_URL: "http://localhost:3000"
     command: yarn run dev
     # 値を永続化
     volumes:
-      - ./front:/$WORKDIR
+      - ./front:/app
     # 公開ポート番号を指定
     ports:
-      - "$FRONT_PORT:$CONTAINER_PORT"
+      - 8080:3000
     # apiサービスを先に起動するように定義
     depends_on:
       - api
