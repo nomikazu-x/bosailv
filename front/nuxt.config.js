@@ -32,7 +32,7 @@ export default {
   plugins: [
     'plugins/axios'
   ],
-  
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
   /*
@@ -48,7 +48,8 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    '@nuxtjs/toast'
   ],
   /*
   ** vuetify module configuration
@@ -70,6 +71,11 @@ export default {
         }
       }
     }
+  },
+
+  toast: {
+    position: 'top-right',
+    duration: 3000
   },
 
   auth: {
