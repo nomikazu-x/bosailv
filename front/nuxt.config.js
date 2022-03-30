@@ -1,7 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  mode: 'spa',
+  ssr: false,
   /*
   ** Headers of the page
   */
@@ -32,6 +32,9 @@ export default {
   plugins: [
     'plugins/axios'
   ],
+  
+  // Auto import components: https://go.nuxtjs.dev/config-components
+  components: true,
   /*
   ** Nuxt.js dev-modules
   */
@@ -44,7 +47,8 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
   /*
   ** vuetify module configuration
