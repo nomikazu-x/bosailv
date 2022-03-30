@@ -1,50 +1,51 @@
 <template>
-  <v-container>
-    <v-col offset-md="1" md="10" class="mt-3">
-      <h3 class="text-center">ログイン</h3>
-
-      <Notification v-if="error" :message="error" class="mb-4 pb-3" />
-
-      <v-form @submit.prevent="login">
-        <v-card-text label="メールアドレス:">
-          <v-text-field v-model="email" placeholder="Enter email" required type="email" />
-        </v-card-text>
-        <v-card-text label="パスワード:">
-          <v-text-field v-model="password" placeholder="Enter password" required type="password" />
-        </v-card-text>
-        <v-btn block type="submit" variant="primary">送信</v-btn>
-      </v-form>
-    </v-col>
-  </v-container>
+  <v-card max-width="480px">
+    <v-form>
+      <v-card-title>
+        ログイン
+      </v-card-title>
+      <v-card-text>
+        <v-text-field v-model="email" label="メールアドレス" />
+        <v-text-field v-model="password" type="password" label="パスワード" />
+        <v-btn color="primary" @click="login">
+          ログイン
+        </v-btn>
+      </v-card-text>
+    </v-form>
+  </v-card>
 </template>
-
 <script>
 export default {
-  data: () => {
+  middleware: 'auth', // TODO: トップページでalert表示「既にログインしています。」
+  data () {
     return {
       email: '',
-      password: '',
-      error: null
+      password: ''
     }
   },
   methods: {
     async login () {
       await this.$auth.loginWith('local', {
         data: {
-          password: this.password,
-          email: this.email
+          email: this.email,
+          password: this.password
         }
       })
-        .then(
-          (response) => {
-          },
-          (error) => {
-            this.error = error.response.data.errors
+        .then((response) => {
+          if (response.data.alert) { console.log('[OK]alert: ' + response.data.alert) } // TODO: 遷移元ページでalert表示
+          if (response.data.alert) { console.log('[OK]notice: ' + response.data.notice) } // TODO: 遷移元ページでnotice表示
+          return response
+        },
+        (error) => {
+          if (typeof error.response === 'undefined') {
+            console.log('[ERROR]' + error) // TODO: alert表示
+          } else {
+            if (error.response.data.alert) { console.log('[NG]alert: ' + error.response.data.alert) } // TODO: alert表示
+            if (error.response.data.notice) { console.log('[NG]notice: ' + error.response.data.notice) } // TODO: notice表示
           }
-        )
+          return error
+        })
     }
   }
 }
 </script>
-
-<style></style>
