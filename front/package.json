@@ -17,7 +17,8 @@
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/toast": "^3.3.1",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vee-validate": "^4.5.10"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
