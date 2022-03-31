@@ -7,7 +7,7 @@
       <v-btn to="/" nuxt>
         トップページ
       </v-btn>
-      <v-btn color="primary" @click="logout">
+      <v-btn color="primary" @click="signOut">
         ログアウト
       </v-btn>
     </v-card-text>
@@ -18,11 +18,11 @@ export default {
   created () {
     if (!this.$auth.loggedIn) {
       this.$toasted.info('既にログアウトされています。')
-      this.$auth.redirect('login')
+      return this.$router.push({ path: '/users/sign_in' }) // ログイン後、homeに戻す
     }
   },
   methods: {
-    async logout () {
+    async signOut () {
       await this.$auth.logout()
       this.$toasted.info('ログアウトしました。')
       // Devise Token Auth

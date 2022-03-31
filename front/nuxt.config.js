@@ -80,10 +80,10 @@ export default {
 
   auth: {
     redirect: {
-      login: '/login', // middleware:authを設定したURLにアクセスがあった場合のリダイレクト先
-      logout: '/', // ログアウト後のリダイレクト先
+      login: '/users/sign_in', // ログインURL
+      logout: '/users/sign_out', // ログアウト後の遷移先
       callback: false,
-      home: '/' // ログイン後のリダイレクト先
+      home: '/' // ログイン後の遷移先URL
      },
     strategies: {
       local: {
