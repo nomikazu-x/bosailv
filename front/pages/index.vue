@@ -1,33 +1,34 @@
 <template>
-  <div>
-    <button
-      type="button"
-      name="button"
-      @click="getMsg"
-    >
-      RailsからAPIを取得する
-    </button>
-    <div
-      v-for="(msg, i) in msgs"
-      :key="i"
-    >
-      {{ msg }}
+  <v-card max-width="480px">
+    <div v-if="this.$auth.loggedIn">
+      <h2>ログイン済み</h2>
     </div>
-  </div>
+    <div v-if="!this.$auth.loggedIn">
+      <h2>未ログイン</h2>
+    </div>
+    <hr class="my-4">
+    <v-btn v-if="!this.$auth.loggedIn" variant="primary" to="users/sign_up">サインアップ</v-btn>
+    <v-btn v-if="!this.$auth.loggedIn" variant="info" to="/users/sign_in">ログイン</v-btn>
+    <v-btn v-if="this.$auth.loggedIn" variant="danger" to="/users/sign_out">ログアウト</v-btn>
+  </v-card>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      msgs: []
-    }
-  },
-  methods: {
-    getMsg () {
-      this.$axios.$get('/api/v1/hello')
-        .then(res => this.msgs.push(res))
-    }
-  }
-}
+export default ({
+  // methods: {
+  //   async logout () {
+  //     await this.$auth.logout()
+  //       .then(
+  //         () => {
+  //           localStorage.removeItem('access-token')
+  //           localStorage.removeItem('client')
+  //           localStorage.removeItem('uid')
+  //           localStorage.removeItem('token-type')
+  //         }
+  //       )
+  //   }
+  // }
+})
 </script>
+
+<style></style>

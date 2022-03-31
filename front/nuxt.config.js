@@ -1,7 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  mode: 'spa',
+  ssr: false,
   /*
   ** Headers of the page
   */
@@ -32,6 +32,9 @@ export default {
   plugins: [
     'plugins/axios'
   ],
+
+  // Auto import components: https://go.nuxtjs.dev/config-components
+  components: true,
   /*
   ** Nuxt.js dev-modules
   */
@@ -44,7 +47,9 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    '@nuxtjs/toast'
   ],
   /*
   ** vuetify module configuration
@@ -67,6 +72,33 @@ export default {
       }
     }
   },
+
+  toast: {
+    position: 'top-right',
+    duration: 3000
+  },
+
+  auth: {
+    redirect: {
+      login: '/users/sign_in', // ログインURL
+      logout: '/users/sign_out', // ログアウト後の遷移先
+      callback: false,
+      home: '/' // ログイン後の遷移先URL
+     },
+    strategies: {
+      local: {
+        endpoints: {
+          // ログイン処理に関する設定
+          login: { url: '/api/auth/sign_in', method: 'post',propertyName: 'access_token'}, 
+          // ログアウト処理に関する設定
+          logout: { url: '/api/auth/sign_out', method: 'delete' },
+          // ログイン時にユーザー情報を保存するか
+          user: false 
+         }
+       }
+     }
+   },
+
   /*
   ** Build configuration
   */

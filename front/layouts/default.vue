@@ -9,7 +9,7 @@
     >
       <v-list>
         <v-list-item
-          v-for="(item, i) in items"
+          v-for="(item, i) in displayItems"
           :key="i"
           :to="item.to"
           router
@@ -99,18 +99,37 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'Welcome',
-          to: '/'
+          to: '/',
+          loggedIn: null
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          icon: 'mdi-login',
+          title: 'ログイン',
+          to: '/users/sign_in',
+          loggedIn: false
+        },
+        {
+          icon: 'mdi-account-plus',
+          title: 'アカウント登録',
+          to: '/users/sign_up',
+          loggedIn: false
+        },
+        {
+          icon: 'mdi-logout',
+          title: 'ログアウト',
+          to: '/users/sign_out',
+          loggedIn: true
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js'
+    }
+  },
+  computed: {
+    displayItems () {
+      return this.items.filter(item => (item.loggedIn === null) || (item.loggedIn === this.$auth.loggedIn))
     }
   }
 }
