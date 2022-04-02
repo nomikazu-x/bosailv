@@ -30,6 +30,13 @@ gem 'devise-i18n'
 # Use Devise Token Auth
 gem 'devise_token_auth'
 
+# Use RailsAdmin
+gem 'rails_admin'
+gem 'rails_admin-i18n'
+
+# Use PaperTrail
+gem 'paper_trail'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
@@ -64,3 +71,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'sassc-rails'
