@@ -25,8 +25,19 @@ ja:
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
         updated_at: 更新日
+      admin_user:
+        current_password: "現在のパスワード"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+        reset_password_sent_at: "	パスワードリセット送信時刻"
+        remember_created_at: "ログイン記憶時刻"
+        created_at: "作成日"
+        updated_at: "更新日"
     models:
-      user: ユーザー
+      user: "ユーザー"
+      admin_user: "管理者"
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。
