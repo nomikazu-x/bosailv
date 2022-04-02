@@ -34,6 +34,9 @@ gem 'devise_token_auth'
 gem 'rails_admin'
 gem 'rails_admin-i18n'
 
+# Use PaperTrail
+gem 'paper_trail'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
