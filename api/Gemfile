@@ -52,6 +52,7 @@ group :development, :test do
 
   # Rspec
   gem 'factory_bot_rails'
+  gem 'spring-commands-rspec'
   gem 'faker'
   gem 'rspec-rails' # Tips: https://qiita.com/amatsukix/items/578f85cf4565ca2a797c
 
