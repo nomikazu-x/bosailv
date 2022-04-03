@@ -35,11 +35,5 @@ module App
     config.i18n.default_locale = :ja
 
     config.api_only = true
-
-    # Active Admin用
-    config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Flash
-    config.middleware.use Rack::MethodOverride
-    config.middleware.use ActionDispatch::Session::CookieStore, {:key=>"_backend_session"}
   end
 end
