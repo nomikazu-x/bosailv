@@ -33,3 +33,6 @@ seedreset:
 
 bundleinstall:
 	docker-compose run api bundle install
+
+rspec:
+	docker-compose run api rspec
