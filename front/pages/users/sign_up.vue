@@ -106,7 +106,7 @@ export default {
   },
   methods: {
     async signUp () {
-      await this.$axios.post('/api/auth', {
+      await this.$axios.post('/api/v1/auth', {
         name: this.name,
         email: this.email,
         password: this.password,
