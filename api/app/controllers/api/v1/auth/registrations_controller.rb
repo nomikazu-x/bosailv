@@ -8,4 +8,13 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   def account_update_params
     params.permit(:name, :nickname, :image)
   end
+
+  def render_create_success
+    render './users/auth/success'
+  end
+
+  def render_update_success
+    render './users/auth/success'
+  end
+
 end
