@@ -10,11 +10,11 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   end
 
   def render_create_success
-    render './users/auth/success'
+    render './users/auth/success', formats: :json
   end
 
   def render_update_success
-    render './users/auth/success'
+    render './users/auth/success', formats: :json
   end
 
 end
