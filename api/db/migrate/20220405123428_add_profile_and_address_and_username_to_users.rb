@@ -5,6 +5,8 @@ class AddProfileAndAddressAndUsernameToUsers < ActiveRecord::Migration[6.1]
     add_column :users, :address, :string, limit: 30
     add_column :users, :profile, :string
     add_column :users, :username, :string, limit: 30
+
+    add_index :users, :username, unique: true
   end
 
   def down
@@ -13,5 +15,7 @@ class AddProfileAndAddressAndUsernameToUsers < ActiveRecord::Migration[6.1]
     remove_column :users, :address, :string
     remove_column :users, :profile, :string
     remove_column :users, :username
+
+    remove_index :users, :username, unique: true
   end
 end
