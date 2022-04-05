@@ -52,7 +52,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "validates length" do
-    context "パスワードが８文字以下の場合" do
+    context "パスワードが8文字未満の場合" do
       let(:user) { build(:user, password: 'aaaa') }
       it "エラーになる" do
         user.valid?
@@ -60,7 +60,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context "名前が50文字以上の場合" do
+    context "名前が51文字以上の場合" do
       let(:user) { build(:user, name: 'a' * 51) }
       it "エラーになる" do
         user.valid?
@@ -68,7 +68,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context "住所が30文字以上の場合" do
+    context "住所が31文字以上の場合" do
       let(:user) { build(:user, address: 'a' * 31) }
       it "エラーになる" do
         user.valid?
@@ -76,11 +76,44 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context "ユーザーネームが30文字以上の場合" do
+    context "ユーザーネームが31文字以上の場合" do
       let(:user) { build(:user, username: 'a' * 31) }
       it "エラーになる" do
         user.valid?
         expect(user.errors.messages[:username]).to include "は30文字以上に設定してください。"
+      end
+    end
+  end
+
+  describe "validates regular expression" do
+    context "パスワードが制御文字と半角を除いたASCII文字の場合" do
+      let(:user) { build(:user, password: '_*&^%password') }
+      it "正常に保存できる" do
+        expect(user).to be_valid
+      end
+    end
+
+    context "パスワードが制御文字と半角を除いたASCII文字以外を含む場合" do
+      let(:user) { build(:user, password: 'a' * 7 + 'あ') }
+      it "エラーになる" do
+        user.valid?
+        expect(user.errors.messages[:password]).to include "は有効でありません。"
+      end
+    end
+
+    context "ユーザーネームが半角英数字とアンダーバーのみの場合" do
+      let(:user) { create(:user) }
+      it "正常に更新できる" do
+        user.update(username: 'test_name')
+        expect(user).to be_valid
+      end
+    end
+
+    context "ユーザーネームが半角英数字とアンダーバー以外を含む場合" do
+      let(:user) { create(:user) }
+      it "正常に更新できない" do
+        user.update(username: 'a' * 7 + 'あ')
+        expect(user.errors.messages[:username]).to include "は有効でありません。"
       end
     end
   end

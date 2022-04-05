@@ -27,3 +27,4 @@ ja:
             username: 
               taken: "は既に使用されています。"
               too_long: "は%{count}文字以上に設定してください。"
+              invalid: "は有効でありません。"
