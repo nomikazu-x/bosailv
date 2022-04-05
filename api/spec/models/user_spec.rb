@@ -40,4 +40,30 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "validates length" do
+    context "パスワードが８文字以下の場合" do
+      let(:user) { build(:user, password: 'aaaa') }
+      it "エラーになる" do
+        user.valid?
+        expect(user.errors.messages[:password]).to include "は8文字以上に設定してください。"
+      end
+    end
+
+    context "名前が50文字以上の場合" do
+      let(:user) { build(:user, name: 'a' * 51) }
+      it "エラーになる" do
+        user.valid?
+        expect(user.errors.messages[:name]).to include "は50文字以上に設定してください。"
+      end
+    end
+
+    context "住所が30文字以上の場合" do
+      let(:user) { build(:user, address: 'a' * 31) }
+      it "エラーになる" do
+        user.valid?
+        expect(user.errors.messages[:address]).to include "は30文字以上に設定してください。"
+      end
+    end
+  end
 end
