@@ -39,6 +39,16 @@ RSpec.describe User, type: :model do
         expect(user2.errors.messages[:email]).to include "は既に使用されています。"
       end
     end
+
+    context "保存されたユーザーネームが指定されたとき" do
+      let(:user1) { create(:user) }
+      let(:user2) { build(:user, username: user1.username) }
+
+      it "エラーになる" do
+        user2.valid?
+        expect(user2.errors.messages[:username]).to include "は既に使用されています。"
+      end
+    end
   end
 
   describe "validates length" do
@@ -63,6 +73,14 @@ RSpec.describe User, type: :model do
       it "エラーになる" do
         user.valid?
         expect(user.errors.messages[:address]).to include "は30文字以上に設定してください。"
+      end
+    end
+
+    context "ユーザーネームが30文字以上の場合" do
+      let(:user) { build(:user, username: 'a' * 31) }
+      it "エラーになる" do
+        user.valid?
+        expect(user.errors.messages[:username]).to include "は30文字以上に設定してください。"
       end
     end
   end

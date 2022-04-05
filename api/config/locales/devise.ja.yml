@@ -24,3 +24,6 @@ ja:
               too_long: "は%{count}文字以上に設定してください。"
             name:
               too_long: "は%{count}文字以上に設定してください。"
+            username: 
+              taken: "は既に使用されています。"
+              too_long: "は%{count}文字以上に設定してください。"

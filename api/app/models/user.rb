@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
 
   validates :name, length: { maximum: 50 }
   validates :address, length: { maximum: 30 }
+  validates :username, length: { maximum: 30 }, uniqueness: true, allow_nil: true, presence: true
 end
