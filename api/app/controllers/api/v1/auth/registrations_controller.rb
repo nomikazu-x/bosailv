@@ -10,11 +10,13 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   end
 
   def render_create_success
-    render './users/auth/success', formats: :json
+    json_string = UserSerializer.new(@resource).serializable_hash.to_json
+    render json: json_string
   end
 
   def render_update_success
-    render './users/auth/success', formats: :json
+    json_string = UserSerializer.new(@resource).serializable_hash.to_json
+    render json: json_string
   end
 
 end
