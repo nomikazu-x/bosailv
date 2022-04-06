@@ -1,4 +1,10 @@
 class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
+  before_action :authenticate_api_v1_user!, except: %i[create new]
+
+  def edit
+    json_string = UserSerializer.new(current_api_v1_user).serializable_hash.to_json
+    render json: json_string
+  end
 
   private
   def sign_up_params
