@@ -2,7 +2,7 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
 
   private
   def sign_up_params
-    params.permit(:email, :password)
+    params.permit(:email, :password, :username).merge(username: default_username)
   end
 
   def account_update_params
@@ -17,6 +17,10 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   def render_update_success
     json_string = UserSerializer.new(@resource).serializable_hash.to_json
     render json: json_string
+  end
+
+  def default_username
+    SecureRandom.alphanumeric(15)
   end
 
 end
