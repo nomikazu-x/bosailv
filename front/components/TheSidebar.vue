@@ -1,0 +1,131 @@
+<template>
+  <v-navigation-drawer v-model="drawer" clipped fixed app>
+    <v-list v-if="!$auth.loggedIn">
+      <v-list-item-group>
+        <v-list-item to="/signin" exact nuxt>
+          <v-list-item-icon>
+            <v-icon>mdi-login</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>ログイン</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/signup" exact nuxt>
+          <v-list-item-icon>
+            <v-icon>mdi-account-plus</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>アカウント登録</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider />
+        <v-list-item to="/" exact nuxt>
+          <v-list-item-icon>
+            <v-icon>mdi-bell</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>お知らせ</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
+    </v-list>
+
+    <v-list v-else>
+      <v-list-item-group>
+        <v-list-item to="/" exact nuxt>
+          <v-list-item-icon>
+            <v-icon>mdi-bell</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>お知らせ</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider />
+        <v-list-item to="/" exact nuxt>
+          <v-list-item-icon>
+            <v-icon>mdi-account-edit</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>登録情報変更</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
+
+      <div class="card-position">
+        <v-menu top offset-x transition="scroll-x-transition">
+          <template #activator="{ on, attrs }">
+            <v-card outlined v-bind="attrs" v-on="on">
+              <v-list-item three-line @click="menu = !menu">
+                <v-list-item-avatar size="50">
+                  <v-avatar color="primary" size="50" />
+                </v-list-item-avatar>
+
+                <v-list-item-content>
+                  <div class="mb-2 overline">MYPAGE</div>
+                  <v-list-item-title class="mb-1">username</v-list-item-title>
+                </v-list-item-content>
+
+                <v-list-item-action>
+                  <v-icon color="grey lighten-1">{{ menu ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                </v-list-item-action>
+              </v-list-item>
+            </v-card>
+          </template>
+
+          <v-list dense>
+            <v-list-item dense @click="signOut">
+              ログアウト
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
+    </v-list>
+  </v-navigation-drawer>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      menu: false
+    }
+  },
+  computed: {
+    drawer: {
+      get() {
+        return this.getDrawer
+      },
+      set(newVal) {
+        if (this.getDrawer !== newVal) {
+          this.$store.commit('sidebar/onDrawer', newVal)
+        }
+      }
+    },
+    getDrawer() {
+      return this.$store.getters["sidebar/drawer"]
+    }
+  },
+  methods: {
+    async signOut () {
+      await this.$auth.logout()
+      this.$toasted.info('ログアウトしました。')
+      // Devise Token Auth
+      if (localStorage.getItem('token-type') === 'Bearer' && localStorage.getItem('access-token')) {
+        localStorage.removeItem('token-type')
+        localStorage.removeItem('uid')
+        localStorage.removeItem('client')
+        localStorage.removeItem('access-token')
+        localStorage.removeItem('expiry')
+      }
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.card-position {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+</style>
