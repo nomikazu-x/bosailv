@@ -80,8 +80,8 @@ export default {
 
   auth: {
     redirect: {
-      login: '/users/sign_in', // ログインURL
-      logout: '/users/sign_out', // ログアウト後の遷移先
+      login: '/signin', // ログインURL
+      logout: '/', // ログアウト後の遷移先
       callback: false,
       home: '/' // ログイン後の遷移先URL
      },
