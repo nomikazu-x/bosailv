@@ -113,10 +113,10 @@ export default {
         email: this.email,
         password: this.password,
         password_confirmation: this.password_confirmation,
-        confirm_success_url: '/users/sign_in'
+        confirm_success_url: '/signin'
       })
         .then((response) => {
-          return this.$router.push({ path: '/users/sign_in', query: { alert: response.data.alert, notice: response.data.notice } })
+          return this.$router.push({ path: '/signin', query: { alert: response.data.alert, notice: response.data.notice } })
         },
         (error) => {
           if (error.response == null) {

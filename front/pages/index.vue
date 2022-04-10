@@ -7,9 +7,9 @@
       <h2>未ログイン</h2>
     </div>
     <hr class="my-4">
-    <v-btn v-if="!this.$auth.loggedIn" variant="primary" to="users/sign_up">サインアップ</v-btn>
-    <v-btn v-if="!this.$auth.loggedIn" variant="info" to="/users/sign_in">ログイン</v-btn>
-    <v-btn v-if="this.$auth.loggedIn" variant="danger" to="/users/sign_out">ログアウト</v-btn>
+    <v-btn v-if="!this.$auth.loggedIn" variant="primary" to="/signup">サインアップ</v-btn>
+    <v-btn v-if="!this.$auth.loggedIn" variant="info" to="/signin">ログイン</v-btn>
+    <v-btn v-if="this.$auth.loggedIn" variant="danger" to="/signout">ログアウト</v-btn>
   </v-card>
 </template>
 

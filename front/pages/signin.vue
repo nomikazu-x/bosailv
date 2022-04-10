@@ -114,7 +114,7 @@ export default {
         .then((response) => {
           this.$toasted.error(response.data.alert)
           this.$toasted.info(response.data.notice)
-          return response
+          return this.$router.push({ path: '/' })
         },
         (error) => {
           if (error.response == null) {
