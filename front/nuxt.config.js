@@ -80,24 +80,28 @@ export default {
 
   auth: {
     redirect: {
-      login: '/users/sign_in', // ログインURL
-      logout: '/users/sign_out', // ログアウト後の遷移先
+      login: '/signin', // ログインURL
+      logout: '/', // ログアウト後の遷移先
       callback: false,
       home: '/' // ログイン後の遷移先URL
      },
-    strategies: {
+     strategies: {
       local: {
+        token: {
+          property: 'token',
+          global: true
+        },
+        user: {
+          property: 'user'
+        },
         endpoints: {
-          // ログイン処理に関する設定
-          login: { url: '/api/v1/auth/sign_in', method: 'post',propertyName: 'access_token'}, 
-          // ログアウト処理に関する設定
+          login: { url: '/api/v1/auth/sign_in', method: 'post' },
           logout: { url: '/api/v1/auth/sign_out', method: 'delete' },
-          // ログイン時にユーザー情報を保存するか
-          user: false 
-         }
-       }
-     }
-   },
+          user: { url: '/api/v1/auth/validate_token.json', method: 'get', propertyName: false }
+        }
+      }
+    }
+  },
 
   /*
   ** Build configuration

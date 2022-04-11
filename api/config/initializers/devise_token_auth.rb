@@ -57,4 +57,7 @@ DeviseTokenAuth.setup do |config|
   # devise confirmable module. If you want to use devise confirmable module and
   # send email, set it to true. (This is a setting for compatibility)
   config.send_confirmation_email = true
+
+  FRONT_DOMAIN =  ENV["FRONT_DOMAIN"] ||= "http://localhost:8080"
+  config.default_confirm_success_url = FRONT_DOMAIN + "/signup/enter-user-name" if Rails.env.development?
 end
