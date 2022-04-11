@@ -36,6 +36,10 @@ gem 'devise_token_auth'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
+# Use CarrierWave/MiniMagick
+gem 'carrierwave'
+gem 'mini_magick'
+
 # コンソール出力結果を表にする Doc: https://github.com/cldwalker/hirb
 gem 'hirb', '~> 0.7.3'
 
