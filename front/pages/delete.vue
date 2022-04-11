@@ -36,7 +36,7 @@
       <v-card-actions>
         <ul>
           <li>
-            <NuxtLink to="/users/edit">
+            <NuxtLink to="/settings/profile">
               登録情報変更
             </NuxtLink>
           </li>

@@ -109,7 +109,8 @@ export default {
       user: null,
       name: '',
       username: '',
-      address: ''
+      address: '',
+      profile: ''
     }
   },
   created () {
