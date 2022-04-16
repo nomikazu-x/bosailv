@@ -133,7 +133,6 @@ export default {
 }
 </script>
 
-
 <style lang="scss" scoped>
 .list-style-none {
   list-style: none;

@@ -22,7 +22,7 @@
                           :error-messages="errors"
                         />
                       </ValidationProvider>
-                      <ValidationProvider v-slot="{ errors }" name="password" rules="required|min:8">
+                      <ValidationProvider v-slot="{ errors }" name="password" rules="required">
                         <v-text-field
                           v-model="password"
                           type="password"
@@ -100,7 +100,7 @@ export default {
     if (this.$route.query.alert !== null || this.$route.query.notice !== null) {
       this.alert = this.$route.query.alert
       this.notice = this.$route.query.notice
-      return this.$router.push({ path: '/signin' }) // URLパラメータを消す為
+      return this.$router.push({ path: '/user/sign_in' }) // URLパラメータを消す為
     }
   },
   methods: {
@@ -129,7 +129,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
 .list-style-none {

@@ -10,7 +10,7 @@
               <h2 class="mb-3 text-center">username</h2>
 
               <v-list>
-                <v-list-item to="/settings/profile">
+                <v-list-item to="/user/edit">
                   <v-list-item-icon>
                     <v-icon>mdi-account-edit</v-icon>
                   </v-list-item-icon>
@@ -39,7 +39,6 @@
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
-
             </v-card>
           </v-col>
         </v-row>

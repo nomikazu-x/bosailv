@@ -2,7 +2,7 @@
   <v-navigation-drawer v-model="drawer" clipped fixed app>
     <v-list v-if="!$auth.loggedIn">
       <v-list-item-group>
-        <v-list-item to="/signin" exact nuxt>
+        <v-list-item to="/user/sign_in" exact nuxt>
           <v-list-item-icon>
             <v-icon>mdi-login</v-icon>
           </v-list-item-icon>
@@ -85,24 +85,24 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       menu: false
     }
   },
   computed: {
     drawer: {
-      get() {
+      get () {
         return this.getDrawer
       },
-      set(newVal) {
+      set (newVal) {
         if (this.getDrawer !== newVal) {
           this.$store.commit('sidebar/onDrawer', newVal)
         }
       }
     },
-    getDrawer() {
-      return this.$store.getters["sidebar/drawer"]
+    getDrawer () {
+      return this.$store.getters['sidebar/drawer']
     }
   },
   methods: {

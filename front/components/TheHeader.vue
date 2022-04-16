@@ -18,7 +18,7 @@
 
       <div v-else>
         <client-only>
-          <v-btn large nuxt to="/signin" color="primary">ログイン</v-btn>
+          <v-btn large nuxt to="/user/sign_in" color="primary">ログイン</v-btn>
         </client-only>
       </div>
     </keep-alive>

@@ -58,7 +58,7 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,
@@ -68,6 +68,9 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3
+        },
+        light: {
+          main_color_theme: "#0b6fab",
         }
       }
     }
@@ -80,24 +83,17 @@ export default {
 
   auth: {
     redirect: {
-      login: '/signin', // ログインURL
+      login: '/user/sign_in', // ログインURL
       logout: '/', // ログアウト後の遷移先
       callback: false,
       home: '/' // ログイン後の遷移先URL
      },
      strategies: {
       local: {
-        token: {
-          property: 'token',
-          global: true
-        },
-        user: {
-          property: 'user'
-        },
         endpoints: {
           login: { url: '/api/v1/auth/sign_in', method: 'post' },
           logout: { url: '/api/v1/auth/sign_out', method: 'delete' },
-          user: { url: '/api/v1/auth/validate_token.json', method: 'get', propertyName: false }
+          user: false
         }
       }
     }

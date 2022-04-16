@@ -49,13 +49,6 @@
 <script>
 export default {
   name: 'UsersDelete',
-  
-  data () {
-    return {
-      // loading: true,
-      // processing: true
-    }
-  },
   async created () {
     await this.$auth.fetchUser()
     if (!this.$auth.loggedIn) {
