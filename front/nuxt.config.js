@@ -70,7 +70,7 @@ export default {
           success: colors.green.accent3
         },
         light: {
-          main_color_theme: "#0b6fab",
+          main_color_theme: '#0b6fab'
         }
       }
     }
@@ -83,17 +83,24 @@ export default {
 
   auth: {
     redirect: {
-      login: '/user/sign_in', // ログインURL
+      login: '/users/sign_in', // ログインURL
       logout: '/', // ログアウト後の遷移先
       callback: false,
       home: '/' // ログイン後の遷移先URL
-     },
-     strategies: {
+    },
+    strategies: {
       local: {
+        token: {
+          property: 'token',
+          global: true
+        },
+        user: {
+          property: 'user'
+        },
         endpoints: {
-          login: { url: '/api/v1/auth/sign_in', method: 'post' },
-          logout: { url: '/api/v1/auth/sign_out', method: 'delete' },
-          user: false
+          login: { url: '/users/auth/sign_in.json', method: 'post' },
+          logout: { url: '/users/auth/sign_out.json', method: 'post' },
+          user: { url: '/users/auth/validate_token.json', method: 'get' }
         }
       }
     }

@@ -1,6 +1,6 @@
 <template>
   <v-app-bar app clipped-left color="amber lighten-2" dense fixed>
-    <v-app-bar-nav-icon @click="onClick()"  />
+    <v-app-bar-nav-icon @click="onClick()" />
 
     <v-toolbar-title>
       <NuxtLink to="/" class="text--secondary text-decoration-none">
@@ -10,7 +10,7 @@
     <v-spacer />
 
     <keep-alive>
-      <div v-if="this.$auth.loggedIn">
+      <div v-if="$auth.loggedIn">
         <client-only>
           <v-btn large nuxt color="primary">ログアウト</v-btn>
         </client-only>
@@ -18,7 +18,7 @@
 
       <div v-else>
         <client-only>
-          <v-btn large nuxt to="/user/sign_in" color="primary">ログイン</v-btn>
+          <v-btn large nuxt to="/users/sign_in" color="primary">ログイン</v-btn>
         </client-only>
       </div>
     </keep-alive>
