@@ -14,7 +14,7 @@ DeviseTokenAuth.setup do |config|
   # Limiting the token_cost to just 4 in testing will increase the performance of
   # your test suite dramatically. The possible cost value is within range from 4
   # to 31. It is recommended to not use a value more than 10 in other environments.
-  # config.token_cost = Rails.env.test? ? 4 : 10
+  config.token_cost = Rails.env.test? ? 4 : 10
 
   # Sets the max number of concurrent devices per user, which is 10 by default.
   # After this limit is reached, the oldest tokens will be removed.
@@ -56,8 +56,8 @@ DeviseTokenAuth.setup do |config|
   # By default DeviseTokenAuth will not send confirmation email, even when including
   # devise confirmable module. If you want to use devise confirmable module and
   # send email, set it to true. (This is a setting for compatibility)
-  config.send_confirmation_email = true
+  # config.send_confirmation_email = true
 
-  FRONT_DOMAIN =  ENV["FRONT_DOMAIN"] ||= "http://localhost:8080"
-  config.default_confirm_success_url = FRONT_DOMAIN + "/signup/enter-user-name" if Rails.env.development?
+  # FRONT_DOMAIN =  ENV["FRONT_DOMAIN"] ||= "http://localhost:8080"
+  # config.default_confirm_success_url = FRONT_DOMAIN + "/signup/enter-user-name" if Rails.env.development?
 end
