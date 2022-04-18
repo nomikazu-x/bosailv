@@ -25,11 +25,11 @@ export default {
       this.$router.push({ path: this.$route.path }) // Tips: URLパラメータを消す為
     },
     redirectAuth () {
-      this.$toasted.info('ログインしてください。')
+      this.$toasted.info(this.$t('auth.unauthenticated'))
       this.$auth.redirect('login') // Tips: ログイン後、元のページに戻す
     },
     redirectAlreadyAuth () {
-      this.$toasted.info('既にログインしています。')
+      this.$toasted.info(this.$t('auth.already_authenticated'))
       this.$router.push({ path: '/' })
     },
     redirectSuccess (alert, notice) {
@@ -40,11 +40,11 @@ export default {
     redirectSignIn (alert, notice) {
       this.$router.push({ path: '/users/sign_in', query: { alert, notice } })
     },
-    async signOut (message = 'ログインしてください。', path = null, alert = null, notice = null) {
+    async signOut (message = 'auth.unauthenticated', path = null, alert = null, notice = null) {
       try {
         await this.$auth.logout()
       } catch (error) {
-        this.$toasted.error(this.$t(error.response == null ? '通信に失敗しました。しばらく時間をあけてから、やり直してください。' : '通信エラーが発生しました。しばらく時間をあけてから、やり直してください。'))
+        this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
       }
       // Devise Token Auth
       if (localStorage.getItem('token-type') === 'Bearer' && localStorage.getItem('access-token')) {

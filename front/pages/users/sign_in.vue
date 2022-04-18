@@ -30,7 +30,7 @@
                 @click="waiting = false"
               />
             </validation-provider>
-            <v-btn id="sign_in_btn" color="primary" :disabled="invalid || processing || waiting" @click="onSignIn()">ログイン</v-btn>
+            <v-btn id="sign_in_btn" color="primary" :disabled="invalid || processing || waiting" @click="signIn()">ログイン</v-btn>
           </v-card-text>
           <v-divider />
           <v-card-actions>
@@ -78,7 +78,7 @@ export default {
   },
 
   methods: {
-    async onSignIn () {
+    async signIn () {
       this.processing = true
 
       await this.$auth.loginWith('local', {
@@ -89,7 +89,7 @@ export default {
       })
         .then((response) => {
           if (response.data == null) {
-            this.$toasted.error('エラーが発生しました。しばらく時間をあけてから、やり直してください。')
+            this.$toasted.error(this.$t('system.error'))
           } else {
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
@@ -97,9 +97,9 @@ export default {
         },
         (error) => {
           if (error.response == null) {
-            this.$toasted.error('通信に失敗しました。しばらく時間をあけてから、やり直してください。')
+            this.$toasted.error(this.$t('network.failure'))
           } else if (error.response.data == null) {
-            this.$toasted.error('通信エラーが発生しました。しばらく時間をあけてから、やり直してください。')
+            this.$toasted.error(this.$t('network.error'))
           } else {
             this.alert = error.response.data.alert
             this.notice = error.response.data.notice

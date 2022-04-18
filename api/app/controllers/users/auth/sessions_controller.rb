@@ -1,8 +1,16 @@
 class Users::Auth::SessionsController < DeviseTokenAuth::SessionsController
 
-  protected
+  private
 
   def render_create_success 
-    render './users/auth/success'
+    render './users/auth/success', locals: { notice: I18n.t('devise.sessions.signed_in') }
+  end
+
+  def render_create_error_bad_credentials
+    render './failure', locals: { alert: I18n.t('devise.failure.not_found_in_database') }, status: :unprocessable_entity
+  end
+
+  def render_destroy_success
+    render './users/auth/success', locals: { notice: I18n.t('devise.sessions.signed_out') }
   end
 end
