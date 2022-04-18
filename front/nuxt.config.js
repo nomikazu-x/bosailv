@@ -47,6 +47,7 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/i18n',
     '@nuxtjs/axios',
     '@nuxtjs/auth',
     '@nuxtjs/toast'
@@ -74,6 +75,16 @@ export default {
         }
       }
     }
+  },
+
+  // I18n module configuration: https://i18n.nuxtjs.org/
+  i18n: {
+    locales: [
+      { code: 'ja', iso: 'ja', file: 'ja.js' }
+    ],
+    defaultLocale: 'ja',
+    lazy: true,
+    langDir: 'locales/'
   },
 
   toast: {

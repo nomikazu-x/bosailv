@@ -45,11 +45,11 @@ export default {
       await this.$auth.fetchUser()
     } catch (error) {
       if (error.response == null) {
-        this.$toasted.error('通信に失敗しました。しばらく時間をあけてから、やり直してください。')
+        this.$toasted.error(this.$t('network.failure'))
       } else if (error.response.status === 401) {
         return this.signOut()
       } else {
-        this.$toasted.error('通信エラーが発生しました。しばらく時間をあけてから、やり直してください。')
+        this.$toasted.error(this.$t('network.error'))
       }
       return this.$router.push({ path: '/' })
     }
@@ -69,18 +69,18 @@ export default {
       await this.$axios.post('/users/auth/delete.json')
         .then((response) => {
           if (response.data == null) {
-            this.$toasted.error('エラーが発生しました。しばらく時間をあけてから、やり直してください。')
+            this.$toasted.error(this.$t('system.error'))
           } else {
             return this.signOut(null, '/users/sign_in', response.data.alert, response.data.notice)
           }
         },
         (error) => {
           if (error.response == null) {
-            this.$toasted.error('通信に失敗しました。しばらく時間をあけてから、やり直してください。')
+            this.$toasted.error(this.$t('network.failure'))
           } else if (error.response.status === 401) {
             return this.signOut()
           } else if (error.response.data == null) {
-            this.$toasted.error('通信エラーが発生しました。しばらく時間をあけてから、やり直してください。')
+            this.$toasted.error(this.$t('network.error'))
           } else {
             this.$toasted.error(error.response.data.alert)
             this.$toasted.info(error.response.data.notice)

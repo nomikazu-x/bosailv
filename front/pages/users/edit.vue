@@ -46,11 +46,11 @@ export default {
       await this.$auth.fetchUser()
     } catch (error) {
       if (error.response == null) {
-        this.$toasted.error('通信に失敗しました。しばらく時間をあけてから、やり直してください。')
+        this.$toasted.error(this.$t('network.failure'))
       } else if (error.response.status === 401) {
         return this.signOut()
       } else {
-        this.$toasted.error('通信エラーが発生しました。しばらく時間をあけてから、やり直してください。')
+        this.$toasted.error(this.$t('network.error'))
       }
       return this.$router.push({ path: '/' })
     }
@@ -62,7 +62,7 @@ export default {
     await this.$axios.get('/users/auth/show.json')
       .then((response) => {
         if (response.data == null) {
-          this.$toasted.error('エラーが発生しました。しばらく時間をあけてから、やり直してください。')
+          this.$toasted.error(this.$t('system.error'))
           return this.$router.push({ path: '/' })
         } else {
           this.user = response.data.user
@@ -70,11 +70,11 @@ export default {
       },
       (error) => {
         if (error.response == null) {
-          this.$toasted.error('通信に失敗しました。しばらく時間をあけてから、やり直してください。')
+          this.$toasted.error(this.$t('network.failure'))
         } else if (error.response.status === 401) {
           return this.signOut()
         } else {
-          this.$toasted.error('通信エラーが発生しました。しばらく時間をあけてから、やり直してください。')
+          this.$toasted.error(this.$t('network.error'))
         }
         return this.$router.push({ path: '/' })
       })

@@ -21,7 +21,7 @@ export default {
 
   created () {
     if (!this.$auth.loggedIn) {
-      this.$toasted.info('既にログアウトされています。')
+      this.$toasted.info(this.$t('auth.already_signed_out'))
       return this.$router.push({ path: '/' })
     }
 
@@ -32,7 +32,7 @@ export default {
   methods: {
     onSignOut () {
       this.processing = true
-      this.signOut('ログアウトしました。')
+      this.signOut('auth.signed_out')
     }
   }
 }
