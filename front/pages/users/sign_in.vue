@@ -30,7 +30,7 @@
                 @click="waiting = false"
               />
             </ValidationProvider>
-            <v-btn id="sign_in_btn" color="primary" :disabled="invalid || processing || waiting" @click="signIn()">ログイン</v-btn>
+            <v-btn id="sign_in_btn" color="primary" :disabled="invalid || processing || waiting" @click="onSignIn()">ログイン</v-btn>
           </v-card-text>
           <v-divider />
           <v-card-actions>
@@ -71,7 +71,7 @@ export default {
   },
 
   methods: {
-    async signIn () {
+    async onSignIn () {
       this.processing = true
 
       await this.$auth.loginWith('local', {

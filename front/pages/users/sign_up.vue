@@ -52,7 +52,7 @@
                 @click="waiting = false"
               />
             </ValidationProvider>
-            <v-btn id="sign_up_btn" color="primary" :disabled="invalid || processing || waiting" @click="signUp()">登録</v-btn>
+            <v-btn id="sign_up_btn" color="primary" :disabled="invalid || processing || waiting" @click="onSignUp()">登録</v-btn>
           </v-card-text>
           <v-divider />
           <v-card-actions>
@@ -95,7 +95,7 @@ export default {
   },
 
   methods: {
-    async signUp () {
+    async onSignUp () {
       this.processing = true
 
       await this.$axios.post('/users/auth/sign_up.json', {
