@@ -17,5 +17,4 @@ if current_user.present?
     json.username current_user.username
   end
 end
-# json.alert alert if alert.present?
-# json.notice notice if notice.present?
+json.notice notice if notice.present?

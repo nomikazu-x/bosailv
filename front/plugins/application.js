@@ -56,7 +56,7 @@ export default {
       }
 
       if (message !== null) {
-        this.$toasted.info(this.$t(message))
+        this.$toasted.info(message)
       }
       if (path !== null) {
         this.$router.push({ path, query: { alert, notice } })
