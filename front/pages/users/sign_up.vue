@@ -4,11 +4,11 @@
     <Message v-if="!loading" :alert="alert" :notice="notice" />
     <v-card v-if="!loading" max-width="480px">
       <Processing v-if="processing" />
-      <validation-observer v-slot="{ invalid }" ref="observer">
+      <ValidationObserver v-slot="{ invalid }" ref="observer">
         <v-form autocomplete="off">
           <v-card-title>アカウント登録</v-card-title>
           <v-card-text>
-            <validation-provider v-slot="{ errors }" name="name" rules="required">
+            <ValidationProvider v-slot="{ errors }" name="name" rules="required">
               <v-text-field
                 v-model="name"
                 label="氏名"
@@ -17,8 +17,8 @@
                 :error-messages="errors"
                 @click="waiting = false"
               />
-            </validation-provider>
-            <validation-provider v-slot="{ errors }" name="email" rules="required|email">
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ errors }" name="email" rules="required|email">
               <v-text-field
                 v-model="email"
                 label="メールアドレス"
@@ -27,8 +27,8 @@
                 :error-messages="errors"
                 @click="waiting = false"
               />
-            </validation-provider>
-            <validation-provider v-slot="{ errors }" name="password" rules="required|min:8">
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ errors }" name="password" rules="required|min:8">
               <v-text-field
                 v-model="password"
                 type="password"
@@ -39,8 +39,8 @@
                 :error-messages="errors"
                 @click="waiting = false"
               />
-            </validation-provider>
-            <validation-provider v-slot="{ errors }" name="password_confirmation" rules="required|confirmed_password:password">
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ errors }" name="password_confirmation" rules="required|confirmed_password:password">
               <v-text-field
                 v-model="password_confirmation"
                 type="password"
@@ -51,7 +51,7 @@
                 :error-messages="errors"
                 @click="waiting = false"
               />
-            </validation-provider>
+            </ValidationProvider>
             <v-btn id="sign_up_btn" color="primary" :disabled="invalid || processing || waiting" @click="signUp()">登録</v-btn>
           </v-card-text>
           <v-divider />
@@ -59,27 +59,18 @@
             <ActionLink action="sign_up" />
           </v-card-actions>
         </v-form>
-      </validation-observer>
+      </ValidationObserver>
     </v-card>
   </div>
 </template>
 
 <script>
-import { ValidationObserver, ValidationProvider, extend } from 'vee-validate'
-import { required, email, min, confirmed } from 'vee-validate/dist/rules'
 import ActionLink from '~/components/users/ActionLink.vue'
 import Application from '~/plugins/application.js'
-
-extend('required', { ...required, message: '入力してください。' })
-extend('email', { ...email, message: '形式が正しくありません。' })
-extend('min', { ...min, message: '{length}文字以上で入力してください。' })
-extend('confirmed_password', { ...confirmed, message: 'パスワードと一致していません。' })
 
 export default {
   name: 'UsersSignUp',
   components: {
-    ValidationObserver,
-    ValidationProvider,
     ActionLink
   },
   mixins: [Application],

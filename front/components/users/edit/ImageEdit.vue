@@ -1,12 +1,12 @@
 <template>
-  <validation-observer v-slot="{ invalid }" ref="observer">
+  <ValidationObserver v-slot="{ invalid }" ref="observer">
     <Processing v-if="processing" />
     <v-form>
       <v-card-text>
         <v-avatar size="256px">
           <v-img :src="$auth.user.image_url.xlarge" />
         </v-avatar>
-        <validation-provider v-slot="{ errors }" name="image" rules="size_20MB:20000">
+        <ValidationProvider v-slot="{ errors }" name="image" rules="size_20MB:20000">
           <v-file-input
             v-model="image"
             accept="image/jpeg,image/gif,image/png"
@@ -16,7 +16,7 @@
             :error-messages="errors"
             @click="waiting = false"
           />
-        </validation-provider>
+        </ValidationProvider>
         <v-btn id="user_image_update_btn" color="primary" :disabled="invalid || image === null || processing || waiting" @click="onUserImageUpdate()">アップロード</v-btn>
         <v-dialog transition="dialog-top-transition" max-width="600px">
           <template #activator="{ on, attrs }">
@@ -37,22 +37,15 @@
         </v-dialog>
       </v-card-text>
     </v-form>
-  </validation-observer>
+  </ValidationObserver>
 </template>
 
 <script>
-import { ValidationObserver, ValidationProvider, extend } from 'vee-validate'
-import { size } from 'vee-validate/dist/rules'
 import Application from '~/plugins/application.js'
-
-extend('size_20MB', { ...size, message: '20MB以下のファイルを選択してください。' })
 
 export default {
   name: 'ImageEdit',
-  components: {
-    ValidationObserver,
-    ValidationProvider
-  },
+
   mixins: [Application],
 
   data () {
@@ -75,7 +68,7 @@ export default {
       await this.$axios.post('/users/auth/image/update.json', params)
         .then((response) => {
           if (response.data == null) {
-            this.$toasted.error('エラーが発生しました。しばらく時間をあけてから、やり直してください。')
+            this.$toasted.error(this.$t('system.error'))
           } else {
             this.$auth.setUser(response.data.user)
             this.$toasted.error(response.data.alert)
@@ -85,11 +78,11 @@ export default {
         },
         (error) => {
           if (error.response == null) {
-            this.$toasted.error('通信に失敗しました。しばらく時間をあけてから、やり直してください。')
+            this.$toasted.error(this.$t('network.failure'))
           } else if (error.response.status === 401) {
             return this.signOut()
           } else if (error.response.data == null) {
-            this.$toasted.error('通信エラーが発生しました。しばらく時間をあけてから、やり直してください。')
+            this.$toasted.error(this.$t('network.error'))
           } else {
             this.$emit('alert', error.response.data.alert)
             this.$emit('notice', error.response.data.notice)
@@ -108,7 +101,7 @@ export default {
       await this.$axios.post('/users/auth/image/delete.json')
         .then((response) => {
           if (response.data == null) {
-            this.$toasted.error('エラーが発生しました。しばらく時間をあけてから、やり直してください。')
+            this.$toasted.error(this.$t('system.error'))
           } else {
             this.$auth.setUser(response.data.user)
             this.$toasted.error(response.data.alert)
@@ -118,11 +111,11 @@ export default {
         },
         (error) => {
           if (error.response == null) {
-            this.$toasted.error('通信に失敗しました。しばらく時間をあけてから、やり直してください。')
+            this.$toasted.error(this.$t('network.failure'))
           } else if (error.response.status === 401) {
             return this.signOut()
           } else if (error.response.data == null) {
-            this.$toasted.error('通信エラーが発生しました。しばらく時間をあけてから、やり直してください。')
+            this.$toasted.error(this.$t('network.error'))
           } else {
             this.$emit('alert', error.response.data.alert)
             this.$emit('notice', error.response.data.notice)

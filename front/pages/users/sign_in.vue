@@ -4,11 +4,11 @@
     <Message v-if="!loading" :alert="alert" :notice="notice" />
     <v-card v-if="!loading" max-width="480px">
       <Processing v-if="processing" />
-      <validation-observer v-slot="{ invalid }">
+      <ValidationObserver v-slot="{ invalid }">
         <v-form autocomplete="on">
           <v-card-title>ログイン</v-card-title>
           <v-card-text>
-            <validation-provider v-slot="{ errors }" name="email" rules="required|email">
+            <ValidationProvider v-slot="{ errors }" name="email" rules="required|email">
               <v-text-field
                 v-model="email"
                 label="メールアドレス"
@@ -17,8 +17,8 @@
                 :error-messages="errors"
                 @click="waiting = false"
               />
-            </validation-provider>
-            <validation-provider v-slot="{ errors }" name="password" rules="required">
+            </ValidationProvider>
+            <ValidationProvider v-slot="{ errors }" name="password" rules="required|min:8">
               <v-text-field
                 v-model="password"
                 type="password"
@@ -29,7 +29,7 @@
                 :error-messages="errors"
                 @click="waiting = false"
               />
-            </validation-provider>
+            </ValidationProvider>
             <v-btn id="sign_in_btn" color="primary" :disabled="invalid || processing || waiting" @click="signIn()">ログイン</v-btn>
           </v-card-text>
           <v-divider />
@@ -37,25 +37,18 @@
             <ActionLink action="sign_in" />
           </v-card-actions>
         </v-form>
-      </validation-observer>
+      </ValidationObserver>
     </v-card>
   </div>
 </template>
 
 <script>
-import { ValidationObserver, ValidationProvider, extend } from 'vee-validate'
-import { required, email } from 'vee-validate/dist/rules'
 import ActionLink from '~/components/users/ActionLink.vue'
 import Application from '~/plugins/application.js'
-
-extend('required', { ...required, message: '入力してください。' })
-extend('email', { ...email, message: '形式が正しくありません。' })
 
 export default {
   name: 'UsersSignIn',
   components: {
-    ValidationObserver,
-    ValidationProvider,
     ActionLink
   },
   mixins: [Application],
