@@ -30,7 +30,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    'plugins/axios'
+    'plugins/axios',
+    'plugins/vee-validate'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -116,7 +117,6 @@ export default {
       }
     }
   },
-
   /*
   ** Build configuration
   */

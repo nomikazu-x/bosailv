@@ -49,6 +49,14 @@
             <v-list-item-title>登録情報変更</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item to="/users/sign_out" exact nuxt>
+          <v-list-item-icon>
+            <v-icon>mdi-logout</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>ログアウト</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list-item-group>
 
       <div class="card-position">
