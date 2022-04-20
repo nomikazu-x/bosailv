@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: 'ユーザー'
+      admin_user: '管理者'
     attributes:
       user:
         id: 'ID'
@@ -34,6 +35,31 @@ ja:
         locked_at: 'アカウントロック日時'
         created_at: '作成日時'
         updated_at: '更新日時'
+      admin_user:
+        id: 'ID'
+        name: '氏名'
+        email: 'メールアドレス'
+        password: 'パスワード'
+        password_confirmation: 'パスワード(確認)'
+        current_password: '現在のパスワード'
+        reset_password_token: 'パスワードリセットトークン'
+        reset_password_sent_at: 'パスワードリセット送信日時'
+        remember_me: 'ログイン状態を維持する'
+        remember_created_at: 'ログイン状態維持開始日時'
+        sign_in_count: 'ログイン回数'
+        current_sign_in_at: '現在のログイン日時'
+        last_sign_in_at: '最終ログイン日時'
+        current_sign_in_ip: '現在のログインIPアドレス'
+        last_sign_in_ip: '最終ログインIPアドレス'
+        confirmation_token: 'メールアドレス確認トークン'
+        confirmed_at: 'メールアドレス確認日時'
+        confirmation_sent_at: 'メールアドレス確認送信日時'
+        unconfirmed_email: '確認待ちメールアドレス'
+        failed_attempts: '連続ログイン失敗回数'
+        unlock_token: 'アカウントロック解除トークン'
+        locked_at: 'アカウントロック日時'
+        created_at: '作成日時'
+        updated_at: '更新日時'
     errors:
       models:
         user:
@@ -48,6 +74,36 @@ ja:
               too_long: '%{count}文字以下で入力してください。'
               invalid: '形式が正しくありません。'
               taken: '既に使用されています。'
+            password:
+              blank: '入力してください。'
+              too_short: '%{count}文字以上で入力してください。'
+              too_long: '%{count}文字以下で入力してください。'
+            password_confirmation:
+              confirmation: 'パスワードと一致していません。' # '%{attribute}と一致しません。'
+            current_password:
+              blank: '入力してください。'
+              invalid: 'パスワードが違います。'
+            reset_password_token:
+              blank: 'URLが正しくありません。最初からやり直してください。'
+              invalid: 'URLが正しくないか、有効期限が切れています。最初からやり直してください。'
+            confirmation_token:
+              blank: 'URLが正しくありません。最初からやり直してください。'
+              invalid: 'URLが正しくないか、有効期限が切れています。最初からやり直してください。'
+            unlock_token:
+              blank: 'URLが正しくありません。最初からやり直してください。'
+              invalid: 'URLが正しくないか、解除されています。ログインできるか確認してください。'
+        admin_user:
+          attributes:
+            name:
+              blank: '入力してください。'
+              too_short: '%{count}文字以上で入力してください。'
+              too_long: '%{count}文字以下で入力してください。'
+            email:
+              blank: '入力してください。'
+              too_short: '%{count}文字以上で入力してください。'
+              too_long: '%{count}文字以下で入力してください。'
+              invalid: '形式が正しくありません。'
+              taken: '既に使用されています。パスワードが不明な場合は[パスワード再設定]をしてください。'
             password:
               blank: '入力してください。'
               too_short: '%{count}文字以上で入力してください。'
