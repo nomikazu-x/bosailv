@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  has_many :infomations
+
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
   VALID_PASSWORD_REGEX = /\A[!-~]+\z/
 
