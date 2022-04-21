@@ -44,6 +44,13 @@ gem 'rack-cors'
 gem 'carrierwave'
 gem 'mini_magick'
 
+# Use kaminari
+gem 'kaminari'
+gem 'kaminari-i18n'
+
+# Use EnumHelp
+gem 'enum_help'
+
 # コンソール出力結果を表にする Doc: https://github.com/cldwalker/hirb
 gem 'hirb', '~> 0.7.3'
 
@@ -79,5 +86,4 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'sassc-rails'
 gem 'sassc-rails'
