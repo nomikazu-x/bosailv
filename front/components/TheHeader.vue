@@ -52,7 +52,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-btn to="/" text rounded exact nuxt>
+      <v-btn to="/infomations" text rounded exact nuxt>
         <v-badge color="red" overlap>
           <v-icon>mdi-bell</v-icon>
         </v-badge>

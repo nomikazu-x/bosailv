@@ -19,7 +19,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-divider />
-        <v-list-item to="/" exact nuxt>
+        <v-list-item to="/infomations" exact nuxt>
           <v-list-item-icon>
             <v-icon>mdi-bell</v-icon>
           </v-list-item-icon>
@@ -32,7 +32,7 @@
 
     <v-list v-else>
       <v-list-item-group>
-        <v-list-item to="/" exact nuxt>
+        <v-list-item to="/infomations" exact nuxt>
           <v-list-item-icon>
             <v-icon>mdi-bell</v-icon>
           </v-list-item-icon>
