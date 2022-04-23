@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2022_04_21_111848) do
     t.integer "target", null: false
     t.datetime "started_at", null: false
     t.datetime "ended_at"
+    t.datetime "force_started_at"
+    t.datetime "force_ended_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_infomations_on_user_id"

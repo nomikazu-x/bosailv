@@ -1,8 +1,10 @@
 class InfomationsController < ApiController
   def index
-    @infomations = Infomation.order(started_at: 'DESC', id: 'DESC').page(params[:page]).per(25)
-                             .where('started_at <= ? AND (ended_at IS NULL OR ended_at >= ?)', Time.current, Time.current)
-                             .where('target = ? OR (target = ? AND user_id = ?)', Infomation.targets[:All], Infomation.targets[:User], current_user&.id)
+    @infomations = Infomation.by_target(current_user).page(params[:page]).per(25)
+  end
+
+  def important
+    @infomations = Infomation.by_target(current_user).by_force
   end
 
   def show

@@ -9,6 +9,8 @@ class CreateInfomations < ActiveRecord::Migration[6.1]
       t.integer :target, null: false
       t.datetime :started_at, null: false
       t.datetime :ended_at
+      t.datetime :force_started_at
+      t.datetime :force_ended_at
       t.timestamps
     end
   end

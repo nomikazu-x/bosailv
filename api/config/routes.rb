@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
 
   get 'infomations',           to: 'infomations#index',     as: 'infomations'
+  get 'infomations/important', to: 'infomations#important', as: 'important_infomations'
   get 'infomations/:id',       to: 'infomations#show',      as: 'infomation'
   
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
