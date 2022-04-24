@@ -14,4 +14,6 @@ json.user do
   json.address current_user.address
   json.profile current_user.profile
   json.username current_user.username
+  json.infomation_unread_count current_user.infomation_unread_count
+  json.created_at current_user.created_at.present? ? l(current_user.created_at, format: :json) : nil
 end

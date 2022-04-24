@@ -68,6 +68,11 @@ export default {
 
   async created () {
     await this.onPagination(this.page)
+
+    if (!this.$auth.loggedIn) {
+      return this.redirectAuth()
+    }
+
     this.loading = false
   },
 

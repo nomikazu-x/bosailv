@@ -53,7 +53,7 @@
         </v-list>
       </v-menu>
       <v-btn to="/infomations" text rounded exact nuxt>
-        <v-badge color="red" overlap>
+        <v-badge :content="$auth.user.infomation_unread_count" :value="$auth.user.infomation_unread_count" color="red" overlap>
           <v-icon>mdi-bell</v-icon>
         </v-badge>
       </v-btn>

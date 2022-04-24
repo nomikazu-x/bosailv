@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
-  has_many :infomations
+  has_many :infomations, dependent: :destroy
 
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
   VALID_PASSWORD_REGEX = /\A[!-~]+\z/
@@ -36,5 +36,9 @@ class User < ActiveRecord::Base
       logger.warn("[WARN]Not found: User.image_url(#{version})")
       ''
     end
+  end
+
+  def infomation_unread_count
+    Infomation.by_target(self).by_unread(infomation_check_last_started_at).count
   end
 end
