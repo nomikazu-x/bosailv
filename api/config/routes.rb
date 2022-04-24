@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :admin_users, controllers: {
     sessions: 'admin_users/sessions'
   }
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   devise_for :users, skip: :all
   devise_scope :user do
     # Devise Token Auth
@@ -15,6 +17,10 @@ Rails.application.routes.draw do
     post 'users/auth/sign_out',        to: 'users/auth/sessions#destroy',                 as: 'destroy_user_auth_session'
     get  'users/auth/validate_token',  to: 'users/auth/token_validations#validate_token', as: 'user_auth_validate_token'
   end
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  get 'infomations',           to: 'infomations#index',     as: 'infomations'
+  get 'infomations/important', to: 'infomations#important', as: 'important_infomations'
+  get 'infomations/:id',       to: 'infomations#show',      as: 'infomation'
+  
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

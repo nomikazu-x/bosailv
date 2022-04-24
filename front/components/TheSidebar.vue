@@ -18,23 +18,16 @@
             <v-list-item-title>アカウント登録</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-divider />
-        <v-list-item to="/" exact nuxt>
-          <v-list-item-icon>
-            <v-icon>mdi-bell</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>お知らせ</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
       </v-list-item-group>
     </v-list>
 
     <v-list v-else>
       <v-list-item-group>
-        <v-list-item to="/" exact nuxt>
+        <v-list-item to="/infomations" exact nuxt>
           <v-list-item-icon>
-            <v-icon>mdi-bell</v-icon>
+            <v-badge :content="$auth.user.infomation_unread_count" :value="$auth.user.infomation_unread_count" color="red" overlap>
+              <v-icon>mdi-bell</v-icon>
+            </v-badge>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>お知らせ</v-list-item-title>
@@ -81,7 +74,7 @@
           </template>
 
           <v-list dense>
-            <v-list-item dense @click="signOut">
+            <v-list-item dense to="/users/sign_out">
               ログアウト
             </v-list-item>
           </v-list>
@@ -111,20 +104,6 @@ export default {
     },
     getDrawer () {
       return this.$store.getters['sidebar/drawer']
-    }
-  },
-  methods: {
-    async signOut () {
-      await this.$auth.logout()
-      this.$toasted.info('ログアウトしました。')
-      // Devise Token Auth
-      if (localStorage.getItem('token-type') === 'Bearer' && localStorage.getItem('access-token')) {
-        localStorage.removeItem('token-type')
-        localStorage.removeItem('uid')
-        localStorage.removeItem('client')
-        localStorage.removeItem('access-token')
-        localStorage.removeItem('expiry')
-      }
     }
   }
 }

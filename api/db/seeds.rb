@@ -1,23 +1,35 @@
-paths = ['', "#{Rails.env}/"]
-paths.each do |path|
-  Dir.glob("#{Rails.root}/db/seed/#{path}*.yml").each do |filename|
-    puts "filename: #{filename}"
+env_paths = ['', "#{Rails.env}/"]
+env_paths.each do |env_path|
+  list_file = "#{Rails.root}/db/seed/#{env_path}_list.txt"
+  p "list_file: #{list_file}"
 
-    target_model = File.basename(filename, '.yml').classify.constantize
-    puts "model: #{target_model}"
+  File.open(list_file) do |lists|
+    lists.each_line do |list|
+      p "list: #{list.chomp}"
 
-    File.open(filename) do |file_contents|
-      yaml_contents = YAML.safe_load(file_contents)
-      yaml_contents.each do |yaml_record|
-        id = yaml_record['id']
+      target_model = list.chomp.classify.constantize
+      p "target_model: #{target_model}"
 
-        if target_model.find_by(id: id)
-          puts "id: #{id} Skip create"
-          next
+      yml_file = "#{Rails.root}/db/seed/#{env_path}#{list.chomp}.yml"
+      p "yml_file: #{yml_file}"
+
+      File.open(yml_file) do |file_contents|
+        yaml_contents = YAML.safe_load(file_contents)
+        count = yaml_contents.count
+        p "count: #{count}"
+
+        yaml_contents.each.with_index(1) do |yaml_record, index|
+          id = yaml_record['id']
+          target = "[#{index}/#{count}] id: #{id}"
+
+          if target_model.find_by(id: id)
+            p "#{target} Skip create"
+            next
+          end
+
+          p "#{target} Create"
+          target_model.create!(yaml_record)
         end
-
-        puts "id: #{id} Create"
-        target_model.create(yaml_record)
       end
     end
   end

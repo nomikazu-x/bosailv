@@ -100,6 +100,8 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    enum_help (0.0.18)
+      activesupport (>= 3.0.0)
     erubi (1.10.0)
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
@@ -135,6 +137,9 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    kaminari-i18n (0.5.0)
+      kaminari
+      rails
     launchy (2.5.0)
       addressable (~> 2.7)
     letter_opener (1.8.1)
@@ -309,11 +314,14 @@ DEPENDENCIES
   devise-i18n
   devise_token_auth
   dotenv-rails
+  enum_help
   factory_bot_rails
   faker
   hirb (~> 0.7.3)
   hirb-unicode-steakknife (~> 0.0.9)
   jbuilder (~> 2.7)
+  kaminari
+  kaminari-i18n
   letter_opener_web (~> 1.0)
   listen (~> 3.3)
   mini_magick
