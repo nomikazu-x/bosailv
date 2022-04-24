@@ -65,7 +65,7 @@ export default {
 
       const params = new FormData()
       params.append('image', this.image)
-      await this.$axios.post('/users/auth/image/update.json', params)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.userImageUpdateUrl, params)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
@@ -98,7 +98,7 @@ export default {
     async onUserImageDelete () {
       this.processing = true
 
-      await this.$axios.post('/users/auth/image/delete.json')
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.userImageDeleteUrl)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))

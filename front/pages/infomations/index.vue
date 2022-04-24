@@ -80,7 +80,7 @@ export default {
     async onPagination () {
       this.processing = true
 
-      await this.$axios.get('/infomations.json', { params: { page: this.page } })
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.infomationsUrl, { params: { page: this.page } })
         .then((response) => {
           if (response.data == null || response.data.infomation == null) {
             this.$toasted.error(this.$t('system.error'))

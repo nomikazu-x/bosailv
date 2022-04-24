@@ -1,6 +1,12 @@
 import colors from 'vuetify/es5/util/colors'
 
+const environment = process.env.NODE_ENV || 'development'
+const envConfig = require(`./config/${environment}.js`)
+const commonConfig = require('./config/common.js')
+
 export default {
+  publicRuntimeConfig: Object.assign(envConfig, commonConfig),
+
   ssr: false,
   /*
   ** Headers of the page
@@ -96,10 +102,10 @@ export default {
 
   auth: {
     redirect: {
-      login: '/users/sign_in', // ログインURL
-      logout: '/', // ログアウト後の遷移先
+      login: commonConfig.authRedirectSignInURL, // ログインURL
+      logout: commonConfig.authRedirectLogOutURL, // ログアウト後の遷移先
       callback: false,
-      home: '/' // ログイン後の遷移先URL
+      home: commonConfig.authRedirectHomeURL // ログイン後の遷移先URL
     },
     strategies: {
       local: {
@@ -111,9 +117,9 @@ export default {
           property: 'user'
         },
         endpoints: {
-          login: { url: '/users/auth/sign_in.json', method: 'post' },
-          logout: { url: '/users/auth/sign_out.json', method: 'post' },
-          user: { url: '/users/auth/validate_token.json', method: 'get' }
+          login: { url: envConfig.apiBaseURL + commonConfig.authSignInURL, method: 'post' },
+          logout: { url: envConfig.apiBaseURL + commonConfig.authSignOutURL, method: 'post' },
+          user: { url: envConfig.apiBaseURL + commonConfig.authUserURL, method: 'get' }
         }
       }
     }

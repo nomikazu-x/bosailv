@@ -98,7 +98,7 @@ export default {
     async onSignUp () {
       this.processing = true
 
-      await this.$axios.post('/users/auth/sign_up.json', {
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.singUpUrl, {
         name: this.name,
         email: this.email,
         password: this.password,

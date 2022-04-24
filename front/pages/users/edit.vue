@@ -59,7 +59,7 @@ export default {
       return this.redirectAuth()
     }
 
-    await this.$axios.get('/users/auth/show.json')
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.userShowUrl)
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))

@@ -66,7 +66,7 @@ export default {
     async onUserDelete () {
       this.processing = true
 
-      await this.$axios.post('/users/auth/delete.json')
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.userDeleteUrl)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))

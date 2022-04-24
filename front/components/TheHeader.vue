@@ -9,7 +9,7 @@
         :style="{ 'max-width': ($vuetify.breakpoint.width - 226) + 'px' }"
         class="ml-1 align-self-center d-inline-block text-truncate"
       >
-        <h2>app</h2>
+        {{ $t('app_name') + $config.envName }}
       </v-toolbar-title>
     </NuxtLink>
     <v-spacer />
@@ -70,3 +70,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.toolbar-title {
+  color: inherit !important;
+  text-decoration: inherit;
+}
+</style>

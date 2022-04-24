@@ -41,7 +41,7 @@ export default {
   },
 
   async created () {
-    await this.$axios.get('/infomations/important.json')
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.importantInfomationsUrl)
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
