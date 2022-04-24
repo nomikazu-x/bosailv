@@ -58,7 +58,8 @@ export default {
     '@nuxtjs/i18n',
     '@nuxtjs/axios',
     '@nuxtjs/auth',
-    '@nuxtjs/toast'
+    '@nuxtjs/toast',
+    '@nuxtjs/pwa'
   ],
   /*
   ** vuetify module configuration
@@ -98,6 +99,13 @@ export default {
   toast: {
     position: 'top-right',
     duration: 3000
+  },
+
+  // PWA module configuration: https://go.nuxtjs.dev/pwa
+  pwa: {
+    manifest: {
+      lang: 'en'
+    }
   },
 
   auth: {
