@@ -1,13 +1,13 @@
 <template>
-  <v-container class='main-heading text-center'>
-    <div class='mt-2 mt-sm-4'>
-      <h1 class='error-code'>{{ error.statusCode }}</h1>
+  <v-container class="main-heading text-center">
+    <div class="mt-2 mt-sm-4">
+      <h1 class="error-code">{{ error.statusCode }}</h1>
 
-      <h2 class='mb-2'>{{ title }}</h2>
+      <h2 class="mb-2">{{ title }}</h2>
 
-      <h3 class='mb-2'>{{ message }}</h3>
+      <h3 class="mb-2">{{ message }}</h3>
 
-      <p class='mb-2'><nuxt-link to='/'>Home</nuxt-link></p>
+      <p class="mb-2"><nuxt-link to="/">Home</nuxt-link></p>
     </div>
   </v-container>
 </template>
@@ -61,7 +61,7 @@ export default {
 }
 </script>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .error-code {
   font-size: 3rem;
 }
