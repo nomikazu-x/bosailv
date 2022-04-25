@@ -1,4 +1,7 @@
 module.exports = {
+  app_name: 'App',
+  my_name: 'kazuki-ayimon',
+  my_url: 'https://example.com',
   network: {
     failure: '通信に失敗しました。しばらく時間をあけてから、やり直してください。',
     error: '通信エラーが発生しました。しばらく時間をあけてから、やり直してください。'

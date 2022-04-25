@@ -101,7 +101,7 @@ export default {
     async onUserUpdate () {
       this.processing = true
 
-      await this.$axios.post('/users/auth/update.json', {
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.userUpdateUrl, {
         name: this.name,
         email: this.email,
         password: this.password,
