@@ -1,44 +1,68 @@
 <template>
-  <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
-  </v-app>
+  <v-container class='main-heading text-center'>
+    <div class='mt-2 mt-sm-4'>
+      <h1 class='error-code'>{{ error.statusCode }}</h1>
+
+      <h2 class='mb-2'>{{ title }}</h2>
+
+      <h3 class='mb-2'>{{ message }}</h3>
+
+      <p class='mb-2'><nuxt-link to='/'>Home</nuxt-link></p>
+    </div>
+  </v-container>
 </template>
 
 <script>
+const defaultErrorMessages = {
+  401: {
+    title: 'Unauthorized',
+    message: '認証ができていません'
+  },
+  403: {
+    title: 'Forbidden',
+    message: 'ページを見る権限がありません'
+  },
+  404: {
+    title: 'Page Not Found',
+    message: 'ページが存在しません'
+  },
+  500: {
+    title: 'Internal Server Error',
+    message: 'エラーが発生しました'
+  }
+}
+
+const getErrorMessage = (statusCode = null) => {
+  statusCode = String(statusCode) || '500' // statusCodeがnullのとき、500にする。
+  for (const v in defaultErrorMessages) {
+    if (v === statusCode) {
+      return defaultErrorMessages[v]
+    }
+  }
+  return defaultErrorMessages['500']
+}
+
 export default {
-  layout: 'empty',
-  props: {
-    error: {
-      type: Object,
-      default: null
-    }
-  },
-  data () {
-    return {
-      pageNotFound: '404 Not Found',
-      otherError: 'An error occurred'
-    }
-  },
-  head () {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError
-    return {
-      title
+  props: ['error'],
+
+  computed: {
+    title () {
+      return this.errorMessageObj.title
+    },
+
+    message () {
+      return this.errorMessageObj.message
+    },
+
+    errorMessageObj () {
+      return getErrorMessage(this.error.statusCode)
     }
   }
 }
 </script>
 
-<style scoped>
-h1 {
-  font-size: 20px;
+<style scoped lang='scss'>
+.error-code {
+  font-size: 3rem;
 }
 </style>
