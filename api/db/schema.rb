@@ -39,12 +39,12 @@ ActiveRecord::Schema.define(version: 2022_04_25_140633) do
   end
 
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.string "title", limit: 30, null: false
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_articles_on_users_id"
+    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "infomations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -108,6 +108,6 @@ ActiveRecord::Schema.define(version: 2022_04_25_140633) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  add_foreign_key "articles", "users", column: "users_id"
+  add_foreign_key "articles", "users"
   add_foreign_key "infomations", "users"
 end
