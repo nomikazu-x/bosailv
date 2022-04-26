@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  has_many :articles, dependent: :destroy
   has_many :infomations, dependent: :destroy
 
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i

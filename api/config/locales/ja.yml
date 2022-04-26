@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       infomation: 'お知らせ'
+      article: '記事'
     attributes:
       infomation:
         id: 'お知らせID'
@@ -15,6 +16,12 @@ ja:
         force_ended_at: '強制表示終了日時'
         target: '対象'
         user: 'ユーザー'
+        created_at: '作成日時'
+        updated_at: '更新日時'
+      article:
+        id: '記事ID'
+        title: 'タイトル'
+        content: '内容'
         created_at: '作成日時'
         updated_at: '更新日時'
   enums:
@@ -31,10 +38,20 @@ ja:
     user:
       image_update: '画像を変更しました。'
       image_destroy: '画像を削除しました。'
+    article:
+      create: '記事の作成に成功しました。'
+      update: '記事の更新に成功しました。'
+      destroy: '記事の削除に成功しました。'
+
   alert:
     user:
       destroy:
         params_blank: 'パラメータが指定されていません。'
+    article: 
+      create: '記事の作成に失敗しました。'
+      update: '記事の更新に失敗しました。'
+      destroy: '記事の削除に失敗しました。'
   errors:
     messages:
       image_update_blank: '選択してください。'
+      not_permission: 'アクセスする権限がありません。'

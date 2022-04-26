@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   draw :admin
+  draw :articles
   draw :infomations
   draw :users
   
