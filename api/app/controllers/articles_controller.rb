@@ -1,10 +1,10 @@
 class ArticlesController < ApiController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_article, except: %i[new create show]
+  before_action :set_article, except: %i[new create index]
   before_action :correct_user?, only: %i[update destroy]
 
   def index
-    @articles = Articles.all
+    @articles = Article.all.page(params[:page]).per(Settings['default_infomations_limit'])
   end
 
   def create

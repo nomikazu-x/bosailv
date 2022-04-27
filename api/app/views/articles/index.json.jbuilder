@@ -8,7 +8,6 @@ end
 json.articles do
   json.array! @articles do |article|
     json.id article.id
-    json.user article.user
     json.title article.title
     json.content article.content
     json.created_at article.created_at

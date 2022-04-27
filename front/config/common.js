@@ -29,5 +29,11 @@ module.exports = {
   // お知らせ一覧API
   infomationsUrl: '/infomations.json',
   // お知らせ詳細API
-  infomationShowUrl: '/infomations/_id.json'
+  infomationShowUrl: '/infomations/_id.json',
+
+  // 【記事】
+  // 記事一覧API
+  articlesUrl: '/articles.json',
+  // 記事詳細API
+  articleShowUrl: '/articles/_id.json'
 }
