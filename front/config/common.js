@@ -29,13 +29,15 @@ module.exports = {
   // お知らせ一覧API
   infomationsUrl: '/infomations.json',
   // お知らせ詳細API
-  infomationShowUrl: '/infomations/_id.json',
+  infomationDetailUrl: '/infomations/_id.json',
 
   // 【記事】
   // 記事一覧API
   articlesUrl: '/articles.json',
   // 記事詳細API
-  articleShowUrl: '/articles/_id.json',
+  articleDetailUrl: '/articles/_id.json',
   // 記事作成API
-  articleCreateUrl: '/articles/create.json'
+  articleCreateUrl: '/articles/create.json',
+  // 記事編集API
+  articleUpdateUrl: '/articles/_id/update.json'
 }

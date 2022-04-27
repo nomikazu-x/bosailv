@@ -6,7 +6,7 @@
       <Processing v-if="processing" />
       <ValidationObserver v-slot="{ invalid }" ref="observer">
         <v-form autocomplete="off">
-          <v-card-title>記事作成</v-card-title>
+          <v-card-title>記事編集</v-card-title>
           <v-card-text>
             <ValidationProvider v-slot="{ errors }" name="title" rules="required">
               <v-text-field
@@ -28,7 +28,7 @@
                 @click="waiting = false"
               />
             </ValidationProvider>
-            <v-btn id="article_create_btn" color="primary" :disabled="invalid || processing || waiting" @click="onArticleCreate()">作成</v-btn>
+            <v-btn id="article_create_btn" color="primary" :disabled="invalid || processing || waiting" @click="onArticleUpdate()">編集</v-btn>
           </v-card-text>
         </v-form>
       </ValidationObserver>
@@ -52,16 +52,37 @@ export default {
     }
   },
 
-  created () {
+  async created () {
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.articleDetailUrl.replace('_id', this.$route.params.id))
+      .then((response) => {
+        if (response.data == null) {
+          this.$toasted.error(this.$t('system.error'))
+          return this.$router.push({ path: '/' })
+        } else {
+          this.article = response.data.article
+        }
+      },
+      (error) => {
+        if (error.response == null) {
+          this.$toasted.error(this.$t('network.failure'))
+        } else if (error.response.status === 401) {
+          return this.signOut()
+        } else {
+          this.$toasted.error(this.$t('network.error'))
+        }
+        return this.$router.push({ path: '/' })
+      })
+    this.title = this.title || this.article.title
+    this.content = this.content || this.article.content
     this.processing = false
     this.loading = false
   },
 
   methods: {
-    async onArticleCreate () {
+    async onArticleUpdate () {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.articleCreateUrl, {
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.articleUpdateUrl.replace('_id', this.$route.params.id), {
         title: this.title,
         content: this.content
       })

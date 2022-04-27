@@ -17,7 +17,7 @@
       <v-divider />
       <v-card-actions>
         <ul class="my-2">
-          <li><NuxtLink to="/articles">一覧</NuxtLink></li>
+          <li><NuxtLink :to="`/articles/${$route.params.id}/edit`">編集</NuxtLink></li>
         </ul>
       </v-card-actions>
     </v-card>
@@ -39,7 +39,7 @@ export default {
   },
 
   async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.articleShowUrl.replace('_id', this.$route.params.id))
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.articleDetailUrl.replace('_id', this.$route.params.id))
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
