@@ -41,6 +41,14 @@
             <v-list-item-title>記事一覧</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item to="/articles/new" exact nuxt>
+          <v-list-item-icon>
+            <v-icon>mdi-pencil</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>記事作成</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-divider />
         <v-list-item to="/users/edit" exact nuxt>
           <v-list-item-icon>

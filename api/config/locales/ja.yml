@@ -39,18 +39,18 @@ ja:
       image_update: '画像を変更しました。'
       image_destroy: '画像を削除しました。'
     article:
-      create: '記事の作成に成功しました。'
-      update: '記事の更新に成功しました。'
-      destroy: '記事の削除に成功しました。'
+      create: '記事を作成できました。'
+      update: '記事を更新できました。'
+      destroy: '記事を削除できました。'
 
   alert:
     user:
       destroy:
         params_blank: 'パラメータが指定されていません。'
     article: 
-      create: '記事の作成に失敗しました。'
-      update: '記事の更新に失敗しました。'
-      destroy: '記事の削除に失敗しました。'
+      create: '作成に失敗しました。'
+      update: '更新に失敗しました。'
+      destroy: '削除に失敗しました。'
   errors:
     messages:
       image_update_blank: '選択してください。'

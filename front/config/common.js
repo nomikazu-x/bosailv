@@ -35,5 +35,7 @@ module.exports = {
   // 記事一覧API
   articlesUrl: '/articles.json',
   // 記事詳細API
-  articleShowUrl: '/articles/_id.json'
+  articleShowUrl: '/articles/_id.json',
+  // 記事作成API
+  articleCreateUrl: '/articles/create.json'
 }

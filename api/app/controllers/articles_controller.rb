@@ -9,7 +9,7 @@ class ArticlesController < ApiController
 
   def create
     @article = current_user.articles.build(article_params)
-    if @ariticle.save
+    if @article.save
       render './articles/success', locals: { notice: I18n.t('notice.article.create') }
     else
       render './failure', locals: { alert: I18n.t('alert.article.create') }, status: :unprocessable_entity
