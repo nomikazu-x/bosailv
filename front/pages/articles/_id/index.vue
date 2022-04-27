@@ -2,6 +2,7 @@
   <div>
     <Loading v-if="loading" />
     <v-card v-if="!loading">
+      <Processing v-if="processing" />
       <v-card-title v-if="list">
         <span class="ml-1 font-weight-bold">
           {{ list.title }}
@@ -18,6 +19,7 @@
       <v-card-actions>
         <ul class="my-2">
           <li><NuxtLink :to="`/articles/${$route.params.id}/edit`">編集</NuxtLink></li>
+          <li @click="onArticleDelete">削除</li>
         </ul>
       </v-card-actions>
     </v-card>
@@ -63,7 +65,37 @@ export default {
         }
       })
 
+    this.processing = false
     this.loading = false
+  },
+
+  methods: {
+    async onArticleDelete () {
+      this.processing = true
+
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.articleDeleteUrl.replace('_id', this.$route.params.id))
+        .then((response) => {
+          if (response.data == null) {
+            this.$toasted.error(this.$t('system.error'))
+          } else {
+            this.$toasted.error(response.data.alert)
+            this.$toasted.info(response.data.notice)
+            return this.$router.push({ path: '/articles' })
+          }
+        },
+        (error) => {
+          if (error.response == null) {
+            this.$toasted.error(this.$t('network.failure'))
+          } else if (error.response.data == null) {
+            this.$toasted.error(this.$t('network.error'))
+          } else {
+            this.$toasted.error(error.response.data.alert)
+            this.$toasted.info(error.response.data.notice)
+          }
+        })
+
+      this.processing = false
+    }
   }
 }
 </script>

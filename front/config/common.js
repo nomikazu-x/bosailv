@@ -39,5 +39,7 @@ module.exports = {
   // 記事作成API
   articleCreateUrl: '/articles/create.json',
   // 記事編集API
-  articleUpdateUrl: '/articles/_id/update.json'
+  articleUpdateUrl: '/articles/_id/update.json',
+  // 記事削除API
+  articleDeleteUrl: '/articles/_id/delete.json'
 }
