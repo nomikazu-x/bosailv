@@ -42,6 +42,9 @@ ja:
       create: '記事を作成できました。'
       update: '記事を更新できました。'
       destroy: '記事を削除できました。'
+    favorite:
+      create: 'お気に入りに登録しました。'
+      destroy: 'お気に入りを解除しました。'
 
   alert:
     user:
@@ -51,6 +54,10 @@ ja:
       create: '作成に失敗しました。'
       update: '更新に失敗しました。'
       destroy: '削除に失敗しました。'
+    favorite:
+      create: 'お気に入りに失敗しました。'
+      destroy: 'お気に入りの解除に失敗しました。'
+    
   errors:
     messages:
       image_update_blank: '選択してください。'
