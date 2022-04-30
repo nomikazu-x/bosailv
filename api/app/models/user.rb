@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :articles, dependent: :destroy
   has_many :infomations, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
   VALID_PASSWORD_REGEX = /\A[!-~]+\z/

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   draw :admin
   draw :articles
+  draw :comments
   draw :infomations
   draw :favorites
   draw :users
