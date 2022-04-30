@@ -41,5 +41,11 @@ module.exports = {
   // 記事編集API
   articleUpdateUrl: '/articles/_id/update.json',
   // 記事削除API
-  articleDeleteUrl: '/articles/_id/delete.json'
+  articleDeleteUrl: '/articles/_id/delete.json',
+
+  // ［お気に入り］
+  // お気に入り登録API
+  favoriteCreateUrl: '/articles/_id/favorites/create.json',
+  // お気に入り解除API
+  favoriteDeleteUrl: '/articles/_id/favorites/delete.json'
 }

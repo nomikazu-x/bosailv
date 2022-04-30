@@ -3,6 +3,7 @@ ja:
     models:
       infomation: 'お知らせ'
       article: '記事'
+      favorite: 'お気に入り'
     attributes:
       infomation:
         id: 'お知らせID'

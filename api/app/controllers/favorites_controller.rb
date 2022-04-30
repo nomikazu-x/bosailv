@@ -1,23 +1,17 @@
 class FavoritesController < ApiController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: %i[create destroy]
 
   def create
-    favorite = current_user.favorites.create!(post_id: favorite_params[:article_id])
-    render json: favorite, locals: { notice: I18n.t('notice.favorite.create') }
+    article = Article.find(params[:article_id])
+    current_user.favorite!(article)
+
+    render json: {  notice: I18n.t('notice.favorite.create') }
   end
 
   def destroy
-    favorite = Favorite.find_by(article_id: params[:id], user_id: current_user.id)
-    if favorite.destroy!
-      render json: favorite, locals: { notice: I18n.t('notice.favorite.destroy') }
-    else
-      render './failure', locals: { alert: I18n.t('alert.favorite.destroy') }, status: :unprocessable_entity
-    end
-  end
+    article = Article.find(params[:article_id])
+    current_user.unfavorite!(article)
 
-  private
-
-  def favorite_params
-    params.require(:favorite).permit(:user_id, :article_id)
+    render json: { notice: I18n.t('notice.favorite.destroy') }
   end
 end

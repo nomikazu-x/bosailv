@@ -21,6 +21,7 @@
           <li><NuxtLink :to="`/articles/${$route.params.id}/edit`">編集</NuxtLink></li>
           <li @click="onArticleDelete">削除</li>
         </ul>
+        <FavoriteBtnGroup :list="list" @alert="alert = $event" @notice="notice = $event" />
       </v-card-actions>
     </v-card>
   </div>
@@ -48,6 +49,7 @@ export default {
           return this.$router.push({ path: '/' })
         }
         this.list = response.data.article
+        console.log(this.list)
       },
       (error) => {
         if (error.response == null) {
