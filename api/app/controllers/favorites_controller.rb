@@ -5,7 +5,7 @@ class FavoritesController < ApiController
     article = Article.find(params[:article_id])
     current_user.favorite!(article)
 
-    render json: {  notice: I18n.t('notice.favorite.create') }
+    render json: { notice: I18n.t('notice.favorite.create') }
   end
 
   def destroy

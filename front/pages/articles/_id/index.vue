@@ -3,17 +3,17 @@
     <Loading v-if="loading" />
     <v-card v-if="!loading">
       <Processing v-if="processing" />
-      <v-card-title v-if="list">
+      <v-card-title v-if="article">
         <span class="ml-1 font-weight-bold">
-          {{ list.title }}
+          {{ article.title }}
         </span>
         <span class="ml-1">
-          ({{ $dateFormat(list.created_at, 'ja') }})
+          ({{ $dateFormat(article.created_at, 'ja') }})
         </span>
       </v-card-title>
-      <v-card-text v-if="list">
+      <v-card-text v-if="article">
         <!-- eslint-disable-next-line vue/no-v-html -->
-        <div v-if="list.content" class="mx-2 my-2" v-html="list.content" />
+        <div v-if="article.content" class="mx-2 my-2" v-html="article.content" />
       </v-card-text>
       <v-divider />
       <v-card-actions>
@@ -21,23 +21,44 @@
           <li><NuxtLink :to="`/articles/${$route.params.id}/edit`">編集</NuxtLink></li>
           <li @click="onArticleDelete">削除</li>
         </ul>
-        <FavoriteBtnGroup :list="list" @alert="alert = $event" @notice="notice = $event" />
+        <FavoriteBtnGroup :article="article" @alert="alert = $event" @notice="notice = $event" />
       </v-card-actions>
+    </v-card>
+    <v-card>
+      <v-card-title>コメント一覧</v-card-title>
+      <v-divider class="my-4" />
+      <article v-if="comments != null && comments.length === 0">
+        <span class="ml-1">コメントはありません。</span>
+        <v-divider class="my-4" />
+      </article>
+      <Comment v-for="comment in comments" :key="comment.id" :comment="comment" />
+      <CommentArea :article="article" />
     </v-card>
   </div>
 </template>
 
 <script>
+import FavoriteBtnGroup from '~/components/articles/FavoriteBtnGroup.vue'
+import Comment from '~/components/articles/Comment.vue'
+import CommentArea from '~/components/articles/CommentArea.vue'
 import Application from '~/plugins/application.js'
 
 export default {
   name: 'Articles',
 
+  components: {
+    FavoriteBtnGroup,
+    Comment,
+    CommentArea
+  },
+
   mixins: [Application],
 
   data () {
     return {
-      list: null
+      article: null,
+      comments: null,
+      content: ''
     }
   },
 
@@ -48,8 +69,9 @@ export default {
           this.$toasted.error(this.$t('system.error'))
           return this.$router.push({ path: '/' })
         }
-        this.list = response.data.article
-        console.log(this.list)
+        this.article = response.data.article
+        this.comments = response.data.article.comments
+        console.log(this.article)
       },
       (error) => {
         if (error.response == null) {

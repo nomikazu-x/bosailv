@@ -12,7 +12,7 @@
 <script>
 export default {
   props: {
-    list: {
+    article: {
       type: Object,
       default: null
     }
@@ -20,7 +20,7 @@ export default {
 
   data () {
     return {
-      isFavorited: this.list.is_favorited
+      isFavorited: this.article.is_favorited
     }
   },
 
@@ -30,7 +30,7 @@ export default {
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.favoriteCreateUrl.replace('_id', this.$route.params.id), {
         user_id: this.$auth.user.id,
-        article_id: this.list.id
+        article_id: this.article.id
       })
         .then((response) => {
           if (response.data == null) {
@@ -67,7 +67,7 @@ export default {
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.favoriteDeleteUrl.replace('_id', this.$route.params.id), {
         user_id: this.$auth.user.id,
-        article_id: this.list.id
+        article_id: this.article.id
       })
         .then((response) => {
           if (response.data == null) {

@@ -47,5 +47,13 @@ module.exports = {
   // お気に入り登録API
   favoriteCreateUrl: '/articles/_id/favorites/create.json',
   // お気に入り解除API
-  favoriteDeleteUrl: '/articles/_id/favorites/delete.json'
+  favoriteDeleteUrl: '/articles/_id/favorites/delete.json',
+
+  // ［コメント］
+  // コメント一覧API
+  commentsUrl: '/comments.json',
+  // コメント作成API
+  commentCreateUrl: '/comments/create.json',
+  // コメント削除API
+  commentDeleteUrl: '/comments/_id/delete.json'
 }
