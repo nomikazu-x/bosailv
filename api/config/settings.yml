@@ -1,3 +1,7 @@
 ## お知らせ
 # 一覧のデフォルト最大表示件数
 default_infomations_limit: 25
+
+## 記事
+# 一覧のデフォルト最大表示件数
+default_articles_limit: 30

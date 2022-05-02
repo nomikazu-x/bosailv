@@ -29,5 +29,31 @@ module.exports = {
   // お知らせ一覧API
   infomationsUrl: '/infomations.json',
   // お知らせ詳細API
-  infomationShowUrl: '/infomations/_id.json'
+  infomationDetailUrl: '/infomations/_id.json',
+
+  // 【記事】
+  // 記事一覧API
+  articlesUrl: '/articles.json',
+  // 記事詳細API
+  articleDetailUrl: '/articles/_id.json',
+  // 記事作成API
+  articleCreateUrl: '/articles/create.json',
+  // 記事編集API
+  articleUpdateUrl: '/articles/_id/update.json',
+  // 記事削除API
+  articleDeleteUrl: '/articles/_id/delete.json',
+
+  // ［お気に入り］
+  // お気に入り登録API
+  favoriteCreateUrl: '/articles/_id/favorites/create.json',
+  // お気に入り解除API
+  favoriteDeleteUrl: '/articles/_id/favorites/delete.json',
+
+  // ［コメント］
+  // コメント一覧API
+  commentsUrl: '/comments.json',
+  // コメント作成API
+  commentCreateUrl: '/comments/create.json',
+  // コメント削除API
+  commentDeleteUrl: '/comments/_id/delete.json'
 }

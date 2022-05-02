@@ -2,6 +2,9 @@ ja:
   activerecord:
     models:
       infomation: 'お知らせ'
+      article: '記事'
+      favorite: 'お気に入り'
+      comment: 'コメント'
     attributes:
       infomation:
         id: 'お知らせID'
@@ -17,6 +20,17 @@ ja:
         user: 'ユーザー'
         created_at: '作成日時'
         updated_at: '更新日時'
+      article:
+        id: '記事ID'
+        title: 'タイトル'
+        content: '内容'
+        created_at: '作成日時'
+        updated_at: '更新日時'
+      favorite:
+        id: 'お気に入りID'
+      comment:
+        id: 'コメントID'
+        content: '内容'
   enums:
     infomation:
       label:
@@ -31,10 +45,32 @@ ja:
     user:
       image_update: '画像を変更しました。'
       image_destroy: '画像を削除しました。'
+    article:
+      create: '記事を作成できました。'
+      update: '記事を更新できました。'
+      destroy: '記事を削除できました。'
+    favorite:
+      create: 'お気に入りに登録しました。'
+      destroy: 'お気に入りを解除しました。'
+    comment:
+      create: 'コメントを作成できました。'
+      destroy: 'コメントを削除できました。'
   alert:
     user:
       destroy:
         params_blank: 'パラメータが指定されていません。'
+    article: 
+      create: '作成に失敗しました。'
+      update: '更新に失敗しました。'
+      destroy: '削除に失敗しました。'
+    favorite:
+      create: 'お気に入りに失敗しました。'
+      destroy: 'お気に入りの解除に失敗しました。'
+    comment:
+      create: 'コメントに失敗しました。'
+      destroy: 'コメントの削除に失敗しました。'
+    
   errors:
     messages:
       image_update_blank: '選択してください。'
+      not_permission: 'アクセスする権限がありません。'

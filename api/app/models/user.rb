@@ -9,7 +9,10 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  has_many :articles, dependent: :destroy
   has_many :infomations, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
   VALID_PASSWORD_REGEX = /\A[!-~]+\z/
@@ -40,5 +43,19 @@ class User < ActiveRecord::Base
 
   def infomation_unread_count
     Infomation.by_target(self).by_unread(infomation_check_last_started_at).count
+  end
+
+  def favorite!(article)
+    favorites.create!(article_id: article.id)
+  end
+
+  def unfavorite!(article)
+    favorite = favorites.find_by!(article_id: article.id)
+
+    favorite.destroy
+  end
+
+  def favorite?(article)
+    favorites.exists?(article_id: article.id)
   end
 end
