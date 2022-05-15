@@ -45,15 +45,15 @@ module.exports = {
 
   // ［お気に入り］
   // お気に入り登録API
-  favoriteCreateUrl: '/articles/_id/favorites/create.json',
+  favoriteCreateUrl: '/articles/_id/article_favorites/create.json',
   // お気に入り解除API
-  favoriteDeleteUrl: '/articles/_id/favorites/delete.json',
+  favoriteDeleteUrl: '/articles/_id/article_favorites/delete.json',
 
   // ［コメント］
   // コメント一覧API
-  commentsUrl: '/comments.json',
+  commentsUrl: '/article_comments.json',
   // コメント作成API
-  commentCreateUrl: '/comments/create.json',
+  commentCreateUrl: '/article_comments/create.json',
   // コメント削除API
-  commentDeleteUrl: '/comments/_id/delete.json'
+  commentDeleteUrl: '/article_comments/_id/delete.json'
 }

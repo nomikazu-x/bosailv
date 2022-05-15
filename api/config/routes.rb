@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  draw :admin
   draw :articles
-  draw :comments
+  draw :article_comments
   draw :infomations
-  draw :favorites
+  draw :article_favorites
   draw :users
   
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?

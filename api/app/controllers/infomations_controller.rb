@@ -1,4 +1,4 @@
-class InfomationsController < ApiController
+class InfomationsController < ApplicationController
   def index
     @infomations = Infomation.by_target(current_user).page(params[:page]).per(Settings['default_infomations_limit'])
     update_infomation_check

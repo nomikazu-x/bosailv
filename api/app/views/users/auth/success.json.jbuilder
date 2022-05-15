@@ -12,9 +12,6 @@ if current_user.present?
     end
     json.name current_user.name
     json.email current_user.email
-    json.address current_user.address
-    json.profile current_user.profile
-    json.username current_user.username
     json.infomation_unread_count current_user.infomation_unread_count
   end
 end
