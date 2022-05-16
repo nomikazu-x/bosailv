@@ -36,8 +36,13 @@ Rails.application.routes.draw do
         post 'users/auth/image/update',    to: 'api/v1/users/auth/registrations#image_update',       as: 'update_user_auth_image_registration'
         post 'users/auth/image/delete',    to: 'api/v1/users/auth/registrations#image_destroy',      as: 'delete_user_auth_image_registration'
         post 'users/auth/delete',          to: 'api/v1/users/auth/registrations#destroy',            as: 'destroy_user_auth_registration'
+        post 'users/auth/confirmation',    to: 'api/v1/users/auth/confirmations#create',             as: 'create_user_auth_confirmation'
+        get  'users/auth/confirmation',    to: 'api/v1/users/auth/confirmations#show',               as: 'user_auth_confirmation'
         post 'users/auth/sign_in',         to: 'api/v1/users/auth/sessions#create',                  as: 'create_user_auth_session'
         post 'users/auth/sign_out',        to: 'api/v1/users/auth/sessions#destroy',                 as: 'destroy_user_auth_session'
+        post 'users/auth/password',        to: 'api/v1/users/auth/passwords#create',                 as: 'create_user_auth_password'
+        get  'users/auth/password',        to: 'api/v1/users/auth/passwords#edit',                   as: 'edit_user_auth_password'
+        post 'users/auth/password/update', to: 'api/v1/users/auth/passwords#update',                 as: 'update_user_auth_password'
         get  'users/auth/validate_token',  to: 'api/v1/users/auth/token_validations#validate_token', as: 'user_auth_validate_token'
       end
     end
