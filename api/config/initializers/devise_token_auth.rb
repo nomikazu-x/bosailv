@@ -63,6 +63,6 @@ DeviseTokenAuth.setup do |config|
     config.default_password_reset_url = 'http://test-password-reset.dev'
   else
     config.default_confirm_success_url = "#{ENV.fetch('FRONT_SERVER_ORIGIN', 'http://localhost')}/users/sign_in"
-    config.default_password_reset_url = "#{ENV.fetch('FRONT_SERVER_ORIGIN', 'http://localhost')}/users/change_password"
+    config.default_password_reset_url = "#{ENV.fetch('FRONT_SERVER_ORIGIN', 'http://localhost')}/users/password"
   end
 end

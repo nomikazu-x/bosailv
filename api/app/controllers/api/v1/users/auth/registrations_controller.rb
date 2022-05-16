@@ -24,11 +24,11 @@ class Api::V1::Users::Auth::RegistrationsController < DeviseTokenAuth::Registrat
   private
 
   def sign_up_params
-    params.permit(:name, :email, :password, :username).merge(username: default_username)
+    params.permit(:name, :email, :password)
   end
 
   def account_update_params
-    params.permit(:name, :username, :image, :profile, :address)
+    params.permit(:name, :image)
   end
 
   def default_username

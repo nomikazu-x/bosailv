@@ -15,6 +15,7 @@
       <v-divider />
       <v-card-actions>
         <ul class="my-2">
+          <li v-if="user != null && user.unconfirmed_email !== null"><NuxtLink to="/users/confirmation/new">メールアドレス確認</NuxtLink></li>
           <li><NuxtLink to="/users/delete">アカウント削除</NuxtLink></li>
         </ul>
       </v-card-actions>

@@ -40,6 +40,8 @@ Rails.application.routes.draw do
         get  'users/auth/confirmation',    to: 'api/v1/users/auth/confirmations#show',               as: 'user_auth_confirmation'
         post 'users/auth/sign_in',         to: 'api/v1/users/auth/sessions#create',                  as: 'create_user_auth_session'
         post 'users/auth/sign_out',        to: 'api/v1/users/auth/sessions#destroy',                 as: 'destroy_user_auth_session'
+        post 'users/auth/unlock',          to: 'api/v1/users/auth/unlocks#create',                   as: 'create_user_auth_unlock'
+        get  'users/auth/unlock',          to: 'api/v1/users/auth/unlocks#show',                     as: 'user_auth_unlock'
         post 'users/auth/password',        to: 'api/v1/users/auth/passwords#create',                 as: 'create_user_auth_password'
         get  'users/auth/password',        to: 'api/v1/users/auth/passwords#edit',                   as: 'edit_user_auth_password'
         post 'users/auth/password/update', to: 'api/v1/users/auth/passwords#update',                 as: 'update_user_auth_password'
