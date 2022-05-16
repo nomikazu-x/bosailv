@@ -1,59 +1,59 @@
 module.exports = {
   // 【ユーザー】
   // ログインAPI
-  authSignInURL: '/users/auth/sign_in.json',
-  authRedirectSignInURL: '/users/sign_in',
-  authRedirectHomeURL: '/',
+  authSignInURL: '/api/v1/users/auth/sign_in.json',
+  authRedirectSignInURL: '/api/v1/users/sign_in',
+  authRedirectHomeURL: '/api/v1/',
   // ログアウトAPI
-  authSignOutURL: '/users/auth/sign_out.json',
-  authRedirectLogOutURL: '/users/sign_in',
+  authSignOutURL: '/api/v1/users/auth/sign_out.json',
+  authRedirectLogOutURL: '/api/v1/users/sign_in',
   // トークン検証API
-  authUserURL: '/users/auth/validate_token.json',
+  authUserURL: '/api/v1/users/auth/validate_token.json',
   // アカウント登録API
-  singUpUrl: '/users/auth/sign_up.json',
-  singUpSuccessUrl: '/users/sign_in',
+  singUpUrl: '/api/v1/users/auth/sign_up.json',
+  singUpSuccessUrl: '/api/v1/users/sign_in',
   // 登録情報詳細API
-  userShowUrl: '/users/auth/show.json',
+  userShowUrl: '/api/v1/users/auth/show.json',
   // 登録情報変更API
-  userUpdateUrl: '/users/auth/update.json',
+  userUpdateUrl: '/api/v1/users/auth/update.json',
   // 画像変更API
-  userImageUpdateUrl: '/users/auth/image/update.json',
+  userImageUpdateUrl: '/api/v1/users/auth/image/update.json',
   // 画像削除API
-  userImageDeleteUrl: '/users/auth/image/delete.json',
+  userImageDeleteUrl: '/api/v1/users/auth/image/delete.json',
   // アカウント削除API
-  userDeleteUrl: '/users/auth/delete.json',
+  userDeleteUrl: '/api/v1/users/auth/delete.json',
 
   // 【お知らせ】
   // 大切なお知らせAPI
-  importantInfomationsUrl: '/infomations/important.json',
+  importantInfomationsUrl: '/api/v1/infomations/important.json',
   // お知らせ一覧API
-  infomationsUrl: '/infomations.json',
+  infomationsUrl: '/api/v1/infomations.json',
   // お知らせ詳細API
-  infomationDetailUrl: '/infomations/_id.json',
+  infomationDetailUrl: '/api/v1/infomations/_id.json',
 
   // 【記事】
   // 記事一覧API
-  articlesUrl: '/articles.json',
+  articlesUrl: '/api/v1/articles.json',
   // 記事詳細API
-  articleDetailUrl: '/articles/_id.json',
+  articleDetailUrl: '/api/v1/articles/_id.json',
   // 記事作成API
-  articleCreateUrl: '/articles/create.json',
+  articleCreateUrl: '/api/v1/articles/create.json',
   // 記事編集API
-  articleUpdateUrl: '/articles/_id/update.json',
+  articleUpdateUrl: '/api/v1/articles/_id/update.json',
   // 記事削除API
-  articleDeleteUrl: '/articles/_id/delete.json',
+  articleDeleteUrl: '/api/v1/articles/_id/delete.json',
 
   // ［お気に入り］
   // お気に入り登録API
-  favoriteCreateUrl: '/articles/_id/article_favorites/create.json',
+  favoriteCreateUrl: '/api/v1/articles/_id/article_favorites/create.json',
   // お気に入り解除API
-  favoriteDeleteUrl: '/articles/_id/article_favorites/delete.json',
+  favoriteDeleteUrl: '/api/v1/articles/_id/article_favorites/delete.json',
 
   // ［コメント］
   // コメント一覧API
-  commentsUrl: '/article_comments.json',
+  commentsUrl: '/api/v1/article_comments.json',
   // コメント作成API
-  commentCreateUrl: '/article_comments/create.json',
+  commentCreateUrl: '/api/v1/article_comments/create.json',
   // コメント削除API
-  commentDeleteUrl: '/article_comments/_id/delete.json'
+  commentDeleteUrl: '/api/v1/article_comments/_id/delete.json'
 }

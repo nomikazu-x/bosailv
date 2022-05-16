@@ -1,4 +1,4 @@
-class ArticleFavoritesController < ApplicationController
+class Api::V1::ArticleFavoritesController < Api::V1::ApplicationController
   before_action :authenticate_user!, only: %i[create destroy]
 
   def create

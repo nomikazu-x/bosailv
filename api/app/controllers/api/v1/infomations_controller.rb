@@ -1,4 +1,4 @@
-class InfomationsController < ApplicationController
+class Api::V1::InfomationsController < Api::V1::ApplicationController
   def index
     @infomations = Infomation.by_target(current_user).page(params[:page]).per(Settings['default_infomations_limit'])
     update_infomation_check
@@ -13,7 +13,7 @@ class InfomationsController < ApplicationController
     return head :not_found if @infomation.blank? || !@infomation.target_user?(current_user) || @infomation.started_at > Time.current
 
     if @infomation.ended_at.present? && @infomation.ended_at < Time.current
-      render './failure', locals: { alert: I18n.t('errors.messages.infomation.ended') }, status: :not_found
+      render './api/v1/failure', locals: { alert: I18n.t('errors.messages.infomation.ended') }, status: :not_found
     end
   end
 
