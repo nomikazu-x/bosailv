@@ -19,7 +19,7 @@
       <v-card-actions>
         <ul class="my-2">
           <li><NuxtLink :to="`/articles/${$route.params.id}/edit`">編集</NuxtLink></li>
-          <li @click="onArticleDelete">削除</li>
+          <li @click="onArticleDelete(article.id)">削除</li>
         </ul>
         <FavoriteBtnGroup :article="article" @alert="alert = $event" @notice="notice = $event" />
       </v-card-actions>
@@ -27,17 +27,18 @@
     <v-card>
       <v-card-title>コメント一覧</v-card-title>
       <v-divider class="my-4" />
-      <article v-if="comments != null && comments.length === 0">
+      <article v-if="articleComments != null && articleComments.length === 0">
         <span class="ml-1">コメントはありません。</span>
         <v-divider class="my-4" />
       </article>
-      <Comment v-for="comment in comments" :key="comment.id" :comment="comment" />
+      <Comment v-for="articleComment in articleComments" :key="articleComment.id" :article-comment="articleComment" />
       <CommentArea :article="article" />
     </v-card>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import FavoriteBtnGroup from '~/components/articles/FavoriteBtnGroup.vue'
 import Comment from '~/components/articles/Comment.vue'
 import CommentArea from '~/components/articles/CommentArea.vue'
@@ -56,10 +57,16 @@ export default {
 
   data () {
     return {
-      article: null,
-      comments: null,
+      // article: null,
+      // comments: null,
       content: ''
     }
+  },
+  computed: {
+    ...mapGetters({
+      article: 'articles/article',
+      articleComments: 'articleComments/articleComments'
+    })
   },
 
   async created () {
@@ -69,9 +76,8 @@ export default {
           this.$toasted.error(this.$t('system.error'))
           return this.$router.push({ path: '/' })
         }
-        this.article = response.data.article
-        this.comments = response.data.article.comments
-        console.log(this.article)
+        this.$store.commit('articles/setArticle', response.data.article, { root: true })
+        this.$store.commit('articleComments/setArticleComments', response.data.article.comments, { root: true })
       },
       (error) => {
         if (error.response == null) {
@@ -94,7 +100,7 @@ export default {
   },
 
   methods: {
-    async onArticleDelete () {
+    async onArticleDelete (articleId) {
       this.processing = true
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.articleDeleteUrl.replace('_id', this.$route.params.id))
@@ -102,6 +108,7 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
+            this.$store.commit('articles/deleteArticle', articleId, { root: true })
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
             return this.$router.push({ path: '/articles' })

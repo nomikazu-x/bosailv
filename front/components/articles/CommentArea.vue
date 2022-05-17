@@ -51,6 +51,9 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
+            this.$store.commit('articleComments/addArticleComments', response.data.comment, { root: true })
+            console.log(this.$store)
+            this.content = ''
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
           }

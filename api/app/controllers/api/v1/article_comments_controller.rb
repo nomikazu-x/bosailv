@@ -2,8 +2,8 @@ class Api::V1::ArticleCommentsController < Api::V1::ApplicationController
   before_action :authenticate_user!, except: %i[index]
 
   def create
-    article_comment = current_user.article_comments.build(article_comment_params)
-    if article_comment.save
+    @article_comment = current_user.article_comments.build(article_comment_params)
+    if @article_comment.save
       render './api/v1/article_comments/success', locals: { notice: I18n.t('notice.article_comment.create') }
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.article_comment.create') }, status: :unprocessable_entity
