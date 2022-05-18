@@ -35,7 +35,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :user_id)
+    params.require(:article).permit(:title, :content, :user_id, :category)
   end
 
   def set_article

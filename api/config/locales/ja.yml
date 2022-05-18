@@ -41,6 +41,25 @@ ja:
       target:
         All: '全員'
         User: '対象ユーザーのみ'
+  active_flag:
+    article:
+      category:
+        gas: 電気・ガス
+        watersuppry: 水道
+        emergency: 応急
+        knowledge: 災害時の知恵
+        earthquake: 地震
+        tsunami: 津波
+        volcano: 火山噴火
+        snow: 大雪
+        typhoon: 台風
+        internalwater: 内水氾濫
+        riverflood: 河川洪水
+        landslide: 土砂災害
+        strongwind: 強風
+        heatstroke: 熱中症
+        warning: 防災情報
+        jalert: 国民保護情報
   notice:
     user:
       image_update: '画像を変更しました。'
