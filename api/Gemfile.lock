@@ -39,15 +39,13 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_flag (1.6.0)
+      activerecord (>= 5)
     activejob (6.1.5)
       activesupport (= 6.1.5)
       globalid (>= 0.3.6)
     activemodel (6.1.5)
       activesupport (= 6.1.5)
-    activemodel-serializers-xml (1.0.2)
-      activemodel (> 5.x)
-      activesupport (> 5.x)
-      builder (~> 3.1)
     activerecord (6.1.5)
       activemodel (= 6.1.5)
       activesupport (= 6.1.5)
@@ -199,14 +197,10 @@ GEM
     minitest (5.15.0)
     msgpack (1.4.5)
     mysql2 (0.5.3)
-    nested_form (0.3.2)
     nio4r (2.5.8)
     nokogiri (1.13.3-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    paper_trail (12.3.0)
-      activerecord (>= 5.2)
-      request_store (~> 1.1)
     parallel (1.22.1)
     parser (3.1.1.0)
       ast (~> 2.4.1)
@@ -245,13 +239,6 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
-    rails_admin (3.0.0)
-      activemodel-serializers-xml (>= 1.0)
-      kaminari (>= 0.14, < 2.0)
-      nested_form (~> 0.3)
-      rails (>= 6.0, < 8)
-      turbo-rails (~> 1.0)
-    rails_admin-i18n (1.18.0)
     railties (6.1.5)
       actionpack (= 6.1.5)
       activesupport (= 6.1.5)
@@ -264,8 +251,6 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.2.1)
-    request_store (1.5.1)
-      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -326,9 +311,6 @@ GEM
     ssrf_filter (1.0.7)
     thor (1.2.1)
     tilt (2.0.10)
-    turbo-rails (1.0.1)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (1.8.0)
@@ -343,6 +325,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  active_flag
   bootsnap (>= 1.4.4)
   byebug
   carrierwave
@@ -363,13 +346,10 @@ DEPENDENCIES
   listen (~> 3.3)
   mini_magick
   mysql2 (~> 0.5)
-  paper_trail
   pry-byebug (~> 3.9)
   puma (~> 5.0)
   rack-cors
   rails (~> 6.1.5)
-  rails_admin
-  rails_admin-i18n
   rspec-rails
   rubocop
   rubocop-rails
