@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_18_120358) do
+ActiveRecord::Schema.define(version: 2022_05_21_135506) do
+
+  create_table "article_category_relations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_article_category_relations_on_article_id"
+    t.index ["category_id"], name: "index_article_category_relations_on_category_id"
+  end
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -38,8 +47,14 @@ ActiveRecord::Schema.define(version: 2022_05_18_120358) do
     t.text "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "category", default: 0, null: false
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "image", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "infomations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -93,6 +108,8 @@ ActiveRecord::Schema.define(version: 2022_05_18_120358) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "article_category_relations", "articles"
+  add_foreign_key "article_category_relations", "categories"
   add_foreign_key "article_comments", "articles"
   add_foreign_key "article_comments", "users"
   add_foreign_key "article_favorites", "articles"

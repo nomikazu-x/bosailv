@@ -47,9 +47,6 @@ gem 'enum_help'
 # Use Config
 gem 'config'
 
-# Use ActiveFlag
-gem 'active_flag'
-
 # コンソール出力結果を表にする Doc: https://github.com/cldwalker/hirb
 gem 'hirb', '~> 0.7.3'
 
