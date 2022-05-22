@@ -9,9 +9,6 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
-    p "========="
-    p @article
-    p "==========="
     if @article.save
       render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.create') }
     else
