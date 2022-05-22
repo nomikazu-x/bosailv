@@ -4,7 +4,13 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   before_action :correct_user?, only: %i[update destroy]
 
   def index
-    @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
+    if params[:selected_categories].present?
+      params[:selected_categories].each do |selected_category| 
+        @articles = Article.where_all_category(selected_category).page(params[:page]).per(Settings['default_articles_limit'])
+      end
+    else
+      @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
+    end
   end
 
   def create

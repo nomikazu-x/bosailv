@@ -28,7 +28,7 @@
           <v-divider class="my-4" />
         </article>
         <article v-for="list in lists" :key="list.id">
-          <div v-if="list.category.includes(selectedCategories)">
+          <div>
             <span class="ml-1 font-weight-bold">
               <NuxtLink :to="{ name: 'articles-id___ja', params: { id: list.id }}">{{ list.title }}</NuxtLink>
             </span>
@@ -83,7 +83,7 @@ export default {
         { name: '防災情報', value: 'warning' },
         { name: '国民保護情報', value: 'jalert' }
       ],
-      selectedCategories: {}
+      selectedCategories: ['gas']
     }
   },
 
@@ -96,7 +96,9 @@ export default {
     async onPagination () {
       this.processing = true
 
-      await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, { params: { page: this.page } })
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, {
+        params: { selected_categories: this.selectedCategories }
+      })
         .then((response) => {
           if (response.data == null || response.data.article == null) {
             this.$toasted.error(this.$t('system.error'))
