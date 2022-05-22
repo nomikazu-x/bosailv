@@ -28,6 +28,13 @@
                 @click="waiting = false"
               />
             </ValidationProvider>
+            <div v-for="category in categories" :key="category.id">
+              <v-checkbox
+                v-model="selectedCategories"
+                :value="category.value"
+                :label="category.name"
+              />
+            </div>
             <v-btn id="article_create_btn" color="primary" :disabled="invalid || processing || waiting" @click="onArticleCreate()">作成</v-btn>
           </v-card-text>
         </v-form>
@@ -48,7 +55,26 @@ export default {
     return {
       waiting: false,
       title: '',
-      content: ''
+      content: '',
+      categories: [
+        { name: '電気・ガス', value: 'gas' },
+        { name: '水道', value: 'watersuppry' },
+        { name: '応急', value: 'emergency' },
+        { name: '災害時の知恵', value: 'knowledge' },
+        { name: '地震', value: 'earthquake' },
+        { name: '津波', value: 'tsunami' },
+        { name: '火山噴火', value: 'volcano' },
+        { name: '大雪', value: 'snow' },
+        { name: '台風', value: 'typhoon' },
+        { name: '内水氾濫', value: 'internalwater' },
+        { name: '河川洪水', value: 'riverflood' },
+        { name: '土砂災害', value: 'landslide' },
+        { name: '強風', value: 'strongwind' },
+        { name: '熱中症', value: 'heatstroke' },
+        { name: '防災情報', value: 'warning' },
+        { name: '国民保護情報', value: 'jalert' }
+      ],
+      selectedCategories: []
     }
   },
 
@@ -61,10 +87,14 @@ export default {
     async onArticleCreate () {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.articleCreateUrl, {
-        title: this.title,
-        content: this.content
+      const formData = new FormData()
+      formData.append('article[title]', this.title)
+      formData.append('article[content]', this.content)
+      this.selectedCategories.forEach((category) => {
+        formData.append('article[category][]', category)
       })
+
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.articleCreateUrl, formData)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
