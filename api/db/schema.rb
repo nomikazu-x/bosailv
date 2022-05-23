@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_30_003602) do
+ActiveRecord::Schema.define(version: 2022_05_23_144153) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -55,6 +55,10 @@ ActiveRecord::Schema.define(version: 2022_04_30_003602) do
     t.datetime "force_ended_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "action"
+    t.bigint "action_user_id"
+    t.bigint "article_id"
+    t.index ["article_id"], name: "index_infomations_on_article_id"
     t.index ["user_id"], name: "index_infomations_on_user_id"
   end
 
