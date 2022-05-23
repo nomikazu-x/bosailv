@@ -4,16 +4,16 @@
     <v-card v-if="!loading">
       <Processing v-if="processing" />
       <v-card-title>記事一覧</v-card-title>
+      <div v-for="category in categories" :key="category.id">
+        <v-checkbox
+          v-model="selectedCategories"
+          :value="category.value"
+          :label="category.name"
+          dense
+        />
+      </div>
+      <v-btn color="primary" @click="onCategoryArticles()">検索</v-btn>
       <v-card-text>
-        <v-row v-if="info != null && info.total_count > info.limit_value">
-          <v-col cols="auto" md="5" align-self="center">
-            {{ info.total_count.toLocaleString() }}件中 {{ $pageFirstNumber(info).toLocaleString() }}-{{ $pageLastNumber(info).toLocaleString() }}件を表示
-          </v-col>
-          <v-col cols="auto" md="7" class="d-flex justify-end">
-            <v-pagination id="pagination" v-model="page" :length="info.total_pages" @input="onPagination()" />
-          </v-col>
-        </v-row>
-
         <v-divider class="my-4" />
         <article v-if="lists != null && lists.length === 0">
           <span class="ml-1">記事はありません。</span>
@@ -35,10 +35,6 @@
             <v-divider class="my-4" />
           </div>
         </article>
-
-        <div v-if="info != null && info.total_pages > 1">
-          <v-pagination id="pagination2" v-model="page" :length="info.total_pages" @input="onPagination()" />
-        </div>
       </v-card-text>
     </v-card>
   </div>
@@ -56,21 +52,40 @@ export default {
     return {
       page: 1,
       info: null,
-      lists: null
+      lists: null,
+      categories: [
+        { name: '電気・ガス', value: 'gas' },
+        { name: '水道', value: 'watersuppry' },
+        { name: '応急', value: 'emergency' },
+        { name: '災害時の知恵', value: 'knowledge' },
+        { name: '地震', value: 'earthquake' },
+        { name: '津波', value: 'tsunami' },
+        { name: '火山噴火', value: 'volcano' },
+        { name: '大雪', value: 'snow' },
+        { name: '台風', value: 'typhoon' },
+        { name: '内水氾濫', value: 'internalwater' },
+        { name: '河川洪水', value: 'riverflood' },
+        { name: '土砂災害', value: 'landslide' },
+        { name: '強風', value: 'strongwind' },
+        { name: '熱中症', value: 'heatstroke' },
+        { name: '防災情報', value: 'warning' },
+        { name: '国民保護情報', value: 'jalert' }
+      ],
+      selectedCategories: []
     }
   },
 
-  async created () {
-    await this.onPagination(this.page)
+  created () {
+    this.processing = false
     this.loading = false
   },
 
   methods: {
-    async onPagination () {
+    async onCategoryArticles () {
       this.processing = true
 
-      await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, {
-        params: { page: this.page }
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesCategoryUrl, {
+        params: { selected_categories: this.selectedCategories }
       })
         .then((response) => {
           if (response.data == null || response.data.article == null) {

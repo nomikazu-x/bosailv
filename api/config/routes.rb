@@ -3,10 +3,12 @@ Rails.application.routes.draw do
     namespace :v1 do
       # 記事
       get  'articles',            to: 'articles#index',     as: 'articles'
-      get  'articles/:id',        to: 'articles#show',      as: 'article'
       post 'articles/create',     to: 'articles#create',    as: 'create_article'
       post 'articles/:id/update', to: 'articles#update',    as: 'update_article'
       post 'articles/:id/delete', to: 'articles#destroy',   as: 'destroy_article'
+      get  'articles/search',     to: 'articles#search',    as: 'search_articles'
+      get  'articles/category',   to: 'articles#category',  as: 'category_articles'
+      get  'articles/:id',        to: 'articles#show',      as: 'article'
 
       # 記事コメント
       post 'article_comments/create',     to: 'article_comments#create',    as: 'create_comment'

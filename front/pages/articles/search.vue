@@ -4,16 +4,16 @@
     <v-card v-if="!loading">
       <Processing v-if="processing" />
       <v-card-title>記事一覧</v-card-title>
+      <ValidationProvider v-slot="{ errors }" name="keyword" rules="required">
+        <v-text-field
+          v-model="keyword"
+          label="検索"
+          prepend-icon="mdi-magnify"
+          :error-messages="errors"
+          @keyup="onSearchArticles"
+        />
+      </ValidationProvider>
       <v-card-text>
-        <v-row v-if="info != null && info.total_count > info.limit_value">
-          <v-col cols="auto" md="5" align-self="center">
-            {{ info.total_count.toLocaleString() }}件中 {{ $pageFirstNumber(info).toLocaleString() }}-{{ $pageLastNumber(info).toLocaleString() }}件を表示
-          </v-col>
-          <v-col cols="auto" md="7" class="d-flex justify-end">
-            <v-pagination id="pagination" v-model="page" :length="info.total_pages" @input="onPagination()" />
-          </v-col>
-        </v-row>
-
         <v-divider class="my-4" />
         <article v-if="lists != null && lists.length === 0">
           <span class="ml-1">記事はありません。</span>
@@ -35,10 +35,6 @@
             <v-divider class="my-4" />
           </div>
         </article>
-
-        <div v-if="info != null && info.total_pages > 1">
-          <v-pagination id="pagination2" v-model="page" :length="info.total_pages" @input="onPagination()" />
-        </div>
       </v-card-text>
     </v-card>
   </div>
@@ -56,21 +52,22 @@ export default {
     return {
       page: 1,
       info: null,
-      lists: null
+      lists: null,
+      keyword: ''
     }
   },
 
-  async created () {
-    await this.onPagination(this.page)
+  created () {
+    this.processing = false
     this.loading = false
   },
 
   methods: {
-    async onPagination () {
+    async onSearchArticles () {
       this.processing = true
 
-      await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, {
-        params: { page: this.page }
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesSearchUrl, {
+        params: { keyword: this.keyword }
       })
         .then((response) => {
           if (response.data == null || response.data.article == null) {
