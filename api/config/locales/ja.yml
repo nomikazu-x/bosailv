@@ -18,6 +18,9 @@ ja:
         force_ended_at: '強制表示終了日時'
         target: '対象'
         user: 'ユーザー'
+        action: 'アクション'
+        action_user: 'アクションユーザー'
+        article: '記事'
         created_at: '作成日時'
         updated_at: '更新日時'
       article:
@@ -41,6 +44,16 @@ ja:
       target:
         All: '全員'
         User: '対象ユーザーのみ'
+  infomation:
+    action:
+      article_favorite: '%{action_user_name}さんがあなたの記事%{article_title}をいいねしました。'
+      article_comment: '%{action_user_name}さんがあなたの記事%{article_title}にコメントしました。'
+    action_user:
+      blank:
+        name: '[削除済み]'
+    article:
+      blank:
+        name: '[削除済み]'
   active_flag:
     article:
       category:

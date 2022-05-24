@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 2022_05_23_144153) do
 
   create_table "infomations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
-    t.integer "label", default: 0, null: false
-    t.string "title", null: false
+    t.integer "label", default: 0
+    t.string "title"
     t.string "summary"
     t.text "body"
     t.integer "target", null: false

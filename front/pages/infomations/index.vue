@@ -26,6 +26,9 @@
               <template v-if="list.body_present === true">
                 <NuxtLink :to="{ name: 'infomations-id___ja', params: { id: list.id }}">{{ list.title }}</NuxtLink>
               </template>
+              <template v-if="list.article_id_present === true">
+                <NuxtLink :to="{ name: 'articles-id___ja', params: { id: list.article_id }}">{{ list.title }}</NuxtLink>
+              </template>
               <template v-else>
                 {{ list.title }}
               </template>

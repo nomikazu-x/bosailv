@@ -3,7 +3,12 @@ class Api::V1::ArticleFavoritesController < Api::V1::ApplicationController
 
   def create
     article = Article.find(params[:article_id])
-    current_user.article_favorite!(article)
+
+    ActiveRecord::Base.transaction do
+      current_user.article_favorite!(article)
+      Infomation.new(started_at: Time.current, target: :User, user_id: article.user.id,
+                     action: 'ArticleFavorite', action_user_id: current_user.id, article_id: article.id).save!
+    end
 
     render json: { notice: I18n.t('notice.article_favorite.create') }
   end

@@ -2,7 +2,7 @@ json.success true
 json.infomation do
   json.label @infomation.label
   json.label_i18n @infomation.label_i18n
-  json.title @infomation.title
+  json.title @infomation.action_title
   json.summary @infomation.summary
   json.body @infomation.body
   json.started_at l(@infomation.started_at, format: :json)
