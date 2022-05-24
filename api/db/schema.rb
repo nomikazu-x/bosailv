@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_24_121226) do
+ActiveRecord::Schema.define(version: 2022_05_24_133642) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -60,6 +60,14 @@ ActiveRecord::Schema.define(version: 2022_05_24_121226) do
     t.bigint "article_id"
     t.index ["article_id"], name: "index_infomations_on_article_id"
     t.index ["user_id"], name: "index_infomations_on_user_id"
+  end
+
+  create_table "point_records", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "obtained_point", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_point_records_on_user_id"
   end
 
   create_table "required_points", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -114,4 +122,5 @@ ActiveRecord::Schema.define(version: 2022_05_24_121226) do
   add_foreign_key "article_favorites", "users"
   add_foreign_key "articles", "users"
   add_foreign_key "infomations", "users"
+  add_foreign_key "point_records", "users"
 end

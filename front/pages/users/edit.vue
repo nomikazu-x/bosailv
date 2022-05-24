@@ -3,6 +3,7 @@
     <Loading v-if="loading" />
     <Message v-if="!loading" :alert="alert" :notice="notice" />
     <v-card v-if="!loading" max-width="850px">
+      <v-card-text>{{ user.level }}</v-card-text>
       <v-card-title>登録情報変更</v-card-title>
       <v-row>
         <v-col cols="auto" md="4">

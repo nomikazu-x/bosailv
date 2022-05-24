@@ -10,10 +10,14 @@ class User < ActiveRecord::Base
 
   mount_uploader :image, ImageUploader
 
+  alias_attribute :total, :lifelong_point
+  alias_attribute :to_next, :point_to_next
+
   has_many :articles, dependent: :destroy
   has_many :infomations, dependent: :destroy
   has_many :article_favorites, dependent: :destroy
   has_many :article_comments, dependent: :destroy
+  has_many :point_records, dependent: :destroy
 
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
   VALID_PASSWORD_REGEX = /\A[!-~]+\z/

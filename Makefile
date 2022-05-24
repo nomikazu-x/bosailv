@@ -36,3 +36,6 @@ bundleinstall:
 
 rspec:
 	docker-compose run api rspec
+
+railsc:
+	docker-compose run api rails c

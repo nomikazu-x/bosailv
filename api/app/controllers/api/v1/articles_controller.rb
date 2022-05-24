@@ -9,10 +9,14 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
-    if @article.save
-      render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.create') }
-    else
-      render './api/v1/failure', locals: { alert: I18n.t('alert.article.create') }, status: :unprocessable_entity
+    ActiveRecord::Base.transaction do
+      if @article.save
+        point_record = PointRecorder.new(@article.user).record(Settings['article_create_obtained_point'])
+        required_point = RequiredPoint.find_by(level: @article.user.level)
+        render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.create') }
+      else
+        render './api/v1/failure', locals: { alert: I18n.t('alert.article.create') }, status: :unprocessable_entity
+      end
     end
   end
 
