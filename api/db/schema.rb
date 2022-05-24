@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_24_115744) do
+ActiveRecord::Schema.define(version: 2022_05_24_121226) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -60,6 +60,14 @@ ActiveRecord::Schema.define(version: 2022_05_24_115744) do
     t.bigint "article_id"
     t.index ["article_id"], name: "index_infomations_on_article_id"
     t.index ["user_id"], name: "index_infomations_on_user_id"
+  end
+
+  create_table "required_points", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "level", null: false
+    t.integer "required_point", null: false
+    t.integer "lifelong_point", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

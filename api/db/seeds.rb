@@ -34,3 +34,12 @@ env_paths.each do |env_path|
     end
   end
 end
+
+common_table_name = %w(required_point)
+common_table_name.each do |table_name|
+  path = Rails.root.join('db', 'seed', "#{table_name}.rb")
+  if File.exist?(path)
+    puts "Creating #{table_name}....."
+    require(path)
+  end
+end
