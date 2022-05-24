@@ -12,6 +12,8 @@ json.user do
   json.name current_user.name
   json.email current_user.email
   json.level current_user.level
+  json.lifelong_point current_user.lifelong_point
+  json.point_to_next current_user.point_to_next
   json.infomation_unread_count current_user.infomation_unread_count
   json.created_at current_user.created_at.present? ? l(current_user.created_at, format: :json) : nil
 end
