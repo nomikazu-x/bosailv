@@ -20,6 +20,17 @@ class PointRecorder
     end
   end
 
+  # 獲得ポイントに関連することが削除されたときに経験値を減らす
+  def delete_record(obtained_point)
+    point_record = @user.point_records.find_by(obtained_point: obtained_point)
+    point = point_record.obtained_point
+    @user.total -= point
+    check_level_down
+    check_level
+    @user.save!
+    point_record.destroy!
+  end
+
   private
 
   def check_level

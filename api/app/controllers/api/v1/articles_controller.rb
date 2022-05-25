@@ -29,10 +29,14 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   end
 
   def destroy
-    if @article.destroy
-      render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.destroy') }
-    else
-      render './api/v1/failure', locals: { alert: I18n.t('alert.article.destroy') }, status: :unprocessable_entity
+    ActiveRecord::Base.transaction do
+      if @article.destroy
+        point_record = PointRecorder.new(@article.user).delete_record(Settings['article_create_obtained_point'])
+        required_point = RequiredPoint.find_by(level: @article.user.level)
+        render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.destroy') }
+      else
+        render './api/v1/failure', locals: { alert: I18n.t('alert.article.destroy') }, status: :unprocessable_entity
+      end
     end
   end
 
