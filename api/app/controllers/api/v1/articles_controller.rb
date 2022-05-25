@@ -9,14 +9,15 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
-    ActiveRecord::Base.transaction do
-      if @article.save
+    
+    if @article.save
+      ActiveRecord::Base.transaction do
         point_record = PointRecorder.new(@article.user).record(Settings['article_create_obtained_point'])
         required_point = RequiredPoint.find_by(level: @article.user.level)
         render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.create') }
-      else
-        render './api/v1/failure', locals: { alert: I18n.t('alert.article.create') }, status: :unprocessable_entity
       end
+    else
+      render './api/v1/failure', locals: { alert: I18n.t('alert.article.create') }, status: :unprocessable_entity
     end
   end
 
@@ -29,14 +30,14 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   end
 
   def destroy
-    ActiveRecord::Base.transaction do
-      if @article.destroy
+    if @article.destroy
+      ActiveRecord::Base.transaction do
         point_record = PointRecorder.new(@article.user).delete_record(Settings['article_create_obtained_point'])
         required_point = RequiredPoint.find_by(level: @article.user.level)
         render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.destroy') }
-      else
-        render './api/v1/failure', locals: { alert: I18n.t('alert.article.destroy') }, status: :unprocessable_entity
       end
+    else
+      render './api/v1/failure', locals: { alert: I18n.t('alert.article.destroy') }, status: :unprocessable_entity
     end
   end
 

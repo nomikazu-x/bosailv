@@ -9,3 +9,9 @@ default_articles_limit: 30
 ## 獲得ポイント
 # 記事作成時獲得ポイント
 article_create_obtained_point: 5
+
+# 記事お気に入りされた時の獲得ポイント
+article_favorite_author_obtained_point: 2
+
+# 記事お気に入りした時の獲得ポイント
+article_favorite_reader_obtained_point: 1
