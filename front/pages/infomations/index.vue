@@ -21,7 +21,7 @@
         </article>
         <article v-for="list in lists" :key="list.id">
           <div>
-            <Label :list="list" />
+            <InfomationLabel :list="list" />
             <span class="ml-1 font-weight-bold">
               <template v-if="list.body_present === true">
                 <NuxtLink :to="{ name: 'infomations-id___ja', params: { id: list.id }}">{{ list.title }}</NuxtLink>
@@ -52,12 +52,12 @@
 
 <script>
 import Application from '~/plugins/application.js'
-import Label from '~/components/infomations/Label.vue'
+import InfomationLabel from '~/components/atoms/InfomationLabel.vue'
 
 export default {
   name: 'Infomations',
   components: {
-    Label
+    InfomationLabel
   },
   mixins: [Application],
 
