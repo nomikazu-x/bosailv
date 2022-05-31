@@ -8,7 +8,12 @@
       :maxlength="20"
       :error-messages="errors"
       outlined
-      :append-icon="appendIcon"
+      counter
+      inputmode="verbatim"
+      hint="8文字以上の半角英数字のみ使用可能です"
+      name="password"
+      dense
+      :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
       :type="showPassword ? 'text' : 'password'"
       @click:append="showPassword = !showPassword"
       v-on="$listeners"
@@ -23,10 +28,6 @@ export default {
     value: {
       type: String,
       default: ''
-    },
-    isShowAppendIcon: {
-      type: Boolean,
-      default: true
     },
     name: {
       type: String,
@@ -47,12 +48,6 @@ export default {
     }
   },
   computed: {
-    appendIcon () {
-      if (!this.isShowAppendIcon) {
-        return ''
-      }
-      return this.showPassword ? 'mdi-eye' : 'mdi-eye-off'
-    },
     passwordRule () {
       const rule = 'required|max:20|min:8'
       if (this.isConfirmed) {

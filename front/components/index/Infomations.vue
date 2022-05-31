@@ -5,7 +5,7 @@
       <v-card-title>大切なお知らせ</v-card-title>
       <v-card-text>
         <article v-for="list in lists" :key="list.id" class="mb-1">
-          <Label :list="list" />
+          <InfomationLabel :list="list" />
           <span class="ml-1">
             <template v-if="list.body_present === true || list.summary !== null">
               <NuxtLink :to="{ name: 'infomations-id___ja', params: { id: list.id }}">{{ list.title }}</NuxtLink>
@@ -25,12 +25,12 @@
 
 <script>
 import Application from '~/plugins/application.js'
-import Label from '~/components/infomations/Label.vue'
+import InfomationLabel from '~/components/atoms/label/InfomationLabel.vue'
 
 export default {
   name: 'IndexInfomations',
   components: {
-    Label
+    InfomationLabel
   },
   mixins: [Application],
 
