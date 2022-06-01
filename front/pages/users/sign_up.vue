@@ -35,8 +35,10 @@ export default {
     async onSignUp (userInfo) {
       this.processing = true
       await this.$axios.post(this.$config.apiBaseURL + this.$config.singUpUrl, {
+        name: userInfo.name,
         email: userInfo.email,
-        password: userInfo.password
+        password: userInfo.password,
+        password_confirmation: userInfo.password_confirmation
       })
         .then((response) => {
           if (response.data == null) {

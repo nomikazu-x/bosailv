@@ -1,9 +1,11 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" ref="observer">
     <v-form autocomplete="on" @submit.prevent="onSubmit">
+      <NameTextField v-model="name" />
+
       <EmailTextField v-model="email" />
 
-      <PasswordTextField v-model="password" />
+      <PasswordConfirmationTextField v-model="password" :password-confirmation.sync="passwordConfirmation" />
 
       <div class="text-center mt-4">
         <OrangeBtn type="submit" :disabled="invalid || processing">
@@ -15,14 +17,16 @@
 </template>
 
 <script>
+import NameTextField from '~/components/organisms/textFields/NameTextField'
 import EmailTextField from '~/components/organisms/textFields/EmailTextField'
-import PasswordTextField from '~/components/organisms/textFields/PasswordTextField'
+import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField'
 import OrangeBtn from '~/components/atoms/btns/OrangeBtn'
 
 export default {
   components: {
+    NameTextField,
     EmailTextField,
-    PasswordTextField,
+    PasswordConfirmationTextField,
     OrangeBtn
   },
   props: {
@@ -37,14 +41,21 @@ export default {
   },
   data () {
     return {
+      name: '',
+      email: '',
       password: '',
-      email: ''
+      passwordConfirmation: ''
     }
   },
   methods: {
     onSubmit () {
       this.validate()
-      const userInfo = { password: this.password, email: this.email }
+      const userInfo = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        password_confirmation: this.passwordConfirmation
+      }
       this.$emit('signup', userInfo)
     },
     validate () {
