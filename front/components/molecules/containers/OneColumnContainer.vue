@@ -9,7 +9,12 @@
 </template>
 
 <script>
+import BaseContainer from '~/components/molecules/containers/BaseContainer'
+
 export default {
+  components: {
+    BaseContainer
+  },
   props: {
     fluid: {
       type: Boolean,

@@ -1,15 +1,13 @@
 <template>
-  <ValidationProvider v-slot="{ errors }" name="email" :rules="rule" :vid="vid">
+  <ValidationProvider v-slot="{ errors }" name="email" rules="required|email|max:125">
     <v-text-field
       v-model="valueModel"
-      v-bind="$attrs"
       :value="value"
       :error-messages="errors"
       dense
       outlined
       type="email"
       label="メールアドレス"
-      v-on="$listeners"
     />
   </ValidationProvider>
 </template>
@@ -21,10 +19,6 @@ export default {
     value: {
       type: String,
       default: undefined
-    },
-    vid: {
-      type: String,
-      default: ''
     }
   },
   computed: {
@@ -35,10 +29,6 @@ export default {
       set (newVal) {
         return this.$emit('input', newVal)
       }
-    },
-
-    rule () {
-      return 'required|email|max:125'
     }
   }
 }
