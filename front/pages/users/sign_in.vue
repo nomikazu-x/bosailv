@@ -1,83 +1,44 @@
 <template>
-  <div>
-    <Loading v-if="loading" />
-    <Message v-if="!loading" :alert="alert" :notice="notice" />
-    <v-card v-if="!loading" max-width="480px">
-      <Processing v-if="processing" />
-      <ValidationObserver v-slot="{ invalid }">
-        <v-form autocomplete="on">
-          <v-card-title>ログイン</v-card-title>
-          <v-card-text>
-            <ValidationProvider v-slot="{ errors }" name="email" rules="required|email">
-              <v-text-field
-                v-model="email"
-                label="メールアドレス"
-                prepend-icon="mdi-email"
-                autocomplete="email"
-                :error-messages="errors"
-                @click="waiting = false"
-              />
-            </ValidationProvider>
-            <ValidationProvider v-slot="{ errors }" name="password" rules="required|min:8">
-              <v-text-field
-                v-model="password"
-                type="password"
-                label="パスワード"
-                prepend-icon="mdi-lock"
-                append-icon="mdi-eye-off"
-                autocomplete="current-password"
-                :error-messages="errors"
-                @click="waiting = false"
-              />
-            </ValidationProvider>
-            <v-btn id="sign_in_btn" color="primary" :disabled="invalid || processing || waiting" @click="onSignIn()">ログイン</v-btn>
-          </v-card-text>
-          <v-divider />
-          <v-card-actions>
-            <ActionLink action="sign_in" />
-          </v-card-actions>
-        </v-form>
-      </ValidationObserver>
-    </v-card>
-  </div>
+  <SigninTemplate
+    :errors="errors"
+    :processing="processing"
+    :loading="loading"
+    :alert="alert"
+    :notice="notice"
+    @signin="onSignIn"
+  />
 </template>
 
 <script>
-import ActionLink from '~/components/users/ActionLink.vue'
+import SigninTemplate from '~/components/templates/SigninTemplate'
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'UsersSignIn',
+  name: 'UsersSignin',
   components: {
-    ActionLink
+    SigninTemplate
   },
   mixins: [Application],
-
   data () {
     return {
-      waiting: false,
-      email: '',
-      password: ''
+      errors: null
     }
   },
-
   created () {
     if (this.$auth.loggedIn) {
       return this.redirectAlreadyAuth()
     }
-    this.setQueryMessage()
     this.processing = false
     this.loading = false
   },
-
   methods: {
-    async onSignIn () {
+    async onSignIn (userInfo) {
       this.processing = true
 
       await this.$auth.loginWith('local', {
         data: {
-          email: this.email,
-          password: this.password
+          email: userInfo.email,
+          password: userInfo.password
         }
       })
         .then((response) => {
@@ -96,7 +57,6 @@ export default {
           } else {
             this.alert = error.response.data.alert
             this.notice = error.response.data.notice
-            this.waiting = true
           }
         })
 
