@@ -1,22 +1,22 @@
 <template>
-  <PasswordResetTemplate
+  <SignupTemplate
     :errors="errors"
     :processing="processing"
     :loading="loading"
     :alert="alert"
     :notice="notice"
-    @submit="onPasswordNew"
+    @signup="onSignUp"
   />
 </template>
 
 <script>
-import PasswordResetTemplate from '~/components/templates/PasswordResetTemplate'
+import SignupTemplate from '~/components/templates/SignupTemplate'
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'UsersPasswordReset',
+  name: 'UsersSignUp',
   components: {
-    PasswordResetTemplate
+    SignupTemplate
   },
   mixins: [Application],
   data () {
@@ -32,12 +32,13 @@ export default {
     this.loading = false
   },
   methods: {
-    async onPasswordNew (email) {
+    async onSignUp (userInfo) {
       this.processing = true
-
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.passwordNewUrl, {
-        email,
-        redirect_url: this.$config.frontBaseURL + this.$config.passwordRedirectUrl
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.singUpUrl, {
+        name: userInfo.name,
+        email: userInfo.email,
+        password: userInfo.password,
+        password_confirmation: userInfo.password_confirmation
       })
         .then((response) => {
           if (response.data == null) {

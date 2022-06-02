@@ -2,25 +2,25 @@ module.exports = {
   // 【ユーザー】
   // ログインAPI
   authSignInURL: '/api/v1/users/auth/sign_in.json',
-  authRedirectSignInURL: '/users/sign_in',
+  authRedirectSignInURL: '/signin',
   authRedirectHomeURL: '/',
   // ログアウトAPI
   authSignOutURL: '/api/v1/users/auth/sign_out.json',
-  authRedirectLogOutURL: '/users/sign_in',
+  authRedirectLogOutURL: '/signin',
   // トークン検証API
   authUserURL: '/api/v1/users/auth/validate_token.json',
   // アカウント登録API
   singUpUrl: '/api/v1/users/auth/sign_up.json',
-  singUpSuccessUrl: '/users/sign_in',
+  singUpSuccessUrl: '/signin',
   // メールアドレス確認API
   confirmationNewUrl: '/api/v1/users/auth/confirmation.json',
-  confirmationSuccessUrl: '/users/sign_in',
+  confirmationSuccessUrl: '/signin',
   // アカウントロック解除API
   unlockNewUrl: '/api/v1/users/auth/unlock.json',
-  unlockRedirectUrl: '/users/sign_in',
+  unlockRedirectUrl: '/signin',
   // パスワード再設定API
   passwordNewUrl: '/api/v1/users/auth/password.json',
-  passwordRedirectUrl: '/users/password',
+  passwordRedirectUrl: '/password/reset/confirm',
   passwordUpdateUrl: '/api/v1/users/auth/password/update.json',
   // 登録情報詳細API
   userShowUrl: '/api/v1/users/auth/show.json',
