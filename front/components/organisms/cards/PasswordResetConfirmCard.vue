@@ -11,12 +11,7 @@
 </template>
 
 <script>
-import PasswordResetConfirmForm from '~/components/organisms/form/PasswordResetConfirmForm'
-
 export default {
-  components: {
-    PasswordResetConfirmForm
-  },
   props: {
     processing: {
       type: Boolean,

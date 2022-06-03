@@ -10,14 +10,10 @@
 </template>
 
 <script>
-import SigninTemplate from '~/components/templates/SigninTemplate'
 import Application from '~/plugins/application.js'
 
 export default {
   name: 'UsersSignin',
-  components: {
-    SigninTemplate
-  },
   mixins: [Application],
   data () {
     return {

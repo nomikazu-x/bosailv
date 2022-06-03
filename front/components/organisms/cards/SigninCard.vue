@@ -22,12 +22,7 @@
 </template>
 
 <script>
-import SigninForm from '~/components/organisms/form/SigninForm'
-
 export default {
-  components: {
-    SigninForm
-  },
   props: {
     processing: {
       type: Boolean,

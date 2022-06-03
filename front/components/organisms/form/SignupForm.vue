@@ -17,18 +17,7 @@
 </template>
 
 <script>
-import NameTextField from '~/components/organisms/textFields/NameTextField'
-import EmailTextField from '~/components/organisms/textFields/EmailTextField'
-import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField'
-import OrangeBtn from '~/components/atoms/btns/OrangeBtn'
-
 export default {
-  components: {
-    NameTextField,
-    EmailTextField,
-    PasswordConfirmationTextField,
-    OrangeBtn
-  },
   props: {
     processing: {
       type: Boolean,

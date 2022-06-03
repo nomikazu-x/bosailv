@@ -22,12 +22,7 @@
 </template>
 
 <script>
-import PasswordResetForm from '~/components/organisms/form/PasswordResetForm'
-
 export default {
-  components: {
-    PasswordResetForm
-  },
   props: {
     processing: {
       type: Boolean,

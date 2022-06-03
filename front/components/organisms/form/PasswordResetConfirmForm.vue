@@ -12,15 +12,7 @@
   </ValidationObserver>
 </template>
 
-<script>
-import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField'
-import OrangeBtn from '~/components/atoms/btns/OrangeBtn'
-
-export default {
-  components: {
-    PasswordConfirmationTextField,
-    OrangeBtn
-  },
+<script>export default {
   props: {
     processing: {
       type: Boolean,

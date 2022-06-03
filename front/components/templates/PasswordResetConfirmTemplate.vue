@@ -14,14 +14,7 @@
 </template>
 
 <script>
-import OneColumnContainer from '~/components/molecules/containers/OneColumnContainer'
-import PasswordResetConfirmCard from '~/components/organisms/cards/PasswordResetConfirmCard'
-
 export default {
-  components: {
-    OneColumnContainer,
-    PasswordResetConfirmCard
-  },
   props: {
     errors: {
       type: Object,

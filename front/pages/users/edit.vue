@@ -28,15 +28,9 @@
 
 <script>
 import Application from '~/plugins/application.js'
-import ImageEdit from '~/components/users/edit/ImageEdit.vue'
-import InfoEdit from '~/components/users/edit/InfoEdit.vue'
 
 export default {
   name: 'UsersEdit',
-  components: {
-    ImageEdit,
-    InfoEdit
-  },
   mixins: [Application],
 
   data () {

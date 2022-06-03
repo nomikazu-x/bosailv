@@ -14,14 +14,7 @@
 </template>
 
 <script>
-import OneColumnContainer from '~/components/molecules/containers/OneColumnContainer'
-import SigninCard from '~/components/organisms/cards/SigninCard'
-
 export default {
-  components: {
-    OneColumnContainer,
-    SigninCard
-  },
   props: {
     errors: {
       type: Object,
