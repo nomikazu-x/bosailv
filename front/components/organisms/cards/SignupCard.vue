@@ -13,8 +13,8 @@
         <v-divider class="mb-2" />
 
         <ul class="pl-0">
-          <li class="mb-1"><nuxt-link to="/password/reset">パスワードをリセット</nuxt-link></li>
-          <li class="mb-1"><nuxt-link to="/signin">ログインへ</nuxt-link></li>
+          <li class="mb-1"><NuxtLink to="/password/reset">パスワードをリセット</NuxtLink></li>
+          <li class="mb-1"><NuxtLink to="/signin">ログインへ</NuxtLink></li>
         </ul>
       </v-col>
     </v-row>

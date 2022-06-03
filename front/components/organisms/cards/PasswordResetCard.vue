@@ -13,8 +13,8 @@
         <v-divider class="mb-2" />
 
         <ul class="pl-0">
-          <li class="mb-1"><nuxt-link to="/signin">ログインへ</nuxt-link></li>
-          <li class="mb-1"><nuxt-link to="/signup">新規登録へ</nuxt-link></li>
+          <li class="mb-1"><NuxtLink to="/signin">ログインへ</NuxtLink></li>
+          <li class="mb-1"><NuxtLink to="/signup">新規登録へ</NuxtLink></li>
         </ul>
       </v-col>
     </v-row>
