@@ -14,11 +14,11 @@
     </NuxtLink>
     <v-spacer />
     <template v-if="!$auth.loggedIn">
-      <v-btn to="/users/sign_in" text rounded exact nuxt>
+      <v-btn to="/signin" text rounded exact nuxt>
         <v-icon>mdi-login</v-icon>
         <div class="hidden-sm-and-down">ログイン</div>
       </v-btn>
-      <v-btn to="/users/sign_up" text rounded exact nuxt>
+      <v-btn to="/signup" text rounded exact nuxt>
         <v-icon>mdi-account-plus</v-icon>
         <div class="hidden-sm-and-down">アカウント登録</div>
       </v-btn>

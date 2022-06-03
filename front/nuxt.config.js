@@ -1,8 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
+import commonConfig from './config/common.js'
 
 const environment = process.env.NODE_ENV || 'development'
 const envConfig = require(`./config/${environment}.js`)
-const commonConfig = require('./config/common.js')
 
 export default {
   publicRuntimeConfig: Object.assign(envConfig, commonConfig),

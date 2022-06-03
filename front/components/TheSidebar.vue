@@ -2,7 +2,7 @@
   <v-navigation-drawer v-model="drawer" clipped fixed app>
     <v-list v-if="!$auth.loggedIn">
       <v-list-item-group>
-        <v-list-item to="/users/sign_in" exact nuxt>
+        <v-list-item to="/signin" exact nuxt>
           <v-list-item-icon>
             <v-icon>mdi-login</v-icon>
           </v-list-item-icon>
@@ -10,7 +10,7 @@
             <v-list-item-title>ログイン</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/users/sign_up" exact nuxt>
+        <v-list-item to="/signup" exact nuxt>
           <v-list-item-icon>
             <v-icon>mdi-account-plus</v-icon>
           </v-list-item-icon>

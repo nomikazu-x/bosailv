@@ -15,11 +15,13 @@
 
 <script>
 import OneColumnContainer from '~/components/molecules/containers/OneColumnContainer'
+import Message from '~/components/Message'
 import SignupCard from '~/components/organisms/cards/SignupCard'
 
 export default {
   components: {
     OneColumnContainer,
+    Message,
     SignupCard
   },
   props: {

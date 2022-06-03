@@ -38,7 +38,8 @@ export default {
         name: userInfo.name,
         email: userInfo.email,
         password: userInfo.password,
-        password_confirmation: userInfo.password_confirmation
+        password_confirmation: userInfo.password_confirmation,
+        confirm_success_url: this.$config.frontBaseURL + this.$config.singUpSuccessUrl
       })
         .then((response) => {
           if (response.data == null) {
