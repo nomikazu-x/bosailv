@@ -38,6 +38,8 @@ export default {
       this.$router.push({ path: '/' })
     },
     redirectSignIn (alert, notice) {
+      this.$toasted.error(alert)
+      this.$toasted.info(notice)
       this.$router.push({ path: '/signin', query: { alert, notice } })
     },
     async signOut (message = 'auth.unauthenticated', path = null, alert = null, notice = null) {
