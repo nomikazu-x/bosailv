@@ -27,13 +27,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise', '< 4.8.0'
 gem 'devise-i18n'
 
-# Use RailsAdmin
-gem 'rails_admin'
-gem 'rails_admin-i18n'
-
-# Use PaperTrail
-gem 'paper_trail'
-
 # Use Devise Token Auth
 gem 'devise_token_auth'
 
@@ -53,6 +46,9 @@ gem 'enum_help'
 
 # Use Config
 gem 'config'
+
+# Use ActiveFlag
+gem 'active_flag'
 
 # コンソール出力結果を表にする Doc: https://github.com/cldwalker/hirb
 gem 'hirb', '~> 0.7.3'

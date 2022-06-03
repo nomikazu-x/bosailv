@@ -14,11 +14,11 @@
     </NuxtLink>
     <v-spacer />
     <template v-if="!$auth.loggedIn">
-      <v-btn to="/users/sign_in" text rounded exact nuxt>
+      <v-btn to="/signin" text rounded exact nuxt>
         <v-icon>mdi-login</v-icon>
         <div class="hidden-sm-and-down">ログイン</div>
       </v-btn>
-      <v-btn to="/users/sign_up" text rounded exact nuxt>
+      <v-btn to="/signup" text rounded exact nuxt>
         <v-icon>mdi-account-plus</v-icon>
         <div class="hidden-sm-and-down">アカウント登録</div>
       </v-btn>
@@ -42,7 +42,7 @@
               <v-list-item-title>登録情報変更</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item to="/users/sign_out" exact nuxt>
+          <v-list-item exact nuxt @click="onSignOut()">
             <v-list-item-icon>
               <v-icon>mdi-logout</v-icon>
             </v-list-item-icon>
@@ -62,10 +62,18 @@
 </template>
 
 <script>
+import Application from '~/plugins/application.js'
+
 export default {
+  mixins: [Application],
+
   methods: {
     onClick () {
       this.$store.commit('sidebar/onDrawer')
+    },
+    onSignOut () {
+      this.processing = true
+      this.signOut('auth.signed_out')
     }
   }
 }

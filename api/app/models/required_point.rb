@@ -1,0 +1,2 @@
+class RequiredPoint < ApplicationRecord
+end

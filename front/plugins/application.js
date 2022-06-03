@@ -38,7 +38,7 @@ export default {
       this.$router.push({ path: '/' })
     },
     redirectSignIn (alert, notice) {
-      this.$router.push({ path: '/users/sign_in', query: { alert, notice } })
+      this.$router.push({ path: '/signin', query: { alert, notice } })
     },
     async signOut (message = 'auth.unauthenticated', path = null, alert = null, notice = null) {
       try {

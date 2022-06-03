@@ -1,0 +1,66 @@
+<template>
+  <ValidationObserver v-slot="{ invalid }" ref="observer">
+    <v-form autocomplete="on" @submit.prevent="onSubmit">
+      <NameTextField v-model="name" />
+
+      <EmailTextField v-model="email" />
+
+      <PasswordConfirmationTextField v-model="password" :password-confirmation.sync="passwordConfirmation" />
+
+      <div class="text-center mt-4">
+        <OrangeBtn type="submit" :disabled="invalid || processing">
+          新規登録
+        </OrangeBtn>
+      </div>
+    </v-form>
+  </ValidationObserver>
+</template>
+
+<script>
+import NameTextField from '~/components/organisms/textFields/NameTextField'
+import EmailTextField from '~/components/organisms/textFields/EmailTextField'
+import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn'
+
+export default {
+  components: {
+    NameTextField,
+    EmailTextField,
+    PasswordConfirmationTextField,
+    OrangeBtn
+  },
+  props: {
+    processing: {
+      type: Boolean,
+      default: false
+    },
+    errors: {
+      type: Object,
+      default: undefined
+    }
+  },
+  data () {
+    return {
+      name: '',
+      email: '',
+      password: '',
+      passwordConfirmation: ''
+    }
+  },
+  methods: {
+    onSubmit () {
+      this.validate()
+      const userInfo = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        password_confirmation: this.passwordConfirmation
+      }
+      this.$emit('signup', userInfo)
+    },
+    validate () {
+      this.$refs.observer.validate()
+    }
+  }
+}
+</script>

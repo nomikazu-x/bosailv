@@ -3,7 +3,7 @@
     <Loading v-if="loading" />
     <v-card v-if="!loading">
       <v-card-title v-if="list">
-        <Label :list="list" />
+        <InfomationLabel :list="list" />
         <span class="ml-1 font-weight-bold">
           {{ list.title }}
         </span>
@@ -29,12 +29,12 @@
 
 <script>
 import Application from '~/plugins/application.js'
-import Label from '~/components/infomations/Label.vue'
+import InfomationLabel from '~/components/atoms/label/InfomationLabel.vue'
 
 export default {
   name: 'Infomations',
   components: {
-    Label
+    InfomationLabel
   },
   mixins: [Application],
 

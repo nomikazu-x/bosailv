@@ -42,11 +42,11 @@ DeviseTokenAuth.setup do |config|
   # config.default_callbacks = true
 
   # Makes it possible to change the headers names
-  config.headers_names = {:'access-token' => 'access-token',
-                         :'client' => 'client',
-                         :'expiry' => 'expiry',
-                         :'uid' => 'uid',
-                         :'token-type' => 'token-type' }
+  # config.headers_names = {:'access-token' => 'access-token',
+  #                        :'client' => 'client',
+  #                        :'expiry' => 'expiry',
+  #                        :'uid' => 'uid',
+  #                        :'token-type' => 'token-type' }
 
   # By default, only Bearer Token authentication is implemented out of the box.
   # If, however, you wish to integrate with legacy Devise authentication, you can
@@ -56,8 +56,13 @@ DeviseTokenAuth.setup do |config|
   # By default DeviseTokenAuth will not send confirmation email, even when including
   # devise confirmable module. If you want to use devise confirmable module and
   # send email, set it to true. (This is a setting for compatibility)
-  # config.send_confirmation_email = true
+  config.send_confirmation_email = true
 
-  # FRONT_DOMAIN =  ENV["FRONT_DOMAIN"] ||= "http://localhost:8080"
-  # config.default_confirm_success_url = FRONT_DOMAIN + "/signup/enter-user-name" if Rails.env.development?
+  if Rails.env.test?
+    config.default_confirm_success_url = 'http://test-confirm.dev'
+    config.default_password_reset_url = 'http://test-password-reset.dev'
+  else
+    config.default_confirm_success_url = "#{ENV.fetch('FRONT_SERVER_ORIGIN', 'http://localhost:8080')}/signin"
+    config.default_password_reset_url = "#{ENV.fetch('FRONT_SERVER_ORIGIN', 'http://localhost:8080')}/password/reset/confirm"
+  end
 end

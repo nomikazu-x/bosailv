@@ -27,10 +27,13 @@
             <span class="ml-1">
               ({{ $dateFormat(list.created_at, 'ja') }})
             </span>
+            <div class="ml-1">
+              {{ list.category }}
+            </div>
+            <!-- eslint-disable-next-line vue/no-v-html -->
+            <div v-if="list.content" class="mx-2 my-2" v-html="list.content" />
+            <v-divider class="my-4" />
           </div>
-          <!-- eslint-disable-next-line vue/no-v-html -->
-          <div v-if="list.content" class="mx-2 my-2" v-html="list.content" />
-          <v-divider class="my-4" />
         </article>
 
         <div v-if="info != null && info.total_pages > 1">
@@ -66,7 +69,9 @@ export default {
     async onPagination () {
       this.processing = true
 
-      await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, { params: { page: this.page } })
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, {
+        params: { page: this.page }
+      })
         .then((response) => {
           if (response.data == null || response.data.article == null) {
             this.$toasted.error(this.$t('system.error'))

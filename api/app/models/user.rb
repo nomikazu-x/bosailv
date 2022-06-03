@@ -4,22 +4,25 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :confirmable, :lockable, :timeoutable, :trackable
   include DeviseTokenAuth::Concerns::User
 
   mount_uploader :image, ImageUploader
 
+  alias_attribute :total, :lifelong_point
+  alias_attribute :to_next, :point_to_next
+
   has_many :articles, dependent: :destroy
   has_many :infomations, dependent: :destroy
-  has_many :favorites, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :article_favorites, dependent: :destroy
+  has_many :article_comments, dependent: :destroy
+  has_many :point_records, dependent: :destroy
 
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
   VALID_PASSWORD_REGEX = /\A[!-~]+\z/
 
   validates :name, length: { maximum: 50 }
-  validates :address, length: { maximum: 30 }
-  validates :username, length: { maximum: 30 }, uniqueness: true, allow_nil: true, presence: true, format: { with: VALID_USERNAME_REGEX }
   validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX }, allow_nil: true
 
   # 画像URLを返却
@@ -45,17 +48,17 @@ class User < ActiveRecord::Base
     Infomation.by_target(self).by_unread(infomation_check_last_started_at).count
   end
 
-  def favorite!(article)
-    favorites.create!(article_id: article.id)
+  def article_favorite!(article)
+    article_favorites.create!(article_id: article.id)
   end
 
-  def unfavorite!(article)
-    favorite = favorites.find_by!(article_id: article.id)
+  def article_unfavorite!(article)
+    article_favorite = article_favorites.find_by!(article_id: article.id)
 
-    favorite.destroy
+    article_favorite.destroy
   end
 
-  def favorite?(article)
-    favorites.exists?(article_id: article.id)
+  def article_favorite?(article)
+    article_favorites.exists?(article_id: article.id)
   end
 end
