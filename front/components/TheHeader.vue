@@ -42,7 +42,7 @@
               <v-list-item-title>登録情報変更</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <v-list-item to="/users/sign_out" exact nuxt>
+          <v-list-item exact nuxt @click="onSignOut()">
             <v-list-item-icon>
               <v-icon>mdi-logout</v-icon>
             </v-list-item-icon>
@@ -62,10 +62,18 @@
 </template>
 
 <script>
+import Application from '~/plugins/application.js'
+
 export default {
+  mixins: [Application],
+
   methods: {
     onClick () {
       this.$store.commit('sidebar/onDrawer')
+    },
+    onSignOut () {
+      this.processing = true
+      this.signOut('auth.signed_out')
     }
   }
 }

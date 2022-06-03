@@ -58,14 +58,6 @@
             <v-list-item-title>登録情報変更</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/users/sign_out" exact nuxt>
-          <v-list-item-icon>
-            <v-icon>mdi-logout</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>ログアウト</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
       </v-list-item-group>
 
       <div class="card-position">
@@ -74,12 +66,12 @@
             <v-card outlined v-bind="attrs" v-on="on">
               <v-list-item three-line @click="menu = !menu">
                 <v-list-item-avatar size="50">
-                  <v-avatar color="primary" size="50" />
+                  <v-img :src="$auth.user.image_url.small" size="50" />
                 </v-list-item-avatar>
 
                 <v-list-item-content>
                   <div class="mb-2 overline">MYPAGE</div>
-                  <v-list-item-title class="mb-1">username</v-list-item-title>
+                  <v-list-item-title class="mb-1">{{ $auth.user.name }}</v-list-item-title>
                 </v-list-item-content>
 
                 <v-list-item-action>
@@ -90,7 +82,7 @@
           </template>
 
           <v-list dense>
-            <v-list-item dense to="/users/sign_out">
+            <v-list-item dense @click="onSignOut()">
               ログアウト
             </v-list-item>
           </v-list>
@@ -101,7 +93,11 @@
 </template>
 
 <script>
+import Application from '~/plugins/application.js'
+
 export default {
+  mixins: [Application],
+
   data () {
     return {
       menu: false
@@ -120,6 +116,13 @@ export default {
     },
     getDrawer () {
       return this.$store.getters['sidebar/drawer']
+    }
+  },
+
+  methods: {
+    onSignOut () {
+      this.processing = true
+      this.signOut('auth.signed_out')
     }
   }
 }
