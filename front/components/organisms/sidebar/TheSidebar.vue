@@ -50,7 +50,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-divider />
-        <v-list-item to="/users/edit" exact nuxt>
+        <v-list-item to="/settings/profile" exact nuxt>
           <v-list-item-icon>
             <v-icon>mdi-account-edit</v-icon>
           </v-list-item-icon>
