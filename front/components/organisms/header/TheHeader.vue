@@ -34,7 +34,7 @@
           </v-btn>
         </template>
         <v-list>
-          <v-list-item to="/settings" exact nuxt>
+          <v-list-item to="/settings/profile" exact nuxt>
             <v-list-item-icon>
               <v-icon>mdi-cog</v-icon>
             </v-list-item-icon>

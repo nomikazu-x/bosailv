@@ -4,11 +4,11 @@
     <Message v-if="!loading" :alert="alert" :notice="notice" />
     <v-card v-if="!loading">
       <v-row>
-        <v-col cols="auto" md="4">
+        <v-col cols="auto">
           <UserImageFileInput :alert="alert" :notice="notice" />
         </v-col>
-        <v-col cols="12" md="8">
-          <InfoEdit :user="user" :alert="alert" :notice="notice" />
+        <v-col cols="12">
+          <UserProfileForm :user="user" :alert="alert" :notice="notice" />
         </v-col>
       </v-row>
     </v-card>
