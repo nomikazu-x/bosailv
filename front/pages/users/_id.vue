@@ -1,6 +1,7 @@
 <template>
   <UsersIdTemplate
     :user="user"
+    :required-point="requiredPoint"
     :processing="processing"
     :loading="loading"
     :alert="alert"
@@ -17,7 +18,8 @@ export default {
 
   data () {
     return {
-      user: null
+      user: null,
+      requiredPoint: 0
     }
   },
   async created () {
@@ -45,6 +47,7 @@ export default {
           return this.$router.push({ path: '/' })
         } else {
           this.user = response.data.user
+          this.requiredPoint = response.data.required_point
         }
       },
       (error) => {

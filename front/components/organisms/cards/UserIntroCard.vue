@@ -9,6 +9,8 @@
         <nuxt-link :to="`/users/${getUserId}`" class="black--text text-decoration-none">{{ getName }}</nuxt-link>
       </p>
 
+      <UserLevelCard :user="user" :required-point="requiredPoint" />
+
       <p v-if="getProfile" class="text-center mb-4 px-8 px-sm-12">{{ getProfile }}</p>
 
       <div class="my-3">
@@ -28,6 +30,10 @@ export default {
     user: {
       type: Object,
       default: null
+    },
+    requiredPoint: {
+      type: Number,
+      default: 0
     }
   },
   computed: {

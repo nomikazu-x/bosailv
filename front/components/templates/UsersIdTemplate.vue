@@ -10,6 +10,7 @@
         <div class="mb-4 mt-10">
           <UserIntroCard
             :user="user"
+            :required-point="requiredPoint"
           />
         </div>
       </template>
@@ -35,6 +36,10 @@ export default {
     user: {
       type: Object,
       default: null
+    },
+    requiredPoint: {
+      type: Number,
+      default: 0
     },
     processing: {
       type: Boolean,
