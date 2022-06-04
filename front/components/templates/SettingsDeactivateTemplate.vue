@@ -20,6 +20,7 @@
             :processing="processing"
             :alert="alert"
             :notice="notice"
+            @user-delete="onUserDelete"
           />
         </div>
       </template>
@@ -45,6 +46,11 @@ export default {
     processing: {
       type: Boolean,
       default: false
+    }
+  },
+  methods: {
+    onUserDelete () {
+      this.$emit('user-delete')
     }
   }
 }

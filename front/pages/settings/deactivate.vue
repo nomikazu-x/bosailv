@@ -4,6 +4,7 @@
     :processing="processing"
     :alert="alert"
     :notice="notice"
+    @user-delete="onUserDelete"
   />
 </template>
 
@@ -45,7 +46,7 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
-            return this.signOut(null, '/users/sign_in', response.data.alert, response.data.notice)
+            return this.signOut(null, '/signin', response.data.alert, response.data.notice)
           }
         },
         (error) => {

@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    color="red lighten-2"
+    color="error"
     class="btn"
     :disabled="disabled"
     :large="large"
