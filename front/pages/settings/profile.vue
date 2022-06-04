@@ -20,8 +20,7 @@ export default {
 
   data () {
     return {
-      user: null,
-      image: null
+      user: null
     }
   },
 
@@ -113,7 +112,6 @@ export default {
             this.$auth.setUser(response.data.user)
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
-            this.image = null
           }
         },
         (error) => {
@@ -142,7 +140,6 @@ export default {
             this.$auth.setUser(response.data.user)
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
-            this.image = null
           }
         },
         (error) => {
