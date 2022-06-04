@@ -1,7 +1,7 @@
 <template>
   <v-btn
-    color="yellow lighten-3"
-    class="btn"
+    color="amber darken-3"
+    class="btn white--text"
     depressed
     :disabled="disabled"
     :large="large"

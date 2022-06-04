@@ -1,11 +1,11 @@
 <template>
   <v-btn
-    class="btn"
+    color="green darken-3"
+    class="btn white--text"
     depressed
     :disabled="disabled"
     :large="large"
     :to="to"
-    :color="color"
     @click="onClick"
   >
     <slot />
@@ -15,10 +15,6 @@
 <script>
 export default {
   props: {
-    color: {
-      type: String,
-      default: 'green'
-    },
     disabled: {
       type: Boolean,
       default: false

@@ -1,5 +1,5 @@
 module.exports = {
-  app_name: 'App',
+  app_name: 'BosaiLevel',
   my_name: 'kazuki-ayimon',
   my_url: 'https://example.com',
   network: {
