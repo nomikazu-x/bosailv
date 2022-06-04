@@ -1,19 +1,10 @@
 <template>
-  <div>
-    <Loading v-if="loading" />
-    <Message v-if="!loading" :alert="alert" :notice="notice" />
-    <v-card v-if="!loading" max-width="850px">
-      <v-card-title>登録情報変更</v-card-title>
-      <v-row>
-        <v-col cols="auto" md="4">
-          <UserImageFileInput @alert="alert = $event" @notice="notice = $event" />
-        </v-col>
-        <v-col cols="12" md="8">
-          <InfoEdit :user="user" @alert="alert = $event" @notice="notice = $event" />
-        </v-col>
-      </v-row>
-    </v-card>
-  </div>
+  <SettingsProfileTemplate
+    :user="user"
+    :loading="loading"
+    @alert="alert = $event"
+    @notice="notice = $event"
+  />
 </template>
 
 <script>
