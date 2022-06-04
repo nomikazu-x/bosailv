@@ -28,11 +28,7 @@ class Api::V1::Users::Auth::RegistrationsController < DeviseTokenAuth::Registrat
   end
 
   def account_update_params
-    params.permit(:name, :image)
-  end
-
-  def default_username
-    SecureRandom.alphanumeric(15)
+    params.permit(:name, :image, :email, :password)
   end
 
   def render_create_success

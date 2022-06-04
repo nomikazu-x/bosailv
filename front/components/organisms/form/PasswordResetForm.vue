@@ -31,11 +31,7 @@
   },
   methods: {
     onSubmit () {
-      this.validate()
       this.$emit('submit', this.email)
-    },
-    validate () {
-      this.$refs.observer.validate()
     }
   }
 }

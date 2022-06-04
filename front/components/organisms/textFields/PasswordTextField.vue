@@ -9,7 +9,7 @@
       inputmode="verbatim"
       hint="8文字以上の半角英数字のみ使用可能です"
       name="password"
-      label="パスワード [8文字以上]"
+      :label="label"
       dense
       :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
       :type="showPassword ? 'text' : 'password'"
@@ -25,6 +25,10 @@ export default {
     value: {
       type: String,
       default: ''
+    },
+    label: {
+      type: String,
+      default: 'パスワード [8文字以上]'
     }
   },
   data () {

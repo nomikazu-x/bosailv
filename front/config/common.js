@@ -12,6 +12,12 @@ module.exports = {
   // アカウント登録API
   singUpUrl: '/api/v1/users/auth/sign_up.json',
   singUpSuccessUrl: '/signin',
+  // メールアドレス確認API
+  confirmationNewUrl: '/users/auth/confirmation.json',
+  confirmationSuccessUrl: '/signin',
+  // アカウントロック解除API
+  unlockNewUrl: '/users/auth/unlock.json',
+  unlockRedirectUrl: '/signin',
   // パスワード再設定API
   passwordNewUrl: '/api/v1/users/auth/password.json',
   passwordRedirectUrl: '/password/reset/confirm',

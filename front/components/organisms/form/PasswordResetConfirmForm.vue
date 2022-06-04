@@ -32,15 +32,11 @@
   },
   methods: {
     onSubmit () {
-      this.validate()
       const userInfo = {
         password: this.password,
         password_confirmation: this.passwordConfirmation
       }
       this.$emit('submit', userInfo)
-    },
-    validate () {
-      this.$refs.observer.validate()
     }
   }
 }

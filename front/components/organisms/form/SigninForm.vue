@@ -35,15 +35,11 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.validate()
       const userInfo = {
         email: this.email,
         password: this.password
       }
       this.$emit('signin', userInfo)
-    },
-    validate () {
-      this.$refs.observer.validate()
     }
   }
 }

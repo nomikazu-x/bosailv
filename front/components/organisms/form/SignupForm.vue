@@ -39,7 +39,6 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.validate()
       const userInfo = {
         name: this.name,
         email: this.email,
@@ -47,9 +46,6 @@ export default {
         password_confirmation: this.passwordConfirmation
       }
       this.$emit('signup', userInfo)
-    },
-    validate () {
-      this.$refs.observer.validate()
     }
   }
 }
