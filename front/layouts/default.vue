@@ -9,7 +9,7 @@
     </v-content>
 
     <TheFooter />
-    <GoTop :max-width="48" :size="48" :right="24" :bottom="24" bg-color="#1867c0" />
+    <GoTop :max-width="48" :size="48" :right="24" :bottom="24" bg-color="#117768" />
   </v-app>
 </template>
 
