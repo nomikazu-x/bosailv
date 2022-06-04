@@ -1,6 +1,6 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" ref="observer">
-    <v-form autocomplete="on" @submit.prevent="onSubmit">
+    <v-form autocomplete="on">
       <NameTextField v-model="name" />
 
       <EmailTextField v-model="email" />
@@ -8,7 +8,7 @@
       <PasswordConfirmationTextField v-model="password" :password-confirmation.sync="passwordConfirmation" />
 
       <div class="text-center mt-4">
-        <OrangeBtn type="submit" :disabled="invalid || processing">
+        <OrangeBtn :disabled="invalid || processing" @click="onSubmit">
           新規登録
         </OrangeBtn>
       </div>

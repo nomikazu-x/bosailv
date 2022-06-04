@@ -1,12 +1,12 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" ref="observer">
-    <v-form autocomplete="on" @submit.prevent="onSubmit">
+    <v-form autocomplete="on">
       <EmailTextField v-model="email" />
 
       <PasswordTextField v-model="password" />
 
       <div class="text-center mt-4">
-        <OrangeBtn type="submit" :disabled="invalid || processing">
+        <OrangeBtn type="submit" :disabled="invalid || processing" @click="onSubmit">
           ログイン
         </OrangeBtn>
       </div>
