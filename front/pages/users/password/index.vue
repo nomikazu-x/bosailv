@@ -45,14 +45,10 @@
 </template>
 
 <script>
-import ActionLink from '~/components/users/ActionLink.vue'
 import Application from '~/plugins/application.js'
 
 export default {
   name: 'UsersPasswordIndex',
-  components: {
-    ActionLink
-  },
   mixins: [Application],
 
   data () {

@@ -12,7 +12,7 @@
       <v-col cols="12" sm="12" md="9" class="text-right">
         <v-divider class="mb-2" />
 
-        <ul class="pl-0">
+        <ul class="list-style-none pl-0">
           <li class="mb-1"><NuxtLink to="/password/reset">パスワードをリセット</NuxtLink></li>
           <li class="mb-1"><NuxtLink to="/signup">新規登録へ</NuxtLink></li>
         </ul>
@@ -22,12 +22,7 @@
 </template>
 
 <script>
-import SigninForm from '~/components/organisms/form/SigninForm'
-
 export default {
-  components: {
-    SigninForm
-  },
   props: {
     processing: {
       type: Boolean,
@@ -45,11 +40,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.other-heading {
-  font-size: 1rem;
-  font-weight: normal;
-  margin-bottom: 0.5rem;
-}
-</style>

@@ -10,14 +10,10 @@
 </template>
 
 <script>
-import PasswordResetTemplate from '~/components/templates/PasswordResetTemplate'
 import Application from '~/plugins/application.js'
 
 export default {
   name: 'UsersPasswordReset',
-  components: {
-    PasswordResetTemplate
-  },
   mixins: [Application],
   data () {
     return {

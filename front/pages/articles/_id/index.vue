@@ -39,19 +39,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import FavoriteBtnGroup from '~/components/articles/FavoriteBtnGroup.vue'
-import Comment from '~/components/articles/Comment.vue'
-import CommentArea from '~/components/articles/CommentArea.vue'
 import Application from '~/plugins/application.js'
 
 export default {
   name: 'Articles',
-
-  components: {
-    FavoriteBtnGroup,
-    Comment,
-    CommentArea
-  },
 
   mixins: [Application],
 

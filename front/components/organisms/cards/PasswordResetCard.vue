@@ -12,7 +12,7 @@
       <v-col cols="12" sm="12">
         <v-divider class="mb-2" />
 
-        <ul class="pl-0">
+        <ul class="list-style-none pl-0">
           <li class="mb-1"><NuxtLink to="/signin">ログインへ</NuxtLink></li>
           <li class="mb-1"><NuxtLink to="/signup">新規登録へ</NuxtLink></li>
         </ul>
@@ -22,12 +22,7 @@
 </template>
 
 <script>
-import PasswordResetForm from '~/components/organisms/form/PasswordResetForm'
-
 export default {
-  components: {
-    PasswordResetForm
-  },
   props: {
     processing: {
       type: Boolean,

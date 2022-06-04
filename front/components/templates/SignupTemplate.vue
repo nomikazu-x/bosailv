@@ -3,7 +3,7 @@
     <Loading v-if="loading" />
     <Message v-if="!loading" :alert="alert" :notice="notice" />
 
-    <h1 class="mb-8 text-center">新規登録</h1>
+    <h1 class="main-heading mb-8 text-center">新規登録</h1>
 
     <v-row justify="center">
       <v-col cols="12" sm="10" md="8">
@@ -14,16 +14,7 @@
 </template>
 
 <script>
-import OneColumnContainer from '~/components/molecules/containers/OneColumnContainer'
-import Message from '~/components/Message'
-import SignupCard from '~/components/organisms/cards/SignupCard'
-
 export default {
-  components: {
-    OneColumnContainer,
-    Message,
-    SignupCard
-  },
   props: {
     errors: {
       type: Object,

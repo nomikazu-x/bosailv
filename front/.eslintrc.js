@@ -14,14 +14,14 @@ module.exports = {
   ],
   overrides: [
     {
-      files: ["*.vue"],
-      processor: "vue/.vue"
+      files: ['*.vue'],
+      processor: 'vue/.vue'
     }
   ],
   // add your custom rules here
   rules: {
-    semi: [2, "never"],
-    "no-console": "off",
+    semi: [2, 'never'],
+    'no-console': 'off',
     'vue/max-attributes-per-line': 'off',
     'vue/singleline-html-element-content-newline': 'off',
     'prefer-promise-reject-errors': 'off'

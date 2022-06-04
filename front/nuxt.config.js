@@ -30,8 +30,15 @@ export default {
   /*
   ** Global CSS
   */
-  css: [
-  ],
+  css: [{
+    src: '~/assets/scss/app.scss', lang: 'scss'
+  }],
+  /*
+   ** Style Resources configuration
+   */
+  styleResources: {
+    scss: ['~/assets/scss/variable.scss', '~/assets/scss/functions/**.scss']
+  },
   /*
   ** Plugins to load before mounting the App
   */
@@ -42,14 +49,20 @@ export default {
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: [
+    {
+      path: '@/components/',
+      pathPrefix: false
+    }
+  ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/style-resources'
   ],
   /*
   ** Nuxt.js modules

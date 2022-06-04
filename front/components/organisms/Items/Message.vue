@@ -1,9 +1,21 @@
 <template>
   <div>
-    <v-alert v-if="alert" type="error">
+    <v-alert
+      v-if="alert"
+      type="error"
+      border="top"
+      colored-border
+      elevation="2"
+    >
       {{ alert }}
     </v-alert>
-    <v-alert v-if="notice" type="info">
+    <v-alert
+      v-if="notice"
+      border="top"
+      colored-border
+      type="info"
+      elevation="2"
+    >
       {{ notice }}
     </v-alert>
   </div>

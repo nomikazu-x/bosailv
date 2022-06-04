@@ -52,13 +52,9 @@
 
 <script>
 import Application from '~/plugins/application.js'
-import InfomationLabel from '~/components/atoms/label/InfomationLabel.vue'
 
 export default {
   name: 'Infomations',
-  components: {
-    InfomationLabel
-  },
   mixins: [Application],
 
   data () {
