@@ -58,6 +58,14 @@
             <v-list-item-title>登録情報変更</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item to="/settings" exact nuxt>
+          <v-list-item-icon>
+            <v-icon>mdi-cog</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>設定</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list-item-group>
 
       <div class="card-position">
