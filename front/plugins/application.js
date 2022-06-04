@@ -1,6 +1,6 @@
-import Loading from '~/components/Loading.vue'
-import Processing from '~/components/Processing.vue'
-import Message from '~/components/Message.vue'
+import Loading from '~/components/organisms/items/Loading.vue'
+import Processing from '~/components/organisms/items/Processing.vue'
+import Message from '~/components/organisms/items/Message.vue'
 
 export default {
   components: {
