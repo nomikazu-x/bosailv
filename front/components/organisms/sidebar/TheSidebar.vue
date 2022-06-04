@@ -74,7 +74,7 @@
             <v-card outlined v-bind="attrs" v-on="on">
               <v-list-item three-line @click="menu = !menu">
                 <v-list-item-avatar size="50">
-                  <v-img :src="$auth.user.image_url.small" size="50" />
+                  <v-img :src="$auth.user.image_url.medium" size="50" />
                 </v-list-item-avatar>
 
                 <v-list-item-content>
@@ -90,6 +90,9 @@
           </template>
 
           <v-list dense>
+            <v-list-item dense :to="`/users/${$auth.user.id}`">
+              マイページ
+            </v-list-item>
             <v-list-item dense @click="onSignOut()">
               ログアウト
             </v-list-item>

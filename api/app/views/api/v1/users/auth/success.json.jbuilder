@@ -10,6 +10,7 @@ if current_user.present?
       json.large "#{Settings['base_image_url']}#{current_user.image_url(:large)}"
       json.xlarge "#{Settings['base_image_url']}#{current_user.image_url(:xlarge)}"
     end
+    json.id current_user.id
     json.name current_user.name
     json.email current_user.email
     json.infomation_unread_count current_user.infomation_unread_count
