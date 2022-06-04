@@ -3,7 +3,6 @@
     <Loading v-if="loading" />
     <v-card v-if="!loading" max-width="640px">
       <Processing v-if="processing" />
-      <v-card-title>アカウント削除</v-card-title>
       <v-card-text>
         <v-dialog transition="dialog-top-transition" max-width="600px">
           <template #activator="{ on, attrs }">
@@ -28,44 +27,33 @@
 </template>
 
 <script>
-import Application from '~/plugins/application.js'
-
 export default {
-  name: 'UsersDelete',
-  mixins: [Application],
-
-  async created () {
-    try {
-      await this.$auth.fetchUser()
-    } catch (error) {
-      if (error.response == null) {
-        this.$toasted.error(this.$t('network.failure'))
-      } else if (error.response.status === 401) {
-        return this.signOut()
-      } else {
-        this.$toasted.error(this.$t('network.error'))
-      }
-      return this.$router.push({ path: '/' })
+  props: {
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    alert: {
+      type: String,
+      default: null
+    },
+    notice: {
+      type: String,
+      default: null
+    },
+    processing: {
+      type: Boolean,
+      default: false
     }
-
-    if (!this.$auth.loggedIn) {
-      return this.redirectAuth()
-    }
-
-    this.processing = false
-    this.loading = false
   },
-
   methods: {
     async onUserDelete () {
-      this.processing = true
-
       await this.$axios.post(this.$config.apiBaseURL + this.$config.userDeleteUrl)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
-            return this.signOut(null, '/users/sign_in', response.data.alert, response.data.notice)
+            return this.signOut(null, '/signin', response.data.alert, response.data.notice)
           }
         },
         (error) => {
@@ -80,8 +68,6 @@ export default {
             this.$toasted.info(error.response.data.notice)
           }
         })
-
-      this.processing = false
     }
   }
 }
