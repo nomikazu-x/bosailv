@@ -18,8 +18,12 @@
           <SettingsProfileCard
             :user="user"
             :loading="loading"
+            :processing="processing"
             :alert="alert"
             :notice="notice"
+            @user-update="onUserUpdate"
+            @user-image-update="onUserImageUpdate"
+            @user-image-delete="onUserImageDelete"
           />
         </div>
       </template>
@@ -34,6 +38,10 @@ export default {
       type: Object,
       default: null
     },
+    processing: {
+      type: Boolean,
+      default: false
+    },
     loading: {
       type: Boolean,
       default: false
@@ -45,6 +53,17 @@ export default {
     notice: {
       type: String,
       default: null
+    }
+  },
+  methods: {
+    onUserUpdate (value) {
+      this.$emit('user-update', value)
+    },
+    onUserImageUpdate (image) {
+      this.$emit('user-image-update', image)
+    },
+    onUserImageDelete () {
+      this.$emit('user-image-delete')
     }
   }
 }

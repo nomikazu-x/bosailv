@@ -14,10 +14,9 @@
             prepend-icon="mdi-camera"
             show-size
             :error-messages="errors"
-            @click="waiting = false"
           />
         </ValidationProvider>
-        <v-btn id="user_image_update_btn" color="primary" :disabled="invalid || image === null || processing || waiting" @click="onUserImageUpdate()">アップロード</v-btn>
+        <GreenBtn id="user_image_update_btn" color="primary" :disabled="invalid || image === null || processing" @click="onUserImageUpdate">アップロード</GreenBtn>
         <v-dialog transition="dialog-top-transition" max-width="600px">
           <template #activator="{ on, attrs }">
             <v-btn id="user_image_delete_btn" color="secondary" :disabled="!$auth.user.upload_image || processing" v-bind="attrs" v-on="on">画像削除</v-btn>
@@ -30,7 +29,7 @@
               </v-card-text>
               <v-card-actions class="justify-end">
                 <v-btn id="user_image_delete_no_btn" color="secondary" @click="dialog.value = false">いいえ</v-btn>
-                <v-btn id="user_image_delete_yes_btn" color="primary" @click="dialog.value = false; onUserImageDelete()">はい</v-btn>
+                <OrangeBtn id="user_image_delete_yes_btn" color="primary" @click="dialog.value = false; onUserImageDelete()">はい</OrangeBtn>
               </v-card-actions>
             </v-card>
           </template>
@@ -41,88 +40,30 @@
 </template>
 
 <script>
-import Application from '~/plugins/application.js'
-
 export default {
   name: 'ImageEdit',
 
-  mixins: [Application],
+  props: {
+    processing: {
+      type: Boolean,
+      default: false
+    }
+  },
 
   data () {
     return {
-      waiting: false,
       image: null
     }
   },
 
-  created () {
-    this.processing = false
-  },
-
   methods: {
-    async onUserImageUpdate () {
-      this.processing = true
-
-      const params = new FormData()
-      params.append('image', this.image)
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.userImageUpdateUrl, params)
-        .then((response) => {
-          if (response.data == null) {
-            this.$toasted.error(this.$t('system.error'))
-          } else {
-            this.$auth.setUser(response.data.user)
-            this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
-            this.image = null
-          }
-        },
-        (error) => {
-          if (error.response == null) {
-            this.$toasted.error(this.$t('network.failure'))
-          } else if (error.response.status === 401) {
-            return this.signOut()
-          } else if (error.response.data == null) {
-            this.$toasted.error(this.$t('network.error'))
-          } else {
-            this.$emit('alert', error.response.data.alert)
-            this.$emit('notice', error.response.data.notice)
-            if (error.response.data.errors != null) {
-              this.$refs.observer.setErrors(error.response.data.errors)
-              this.waiting = true
-            }
-          }
-        })
-
-      this.processing = false
+    onUserImageUpdate () {
+      this.$emit('user-image-update', this.image)
+      this.image = null
     },
-    async onUserImageDelete () {
-      this.processing = true
-
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.userImageDeleteUrl)
-        .then((response) => {
-          if (response.data == null) {
-            this.$toasted.error(this.$t('system.error'))
-          } else {
-            this.$auth.setUser(response.data.user)
-            this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
-            this.image = null
-          }
-        },
-        (error) => {
-          if (error.response == null) {
-            this.$toasted.error(this.$t('network.failure'))
-          } else if (error.response.status === 401) {
-            return this.signOut()
-          } else if (error.response.data == null) {
-            this.$toasted.error(this.$t('network.error'))
-          } else {
-            this.$emit('alert', error.response.data.alert)
-            this.$emit('notice', error.response.data.notice)
-          }
-        })
-
-      this.processing = false
+    onUserImageDelete () {
+      this.$emit('user-image-delete')
+      this.image = null
     }
   }
 }
