@@ -4,8 +4,6 @@
 
     <v-row justify="center">
       <v-col cols="12" sm="8" md="6">
-        <Processing v-if="processing" />
-
         <SigninForm :processing="processing" :errors="errors" @signin="onSignin" />
       </v-col>
 

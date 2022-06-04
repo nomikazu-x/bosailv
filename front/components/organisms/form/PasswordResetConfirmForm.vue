@@ -1,5 +1,6 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" ref="observer">
+    <Processing v-if="processing" />
     <v-form autocomplete="on">
       <PasswordConfirmationTextField v-model="password" :password-confirmation.sync="passwordConfirmation" />
 
