@@ -22,7 +22,6 @@
               <quill-editor
                 v-model="content"
                 :error-messages="errors"
-                placeholder="800"
               />
             </ValidationProvider>
             <div v-for="category in categories" :key="category.id">
