@@ -14,6 +14,8 @@ json.user do
   json.name @user.name
   json.email @user.email
   json.level @user.level
+  json.username @user.username
+  json.profile @user.profile
   json.lifelong_point @user.lifelong_point
   json.point_to_next @user.point_to_next
   json.infomation_unread_count @user.infomation_unread_count

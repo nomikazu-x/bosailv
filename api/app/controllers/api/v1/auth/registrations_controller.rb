@@ -1,15 +1,10 @@
-class Api::V1::Users::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
-
-  def show
-    @user = User.find(params[:user_id])
-    render './api/v1/users/auth/show'
-  end
+class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
 
   def image_update
     @user = User.find(current_user.id)
     if @user.update(params.permit(:image))
       update_auth_header
-      render './api/v1/users/auth/success', locals: { notice: I18n.t('notice.user.image_update') }
+      render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.image_update') }
     else
       render './api/v1/failure', locals: { errors: @user.errors, alert: I18n.t('errors.messages.not_saved.one') }, status: :unprocessable_entity
     end
@@ -19,21 +14,21 @@ class Api::V1::Users::Auth::RegistrationsController < DeviseTokenAuth::Registrat
     @user = User.find(current_user.id)
     @user.remove_image!
     @user.save!
-    render './api/v1/users/auth/success', locals: { notice: I18n.t('notice.user.image_destroy') }
+    render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.image_destroy') }
   end
 
   private
 
   def sign_up_params
-    params.permit(:name, :email, :password)
+    params.permit(:name, :email, :password, :username).merge(username: default_username)
   end
 
   def account_update_params
-    params.permit(:name, :image, :email, :password)
+    params.permit(:name, :image, :email, :password, :profile, :username)
   end
 
   def render_create_success
-    render './api/v1/users/auth/success', locals: { notice: I18n.t('devise.registrations.signed_up') }
+    render './api/v1/auth/success', locals: { notice: I18n.t('devise.registrations.signed_up') }
   end
 
   def render_create_error
@@ -43,7 +38,7 @@ class Api::V1::Users::Auth::RegistrationsController < DeviseTokenAuth::Registrat
   def render_update_success
     update_auth_header
 
-    render './api/v1/users/auth/success', locals: { notice: I18n.t('devise.registrations.updated') }
+    render './api/v1/auth/success', locals: { notice: I18n.t('devise.registrations.updated') }
   end
 
   def render_update_error
@@ -51,7 +46,7 @@ class Api::V1::Users::Auth::RegistrationsController < DeviseTokenAuth::Registrat
   end
 
   def render_destroy_success
-    render './api/v1/users/auth/success', locals: { notice: I18n.t('devise.registrations.destroyed') }
+    render './api/v1/auth/success', locals: { notice: I18n.t('devise.registrations.destroyed') }
   end
 
   def render_destroy_error
@@ -64,5 +59,14 @@ class Api::V1::Users::Auth::RegistrationsController < DeviseTokenAuth::Registrat
 
   def validate_account_update_params
     render './api/v1/failure', locals: { alert: I18n.t('errors.messages.validate_account_update_params') }, status: :bad_request if account_update_params.empty?
+  end
+
+  def default_username
+    SecureRandom.alphanumeric(15)
+  end
+
+  def set_default_username
+    default_username = "user" + SecureRandom.alphanumeric(15)
+    @resource.update
   end
 end

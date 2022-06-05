@@ -12,8 +12,6 @@
             :title="item.title"
           />
         </template>
-
-        <CreateArticleListItem v-if="isCreatingNewArticle" v-model="newFolderName" @submit="onCreateFolder" />
       </v-list-item-group>
     </v-list>
   </div>
@@ -22,17 +20,9 @@
 <script>
 export default {
   props: {
-    currentUserId: {
-      type: Number,
-      default: null
-    },
     lists: {
       type: Array,
       default: () => []
-    },
-    isCreatingNewArticle: {
-      type: Boolean,
-      default: false
     }
   }
 }

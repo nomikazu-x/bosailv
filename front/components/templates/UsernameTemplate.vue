@@ -29,8 +29,6 @@
       <ArticleListsWithAction
         v-if="canAction"
         :lists="lists"
-        :current-user-id="currentUserId"
-        :is-creating-new-article="isCreatingNewArticle"
       />
 
       <!-- <ArticleLists
@@ -49,8 +47,8 @@ export default {
       type: Boolean,
       default: false
     },
-    currentUserId: {
-      type: Number,
+    currentUsername: {
+      type: String,
       default: null
     },
     user: {

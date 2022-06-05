@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_24_133642) do
+ActiveRecord::Schema.define(version: 2022_06_05_054341) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -109,6 +109,8 @@ ActiveRecord::Schema.define(version: 2022_05_24_133642) do
     t.integer "level", default: 1, null: false
     t.integer "lifelong_point", default: 0, null: false
     t.integer "point_to_next", default: 5, null: false
+    t.string "username", limit: 30, null: false
+    t.text "profile"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

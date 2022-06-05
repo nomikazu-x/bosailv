@@ -42,7 +42,7 @@ export default {
       return this.redirectAuth()
     }
 
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.userShowUrl)
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.userShowUrl.replace('_username', this.$auth.user.username))
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))

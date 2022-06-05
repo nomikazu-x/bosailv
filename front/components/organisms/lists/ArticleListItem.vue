@@ -1,9 +1,9 @@
 <template>
   <v-row>
     <v-col cols="11" class="pa-0">
-      <v-list-item :to="getTo">
+      <v-list-item :to="{ name: 'articles-id___ja', params: { id }}">
         <v-list-item-icon>
-          <v-icon>mdi-file</v-icon>
+          <v-icon>mdi-image</v-icon>
         </v-list-item-icon>
 
         <v-list-item-content>
@@ -27,11 +27,11 @@
         </template>
 
         <v-list>
-          <v-list-item @click="onChangeName">
+          <v-list-item :to="{ name: 'articles-id-edit___ja', params: { id }}">
             <v-list-item-title>編集する</v-list-item-title>
           </v-list-item>
 
-          <v-list-item @click="onDelete">
+          <v-list-item>
             <v-list-item-title>削除する</v-list-item-title>
           </v-list-item>
         </v-list>
@@ -58,18 +58,6 @@ export default {
     to: {
       type: [String, Object],
       default: undefined
-    }
-  },
-  computed: {
-    getTo () {
-      return !this.isChangingName ? this.to : undefined
-    }
-  },
-  methods: {
-    onDelete () {
-      return this.$emit('delete', {
-        id: this.id
-      })
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
-  <UsersIdTemplate
+  <UsernameTemplate
     :can-action="canAction"
-    :current-user-id="currentUserId"
+    :current-username="currentUsername"
     :user="user"
     :lists="lists"
     :required-point="requiredPoint"
@@ -27,16 +27,16 @@ export default {
     }
   },
   computed: {
-    authUserId () {
-      return this.$auth.user.id
+    authUsername () {
+      return this.$auth.user.username
     },
     canAction () {
       return this.$auth.loggedIn
-        ? this.currentUserId === this.authUserId
+        ? this.currentUsername === this.authUsername
         : false
     },
-    currentUserId () {
-      return Number(this.$route.params.id)
+    currentUsername () {
+      return this.$route.params.username
     }
   },
   async created () {
@@ -57,9 +57,7 @@ export default {
       return this.redirectAuth()
     }
 
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.userShowUrl, {
-      user_id: this.currentUserId
-    })
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.userShowUrl.replace('_username', this.currentUsername))
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))

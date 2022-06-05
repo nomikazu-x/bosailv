@@ -6,7 +6,7 @@
       </v-row>
 
       <p v-if="getName" class="name mb-4">
-        <nuxt-link :to="`/users/${getUserId}`" class="black--text text-decoration-none">{{ getName }}</nuxt-link>
+        <nuxt-link :to="`/users/${getUsername}`" class="black--text text-decoration-none">{{ getName }}</nuxt-link>
       </p>
 
       <UserLevelCard :user="user" :required-point="requiredPoint" />
@@ -18,7 +18,7 @@
           <span class="text-uppercase">FROM</span>: {{ getAddress }}
         </p>
 
-        <v-btn :to="`/users/${getUserId}`" text color="primary">{{ getName }}のページを見る</v-btn>
+        <GreenBtn :to="`/users/${getUsername}`" text color="primary">{{ getName }}のページを見る</GreenBtn>
       </div>
     </div>
   </v-card>
@@ -37,8 +37,8 @@ export default {
     }
   },
   computed: {
-    getUserId () {
-      return this.user && this.user.id
+    getUsername () {
+      return this.user && this.user.username
     },
     getName () {
       if (!this.user) {

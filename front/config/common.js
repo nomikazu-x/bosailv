@@ -1,37 +1,37 @@
 module.exports = {
   // 【ユーザー】
   // ログインAPI
-  authSignInURL: '/api/v1/users/auth/sign_in.json',
+  authSignInURL: '/api/v1/auth/sign_in.json',
   authRedirectSignInURL: '/signin',
   authRedirectHomeURL: '/',
   // ログアウトAPI
-  authSignOutURL: '/api/v1/users/auth/sign_out.json',
+  authSignOutURL: '/api/v1/auth/sign_out.json',
   authRedirectLogOutURL: '/signin',
   // トークン検証API
-  authUserURL: '/api/v1/users/auth/validate_token.json',
+  authUserURL: '/api/v1/auth/validate_token.json',
   // アカウント登録API
-  singUpUrl: '/api/v1/users/auth/sign_up.json',
+  singUpUrl: '/api/v1/auth/sign_up.json',
   singUpSuccessUrl: '/signin',
   // メールアドレス確認API
-  confirmationNewUrl: '/users/auth/confirmation.json',
+  confirmationNewUrl: '/auth/confirmation.json',
   confirmationSuccessUrl: '/signin',
   // アカウントロック解除API
-  unlockNewUrl: '/users/auth/unlock.json',
+  unlockNewUrl: '/auth/unlock.json',
   unlockRedirectUrl: '/signin',
   // パスワード再設定API
-  passwordNewUrl: '/api/v1/users/auth/password.json',
+  passwordNewUrl: '/api/v1/auth/password.json',
   passwordRedirectUrl: '/password/reset/confirm',
-  passwordUpdateUrl: '/api/v1/users/auth/password/update.json',
+  passwordUpdateUrl: '/api/v1/auth/password/update.json',
   // 登録情報詳細API
-  userShowUrl: '/api/v1/users/auth/show.json',
+  userShowUrl: '/api/v1/users/_username.json',
   // 登録情報変更API
-  userUpdateUrl: '/api/v1/users/auth/update.json',
+  userUpdateUrl: '/api/v1/auth/update.json',
   // 画像変更API
-  userImageUpdateUrl: '/api/v1/users/auth/image/update.json',
+  userImageUpdateUrl: '/api/v1/auth/image/update.json',
   // 画像削除API
-  userImageDeleteUrl: '/api/v1/users/auth/image/delete.json',
+  userImageDeleteUrl: '/api/v1/auth/image/delete.json',
   // アカウント削除API
-  userDeleteUrl: '/api/v1/users/auth/delete.json',
+  userDeleteUrl: '/api/v1/auth/delete.json',
 
   // 【お知らせ】
   // 大切なお知らせAPI

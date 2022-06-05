@@ -52,14 +52,6 @@
         <v-divider />
         <v-list-item to="/settings/profile" exact nuxt>
           <v-list-item-icon>
-            <v-icon>mdi-account-edit</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>登録情報変更</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item to="/settings" exact nuxt>
-          <v-list-item-icon>
             <v-icon>mdi-cog</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
@@ -90,7 +82,7 @@
           </template>
 
           <v-list dense>
-            <v-list-item dense :to="`/users/${$auth.user.id}`">
+            <v-list-item dense :to="`/users/${$auth.user.username}`">
               マイページ
             </v-list-item>
             <v-list-item dense @click="onSignOut()">
