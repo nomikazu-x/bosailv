@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2022_06_05_054341) do
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", limit: 30, null: false
-    t.text "content", null: false
+    t.text "content", size: :long, null: false
     t.integer "category", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

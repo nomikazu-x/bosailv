@@ -31,11 +31,10 @@
         :lists="lists"
       />
 
-      <!-- <ArticleLists
+      <ArticleLists
         v-else
         :lists="lists"
-        :current-user-id="currentUserId"
-      /> -->
+      />
     </template>
   </TwoColumnContainer>
 </template>

@@ -45,7 +45,8 @@ export default {
   plugins: [
     'plugins/axios',
     'plugins/utils',
-    'plugins/vee-validate'
+    'plugins/vee-validate',
+    { src: 'plugins/vue-quill-editor', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

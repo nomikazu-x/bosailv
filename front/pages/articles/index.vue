@@ -27,11 +27,6 @@
             <span class="ml-1">
               ({{ $dateFormat(list.created_at, 'ja') }})
             </span>
-            <div class="ml-1">
-              {{ list.category }}
-            </div>
-            <!-- eslint-disable-next-line vue/no-v-html -->
-            <div v-if="list.content" class="mx-2 my-2" v-html="list.content" />
             <v-divider class="my-4" />
           </div>
         </article>
