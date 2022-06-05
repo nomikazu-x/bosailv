@@ -1,6 +1,7 @@
 class Api::V1::Users::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
 
   def show
+    @user = User.find(params[:user_id])
     render './api/v1/users/auth/show'
   end
 

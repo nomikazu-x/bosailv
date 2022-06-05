@@ -1,41 +1,65 @@
 <template>
-  <div>
-    <TwoColumnContainer
-      :left-cols="12"
-      :left-sm="4"
-      :right-cols="12"
-      :right-sm="8"
-    >
-      <template #left>
-        <div class="mb-4 mt-10">
-          <UserIntroCard
-            :user="user"
-            :required-point="requiredPoint"
-          />
-        </div>
-      </template>
+  <TwoColumnContainer
+    :left-cols="12"
+    :left-sm="4"
+    :right-cols="12"
+    :right-sm="8"
+  >
+    <template #left>
+      <div class="mb-4 mt-10">
+        <UserIntroCard
+          :user="user"
+          :required-point="requiredPoint"
+        />
+      </div>
+    </template>
 
-      <template #right>
-        <div class="mb-4">
-          <SettingsProfileCard
-            :user="user"
-            :loading="loading"
-            :processing="processing"
-            :alert="alert"
-            :notice="notice"
-          />
-        </div>
-      </template>
-    </TwoColumnContainer>
-  </div>
+    <template #right>
+      <v-container>
+        <v-row>
+          <v-col cols="12" sm="8">
+            <h2 class="text-center main-heading">{{ canAction ? 'あなた' : currentName }}の災害時役立つ記事</h2>
+          </v-col>
+          <v-col v-if="canAction" cols="12" sm="4" class="text-right">
+            <GreenBtn class="mb-4" color="#00a8ff" to="/articles/new">記事を作成する</GreenBtn>
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <ArticleListsWithAction
+        v-if="canAction"
+        :lists="lists"
+        :current-user-id="currentUserId"
+        :is-creating-new-article="isCreatingNewArticle"
+      />
+
+      <!-- <ArticleLists
+        v-else
+        :lists="lists"
+        :current-user-id="currentUserId"
+      /> -->
+    </template>
+  </TwoColumnContainer>
 </template>
 
 <script>
 export default {
   props: {
+    canAction: {
+      type: Boolean,
+      default: false
+    },
+    currentUserId: {
+      type: Number,
+      default: null
+    },
     user: {
       type: Object,
       default: null
+    },
+    lists: {
+      type: Array,
+      default: () => []
     },
     requiredPoint: {
       type: Number,
@@ -56,6 +80,11 @@ export default {
     notice: {
       type: String,
       default: null
+    }
+  },
+  computed: {
+    currentName () {
+      return (this.user && this.user.name) || this.$auth.user.name
     }
   }
 }
