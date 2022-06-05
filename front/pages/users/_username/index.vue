@@ -1,44 +1,44 @@
 <template>
-  <div>
-    <Loading v-if="loading" />
-    <Message v-if="!loading" :alert="alert" :notice="notice" />
-    <v-card v-if="!loading" max-width="850px">
-      <v-card-title>{{ user.level }}</v-card-title>
-      <v-card-text>{{ user.point_to_next }}</v-card-text>
-      <v-card-text>{{ user.lifelong_point }}</v-card-text>
-      <v-card-title>登録情報変更</v-card-title>
-      <v-row>
-        <v-col cols="auto" md="4">
-          <ImageEdit @alert="alert = $event" @notice="notice = $event" />
-        </v-col>
-        <v-col cols="12" md="8">
-          <InfoEdit :user="user" @alert="alert = $event" @notice="notice = $event" />
-        </v-col>
-      </v-row>
-      <v-divider />
-      <v-card-actions>
-        <ul class="my-2">
-          <li v-if="user != null && user.unconfirmed_email !== null"><NuxtLink to="/users/confirmation/new">メールアドレス確認</NuxtLink></li>
-          <li><NuxtLink to="/users/delete">アカウント削除</NuxtLink></li>
-        </ul>
-      </v-card-actions>
-    </v-card>
-  </div>
+  <UsernameTemplate
+    :can-action="canAction"
+    :current-username="currentUsername"
+    :user="user"
+    :lists="lists"
+    :required-point="requiredPoint"
+    :processing="processing"
+    :loading="loading"
+    :alert="alert"
+    :notice="notice"
+  />
 </template>
 
 <script>
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'UsersEdit',
+  name: 'UsersId',
   mixins: [Application],
 
   data () {
     return {
-      user: null
+      user: null,
+      lists: null,
+      requiredPoint: 0
     }
   },
-
+  computed: {
+    authUsername () {
+      return this.$auth.user.username
+    },
+    canAction () {
+      return this.$auth.loggedIn
+        ? this.currentUsername === this.authUsername
+        : false
+    },
+    currentUsername () {
+      return this.$route.params.username
+    }
+  },
   async created () {
     try {
       await this.$auth.fetchUser()
@@ -57,13 +57,15 @@ export default {
       return this.redirectAuth()
     }
 
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.userShowUrl)
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.userShowUrl.replace('_username', this.currentUsername))
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
           return this.$router.push({ path: '/' })
         } else {
           this.user = response.data.user
+          this.lists = response.data.user.articles
+          this.requiredPoint = response.data.required_point
         }
       },
       (error) => {
@@ -77,6 +79,7 @@ export default {
         return this.$router.push({ path: '/' })
       })
 
+    this.processing = false
     this.loading = false
   }
 }

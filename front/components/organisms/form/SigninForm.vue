@@ -1,12 +1,13 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" ref="observer">
-    <v-form autocomplete="on" @submit.prevent="onSubmit">
+    <Processing v-if="processing" />
+    <v-form autocomplete="on">
       <EmailTextField v-model="email" />
 
       <PasswordTextField v-model="password" />
 
       <div class="text-center mt-4">
-        <OrangeBtn type="submit" :disabled="invalid || processing">
+        <OrangeBtn type="submit" :disabled="invalid || processing" @click="onSubmit">
           ログイン
         </OrangeBtn>
       </div>
@@ -34,15 +35,11 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.validate()
       const userInfo = {
         email: this.email,
         password: this.password
       }
       this.$emit('signin', userInfo)
-    },
-    validate () {
-      this.$refs.observer.validate()
     }
   }
 }

@@ -2,8 +2,6 @@
   <v-card class="pt-10 px-6 pb-8">
     <v-row justify="center">
       <v-col cols="12" sm="8">
-        <Processing v-if="processing" />
-
         <PasswordResetConfirmForm :processing="processing" :errors="errors" @submit="onSubmit" />
       </v-col>
     </v-row>

@@ -1,10 +1,11 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" ref="observer">
-    <v-form autocomplete="on" @submit.prevent="onSubmit">
+    <Processing v-if="processing" />
+    <v-form autocomplete="on">
       <PasswordConfirmationTextField v-model="password" :password-confirmation.sync="passwordConfirmation" />
 
       <div class="d-flex justify-end">
-        <OrangeBtn type="submit" :disabled="invalid || processing">
+        <OrangeBtn type="submit" :disabled="invalid || processing" @click="onSubmit">
           送信
         </OrangeBtn>
       </div>
@@ -31,15 +32,11 @@
   },
   methods: {
     onSubmit () {
-      this.validate()
       const userInfo = {
         password: this.password,
         password_confirmation: this.passwordConfirmation
       }
       this.$emit('submit', userInfo)
-    },
-    validate () {
-      this.$refs.observer.validate()
     }
   }
 }

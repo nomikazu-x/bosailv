@@ -1,9 +1,9 @@
-class Api::V1::Users::Auth::TokenValidationsController < DeviseTokenAuth::TokenValidationsController
+class Api::V1::Auth::TokenValidationsController < DeviseTokenAuth::TokenValidationsController
 
   private
 
   def render_validate_token_success
-    render './api/v1/users/auth/success', locals: { notice: false }
+    render './api/v1/auth/success', locals: { notice: false }
   end
 
   def render_validate_token_error

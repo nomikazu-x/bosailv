@@ -1,4 +1,4 @@
-class Api::V1::Users::Auth::ConfirmationsController < DeviseTokenAuth::ConfirmationsController
+class Api::V1::Auth::ConfirmationsController < DeviseTokenAuth::ConfirmationsController
   def show
     super
   rescue ActionController::RoutingError => _e

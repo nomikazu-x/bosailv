@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      # ユーザー
+      get  'users/:username',     to: 'users#show',         as: 'show_users'
+      
       # 記事
       get  'articles',            to: 'articles#index',     as: 'articles'
       post 'articles/create',     to: 'articles#create',    as: 'create_article'
@@ -22,8 +25,6 @@ Rails.application.routes.draw do
       get 'infomations',           to: 'infomations#index',     as: 'infomations'
       get 'infomations/important', to: 'infomations#important', as: 'important_infomations'
       get 'infomations/:id',       to: 'infomations#show',      as: 'infomation'
-
-      
     end
   end
 
@@ -32,22 +33,21 @@ Rails.application.routes.draw do
       # Devise Token Auth
       devise_for :users, skip: :all
       devise_scope :user do
-        post 'users/auth/sign_up',         to: 'api/v1/users/auth/registrations#create',             as: 'create_user_auth_registration'
-        get  'users/auth/show',            to: 'api/v1/users/auth/registrations#show',               as: 'show_user_auth_registration'
-        post 'users/auth/update',          to: 'api/v1/users/auth/registrations#update',             as: 'update_user_auth_registration'
-        post 'users/auth/image/update',    to: 'api/v1/users/auth/registrations#image_update',       as: 'update_user_auth_image_registration'
-        post 'users/auth/image/delete',    to: 'api/v1/users/auth/registrations#image_destroy',      as: 'delete_user_auth_image_registration'
-        post 'users/auth/delete',          to: 'api/v1/users/auth/registrations#destroy',            as: 'destroy_user_auth_registration'
-        post 'users/auth/confirmation',    to: 'api/v1/users/auth/confirmations#create',             as: 'create_user_auth_confirmation'
-        get  'users/auth/confirmation',    to: 'api/v1/users/auth/confirmations#show',               as: 'user_auth_confirmation'
-        post 'users/auth/sign_in',         to: 'api/v1/users/auth/sessions#create',                  as: 'create_user_auth_session'
-        post 'users/auth/sign_out',        to: 'api/v1/users/auth/sessions#destroy',                 as: 'destroy_user_auth_session'
-        post 'users/auth/unlock',          to: 'api/v1/users/auth/unlocks#create',                   as: 'create_user_auth_unlock'
-        get  'users/auth/unlock',          to: 'api/v1/users/auth/unlocks#show',                     as: 'user_auth_unlock'
-        post 'users/auth/password',        to: 'api/v1/users/auth/passwords#create',                 as: 'create_user_auth_password'
-        get  'users/auth/password',        to: 'api/v1/users/auth/passwords#edit',                   as: 'edit_user_auth_password'
-        post 'users/auth/password/update', to: 'api/v1/users/auth/passwords#update',                 as: 'update_user_auth_password'
-        get  'users/auth/validate_token',  to: 'api/v1/users/auth/token_validations#validate_token', as: 'user_auth_validate_token'
+        post 'auth/sign_up',         to: 'api/v1/auth/registrations#create',             as: 'create_auth_registration'
+        post 'auth/update',          to: 'api/v1/auth/registrations#update',             as: 'update_auth_registration'
+        post 'auth/image/update',    to: 'api/v1/auth/registrations#image_update',       as: 'update_auth_image_registration'
+        post 'auth/image/delete',    to: 'api/v1/auth/registrations#image_destroy',      as: 'delete_auth_image_registration'
+        post 'auth/delete',          to: 'api/v1/auth/registrations#destroy',            as: 'destroy_auth_registration'
+        post 'auth/confirmation',    to: 'api/v1/auth/confirmations#create',             as: 'create_auth_confirmation'
+        get  'auth/confirmation',    to: 'api/v1/auth/confirmations#show',               as: 'auth_confirmation'
+        post 'auth/sign_in',         to: 'api/v1/auth/sessions#create',                  as: 'create_auth_session'
+        post 'auth/sign_out',        to: 'api/v1/auth/sessions#destroy',                 as: 'destroy_auth_session'
+        post 'auth/unlock',          to: 'api/v1/auth/unlocks#create',                   as: 'create_auth_unlock'
+        get  'auth/unlock',          to: 'api/v1/auth/unlocks#show',                     as: 'auth_unlock'
+        post 'auth/password',        to: 'api/v1/auth/passwords#create',                 as: 'create_auth_password'
+        get  'auth/password',        to: 'api/v1/auth/passwords#edit',                   as: 'edit_auth_password'
+        post 'auth/password/update', to: 'api/v1/auth/passwords#update',                 as: 'update_auth_password'
+        get  'auth/validate_token',  to: 'api/v1/auth/token_validations#validate_token', as: 'auth_validate_token'
       end
     end
   end

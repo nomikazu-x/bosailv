@@ -1,6 +1,7 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" ref="observer">
-    <v-form autocomplete="on" @submit.prevent="onSubmit">
+    <Processing v-if="processing" />
+    <v-form autocomplete="on">
       <NameTextField v-model="name" />
 
       <EmailTextField v-model="email" />
@@ -8,7 +9,7 @@
       <PasswordConfirmationTextField v-model="password" :password-confirmation.sync="passwordConfirmation" />
 
       <div class="text-center mt-4">
-        <OrangeBtn type="submit" :disabled="invalid || processing">
+        <OrangeBtn :disabled="invalid || processing" @click="onSubmit">
           新規登録
         </OrangeBtn>
       </div>
@@ -38,7 +39,6 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.validate()
       const userInfo = {
         name: this.name,
         email: this.email,
@@ -46,9 +46,6 @@ export default {
         password_confirmation: this.passwordConfirmation
       }
       this.$emit('signup', userInfo)
-    },
-    validate () {
-      this.$refs.observer.validate()
     }
   }
 }

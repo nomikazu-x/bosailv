@@ -1,10 +1,11 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" ref="observer">
-    <v-form autocomplete="on" @submit.prevent="onSubmit">
+    <Processing v-if="processing" />
+    <v-form autocomplete="on">
       <EmailTextField v-model="email" />
 
       <div class="d-flex justify-end">
-        <OrangeBtn type="submit" :disabled="invalid || processing">
+        <OrangeBtn type="submit" :disabled="invalid || processing" @click="onSubmit">
           送信
         </OrangeBtn>
       </div>
@@ -30,11 +31,7 @@
   },
   methods: {
     onSubmit () {
-      this.validate()
       this.$emit('submit', this.email)
-    },
-    validate () {
-      this.$refs.observer.validate()
     }
   }
 }

@@ -1,4 +1,4 @@
-class Api::V1::Users::Auth::PasswordsController < DeviseTokenAuth::PasswordsController
+class Api::V1::Auth::PasswordsController < DeviseTokenAuth::PasswordsController
   protected
 
   # エラー画面にリダイレクトする
