@@ -19,13 +19,9 @@
               />
             </ValidationProvider>
             <ValidationProvider v-slot="{ errors }" name="content" rules="required">
-              <v-textarea
+              <quill-editor
                 v-model="content"
-                label="内容"
-                prepend-icon="mdi-pencil"
-                autocomplete="off"
                 :error-messages="errors"
-                @click="waiting = false"
               />
             </ValidationProvider>
             <v-btn id="article_create_btn" color="primary" :disabled="invalid || processing || waiting" @click="onArticleUpdate()">編集</v-btn>

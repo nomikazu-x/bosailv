@@ -2,7 +2,7 @@
   <div>
     <Loading v-if="loading" />
     <Message v-if="!loading" :alert="alert" :notice="notice" />
-    <v-card v-if="!loading" max-width="480px">
+    <v-card v-if="!loading">
       <Processing v-if="processing" />
       <ValidationObserver v-slot="{ invalid }" ref="observer">
         <v-form autocomplete="off">
@@ -19,13 +19,10 @@
               />
             </ValidationProvider>
             <ValidationProvider v-slot="{ errors }" name="content" rules="required">
-              <v-textarea
+              <quill-editor
                 v-model="content"
-                label="内容"
-                prepend-icon="mdi-pencil"
-                autocomplete="off"
                 :error-messages="errors"
-                @click="waiting = false"
+                placeholder="800"
               />
             </ValidationProvider>
             <div v-for="category in categories" :key="category.id">
