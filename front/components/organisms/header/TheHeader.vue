@@ -34,6 +34,14 @@
           </v-btn>
         </template>
         <v-list>
+          <v-list-item :to="`/users/${$auth.user.username}`" exact nuxt>
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>マイページ</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
           <v-list-item to="/settings/profile" exact nuxt>
             <v-list-item-icon>
               <v-icon>mdi-cog</v-icon>
