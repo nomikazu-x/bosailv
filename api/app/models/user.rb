@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   has_many :article_comments, dependent: :destroy
   has_many :point_records, dependent: :destroy
 
+  scope :point_ranking, -> { order(lifelong_point: :desc, id: :desc) }
+
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
   VALID_PASSWORD_REGEX = /\A[!-~]+\z/
 

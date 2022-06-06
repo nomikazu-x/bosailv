@@ -1,40 +1,36 @@
 <template>
-  <IndexTemplate
-    :users="users"
-    :infomations="infomations"
-    :processing="processing"
-    :loading="loading"
-    :alert="alert"
-    :notice="notice"
-  />
+  <div>
+    <Loading v-if="loading" />
+    <v-card v-if="!loading">
+      <v-card-title>
+        <v-icon color="#ffc400">
+          mdi-trophy
+        </v-icon>
+        <span class="pl-1">獲得経験値ランキング</span>
+      </v-card-title>
+      <RankingUserCard
+        v-for="(user, i) in users"
+        :key="user.id"
+        :user="user"
+        :index="i"
+      />
+    </v-card>
+  </div>
 </template>
 
 <script>
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'Index',
+  name: 'UsersIndex',
   mixins: [Application],
   data () {
     return {
-      users: null,
-      infomations: null
+      users: null
     }
   },
   async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.importantInfomationsUrl)
-      .then((response) => {
-        if (response.data == null) {
-          this.$toasted.error(this.$t('system.error'))
-          this.infomations = null
-        } else {
-          this.infomations = response.data.infomations
-        }
-      },
-      (error) => {
-        this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
-      })
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.usersRankingUrl)
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.usersUrl)
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
