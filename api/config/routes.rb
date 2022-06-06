@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # ユーザー
+      get  'users',               to: 'users#index',        as: 'users'
       get  'users/:username',     to: 'users#show',         as: 'show_users'
       
       # 記事

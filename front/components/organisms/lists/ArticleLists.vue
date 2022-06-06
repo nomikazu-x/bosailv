@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-if="lists.length">災害時役立つは存在しません。作成してください</p>
+    <p v-if="!lists">災害時役立つは存在しません。作成してください</p>
 
     <v-list>
       <v-list-item-group>
