@@ -24,8 +24,8 @@ module.exports = {
   passwordUpdateUrl: '/api/v1/auth/password/update.json',
   // 登録情報詳細API
   userShowUrl: '/api/v1/users/_username.json',
-  // 登録情報詳細API
-  usersUrl: '/api/v1/users.json',
+  // ランキングAPI
+  usersRankingUrl: '/api/v1/users/ranking.json',
   // 登録情報変更API
   userUpdateUrl: '/api/v1/auth/update.json',
   // 画像変更API

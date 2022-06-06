@@ -14,8 +14,13 @@ if current_user.present?
     json.name current_user.name
     json.email current_user.email
     json.username current_user.username
+    json.level current_user.level
+    json.lifelong_point current_user.lifelong_point
+    json.profile current_user.profile
+    json.point_to_next current_user.point_to_next
     json.profile current_user.profile if current_user.profile.present?
     json.infomation_unread_count current_user.infomation_unread_count
+    json.required_point RequiredPoint.find_by(level: current_user.level).required_point
   end
 end
 json.notice notice if notice.present?

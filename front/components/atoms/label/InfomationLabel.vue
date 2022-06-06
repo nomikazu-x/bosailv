@@ -1,5 +1,5 @@
 <template>
-  <v-chip v-if="list != null && list.label !== 'Not'" small :color="labelColor">{{ list.label_i18n }}</v-chip>
+  <v-chip v-if="infomation != null && infomation.label !== 'Not'" small :color="labelColor">{{ infomation.label_i18n }}</v-chip>
 </template>
 
 <script>
@@ -7,7 +7,7 @@ export default {
   name: 'InfomationsLabel',
 
   props: {
-    list: {
+    infomation: {
       type: Object,
       default: null
     }
@@ -15,7 +15,7 @@ export default {
 
   computed: {
     labelColor () {
-      switch (this.list.label) {
+      switch (this.infomation.label) {
         case 'Maintenance':
           return 'error'
         case 'Hindrance':
