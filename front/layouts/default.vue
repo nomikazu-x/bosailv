@@ -4,6 +4,8 @@
 
     <TheSidebar />
 
+    <LevelUpModal />
+
     <v-content>
       <nuxt />
     </v-content>
