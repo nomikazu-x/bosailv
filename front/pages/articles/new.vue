@@ -8,6 +8,28 @@
         <v-form autocomplete="off">
           <v-card-title>記事作成</v-card-title>
           <v-card-text>
+            <ValidationProvider
+              v-slot="{ errors }"
+              name="thumbnail"
+              rules="size_20MB:20000"
+            >
+              <v-file-input
+                v-model="thumbnail"
+                accept="image/jpeg,image/gif,image/png"
+                label="サムネイル"
+                prepend-icon="mdi-camera"
+                show-size
+                :error-messages="errors"
+                counter
+                outlined
+              >
+                <template #selection="{ text }">
+                  <v-chip small label class="common-primary-button">
+                    {{ text }}
+                  </v-chip>
+                </template>
+              </v-file-input>
+            </ValidationProvider>
             <ValidationProvider v-slot="{ errors }" name="title" rules="required">
               <v-text-field
                 v-model="title"
@@ -52,6 +74,7 @@ export default {
       waiting: false,
       title: '',
       content: '',
+      thumbnail: [],
       categories: [
         { name: '電気・ガス', value: 'gas' },
         { name: '水道', value: 'watersuppry' },
@@ -86,6 +109,7 @@ export default {
       const formData = new FormData()
       formData.append('article[title]', this.title)
       formData.append('article[content]', this.content)
+      formData.append('article[thumbnail]', this.thumbnail)
       this.selectedCategories.forEach((category) => {
         formData.append('article[category][]', category)
       })
