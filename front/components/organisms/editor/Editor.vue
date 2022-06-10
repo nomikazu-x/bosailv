@@ -1,15 +1,15 @@
 <template>
-  <ValidationProvider v-slot="{ errors }" name="content" rules="required">
-    <quill-editor
-      ref="quillEditor"
-      v-model="valueModel"
-      :value="value"
-      :error-messages="errors"
-      options="editorOption"
-    />
-  </ValidationProvider>
+  <div class="mb-10">
+    <ValidationProvider v-slot="{ errors }" name="content" rules="required">
+      <quill-editor
+        v-model="valueModel"
+        :options="editorOption"
+        style="height: 800px;"
+        :error-messages="errors"
+      />
+    </ValidationProvider>
+  </div>
 </template>
-
 <script>
 export default {
   props: {
@@ -21,7 +21,7 @@ export default {
   data () {
     return {
       editorOption: {
-        theme: 'snow'
+        placeholder: '内容を入力'
       }
     }
   },
