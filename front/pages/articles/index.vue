@@ -1,20 +1,14 @@
 <template>
-  <div>
-    <Loading v-if="loading" />
-    <v-container v-if="!loading">
-      <Processing v-if="processing" />
-      <v-card-title>記事一覧</v-card-title>
-      <v-row>
-        <v-col cols="12">
-          <ArticleLists :articles="articles" />
-
-          <div v-if="info != null && info.total_pages > 1">
-            <v-pagination id="pagination2" v-model="page" :length="info.total_pages" @input="onPagination()" />
-          </div>
-        </v-col>
-      </v-row>
-    </v-container>
-  </div>
+  <ArticleIndexTemplate
+    :articles="articles"
+    :page="page"
+    :info="info"
+    :processing="processing"
+    :loading="loading"
+    :alert="alert"
+    :notice="notice"
+    @pagination="onPagination"
+  />
 </template>
 
 <script>
@@ -39,11 +33,11 @@ export default {
   },
 
   methods: {
-    async onPagination () {
+    async onPagination (page) {
       this.processing = true
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, {
-        params: { page: this.page }
+        params: { page }
       })
         .then((response) => {
           if (response.data == null || response.data.article == null) {
