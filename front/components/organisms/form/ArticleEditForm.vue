@@ -54,7 +54,7 @@ export default {
 
   data () {
     return {
-      thumbnail: {},
+      thumbnail: null,
       title: '',
       content: '',
       selectedCategories: []
@@ -66,10 +66,11 @@ export default {
     }
   },
   created () {
-    this.thumbnail = this.thumbnail || this.article.thumbnail_url.xlarge
     this.title = this.title || this.article.title
     this.content = this.content || this.article.content
-    this.selectedCategories = this.selectedCategories || this.article.category
+    this.article.category.forEach((v) => {
+      this.selectedCategories.push(v)
+    })
   },
   methods: {
     onArticleUpdate () {

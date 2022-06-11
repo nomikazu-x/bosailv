@@ -5,7 +5,7 @@
       <v-row>
         <v-col v-for="category in categories" :key="category.id" cols="4" sm="3" md="3" style="height: 50px;">
           <v-checkbox
-            v-model="valueModel"
+            v-model.trim="valueModel"
             :value="category.value"
             :label="category.name"
             color="green darken-1"
