@@ -1,50 +1,27 @@
 <template>
-  <div>
-    <Loading v-if="loading" />
-    <Message v-if="!loading" :alert="alert" :notice="notice" />
-    <v-card v-if="!loading" max-width="480px">
-      <Processing v-if="processing" />
-      <ValidationObserver v-slot="{ invalid }" ref="observer">
-        <v-form autocomplete="off">
-          <v-card-title>記事編集</v-card-title>
-          <v-card-text>
-            <ValidationProvider v-slot="{ errors }" name="title" rules="required">
-              <v-text-field
-                v-model="title"
-                label="タイトル"
-                prepend-icon="mdi-pencil"
-                autocomplete="off"
-                :error-messages="errors"
-                @click="waiting = false"
-              />
-            </ValidationProvider>
-            <ValidationProvider v-slot="{ errors }" name="content" rules="required">
-              <quill-editor
-                v-model="content"
-                :error-messages="errors"
-              />
-            </ValidationProvider>
-            <v-btn id="article_create_btn" color="primary" :disabled="invalid || processing || waiting" @click="onArticleUpdate()">編集</v-btn>
-          </v-card-text>
-        </v-form>
-      </ValidationObserver>
-    </v-card>
-  </div>
+  <ArticleEditTemplate
+    :article="article"
+    :errors="errors"
+    :processing="processing"
+    :loading="loading"
+    :alert="alert"
+    :notice="notice"
+    @article-update="onArticleUpdate"
+  />
 </template>
 
 <script>
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'UsersSignUp',
+  name: 'ArticleEdit',
 
   mixins: [Application],
 
   data () {
     return {
-      waiting: false,
-      title: '',
-      content: ''
+      errors: null,
+      article: null
     }
   },
 
@@ -56,6 +33,7 @@ export default {
           return this.$router.push({ path: '/' })
         } else {
           this.article = response.data.article
+          console.log(this.article)
         }
       },
       (error) => {
@@ -68,20 +46,23 @@ export default {
         }
         return this.$router.push({ path: '/' })
       })
-    this.title = this.title || this.article.title
-    this.content = this.content || this.article.content
     this.processing = false
     this.loading = false
   },
 
   methods: {
-    async onArticleUpdate () {
+    async onArticleUpdate (articleInfo) {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.articleUpdateUrl.replace('_id', this.$route.params.id), {
-        title: this.title,
-        content: this.content
+      const formData = new FormData()
+      formData.append('article[title]', articleInfo.title)
+      formData.append('article[content]', articleInfo.content)
+      formData.append('article[thumbnail]', articleInfo.thumbnail)
+      articleInfo.selectedCategories.forEach((category) => {
+        formData.append('article[category][]', category)
       })
+
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.articleUpdateUrl.replace('_id', this.$route.params.id), formData)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
@@ -99,10 +80,6 @@ export default {
           } else {
             this.alert = error.response.data.alert
             this.notice = error.response.data.notice
-            if (error.response.data.errors != null) {
-              this.$refs.observer.setErrors(error.response.data.errors)
-              this.waiting = true
-            }
           }
         })
 

@@ -66,7 +66,6 @@ export default {
   methods: {
     async onUserUpdate (userInfo) {
       this.processing = true
-      console.log(userInfo)
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.userUpdateUrl, {
         email: userInfo.email,
