@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center">
     <v-img
-      :src="oldSrc ? getPreviewSrc : require('~/assets/images/xlarge_noimage.jpeg')"
+      :src="getPreviewSrc"
       max-height="300"
       max-width="450"
       class="mb-5 mt-2 rounded-lg"

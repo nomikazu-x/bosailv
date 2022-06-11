@@ -6,7 +6,6 @@
         <v-col class="py-0 mr-sm-4" cols="12" sm="8" md="8">
           <ArticleThumbnailFileInput
             v-model="thumbnail"
-            :url="url"
           />
         </v-col>
         <v-col class="py-0 mr-sm-4" cols="12" sm="8" md="8">
@@ -69,12 +68,6 @@ export default {
       title: '',
       content: '',
       selectedCategories: []
-    }
-  },
-  computed: {
-    url () {
-      if (!this.thumbnail) { return }
-      return URL.createObjectURL(this.thumbnail)
     }
   },
   methods: {
