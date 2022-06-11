@@ -4,15 +4,6 @@
     <v-container v-if="!loading">
       <Processing v-if="processing" />
       <v-card-title>記事一覧</v-card-title>
-      <v-row v-if="info != null && info.total_count > info.limit_value">
-        <v-col cols="auto" md="5" align-self="center">
-          {{ info.total_count.toLocaleString() }}件中 {{ $pageFirstNumber(info).toLocaleString() }}-{{ $pageLastNumber(info).toLocaleString() }}件を表示
-        </v-col>
-        <v-col cols="auto" md="7" class="d-flex justify-end">
-          <v-pagination id="pagination" v-model="page" :length="info.total_pages" @input="onPagination()" />
-        </v-col>
-      </v-row>
-
       <v-row>
         <v-col cols="12">
           <v-card v-if="articles != null && articles.length === 0">

@@ -1,22 +1,23 @@
 <template>
   <v-row justify="center">
-    <v-col cols="12">
-      <v-img
-        :src="oldSrc ? getPreviewSrc : require('~/assets/images/xlarge_noimage.jpeg')" max-width="600" max-height="400" class="mb-5 mt-2 rounded-lg"
-      >
-        <ValidationProvider v-slot="{ errors }" name="thumbnail" rules="size_20MB:20000">
-          <v-file-input
-            v-model="valueModel"
-            accept="image/jpeg,image/gif,image/png"
-            label="画像を選択してください"
-            prepend-icon="mdi-camera"
-            show-size
-            :error-messages="errors"
-            @change="onInput"
-          />
-        </ValidationProvider>
-      </v-img>
-    </v-col>
+    <v-img
+      :src="oldSrc ? getPreviewSrc : require('~/assets/images/xlarge_noimage.jpeg')"
+      max-height="300"
+      max-width="450"
+      class="mb-5 mt-2 rounded-lg"
+    >
+      <ValidationProvider v-slot="{ errors }" name="thumbnail" rules="size_20MB:20000">
+        <v-file-input
+          v-model="valueModel"
+          accept="image/jpeg,image/gif,image/png"
+          label="サムネイルを選択してください"
+          prepend-icon="mdi-camera"
+          show-size
+          :error-messages="errors"
+          @change="onInput"
+        />
+      </ValidationProvider>
+    </v-img>
   </v-row>
 </template>
 
