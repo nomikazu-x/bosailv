@@ -1,63 +1,28 @@
 <template>
-  <v-row>
-    <v-col cols="11" class="pa-0">
-      <v-list-item :to="{ name: 'articles-id___ja', params: { id }}">
-        <v-list-item-icon>
-          <v-icon>mdi-image</v-icon>
-        </v-list-item-icon>
-
-        <v-list-item-content>
-          <v-list-item-title>
-            {{ title }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-col>
-
-    <v-col v-if="canAction" cols="1" class="pa-0 d-flex justify-center align-center">
-      <v-menu bottom left>
-        <template #activator="{ on, attrs }">
-          <v-btn
-            icon
-            v-bind="attrs"
-            v-on="on"
-          >
-            <v-icon>mdi-dots-vertical</v-icon>
-          </v-btn>
-        </template>
-
-        <v-list>
-          <v-list-item :to="{ name: 'articles-id-edit___ja', params: { id }}">
-            <v-list-item-title>編集する</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>削除する</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </v-col>
-  </v-row>
+  <v-card :to="{ name: 'articles-id___ja', params: { id: article.id }}" class="my-5" max-width="600">
+    <v-row>
+      <v-col cols="4" align="center">
+        <v-img :src="article.thumbnail_url.large" max-height="128" max-width="192" class="ml-5 mt-2 rounded-lg" />
+      </v-col>
+      <v-col cols="8">
+        <v-card-title class="font-weight-bold">
+          {{ article.title }}
+        </v-card-title>
+        <v-card-text class="mt-10 text-right">
+          <v-icon small>mdi-calendar-range</v-icon>
+          {{ $dateFormat(article.created_at, 'ja') }}
+        </v-card-text>
+      </v-col>
+    </v-row>
+  </v-card>
 </template>
 
 <script>
 export default {
   props: {
-    canAction: {
-      type: Boolean,
-      default: false
-    },
-    id: {
-      type: [String, Number],
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
-    },
-    to: {
-      type: [String, Object],
-      default: undefined
+    article: {
+      type: Object,
+      default: null
     }
   }
 }

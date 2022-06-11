@@ -26,14 +26,8 @@
         </v-row>
       </v-container>
 
-      <ArticleListsWithAction
-        v-if="canAction"
-        :lists="lists"
-      />
-
       <ArticleLists
-        v-else
-        :lists="lists"
+        :articles="articles"
       />
     </template>
   </TwoColumnContainer>
@@ -54,7 +48,7 @@ export default {
       type: Object,
       default: null
     },
-    lists: {
+    articles: {
       type: Array,
       default: () => []
     },

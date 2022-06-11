@@ -1,25 +1,21 @@
 <template>
   <div>
-    <p v-if="!lists">災害時役立つは存在しません。作成してください</p>
-
-    <v-list>
-      <v-list-item-group>
-        <template v-for="(item, key) in lists">
-          <ArticleListItem
-            :id="item.id"
-            :key="key"
-            :title="item.title"
-          />
-        </template>
-      </v-list-item-group>
-    </v-list>
+    <v-card v-if="articles != null && articles.length === 0">
+      <v-card-title class="ml-1">記事はありません。</v-card-title>
+      <v-divider class="my-4" />
+    </v-card>
+    <div v-for="article in articles" :key="article.id">
+      <ArticleListItem
+        :article="article"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    lists: {
+    articles: {
       type: Array,
       default: () => []
     }

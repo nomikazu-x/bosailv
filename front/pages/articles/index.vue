@@ -6,28 +6,7 @@
       <v-card-title>記事一覧</v-card-title>
       <v-row>
         <v-col cols="12">
-          <v-card v-if="articles != null && articles.length === 0">
-            <v-card-title class="ml-1">記事はありません。</v-card-title>
-            <v-divider class="my-4" />
-          </v-card>
-          <div v-for="article in articles" :key="article.id">
-            <v-card :to="{ name: 'articles-id___ja', params: { id: article.id }}" class="my-5" max-width="600">
-              <v-row>
-                <v-col cols="4" align="center">
-                  <v-img :src="article.thumbnail_url.large" max-height="128" max-width="192" class="ml-5 mt-2 rounded-lg" />
-                </v-col>
-                <v-col cols="8">
-                  <v-card-title class="font-weight-bold">
-                    {{ article.title }}
-                  </v-card-title>
-                  <v-card-text class="mt-10 text-right">
-                    <v-icon small>mdi-calendar-range</v-icon>
-                    {{ $dateFormat(article.created_at, 'ja') }}
-                  </v-card-text>
-                </v-col>
-              </v-row>
-            </v-card>
-          </div>
+          <ArticleLists :articles="articles" />
 
           <div v-if="info != null && info.total_pages > 1">
             <v-pagination id="pagination2" v-model="page" :length="info.total_pages" @input="onPagination()" />
