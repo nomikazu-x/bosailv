@@ -5,13 +5,18 @@
     :right-cols="12"
     :right-sm="4"
   >
-    <template #left>
+    <template #top>
+      <Loading v-if="loading" />
+      <Message v-if="!loading" :alert="alert" :notice="notice" />
+    </template>
+
+    <template v-if="!loading" #left>
       <div v-if="!$auth.loggedIn" class="mb-4 mt-10">
         <SignUp />
       </div>
     </template>
 
-    <template #right>
+    <template v-if="!loading" #right>
       <div v-if="$auth.loggedIn" class="mb-4 mt-10">
         <UserIntroCard
           :user="$auth.user"

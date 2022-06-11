@@ -2,10 +2,17 @@
   <ValidationObserver v-slot="{ invalid }" ref="observer">
     <Processing v-if="processing" />
     <v-form autocomplete="on">
-      <PasswordConfirmationTextField v-model="password" :password-confirmation.sync="passwordConfirmation" />
+      <PasswordConfirmationTextField
+        v-model="password"
+        :password-confirmation.sync="passwordConfirmation"
+      />
 
       <div class="d-flex justify-end">
-        <OrangeBtn type="submit" :disabled="invalid || processing" @click="onSubmit">
+        <OrangeBtn
+          type="submit"
+          :disabled="invalid || processing"
+          @click="onSubmit"
+        >
           送信
         </OrangeBtn>
       </div>

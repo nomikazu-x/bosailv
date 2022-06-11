@@ -1,6 +1,8 @@
 <template>
-  <div>
+  <OneColumnContainer>
     <Loading v-if="loading" />
+    <Message v-if="!loading" :alert="alert" :notice="notice" />
+
     <v-container v-if="!loading">
       <Processing v-if="processing" />
       <v-card-title>記事一覧</v-card-title>
@@ -9,12 +11,17 @@
           <ArticleLists :articles="articles" />
 
           <div v-if="info != null && info.total_pages > 1">
-            <v-pagination id="pagination2" v-model="page" :length="info.total_pages" @input="onPagination" />
+            <v-pagination
+              id="pagination2"
+              v-model="page"
+              :length="info.total_pages"
+              @input="onPagination"
+            />
           </div>
         </v-col>
       </v-row>
     </v-container>
-  </div>
+  </OneColumnContainer>
 </template>
 
 <script>

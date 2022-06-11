@@ -39,6 +39,7 @@ export default {
   },
 
   created () {
+    console.log(this.user)
     this.name = this.name || this.user.name
   },
 

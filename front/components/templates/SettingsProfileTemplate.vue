@@ -1,34 +1,34 @@
 <template>
-  <div>
-    <h1 class="main-heading my-8 text-center">プロフィール設定</h1>
-    <TwoColumnContainer
-      :left-cols="12"
-      :left-sm="4"
-      :right-cols="12"
-      :right-sm="8"
-    >
-      <template #left>
-        <div class="mb-4">
-          <SettingsIndexCard />
-        </div>
-      </template>
+  <TwoColumnContainer
+    :left-cols="12"
+    :left-sm="4"
+    :right-cols="12"
+    :right-sm="8"
+  >
+    <template #top>
+      <h1 class="main-heading my-8 text-center">プロフィール設定</h1>
+      <Loading v-if="loading" />
+      <Message v-if="!loading" :alert="alert" :notice="notice" />
+    </template>
 
-      <template #right>
-        <div class="mb-4">
-          <SettingsProfileCard
-            :user="user"
-            :loading="loading"
-            :processing="processing"
-            :alert="alert"
-            :notice="notice"
-            @user-update="onUserUpdate"
-            @user-image-update="onUserImageUpdate"
-            @user-image-delete="onUserImageDelete"
-          />
-        </div>
-      </template>
-    </TwoColumnContainer>
-  </div>
+    <template v-if="!loading" #left>
+      <div class="mb-4">
+        <SettingsIndexCard />
+      </div>
+    </template>
+
+    <template v-if="!loading" #right>
+      <div class="mb-4">
+        <SettingsProfileCard
+          :user="user"
+          :processing="processing"
+          @user-update="onUserUpdate"
+          @user-image-update="onUserImageUpdate"
+          @user-image-delete="onUserImageDelete"
+        />
+      </div>
+    </template>
+  </TwoColumnContainer>
 </template>
 
 <script>

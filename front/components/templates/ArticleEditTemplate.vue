@@ -2,6 +2,7 @@
   <OneColumnContainer class="pos-relative" fluid>
     <Loading v-if="loading" />
     <Message v-if="!loading" :alert="alert" :notice="notice" />
+
     <ArticleEditForm
       v-if="!loading"
       :article="article"

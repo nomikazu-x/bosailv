@@ -9,7 +9,10 @@
         <nuxt-link :to="`/users/${getUsername}`" class="black--text text-decoration-none">{{ getName }}</nuxt-link>
       </p>
 
-      <UserLevelCard :user="user" :required-point="requiredPoint" />
+      <UserLevelCard
+        :user="user"
+        :required-point="requiredPoint"
+      />
 
       <p v-if="getProfile" class="text-center mb-4 px-8 px-sm-12">{{ getProfile }}</p>
 

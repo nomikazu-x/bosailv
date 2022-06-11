@@ -5,7 +5,12 @@
     :right-cols="12"
     :right-sm="8"
   >
-    <template #left>
+    <template #top>
+      <Loading v-if="loading" />
+      <Message v-if="!loading" :alert="alert" :notice="notice" />
+    </template>
+
+    <template v-if="!loading" #left>
       <div class="mb-4 mt-10">
         <UserIntroCard
           :user="user"
@@ -14,7 +19,7 @@
       </div>
     </template>
 
-    <template #right>
+    <template v-if="!loading" #right>
       <v-container>
         <v-row>
           <v-col cols="12" sm="8">

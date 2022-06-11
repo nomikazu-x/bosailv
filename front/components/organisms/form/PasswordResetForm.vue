@@ -2,10 +2,16 @@
   <ValidationObserver v-slot="{ invalid }" ref="observer">
     <Processing v-if="processing" />
     <v-form autocomplete="on">
-      <EmailTextField v-model="email" />
+      <EmailTextField
+        v-model="email"
+      />
 
       <div class="d-flex justify-end">
-        <OrangeBtn type="submit" :disabled="invalid || processing" @click="onSubmit">
+        <OrangeBtn
+          type="submit"
+          :disabled="invalid || processing"
+          @click="onSubmit"
+        >
           送信
         </OrangeBtn>
       </div>

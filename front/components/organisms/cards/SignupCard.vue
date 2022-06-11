@@ -4,7 +4,11 @@
 
     <v-row justify="center">
       <v-col cols="12" sm="8" md="6">
-        <SignupForm :processing="processing" :errors="errors" @signup="onSignup" />
+        <SignupForm
+          :processing="processing"
+          :errors="errors"
+          @signup="onSignup"
+        />
       </v-col>
 
       <v-col cols="12" sm="12" md="9" class="text-right">

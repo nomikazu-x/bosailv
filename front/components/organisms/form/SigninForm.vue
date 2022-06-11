@@ -2,12 +2,20 @@
   <ValidationObserver v-slot="{ invalid }" ref="observer">
     <Processing v-if="processing" />
     <v-form autocomplete="on">
-      <EmailTextField v-model="email" />
+      <EmailTextField
+        v-model="email"
+      />
 
-      <PasswordTextField v-model="password" />
+      <PasswordTextField
+        v-model="password"
+      />
 
       <div class="text-center mt-4">
-        <OrangeBtn type="submit" :disabled="invalid || processing" @click="onSubmit">
+        <OrangeBtn
+          type="submit"
+          :disabled="invalid || processing"
+          @click="onSubmit"
+        >
           ログイン
         </OrangeBtn>
       </div>

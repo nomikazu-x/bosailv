@@ -1,7 +1,9 @@
 <template>
   <BaseContainer :fluid="fluid" :no-gutters="noGutters">
-    <v-row>
-      <slot name="top" />
+    <v-row :justify="justify">
+      <v-col cols="12">
+        <slot name="top" />
+      </v-col>
     </v-row>
 
     <v-row :justify="justify" :class="bottomClass">
