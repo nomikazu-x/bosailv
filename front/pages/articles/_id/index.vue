@@ -21,6 +21,7 @@
         <ul class="my-2">
           <li><NuxtLink :to="`/articles/${$route.params.id}/edit`">編集</NuxtLink></li>
           <li @click="onArticleDelete(article.id)">削除</li>
+          <li><NuxtLink :to="`/articles/${$route.params.id}/likers`">いいねしたユーザー一覧</NuxtLink></li>
         </ul>
         <FavoriteBtnGroup :article="article" @alert="alert = $event" @notice="notice = $event" />
       </v-card-actions>
