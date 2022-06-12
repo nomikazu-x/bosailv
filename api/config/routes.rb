@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       get 'infomations/:id',       to: 'infomations#show',      as: 'infomation'
 
       # 市町村
-      post 'cities',               to: 'cities#set_cities',          as: 'set_cities'
+      post 'set_cities',               to: 'cities#set_cities',          as: 'set_cities'
     end
   end
 

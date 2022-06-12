@@ -1,17 +1,16 @@
 <template>
   <v-row>
     <v-col>
-      <ValidationProvider v-slot="{ errors }" name="prefecture" rules="required">
+      <ValidationProvider v-slot="{ errors }" name="city" rules="required">
         <v-select
           v-model="valueModel"
-          label="出身都道府県"
+          label="出身市町村"
           outlined
           :value="value"
           :error-messages="errors"
-          :items="prefectures"
+          :items="cities"
           item-text="name"
           item-value="id"
-          @change="onChange"
         />
       </ValidationProvider>
     </v-col>
@@ -21,7 +20,7 @@
 <script>
 export default {
   props: {
-    prefectures: {
+    cities: {
       type: Array,
       default: () => []
     },
@@ -38,11 +37,6 @@ export default {
       set (newVal) {
         return this.$emit('input', newVal)
       }
-    }
-  },
-  methods: {
-    onChange () {
-      return this.$emit('change')
     }
   }
 }
