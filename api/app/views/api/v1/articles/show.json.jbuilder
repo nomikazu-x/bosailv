@@ -16,6 +16,7 @@ json.article do
     json.array! @article.likers do |liker|
       json.id liker.id
       json.name liker.name
+      json.username liker.username
       json.image_url do
         json.mini "#{Settings['base_image_url']}#{liker.image_url(:mini)}"
         json.small "#{Settings['base_image_url']}#{liker.image_url(:small)}"
