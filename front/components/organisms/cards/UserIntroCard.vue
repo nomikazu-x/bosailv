@@ -53,7 +53,7 @@ export default {
       return this.user && this.user.profile
     },
     getAddress () {
-      return this.user && this.user.address
+      return this.user && this.user.prefecture + this.user.city
     },
     getUserImage () {
       return this.user && this.user.image_url.medium

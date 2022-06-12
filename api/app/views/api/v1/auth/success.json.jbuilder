@@ -17,6 +17,8 @@ if current_user.present?
     json.level current_user.level
     json.lifelong_point current_user.lifelong_point
     json.profile current_user.profile
+    json.prefecture Prefecture.find(current_user.prefecture_id).name
+    json.city City.find(current_user.city_id).name
     json.point_to_next current_user.point_to_next
     json.profile current_user.profile if current_user.profile.present?
     json.infomation_unread_count current_user.infomation_unread_count

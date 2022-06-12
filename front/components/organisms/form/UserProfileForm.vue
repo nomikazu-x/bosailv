@@ -9,6 +9,7 @@
         <PrefecturesSelect
           v-model="selectPrefecture"
           :prefectures="prefectures"
+          class="mt-5"
           @change="onGetCities"
         />
         <CitiesSelect
