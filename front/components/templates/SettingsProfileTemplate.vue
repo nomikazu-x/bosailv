@@ -21,6 +21,7 @@
       <div class="mb-4">
         <SettingsProfileCard
           :user="user"
+          :prefectures="prefectures"
           :processing="processing"
           @user-update="onUserUpdate"
           @user-image-update="onUserImageUpdate"
@@ -37,6 +38,10 @@ export default {
     user: {
       type: Object,
       default: null
+    },
+    prefectures: {
+      type: Array,
+      default: () => []
     },
     processing: {
       type: Boolean,

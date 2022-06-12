@@ -6,6 +6,10 @@
         <UserNameTextField
           v-model="name"
         />
+        <PrefecturesSelect
+          v-model="selectPrefecture"
+          :prefectures="prefectures"
+        />
         <OrangeBtn
           id="user_update_btn"
           :disabled="invalid || processing"
@@ -26,6 +30,10 @@ export default {
       type: Boolean,
       default: false
     },
+    prefectures: {
+      type: Array,
+      default: () => []
+    },
     user: {
       type: Object,
       default: null
@@ -34,17 +42,24 @@ export default {
 
   data () {
     return {
-      name: ''
+      name: '',
+      selectPrefecture: null
     }
   },
 
   created () {
     this.name = this.name || this.user.name
+    this.selectPrefecture = this.selectPrefecture || this.user.prefecture
+    console.log(this.user.prefecture)
   },
 
   methods: {
     onUserUpdate () {
-      this.$emit('user-update', this.name)
+      const userInfo = {
+        name: this.name,
+        selectPrefecture: this.selectPrefecture
+      }
+      this.$emit('user-update', userInfo)
     }
   }
 }

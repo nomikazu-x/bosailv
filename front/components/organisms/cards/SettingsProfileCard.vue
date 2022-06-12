@@ -11,6 +11,7 @@
       <v-col cols="12">
         <UserProfileForm
           :user="user"
+          :prefectures="prefectures"
           :processing="processing"
           @user-update="onUserUpdate"
         />
@@ -25,6 +26,10 @@ export default {
     user: {
       type: Object,
       default: null
+    },
+    prefectures: {
+      type: Array,
+      default: () => []
     },
     processing: {
       type: Boolean,

@@ -1,5 +1,12 @@
 json.success true
 json.required_point RequiredPoint.find_by(level: @user.level).required_point
+json.prefectures do
+  json.array! Prefecture.all do |prefecture|
+    json.id prefecture.id
+    json.name prefecture.name
+  end
+end
+
 json.user do
   json.provider @user.provider
   json.upload_image @user.image?
@@ -16,6 +23,8 @@ json.user do
   json.level @user.level
   json.username @user.username
   json.profile @user.profile
+  json.prefecture @user.prefecture_id
+  json.city @user.city_id
   json.lifelong_point @user.lifelong_point
   json.point_to_next @user.point_to_next
   json.infomation_unread_count @user.infomation_unread_count
