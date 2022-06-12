@@ -56,8 +56,6 @@ module.exports = {
   articleDeleteUrl: '/api/v1/articles/_id/delete.json',
   // 記事検索API
   articlesSearchUrl: '/api/v1/articles/search.json',
-  // 記事カテゴリー検索API
-  articlesCategoryUrl: '/api/v1/articles/category.json',
 
   // ［お気に入り］
   // お気に入り登録API

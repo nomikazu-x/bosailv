@@ -15,11 +15,11 @@
             v-model="title"
           />
         </v-col>
-        <v-col class="mb-16" cols="12" sm="8" md="8">
+        <!-- <v-col class="mb-16" cols="12" sm="8" md="8">
           <ArticleCategoryCheckbox
             v-model="selectedCategories"
           />
-        </v-col>
+        </v-col> -->
         <v-col class="py-0 mr-sm-4" cols="12" sm="8" md="8">
           <Editor
             v-model="content"

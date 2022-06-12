@@ -1,6 +1,6 @@
 class Api::V1::ArticlesController < Api::V1::ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_article, except: %i[create index search category]
+  before_action :set_article, except: %i[create index search]
   before_action :correct_user?, only: %i[update destroy]
 
   def index
@@ -49,20 +49,10 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
     end
   end
 
-  def category
-    if params[:selected_categories].present?
-      params[:selected_categories].each do |selected_category| 
-        @articles = Article.where_all_category(selected_category).page(params[:page]).per(Settings['default_articles_limit'])
-      end
-    else
-      @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
-    end
-  end
-
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :user_id, :thumbnail, category: [])
+    params.require(:article).permit(:title, :content, :user_id, :thumbnail, genre_ids: [])
   end
 
   def set_article

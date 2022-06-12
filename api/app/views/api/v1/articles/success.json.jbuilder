@@ -5,7 +5,6 @@ if @article.present?
     json.id @article.id
     json.title @article.title
     json.content @article.content
-    json.category @article.category
     json.thumbnail_url do
       json.large "#{Settings['base_image_url']}#{@article.thumbnail_url(:large)}"
       json.xlarge "#{Settings['base_image_url']}#{@article.thumbnail_url(:xlarge)}"

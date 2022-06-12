@@ -4,16 +4,16 @@ class Article < ApplicationRecord
   has_many :article_favorites, dependent: :destroy
   has_many :article_comments, dependent: :destroy
   has_many :likers, through: :article_favorites, source: :user
+  has_many :article_genre_relations
+  has_many :genres, through: :article_genre_relations
 
   mount_uploader :thumbnail, ImageUploader
-
-  flag :category, %i[gas watersuppry emergency knowledge earthquake tsunami volcano snow typhoon internalwater riverflood landslide strongwind heatstroke warning jalert]
 
   default_scope { order(created_at: :desc, id: :desc) }
 
   validates :title, presence: true
   validates :content, presence: true
-  validates :category, presence: true
+  validates :genre, presence: true
 
   # 画像URLを返却
   def thumbnail_url(version)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_12_092624) do
+ActiveRecord::Schema.define(version: 2022_06_12_135412) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -32,11 +32,19 @@ ActiveRecord::Schema.define(version: 2022_06_12_092624) do
     t.index ["user_id"], name: "index_article_favorites_on_user_id"
   end
 
+  create_table "article_genre_relations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_article_genre_relations_on_article_id"
+    t.index ["user_id"], name: "index_article_genre_relations_on_user_id"
+  end
+
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", limit: 30, null: false
     t.text "content", size: :long, null: false
-    t.integer "category", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "thumbnail"
@@ -49,6 +57,13 @@ ActiveRecord::Schema.define(version: 2022_06_12_092624) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
+  end
+
+  create_table "genres", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "image", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "infomations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -140,6 +155,8 @@ ActiveRecord::Schema.define(version: 2022_06_12_092624) do
   add_foreign_key "article_comments", "users"
   add_foreign_key "article_favorites", "articles"
   add_foreign_key "article_favorites", "users"
+  add_foreign_key "article_genre_relations", "articles"
+  add_foreign_key "article_genre_relations", "users"
   add_foreign_key "articles", "users"
   add_foreign_key "cities", "prefectures"
   add_foreign_key "infomations", "users"
