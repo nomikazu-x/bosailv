@@ -11,27 +11,27 @@
     </template>
 
     <template v-if="!loading" #left>
-      <div v-if="!$auth.loggedIn" class="mb-4 mt-10">
+      <div v-if="!$auth.loggedIn" class="mb-4">
         <SignUp />
       </div>
     </template>
 
     <template v-if="!loading" #right>
-      <div v-if="$auth.loggedIn" class="mb-4 mt-10">
+      <div v-if="$auth.loggedIn" class="mb-4">
         <UserIntroCard
           :user="$auth.user"
           :required-point="$auth.user.required_point"
         />
       </div>
-      <div v-else class="mb-4 mt-10">
+      <div v-else class="mb-4">
         <SignUp />
       </div>
-      <div class="mb-4 mt-10">
+      <div class="mb-4">
         <ImportantInfomationLists
           :infomations="infomations"
         />
       </div>
-      <div class="mb-4 mt-10">
+      <div class="mb-4">
         <UserRankingCard
           :users="users"
         />

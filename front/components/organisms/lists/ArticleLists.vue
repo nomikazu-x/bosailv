@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <v-card>
     <Processing v-if="processing" />
-    <v-card-title>新着記事</v-card-title>
+    <v-card-title>記事</v-card-title>
     <v-row>
       <v-col cols="12">
         <v-card v-if="articles != null && articles.length === 0">
@@ -15,12 +15,13 @@
         </div>
 
         <ArticlesPagination
+          class="mt-5"
           :info="info"
           @pagination="onPagination"
         />
       </v-col>
     </v-row>
-  </div>
+  </v-card>
 </template>
 
 <script>

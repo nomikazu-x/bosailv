@@ -3,7 +3,7 @@
     <Loading v-if="loading" />
     <Message v-if="!loading" :alert="alert" :notice="notice" />
 
-    <ArticleNewForm
+    <ArticleNewCard
       v-if="!loading"
       :processing="processing"
       @article-create="onArticleCreate"
