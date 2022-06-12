@@ -1,13 +1,22 @@
 <template>
-  <ArticleEditTemplate
-    :article="article"
-    :errors="errors"
-    :processing="processing"
-    :loading="loading"
-    :alert="alert"
-    :notice="notice"
-    @article-update="onArticleUpdate"
-  />
+  <div>
+    <ArticleEditTemplate
+      v-if="!success"
+      :article="article"
+      :errors="errors"
+      :processing="processing"
+      :loading="loading"
+      :alert="alert"
+      :notice="notice"
+      @article-update="onArticleUpdate"
+    />
+
+    <ArticleCreateSuccessTemplate
+      v-else
+      :article="article"
+      @to-edit="success = !success"
+    />
+  </div>
 </template>
 
 <script>
@@ -21,7 +30,8 @@ export default {
   data () {
     return {
       errors: null,
-      article: null
+      article: null,
+      success: false
     }
   },
 
@@ -69,7 +79,8 @@ export default {
           } else {
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
-            return this.$router.push({ path: '/articles' })
+            this.article = response.data.article
+            this.success = true
           }
         },
         (error) => {

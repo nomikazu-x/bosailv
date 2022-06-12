@@ -1,12 +1,19 @@
 <template>
-  <ArticleNewTemplate
-    :errors="errors"
-    :processing="processing"
-    :loading="loading"
-    :alert="alert"
-    :notice="notice"
-    @article-create="onArticleCreate"
-  />
+  <div>
+    <ArticleNewTemplate
+      v-if="!success"
+      :errors="errors"
+      :processing="processing"
+      :loading="loading"
+      :alert="alert"
+      :notice="notice"
+      @article-create="onArticleCreate"
+    />
+    <ArticleCreateSuccessTemplate
+      v-else
+      :article="article"
+    />
+  </div>
 </template>
 
 <script>
@@ -18,7 +25,9 @@ export default {
   mixins: [Application],
   data () {
     return {
-      errors: null
+      errors: null,
+      success: false,
+      article: null
     }
   },
   created () {
@@ -51,7 +60,8 @@ export default {
             this.$store.commit('articles/addArticles', response.data.article, { root: true })
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
-            return this.$router.push({ path: '/articles' })
+            this.success = true
+            this.article = response.data.article
           }
         },
         (error) => {
