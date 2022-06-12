@@ -50,6 +50,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   version :xlarge do
     process resize_and_pad: [BASE_WIDTH * 16, BASE_HEIGHT * 16]
   end
+  version :xxlarge do
+    process resize_and_pad: [BASE_WIDTH * 32, BASE_HEIGHT * 32]
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

@@ -1,3 +1,3 @@
 <template>
-  <v-icon color="#117768">mdi-twitter</v-icon>
+  <v-icon color="white">mdi-twitter</v-icon>
 </template>

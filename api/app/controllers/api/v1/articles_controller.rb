@@ -62,7 +62,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :user_id, category: [])
+    params.require(:article).permit(:title, :content, :user_id, :thumbnail, category: [])
   end
 
   def set_article

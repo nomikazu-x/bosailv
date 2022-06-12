@@ -5,28 +5,45 @@
     :right-cols="12"
     :right-sm="4"
   >
-    <template #left>
-      <div v-if="!$auth.loggedIn" class="mb-4 mt-10">
+    <template #top>
+      <Loading v-if="loading" />
+      <Message v-if="!loading" :alert="alert" :notice="notice" />
+    </template>
+
+    <template v-if="!loading" #left>
+      <div>
+        <ArticleIndexTemplate
+          :articles="articles"
+          :page="page"
+          :info="info"
+          :processing="processing"
+          :loading="loading"
+          :alert="alert"
+          :notice="notice"
+          @pagination="onPagination"
+        />
+      </div>
+      <div v-if="!$auth.loggedIn" class="mb-4">
         <SignUp />
       </div>
     </template>
 
-    <template #right>
-      <div v-if="$auth.loggedIn" class="mb-4 mt-10">
+    <template v-if="!loading" #right>
+      <div v-if="$auth.loggedIn" class="mb-4">
         <UserIntroCard
           :user="$auth.user"
           :required-point="$auth.user.required_point"
         />
       </div>
-      <div v-else class="mb-4 mt-10">
+      <div v-else class="mb-4">
         <SignUp />
       </div>
-      <div class="mb-4 mt-10">
+      <div class="mb-4">
         <ImportantInfomationLists
           :infomations="infomations"
         />
       </div>
-      <div class="mb-4 mt-10">
+      <div class="mb-4">
         <UserRankingCard
           :users="users"
         />
@@ -49,6 +66,18 @@ export default {
     users: {
       type: Array,
       default: () => []
+    },
+    info: {
+      type: Object,
+      default: null
+    },
+    articles: {
+      type: Array,
+      default: () => []
+    },
+    page: {
+      type: Number,
+      default: 0
     },
     infomations: {
       type: Array,
@@ -73,6 +102,11 @@ export default {
     notice: {
       type: String,
       default: null
+    }
+  },
+  methods: {
+    onPagination (value) {
+      return this.$emit('pagination', value)
     }
   }
 }

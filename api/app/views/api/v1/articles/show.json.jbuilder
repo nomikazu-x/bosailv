@@ -4,6 +4,11 @@ json.article do
   json.title @article.title
   json.content @article.content
   json.category @article.category
+  json.thumbnail_url do
+    json.large "#{Settings['base_image_url']}#{@article.thumbnail_url(:large)}"
+    json.xlarge "#{Settings['base_image_url']}#{@article.thumbnail_url(:xlarge)}"
+    json.xxlarge "#{Settings['base_image_url']}#{@article.thumbnail_url(:xxlarge)}"
+  end
   json.created_at @article.created_at
   json.updated_at @article.updated_at
   json.is_favorited current_user&.article_favorite?(@article)

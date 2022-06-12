@@ -1,13 +1,17 @@
 <template>
   <OneColumnContainer>
+    <h1 class="main-heading mb-8 text-center">ログイン</h1>
+
     <Loading v-if="loading" />
     <Message v-if="!loading" :alert="alert" :notice="notice" />
 
-    <h1 class="main-heading mb-8 text-center">ログイン</h1>
-
-    <v-row justify="center">
+    <v-row v-if="!loading" justify="center">
       <v-col cols="12" sm="10" md="8">
-        <SigninCard :processing="processing" :errors="errors" @signin="onSignin" />
+        <SigninCard
+          :processing="processing"
+          :errors="errors"
+          @signin="onSignin"
+        />
       </v-col>
     </v-row>
   </OneColumnContainer>

@@ -6,7 +6,7 @@
 
     <LevelUpModal />
 
-    <v-content>
+    <v-content style="background-color: #f9f5eb;">
       <nuxt />
     </v-content>
 

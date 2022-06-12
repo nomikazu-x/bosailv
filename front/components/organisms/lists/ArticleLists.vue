@@ -1,27 +1,48 @@
 <template>
-  <div>
-    <p v-if="!lists">災害時役立つは存在しません。作成してください</p>
-
-    <v-list>
-      <v-list-item-group>
-        <template v-for="(item, key) in lists">
-          <ArticleListItem
-            :id="item.id"
-            :key="key"
-            :title="item.title"
+  <v-card>
+    <Processing v-if="processing" />
+    <v-card-title>記事</v-card-title>
+    <v-row>
+      <v-col cols="12">
+        <v-card v-if="articles != null && articles.length === 0">
+          <v-card-title class="ml-1">記事はありません。</v-card-title>
+          <v-divider class="my-4" />
+        </v-card>
+        <div v-for="article in articles" :key="article.id">
+          <ArticleListCard
+            :article="article"
           />
-        </template>
-      </v-list-item-group>
-    </v-list>
-  </div>
+        </div>
+
+        <ArticlesPagination
+          class="mt-5"
+          :info="info"
+          @pagination="onPagination"
+        />
+      </v-col>
+    </v-row>
+  </v-card>
 </template>
 
 <script>
 export default {
   props: {
-    lists: {
+    articles: {
       type: Array,
       default: () => []
+    },
+    info: {
+      type: Object,
+      default: null
+    },
+    processing: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    onPagination (value) {
+      return this.$emit('pagination', value)
     }
   }
 }

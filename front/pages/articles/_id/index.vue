@@ -4,9 +4,10 @@
     <v-card v-if="!loading">
       <Processing v-if="processing" />
       <v-card-title v-if="article">
-        <span class="ml-1 font-weight-bold">
+        <v-img :src="article.thumbnail_url.xlarge" max-height="256" max-width="256" />
+        <v-card-text class="ml-1 font-weight-bold">
           {{ article.title }}
-        </span>
+        </v-card-text>
         <span class="ml-1">
           ({{ $dateFormat(article.created_at, 'ja') }})
         </span>
