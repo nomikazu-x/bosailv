@@ -1,7 +1,6 @@
 <template>
   <ArticleIndexTemplate
     :articles="articles"
-    :page="page"
     :info="info"
     :processing="processing"
     :loading="loading"

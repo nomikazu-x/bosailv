@@ -1,5 +1,5 @@
 <template>
-  <v-card :to="{ name: 'articles-id___ja', params: { id: article.id }}" class="my-2" max-width="600">
+  <v-card :to="{ name: 'articles-id___ja', params: { id: article.id }}" class="my-2">
     <v-row>
       <v-col cols="4" align="center">
         <v-img :src="article.thumbnail_url.large" max-height="128" max-width="192" class="ml-5 mt-2 rounded-lg" />

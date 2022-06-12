@@ -3,13 +3,16 @@
     <Loading v-if="loading" />
     <Message v-if="!loading" :alert="alert" :notice="notice" />
 
-    <ArticleLists
-      v-if="!loading"
-      :articles="articles"
-      :info="info"
-      :processing="processing"
-      @pagination="onPagination"
-    />
+    <v-row v-if="!loading" justify="center">
+      <v-col cols="12" sm="10" md="8">
+        <ArticleLists
+          :articles="articles"
+          :info="info"
+          :processing="processing"
+          @pagination="onPagination"
+        />
+      </v-col>
+    </v-row>
   </OneColumnContainer>
 </template>
 

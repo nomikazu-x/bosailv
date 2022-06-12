@@ -11,6 +11,18 @@
     </template>
 
     <template v-if="!loading" #left>
+      <div>
+        <ArticleIndexTemplate
+          :articles="articles"
+          :page="page"
+          :info="info"
+          :processing="processing"
+          :loading="loading"
+          :alert="alert"
+          :notice="notice"
+          @pagination="onPagination"
+        />
+      </div>
       <div v-if="!$auth.loggedIn" class="mb-4">
         <SignUp />
       </div>
@@ -55,6 +67,18 @@ export default {
       type: Array,
       default: () => []
     },
+    info: {
+      type: Object,
+      default: null
+    },
+    articles: {
+      type: Array,
+      default: () => []
+    },
+    page: {
+      type: Number,
+      default: 0
+    },
     infomations: {
       type: Array,
       default: () => []
@@ -78,6 +102,11 @@ export default {
     notice: {
       type: String,
       default: null
+    }
+  },
+  methods: {
+    onPagination (value) {
+      return this.$emit('pagination', value)
     }
   }
 }

@@ -3,7 +3,7 @@
     <h2 class="mb-3 text-center">記事作成</h2>
 
     <v-row justify="center">
-      <v-col cols="12" sm="8" md="6">
+      <v-col cols="12">
         <ArticleNewForm
           :processing="processing"
           @article-create="onArticleCreate"

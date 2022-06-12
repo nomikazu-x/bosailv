@@ -3,12 +3,15 @@
     <Loading v-if="loading" />
     <Message v-if="!loading" :alert="alert" :notice="notice" />
 
-    <ArticleEditCard
-      v-if="!loading"
-      :article="article"
-      :processing="processing"
-      @article-update="onArticleUpdate"
-    />
+    <v-row v-if="!loading" justify="center">
+      <v-col cols="12" sm="10" md="10">
+        <ArticleEditCard
+          :article="article"
+          :processing="processing"
+          @article-update="onArticleUpdate"
+        />
+      </v-col>
+    </v-row>
   </OneColumnContainer>
 </template>
 
