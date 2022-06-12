@@ -16,6 +16,9 @@
           v-model="selectCity"
           :cities="cities"
         />
+        <ProfileTextarea
+          v-model="profile"
+        />
         <OrangeBtn
           id="user_update_btn"
           :disabled="invalid || processing"
@@ -51,7 +54,8 @@ export default {
       name: '',
       selectPrefecture: null,
       cities: [],
-      selectCity: null
+      selectCity: null,
+      profile: ''
     }
   },
 
@@ -59,6 +63,7 @@ export default {
     this.name = this.name || this.user.name
     this.selectPrefecture = this.selectPrefecture || this.user.prefecture
     this.selectCity = this.selectCity || this.user.city
+    this.profile = this.profile || this.user.profile
     this.onGetCities(this.selectPrefecture)
   },
 
@@ -67,7 +72,8 @@ export default {
       const userInfo = {
         name: this.name,
         selectPrefecture: this.selectPrefecture,
-        selectCity: this.selectCity
+        selectCity: this.selectCity,
+        profile: this.profile
       }
       this.$emit('user-update', userInfo)
     },
