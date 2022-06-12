@@ -3,6 +3,7 @@ class Article < ApplicationRecord
 
   has_many :article_favorites, dependent: :destroy
   has_many :article_comments, dependent: :destroy
+  has_many :likers, through: :article_favorites, source: :user
 
   mount_uploader :thumbnail, ImageUploader
 
@@ -28,4 +29,5 @@ class Article < ApplicationRecord
       ''
     end
   end
+
 end
