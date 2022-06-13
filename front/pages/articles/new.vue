@@ -46,8 +46,8 @@ export default {
       formData.append('article[title]', articleInfo.title)
       formData.append('article[content]', articleInfo.content)
       formData.append('article[thumbnail]', articleInfo.thumbnail)
-      articleInfo.selectedCategories.forEach((category) => {
-        formData.append('article[category][]', category)
+      articleInfo.selectedGenres.forEach((genre) => {
+        formData.append('article[genre_ids][]', genre)
       })
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.articleCreateUrl, formData)

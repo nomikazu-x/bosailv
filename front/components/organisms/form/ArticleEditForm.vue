@@ -15,11 +15,11 @@
             v-model="title"
           />
         </v-col>
-        <!-- <v-col class="mb-16" cols="12" sm="8" md="8">
-          <ArticleCategoryCheckbox
-            v-model="selectedCategories"
+        <v-col class="mb-16" cols="12" sm="10" md="10">
+          <GenresCheckbox
+            v-model="selectedGenres"
           />
-        </v-col> -->
+        </v-col>
         <v-col class="py-0 mr-sm-4" cols="12" sm="8" md="8">
           <Editor
             v-model="content"
@@ -59,7 +59,7 @@ export default {
       thumbnail: null,
       title: '',
       content: '',
-      selectedCategories: []
+      selectedGenres: []
     }
   },
   computed: {
@@ -70,8 +70,8 @@ export default {
   created () {
     this.title = this.title || this.article.title
     this.content = this.content || this.article.content
-    this.article.category.forEach((v) => {
-      this.selectedCategories.push(v)
+    this.article.genres.forEach((value) => {
+      this.selectedGenres.push(value.id)
     })
   },
   methods: {
@@ -80,7 +80,7 @@ export default {
         thumbnail: this.thumbnail,
         title: this.title,
         content: this.content,
-        selectedCategories: this.selectedCategories
+        selectedGenres: this.selectedGenres
       }
       this.$emit('article-update', articleInfo)
     }

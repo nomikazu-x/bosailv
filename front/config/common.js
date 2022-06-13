@@ -59,6 +59,8 @@ module.exports = {
 
   // 【ジャンル】
   // ジャンル詳細API
+  genresUrl: '/api/v1/genres.json',
+  // ジャンル詳細API
   genreShowUrl: '/api/v1/genres/_id.json',
 
   // ［お気に入り］

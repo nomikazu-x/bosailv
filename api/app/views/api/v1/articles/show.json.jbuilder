@@ -11,6 +11,12 @@ json.article do
   json.created_at @article.created_at
   json.updated_at @article.updated_at
   json.is_favorited current_user&.article_favorite?(@article)
+  json.genres do
+    json.array! @article.genres do |genre|
+      json.id genre.id
+      json.name genre.name
+    end
+  end
   json.likers do
     json.array! @article.likers do |liker|
       json.id liker.id
