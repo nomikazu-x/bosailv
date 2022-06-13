@@ -2,3 +2,4 @@ users
 infomations
 genres
 articles
+article_genre_relations

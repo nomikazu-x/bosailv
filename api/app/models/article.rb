@@ -13,7 +13,6 @@ class Article < ApplicationRecord
 
   validates :title, presence: true
   validates :content, presence: true
-  validates :genre, presence: true
 
   # 画像URLを返却
   def thumbnail_url(version)

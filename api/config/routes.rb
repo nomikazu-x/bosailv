@@ -21,6 +21,9 @@ Rails.application.routes.draw do
       post 'articles/:id/article_favorites/create', to: 'article_favorites#create',    as: 'favorite_article'
       post 'articles/:id/article_favorites/delete', to: 'article_favorites#destroy',   as: 'unfavorite_article'
 
+      # ジャンル
+      get  'genres/:id',          to: 'genres#show',    as: 'show_genre'
+
       # お知らせ
       get 'infomations',           to: 'infomations#index',     as: 'infomations'
       get 'infomations/important', to: 'infomations#important', as: 'important_infomations'

@@ -6,6 +6,6 @@ class AddUsersToPrefectureId < ActiveRecord::Migration[6.1]
 
   def down
     remove_column :users, :prefecture_id
-    add_column :users, :city_id, :integer
+    remove_column :users, :city_id
   end
 end

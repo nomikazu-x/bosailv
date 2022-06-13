@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_12_135412) do
+ActiveRecord::Schema.define(version: 2022_06_12_135413) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -34,11 +34,11 @@ ActiveRecord::Schema.define(version: 2022_06_12_135412) do
 
   create_table "article_genre_relations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "article_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "genre_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["article_id"], name: "index_article_genre_relations_on_article_id"
-    t.index ["user_id"], name: "index_article_genre_relations_on_user_id"
+    t.index ["genre_id"], name: "index_article_genre_relations_on_genre_id"
   end
 
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 2022_06_12_135412) do
   add_foreign_key "article_favorites", "articles"
   add_foreign_key "article_favorites", "users"
   add_foreign_key "article_genre_relations", "articles"
-  add_foreign_key "article_genre_relations", "users"
+  add_foreign_key "article_genre_relations", "genres"
   add_foreign_key "articles", "users"
   add_foreign_key "cities", "prefectures"
   add_foreign_key "infomations", "users"

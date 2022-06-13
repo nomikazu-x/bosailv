@@ -57,6 +57,10 @@ module.exports = {
   // 記事検索API
   articlesSearchUrl: '/api/v1/articles/search.json',
 
+  // 【ジャンル】
+  // ジャンル詳細API
+  genreShowUrl: '/api/v1/genres/_id.json',
+
   // ［お気に入り］
   // お気に入り登録API
   favoriteCreateUrl: '/api/v1/articles/_id/article_favorites/create.json',
