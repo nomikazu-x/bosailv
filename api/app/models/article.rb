@@ -11,6 +11,8 @@ class Article < ApplicationRecord
 
   default_scope { order(created_at: :desc, id: :desc) }
 
+  scope :ranking, -> { joins(:article_favorites).group(:id).order('count(article_favorites.article_id) desc', id: :desc) }
+
   validates :title, presence: true
   validates :content, presence: true
 
