@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       # ユーザー
       get  'users/ranking',       to: 'users#ranking',      as: 'users_ranking'
       get  'users/:username',     to: 'users#show',         as: 'show_users'
+      get  'users/:username/genre/:id',     to: 'users#genre_articles',         as: 'genre_articles_users'
       
       # 記事
       get  'articles',            to: 'articles#index',     as: 'articles'

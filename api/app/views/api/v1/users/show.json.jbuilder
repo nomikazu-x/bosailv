@@ -6,6 +6,12 @@ json.prefectures do
     json.name prefecture.name
   end
 end
+json.genres do
+  json.array! Genre.all do |genre|
+    json.id genre.id
+    json.name genre.name
+  end
+end
 
 json.user do
   json.provider @user.provider
@@ -29,20 +35,4 @@ json.user do
   json.point_to_next @user.point_to_next
   json.infomation_unread_count @user.infomation_unread_count
   json.created_at @user.created_at.present? ? l(@user.created_at, format: :json) : nil
-  if @user.articles.exists?
-    json.articles do
-      json.array! @user.articles do |article|
-        json.id article.id
-        json.title article.title
-        json.content article.content
-        json.thumbnail_url do
-          json.large "#{Settings['base_image_url']}#{article.thumbnail_url(:large)}"
-          json.xlarge "#{Settings['base_image_url']}#{article.thumbnail_url(:xlarge)}"
-          json.xxlarge "#{Settings['base_image_url']}#{article.thumbnail_url(:xxlarge)}"
-        end
-        json.created_at article.created_at
-        json.updated_at article.updated_at
-      end
-    end
-  end
 end
