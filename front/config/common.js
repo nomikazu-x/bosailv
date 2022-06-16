@@ -60,7 +60,7 @@ module.exports = {
   articlesSearchUrl: '/api/v1/articles/search.json',
 
   // 【ジャンル】
-  // ジャンル詳細API
+  // ジャンル一覧API
   genresUrl: '/api/v1/genres.json',
   // ジャンル詳細API
   genreShowUrl: '/api/v1/genres/_id.json',

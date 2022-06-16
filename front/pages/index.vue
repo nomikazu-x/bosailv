@@ -67,7 +67,7 @@ export default {
     async onPagination (page) {
       this.processing = true
 
-      await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, {
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.genresUrl, {
         params: { page }
       })
         .then((response) => {
