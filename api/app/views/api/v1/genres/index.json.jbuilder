@@ -3,6 +3,11 @@ json.genres do
   json.array! @genres do |genre|
     json.id genre.id
     json.name genre.name
+    json.image_url do
+      json.large "#{Settings['base_image_url']}#{genre.image_url(:large)}"
+      json.xlarge "#{Settings['base_image_url']}#{genre.image_url(:xlarge)}"
+      json.xxlarge "#{Settings['base_image_url']}#{genre.image_url(:xxlarge)}"
+    end
     json.articles do
       json.array! genre.articles.first(3) do |article|
         json.id article.id
