@@ -3,7 +3,7 @@
     <Loading v-if="loading" />
     <v-card v-if="!loading">
       <Processing v-if="processing" />
-      <v-card-title>お知らせ</v-card-title>
+      <v-card-title>通知一覧</v-card-title>
       <v-card-text>
         <v-row v-if="info != null && info.total_count > info.limit_value">
           <v-col cols="auto" md="5" align-self="center">
@@ -14,33 +14,47 @@
           </v-col>
         </v-row>
 
-        <v-divider class="my-4" />
         <article v-if="lists != null && lists.length === 0">
           <span class="ml-1">お知らせはありません。</span>
           <v-divider class="my-4" />
         </article>
-        <article v-for="list in lists" :key="list.id">
-          <div>
-            <InfomationLabel :list="list" />
-            <span class="ml-1 font-weight-bold">
-              <template v-if="list.body_present === true">
-                <NuxtLink :to="{ name: 'infomations-id___ja', params: { id: list.id }}">{{ list.title }}</NuxtLink>
-              </template>
-              <template v-if="list.article_id_present === true">
-                <NuxtLink :to="{ name: 'articles-id___ja', params: { id: list.article_id }}">{{ list.title }}</NuxtLink>
-              </template>
-              <template v-else>
-                {{ list.title }}
-              </template>
-            </span>
-            <span class="ml-1">
-              ({{ $dateFormat(list.started_at, 'ja') }})
-            </span>
+        <v-list v-for="list in lists" :key="list.id">
+          <v-divider class="mb-4" />
+          <InfomationLabel :list="list" />
+          <div v-if="list.article_id_present === true">
+            <v-list-item :to="{ name: 'articles-id___ja', params: { id: list.article_id }}">
+              <v-icon class="mr-4">mdi-account-heart</v-icon>
+              <v-list-item-title>{{ list.title }}</v-list-item-title>
+              <span>
+                ({{ $dateFormat(list.started_at, 'ja') }})
+              </span>
+            </v-list-item>
           </div>
-          <!-- eslint-disable-next-line vue/no-v-html -->
-          <div v-if="list.summary" class="mx-2 my-2" v-html="list.summary" />
-          <v-divider class="my-4" />
-        </article>
+          <div v-else>
+            <div v-if="list.body_present === true">
+              <v-list-item :to="{ name: 'infomations-id___ja', params: { id: list.id }}">
+                <v-icon class="mr-4">mdi-bell</v-icon>
+                <v-list-item-title>{{ list.title }}</v-list-item-title>
+                <!-- eslint-disable-next-line vue/no-v-html -->
+                <v-list-item-subtitle v-if="list.summary" v-html="list.summary" />
+                <span>
+                  ({{ $dateFormat(list.started_at, 'ja') }})
+                </span>
+              </v-list-item>
+            </div>
+            <div v-else>
+              <v-list-item>
+                <v-icon class="mr-4">mdi-bell</v-icon>
+                <v-list-item-title>
+                  {{ list.title }}
+                </v-list-item-title>
+                <span>
+                  ({{ $dateFormat(list.started_at, 'ja') }})
+                </span>
+              </v-list-item>
+            </div>
+          </div>
+        </v-list>
 
         <div v-if="info != null && info.total_pages > 1">
           <v-pagination id="pagination2" v-model="page" :length="info.total_pages" @input="onPagination()" />
