@@ -14,7 +14,7 @@
           />
         </div>
 
-        <ArticlesPagination
+        <Pagination
           class="mt-5"
           :info="info"
           @pagination="onPagination"
