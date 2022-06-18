@@ -36,10 +36,10 @@ export default {
   },
 
   methods: {
-    async onPagination () {
+    async onPagination (page) {
       this.processing = true
 
-      await this.$axios.get(this.$config.apiBaseURL + this.$config.infomationsUrl, { params: { page: this.page } })
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.infomationsUrl, { params: { page } })
         .then((response) => {
           if (response.data == null || response.data.infomation == null) {
             this.$toasted.error(this.$t('system.error'))
