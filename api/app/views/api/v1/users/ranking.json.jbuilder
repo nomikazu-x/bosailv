@@ -1,10 +1,12 @@
 json.success true
+
 json.user do
   json.total_count @users.total_count
   json.current_page @users.current_page
   json.total_pages @users.total_pages
   json.limit_value @users.limit_value
 end
+
 json.users do
   json.array! @users do |user|
     json.id user.id

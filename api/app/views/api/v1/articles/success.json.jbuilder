@@ -1,5 +1,7 @@
 json.success true
-json.required_point RequiredPoint.find_by(level: @article.user.level).required_point
+
+json.required_point @required_point
+
 if @article.present?
   json.article do
     json.id @article.id
@@ -19,4 +21,5 @@ if @article.present?
     end
   end
 end
+
 json.notice notice if notice.present?

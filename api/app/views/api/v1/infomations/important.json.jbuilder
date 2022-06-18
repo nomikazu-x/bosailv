@@ -1,4 +1,5 @@
 json.success true
+
 json.infomations do
   json.array! @infomations do |infomation|
     json.id infomation.id

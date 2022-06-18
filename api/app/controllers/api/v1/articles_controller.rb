@@ -13,7 +13,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
     if @article.save
       ActiveRecord::Base.transaction do
         point_record = PointRecorder.new(@article.user).record(Settings['article_create_obtained_point'])
-        required_point = RequiredPoint.find_by(level: @article.user.level)
+        @required_point = RequiredPoint.find_by(level: @article.user.level)
         render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.create') }
       end
     else
@@ -33,7 +33,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
     if @article.destroy
       ActiveRecord::Base.transaction do
         point_record = PointRecorder.new(@article.user).delete_record(Settings['article_create_obtained_point'])
-        required_point = RequiredPoint.find_by(level: @article.user.level)
+        @required_point = RequiredPoint.find_by(level: @article.user.level)
         render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.destroy') }
       end
     else

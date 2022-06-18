@@ -1,5 +1,5 @@
 json.success true
-json.required_point RequiredPoint.find_by(level: @user.level).required_point
+
 json.genre do
   json.id @genre.id
   json.name @genre.name
@@ -9,6 +9,7 @@ json.genre do
     json.xxlarge "#{Settings['base_image_url']}#{@genre.image_url(:xxlarge)}"
   end
 end
+
 json.user do
   json.provider @user.provider
   json.upload_image @user.image?
