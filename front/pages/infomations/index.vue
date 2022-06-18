@@ -1,6 +1,6 @@
 <template>
   <InfomationsIndexTemplate
-    :lists="lists"
+    :infomations="infomations"
     :info="info"
     :processing="processing"
     :loading="loading"
@@ -21,7 +21,7 @@ export default {
     return {
       page: 1,
       info: null,
-      lists: null
+      infomations: null
     }
   },
 
@@ -49,7 +49,7 @@ export default {
             this.page = this.info.current_page
           } else {
             this.info = response.data.infomation
-            this.lists = response.data.infomations
+            this.infomations = response.data.infomations
             if (this.$auth.loggedIn && this.$auth.user.infomation_unread_count !== 0 && this.page === 1) { this.$auth.fetchUser() } // Tips: お知らせ未読数をリセット
           }
         },

@@ -3,14 +3,14 @@
     <Processing v-if="processing" />
     <v-card-title>通知一覧</v-card-title>
     <v-card-text>
-      <article v-if="lists != null && lists.length === 0">
+      <article v-if="infomations != null && infomations.length === 0">
         <span class="ml-1">お知らせはありません。</span>
         <v-divider class="my-4" />
       </article>
       <InfomationList
-        v-for="list in lists"
-        :key="list.id"
-        :list="list"
+        v-for="infomation in infomations"
+        :key="infomation.id"
+        :infomation="infomation"
       />
 
       <Pagination
@@ -29,7 +29,7 @@ export default {
       type: Object,
       default: null
     },
-    lists: {
+    infomations: {
       type: Array,
       default: () => []
     },

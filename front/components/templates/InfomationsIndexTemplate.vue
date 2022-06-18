@@ -7,7 +7,7 @@
       <v-col cols="12" sm="10" md="10">
         <InfomationsIndexCard
           :info="info"
-          :lists="lists"
+          :infomations="infomations"
           :processing="processing"
           @pagination="onPagination"
         />
@@ -23,7 +23,7 @@ export default {
       type: Object,
       default: null
     },
-    lists: {
+    infomations: {
       type: Array,
       default: () => []
     },
