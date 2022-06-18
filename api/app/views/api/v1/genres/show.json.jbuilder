@@ -1,5 +1,14 @@
 json.success true
 
+json.genre do
+  json.id @genre.id
+  json.name @genre.name
+  json.image_url do
+    json.large "#{Settings['base_image_url']}#{@genre.image_url(:large)}"
+    json.xlarge "#{Settings['base_image_url']}#{@genre.image_url(:xlarge)}"
+  end 
+end
+
 json.article do
   json.total_count @articles.total_count
   json.current_page @articles.current_page

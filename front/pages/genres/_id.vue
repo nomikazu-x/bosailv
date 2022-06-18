@@ -1,5 +1,6 @@
 <template>
-  <ArticleIndexTemplate
+  <GenreIdTemplate
+    :genre="genre"
     :articles="articles"
     :info="info"
     :processing="processing"
@@ -21,6 +22,7 @@ export default {
   data () {
     return {
       page: 1,
+      genre: null,
       info: null,
       articles: null
     }
@@ -46,6 +48,7 @@ export default {
             }
             this.page = this.info.current_page
           } else {
+            this.genre = response.data.genre
             this.info = response.data.article
             this.articles = response.data.articles
           }
