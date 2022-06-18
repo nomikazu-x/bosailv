@@ -18,9 +18,9 @@ class Api::V1::UsersController < Api::V1::ApplicationController
 
   def genre_articles
     @user = User.find_by(username: params[:username])
-    genre = Genre.find(params[:id])
-    @articles = @user.articles.page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{genre.id}")
-    @favorite_articles = @user.favorited_articles.page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{genre.id}")
+    @genre = Genre.find(params[:id])
+    @articles = @user.articles.page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{@genre.id}")
+    @favorite_articles = @user.favorited_articles.page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{@genre.id}")
   
     if @user
       render './api/v1/users/genre_articles'

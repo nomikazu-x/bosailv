@@ -1,8 +1,9 @@
 <template>
-  <UsernameTemplate
+  <UsernameGenresTemplate
     :can-action="canAction"
     :current-username="currentUsername"
     :user="user"
+    :genre="genre"
     :articles="articles"
     :required-point="requiredPoint"
     :processing="processing"
@@ -23,6 +24,7 @@ export default {
     return {
       user: null,
       articles: null,
+      genre: null,
       requiredPoint: 0
     }
   },
@@ -64,8 +66,8 @@ export default {
           return this.$router.push({ path: '/' })
         } else {
           this.user = response.data.user
+          this.genre = response.data.genre
           this.articles = response.data.user.articles
-          console.log(this.articles)
           this.requiredPoint = response.data.required_point
         }
       },
