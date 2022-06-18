@@ -10,6 +10,13 @@ json.genres do
   json.array! Genre.all do |genre|
     json.id genre.id
     json.name genre.name
+    json.image_url do
+      # json.mini "#{Settings['base_image_url']}#{genre.image_url(:mini)}"
+      # json.small "#{Settings['base_image_url']}#{genre.image_url(:small)}"
+      # json.medium "#{Settings['base_image_url']}#{genre.image_url(:medium)}"
+      json.large "#{Settings['base_image_url']}#{genre.image_url(:large)}"
+      json.xlarge "#{Settings['base_image_url']}#{genre.image_url(:xlarge)}"
+    end
   end
 end
 

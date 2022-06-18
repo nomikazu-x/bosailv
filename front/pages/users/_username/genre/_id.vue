@@ -65,6 +65,7 @@ export default {
         } else {
           this.user = response.data.user
           this.articles = response.data.user.articles
+          console.log(this.articles)
           this.requiredPoint = response.data.required_point
         }
       },

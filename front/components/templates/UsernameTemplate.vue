@@ -31,8 +31,8 @@
         </v-row>
       </v-container>
 
-      <ArticleLists
-        :articles="articles"
+      <GenreList
+        :genres="genres"
       />
     </template>
   </TwoColumnContainer>
@@ -53,7 +53,7 @@ export default {
       type: Object,
       default: null
     },
-    articles: {
+    genres: {
       type: Array,
       default: () => []
     },

@@ -3,7 +3,7 @@
     :can-action="canAction"
     :current-username="currentUsername"
     :user="user"
-    :articles="articles"
+    :genres="genres"
     :required-point="requiredPoint"
     :processing="processing"
     :loading="loading"
@@ -22,7 +22,7 @@ export default {
   data () {
     return {
       user: null,
-      articles: null,
+      genres: null,
       requiredPoint: 0
     }
   },
@@ -64,7 +64,8 @@ export default {
           return this.$router.push({ path: '/' })
         } else {
           this.user = response.data.user
-          this.articles = response.data.user.articles
+          this.genres = response.data.genres
+          console.log(this.genres)
           this.requiredPoint = response.data.required_point
         }
       },
