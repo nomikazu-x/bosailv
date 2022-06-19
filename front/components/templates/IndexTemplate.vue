@@ -25,9 +25,6 @@
           :genres="genres"
         />
       </div>
-      <div v-if="!$auth.loggedIn" class="mb-4">
-        <SignUp />
-      </div>
     </template>
 
     <template v-if="!loading" #right>
