@@ -22,8 +22,11 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   def genre_articles
     @user = User.find_by(username: params[:username])
     @genre = Genre.find(params[:id])
+    @required_point = RequiredPoint.find_by(level: @user.level).required_point
     @articles = @user.articles.page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{@genre.id}")
     @favorite_articles = @user.favorited_articles.page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{@genre.id}")
+    @prefecture = Prefecture.find(@user.prefecture_id).name if @user.prefecture_id.present?
+    @city = City.find(@user.city_id).name if @user.prefecture_id.present?
   
     if @user
       render './api/v1/users/genre_articles'

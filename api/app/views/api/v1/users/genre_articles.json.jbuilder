@@ -1,5 +1,7 @@
 json.success true
 
+json.required_point @required_point
+
 json.genre do
   json.id @genre.id
   json.name @genre.name
@@ -26,8 +28,8 @@ json.user do
   json.level @user.level
   json.username @user.username
   json.profile @user.profile
-  json.prefecture @user.prefecture_id
-  json.city @user.city_id
+  json.prefecture @prefecture
+  json.city @city
   json.lifelong_point @user.lifelong_point
   json.point_to_next @user.point_to_next
   json.infomation_unread_count @user.infomation_unread_count

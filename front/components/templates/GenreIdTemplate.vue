@@ -9,7 +9,7 @@
           <v-card-title class="genre-name mt-8 white--text justify-center align-center text-shadow">{{ genre.name }}</v-card-title>
         </v-img>
         <ArticleLists
-          class="mt-10"
+          class="mt-5"
           :articles="articles"
           :info="info"
           :processing="processing"
