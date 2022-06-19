@@ -56,7 +56,7 @@ export default {
       (error) => {
         this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
       })
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.usersRankingUrl)
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.usersUrl)
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
