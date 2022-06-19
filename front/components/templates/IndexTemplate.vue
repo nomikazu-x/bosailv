@@ -13,6 +13,7 @@
 
     <template v-if="!loading" #left>
       <div>
+        <TopTransitionCard />
         <ArticleIndexTemplate
           :info="info"
           :articles="articles"

@@ -1,25 +1,21 @@
 <template>
-  <v-card>
+  <BaseTitleCard title="通知一覧">
     <Processing v-if="processing" />
-    <v-card-title>通知一覧</v-card-title>
-    <v-card-text>
-      <article v-if="infomations != null && infomations.length === 0">
-        <span class="ml-1">お知らせはありません。</span>
-        <v-divider class="my-4" />
-      </article>
-      <InfomationList
-        v-for="infomation in infomations"
-        :key="infomation.id"
-        :infomation="infomation"
-      />
+    <article v-if="infomations != null && infomations.length === 0">
+      <span class="ml-1">お知らせはありません。</span>
+    </article>
+    <InfomationList
+      v-for="infomation in infomations"
+      :key="infomation.id"
+      :infomation="infomation"
+    />
 
-      <Pagination
-        class="mt-5"
-        :info="info"
-        @pagination="onPagination"
-      />
-    </v-card-text>
-  </v-card>
+    <Pagination
+      class="mt-5"
+      :info="info"
+      @pagination="onPagination"
+    />
+  </BaseTitleCard>
 </template>
 
 <script>

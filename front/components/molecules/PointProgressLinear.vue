@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" align="center">
     <v-col lg="8" cols="9" class="mr-1">
-      <v-progress-linear height="10px" background-color="green lighten-3" color="green darken-3" :value="progressProportion" />
+      <v-progress-linear height="10px" background-color="red lighten-4" color="#ef5350" :value="progressProportion" />
     </v-col>
     <v-col cols="2" lg="2" class="py-0">
       <div v-if="!maxLevel" class="float-right">

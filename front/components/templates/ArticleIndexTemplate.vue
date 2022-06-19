@@ -1,19 +1,16 @@
 <template>
-  <OneColumnContainer>
+  <div>
     <Loading v-if="loading" />
     <Message v-if="!loading" :alert="alert" :notice="notice" />
 
-    <v-row v-if="!loading" justify="center">
-      <v-col cols="12">
-        <ArticleLists
-          :articles="articles"
-          :info="info"
-          :processing="processing"
-          @pagination="onPagination"
-        />
-      </v-col>
-    </v-row>
-  </OneColumnContainer>
+    <ArticleLists
+      v-if="!loading"
+      :articles="articles"
+      :info="info"
+      :processing="processing"
+      @pagination="onPagination"
+    />
+  </div>
 </template>
 
 <script>

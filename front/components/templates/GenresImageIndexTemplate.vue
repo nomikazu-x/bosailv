@@ -1,17 +1,12 @@
 <template>
-  <OneColumnContainer>
-    <v-row justify="center">
-      <v-col cols="12">
-        <v-card class="mt-5">
-          <v-card-title>ジャンル一覧</v-card-title>
-          <GenreList
-            :genres="genres"
-            class="px-2"
-          />
-        </v-card>
-      </v-col>
-    </v-row>
-  </OneColumnContainer>
+  <BaseTitleCard class="mt-5" title="ジャンル一覧">
+    <v-card>
+      <GenreList
+        :genres="genres"
+        class="px-2"
+      />
+    </v-card>
+  </BaseTitleCard>
 </template>
 
 <script>

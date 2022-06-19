@@ -1,6 +1,6 @@
 <template>
   <v-btn
-    color="error"
+    color="#ef5350"
     class="btn"
     :disabled="disabled"
     :large="large"

@@ -3,6 +3,7 @@
     <v-pagination
       id="pagination"
       v-model="page"
+      color="#ef5350"
       :length="info.total_pages"
       @input="onPagination"
     />

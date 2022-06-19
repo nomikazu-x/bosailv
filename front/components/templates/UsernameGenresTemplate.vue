@@ -26,7 +26,7 @@
             <h2 class="text-center main-heading">{{ canAction ? 'あなた' : currentName }}の災害時役立つ記事</h2>
           </v-col>
           <v-col v-if="canAction" cols="12" sm="4" class="text-right">
-            <GreenBtn class="mb-4" color="#00a8ff" to="/articles/new">記事を作成する</GreenBtn>
+            <RedBtn class="mb-4" color="#00a8ff" to="/articles/new">記事を作成する</RedBtn>
           </v-col>
         </v-row>
       </v-container>
