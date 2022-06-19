@@ -1,26 +1,22 @@
 <template>
   <v-card>
     <Processing v-if="processing" />
-    <v-row>
-      <v-col cols="12">
-        <v-card-title>新着一覧</v-card-title>
-        <v-card v-if="articles != null && articles.length === 0">
-          <v-card-title class="ml-1">記事はありません。</v-card-title>
-          <v-divider class="my-4" />
-        </v-card>
-        <div v-for="article in articles" :key="article.id">
-          <ArticleListCard
-            :article="article"
-          />
-        </div>
+    <v-card-title>新着一覧</v-card-title>
+    <v-card v-if="articles != null && articles.length === 0">
+      <v-card-title class="ml-1">記事はありません。</v-card-title>
+      <v-divider class="my-4" />
+    </v-card>
+    <div v-for="article in articles" :key="article.id">
+      <ArticleListCard
+        :article="article"
+      />
+    </div>
 
-        <Pagination
-          class="mt-5"
-          :info="info"
-          @pagination="onPagination"
-        />
-      </v-col>
-    </v-row>
+    <Pagination
+      class="mt-5"
+      :info="info"
+      @pagination="onPagination"
+    />
   </v-card>
 </template>
 
