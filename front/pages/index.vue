@@ -5,6 +5,7 @@
     :genres="genres"
     :info="info"
     :articles="articles"
+    :famous-articles="famousArticles"
     :processing="processing"
     :loading="loading"
     :alert="alert"
@@ -25,6 +26,7 @@ export default {
       page: 1,
       info: null,
       articles: null,
+      famousArticles: null,
       users: null,
       infomations: null
     }
@@ -97,6 +99,7 @@ export default {
           } else {
             this.info = response.data.article
             this.articles = response.data.articles
+            this.famousArticles = response.data.famous_articles
           }
         },
         (error) => {

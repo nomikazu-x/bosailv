@@ -45,6 +45,11 @@
         />
       </div>
       <div class="mb-4">
+        <ArticlesRankingCard
+          :famous-articles="famousArticles"
+        />
+      </div>
+      <div class="mb-4">
         <UserRankingCard
           :users="users"
         />
@@ -77,6 +82,10 @@ export default {
       default: null
     },
     articles: {
+      type: Array,
+      default: () => []
+    },
+    famousArticles: {
       type: Array,
       default: () => []
     },

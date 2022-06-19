@@ -3,17 +3,17 @@
     <BaseList :to="`/users/${user.username}`">
       <div v-if="[0, 1, 2].includes(index)">
         <v-list-item-icon v-if="index === 0">
-          <v-icon style="color: #ffc400;">
+          <v-icon style="color: #ffc400;" large>
             mdi-medal-outline
           </v-icon>
         </v-list-item-icon>
         <v-list-item-icon v-if="index === 1">
-          <v-icon style="color: #c9c9c9;">
+          <v-icon style="color: #c9c9c9;" large>
             mdi-medal-outline
           </v-icon>
         </v-list-item-icon>
         <v-list-item-icon v-if="index === 2">
-          <v-icon style="color: #ac6d4d;">
+          <v-icon style="color: #ac6d4d;" large>
             mdi-medal-outline
           </v-icon>
         </v-list-item-icon>
@@ -28,7 +28,7 @@
       <v-list-item-avatar>
         <v-img :src="user.image_url.mini" />
       </v-list-item-avatar>
-      <v-list-item-title class="px-2">
+      <v-list-item-title class="pl-2">
         {{ user.name }}
       </v-list-item-title>
       <v-list-item-title class="amber--text text--darken-4">

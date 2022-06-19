@@ -5,6 +5,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
 
   def index
     @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
+    @famous_articles = Article.ranking.page(params[:page]).per(Settings['default_articles_limit'])
   end
 
   def create
