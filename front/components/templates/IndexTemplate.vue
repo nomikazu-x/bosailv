@@ -21,17 +21,9 @@
           :notice="notice"
           @pagination="onPagination"
         />
-        <OneColumnContainer>
-          <v-row justify="center">
-            <v-col cols="12" sm="10" md="10">
-              <v-card class="mt-10">
-                <GenreList
-                  :genres="genres"
-                />
-              </v-card>
-            </v-col>
-          </v-row>
-        </OneColumnContainer>
+        <GenresImageIndexTemplate
+          :genres="genres"
+        />
       </div>
       <div v-if="!$auth.loggedIn" class="mb-4">
         <SignUp />
