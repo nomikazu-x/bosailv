@@ -3,10 +3,13 @@
     :users="users"
     :infomations="infomations"
     :genres="genres"
+    :info="info"
+    :articles="articles"
     :processing="processing"
     :loading="loading"
     :alert="alert"
     :notice="notice"
+    @pagination="onPagination"
   />
 </template>
 
@@ -19,16 +22,20 @@ export default {
   data () {
     return {
       genres: null,
+      page: 1,
+      info: null,
+      articles: null,
       users: null,
       infomations: null
     }
   },
   async created () {
+    await this.onPagination(this.page)
     await this.$axios.get(this.$config.apiBaseURL + this.$config.genresUrl)
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
-          this.articles = null
+          this.genres = null
         } else {
           this.genres = response.data.genres
         }
@@ -71,6 +78,37 @@ export default {
 
     this.loading = false
     this.processing = false
+  },
+
+  methods: {
+    async onPagination (page) {
+      this.processing = true
+
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, {
+        params: { page }
+      })
+        .then((response) => {
+          if (response.data == null || response.data.article == null) {
+            this.$toasted.error(this.$t('system.error'))
+            if (this.info == null) {
+              return this.$router.push({ path: '/' })
+            }
+            this.page = this.info.current_page
+          } else {
+            this.info = response.data.article
+            this.articles = response.data.articles
+          }
+        },
+        (error) => {
+          this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
+          if (this.info == null) {
+            return this.$router.push({ path: '/' })
+          }
+          this.page = this.info.current_page
+        })
+
+      this.processing = false
+    }
   }
 }
 </script>

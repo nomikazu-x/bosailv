@@ -12,13 +12,26 @@
 
     <template v-if="!loading" #left>
       <div>
-        <GenreIndexTemplate
-          :genres="genres"
+        <ArticleIndexTemplate
+          :info="info"
+          :articles="articles"
           :processing="processing"
           :loading="loading"
           :alert="alert"
           :notice="notice"
+          @pagination="onPagination"
         />
+        <OneColumnContainer>
+          <v-row justify="center">
+            <v-col cols="12" sm="10" md="10">
+              <v-card class="mt-10">
+                <GenreList
+                  :genres="genres"
+                />
+              </v-card>
+            </v-col>
+          </v-row>
+        </OneColumnContainer>
       </div>
       <div v-if="!$auth.loggedIn" class="mb-4">
         <SignUp />
@@ -68,6 +81,14 @@ export default {
       type: Array,
       default: () => []
     },
+    info: {
+      type: Object,
+      default: null
+    },
+    articles: {
+      type: Array,
+      default: () => []
+    },
     infomations: {
       type: Array,
       default: () => []
@@ -91,6 +112,11 @@ export default {
     notice: {
       type: String,
       default: null
+    }
+  },
+  methods: {
+    onPagination (value) {
+      return this.$emit('pagination', value)
     }
   }
 }

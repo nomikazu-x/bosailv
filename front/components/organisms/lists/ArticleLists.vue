@@ -3,6 +3,7 @@
     <Processing v-if="processing" />
     <v-row>
       <v-col cols="12">
+        <v-card-title>新着一覧</v-card-title>
         <v-card v-if="articles != null && articles.length === 0">
           <v-card-title class="ml-1">記事はありません。</v-card-title>
           <v-divider class="my-4" />
