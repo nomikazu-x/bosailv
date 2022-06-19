@@ -8,11 +8,16 @@
       <v-slide-item
         v-for="article in articles.slice(0, 5)"
         :key="article.id"
-        class="text-center"
       >
         <v-card :to="{ name: 'articles-id___ja', params: { id: article.id }}" class="ma-1" style="width: 500px; height: 300px;">
-          <v-img :src="article.thumbnail_url.xxlarge" class="white--text align-end" gradient="to bottom, rgba(0,0,0,.0), rgba(0,0,0,.5)" height="300px">
-            <v-card-title v-text="article.title" />
+          <v-img :src="article.thumbnail_url.xxlarge" class="white--text align-end" height="300px">
+            <div class="article-title">
+              <v-card-title v-text="article.title" />
+              <v-card-text>
+                <v-icon color="white" small>mdi-calendar-range-outline</v-icon>
+                {{ $dateFormat(article.created_at, 'ja') }}
+              </v-card-text>
+            </div>
           </v-img>
         </v-card>
       </v-slide-item>
@@ -30,3 +35,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.article-title {
+  background: rgba(0, 0, 0, 0.3);
+  height: 90px;
+}
+</style>
