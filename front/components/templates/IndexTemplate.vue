@@ -8,6 +8,7 @@
     <template #top>
       <Loading v-if="loading" />
       <Message v-if="!loading" :alert="alert" :notice="notice" />
+      <TopSlide v-if="!loading" :articles="articles" />
     </template>
 
     <template v-if="!loading" #left>
