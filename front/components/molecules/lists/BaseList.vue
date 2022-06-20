@@ -4,6 +4,7 @@
       :color="hover ? '#FFFDE8' : 'white' "
       class="thumb-up"
       :to="to"
+      :dense="dense"
       :style="{ 'background-color': hover ? '#FFFDE8' : 'white' }"
     >
       <slot />
@@ -17,6 +18,10 @@ export default {
     to: {
       type: [Object, String],
       default: null
+    },
+    dense: {
+      type: Boolean,
+      default: false
     }
   }
 }

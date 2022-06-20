@@ -33,10 +33,21 @@
       <v-img :src="genre.image_url.xlarge" max-height="150" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.3)">
         <v-card-title class="genre-name mt-8 white--text justify-center align-center text-shadow">{{ genre.name }}</v-card-title>
       </v-img>
-      <ArticleLists
-        class="mt-5"
-        :articles="articles"
-      />
+      <v-tabs v-model="tab" background-color="#FFFCFC" color="#ef5350" class="mt-4" grow>
+        <v-tab v-for="title in titles" :key="title.name">{{ title.name }}</v-tab>
+      </v-tabs>
+      <v-tabs-items v-model="tab">
+        <v-tab-item>
+          <TabArticleList
+            :articles="articles"
+          />
+        </v-tab-item>
+        <v-tab-item>
+          <TabArticleList
+            :articles="favoriteArticles"
+          />
+        </v-tab-item>
+      </v-tabs-items>
     </template>
   </TwoColumnContainer>
 </template>
@@ -64,6 +75,10 @@ export default {
       type: Array,
       default: () => []
     },
+    favoriteArticles: {
+      type: Array,
+      default: () => []
+    },
     requiredPoint: {
       type: Number,
       default: 0
@@ -83,6 +98,16 @@ export default {
     notice: {
       type: String,
       default: null
+    }
+  },
+  data () {
+    return {
+      tab: null,
+      show: false,
+      titles: [
+        { name: '執筆' },
+        { name: 'お気に入り' }
+      ]
     }
   },
   computed: {

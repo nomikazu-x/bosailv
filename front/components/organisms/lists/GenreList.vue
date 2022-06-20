@@ -22,7 +22,7 @@ export default {
     toGenre () {
       return (genre) => {
         if (this.$route.params.username) {
-          return { name: 'users-username-genres-id___ja', params: { id: genre.id } }
+          return { name: 'users-username-genres-id___ja', params: { username: this.$route.params.username, id: genre.id } }
         }
         return { name: 'genres-id___ja', params: { id: genre.id } }
       }

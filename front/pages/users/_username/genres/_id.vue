@@ -5,6 +5,7 @@
     :user="user"
     :genre="genre"
     :articles="articles"
+    :favorite-articles="favoriteArticles"
     :required-point="requiredPoint"
     :processing="processing"
     :loading="loading"
@@ -22,8 +23,10 @@ export default {
 
   data () {
     return {
+      page: 1,
       user: null,
       articles: null,
+      favoriteArticles: null,
       genre: null,
       requiredPoint: 0
     }
@@ -59,16 +62,36 @@ export default {
       return this.redirectAuth()
     }
 
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.userGenreArticlesUrl.replace('_username', this.currentUsername).replace('_id', this.$route.params.id))
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.userShowUrl.replace('_username', this.currentUsername))
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
           return this.$router.push({ path: '/' })
         } else {
           this.user = response.data.user
-          this.genre = response.data.genre
-          this.articles = response.data.user.articles
           this.requiredPoint = response.data.required_point
+        }
+      },
+      (error) => {
+        if (error.response == null) {
+          this.$toasted.error(this.$t('network.failure'))
+        } else if (error.response.status === 401) {
+          return this.signOut()
+        } else {
+          this.$toasted.error(this.$t('network.error'))
+        }
+        return this.$router.push({ path: '/' })
+      })
+
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.userGenreArticlesUrl.replace('_username', this.currentUsername).replace('_id', this.$route.params.id))
+      .then((response) => {
+        if (response.data == null) {
+          this.$toasted.error(this.$t('system.error'))
+          return this.$router.push({ path: '/' })
+        } else {
+          this.genre = response.data.genre
+          this.articles = response.data.articles
+          this.favoriteArticles = response.data.favorite_articles
         }
       },
       (error) => {
