@@ -1,17 +1,14 @@
 <template>
-  <v-card class="pa-6">
-    <h2 class="mb-3 text-center">記事編集</h2>
-
-    <v-row justify="center">
-      <v-col cols="12">
-        <ArticleEditForm
-          :article="article"
-          :processing="processing"
-          @article-update="onArticleUpdate"
-        />
-      </v-col>
-    </v-row>
-  </v-card>
+  <v-row justify="center">
+    <v-col cols="12" sm="10" md="10">
+      <BaseTitleCard title="編集" />
+      <ArticleEditForm
+        :article="article"
+        :processing="processing"
+        @article-update="onArticleUpdate"
+      />
+    </v-col>
+  </v-row>
 </template>
 
 <script>

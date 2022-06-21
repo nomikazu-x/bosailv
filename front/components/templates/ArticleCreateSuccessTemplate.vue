@@ -9,13 +9,13 @@
     </v-row>
 
     <v-row class="mb-12" justify="center">
-      <OrangeBtn :to="{ name: 'articles-id-edit___ja', params: { id: article.id }}" class="mr-2" @click="toEdit">
+      <RedBtn :to="{ name: 'articles-id-edit___ja', params: { id: article.id }}" class="mr-2" @click="toEdit">
         編集する
-      </OrangeBtn>
+      </RedBtn>
 
-      <OrangeBtn :to="{ name: 'articles-id___ja', params: { id: article.id }}">
+      <RedBtn :to="{ name: 'articles-id___ja', params: { id: article.id }}">
         投稿を見る
-      </OrangeBtn>
+      </RedBtn>
     </v-row>
 
     <div class="max-width-600 mb-4 mx-auto">
