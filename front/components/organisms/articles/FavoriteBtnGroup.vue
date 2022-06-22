@@ -1,12 +1,12 @@
 <template>
   <span>
-    <v-btn v-if="isFavorited" x-large outlined icon color="red" @click="onUnFavorite">
+    <v-btn v-if="isFavorited" x-large outlined icon color="red" @click="onUnFavorite($auth.user.id)">
       <v-icon size="30" color="red">mdi-heart</v-icon>
     </v-btn>
     <v-btn v-else x-large outlined icon @click="onFavorite">
       <v-icon size="30" color="red">mdi-heart-outline</v-icon>
     </v-btn>
-    <span><NuxtLink :to="`/articles/${$route.params.id}/likers`" class="text-decoration-none">{{ article.likers.length }}</NuxtLink></span>
+    <span><NuxtLink :to="`/articles/${$route.params.id}/likers`" class="text-decoration-none">{{ likers.length }}</NuxtLink></span>
   </span>
 </template>
 
@@ -16,6 +16,10 @@ export default {
     article: {
       type: Object,
       default: null
+    },
+    likers: {
+      type: Array,
+      default: () => []
     }
   },
 
@@ -37,6 +41,7 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
+            this.$store.commit('articles/addLikers', response.data.article_favorites, { root: true })
             this.isFavorited = true
             this.$toasted.info(response.data.notice)
           } else {
@@ -63,7 +68,7 @@ export default {
       this.processing = false
     },
 
-    async onUnFavorite () {
+    async onUnFavorite (likerId) {
       this.processing = true
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.favoriteDeleteUrl.replace('_id', this.$route.params.id), {
@@ -74,6 +79,7 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
+            this.$store.commit('articles/deleteLiker', likerId, { root: true })
             this.isFavorited = false
             this.$toasted.info(response.data.notice)
           } else {

@@ -17,10 +17,10 @@
       </v-icon>
     </div>
     <v-row>
-      <v-col cols="4" sm="6" align="center">
+      <v-col cols="4" sm="4" align="center">
         <v-img :src="article.thumbnail_url.large" max-height="128" max-width="192" class="ml-5 mt-2 rounded-lg" />
       </v-col>
-      <v-col cols="8" sm="6">
+      <v-col cols="8" sm="8">
         <v-card-title class="font-weight-bold">
           {{ article.title }}
         </v-card-title>

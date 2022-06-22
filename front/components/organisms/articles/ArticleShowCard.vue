@@ -28,7 +28,7 @@
       </v-card-title>
 
       <div class="text-right">
-        <FavoriteBtnGroup class="mr-3 mt-2" :article="article" :alert="alert" :notice="notice" />
+        <FavoriteBtnGroup class="mr-3 mt-2" :article="article" :likers="likers" :alert="alert" :notice="notice" />
         <v-menu bottom right>
           <template #activator="{ on, attrs }">
             <v-btn
@@ -67,6 +67,10 @@ export default {
     article: {
       type: Object,
       default: null
+    },
+    likers: {
+      type: Array,
+      default: () => []
     },
     alert: {
       type: String,

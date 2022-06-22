@@ -19,6 +19,7 @@
               <v-col cols="12">
                 <ArticleShowCard
                   :article="article"
+                  :likers="likers"
                   @article-delete="onArticleDelete"
                 />
               </v-col>
@@ -61,6 +62,10 @@ export default {
       default: null
     },
     articleComments: {
+      type: Array,
+      default: () => []
+    },
+    likers: {
       type: Array,
       default: () => []
     },

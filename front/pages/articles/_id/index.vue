@@ -2,6 +2,7 @@
   <ArticleIdTemplate
     :article="article"
     :article-comments="articleComments"
+    :likers="likers"
     :errors="errors"
     :processing="processing"
     :loading="loading"
@@ -31,7 +32,8 @@ export default {
   computed: {
     ...mapGetters({
       article: 'articles/article',
-      articleComments: 'articleComments/articleComments'
+      articleComments: 'articleComments/articleComments',
+      likers: 'articles/likers'
     })
   },
 
@@ -44,6 +46,7 @@ export default {
         }
         this.$store.commit('articles/setArticle', response.data.article, { root: true })
         this.$store.commit('articleComments/setArticleComments', response.data.article.comments, { root: true })
+        this.$store.commit('articles/setLikers', response.data.article.likers, { root: true })
       },
       (error) => {
         if (error.response == null) {
