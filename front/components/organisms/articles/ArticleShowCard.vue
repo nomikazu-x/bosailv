@@ -14,7 +14,7 @@
           <v-avatar size="20" class="mr-1">
             <v-img :src="article.user.image_url.small" />
           </v-avatar>
-          {{ article.user.name }}
+          <NuxtLink :to="{ name: 'users-username___ja', params: { username: article.user.username }}" class="text-decoration-none">{{ article.user.name }}</NuxtLink>
         </span>
         <v-row justify="center" class="mt-3">
           <v-btn large color="#00AEEF" outlined icon><v-icon size="30" color="#00AEEF">mdi-twitter</v-icon></v-btn>

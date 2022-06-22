@@ -21,6 +21,7 @@ json.article do
   json.user do
     json.id @article.user.id
     json.name @article.user.name
+    json.username @article.user.username
     json.image_url do
       json.mini "#{Settings['base_image_url']}#{@article.user.image_url(:mini)}"
       json.small "#{Settings['base_image_url']}#{@article.user.image_url(:small)}"
