@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <v-btn v-if="isFavorited" icon @click="onUnFavorite">
-      <v-icon size="20" color="red">mdi-heart</v-icon>
+  <span>
+    <v-btn v-if="isFavorited" x-large outlined icon color="red" @click="onUnFavorite">
+      <v-icon size="30" color="red">mdi-heart</v-icon>
     </v-btn>
-    <v-btn v-else icon @click="onFavorite">
-      <v-icon size="20" color="red">mdi-heart-outline</v-icon>
+    <v-btn v-else x-large outlined icon @click="onFavorite">
+      <v-icon size="30" color="red">mdi-heart-outline</v-icon>
     </v-btn>
-  </div>
+    <span><NuxtLink :to="`/articles/${$route.params.id}/likers`" class="text-decoration-none">{{ article.likers.length }}</NuxtLink></span>
+  </span>
 </template>
 
 <script>

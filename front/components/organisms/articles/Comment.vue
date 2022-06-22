@@ -2,19 +2,27 @@
   <div>
     <article>
       <Processing v-if="processing" />
-      <!-- eslint-disable-next-line vue/no-v-html -->
-      <div class="mx-2 my-2" v-html="articleComment.content" />
-      <div>
-        <span class="ml-1">
-          ({{ $dateFormat(articleComment.created_at, 'ja') }})
-        </span>
-      </div>
-      <v-btn icon>
-        <v-icon size="20" @click="onCommentDelete(articleComment.id)">
-          mdi-trash-can-outline
-        </v-icon>
-      </v-btn>
-      <v-divider class="my-4" />
+      <v-row>
+        <v-col cols="12">
+          <v-avatar size="30"><v-img :src="articleComment.user.image_url.small" /></v-avatar>
+          <span class="ml-1">{{ articleComment.user.name }}</span>
+        </v-col>
+        <v-col cols="12">
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <v-card-text v-html="articleComment.content" />
+          <div class="text-right">
+            <v-btn icon>
+              <v-icon size="20" @click="onCommentDelete(articleComment.id)">
+                mdi-trash-can-outline
+              </v-icon>
+            </v-btn>
+          </div>
+          <div class="text-right">
+            ({{ $dateFormat(articleComment.created_at, 'ja') }})
+          </div>
+          <v-divider class="my-4" />
+        </v-col>
+      </v-row>
     </article>
   </div>
 </template>

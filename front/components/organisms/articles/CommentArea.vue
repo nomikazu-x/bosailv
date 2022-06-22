@@ -7,6 +7,7 @@
           <v-textarea
             v-model="content"
             label="コメント"
+            outlined
             autocomplete="off"
             :error-messages="errors"
             @click="waiting = false"
@@ -52,7 +53,6 @@ export default {
             this.$toasted.error(this.$t('system.error'))
           } else {
             this.$store.commit('articleComments/addArticleComments', response.data.comment, { root: true })
-            console.log(this.$store)
             this.content = ''
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
