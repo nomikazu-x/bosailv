@@ -46,12 +46,7 @@
           />
         </v-tab-item>
         <v-tab-item>
-          <TabArticleList
-            :processing="processing"
-            :articles="articles"
-            :info="info"
-            @pagination="onPagination"
-          />
+          <TabFavoriteArticleList />
         </v-tab-item>
       </v-tabs-items>
     </template>
