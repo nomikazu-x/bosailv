@@ -4,13 +4,14 @@
     :current-username="currentUsername"
     :user="user"
     :genre="genre"
+    :info="info"
     :articles="articles"
-    :favorite-articles="favoriteArticles"
     :required-point="requiredPoint"
     :processing="processing"
     :loading="loading"
     :alert="alert"
     :notice="notice"
+    @pagination="onPagination"
   />
 </template>
 
@@ -25,6 +26,7 @@ export default {
     return {
       page: 1,
       user: null,
+      info: null,
       articles: null,
       favoriteArticles: null,
       genre: null,
@@ -83,30 +85,39 @@ export default {
         return this.$router.push({ path: '/' })
       })
 
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.userGenreArticlesUrl.replace('_username', this.currentUsername).replace('_id', this.$route.params.id))
-      .then((response) => {
-        if (response.data == null) {
-          this.$toasted.error(this.$t('system.error'))
-          return this.$router.push({ path: '/' })
-        } else {
-          this.genre = response.data.genre
-          this.articles = response.data.articles
-          this.favoriteArticles = response.data.favorite_articles
-        }
-      },
-      (error) => {
-        if (error.response == null) {
-          this.$toasted.error(this.$t('network.failure'))
-        } else if (error.response.status === 401) {
-          return this.signOut()
-        } else {
-          this.$toasted.error(this.$t('network.error'))
-        }
-        return this.$router.push({ path: '/' })
-      })
-
+    await this.onPagination(this.page)
     this.processing = false
     this.loading = false
+  },
+  methods: {
+    async onPagination (page) {
+      this.processing = true
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.userGenreArticlesUrl.replace('_username', this.currentUsername).replace('_id', this.$route.params.id), {
+        params: { page }
+      })
+        .then((response) => {
+          if (response.data == null) {
+            this.$toasted.error(this.$t('system.error'))
+            if (this.info == null) {
+              return this.$router.push({ path: '/' })
+            }
+            this.page = this.info.current_page
+          } else {
+            this.genre = response.data.genre
+            this.info = response.data.article
+            this.articles = response.data.articles
+          }
+        },
+        (error) => {
+          this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
+          if (this.info == null) {
+            return this.$router.push({ path: '/' })
+          }
+          this.page = this.info.current_page
+        })
+
+      this.processing = false
+    }
   }
 }
 </script>

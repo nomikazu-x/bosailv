@@ -41,26 +41,3 @@ if @articles.exists?
     end
   end
 end
-if @favorite_articles.exists?
-  json.favorite_article do
-    json.total_count @favorite_articles.total_count
-    json.current_page @favorite_articles.current_page
-    json.total_pages @favorite_articles.total_pages
-    json.limit_value @favorite_articles.limit_value
-  end
-
-  json.favorite_articles do
-    json.array! @favorite_articles do |article|
-      json.id article.id
-      json.title article.title
-      json.content article.content
-      json.thumbnail_url do
-        json.large "#{Settings['base_image_url']}#{article.thumbnail_url(:large)}"
-        json.xlarge "#{Settings['base_image_url']}#{article.thumbnail_url(:xlarge)}"
-        json.xxlarge "#{Settings['base_image_url']}#{article.thumbnail_url(:xxlarge)}"
-      end
-      json.created_at article.created_at
-      json.updated_at article.updated_at
-    end
-  end
-end

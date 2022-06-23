@@ -39,12 +39,18 @@
       <v-tabs-items v-model="tab">
         <v-tab-item>
           <TabArticleList
+            :processing="processing"
             :articles="articles"
+            :info="info"
+            @pagination="onPagination"
           />
         </v-tab-item>
         <v-tab-item>
           <TabArticleList
-            :articles="favoriteArticles"
+            :processing="processing"
+            :articles="articles"
+            :info="info"
+            @pagination="onPagination"
           />
         </v-tab-item>
       </v-tabs-items>
@@ -67,15 +73,15 @@ export default {
       type: Object,
       default: null
     },
+    info: {
+      type: Object,
+      default: null
+    },
     genre: {
       type: Object,
       default: null
     },
     articles: {
-      type: Array,
-      default: () => []
-    },
-    favoriteArticles: {
       type: Array,
       default: () => []
     },
@@ -113,6 +119,11 @@ export default {
   computed: {
     currentName () {
       return (this.user && this.user.name) || this.$auth.user.name
+    }
+  },
+  methods: {
+    onPagination (value) {
+      return this.$emit('pagination', value)
     }
   }
 }
