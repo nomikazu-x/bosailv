@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card-subtitle>カテゴリー選択</v-card-subtitle>
+    <v-card-subtitle>ジャンル選択</v-card-subtitle>
     <ValidationProvider v-slot="{ errors }" name="genre" rules="required">
       <v-row>
         <v-col v-for="genre in genres" :key="genre.id" cols="4" md="3" style="height: 35px;">
@@ -8,7 +8,8 @@
             v-model="valueModel"
             :value="genre.id"
             :label="genre.name"
-            color="green darken-1"
+            color="#ef5350"
+            dense
             :error-messages="errors"
           />
         </v-col>
