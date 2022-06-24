@@ -23,7 +23,7 @@
           :notice="notice"
           @pagination="onPagination"
         />
-        <GenresImageIndexTemplate :genres="genres" />
+        <GenresImageIndexCard :genres="genres" />
       </div>
     </template>
 

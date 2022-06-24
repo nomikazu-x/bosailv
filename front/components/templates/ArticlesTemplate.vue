@@ -1,34 +1,49 @@
 <template>
-  <OneColumnContainer>
-    <Loading v-if="loading" />
-    <Message v-if="!loading" :alert="alert" :notice="notice" />
+  <TwoColumnContainer
+    :left-cols="12"
+    :left-sm="8"
+    :right-cols="12"
+    :right-sm="4"
+  >
+    <template #top>
+      <Loading v-if="loading" />
+      <Message v-if="!loading" :alert="alert" :notice="notice" />
+    </template>
 
-    <v-row v-if="!loading" justify="center">
-      <v-col cols="12" sm="10" md="10">
-        <v-tabs v-model="tab" background-color="#FFFCFC" color="#ef5350" class="mt-4" grow>
-          <v-tab v-for="title in titles" :key="title.name">{{ title.name }}</v-tab>
-        </v-tabs>
-        <v-tabs-items v-model="tab">
-          <v-tab-item>
-            <TabArticleList
-              :processing="processing"
-              :articles="articles"
-              :info="articleInfo"
-              @pagination="onArticlePagination"
-            />
-          </v-tab-item>
-          <v-tab-item>
-            <TabArticleList
-              :processing="processing"
-              :articles="famousArticles"
-              :info="famousArticleInfo"
-              @pagination="onFamousArticlePagination"
-            />
-          </v-tab-item>
-        </v-tabs-items>
-      </v-col>
-    </v-row>
-  </OneColumnContainer>
+    <template #left>
+      <v-row v-if="!loading" justify="center">
+        <v-col cols="12">
+          <BaseTitleCard title="災害時役立つ記事一覧">
+            <v-tabs v-model="tab" background-color="#FFFCFC" color="#ef5350" class="mt-4" grow>
+              <v-tab v-for="title in titles" :key="title.name">{{ title.name }}</v-tab>
+            </v-tabs>
+            <v-tabs-items v-model="tab">
+              <v-tab-item>
+                <TabArticleList
+                  :processing="processing"
+                  :articles="articles"
+                  :info="articleInfo"
+                  @pagination="onArticlePagination"
+                />
+              </v-tab-item>
+              <v-tab-item>
+                <TabArticleList
+                  :processing="processing"
+                  :articles="famousArticles"
+                  :info="famousArticleInfo"
+                  @pagination="onFamousArticlePagination"
+                />
+              </v-tab-item>
+            </v-tabs-items>
+          </BaseTitleCard>
+        </v-col>
+      </v-row>
+    </template>
+
+    <template #right>
+      <DefaultRightColumnTemplate :loading="loading" />
+    </template>
+  </TwoColumnContainer>
 </template>
 
 <script>

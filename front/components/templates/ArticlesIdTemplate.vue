@@ -40,8 +40,9 @@
         </v-col>
       </v-row>
     </template>
+
     <template #right>
-      <v-card-text>wow</v-card-text>
+      <DefaultRightColumnTemplate :loading="loading" />
     </template>
   </TwoColumnContainer>
 </template>
