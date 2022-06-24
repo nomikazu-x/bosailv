@@ -77,6 +77,19 @@ export default {
         }
         return this.$router.push({ path: '/' })
       })
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.famousArticlesUrl)
+      .then((response) => {
+        if (response.data == null || response.data.article == null) {
+          this.$toasted.error(this.$t('system.error'))
+          return this.$router.push({ path: '/' })
+        } else {
+          this.famousArticles = response.data.articles
+        }
+      },
+      (error) => {
+        this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
+        return this.$router.push({ path: '/' })
+      })
 
     this.loading = false
     this.processing = false
@@ -99,7 +112,6 @@ export default {
           } else {
             this.info = response.data.article
             this.articles = response.data.articles
-            this.famousArticles = response.data.famous_articles
           }
         },
         (error) => {

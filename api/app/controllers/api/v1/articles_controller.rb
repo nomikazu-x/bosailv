@@ -1,11 +1,14 @@
 class Api::V1::ArticlesController < Api::V1::ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_article, except: %i[create index search]
+  before_action :set_article, except: %i[create index search index_famous]
   before_action :correct_user?, only: %i[update destroy]
 
   def index
     @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
-    @famous_articles = Article.ranking.page(params[:page]).per(Settings['default_articles_limit'])
+  end
+
+  def index_famous
+    @articles = Article.ranking.page(params[:page]).per(Settings['default_articles_limit'])
   end
 
   def create

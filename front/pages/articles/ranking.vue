@@ -1,31 +1,23 @@
 <template>
-  <div>
-    <Processing v-if="processing" />
-    <v-card tile>
-      <v-card v-if="articles != null && articles.length === 0">
-        <v-card-title class="ml-1">記事はありません。</v-card-title>
-        <v-divider class="my-4" />
-      </v-card>
-      <div v-for="article in articles" :key="article.id">
-        <ArticleListCard
-          :article="article"
-        />
-      </div>
-
-      <Pagination
-        class="mt-5"
-        :info="info"
-        @pagination="onPagination"
-      />
-    </v-card>
-  </div>
+  <ArticleIndexTemplate
+    :articles="articles"
+    :info="info"
+    :processing="processing"
+    :loading="loading"
+    :alert="alert"
+    :notice="notice"
+    @pagination="onPagination"
+  />
 </template>
 
 <script>
 import Application from '~/plugins/application.js'
 
 export default {
+  name: 'Articles',
+
   mixins: [Application],
+
   data () {
     return {
       page: 1,
@@ -33,26 +25,27 @@ export default {
       articles: null
     }
   },
+
   async created () {
     await this.onPagination(this.page)
-    this.processing = false
+    this.loading = false
   },
+
   methods: {
     async onPagination (page) {
       this.processing = true
 
-      await this.$axios.get(this.$config.apiBaseURL + this.$config.userGenreArticlesUrl.replace('_username', this.$route.params.username).replace('_id', this.$route.params.id), {
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.famousArticlesUrl, {
         params: { page }
       })
         .then((response) => {
-          if (response.data == null) {
+          if (response.data == null || response.data.article == null) {
             this.$toasted.error(this.$t('system.error'))
             if (this.info == null) {
               return this.$router.push({ path: '/' })
             }
             this.page = this.info.current_page
           } else {
-            this.genre = response.data.genre
             this.info = response.data.article
             this.articles = response.data.articles
           }
