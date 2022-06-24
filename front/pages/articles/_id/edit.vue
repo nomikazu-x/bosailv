@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ArticleEditTemplate
+    <ArticlesIdEditTemplate
       v-if="!success"
       :article="article"
       :errors="errors"

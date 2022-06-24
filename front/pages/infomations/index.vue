@@ -1,5 +1,5 @@
 <template>
-  <InfomationsIndexTemplate
+  <InfomationsTemplate
     :infomations="infomations"
     :info="info"
     :processing="processing"

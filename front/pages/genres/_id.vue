@@ -1,5 +1,5 @@
 <template>
-  <GenreIdTemplate
+  <GenresIdTemplate
     :genre="genre"
     :articles="articles"
     :info="info"

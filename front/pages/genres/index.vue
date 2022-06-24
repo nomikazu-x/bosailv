@@ -1,5 +1,5 @@
 <template>
-  <GenreIndexTemplate
+  <GenresTemplate
     :genres="genres"
     :processing="processing"
     :loading="loading"

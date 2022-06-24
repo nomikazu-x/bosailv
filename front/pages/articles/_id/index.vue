@@ -1,5 +1,5 @@
 <template>
-  <ArticleIdTemplate
+  <ArticlesIdTemplate
     :article="article"
     :article-comments="articleComments"
     :likers="likers"

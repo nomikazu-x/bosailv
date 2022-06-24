@@ -1,5 +1,5 @@
 <template>
-  <IndexTemplate
+  <AppTemplate
     :users="users"
     :infomations="infomations"
     :genres="genres"

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ArticleNewTemplate
+    <ArticlesNewTemplate
       v-if="!success"
       :errors="errors"
       :processing="processing"

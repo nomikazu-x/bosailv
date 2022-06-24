@@ -1,5 +1,5 @@
 <template>
-  <ArticleIndexTemplate
+  <ArticlesTemplate
     :articles="articles"
     :info="info"
     :processing="processing"

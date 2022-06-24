@@ -1,5 +1,5 @@
 <template>
-  <UsernameGenresTemplate
+  <UsernameGenresIdTemplate
     :can-action="canAction"
     :current-username="currentUsername"
     :user="user"
