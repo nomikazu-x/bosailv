@@ -1,5 +1,5 @@
 <template>
-  <BaseTitleCard class="pb-1" title="人気記事">
+  <BaseTitleCard v-if="famousArticles != null && famousArticles.length > 0" class="pb-1" title="人気記事">
     <ArticlesRankingItem
       v-for="(article, i) in famousArticles.slice(0, 5)"
       :key="article.id"

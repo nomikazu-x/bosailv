@@ -1,5 +1,5 @@
 <template>
-  <BaseTitleCard class="pb-1 px-1" title="ポイントランキング">
+  <BaseTitleCard v-if="users != null && users.length > 0" class="pb-1 px-1" title="ポイントランキング">
     <UserRankingItem
       v-for="(user, i) in users.slice(0, 9)"
       :key="user.id"

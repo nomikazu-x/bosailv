@@ -100,8 +100,6 @@ export default {
         this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
         return this.$router.push({ path: '/' })
       })
-
-    this.processing = false
   }
 }
 </script>

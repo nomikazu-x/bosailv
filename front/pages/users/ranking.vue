@@ -1,15 +1,11 @@
 <template>
-  <OneColumnContainer>
-    <Loading v-if="loading" />
-    <BaseTitleCard v-if="!loading" title="ポイントランキング">
-      <UserRankingItem
-        v-for="(user, i) in users"
-        :key="user.id"
-        :user="user"
-        :index="i"
-      />
-    </BaseTitleCard>
-  </OneColumnContainer>
+  <UsersRankingTemplate
+    :users="users"
+    :loading="loading"
+    :processing="processing"
+    :alert="alert"
+    :notice="notice"
+  />
 </template>
 
 <script>
@@ -44,6 +40,7 @@ export default {
         return this.$router.push({ path: '/' })
       })
 
+    this.processing = false
     this.loading = false
   }
 }
