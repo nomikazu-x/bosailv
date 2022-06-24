@@ -46,8 +46,24 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   end
 
   def search
-    if params[:keyword].present?
+    if params[:keyword].present? 
       @articles = Article.where('title Like ? OR content Like ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(Settings['default_articles_limit'])
+
+      if params[:genre_ids].present?
+        params[:genre_ids].each do |genre_id|
+          genre = Genre.find(genre_id)
+          @articles = @articles.joins(:article_genre_relations).where("genre_id = #{genre.id}")
+        end
+        @articles = @articles.page(params[:page]).per(Settings['default_articles_limit'])
+      end
+
+    elsif params[:genre_ids].present?
+      params[:genre_ids].each do |genre_id|
+        genre = Genre.find(genre_id)
+        @articles = Article.all.joins(:article_genre_relations).where("genre_id = #{genre.id}")
+      end
+      @articles = @articles.page(params[:page]).per(Settings['default_articles_limit'])
+
     else
       @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
     end

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <OneColumnContainer>
     <Loading v-if="loading" />
     <v-card v-if="!loading">
       <ValidationProvider v-slot="{ errors }" name="keyword" rules="required">
@@ -8,9 +8,10 @@
           label="検索"
           prepend-icon="mdi-magnify"
           :error-messages="errors"
-          @keyup="onSearchArticles"
         />
       </ValidationProvider>
+      <GenresCheckbox v-model="selectedGenres" />
+      <RedBtn @click="onSearchArticles">検索</RedBtn>
       <v-row v-if="!loading" justify="center">
         <v-col cols="12" sm="10" md="10">
           <ArticleLists
@@ -22,7 +23,7 @@
         </v-col>
       </v-row>
     </v-card>
-  </div>
+  </OneColumnContainer>
 </template>
 
 <script>
@@ -38,7 +39,8 @@ export default {
       page: 1,
       info: null,
       articles: null,
-      keyword: ''
+      keyword: '',
+      selectedGenres: []
     }
   },
 
@@ -53,7 +55,7 @@ export default {
       this.processing = true
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesSearchUrl, {
-        params: { keyword: this.keyword, page }
+        params: { page, keyword: this.keyword, genre_ids: this.selectedGenres }
       })
         .then((response) => {
           if (response.data == null || response.data.article == null) {
