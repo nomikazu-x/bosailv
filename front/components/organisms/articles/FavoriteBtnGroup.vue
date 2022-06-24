@@ -41,7 +41,9 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
-            this.$store.commit('articles/addLikers', response.data.article_favorites, { root: true })
+            this.$store.commit('articles/addLikers', this.$auth.user, { root: true })
+            this.$store.commit('user/setPoint', response.data.user, { root: true })
+            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
             this.isFavorited = true
             this.$toasted.info(response.data.notice)
           } else {
@@ -80,6 +82,8 @@ export default {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
             this.$store.commit('articles/deleteLiker', likerId, { root: true })
+            this.$store.commit('user/setPoint', response.data.user, { root: true })
+            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
             this.isFavorited = false
             this.$toasted.info(response.data.notice)
           } else {

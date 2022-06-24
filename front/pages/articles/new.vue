@@ -56,7 +56,7 @@ export default {
             this.$toasted.error(this.$t('system.error'))
           } else {
             this.$store.commit('user/setPoint', response.data.article.user, { root: true })
-            this.$store.commit('user/setRequiredPoint', response.data.required_exp, { root: true })
+            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
             this.$store.commit('articles/addArticles', response.data.article, { root: true })
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)

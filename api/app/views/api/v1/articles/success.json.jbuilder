@@ -13,7 +13,7 @@ if @article.present?
       json.xxlarge "#{Settings['base_image_url']}#{@article.thumbnail_url(:xxlarge)}"
     end
     json.created_at @article.created_at
-  json.updated_at @article.updated_at
+    json.updated_at @article.updated_at
     json.user do
       json.level @article.user.level
       json.lifelong_point @article.user.lifelong_point
