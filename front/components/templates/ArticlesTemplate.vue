@@ -70,7 +70,6 @@ export default {
   data () {
     return {
       tab: null,
-      show: false,
       titles: [
         { name: '新着一覧' },
         { name: 'ランキング' }

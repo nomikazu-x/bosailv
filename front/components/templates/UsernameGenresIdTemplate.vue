@@ -117,7 +117,6 @@ export default {
   data () {
     return {
       tab: null,
-      show: false,
       titles: [
         { name: '執筆' },
         { name: 'お気に入り' }

@@ -6,7 +6,11 @@ class Api::V1::GenresController < Api::V1::ApplicationController
 
   def show
     @genre = Genre.find(params[:id])
-    @articles = @genre.articles.page(params[:page]).per(Settings['default_articles_limit'])
+    if params[:famous]
+      @articles = @genre.articles.ranking.page(params[:page]).per(Settings['default_articles_limit'])
+    else
+      @articles = @genre.articles.page(params[:page]).per(Settings['default_articles_limit'])
+    end
     render './api/v1/genres/show'
   end
 end
