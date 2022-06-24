@@ -145,7 +145,7 @@ export default {
         },
         (error) => {
           this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
-          if (this.articleInfo == null) {
+          if (this.favoriteArticleInfo == null) {
             return this.$router.push({ path: '/' })
           }
           this.favoriteArticlePage = this.favoriteArticleInfo.current_page

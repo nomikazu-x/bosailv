@@ -1,26 +1,52 @@
 <template>
-  <div>
+  <OneColumnContainer>
     <Loading v-if="loading" />
     <Message v-if="!loading" :alert="alert" :notice="notice" />
 
-    <ArticleLists
-      v-if="!loading"
-      :articles="articles"
-      :info="info"
-      :processing="processing"
-      @pagination="onPagination"
-    />
-  </div>
+    <v-row v-if="!loading" justify="center">
+      <v-col cols="12" sm="10" md="10">
+        <v-tabs v-model="tab" background-color="#FFFCFC" color="#ef5350" class="mt-4" grow>
+          <v-tab v-for="title in titles" :key="title.name">{{ title.name }}</v-tab>
+        </v-tabs>
+        <v-tabs-items v-model="tab">
+          <v-tab-item>
+            <TabArticleList
+              :processing="processing"
+              :articles="articles"
+              :info="articleInfo"
+              @pagination="onArticlePagination"
+            />
+          </v-tab-item>
+          <v-tab-item>
+            <TabArticleList
+              :processing="processing"
+              :articles="famousArticles"
+              :info="famousArticleInfo"
+              @pagination="onFamousArticlePagination"
+            />
+          </v-tab-item>
+        </v-tabs-items>
+      </v-col>
+    </v-row>
+  </OneColumnContainer>
 </template>
 
 <script>
 export default {
   props: {
-    info: {
+    articleInfo: {
+      type: Object,
+      default: null
+    },
+    famousArticleInfo: {
       type: Object,
       default: null
     },
     articles: {
+      type: Array,
+      default: () => []
+    },
+    famousArticles: {
       type: Array,
       default: () => []
     },
@@ -41,9 +67,22 @@ export default {
       default: null
     }
   },
+  data () {
+    return {
+      tab: null,
+      show: false,
+      titles: [
+        { name: '新着一覧' },
+        { name: 'ランキング' }
+      ]
+    }
+  },
   methods: {
-    onPagination (value) {
-      return this.$emit('pagination', value)
+    onArticlePagination (value) {
+      return this.$emit('article-pagination', value)
+    },
+    onFamousArticlePagination (value) {
+      return this.$emit('famous-article-pagination', value)
     }
   }
 }

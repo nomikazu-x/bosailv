@@ -1,13 +1,17 @@
 <template>
-  <div>
+  <OneColumnContainer>
     <Loading v-if="loading" />
     <Message v-if="!loading" :alert="alert" :notice="notice" />
 
-    <GenreCard
-      :genres="genres"
-      :processing="processing"
-    />
-  </div>
+    <v-row v-if="!loading" justify="center">
+      <v-col cols="12" sm="10" md="10">
+        <GenreCard
+          :genres="genres"
+          :processing="processing"
+        />
+      </v-col>
+    </v-row>
+  </OneColumnContainer>
 </template>
 
 <script>

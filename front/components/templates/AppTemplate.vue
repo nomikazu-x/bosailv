@@ -14,7 +14,7 @@
     <template v-if="!loading" #left>
       <div>
         <TopTransitionCard />
-        <ArticlesTemplate
+        <ArticleLists
           :info="info"
           :articles="articles"
           :processing="processing"

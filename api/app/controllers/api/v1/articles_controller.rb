@@ -5,7 +5,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
 
   def index
     if params[:famous]
-      @articles = Article.ranking.page(params[:page]).per(Settings['default_articles_limit'])
+      @articles = Article.all.ranking.page(params[:page]).per(Settings['default_articles_limit'])
     else
       @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
     end

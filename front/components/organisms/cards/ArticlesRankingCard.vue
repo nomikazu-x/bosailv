@@ -12,7 +12,7 @@
       color="#ef5350"
       outlined
       block
-      to="/articles/ranking"
+      to="/articles"
     >
       人気記事をもっと見る
     </v-btn>
