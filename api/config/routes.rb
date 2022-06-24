@@ -4,8 +4,7 @@ Rails.application.routes.draw do
       # ユーザー
       get  'users',               to: 'users#index',        as: 'users'
       get  'users/:username',     to: 'users#show',         as: 'show_users'
-      get  'users/:username/genre/:id',     to: 'users#genre_articles',         as: 'genre_articles_users'
-      get  'users/:username/genre/:id/favorite',     to: 'users#genre_favorite_articles',         as: 'genre_favorite_articles_users'
+      get  'users/:username/genre/:id',                  to: 'users#genre_articles',         as: 'genre_articles_users'
       
       # 記事
       get  'articles',            to: 'articles#index',        as: 'articles'

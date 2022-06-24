@@ -127,8 +127,8 @@ export default {
 
     async onFavoriteArticlePagination (favoriteArticlePage) {
       this.processing = true
-      await this.$axios.get(this.$config.apiBaseURL + this.$config.userGenreFavoriteArticlesUrl.replace('_username', this.currentUsername).replace('_id', this.$route.params.id), {
-        params: { page: favoriteArticlePage }
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.userGenreArticlesUrl.replace('_username', this.currentUsername).replace('_id', this.$route.params.id), {
+        params: { page: favoriteArticlePage, favorite: true }
       })
         .then((response) => {
           if (response.data == null) {
