@@ -77,7 +77,9 @@ export default {
         }
         return this.$router.push({ path: '/' })
       })
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.famousArticlesUrl)
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, {
+      params: { famous: true }
+    })
       .then((response) => {
         if (response.data == null || response.data.article == null) {
           this.$toasted.error(this.$t('system.error'))

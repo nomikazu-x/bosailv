@@ -2,13 +2,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # ユーザー
-      get  'users',               to: 'users#index',        as: 'users'
-      get  'users/:username',     to: 'users#show',         as: 'show_users'
-      get  'users/:username/genre/:id',                  to: 'users#genre_articles',         as: 'genre_articles_users'
+      get  'users',                     to: 'users#index',          as: 'users'
+      get  'users/:username',           to: 'users#show',           as: 'show_users'
+      get  'users/:username/genres/:id', to: 'users#genre_articles', as: 'genre_articles_users'
       
       # 記事
       get  'articles',            to: 'articles#index',        as: 'articles'
-      get  'articles/famous',     to: 'articles#index_famous', as: 'famous_articles'
       post 'articles/create',     to: 'articles#create',       as: 'create_article'
       post 'articles/:id/update', to: 'articles#update',       as: 'update_article'
       post 'articles/:id/delete', to: 'articles#destroy',      as: 'destroy_article'

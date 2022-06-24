@@ -25,7 +25,7 @@ module.exports = {
   // 登録情報詳細API
   userShowUrl: '/api/v1/users/_username.json',
   // ジャンル別記事一覧API
-  userGenreArticlesUrl: '/api/v1/users/_username/genre/_id.json',
+  userGenreArticlesUrl: '/api/v1/users/_username/genres/_id.json',
   // ランキングAPI
   usersUrl: '/api/v1/users.json',
   // 登録情報変更API
@@ -48,8 +48,6 @@ module.exports = {
   // 【記事】
   // 記事一覧API
   articlesUrl: '/api/v1/articles.json',
-  // 記事一覧API
-  famousArticlesUrl: '/api/v1/articles/famous.json',
   // 記事詳細API
   articleDetailUrl: '/api/v1/articles/_id.json',
   // 記事作成API
