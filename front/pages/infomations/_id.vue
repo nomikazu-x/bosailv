@@ -1,30 +1,11 @@
 <template>
-  <div>
-    <Loading v-if="loading" />
-    <v-card v-if="!loading">
-      <v-card-title v-if="list">
-        <InfomationLabel :list="list" />
-        <span class="ml-1 font-weight-bold">
-          {{ list.title }}
-        </span>
-        <span class="ml-1">
-          ({{ $dateFormat(list.started_at, 'ja') }})
-        </span>
-      </v-card-title>
-      <v-card-text v-if="list">
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <div v-if="list.body" class="mx-2 my-2" v-html="list.body" />
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <div v-else-if="list.summary" class="mx-2 my-2" v-html="list.summary" />
-      </v-card-text>
-      <v-divider />
-      <v-card-actions>
-        <ul class="my-2">
-          <li><NuxtLink to="/infomations">一覧</NuxtLink></li>
-        </ul>
-      </v-card-actions>
-    </v-card>
-  </div>
+  <InfomationsIdTemplate
+    :infomation="infomation"
+    :processing="processing"
+    :loading="loading"
+    :alert="alert"
+    :notice="notice"
+  />
 </template>
 
 <script>
@@ -36,7 +17,7 @@ export default {
 
   data () {
     return {
-      list: null
+      infomation: null
     }
   },
 
@@ -47,7 +28,7 @@ export default {
           this.$toasted.error(this.$t('system.error'))
           return this.$router.push({ path: '/' })
         }
-        this.list = response.data.infomation
+        this.infomation = response.data.infomation
       },
       (error) => {
         if (error.response == null) {
