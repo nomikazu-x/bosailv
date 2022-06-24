@@ -20,12 +20,18 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   def genre_articles
     @user = User.find_by(username: params[:username])
     @genre = Genre.find(params[:id])
-    if params[:favorite]
-      @articles = @user.favorited_articles.page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{@genre.id}")
+    @articles = @user.articles.page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{@genre.id}")
+    if @user
+      render './api/v1/users/genre_articles'
     else
-      @articles = @user.articles.page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{@genre.id}")
+      head :not_found
     end
-    
+  end
+
+  def genre_favorite_articles
+    @user = User.find_by(username: params[:username])    
+    @genre = Genre.find(params[:id])
+    @articles = @user.favorited_articles.page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{@genre.id}")
     if @user
       render './api/v1/users/genre_articles'
     else

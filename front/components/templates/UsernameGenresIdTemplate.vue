@@ -41,12 +41,17 @@
           <TabArticleList
             :processing="processing"
             :articles="articles"
-            :info="info"
-            @pagination="onPagination"
+            :info="articleInfo"
+            @pagination="onArticlePagination"
           />
         </v-tab-item>
         <v-tab-item>
-          <TabFavoriteArticleList />
+          <TabArticleList
+            :processing="processing"
+            :articles="favoriteArticles"
+            :info="favoriteArticleInfo"
+            @pagination="onFavoriteArticlePagination"
+          />
         </v-tab-item>
       </v-tabs-items>
     </template>
@@ -68,7 +73,11 @@ export default {
       type: Object,
       default: null
     },
-    info: {
+    articleInfo: {
+      type: Object,
+      default: null
+    },
+    favoriteArticleInfo: {
       type: Object,
       default: null
     },
@@ -77,6 +86,10 @@ export default {
       default: null
     },
     articles: {
+      type: Array,
+      default: () => []
+    },
+    favoriteArticles: {
       type: Array,
       default: () => []
     },
@@ -117,8 +130,11 @@ export default {
     }
   },
   methods: {
-    onPagination (value) {
-      return this.$emit('pagination', value)
+    onArticlePagination (value) {
+      return this.$emit('article-pagination', value)
+    },
+    onFavoriteArticlePagination (value) {
+      return this.$emit('favorite-article-pagination', value)
     }
   }
 }
