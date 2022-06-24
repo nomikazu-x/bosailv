@@ -23,37 +23,12 @@
           :notice="notice"
           @pagination="onPagination"
         />
-        <GenresImageIndexTemplate
-          :genres="genres"
-        />
+        <GenresImageIndexTemplate :genres="genres" />
       </div>
     </template>
 
-    <template v-if="!loading" #right>
-      <div v-if="$auth.loggedIn" class="mb-4">
-        <UserIntroCard
-          :user="$auth.user"
-          :required-point="$auth.user.required_point"
-        />
-      </div>
-      <div v-else class="mb-4">
-        <SignUp />
-      </div>
-      <div class="mb-4">
-        <ImportantInfomationLists
-          :infomations="infomations"
-        />
-      </div>
-      <div class="mb-4">
-        <ArticlesRankingCard
-          :famous-articles="famousArticles"
-        />
-      </div>
-      <div class="mb-4">
-        <UserRankingCard
-          :users="users"
-        />
-      </div>
+    <template #right>
+      <DefaultRightColumnTemplate :loading="loading" />
     </template>
   </TwoColumnContainer>
 </template>
@@ -61,18 +36,6 @@
 <script>
 export default {
   props: {
-    canAction: {
-      type: Boolean,
-      default: false
-    },
-    user: {
-      type: Object,
-      default: null
-    },
-    users: {
-      type: Array,
-      default: () => []
-    },
     genres: {
       type: Array,
       default: () => []
@@ -84,18 +47,6 @@ export default {
     articles: {
       type: Array,
       default: () => []
-    },
-    famousArticles: {
-      type: Array,
-      default: () => []
-    },
-    infomations: {
-      type: Array,
-      default: () => []
-    },
-    requiredPoint: {
-      type: Number,
-      default: 0
     },
     processing: {
       type: Boolean,

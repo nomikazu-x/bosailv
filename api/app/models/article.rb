@@ -4,7 +4,7 @@ class Article < ApplicationRecord
   has_many :article_favorites, dependent: :destroy
   has_many :article_comments, dependent: :destroy
   has_many :likers, through: :article_favorites, source: :user
-  has_many :article_genre_relations
+  has_many :article_genre_relations, dependent: :destroy
   has_many :genres, through: :article_genre_relations
 
   mount_uploader :thumbnail, ImageUploader

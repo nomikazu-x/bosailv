@@ -11,7 +11,6 @@
       <ValidationProvider v-slot="{ errors }" name="thumbnail" rules="size_20MB:20000">
         <v-file-input
           v-model="valueModel"
-          :value="value"
           accept="image/jpeg,image/gif,image/png"
           label="サムネイルを選択してください"
           prepend-icon="mdi-camera"

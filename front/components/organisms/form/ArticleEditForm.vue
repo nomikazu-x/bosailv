@@ -76,10 +76,9 @@ export default {
     }
   },
   created () {
-    this.thumbnail = this.thumbnail || this.article.thumbnail_url.xlarge
     this.title = this.title || this.article.title
     this.content = this.content || this.article.content
-    this.article.genres.forEach((value) => {
+    this.selectedGenres = this.selectedGenres || this.article.genres.forEach((value) => {
       this.selectedGenres.push(value.id)
     })
   },
