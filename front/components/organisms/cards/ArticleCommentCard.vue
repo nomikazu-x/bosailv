@@ -6,7 +6,7 @@
         <v-divider class="my-4" />
       </article>
       <ArticleCommentList v-for="articleComment in articleComments" :key="articleComment.id" :article-comment="articleComment" />
-      <ArticleCommentTextarea :article="article" />
+      <ArticleCommentTextarea v-if="$auth.loggedIn" :article="article" />
     </div>
   </BaseTitleCard>
 </template>

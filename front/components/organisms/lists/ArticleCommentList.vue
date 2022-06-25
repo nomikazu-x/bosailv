@@ -10,7 +10,7 @@
         <v-col cols="12">
           <!-- eslint-disable-next-line vue/no-v-html -->
           <v-card-text v-html="articleComment.content" />
-          <div class="text-right">
+          <div v-if="canAction" class="text-right">
             <v-btn icon>
               <v-icon size="20" @click="onCommentDelete(articleComment.id)">
                 mdi-trash-can-outline
@@ -33,6 +33,12 @@ export default {
     articleComment: {
       type: Object,
       default: null
+    }
+  },
+
+  computed: {
+    canAction () {
+      return (this.$auth.user && this.$auth.user.id) === this.articleComment.user.id
     }
   },
 

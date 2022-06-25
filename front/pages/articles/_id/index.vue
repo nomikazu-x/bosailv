@@ -1,5 +1,6 @@
 <template>
   <ArticlesIdTemplate
+    :user="user"
     :article="article"
     :article-comments="articleComments"
     :likers="likers"
@@ -23,8 +24,7 @@ export default {
 
   data () {
     return {
-      // article: null,
-      // comments: null,
+      user: null,
       errors: null,
       content: ''
     }
@@ -44,6 +44,7 @@ export default {
           this.$toasted.error(this.$t('system.error'))
           return this.$router.push({ path: '/' })
         }
+        this.user = response.data.article.user
         this.$store.commit('articles/setArticle', response.data.article, { root: true })
         this.$store.commit('articleComments/setArticleComments', response.data.article.comments, { root: true })
         this.$store.commit('articles/setLikers', response.data.article.likers, { root: true })

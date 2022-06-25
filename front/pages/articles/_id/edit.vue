@@ -36,6 +36,10 @@ export default {
   },
 
   async created () {
+    if (!this.$auth.loggedIn) {
+      return this.redirectAuth()
+    }
+
     await this.$axios.get(this.$config.apiBaseURL + this.$config.articleDetailUrl.replace('_id', this.$route.params.id))
       .then((response) => {
         if (response.data == null) {

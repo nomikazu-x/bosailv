@@ -28,8 +28,8 @@
       </v-card-title>
 
       <div class="text-right">
-        <FavoriteBtnGroup class="mr-3 mt-2" :article="article" :likers="likers" :alert="alert" :notice="notice" />
-        <v-menu bottom right>
+        <FavoriteBtnGroup v-if="$auth.loggedIn" class="mr-3 mt-2" :article="article" :likers="likers" :alert="alert" :notice="notice" />
+        <v-menu v-if="canAction" bottom right>
           <template #activator="{ on, attrs }">
             <v-btn
               icon
@@ -68,6 +68,10 @@ export default {
       type: Object,
       default: null
     },
+    user: {
+      type: Object,
+      default: null
+    },
     likers: {
       type: Array,
       default: () => []
@@ -84,6 +88,19 @@ export default {
   data () {
     return {
       menu: false
+    }
+  },
+  computed: {
+    authUsername () {
+      return this.$auth.user.username
+    },
+    canAction () {
+      return this.$auth.loggedIn
+        ? this.currentUsername === this.authUsername
+        : false
+    },
+    currentUsername () {
+      return this.user && this.user.username
     }
   },
   methods: {

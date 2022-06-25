@@ -19,12 +19,14 @@
               <v-col cols="12">
                 <ArticleShowCard
                   :article="article"
+                  :user="user"
                   :likers="likers"
                   @article-delete="onArticleDelete"
                 />
               </v-col>
               <v-col cols="12">
                 <ArticleCommentCard
+                  :user="user"
                   :article-comments="articleComments"
                   :article="article"
                 />
@@ -45,6 +47,10 @@
 export default {
   props: {
     errors: {
+      type: Object,
+      default: undefined
+    },
+    user: {
       type: Object,
       default: undefined
     },
