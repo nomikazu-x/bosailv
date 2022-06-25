@@ -1,42 +1,16 @@
 <template>
-  <div>
-    <Loading v-if="loading" />
-    <v-card v-if="!loading">
-      <Processing v-if="processing" />
-      <v-card-title v-if="article">
-        <v-img :src="article.thumbnail_url.xlarge" max-height="256" max-width="256" />
-        <v-card-text class="ml-1 font-weight-bold">
-          {{ article.title }}
-        </v-card-text>
-        <span class="ml-1">
-          ({{ $dateFormat(article.created_at, 'ja') }})
-        </span>
-      </v-card-title>
-      <v-card-text v-if="article">
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <div v-if="article.content" class="mx-2 my-2" v-html="article.content" />
-      </v-card-text>
-      <v-divider />
-      <v-card-actions>
-        <ul class="my-2">
-          <li><NuxtLink :to="`/articles/${$route.params.id}/edit`">編集</NuxtLink></li>
-          <li @click="onArticleDelete(article.id)">削除</li>
-          <li><NuxtLink :to="`/articles/${$route.params.id}/likers`">いいねしたユーザー一覧</NuxtLink></li>
-        </ul>
-        <FavoriteBtnGroup :article="article" @alert="alert = $event" @notice="notice = $event" />
-      </v-card-actions>
-    </v-card>
-    <v-card>
-      <v-card-title>コメント一覧</v-card-title>
-      <v-divider class="my-4" />
-      <article v-if="articleComments != null && articleComments.length === 0">
-        <span class="ml-1">コメントはありません。</span>
-        <v-divider class="my-4" />
-      </article>
-      <Comment v-for="articleComment in articleComments" :key="articleComment.id" :article-comment="articleComment" />
-      <CommentArea :article="article" />
-    </v-card>
-  </div>
+  <ArticlesIdTemplate
+    :user="user"
+    :article="article"
+    :article-comments="articleComments"
+    :likers="likers"
+    :errors="errors"
+    :processing="processing"
+    :loading="loading"
+    :alert="alert"
+    :notice="notice"
+    @article-delete="onArticleDelete"
+  />
 </template>
 
 <script>
@@ -50,15 +24,16 @@ export default {
 
   data () {
     return {
-      // article: null,
-      // comments: null,
+      user: null,
+      errors: null,
       content: ''
     }
   },
   computed: {
     ...mapGetters({
       article: 'articles/article',
-      articleComments: 'articleComments/articleComments'
+      articleComments: 'articleComments/articleComments',
+      likers: 'articles/likers'
     })
   },
 
@@ -69,8 +44,10 @@ export default {
           this.$toasted.error(this.$t('system.error'))
           return this.$router.push({ path: '/' })
         }
+        this.user = response.data.article.user
         this.$store.commit('articles/setArticle', response.data.article, { root: true })
         this.$store.commit('articleComments/setArticleComments', response.data.article.comments, { root: true })
+        this.$store.commit('articles/setLikers', response.data.article.likers, { root: true })
       },
       (error) => {
         if (error.response == null) {

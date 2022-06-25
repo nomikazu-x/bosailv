@@ -1,26 +1,26 @@
 <template>
-  <v-card class="pa-6">
-    <h2 class="mb-3 text-center">BosaiLevel</h2>
+  <BaseTitleCard title="新規登録">
+    <div class="pa-5">
+      <v-row justify="center">
+        <v-col cols="12" sm="8" md="6">
+          <SignupForm
+            :processing="processing"
+            :errors="errors"
+            @signup="onSignup"
+          />
+        </v-col>
 
-    <v-row justify="center">
-      <v-col cols="12" sm="8" md="6">
-        <SignupForm
-          :processing="processing"
-          :errors="errors"
-          @signup="onSignup"
-        />
-      </v-col>
+        <v-col cols="12" sm="12" md="9" class="text-right">
+          <v-divider class="mb-2" />
 
-      <v-col cols="12" sm="12" md="9" class="text-right">
-        <v-divider class="mb-2" />
-
-        <ul class="list-style-none pl-0">
-          <li class="mb-1"><NuxtLink to="/password/reset">パスワードをリセット</NuxtLink></li>
-          <li class="mb-1"><NuxtLink to="/signin">ログインへ</NuxtLink></li>
-        </ul>
-      </v-col>
-    </v-row>
-  </v-card>
+          <ul class="list-style-none pl-0">
+            <li class="mb-1"><NuxtLink to="/password/reset">パスワードをリセット</NuxtLink></li>
+            <li class="mb-1"><NuxtLink to="/signin">ログインへ</NuxtLink></li>
+          </ul>
+        </v-col>
+      </v-row>
+    </div>
+  </BaseTitleCard>
 </template>
 
 <script>

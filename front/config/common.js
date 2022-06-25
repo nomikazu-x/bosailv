@@ -24,8 +24,10 @@ module.exports = {
   passwordUpdateUrl: '/api/v1/auth/password/update.json',
   // 登録情報詳細API
   userShowUrl: '/api/v1/users/_username.json',
+  // ジャンル別記事一覧API
+  userGenreArticlesUrl: '/api/v1/users/_username/genres/_id.json',
   // ランキングAPI
-  usersRankingUrl: '/api/v1/users/ranking.json',
+  usersUrl: '/api/v1/users.json',
   // 登録情報変更API
   userUpdateUrl: '/api/v1/auth/update.json',
   // 画像変更API
@@ -56,8 +58,12 @@ module.exports = {
   articleDeleteUrl: '/api/v1/articles/_id/delete.json',
   // 記事検索API
   articlesSearchUrl: '/api/v1/articles/search.json',
-  // 記事カテゴリー検索API
-  articlesCategoryUrl: '/api/v1/articles/category.json',
+
+  // 【ジャンル】
+  // ジャンル一覧API
+  genresUrl: '/api/v1/genres.json',
+  // ジャンル詳細API
+  genreShowUrl: '/api/v1/genres/_id.json',
 
   // ［お気に入り］
   // お気に入り登録API

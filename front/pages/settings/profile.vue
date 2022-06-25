@@ -1,6 +1,7 @@
 <template>
   <SettingsProfileTemplate
     :user="user"
+    :prefectures="prefectures"
     :loading="loading"
     :processing="processing"
     @alert="alert = $event"
@@ -20,7 +21,8 @@ export default {
 
   data () {
     return {
-      user: null
+      user: null,
+      prefectures: []
     }
   },
 
@@ -49,6 +51,7 @@ export default {
           return this.$router.push({ path: '/' })
         } else {
           this.user = response.data.user
+          this.prefectures = response.data.prefectures
         }
       },
       (error) => {
@@ -66,11 +69,14 @@ export default {
     this.loading = false
   },
   methods: {
-    async onUserUpdate (name) {
+    async onUserUpdate (userInfo) {
       this.processing = true
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.userUpdateUrl, {
-        name
+        name: userInfo.name,
+        prefecture_id: userInfo.selectPrefecture,
+        city_id: userInfo.selectCity,
+        profile: userInfo.profile
       })
         .then((response) => {
           if (response.data == null) {

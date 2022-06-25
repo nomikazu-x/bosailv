@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <BaseTitleCard title="パスワード変更">
     <v-row>
       <v-col cols="auto">
         <UserPasswordForm
@@ -9,7 +9,7 @@
         />
       </v-col>
     </v-row>
-  </v-card>
+  </BaseTitleCard>
 </template>
 
 <script>

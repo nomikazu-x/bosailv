@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_07_114517) do
+ActiveRecord::Schema.define(version: 2022_06_12_135413) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -32,15 +32,38 @@ ActiveRecord::Schema.define(version: 2022_06_07_114517) do
     t.index ["user_id"], name: "index_article_favorites_on_user_id"
   end
 
+  create_table "article_genre_relations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.bigint "genre_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_article_genre_relations_on_article_id"
+    t.index ["genre_id"], name: "index_article_genre_relations_on_genre_id"
+  end
+
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", limit: 30, null: false
     t.text "content", size: :long, null: false
-    t.integer "category", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "thumbnail"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "cities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "prefecture_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
+  end
+
+  create_table "genres", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "image", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "infomations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -69,6 +92,13 @@ ActiveRecord::Schema.define(version: 2022_06_07_114517) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_point_records_on_user_id"
+  end
+
+  create_table "prefectures", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_prefectures_on_name", unique: true
   end
 
   create_table "required_points", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -112,6 +142,8 @@ ActiveRecord::Schema.define(version: 2022_06_07_114517) do
     t.integer "point_to_next", default: 5, null: false
     t.string "username", limit: 30, null: false
     t.text "profile"
+    t.integer "prefecture_id"
+    t.integer "city_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -123,7 +155,10 @@ ActiveRecord::Schema.define(version: 2022_06_07_114517) do
   add_foreign_key "article_comments", "users"
   add_foreign_key "article_favorites", "articles"
   add_foreign_key "article_favorites", "users"
+  add_foreign_key "article_genre_relations", "articles"
+  add_foreign_key "article_genre_relations", "genres"
   add_foreign_key "articles", "users"
+  add_foreign_key "cities", "prefectures"
   add_foreign_key "infomations", "users"
   add_foreign_key "point_records", "users"
 end

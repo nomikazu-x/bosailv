@@ -1,26 +1,28 @@
 <template>
-  <v-card class="pt-10 px-6 pb-8">
-    <h2 class="mb-3 text-center">メールアドレスを入力</h2>
+  <BaseTitleCard title="パスワードをリセットする">
+    <div class="pa-5">
+      <h2 class="mb-3 text-center">メールアドレスを入力</h2>
 
-    <v-row justify="center">
-      <v-col cols="12" sm="8">
-        <PasswordResetForm
-          :processing="processing"
-          :errors="errors"
-          @submit="onSubmit"
-        />
-      </v-col>
+      <v-row justify="center">
+        <v-col cols="12" sm="8">
+          <PasswordResetForm
+            :processing="processing"
+            :errors="errors"
+            @submit="onSubmit"
+          />
+        </v-col>
 
-      <v-col cols="12" sm="12">
-        <v-divider class="mb-2" />
+        <v-col cols="12" sm="12">
+          <v-divider class="mb-2" />
 
-        <ul class="list-style-none pl-0">
-          <li class="mb-1"><NuxtLink to="/signin">ログインへ</NuxtLink></li>
-          <li class="mb-1"><NuxtLink to="/signup">新規登録へ</NuxtLink></li>
-        </ul>
-      </v-col>
-    </v-row>
-  </v-card>
+          <ul class="list-style-none pl-0">
+            <li class="mb-1"><NuxtLink to="/signin">ログインへ</NuxtLink></li>
+            <li class="mb-1"><NuxtLink to="/signup">新規登録へ</NuxtLink></li>
+          </ul>
+        </v-col>
+      </v-row>
+    </div>
+  </BaseTitleCard>
 </template>
 
 <script>

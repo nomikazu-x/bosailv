@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   has_many :article_favorites, dependent: :destroy
   has_many :article_comments, dependent: :destroy
   has_many :point_records, dependent: :destroy
+  has_many :favorited_articles, through: :article_favorites, source: :article
 
   scope :point_ranking, -> { order(lifelong_point: :desc, id: :desc) }
 

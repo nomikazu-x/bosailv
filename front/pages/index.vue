@@ -1,9 +1,8 @@
 <template>
-  <IndexTemplate
-    :users="users"
-    :infomations="infomations"
-    :articles="articles"
+  <AppTemplate
+    :genres="genres"
     :info="info"
+    :articles="articles"
     :processing="processing"
     :loading="loading"
     :alert="alert"
@@ -20,49 +19,48 @@ export default {
   mixins: [Application],
   data () {
     return {
+      genres: null,
       page: 1,
       info: null,
-      articles: null,
-      users: null,
-      infomations: null
+      articles: null
     }
   },
   async created () {
     await this.onPagination(this.page)
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.importantInfomationsUrl)
+
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.genresUrl)
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
-          this.infomations = null
+          this.genres = null
         } else {
-          this.infomations = response.data.infomations
+          this.genres = response.data.genres
         }
       },
       (error) => {
         this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
       })
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.usersRankingUrl)
+
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, {
+      params: { famous: true }
+    })
       .then((response) => {
-        if (response.data == null) {
+        if (response.data == null || response.data.article == null) {
           this.$toasted.error(this.$t('system.error'))
           return this.$router.push({ path: '/' })
         } else {
-          this.users = response.data.users
+          this.famousArticles = response.data.articles
         }
       },
       (error) => {
-        if (error.response == null) {
-          this.$toasted.error(this.$t('network.failure'))
-        } else if (error.response.status === 401) {
-          return this.signOut()
-        } else {
-          this.$toasted.error(this.$t('network.error'))
-        }
+        this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
         return this.$router.push({ path: '/' })
       })
 
     this.loading = false
+    this.processing = false
   },
+
   methods: {
     async onPagination (page) {
       this.processing = true

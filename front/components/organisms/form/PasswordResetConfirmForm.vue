@@ -8,13 +8,13 @@
       />
 
       <div class="d-flex justify-end">
-        <OrangeBtn
+        <RedBtn
           type="submit"
           :disabled="invalid || processing"
           @click="onSubmit"
         >
           送信
-        </OrangeBtn>
+        </RedBtn>
       </div>
     </v-form>
   </ValidationObserver>

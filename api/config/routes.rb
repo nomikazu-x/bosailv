@@ -2,17 +2,17 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # ユーザー
-      get  'users/ranking',       to: 'users#ranking',      as: 'users_ranking'
-      get  'users/:username',     to: 'users#show',         as: 'show_users'
+      get  'users',                     to: 'users#index',          as: 'users'
+      get  'users/:username',           to: 'users#show',           as: 'show_users'
+      get  'users/:username/genres/:id', to: 'users#genre_articles', as: 'genre_articles_users'
       
       # 記事
-      get  'articles',            to: 'articles#index',     as: 'articles'
-      post 'articles/create',     to: 'articles#create',    as: 'create_article'
-      post 'articles/:id/update', to: 'articles#update',    as: 'update_article'
-      post 'articles/:id/delete', to: 'articles#destroy',   as: 'destroy_article'
-      get  'articles/search',     to: 'articles#search',    as: 'search_articles'
-      get  'articles/category',   to: 'articles#category',  as: 'category_articles'
-      get  'articles/:id',        to: 'articles#show',      as: 'article'
+      get  'articles',            to: 'articles#index',        as: 'articles'
+      post 'articles/create',     to: 'articles#create',       as: 'create_article'
+      post 'articles/:id/update', to: 'articles#update',       as: 'update_article'
+      post 'articles/:id/delete', to: 'articles#destroy',      as: 'destroy_article'
+      get  'articles/search',     to: 'articles#search',       as: 'search_articles'
+      get  'articles/:id',        to: 'articles#show',         as: 'article'
 
       # 記事コメント
       post 'article_comments/create',     to: 'article_comments#create',    as: 'create_comment'
@@ -22,10 +22,17 @@ Rails.application.routes.draw do
       post 'articles/:id/article_favorites/create', to: 'article_favorites#create',    as: 'favorite_article'
       post 'articles/:id/article_favorites/delete', to: 'article_favorites#destroy',   as: 'unfavorite_article'
 
+      # ジャンル
+      get  'genres',              to: 'genres#index',   as: 'genres'
+      get  'genres/:id',          to: 'genres#show',    as: 'show_genre'
+
       # お知らせ
       get 'infomations',           to: 'infomations#index',     as: 'infomations'
       get 'infomations/important', to: 'infomations#important', as: 'important_infomations'
       get 'infomations/:id',       to: 'infomations#show',      as: 'infomation'
+
+      # 市町村
+      post 'set_cities',               to: 'cities#set_cities',          as: 'set_cities'
     end
   end
 

@@ -6,7 +6,6 @@
     :right-sm="8"
   >
     <template #top>
-      <h1 class="main-heading my-8 text-center">プロフィール設定</h1>
       <Loading v-if="loading" />
       <Message v-if="!loading" :alert="alert" :notice="notice" />
     </template>
@@ -21,6 +20,7 @@
       <div class="mb-4">
         <SettingsProfileCard
           :user="user"
+          :prefectures="prefectures"
           :processing="processing"
           @user-update="onUserUpdate"
           @user-image-update="onUserImageUpdate"
@@ -37,6 +37,10 @@ export default {
     user: {
       type: Object,
       default: null
+    },
+    prefectures: {
+      type: Array,
+      default: () => []
     },
     processing: {
       type: Boolean,

@@ -3,37 +3,45 @@
     <Processing v-if="processing" />
     <v-form autocomplete="off">
       <v-row justify="center">
-        <v-col class="py-0 mr-sm-4" cols="12" sm="8" md="8">
-          <ArticleThumbnailFileInput
-            v-if="getImage"
-            v-model="thumbnail"
-            :old-src="getImage"
-          />
+        <v-col cols="12">
+          <v-sheet outlined class="mt-5">
+            <ArticleThumbnailFileInput
+              v-if="getImage"
+              v-model="thumbnail"
+              :old-src="getImage"
+            />
+          </v-sheet>
         </v-col>
-        <v-col class="py-0 mr-sm-4" cols="12" sm="8" md="8">
-          <ArticleTitleTextField
-            v-model="title"
-          />
+        <v-col cols="12">
+          <v-sheet outlined class="pa-2" height="60">
+            <ArticleTitleTextField
+              v-model="title"
+            />
+          </v-sheet>
         </v-col>
-        <v-col class="mb-16" cols="12" sm="8" md="8">
-          <ArticleCategoryCheckbox
-            v-model="selectedCategories"
-          />
+        <v-col cols="12">
+          <v-sheet outlined class="pa-2" height="300">
+            <GenresCheckbox
+              v-model="selectedGenres"
+            />
+          </v-sheet>
         </v-col>
-        <v-col class="py-0 mr-sm-4" cols="12" sm="8" md="8">
-          <Editor
-            v-model="content"
-          />
+        <v-col cols="12">
+          <v-sheet height="600">
+            <Editor
+              v-model="content"
+            />
+          </v-sheet>
         </v-col>
         <div class="text-right">
-          <OrangeBtn
-            id="article_update_btn"
+          <RedBtn
+            id="article_create_btn"
             class="post-btn"
             :disabled="invalid || processing"
             @click="onArticleUpdate"
           >
             作成
-          </OrangeBtn>
+          </RedBtn>
         </div>
       </v-row>
     </v-form>
@@ -59,7 +67,7 @@ export default {
       thumbnail: null,
       title: '',
       content: '',
-      selectedCategories: []
+      selectedGenres: []
     }
   },
   computed: {
@@ -70,8 +78,8 @@ export default {
   created () {
     this.title = this.title || this.article.title
     this.content = this.content || this.article.content
-    this.article.category.forEach((v) => {
-      this.selectedCategories.push(v)
+    this.selectedGenres = this.selectedGenres || this.article.genres.forEach((value) => {
+      this.selectedGenres.push(value.id)
     })
   },
   methods: {
@@ -80,7 +88,7 @@ export default {
         thumbnail: this.thumbnail,
         title: this.title,
         content: this.content,
-        selectedCategories: this.selectedCategories
+        selectedGenres: this.selectedGenres
       }
       this.$emit('article-update', articleInfo)
     }

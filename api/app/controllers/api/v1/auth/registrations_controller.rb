@@ -24,7 +24,7 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   end
 
   def account_update_params
-    params.permit(:name, :image, :email, :password, :profile, :username)
+    params.permit(:name, :image, :email, :password, :profile, :username, :prefecture_id, :city_id)
   end
 
   def render_create_success

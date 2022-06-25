@@ -8,8 +8,11 @@
     :href="href"
     :target="vTarget"
     :rel="rel"
+    :icon="icon"
     :to="to"
     :x-small="xSmall"
+    :x-large="xLarge"
+    :large="large"
     @click="onClick"
   >
     <TwitterIcon />
@@ -29,6 +32,18 @@ export default {
       default: false
     },
     fab: {
+      type: Boolean,
+      default: false
+    },
+    icon: {
+      type: Boolean,
+      default: false
+    },
+    xLarge: {
+      type: Boolean,
+      default: false
+    },
+    large: {
       type: Boolean,
       default: false
     },

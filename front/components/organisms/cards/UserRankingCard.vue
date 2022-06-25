@@ -1,18 +1,21 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <v-icon color="#ffc400">
-        mdi-trophy
-      </v-icon>
-      <span class="pl-1">獲得経験値ランキング</span>
-    </v-card-title>
+  <BaseTitleCard v-if="users != null && users.length > 0" class="pb-1 px-1" title="ポイントランキング">
     <UserRankingItem
-      v-for="(user, i) in users"
+      v-for="(user, i) in users.slice(0, 9)"
       :key="user.id"
       :user="user"
       :index="i"
     />
-  </v-card>
+    <RedBtn
+      large
+      class="my-3"
+      outlined
+      block
+      to="/users/ranking"
+    >
+      ランキングをもっと見る
+    </RedBtn>
+  </BaseTitleCard>
 </template>
 
 <script>

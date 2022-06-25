@@ -1,10 +1,10 @@
 <template>
-  <div class="mb-10">
+  <div>
     <ValidationProvider v-slot="{ errors }" name="content" rules="required">
       <quill-editor
         v-model="valueModel"
         :options="editorOption"
-        style="height: 800px;"
+        style="height: 480px;"
         :error-messages="errors"
       />
     </ValidationProvider>

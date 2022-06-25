@@ -1,7 +1,5 @@
 <template>
   <OneColumnContainer>
-    <h1 class="main-heading mb-8 text-center">パスワードをリセットする</h1>
-
     <Loading v-if="loading" />
     <Message v-if="!loading" :alert="alert" :notice="notice" />
 

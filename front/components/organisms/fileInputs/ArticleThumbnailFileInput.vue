@@ -1,11 +1,13 @@
 <template>
   <v-row justify="center">
-    <v-img
-      :src="getPreviewSrc"
-      max-height="300"
-      max-width="450"
-      class="mb-5 mt-2 rounded-lg"
-    >
+    <v-col cols="12">
+      <v-img
+        :src="getPreviewSrc"
+        max-height="300"
+        class="pa-5 rounded-lg"
+      />
+    </v-col>
+    <v-col cols="12">
       <ValidationProvider v-slot="{ errors }" name="thumbnail" rules="size_20MB:20000">
         <v-file-input
           v-model="valueModel"
@@ -17,7 +19,7 @@
           @change="onInput"
         />
       </ValidationProvider>
-    </v-img>
+    </v-col>
   </v-row>
 </template>
 

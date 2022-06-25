@@ -11,7 +11,7 @@
     </v-content>
 
     <TheFooter />
-    <GoTop :max-width="48" :size="48" :right="24" :bottom="24" bg-color="#117768" />
+    <GoTop :max-width="48" :size="48" :right="24" :bottom="24" bg-color="#ef5350" />
   </v-app>
 </template>
 

@@ -1,12 +1,15 @@
 <template>
-  <ArticleIndexTemplate
+  <ArticlesTemplate
+    :article-info="articleInfo"
     :articles="articles"
-    :info="info"
+    :famous-article-info="famousArticleInfo"
+    :famous-articles="famousArticles"
     :processing="processing"
     :loading="loading"
     :alert="alert"
     :notice="notice"
-    @pagination="onPagination"
+    @article-pagination="onArticlePagination"
+    @famous-article-pagination="onFamousArticlePagination"
   />
 </template>
 
@@ -20,42 +23,73 @@ export default {
 
   data () {
     return {
-      page: 1,
-      info: null,
-      articles: null
+      articlePage: 1,
+      famousArticlePage: 1,
+      articleInfo: null,
+      famousArticleInfo: null,
+      articles: null,
+      famousArticles: null
     }
   },
 
   async created () {
-    await this.onPagination(this.page)
+    await this.onArticlePagination(this.articlePage)
+    await this.onFamousArticlePagination(this.famousArticlePage)
     this.loading = false
   },
 
   methods: {
-    async onPagination (page) {
+    async onArticlePagination (articlePage) {
       this.processing = true
-
       await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, {
-        params: { page }
+        params: { page: articlePage }
       })
         .then((response) => {
-          if (response.data == null || response.data.article == null) {
+          if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
-            if (this.info == null) {
+            if (this.articleInfo == null) {
               return this.$router.push({ path: '/' })
             }
-            this.page = this.info.current_page
+            this.articlePage = this.articleInfo.current_page
           } else {
-            this.info = response.data.article
+            this.articleInfo = response.data.article
             this.articles = response.data.articles
           }
         },
         (error) => {
           this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
-          if (this.info == null) {
+          if (this.articleInfo == null) {
             return this.$router.push({ path: '/' })
           }
-          this.page = this.info.current_page
+          this.articlePage = this.articleInfo.current_page
+        })
+
+      this.processing = false
+    },
+
+    async onFamousArticlePagination (famousArticlePage) {
+      this.processing = true
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, {
+        params: { page: famousArticlePage, famous: true }
+      })
+        .then((response) => {
+          if (response.data == null) {
+            this.$toasted.error(this.$t('system.error'))
+            if (this.famousArticleInfo == null) {
+              return this.$router.push({ path: '/' })
+            }
+            this.famousArticlePage = this.famousArticleInfo.current_page
+          } else {
+            this.famousArticleInfo = response.data.article
+            this.famousArticles = response.data.articles
+          }
+        },
+        (error) => {
+          this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
+          if (this.famousArticleInfo == null) {
+            return this.$router.push({ path: '/' })
+          }
+          this.famousArticlePage = this.famousArticleInfo.current_page
         })
 
       this.processing = false

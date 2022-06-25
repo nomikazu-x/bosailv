@@ -16,7 +16,7 @@
             :error-messages="errors"
           />
         </ValidationProvider>
-        <GreenBtn id="user_image_update_btn" color="primary" :disabled="invalid || image === null || processing" @click="onUserImageUpdate">アップロード</GreenBtn>
+        <RedBtn id="user_image_update_btn" color="primary" :disabled="invalid || image === null || processing" @click="onUserImageUpdate">アップロード</RedBtn>
         <v-dialog transition="dialog-top-transition" max-width="600px">
           <template #activator="{ on, attrs }">
             <v-btn id="user_image_delete_btn" color="secondary" :disabled="!$auth.user.upload_image || processing" v-bind="attrs" v-on="on">画像削除</v-btn>
@@ -29,7 +29,7 @@
               </v-card-text>
               <v-card-actions class="justify-end">
                 <v-btn id="user_image_delete_no_btn" color="secondary" @click="dialog.value = false">いいえ</v-btn>
-                <OrangeBtn id="user_image_delete_yes_btn" color="primary" @click="dialog.value = false; onUserImageDelete()">はい</OrangeBtn>
+                <RedBtn id="user_image_delete_yes_btn" color="primary" @click="dialog.value = false; onUserImageDelete()">はい</RedBtn>
               </v-card-actions>
             </v-card>
           </template>

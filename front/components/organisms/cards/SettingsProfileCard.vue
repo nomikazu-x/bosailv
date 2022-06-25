@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <BaseTitleCard title="プロフィール変更">
     <v-row>
       <v-col cols="auto">
         <UserImageFileInput
@@ -11,12 +11,13 @@
       <v-col cols="12">
         <UserProfileForm
           :user="user"
+          :prefectures="prefectures"
           :processing="processing"
           @user-update="onUserUpdate"
         />
       </v-col>
     </v-row>
-  </v-card>
+  </BaseTitleCard>
 </template>
 
 <script>
@@ -25,6 +26,10 @@ export default {
     user: {
       type: Object,
       default: null
+    },
+    prefectures: {
+      type: Array,
+      default: () => []
     },
     processing: {
       type: Boolean,

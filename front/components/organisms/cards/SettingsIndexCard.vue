@@ -1,7 +1,5 @@
 <template>
-  <v-card class="pa-4">
-    <h2 class="mb-3 text-center">{{ $auth.user.name }}</h2>
-
+  <BaseTitleCard :title="$auth.user.name">
     <v-list>
       <v-list-item to="/settings/profile">
         <v-list-item-icon>
@@ -50,5 +48,5 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
-  </v-card>
+  </BaseTitleCard>
 </template>

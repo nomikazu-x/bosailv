@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ArticleNewTemplate
+    <ArticlesNewTemplate
       v-if="!success"
       :errors="errors"
       :processing="processing"
@@ -46,8 +46,8 @@ export default {
       formData.append('article[title]', articleInfo.title)
       formData.append('article[content]', articleInfo.content)
       formData.append('article[thumbnail]', articleInfo.thumbnail)
-      articleInfo.selectedCategories.forEach((category) => {
-        formData.append('article[category][]', category)
+      articleInfo.selectedGenres.forEach((genre) => {
+        formData.append('article[genre_ids][]', genre)
       })
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.articleCreateUrl, formData)
@@ -56,7 +56,7 @@ export default {
             this.$toasted.error(this.$t('system.error'))
           } else {
             this.$store.commit('user/setPoint', response.data.article.user, { root: true })
-            this.$store.commit('user/setRequiredPoint', response.data.required_exp, { root: true })
+            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
             this.$store.commit('articles/addArticles', response.data.article, { root: true })
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)

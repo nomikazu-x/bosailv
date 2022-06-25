@@ -11,7 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
-      <div class="mb-4 mt-10">
+      <div class="mb-4">
         <UserIntroCard
           :user="user"
           :required-point="requiredPoint"
@@ -20,20 +20,17 @@
     </template>
 
     <template v-if="!loading" #right>
-      <v-container>
-        <v-row>
-          <v-col cols="12" sm="8">
-            <h2 class="text-center main-heading">{{ canAction ? 'あなた' : currentName }}の災害時役立つ記事</h2>
-          </v-col>
-          <v-col v-if="canAction" cols="12" sm="4" class="text-right">
-            <GreenBtn class="mb-4" color="#00a8ff" to="/articles/new">記事を作成する</GreenBtn>
-          </v-col>
-        </v-row>
-      </v-container>
+      <BaseTitleCard :title="cardTitle">
+        <div class="pa-5">
+          <v-row>
+            <v-col v-if="canAction" cols="12" class="text-right">
+              <RedBtn class="my-b mr-4" to="/articles/new">記事を作成する</RedBtn>
+            </v-col>
+          </v-row>
 
-      <ArticleLists
-        :articles="articles"
-      />
+          <GenreList :genres="genres" />
+        </div>
+      </BaseTitleCard>
     </template>
   </TwoColumnContainer>
 </template>
@@ -53,7 +50,7 @@ export default {
       type: Object,
       default: null
     },
-    articles: {
+    genres: {
       type: Array,
       default: () => []
     },
@@ -81,6 +78,9 @@ export default {
   computed: {
     currentName () {
       return (this.user && this.user.name) || this.$auth.user.name
+    },
+    cardTitle () {
+      return (this.canAction ? 'あなた' : this.currentName) + 'の災害時役立つ記事'
     }
   }
 }

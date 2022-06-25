@@ -1,3 +1,5 @@
+require 'csv'
+
 env_paths = ['', "#{Rails.env}/"]
 env_paths.each do |env_path|
   list_file = "#{Rails.root}/db/seed/#{env_path}_list.txt"
@@ -35,11 +37,37 @@ env_paths.each do |env_path|
   end
 end
 
-common_table_name = %w(required_point)
+common_table_name = %w(required_point genre)
 common_table_name.each do |table_name|
   path = Rails.root.join('db', 'seed', "#{table_name}.rb")
   if File.exist?(path)
-    puts "Creating #{table_name}....."
+    p "Creating #{table_name}....."
     require(path)
   end
+end
+
+# CSV読み込み
+file_path = 'lib/自治体.csv'
+csv_data = CSV.read(file_path)
+
+# 都道府県データ抽出
+prefectures_list = csv_data.map { |row| row[1] }.uniq
+
+# 市区町村データ抽出
+cities_list = csv_data.map do |row|
+    next if row[2] == nil
+    row[1, 2]
+  end.compact
+
+# 都道府県データ作成
+prefectures_list.each do |prefecture|
+  Prefecture.create!(name: prefecture)
+  p "Create: #{prefecture}"
+end
+
+# 市区町村データ作成
+cities_list.each do |prefecture, city|
+  prefecture = Prefecture.find_by(name: prefecture)
+  prefecture.cities.create(name: city)
+  p "Create: #{city}"
 end

@@ -1,10 +1,14 @@
 class Api::V1::ArticlesController < Api::V1::ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_article, except: %i[create index search category]
+  before_action :set_article, except: %i[create index search]
   before_action :correct_user?, only: %i[update destroy]
 
   def index
-    @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
+    if params[:famous]
+      @articles = Article.all.ranking.page(params[:page]).per(Settings['default_articles_limit'])
+    else
+      @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
+    end
   end
 
   def create
@@ -13,7 +17,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
     if @article.save
       ActiveRecord::Base.transaction do
         point_record = PointRecorder.new(@article.user).record(Settings['article_create_obtained_point'])
-        required_point = RequiredPoint.find_by(level: @article.user.level)
+        @required_point = RequiredPoint.find_by(level: @article.user.level)
         render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.create') }
       end
     else
@@ -33,7 +37,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
     if @article.destroy
       ActiveRecord::Base.transaction do
         point_record = PointRecorder.new(@article.user).delete_record(Settings['article_create_obtained_point'])
-        required_point = RequiredPoint.find_by(level: @article.user.level)
+        @required_point = RequiredPoint.find_by(level: @article.user.level)
         render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.destroy') }
       end
     else
@@ -42,18 +46,24 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   end
 
   def search
-    if params[:keyword].present?
+    if params[:keyword].present? 
       @articles = Article.where('title Like ? OR content Like ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(Settings['default_articles_limit'])
-    else
-      @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
-    end
-  end
 
-  def category
-    if params[:selected_categories].present?
-      params[:selected_categories].each do |selected_category| 
-        @articles = Article.where_all_category(selected_category).page(params[:page]).per(Settings['default_articles_limit'])
+      if params[:genre_ids].present?
+        params[:genre_ids].each do |genre_id|
+          genre = Genre.find(genre_id)
+          @articles = @articles.joins(:article_genre_relations).where("genre_id = #{genre.id}")
+        end
+        @articles = @articles.page(params[:page]).per(Settings['default_articles_limit'])
       end
+
+    elsif params[:genre_ids].present?
+      params[:genre_ids].each do |genre_id|
+        genre = Genre.find(genre_id)
+        @articles = Article.all.joins(:article_genre_relations).where("genre_id = #{genre.id}")
+      end
+      @articles = @articles.page(params[:page]).per(Settings['default_articles_limit'])
+
     else
       @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
     end
@@ -62,7 +72,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :user_id, :thumbnail, category: [])
+    params.require(:article).permit(:title, :content, :user_id, :thumbnail, genre_ids: [])
   end
 
   def set_article

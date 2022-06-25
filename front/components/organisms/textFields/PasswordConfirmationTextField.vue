@@ -11,6 +11,7 @@
         hint="8文字以上の半角英数字のみ使用可能です"
         name="password"
         label="パスワード [8文字以上]"
+        color="#3c3c3c"
         dense
         :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
         :type="showPassword ? 'text' : 'password'"
@@ -29,6 +30,7 @@
         name="password"
         label="パスワード(確認)"
         dense
+        color="#3c3c3c"
         :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
         :type="showPassword ? 'text' : 'password'"
         @click:append="showPassword = !showPassword"

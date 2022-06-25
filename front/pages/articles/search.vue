@@ -1,43 +1,13 @@
 <template>
-  <div>
-    <Loading v-if="loading" />
-    <v-card v-if="!loading">
-      <Processing v-if="processing" />
-      <v-card-title>記事一覧</v-card-title>
-      <ValidationProvider v-slot="{ errors }" name="keyword" rules="required">
-        <v-text-field
-          v-model="keyword"
-          label="検索"
-          prepend-icon="mdi-magnify"
-          :error-messages="errors"
-          @keyup="onSearchArticles"
-        />
-      </ValidationProvider>
-      <v-card-text>
-        <v-divider class="my-4" />
-        <article v-if="lists != null && lists.length === 0">
-          <span class="ml-1">記事はありません。</span>
-          <v-divider class="my-4" />
-        </article>
-        <article v-for="list in lists" :key="list.id">
-          <div>
-            <span class="ml-1 font-weight-bold">
-              <NuxtLink :to="{ name: 'articles-id___ja', params: { id: list.id }}">{{ list.title }}</NuxtLink>
-            </span>
-            <span class="ml-1">
-              ({{ $dateFormat(list.created_at, 'ja') }})
-            </span>
-            <div class="ml-1">
-              {{ list.category }}
-            </div>
-            <!-- eslint-disable-next-line vue/no-v-html -->
-            <div v-if="list.content" class="mx-2 my-2" v-html="list.content" />
-            <v-divider class="my-4" />
-          </div>
-        </article>
-      </v-card-text>
-    </v-card>
-  </div>
+  <ArticlesSearchTemplate
+    :info="info"
+    :articles="articles"
+    :processing="processing"
+    :loading="loading"
+    :alert="alert"
+    :notice="notice"
+    @search-article-pagination="onSearchArticlePagination"
+  />
 </template>
 
 <script>
@@ -52,22 +22,26 @@ export default {
     return {
       page: 1,
       info: null,
-      lists: null,
-      keyword: ''
+      articles: null
     }
   },
 
   created () {
+    this.onSearchArticlePagination(this.page)
     this.processing = false
     this.loading = false
   },
 
   methods: {
-    async onSearchArticles () {
+    async onSearchArticlePagination (searchInfo) {
       this.processing = true
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesSearchUrl, {
-        params: { keyword: this.keyword }
+        params: {
+          page: searchInfo.page,
+          keyword: searchInfo.keyword,
+          genre_ids: searchInfo.selectedGenres
+        }
       })
         .then((response) => {
           if (response.data == null || response.data.article == null) {
@@ -78,7 +52,7 @@ export default {
             this.page = this.info.current_page
           } else {
             this.info = response.data.article
-            this.lists = response.data.articles
+            this.articles = response.data.articles
           }
         },
         (error) => {

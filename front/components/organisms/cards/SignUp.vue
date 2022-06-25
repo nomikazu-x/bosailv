@@ -1,14 +1,12 @@
 <template>
   <v-card>
-    <v-card-title>アカウント登録</v-card-title>
+    <v-card-title>新規登録はこちら</v-card-title>
     <v-card-text>
-      <v-btn color="primary" to="/signup" nuxt>無料で始める</v-btn>
+      <RedBtn to="/signup" nuxt>無料で始める</RedBtn>
     </v-card-text>
     <v-divider />
-    <v-card-actions>
-      <ul class="my-2">
-        <li><NuxtLink to="/signin">ログイン</NuxtLink></li>
-      </ul>
+    <v-card-actions class="ml-3">
+      <NuxtLink to="/signin" class="text-decoration-none">ログイン</NuxtLink>
     </v-card-actions>
   </v-card>
 </template>

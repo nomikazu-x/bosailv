@@ -1,4 +1,5 @@
 json.success true
+
 json.infomation do
   json.label @infomation.label
   json.label_i18n @infomation.label_i18n
