@@ -65,10 +65,6 @@ export default {
       return this.$router.push({ path: '/' })
     }
 
-    if (!this.$auth.loggedIn) {
-      return this.redirectAuth()
-    }
-
     await this.$axios.get(this.$config.apiBaseURL + this.$config.userShowUrl.replace('_username', this.currentUsername))
       .then((response) => {
         if (response.data == null) {
