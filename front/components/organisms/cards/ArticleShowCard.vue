@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card outlined tile>
     <v-img :src="article.thumbnail_url.xlarge" max-height="256" />
     <v-col>
       <v-card-subtitle>

@@ -24,16 +24,10 @@
                 />
               </v-col>
               <v-col cols="12">
-                <BaseTitleCard class="mt-3" title="コメント一覧">
-                  <div class="pa-5">
-                    <article v-if="articleComments != null && articleComments.length === 0">
-                      <v-card-text>この記事にコメントはありません。</v-card-text>
-                      <v-divider class="my-4" />
-                    </article>
-                    <Comment v-for="articleComment in articleComments" :key="articleComment.id" :article-comment="articleComment" />
-                    <CommentArea :article="article" />
-                  </div>
-                </BaseTitleCard>
+                <ArticleCommentCard
+                  :article-comments="articleComments"
+                  :article="article"
+                />
               </v-col>
             </v-row>
           </div>
