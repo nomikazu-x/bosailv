@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <BaseTitleCard title="プロフィール変更">
     <v-row>
       <v-col cols="auto">
         <UserImageFileInput
@@ -17,7 +17,7 @@
         />
       </v-col>
     </v-row>
-  </v-card>
+  </BaseTitleCard>
 </template>
 
 <script>

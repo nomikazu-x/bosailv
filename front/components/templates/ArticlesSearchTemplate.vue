@@ -20,6 +20,7 @@
                   <v-text-field
                     v-model="keyword"
                     label="キーワード検索"
+                    color="#3c3c3c"
                     prepend-icon="mdi-magnify"
                     :error-messages="errors"
                   />

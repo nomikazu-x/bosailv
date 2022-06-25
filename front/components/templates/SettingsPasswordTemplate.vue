@@ -6,7 +6,6 @@
     :right-sm="8"
   >
     <template #top>
-      <h1 class="main-heading my-8 text-center">パスワード変更</h1>
       <Loading v-if="loading" />
       <Message v-if="!loading" :alert="alert" :notice="notice" />
     </template>

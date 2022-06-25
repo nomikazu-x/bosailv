@@ -11,6 +11,7 @@
       name="password"
       :label="label"
       dense
+      color="#3c3c3c"
       :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
       :type="showPassword ? 'text' : 'password'"
       @click:append="showPassword = !showPassword"

@@ -6,6 +6,7 @@
       :error-messages="errors"
       dense
       outlined
+      color="#3c3c3c"
       type="title"
       label="タイトル"
     />

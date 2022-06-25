@@ -6,16 +6,15 @@
       :user="user"
       :index="i"
     />
-    <v-btn
+    <RedBtn
       large
       class="my-3"
-      color="#ef5350"
       outlined
       block
       to="/users/ranking"
     >
       ランキングをもっと見る
-    </v-btn>
+    </RedBtn>
   </BaseTitleCard>
 </template>
 

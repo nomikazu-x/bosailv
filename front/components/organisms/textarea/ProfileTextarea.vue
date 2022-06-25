@@ -9,6 +9,7 @@
       label="自己紹介"
       auto-grow
       counter
+      color="#3c3c3c"
       name="profile"
       maxlength="255"
     />

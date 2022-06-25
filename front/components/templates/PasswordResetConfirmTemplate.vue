@@ -1,7 +1,5 @@
 <template>
   <OneColumnContainer>
-    <h1 class="main-heading mb-8 text-center">新しいパスワードを入力してください</h1>
-
     <Loading v-if="loading" />
     <Message v-if="!loading" :alert="alert" :notice="notice" />
 

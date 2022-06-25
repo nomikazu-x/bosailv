@@ -11,13 +11,13 @@
           v-model="password"
           :password-confirmation.sync="passwordConfirmation"
         />
-        <OrangeBtn
+        <RedBtn
           id="user_update_btn"
           :disabled="invalid || processing"
           @click="onUserUpdate"
         >
           変更
-        </OrangeBtn>
+        </RedBtn>
       </v-card-text>
     </v-form>
   </ValidationObserver>

@@ -11,7 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
-      <div class="mb-4 mt-10">
+      <div class="mb-4">
         <UserIntroCard
           :user="user"
           :required-point="requiredPoint"
@@ -20,40 +20,39 @@
     </template>
 
     <template v-if="!loading" #right>
-      <v-container>
+      <BaseTitleCard :title="cardTitle">
         <v-row>
-          <v-col cols="12" sm="8">
-            <h2 class="text-center main-heading">{{ canAction ? 'あなた' : currentName }}の災害時役立つ記事</h2>
+          <v-col cols="12">
+            <v-img :src="genre.image_url.xlarge" max-height="150" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.3)">
+              <v-card-title class="genre-name mt-8 white--text justify-center align-center text-shadow">{{ genre.name }}</v-card-title>
+            </v-img>
           </v-col>
-          <v-col v-if="canAction" cols="12" sm="4" class="text-right">
-            <RedBtn class="mb-4" to="/articles/new">記事を作成する</RedBtn>
+          <v-col v-if="canAction" cols="12" class="text-right">
+            <RedBtn class="mb-4 mr-5" to="/articles/new">記事を作成する</RedBtn>
           </v-col>
         </v-row>
-      </v-container>
-      <v-img :src="genre.image_url.xlarge" max-height="150" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.3)">
-        <v-card-title class="genre-name mt-8 white--text justify-center align-center text-shadow">{{ genre.name }}</v-card-title>
-      </v-img>
-      <v-tabs v-model="tab" background-color="#FFFCFC" color="#ef5350" class="mt-4" grow>
-        <v-tab v-for="title in titles" :key="title.name">{{ title.name }}</v-tab>
-      </v-tabs>
-      <v-tabs-items v-model="tab">
-        <v-tab-item>
-          <TabArticleList
-            :processing="processing"
-            :articles="articles"
-            :info="articleInfo"
-            @pagination="onArticlePagination"
-          />
-        </v-tab-item>
-        <v-tab-item>
-          <TabArticleList
-            :processing="processing"
-            :articles="favoriteArticles"
-            :info="favoriteArticleInfo"
-            @pagination="onFavoriteArticlePagination"
-          />
-        </v-tab-item>
-      </v-tabs-items>
+        <v-tabs v-model="tab" background-color="#FFFCFC" color="#ef5350" class="mt-4" grow>
+          <v-tab v-for="title in titles" :key="title.name">{{ title.name }}</v-tab>
+        </v-tabs>
+        <v-tabs-items v-model="tab">
+          <v-tab-item>
+            <TabArticleList
+              :processing="processing"
+              :articles="articles"
+              :info="articleInfo"
+              @pagination="onArticlePagination"
+            />
+          </v-tab-item>
+          <v-tab-item>
+            <TabArticleList
+              :processing="processing"
+              :articles="favoriteArticles"
+              :info="favoriteArticleInfo"
+              @pagination="onFavoriteArticlePagination"
+            />
+          </v-tab-item>
+        </v-tabs-items>
+      </BaseTitleCard>
     </template>
   </TwoColumnContainer>
 </template>
@@ -126,6 +125,9 @@ export default {
   computed: {
     currentName () {
       return (this.user && this.user.name) || this.$auth.user.name
+    },
+    cardTitle () {
+      return (this.canAction ? 'あなた' : this.currentName) + 'の災害時役立つ記事'
     }
   },
   methods: {

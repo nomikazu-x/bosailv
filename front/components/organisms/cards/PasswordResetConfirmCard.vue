@@ -1,15 +1,17 @@
 <template>
-  <v-card class="pt-10 px-6 pb-8">
-    <v-row justify="center">
-      <v-col cols="12" sm="8">
-        <PasswordResetConfirmForm
-          :processing="processing"
-          :errors="errors"
-          @submit="onSubmit"
-        />
-      </v-col>
-    </v-row>
-  </v-card>
+  <BaseTitleCard title="新しいパスワードを入力してください">
+    <div class="pa-5">
+      <v-row justify="center">
+        <v-col cols="12" sm="8">
+          <PasswordResetConfirmForm
+            :processing="processing"
+            :errors="errors"
+            @submit="onSubmit"
+          />
+        </v-col>
+      </v-row>
+    </div>
+  </BaseTitleCard>
 </template>
 
 <script>

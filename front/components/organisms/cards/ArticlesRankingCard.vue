@@ -6,16 +6,15 @@
       :article="article"
       :index="i"
     />
-    <v-btn
+    <RedBtn
       large
       class="mt-6 mb-2"
-      color="#ef5350"
       outlined
       block
       to="/articles"
     >
       人気記事をもっと見る
-    </v-btn>
+    </RedBtn>
   </BaseTitleCard>
 </template>
 

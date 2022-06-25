@@ -7,13 +7,14 @@
           <v-textarea
             v-model="content"
             label="コメント"
+            color="#3c3c3c"
             outlined
             autocomplete="off"
             :error-messages="errors"
             @click="waiting = false"
           />
         </ValidationProvider>
-        <v-btn id="comment_create_btn" color="primary" :disabled="invalid || processing || waiting" @click="onCommentCreate()">作成</v-btn>
+        <RedBtn id="comment_create_btn" :disabled="invalid || processing || waiting" @click="onCommentCreate()">作成</RedBtn>
       </v-card-text>
     </v-form>
   </ValidationObserver>

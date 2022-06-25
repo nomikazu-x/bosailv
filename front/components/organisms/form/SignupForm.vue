@@ -16,12 +16,12 @@
       />
 
       <div class="text-center mt-4">
-        <OrangeBtn
+        <RedBtn
           :disabled="invalid || processing"
           @click="onSubmit"
         >
           新規登録
-        </OrangeBtn>
+        </RedBtn>
       </div>
     </v-form>
   </ValidationObserver>

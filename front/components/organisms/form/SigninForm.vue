@@ -11,13 +11,13 @@
       />
 
       <div class="text-center mt-4">
-        <OrangeBtn
+        <RedBtn
           type="submit"
           :disabled="invalid || processing"
           @click="onSubmit"
         >
           ログイン
-        </OrangeBtn>
+        </RedBtn>
       </div>
     </v-form>
   </ValidationObserver>
