@@ -129,13 +129,13 @@ ActiveRecord::Schema.define(version: 2022_06_12_135413) do
     t.integer "failed_attempts", default: 0, null: false, comment: "連続ログイン失敗回数"
     t.string "unlock_token", comment: "アカウントロック解除トークン"
     t.datetime "locked_at", comment: "アカウントロック日時"
-    t.string "name", null: false, comment: "氏名"
+    t.string "name", limit: 30, null: false, comment: "氏名"
     t.string "image", comment: "画像"
     t.string "email", default: "", null: false, comment: "メールアドレス"
     t.text "tokens", comment: "認証トークン"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "power", null: false, comment: "権限"
+    t.integer "power", default: 0, null: false, comment: "権限"
     t.datetime "infomation_check_last_started_at", comment: "お知らせ確認最終開始日時"
     t.integer "level", default: 1, null: false, comment: "レベル"
     t.integer "lifelong_point", default: 0, null: false, comment: "合計獲得ポイント"

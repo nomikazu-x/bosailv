@@ -36,7 +36,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[6.1]
       t.datetime :locked_at,                                comment: 'アカウントロック日時'
 
       ## User Info
-      t.string :name,  null: false,              comment: '氏名'
+      t.string :name,  null: false, limit: 30,   comment: '氏名'
       t.string :image,                           comment: '画像'
       t.string :email, null: false, default: '', comment: 'メールアドレス'
 

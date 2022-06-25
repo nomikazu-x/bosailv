@@ -1,89 +1,74 @@
-# require 'rails_helper'
+require 'rails_helper'
 
-# RSpec.describe "Users::Auth::Registrations", type: :request do
-#   describe "POST /users/auth" do
-#     subject { post(api_v1_user_registration_path, params: params) }
-#     let(:params) { attributes_for(:user) }
-#     it "ユーザー登録できる" do
-#       subject
-#       res = JSON.parse(response.body)
-#       expect(res["data"]["id"]).to eq(User.last.id.to_s)
-#       expect(res["data"]["attributes"]["name"]).to eq(User.last.name)
-#       expect(response).to have_http_status(200)
-#     end
-#   end
+RSpec.describe "Api::V1::Auth::Registrations", type: :request do
+  describe "POST /api/v1/auth/sign_up" do
+    subject { post(create_auth_registration_path(format: :json), params: params) }
 
-#   describe "POST /users/auth/sign_in" do
-#     subject { post(api_v1_user_session_path, params: params) }
+    let(:params) { attributes_for(:user) }
 
-#     context "メールアドレス、パスワードが正しく、有効化もされているとき" do
-#       let(:confirmed_user) { create(:confirmed_user) }
-#       let(:params) { { email: confirmed_user.email, password: confirmed_user.password } }
-#       it "ログインできる" do
-#         subject
-#         res = JSON.parse(response.body)
-#         expect(response.headers["uid"]).to be_present
-#         expect(response.headers["access-token"]).to be_present
-#         expect(response.headers["client"]).to be_present
-#         expect(response).to have_http_status(200)
-#       end
-#     end 
+    it "ユーザー登録できる" do
+      subject
+      res = JSON.parse(response.body)
+      expect(res["user"]["id"]).to eq(User.last.id)
+      expect(res["user"]["username"]).to eq(User.last.username)
+      expect(response.status).to eq 200
+    end
+  end
 
-#     context "有効化はしたが、メールアドレスが正しくないとき" do
-#       let(:current_user) { create(:confirmed_user) }
-#       let(:params) { { email: "test@example.com", password: current_user.password } }
-#       it "ログインできない" do
-#         subject
-#         res = JSON.parse(response.body)
-#         expect(res["success"]).to be_falsey
-#         expect(res["errors"]).to include("ログイン用の認証情報が正しくありません。再度お試しください。")
-#         expect(response.headers["uid"]).to be_blank
-#         expect(response.headers["access-token"]).to be_blank
-#         expect(response.headers["client"]).to be_blank
-#         expect(response).to have_http_status(401)
-#       end
-#     end
+  describe "POST /api/v1/auth/delete" do
 
-#     context "有効化はしたが、パスワードが正しくないとき" do
-#       let(:current_user) { create(:confirmed_user) }
-#       let(:params) { { email: current_user.email, password: "password" } }
-#       it "ログインできない" do
-#         subject
-#         res = JSON.parse(response.body)
-#         expect(res["success"]).to be_falsey
-#         expect(res["errors"]).to include("ログイン用の認証情報が正しくありません。再度お試しください。")
-#         expect(response.headers["uid"]).to be_blank
-#         expect(response.headers["access-token"]).to be_blank
-#         expect(response.headers["client"]).to be_blank
-#         expect(response).to have_http_status(401)
-#       end
-#     end
+    let(:user) { create(:confirmed_user) }
+    let(:headers) { user.create_new_auth_token }
 
-#     context "メールアドレス、パスワードは正しいが、有効化されていないとき" do
-#       let(:current_user) { create(:user) }
-#       let(:params) { { email: current_user.email, password: current_user.password } }
-#       it "ログインできない" do
-#         subject
-#         res = JSON.parse(response.body)
-#         expect(response.headers["uid"]).not_to be_present
-#         expect(response.headers["access-token"]).not_to be_present
-#         expect(response.headers["client"]).not_to be_present
-#         expect(response).not_to have_http_status(200)
-#       end
-#     end
-#   end
-#   describe "POST /users/auth/sign_out" do
+    it "ユーザー削除できる" do
+      post destroy_auth_registration_path(format: :json), headers: headers
+      res = JSON.parse(response.body)
+      expect(res["success"]).to be_truthy
+      expect(User.all.size).to eq 0
+    end
+  end
 
-#     context "ユーザーがログインしているとき" do
-#       let(:user) { create(:confirmed_user) }
-#       let(:headers) { user.create_new_auth_token }
+  describe "POST /api/v1/auth/update" do
 
-#       it "ログアウトできる" do
-#         delete(destroy_api_v1_user_session_path, headers: headers)
-#         res = JSON.parse(response.body)
-#         expect(res["success"]).to be_truthy
-#         expect(response.status).to eq 200
-#       end
-#     end
-#   end
-# end 
+    context "渡す値が正しいとき" do
+      let(:user) { create(:confirmed_user) }
+      let(:headers) { user.create_new_auth_token }
+      let(:params) { { name: 'テスト太郎', profile: 'テストマンだよ' } }
+
+      it "値を変更できる" do
+        post update_auth_registration_path(format: :json), params: params, headers: headers
+        res = JSON.parse(response.body)
+        expect(res["user"]["name"]).to eq('テスト太郎')
+        expect(res["user"]["profile"]).to eq('テストマンだよ')
+        # expect(res["user"]["image"]).to eq('https://image_url')
+      end
+    end
+
+    # context "渡す値が正しく、avatarが存在する時" do
+    #   let(:user) { create(:confirmed_user, :with_avatar) }
+    #   let(:headers) { user.create_new_auth_token }
+    #   let(:params) { {name: 'テスト太郎', profile: 'テストマンだよ', address: 'テス都', image: 'https://image_url' } }
+
+    #   it "値を変更でき、imageでavatarのURLが返る" do
+    #     put update_auth_registration_path(format: :json), params: params, headers: headers
+    #     res = JSON.parse(response.body)
+    #     expect(res["user"]["name"]).to eq('テスト太郎')
+    #     expect(res["user"]["profile"]).to eq('テストマンだよ')
+    #     expect(res["user"]["address"]).to eq('テス都')
+    #     expect(res["user"]["image"]).to match(/.+rails\/active_storage\/blobs.+test_image.jpg/)
+    #   end
+    # end
+
+    context "渡す値が正しくないとき" do
+      let(:user) { create(:confirmed_user) }
+      let(:params) { { id: '3' } }
+
+      it "値を変更できない" do
+        post update_auth_registration_path(format: :json), params: params, headers: headers
+        res = JSON.parse(response.body)
+        expect(res["success"]).to be_falsey
+        expect(res["alert"]).to eq(I18n.t('devise_token_auth.sessions.bad_credentials'))
+      end
+    end
+  end
+end 
