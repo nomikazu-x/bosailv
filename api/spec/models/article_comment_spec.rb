@@ -22,5 +22,45 @@
 require 'rails_helper'
 
 RSpec.describe ArticleComment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "correct_article_comment" do
+    let(:user) { create(:user) }
+    let(:article) { create(:article, user: user) }
+    let(:article_comment) { build(:article_comment, article: article, user: user) }
+
+    it "投稿が正しく作成されていること" do
+      expect(article).to be_valid
+    end
+  end
+
+  describe "validate length" do
+    context "contentの長さが256文字以上の時" do
+      let(:article_comment) { build(:article_comment, content: 'a' * 256) }
+      it "エラーメッセージが返る" do
+        article_comment.valid?
+        expect(article_comment).to be_invalid
+      end
+    end
+  end
+
+  describe "validate presence" do
+    context "contentがNULLの時" do
+      let(:article_comment) { build(:article_comment, content: nil) }
+      it "エラーメッセージが返る" do
+        article_comment.valid?
+        expect(article_comment).to be_invalid
+      end
+    end
+  end
+
+  describe "association" do
+    it "Userテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:user)
+      expect(rel.macro).to eq :belongs_to
+    end
+
+    it "Articleテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:article)
+      expect(rel.macro).to eq :belongs_to
+    end
+  end
 end
