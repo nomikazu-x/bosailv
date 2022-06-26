@@ -18,6 +18,7 @@
 #
 FactoryBot.define do
   factory :point_record do
-    
+    association :user
+    obtained_point { Settings['article_create_obtained_point'] }
   end
 end

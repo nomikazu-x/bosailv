@@ -33,7 +33,8 @@ class Article < ApplicationRecord
 
   scope :ranking, -> { joins(:article_favorites).group(:id).order('count(article_favorites.article_id) desc', id: :desc) }
 
-  validates :title, presence: true
+  validates :user_id, presence: true
+  validates :title, presence: true, length: { maximum: 30 }
   validates :content, presence: true
 
   # 画像URLを返却

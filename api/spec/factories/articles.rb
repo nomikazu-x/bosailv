@@ -20,6 +20,8 @@
 #
 FactoryBot.define do
   factory :article do
-    
+    association :user
+    title { Faker::Lorem.characters(number: 10) }
+    content { Faker::Lorem.characters(number: 100) }
   end
 end

@@ -20,4 +20,5 @@ class City < ApplicationRecord
   belongs_to :prefecture
 
   validates :name, presence: true
+  validates :prefecture_id, presence: true
 end

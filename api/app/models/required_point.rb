@@ -10,4 +10,7 @@
 #  updated_at                            :datetime         not null
 #
 class RequiredPoint < ApplicationRecord
+  validates :level, presence: true
+  validates :lifelong_point, presence: true
+  validates :point, presence: true
 end

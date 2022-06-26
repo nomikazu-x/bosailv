@@ -18,4 +18,7 @@
 #
 class PointRecord < ApplicationRecord
   belongs_to :user
+
+  validates :user_id, presence: true
+  validates :obtained_point, presence: true
 end

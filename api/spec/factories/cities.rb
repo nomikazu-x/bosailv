@@ -18,7 +18,7 @@
 #
 FactoryBot.define do
   factory :city do
-    name { "MyString" }
-    prefecture { nil }
+    name {  Faker::Lorem.characters(number: 10) }
+    association :prefecture
   end
 end

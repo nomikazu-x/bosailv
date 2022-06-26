@@ -20,6 +20,7 @@
 #
 FactoryBot.define do
   factory :article_genre_relation do
-    
+    association :article
+    association :genre
   end
 end

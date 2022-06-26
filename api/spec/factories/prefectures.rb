@@ -13,6 +13,6 @@
 #
 FactoryBot.define do
   factory :prefecture do
-    name { "MyString" }
+    name {  Faker::Lorem.characters(number: 10) }
   end
 end

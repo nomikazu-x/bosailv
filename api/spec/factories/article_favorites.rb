@@ -21,6 +21,7 @@
 #
 FactoryBot.define do
   factory :article_favorite do
-    
+    association :user
+    association :article
   end
 end
