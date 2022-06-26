@@ -21,5 +21,25 @@
 require 'rails_helper'
 
 RSpec.describe ArticleGenreRelation, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "correct_article_genre_relation" do
+    let(:genre) { create(:genre) }
+    let(:article) { create(:article) }
+    let(:article_genre_relation) { build(:article_genre_relation, article: article, genre: genre) }
+
+    it "データが正しく作成されていること" do
+      expect(article_genre_relation).to be_valid
+    end
+  end
+
+  describe "association" do
+    it "genreテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:genre)
+      expect(rel.macro).to eq :belongs_to
+    end
+
+    it "Articleテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:article)
+      expect(rel.macro).to eq :belongs_to
+    end
+  end
 end

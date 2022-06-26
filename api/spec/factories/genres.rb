@@ -11,8 +11,6 @@
 FactoryBot.define do
   factory :genre do
     name { Faker::Lorem.characters(number: 5) }
-    trait :with_image do
-      image { File.new("#{Rails.root}/spec/fixtures/test_image.jpg") }
-    end
+    image { File.new("#{Rails.root}/spec/fixtures/test_image.jpg") }
   end
 end

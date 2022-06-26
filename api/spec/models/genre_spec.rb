@@ -12,7 +12,7 @@ require 'rails_helper'
 
 RSpec.describe Genre, type: :model do
   describe "correct_genre" do
-    let(:genre) { build(:genre, :with_image) }
+    let(:genre) { build(:genre) }
 
     it "ジャンルが正しく作成されていること" do
       expect(genre).to be_valid
@@ -20,7 +20,7 @@ RSpec.describe Genre, type: :model do
   end
 
   describe "validate length" do
-    context "nameの長さが31文字以上の時" do
+    context "nameの長さが11文字以上の時" do
       let(:genre) { build(:genre, name: 'a' * 11) }
       it "エラーメッセージが返る" do
         genre.valid?
