@@ -1,5 +1,15 @@
 class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
 
+  # POST /api/v1/auth/sign_in(.json) ログインAPI(処理)
+  # def create
+  #   super
+  # end
+
+  # POST /api/v1/auth/sign_out(.json) ログアウトAPI(処理)
+  # def destroy
+  #   super
+  # end
+
   private
 
   def render_create_success 

@@ -1,21 +1,38 @@
 class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsController
 
+  # POST /api/v1/auth/sign_up(.json) アカウント登録API(処理)
+  # def create
+  #   super
+  # end
+
+  # POST /api/v1/auth/update(.json) 登録情報変更API(処理)
+  # def update
+  #   super
+  # end
+
+  # POST /api/v1/auth/image/update(.json) 画像変更API(処理)
   def image_update
     @user = User.find(current_user.id)
     if @user.update(params.permit(:image))
-      update_auth_header
+      update_auth_header # 成功時のみ認証情報を返す
       render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.image_update') }
     else
       render './api/v1/failure', locals: { errors: @user.errors, alert: I18n.t('errors.messages.not_saved.one') }, status: :unprocessable_entity
     end
   end
 
+  # POST /api/v1/auth/image/delete(.json) 画像削除API(処理)
   def image_destroy
     @user = User.find(current_user.id)
     @user.remove_image!
     @user.save!
     render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.image_destroy') }
   end
+
+  # POST /api/v1/auth/delete(.json) アカウント削除API(処理)
+  # def destroy
+  #   super
+  # end
 
   private
 

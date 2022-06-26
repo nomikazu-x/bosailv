@@ -1,6 +1,11 @@
 class Api::V1::Auth::TokenValidationsController < DeviseTokenAuth::TokenValidationsController
 
-  private
+  # GET /api/v1/auth/validate_token(.json) トークン検証API(処理)
+  # def validate_token
+  #   super
+  # end
+
+  protected
 
   def render_validate_token_success
     @required_point = RequiredPoint.find_by(level: current_user.level)

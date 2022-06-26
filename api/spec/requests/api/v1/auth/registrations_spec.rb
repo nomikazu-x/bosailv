@@ -45,7 +45,7 @@ RSpec.describe "Api::V1::Auth::Registrations", type: :request do
     end
 
     # context "渡す値が正しく、avatarが存在する時" do
-    #   let(:user) { create(:confirmed_user, :with_avatar) }
+    #   let(:user) { create(:confirmed_user) }
     #   let(:headers) { user.create_new_auth_token }
     #   let(:params) { {name: 'テスト太郎', profile: 'テストマンだよ', address: 'テス都', image: 'https://image_url' } }
 
