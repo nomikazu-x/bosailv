@@ -52,6 +52,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
         point_record = PointRecorder.new(@article.user).delete_record(Settings['article_create_obtained_point'])
         # 次のレベルに必要なポイントを返す
         @required_point = RequiredPoint.find_by(level: @article.user.level)
+        
         render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.destroy') }
       end
     else

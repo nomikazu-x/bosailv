@@ -10,7 +10,7 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   # GET /api/v1/users/:username(.json) ユーザー情報詳細取得API
   def show
     @user = User.find_by(username: params[:username])
-    @required_point = RequiredPoint.find_by(level: @user.level).required_point
+    @required_point = RequiredPoint.find_by(level: @user.level).point
     @prefecture = Prefecture.find(@user.prefecture_id).name if @user.prefecture_id.present?
     @city = City.find(@user.city_id).name if @user.prefecture_id.present?
 
