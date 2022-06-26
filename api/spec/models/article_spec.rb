@@ -56,6 +56,14 @@ RSpec.describe Article, type: :model do
         expect(article).to be_invalid
       end
     end
+
+    context "userがNULLの時" do
+      let(:article) { build(:article, user: nil) }
+      it "エラーメッセージが返る" do
+        article.valid?
+        expect(article).to be_invalid
+      end
+    end
   end
 
   describe "association" do

@@ -31,6 +31,24 @@ RSpec.describe ArticleGenreRelation, type: :model do
     end
   end
 
+  describe "validate presence" do
+    context "genreがNULLの時" do
+      let(:article_genre_relation) { build(:article_genre_relation, genre: nil) }
+      it "エラーメッセージが返る" do
+        article_genre_relation.valid?
+        expect(article_genre_relation).to be_invalid
+      end
+    end
+
+    context "articleがNULLの時" do
+      let(:article_genre_relation) { build(:article_genre_relation, article: nil) }
+      it "エラーメッセージが返る" do
+        article_genre_relation.valid?
+        expect(article_genre_relation).to be_invalid
+      end
+    end
+  end
+
   describe "association" do
     it "genreテーブルに正しく紐づいていること" do
       rel = described_class.reflect_on_association(:genre)

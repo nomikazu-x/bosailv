@@ -50,6 +50,22 @@ RSpec.describe ArticleComment, type: :model do
         expect(article_comment).to be_invalid
       end
     end
+
+    context "userがNULLの時" do
+      let(:article_comment) { build(:article_comment, user: nil) }
+      it "エラーメッセージが返る" do
+        article_comment.valid?
+        expect(article_comment).to be_invalid
+      end
+    end
+
+    context "articleがNULLの時" do
+      let(:article_comment) { build(:article_comment, article: nil) }
+      it "エラーメッセージが返る" do
+        article_comment.valid?
+        expect(article_comment).to be_invalid
+      end
+    end
   end
 
   describe "association" do

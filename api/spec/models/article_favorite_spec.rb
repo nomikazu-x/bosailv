@@ -32,6 +32,24 @@ RSpec.describe ArticleFavorite, type: :model do
     end
   end
 
+  describe "validate presence" do
+    context "userがNULLの時" do
+      let(:article_favorite) { build(:article_favorite, user: nil) }
+      it "エラーメッセージが返る" do
+        article_favorite.valid?
+        expect(article_favorite).to be_invalid
+      end
+    end
+
+    context "articleがNULLの時" do
+      let(:article_favorite) { build(:article_favorite, article: nil) }
+      it "エラーメッセージが返る" do
+        article_favorite.valid?
+        expect(article_favorite).to be_invalid
+      end
+    end
+  end
+
   describe "association" do
     it "Userテーブルに正しく紐づいていること" do
       rel = described_class.reflect_on_association(:user)

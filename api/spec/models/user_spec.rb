@@ -77,7 +77,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "validates iqueness" do
+  describe "validates uniqueness" do
     context "保存されたメールアドレスが指定されたとき" do
       let(:user1) { create(:user) }
       let(:user2) { build(:user, email: user1.email) }
@@ -155,6 +155,44 @@ RSpec.describe User, type: :model do
         user.update(username: 'a' * 7 + 'あ')
         expect(user).to be_invalid
       end
+    end
+  end
+
+  describe "association" do
+    it "Articleテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:articles)
+      expect(rel.macro).to eq :has_many
+      expect(rel.options[:dependent]).to eq :destroy
+    end
+
+    it "Infomationテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:infomations)
+      expect(rel.macro).to eq :has_many
+      expect(rel.options[:dependent]).to eq :destroy
+    end
+
+    it "ArticleFavoriteテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:article_favorites)
+      expect(rel.macro).to eq :has_many
+      expect(rel.options[:dependent]).to eq :destroy
+    end
+
+    it "ArticleCommentテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:article_comments)
+      expect(rel.macro).to eq :has_many
+      expect(rel.options[:dependent]).to eq :destroy
+    end
+
+    it "PointRecordテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:point_records)
+      expect(rel.macro).to eq :has_many
+      expect(rel.options[:dependent]).to eq :destroy
+    end
+
+    it "ArticleFavoriteテーブルを通じて、お気に入りした記事一覧を取得できること" do
+      rel = described_class.reflect_on_association(:favorited_articles)
+      expect(rel.options[:through]).to eq :article_favorites
+      expect(rel.options[:source]).to eq :article
     end
   end
 
