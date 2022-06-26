@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: genres
+#
+#  id               :bigint           not null, primary key
+#  image(画像)      :text(65535)      not null
+#  name(ジャンル名) :string(10)       not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
 class Genre < ApplicationRecord
   has_many :article_genre_relations, dependent: :destroy
   has_many :articles, through: :article_genre_relations
