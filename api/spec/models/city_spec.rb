@@ -23,7 +23,7 @@ RSpec.describe City, type: :model do
     let(:prefecture) { create(:prefecture) }
     let(:city) { build(:city, prefecture: prefecture) }
 
-    it "コメントが正しく作成されていること" do
+    it "市区町村が正しく作成されていること" do
       expect(city).to be_valid
     end
   end

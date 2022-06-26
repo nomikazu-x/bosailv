@@ -17,7 +17,7 @@ RSpec.describe Prefecture, type: :model do
   describe "correct_prefecture" do
     let(:prefecture) { build(:prefecture) }
 
-    it "コメントが正しく作成されていること" do
+    it "都道府県が正しく作成されていること" do
       expect(prefecture).to be_valid
     end
   end
