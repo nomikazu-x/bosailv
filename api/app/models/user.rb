@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
          :confirmable, :lockable, :timeoutable, :trackable
   include DeviseTokenAuth::Concerns::User
 
+  enum power: { Not: 1, Guest: 2, Admin: 3 }
+
   mount_uploader :image, ImageUploader
 
   alias_attribute :total, :lifelong_point
@@ -25,8 +27,9 @@ class User < ActiveRecord::Base
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
   VALID_PASSWORD_REGEX = /\A[!-~]+\z/
 
-  validates :name, length: { maximum: 50 }
+  validates :name, length: { maximum: 30 }
   validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX }, allow_nil: true
+  validates :username, length: { maximum: 30 }, uniqueness: true, allow_nil: true, presence: true, format: { with: VALID_USERNAME_REGEX }
 
   # 画像URLを返却
   def image_url(version)

@@ -1,5 +1,14 @@
 require 'csv'
 
+common_table_name = %w(required_point genre)
+common_table_name.each do |table_name|
+  path = Rails.root.join('db', 'seed', "#{table_name}.rb")
+  if File.exist?(path)
+    p "Creating #{table_name}....."
+    require(path)
+  end
+end
+
 env_paths = ['', "#{Rails.env}/"]
 env_paths.each do |env_path|
   list_file = "#{Rails.root}/db/seed/#{env_path}_list.txt"
@@ -34,15 +43,6 @@ env_paths.each do |env_path|
         end
       end
     end
-  end
-end
-
-common_table_name = %w(required_point genre)
-common_table_name.each do |table_name|
-  path = Rails.root.join('db', 'seed', "#{table_name}.rb")
-  if File.exist?(path)
-    p "Creating #{table_name}....."
-    require(path)
   end
 end
 

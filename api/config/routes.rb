@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # ユーザー
-      get  'users',                     to: 'users#index',          as: 'users'
-      get  'users/:username',           to: 'users#show',           as: 'show_users'
+      get  'users',                      to: 'users#index',          as: 'users'
+      get  'users/:username',            to: 'users#show',           as: 'show_users'
       get  'users/:username/genres/:id', to: 'users#genre_articles', as: 'genre_articles_users'
       
       # 記事
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       get 'infomations/:id',       to: 'infomations#show',      as: 'infomation'
 
       # 市町村
-      post 'set_cities',               to: 'cities#set_cities',          as: 'set_cities'
+      post 'set_cities', to: 'cities#set_cities', as: 'set_cities'
     end
   end
 

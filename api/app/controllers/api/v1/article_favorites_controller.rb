@@ -1,6 +1,7 @@
 class Api::V1::ArticleFavoritesController < Api::V1::ApplicationController
   before_action :authenticate_user!, only: %i[create destroy]
 
+  # POST /api/v1/articles/:id/article_favorites/create(.json) 記事お気にいりAPI(処理)
   def create
     article = Article.find(params[:article_id])
 
@@ -24,6 +25,7 @@ class Api::V1::ArticleFavoritesController < Api::V1::ApplicationController
 
   end
 
+  # POST /api/v1/articles/:id/article_favorites/delete(.json) 記事お気にいり削除API(処理)
   def destroy
     article = Article.find(params[:article_id])
 
