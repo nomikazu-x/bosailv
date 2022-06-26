@@ -59,6 +59,6 @@ FactoryBot.define do
     sequence(:email) { |n| "#{n}_" + Faker::Internet.email }
     username { Faker::Internet.user_name(specifier: 'Nancy') }
     password { Faker::Internet.password(min_length: 8) }
-    confirmed_at { Time.now - 100}
+    confirmed_at { Time.now - 100 }
   end
 end

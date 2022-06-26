@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Auth::Registrations", type: :request do
+RSpec.describe Api::V1::Auth::RegistrationsController, type: :request do
   describe "POST /api/v1/auth/sign_up" do
     subject { post(create_auth_registration_path(format: :json), params: params) }
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Auth::TokenValidations", type: :request do
+RSpec.describe Api::V1::Auth::TokenValidationsController, type: :request do
   describe "GET /api/v1/auth/validate_token" do
     subject { get(auth_validate_token_path(format: :json), headers: headers) }
 

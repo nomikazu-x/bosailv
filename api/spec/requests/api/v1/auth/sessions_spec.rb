@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Auth::Sessions", type: :request do
+RSpec.describe Api::V1::Auth::SessionsController, type: :request do
   describe "POST /api/v1/auth/sign_in" do
     subject { post(create_auth_session_path(format: :json), params: params) }
 
