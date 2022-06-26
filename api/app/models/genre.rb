@@ -15,6 +15,7 @@ class Genre < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   validates :name, presence: true, length: { maximum: 10 }
+  validates :image, presence: true
 
   # 画像URLを返却
   def image_url(version)
