@@ -22,5 +22,25 @@
 require 'rails_helper'
 
 RSpec.describe ArticleFavorite, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "correct_article_favorite" do
+    let(:user) { create(:user) }
+    let(:article) { create(:article, user: user) }
+    let(:article_favorite) { build(:article_favorite, article: article, user: user) }
+
+    it "データが正しく作成されていること" do
+      expect(article_favorite).to be_valid
+    end
+  end
+
+  describe "association" do
+    it "Userテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:user)
+      expect(rel.macro).to eq :belongs_to
+    end
+
+    it "Articleテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:article)
+      expect(rel.macro).to eq :belongs_to
+    end
+  end
 end

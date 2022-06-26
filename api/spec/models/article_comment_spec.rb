@@ -27,8 +27,8 @@ RSpec.describe ArticleComment, type: :model do
     let(:article) { create(:article, user: user) }
     let(:article_comment) { build(:article_comment, article: article, user: user) }
 
-    it "投稿が正しく作成されていること" do
-      expect(article).to be_valid
+    it "コメントが正しく作成されていること" do
+      expect(article_comment).to be_valid
     end
   end
 
