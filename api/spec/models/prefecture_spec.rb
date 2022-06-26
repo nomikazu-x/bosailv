@@ -14,5 +14,28 @@
 require 'rails_helper'
 
 RSpec.describe Prefecture, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "correct_prefecture" do
+    let(:prefecture) { build(:prefecture) }
+
+    it "コメントが正しく作成されていること" do
+      expect(prefecture).to be_valid
+    end
+  end
+
+  describe "validate presence" do
+    context "nameがNULLの時" do
+      let(:prefecture) { build(:prefecture, name: nil) }
+      it "エラーメッセージが返る" do
+        prefecture.valid?
+        expect(prefecture).to be_invalid
+      end
+    end
+  end
+
+  describe "association" do
+    it "Cityテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:cities)
+      expect(rel.macro).to eq :has_many
+    end
+  end
 end
