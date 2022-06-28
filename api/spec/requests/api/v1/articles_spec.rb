@@ -229,7 +229,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       keyword = URI.encode_www_form(keyword: 'test')
       p "======="
       p keyword
-      get "/api/v1/articles/search.json?per=#{Settings['default_articles_limit']}&page=1&#{keyword}"
+      get "/api/v1/articles/search.json?#{keyword}&per=#{Settings['default_articles_limit']}&page=1"
 
       res = JSON.parse(response.body)
       p "======="
