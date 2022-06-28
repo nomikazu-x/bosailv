@@ -227,9 +227,12 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
     end
     it '検索条件に合致したレスポンスを返却すること' do
       keyword = URI.encode_www_form(keyword: 'test')
+      p "======="
+      p keyword
       get "/api/v1/articles/search.json?per=#{Settings['default_articles_limit']}&page=1&#{keyword}"
 
       res = JSON.parse(response.body)
+      p "======="
       p res
       expect(res['articles'].length).to eq 1
     end
