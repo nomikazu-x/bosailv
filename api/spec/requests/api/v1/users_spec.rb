@@ -9,6 +9,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
     it 'ユーザー一覧のデータを返す' do
       call_api
       res = JSON.parse(response.body)
+      expect(res['success']).to eq(true)
       expect(res['users'].length).to eq(User.all.length)
       expect(response.status).to eq 200
     end
@@ -22,6 +23,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
     it 'ユーザーのデータを返す' do
       call_api
       res = JSON.parse(response.body)
+      expect(res['success']).to eq(true)
       expect(res['user']['id']).to eq(User.last.id)
       expect(res['user']['name']).to eq(User.last.name)
       expect(response.status).to eq 200
@@ -44,6 +46,7 @@ RSpec.describe Api::V1::UsersController, type: :request do
     it 'ジャンルのデータを返す' do
       call_api
       res = JSON.parse(response.body)
+      expect(res['success']).to eq(true)
       expect(res['genre']['id']).to eq(Genre.last.id)
       expect(response.status).to eq 200
     end

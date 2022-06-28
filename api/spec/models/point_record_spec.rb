@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table obtained_point: point_records
+# Table name: point_records
 #
 #  id                         :bigint           not null, primary key
 #  obtained_point(獲得経験値) :integer          not null

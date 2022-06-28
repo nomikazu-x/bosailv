@@ -15,6 +15,7 @@ if @article.present?
     json.created_at @article.created_at
     json.updated_at @article.updated_at
     json.user do
+      json.id @article.user.id
       json.level @article.user.level
       json.lifelong_point @article.user.lifelong_point
       json.point_to_next @article.user.point_to_next

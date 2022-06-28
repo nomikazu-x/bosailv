@@ -28,6 +28,9 @@ jobs:
           name: docker-compose run api rails db:migrate RAILS_ENV=test
           command: docker-compose run api rails db:migrate RAILS_ENV=test
       - run:
+          name: docker-compose run api rails db:seed RAILS_ENV=test
+          command: docker-compose run api rails db:seed RAILS_ENV=test
+      - run:
           name: docker-compose run api bundle exec rspec spec
           command: docker-compose run api bundle exec rspec spec
       - run:

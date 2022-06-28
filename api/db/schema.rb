@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2022_06_12_135413) do
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
     t.bigint "article_id", null: false, comment: "記事ID"
-    t.text "content", size: :tiny, null: false, comment: "内容"
+    t.text "content", null: false, comment: "内容"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["article_id"], name: "index_article_comments_on_article_id"
