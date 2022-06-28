@@ -1,5 +1,5 @@
 class Api::V1::ArticlesController < Api::V1::ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index show search]
   before_action :set_article, except: %i[create index search]
   before_action :correct_user?, only: %i[update destroy]
 

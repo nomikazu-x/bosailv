@@ -1,6 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::ArticlesController, type: :request do
+  describe 'GET /api/v1/articles' do
+    subject(:call_api) { get '/api/v1/articles.json' }
+
+    let(:article) { create_list(:article, 5) }
+
+    context 'リクエストに成功した場合' do
+      it 'レスポンスステータスが200で返ること' do
+        call_api
+        res = JSON.parse(response.body)
+        expect(res['success']).to eq(true)
+        expect(response.status).to eq 200
+      end
+
+      it 'レスポンスボディーに期待された値が返ること' do
+        call_api
+        res = JSON.parse(response.body)
+        expect(res['articles'].length).to eq(Article.all.length)
+      end
+    end
+  end
+
   describe 'POST /api/v1/articles' do
     subject(:call_api) { post '/api/v1/articles/create.json', headers: headers, params: params }
 
@@ -27,7 +48,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       end
 
       it '投稿が作成されていること' do
-        expect { call_api }.to change { Article.count }.from(0).to(1)
+        expect { call_api }.to change { Article.count }.by(1)
       end
 
       it 'レスポンスボディーに期待された値が返ること' do
@@ -181,6 +202,35 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
          expect(res['success']).to eq false
          expect(res['alert']).to eq(I18n.t('errors.messages.not_permission'))
        end
+    end
+  end
+
+  describe 'GET /api/v1/articles/search' do
+    subject(:call_api) { get '/api/v1/articles/search.json' }
+
+    let(:article) { create_list(:article, 5) }
+    let(:article) { create(:article, title: 'test') }
+
+    context 'リクエストに成功した場合' do
+      it 'レスポンスステータスが200で返ること' do
+        call_api
+        res = JSON.parse(response.body)
+        expect(res['success']).to eq(true)
+        expect(response.status).to eq 200
+      end
+
+      it 'レスポンスボディーに期待された値が返ること' do
+        call_api
+        res = JSON.parse(response.body)
+        expect(res['articles'].length).to eq(Article.all.length)
+      end
+    end
+    it '検索条件に合致したレスポンスを返却すること' do
+      keyword = URI.encode_www_form(keyword: 'test')
+      get "/api/v1/articles/search.json?per=#{Settings['default_articles_limit']}&page=1&#{keyword}"
+
+      res = JSON.parse(response.body)
+      expect(res['articles'].length).to eq 1
     end
   end
 end
