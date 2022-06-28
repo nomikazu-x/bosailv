@@ -230,6 +230,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       get "/api/v1/articles/search.json?per=#{Settings['default_articles_limit']}&page=1&#{keyword}"
 
       res = JSON.parse(response.body)
+      p res
       expect(res['articles'].length).to eq 1
     end
   end
