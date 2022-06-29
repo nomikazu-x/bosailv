@@ -27,11 +27,11 @@
 #  remember_created_at(ログイン状態維持開始日時)                 :datetime
 #  reset_password_sent_at(パスワードリセット送信日時)            :datetime
 #  reset_password_token(パスワードリセットトークン)              :string(255)
-#  sign_in_cot(ログイン回数)                                   :integer          default(0), not null
+#  sign_in_count(ログイン回数)                                   :integer          default(0), not null
 #  tokens(認証トークン)                                          :text(65535)
 #  uid(UID)                                                      :string(255)      default(""), not null
-#  confirmed_email(確認待ちメールアドレス)                     :string(255)
-#  lock_token(アカウントロック解除トークン)                    :string(255)
+#  unconfirmed_email(確認待ちメールアドレス)                     :string(255)
+#  unlock_token(アカウントロック解除トークン)                    :string(255)
 #  username(ユーザーネーム)                                      :string(30)       not null
 #  created_at                                                    :datetime         not null
 #  updated_at                                                    :datetime         not null
@@ -40,11 +40,11 @@
 #
 # Indexes
 #
-#  index_users_on_confirmation_token    (confirmation_token) IQUE
-#  index_users_on_email                 (email) IQUE
-#  index_users_on_reset_password_token  (reset_password_token) IQUE
-#  index_users_on_uid_and_provider      (uid,provider) IQUE
-#  index_users_on_lock_token          (lock_token) IQUE
+#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_uid_and_provider      (uid,provider) UNIQUE
+#  index_users_on_unlock_token          (unlock_token) UNIQUE
 #
 require 'rails_helper'
 
