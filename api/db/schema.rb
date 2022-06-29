@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2022_06_12_135413) do
 
   create_table "infomations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "label", default: 0, null: false, comment: "ラベル"
-    t.string "title", null: false, comment: "タイトル"
+    t.string "title", comment: "タイトル"
     t.string "summary", comment: "概要"
     t.text "body", comment: "本文"
     t.datetime "started_at", null: false, comment: "開始日時"
