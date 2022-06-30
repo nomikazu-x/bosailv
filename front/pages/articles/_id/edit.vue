@@ -23,7 +23,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'ArticleEdit',
+  name: 'ArticlesIdEdit',
 
   mixins: [Application],
 

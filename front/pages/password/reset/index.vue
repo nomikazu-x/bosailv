@@ -13,7 +13,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'UsersPasswordReset',
+  name: 'PasswordResetIndex',
   mixins: [Application],
   data () {
     return {

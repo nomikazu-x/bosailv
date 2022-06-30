@@ -16,7 +16,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'UsersId',
+  name: 'UsersUsername',
   mixins: [Application],
 
   data () {

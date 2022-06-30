@@ -17,7 +17,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'Articles',
+  name: 'ArticlesIndex',
 
   mixins: [Application],
 

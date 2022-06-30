@@ -18,7 +18,7 @@ import { mapGetters } from 'vuex'
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'Articles',
+  name: 'ArticlesId',
 
   mixins: [Application],
 

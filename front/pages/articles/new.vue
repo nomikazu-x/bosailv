@@ -20,7 +20,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'ArticleNew',
+  name: 'ArticlesNew',
 
   mixins: [Application],
   data () {

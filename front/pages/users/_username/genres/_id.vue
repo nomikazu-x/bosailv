@@ -22,7 +22,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'UsersId',
+  name: 'UsersUsernameGenresId',
   mixins: [Application],
 
   data () {

@@ -1,12 +1,12 @@
-import Loading from '~/components/organisms/items/Loading.vue'
-import Processing from '~/components/organisms/items/Processing.vue'
-import Message from '~/components/organisms/items/Message.vue'
+import TheLoading from '~/components/organisms/application/TheLoading.vue'
+import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
+import TheMessage from '~/components/organisms/application/TheMessage.vue'
 
 export default {
   components: {
-    Loading,
-    Processing,
-    Message
+    TheLoading,
+    TheProcessing,
+    TheMessage
   },
 
   data () {

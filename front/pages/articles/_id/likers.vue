@@ -6,7 +6,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'Articles',
+  name: 'ArticlesIdLikers',
 
   mixins: [Application],
 

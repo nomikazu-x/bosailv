@@ -12,7 +12,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'Infomations',
+  name: 'InfomationsId',
   mixins: [Application],
 
   data () {

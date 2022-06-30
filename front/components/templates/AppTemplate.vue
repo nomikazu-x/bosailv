@@ -35,6 +35,7 @@
 
 <script>
 export default {
+  name: 'AppTemplate',
   props: {
     genres: {
       type: Array,

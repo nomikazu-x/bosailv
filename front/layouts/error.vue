@@ -43,7 +43,12 @@ const getErrorMessage = (statusCode = null) => {
 }
 
 export default {
-  props: ['error'],
+  props: {
+    error: {
+      type: Object,
+      default: null
+    }
+  },
 
   computed: {
     title () {

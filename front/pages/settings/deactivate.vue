@@ -12,7 +12,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'UsersDelete',
+  name: 'SettingsDeactivate',
   mixins: [Application],
 
   async created () {

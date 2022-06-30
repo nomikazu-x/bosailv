@@ -1,8 +1,8 @@
 <template>
   <v-navigation-drawer v-model="drawer" clipped fixed app>
-    <v-list v-if="!$auth.loggedIn">
+    <v-list>
       <v-list-item-group>
-        <v-list-item to="/signin" exact nuxt>
+        <v-list-item v-if="!$auth.loggedIn" to="/signin" exact nuxt>
           <v-list-item-icon>
             <v-icon>mdi-login</v-icon>
           </v-list-item-icon>
@@ -10,7 +10,7 @@
             <v-list-item-title>ログイン</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/signup" exact nuxt>
+        <v-list-item v-if="!$auth.loggedIn" to="/signup" exact nuxt>
           <v-list-item-icon>
             <v-icon>mdi-account-plus</v-icon>
           </v-list-item-icon>
@@ -18,11 +18,6 @@
             <v-list-item-title>アカウント登録</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-      </v-list-item-group>
-    </v-list>
-
-    <v-list v-else>
-      <v-list-item-group>
         <v-list-item to="/infomations" exact nuxt>
           <v-list-item-icon>
             <v-badge :content="$auth.user.infomation_unread_count" :value="$auth.user.infomation_unread_count" color="red" overlap>
@@ -49,7 +44,7 @@
             <v-list-item-title>記事検索</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item to="/articles/new" exact nuxt>
+        <v-list-item v-if="$auth.loggedIn" to="/articles/new" exact nuxt>
           <v-list-item-icon>
             <v-icon>mdi-pencil</v-icon>
           </v-list-item-icon>
@@ -58,7 +53,7 @@
           </v-list-item-content>
         </v-list-item>
         <v-divider />
-        <v-list-item to="/settings/profile" exact nuxt>
+        <v-list-item v-if="$auth.loggedIn" to="/settings/profile" exact nuxt>
           <v-list-item-icon>
             <v-icon>mdi-cog</v-icon>
           </v-list-item-icon>
@@ -68,7 +63,7 @@
         </v-list-item>
       </v-list-item-group>
 
-      <div class="card-position">
+      <div v-if="$auth.loggedIn" class="card-position">
         <v-menu top offset-x transition="scroll-x-transition">
           <template #activator="{ on, attrs }">
             <v-card outlined v-bind="attrs" v-on="on">

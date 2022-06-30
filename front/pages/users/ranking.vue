@@ -12,7 +12,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'UsersIndex',
+  name: 'UsersRanking',
   mixins: [Application],
   data () {
     return {
