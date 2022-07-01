@@ -10,10 +10,10 @@
       <SignUp />
     </div>
     <div class="mb-4">
-      <ImportantInfomationLists />
+      <ImportantInfomationCard />
     </div>
     <div class="mb-4">
-      <ArticlesRankingCard />
+      <ArticleRankingCard />
     </div>
     <div class="mb-4">
       <UserRankingCard />

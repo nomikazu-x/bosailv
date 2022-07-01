@@ -28,7 +28,7 @@
             </v-col>
           </v-row>
 
-          <GenreList :genres="genres" />
+          <GenreImageCard :genres="genres" />
         </div>
       </BaseTitleCard>
     </template>

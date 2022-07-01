@@ -10,10 +10,33 @@
           <nuxt-link :to="`/users/${getUsername}`" class="black--text text-decoration-none">{{ getName }}</nuxt-link>
         </p>
 
-        <UserLevelCard
-          :user="user"
-          :required-point="requiredPoint"
-        />
+        <div>
+          <v-row class="py-5">
+            <v-col cols="6">
+              <v-row justify="center">
+                <h1>Lv.{{ getLevel }}</h1>
+              </v-row>
+              <v-row justify="center">
+                <span>Level</span>
+              </v-row>
+            </v-col>
+
+            <v-col cols="6">
+              <v-row justify="center">
+                <h1>{{ getLifelongPoint }}</h1>
+              </v-row>
+              <v-row justify="center">
+                <span>合計EXP</span>
+              </v-row>
+            </v-col>
+          </v-row>
+
+          <PointProgressLinear
+            :required-point="requiredPoint"
+            :point-to-next="getPointToNext"
+            class="pb-2"
+          />
+        </div>
 
         <p v-if="getProfile" class="text-center mb-4 px-8 px-sm-12">{{ getProfile }}</p>
 
@@ -50,6 +73,15 @@ export default {
         return undefined
       }
       return this.user.name
+    },
+    getLevel () {
+      return this.user && this.user.level
+    },
+    getLifelongPoint () {
+      return this.user && this.user.lifelong_point
+    },
+    getPointToNext () {
+      return this.user && this.user.point_to_next
     },
     getProfile () {
       return this.user && this.user.profile

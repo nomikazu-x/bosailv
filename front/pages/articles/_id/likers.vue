@@ -1,5 +1,7 @@
 <template>
-  <LikersList :likers="likers" />
+  <OneColumnContainer>
+    <LikerCard :likers="likers" />
+  </OneColumnContainer>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BaseList :to="`/users/${user.username}`">
+    <BaseListItem :to="`/users/${user.username}`">
       <div v-if="[0, 1, 2].includes(index)">
         <v-list-item-icon v-if="index === 0">
           <v-icon style="color: #ffc400;" large>
@@ -34,7 +34,7 @@
       <v-list-item-title class="amber--text text--darken-4">
         {{ user.lifelong_point }}<span class="black--text px-2">point</span>
       </v-list-item-title>
-    </BaseList>
+    </BaseListItem>
     <v-divider />
   </div>
 </template>

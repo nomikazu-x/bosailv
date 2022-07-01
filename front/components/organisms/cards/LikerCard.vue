@@ -1,13 +1,12 @@
 <template>
-  <v-card>
-    <v-card-title>いいねしたユーザー</v-card-title>
-    <LikersListItem
+  <BaseTitleCard title="いいねしたユーザー">
+    <LikerListItem
       v-for="(liker, i) in likers"
       :key="liker.id"
       :liker="liker"
       :index="i"
     />
-  </v-card>
+  </BaseTitleCard>
 </template>
 
 <script>

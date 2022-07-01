@@ -64,7 +64,9 @@ export default {
     this.selectPrefecture = this.selectPrefecture || this.user.prefecture
     this.selectCity = this.selectCity || this.user.city
     this.profile = this.profile || this.user.profile
-    this.onGetCities(this.selectPrefecture)
+    if (!this.selectPrefecture == null) {
+      this.onGetCities(this.selectPrefecture)
+    }
   },
 
   methods: {

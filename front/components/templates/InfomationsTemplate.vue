@@ -13,7 +13,7 @@
     <template #left>
       <v-row v-if="!loading" justify="center">
         <v-col cols="12">
-          <InfomationsIndexCard
+          <InfomationCard
             :info="info"
             :infomations="infomations"
             :processing="processing"

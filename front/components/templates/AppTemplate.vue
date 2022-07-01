@@ -14,7 +14,7 @@
     <template v-if="!loading" #left>
       <div>
         <TopTransitionCard />
-        <ArticleLists
+        <ArticleCard
           :info="info"
           :articles="articles"
           :processing="processing"
@@ -23,7 +23,14 @@
           :notice="notice"
           @pagination="onPagination"
         />
-        <GenresImageIndexCard :genres="genres" />
+        <BaseTitleCard class="mt-5" title="ジャンル一覧">
+          <v-card>
+            <GenreImageCard
+              :genres="genres"
+              class="px-2"
+            />
+          </v-card>
+        </BaseTitleCard>
       </div>
     </template>
 

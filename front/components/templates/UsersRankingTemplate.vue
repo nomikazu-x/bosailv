@@ -12,7 +12,7 @@
 
     <template #left>
       <BaseTitleCard v-if="!loading" title="ポイントランキング">
-        <UserRankingItem
+        <UserRankingListItem
           v-for="(user, i) in users"
           :key="user.id"
           :user="user"

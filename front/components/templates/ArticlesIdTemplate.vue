@@ -17,7 +17,7 @@
             <TheProcessing v-if="processing" />
             <v-row>
               <v-col cols="12">
-                <ArticleShowCard
+                <ArticleDetailCard
                   :article="article"
                   :user="user"
                   :likers="likers"

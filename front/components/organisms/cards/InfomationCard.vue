@@ -10,7 +10,7 @@
       :infomation="infomation"
     />
 
-    <Pagination
+    <ThePagination
       class="mt-5"
       :info="info"
       @pagination="onPagination"
