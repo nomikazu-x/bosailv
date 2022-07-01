@@ -6,9 +6,9 @@
 
     <LevelUpModal />
 
-    <v-content style="background-color: #f9f5eb;">
+    <v-main style="background-color: #f9f5eb;">
       <nuxt />
-    </v-content>
+    </v-main>
 
     <TheFooter />
     <GoTop :max-width="48" :size="48" :right="24" :bottom="24" bg-color="#ef5350" />

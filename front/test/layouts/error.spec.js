@@ -29,6 +29,14 @@ describe('error.vue', () => {
     expect(links.includes('/')).toBe(true) // トップページ
   }
 
+  it('[401]表示される', () => {
+    const wrapper = mountFunction(401)
+    commonViewTest(wrapper)
+  })
+  it('[403]表示される', () => {
+    const wrapper = mountFunction(403)
+    commonViewTest(wrapper)
+  })
   it('[404]表示される', () => {
     const wrapper = mountFunction(404)
     commonViewTest(wrapper)
