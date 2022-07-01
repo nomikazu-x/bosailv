@@ -1,6 +1,6 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" ref="observer">
-    <Processing v-if="processing" />
+    <TheProcessing v-if="processing" />
     <v-form autocomplete="off">
       <v-card-text>
         <PasswordTextField

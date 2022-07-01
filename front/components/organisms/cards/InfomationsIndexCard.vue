@@ -1,6 +1,6 @@
 <template>
   <BaseTitleCard title="通知一覧">
-    <Processing v-if="processing" />
+    <TheProcessing v-if="processing" />
     <article v-if="infomations != null && infomations.length === 0">
       <span class="ml-1">お知らせはありません。</span>
     </article>

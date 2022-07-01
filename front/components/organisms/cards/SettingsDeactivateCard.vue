@@ -1,6 +1,6 @@
 <template>
   <BaseTitleCard title="アカウント削除" max-width="640px">
-    <Processing v-if="processing" />
+    <TheProcessing v-if="processing" />
     <v-card-text>
       <v-dialog transition="dialog-top-transition" max-width="600px">
         <template #activator="{ on, attrs }">

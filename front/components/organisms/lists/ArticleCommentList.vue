@@ -1,7 +1,7 @@
 <template>
   <div>
     <article>
-      <Processing v-if="processing" />
+      <TheProcessing v-if="processing" />
       <v-row>
         <v-col cols="12">
           <v-avatar size="30"><v-img :src="articleComment.user.image_url.small" /></v-avatar>

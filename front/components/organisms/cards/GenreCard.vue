@@ -1,6 +1,6 @@
 <template>
   <BaseTitleCard title="困ったときは">
-    <Processing v-if="processing" />
+    <TheProcessing v-if="processing" />
     <div v-for="genre in genres" :key="genre.id">
       <v-img :src="genre.image_url.xlarge" max-height="150" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.3)">
         <v-card-title class="genre-name mt-8 white--text justify-center align-center text-shadow">{{ genre.name }}</v-card-title>

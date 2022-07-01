@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Processing v-if="processing" />
+    <TheProcessing v-if="processing" />
     <BaseTitleCard title="新着一覧">
       <v-card v-if="articles != null && articles.length === 0">
         <v-card-title class="ml-1">記事はありません。</v-card-title>

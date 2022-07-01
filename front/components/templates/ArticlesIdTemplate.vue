@@ -6,15 +6,15 @@
     :right-sm="4"
   >
     <template #top>
-      <Loading v-if="loading" />
-      <Message v-if="!loading" :alert="alert" :notice="notice" />
+      <TheLoading v-if="loading" />
+      <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
     </template>
 
     <template #left>
       <v-row v-if="!loading" justify="center">
         <v-col cols="12">
           <div>
-            <Processing v-if="processing" />
+            <TheProcessing v-if="processing" />
             <v-row>
               <v-col cols="12">
                 <ArticleShowCard

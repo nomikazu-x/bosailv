@@ -6,8 +6,8 @@
     :right-sm="8"
   >
     <template #top>
-      <Loading v-if="loading" />
-      <Message v-if="!loading" :alert="alert" :notice="notice" />
+      <TheLoading v-if="loading" />
+      <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
     </template>
 
     <template v-if="!loading" #left>

@@ -20,11 +20,27 @@
 
 <script>
 export default {
-  props: {
-    famousArticles: {
-      type: Array,
-      default: () => []
+  data () {
+    return {
+      famousArticles: null
     }
+  },
+  async created () {
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, {
+      params: { famous: true }
+    })
+      .then((response) => {
+        if (response.data == null || response.data.article == null) {
+          this.$toasted.error(this.$t('system.error'))
+          return this.$router.push({ path: '/' })
+        } else {
+          this.famousArticles = response.data.articles
+        }
+      },
+      (error) => {
+        this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
+        return this.$router.push({ path: '/' })
+      })
   }
 }
 </script>

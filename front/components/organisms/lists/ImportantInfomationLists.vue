@@ -24,11 +24,24 @@
 <script>
 export default {
   name: 'IndexInfomations',
-  props: {
-    infomations: {
-      type: Array,
-      default: () => []
+  data () {
+    return {
+      infomations: null
     }
+  },
+  async created () {
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.importantInfomationsUrl)
+      .then((response) => {
+        if (response.data == null) {
+          this.$toasted.error(this.$t('system.error'))
+          this.infomations = null
+        } else {
+          this.infomations = response.data.infomations
+        }
+      },
+      (error) => {
+        this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
+      })
   }
 }
 </script>
