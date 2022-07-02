@@ -16,15 +16,7 @@
           <BaseTitleCard title="記事検索">
             <v-row class="pa-5">
               <v-col cols="12">
-                <ValidationProvider v-slot="{ errors }" name="keyword" rules="required">
-                  <v-text-field
-                    v-model="keyword"
-                    label="キーワード検索"
-                    color="#3c3c3c"
-                    prepend-icon="mdi-magnify"
-                    :error-messages="errors"
-                  />
-                </ValidationProvider>
+                <ArticleSearchTextField v-model="keyword" />
               </v-col>
               <v-col cols="12">
                 <GenresCheckbox v-model="selectedGenres" />

@@ -11,7 +11,7 @@
     </v-main>
 
     <TheFooter />
-    <GoTop :max-width="48" :size="48" :right="24" :bottom="24" bg-color="#ef5350" />
+    <GoTop v-if="!isGoTopValidPath" :max-width="48" :size="48" :right="24" :bottom="24" bg-color="#ef5350" />
   </v-app>
 </template>
 
@@ -22,6 +22,12 @@ export default {
   name: 'LayoutsDefault',
   components: {
     GoTop
+  },
+  computed: {
+    isGoTopValidPath () {
+      const currentPath = this.$route.name
+      return (currentPath === 'articles-id-edit___ja') || (currentPath === 'articles-new___ja')
+    }
   }
 }
 </script>

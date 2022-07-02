@@ -55,6 +55,7 @@ export default {
           } else {
             this.$store.commit('articleComments/addArticleComments', response.data.comment, { root: true })
             this.content = ''
+            this.$refs.observer.reset()
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
           }

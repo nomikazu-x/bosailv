@@ -10,10 +10,10 @@
             :label="genre.name"
             color="#ef5350"
             dense
-            :error-messages="errors"
           />
         </v-col>
       </v-row>
+      <v-card-text v-if="errors" class="mt-2 red--text">{{ errors[0] }}</v-card-text>
     </ValidationProvider>
   </div>
 </template>
