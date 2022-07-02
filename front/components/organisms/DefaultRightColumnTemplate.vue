@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!loading">
+  <div>
     <div v-if="$auth.loggedIn" class="mb-4">
       <UserIntroCard
         :user="$auth.user"
@@ -23,12 +23,6 @@
 
 <script>
 export default {
-  name: 'Index',
-  props: {
-    loading: {
-      type: Boolean,
-      default: false
-    }
-  }
+  name: 'Index'
 }
 </script>

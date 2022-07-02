@@ -1,15 +1,19 @@
 <template>
   <div>
-    <ArticlesNewTemplate
-      v-if="!success"
-      :errors="errors"
-      :processing="processing"
-      :loading="loading"
-      :alert="alert"
-      :notice="notice"
-      @article-create="onArticleCreate"
-    />
-    <ArticleCreateSuccessTemplate
+    <OneColumnContainer v-if="!success" class="pos-relative" fluid>
+      <TheLoading v-if="loading" />
+      <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
+
+      <v-row v-if="!loading" justify="center">
+        <v-col cols="12" sm="10" md="10">
+          <ArticleNewCard
+            :processing="processing"
+            @article-create="onArticleCreate"
+          />
+        </v-col>
+      </v-row>
+    </OneColumnContainer>
+    <ArticleCreateSuccessCard
       v-else
       :article="article"
     />
@@ -49,6 +53,8 @@ export default {
       articleInfo.selectedGenres.forEach((genre) => {
         formData.append('article[genre_ids][]', genre)
       })
+
+      console.log(formData)
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.articleCreateUrl, formData)
         .then((response) => {

@@ -1,11 +1,30 @@
 <template>
-  <UsersRankingTemplate
-    :users="users"
-    :loading="loading"
-    :processing="processing"
-    :alert="alert"
-    :notice="notice"
-  />
+  <TwoColumnContainer
+    :left-cols="12"
+    :left-sm="8"
+    :right-cols="12"
+    :right-sm="4"
+  >
+    <template #top>
+      <TheLoading v-if="loading" />
+      <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
+    </template>
+
+    <template #left>
+      <BaseTitleCard v-if="!loading" title="ポイントランキング">
+        <UserRankingListItem
+          v-for="(user, i) in users"
+          :key="user.id"
+          :user="user"
+          :index="i"
+        />
+      </BaseTitleCard>
+    </template>
+
+    <template v-if="!loading" #right>
+      <DefaultRightColumnTemplate />
+    </template>
+  </TwoColumnContainer>
 </template>
 
 <script>

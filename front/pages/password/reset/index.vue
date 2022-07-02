@@ -1,12 +1,18 @@
 <template>
-  <PasswordResetTemplate
-    :errors="errors"
-    :processing="processing"
-    :loading="loading"
-    :alert="alert"
-    :notice="notice"
-    @submit="onPasswordNew"
-  />
+  <OneColumnContainer>
+    <TheLoading v-if="loading" />
+    <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
+
+    <v-row v-if="!loading" justify="center">
+      <v-col cols="12" sm="10">
+        <PasswordResetCard
+          :processing="processing"
+          :errors="errors"
+          @submit="onSubmit"
+        />
+      </v-col>
+    </v-row>
+  </OneColumnContainer>
 </template>
 
 <script>

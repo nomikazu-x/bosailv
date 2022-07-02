@@ -1,16 +1,46 @@
 <template>
-  <ArticlesIdTemplate
-    :user="user"
-    :article="article"
-    :article-comments="articleComments"
-    :likers="likers"
-    :errors="errors"
-    :processing="processing"
-    :loading="loading"
-    :alert="alert"
-    :notice="notice"
-    @article-delete="onArticleDelete"
-  />
+  <TwoColumnContainer
+    :left-cols="12"
+    :left-sm="8"
+    :right-cols="12"
+    :right-sm="4"
+  >
+    <template #top>
+      <TheLoading v-if="loading" />
+      <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
+    </template>
+
+    <template #left>
+      <v-row v-if="!loading" justify="center">
+        <v-col cols="12">
+          <div>
+            <TheProcessing v-if="processing" />
+            <v-row>
+              <v-col cols="12">
+                <ArticleDetailCard
+                  :article="article"
+                  :user="user"
+                  :likers="likers"
+                  @article-delete="onArticleDelete"
+                />
+              </v-col>
+              <v-col cols="12">
+                <ArticleCommentCard
+                  :user="user"
+                  :article-comments="articleComments"
+                  :article="article"
+                />
+              </v-col>
+            </v-row>
+          </div>
+        </v-col>
+      </v-row>
+    </template>
+
+    <template v-if="!loading" #right>
+      <DefaultRightColumnTemplate />
+    </template>
+  </TwoColumnContainer>
 </template>
 
 <script>

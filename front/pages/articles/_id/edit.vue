@@ -1,17 +1,21 @@
 <template>
   <div>
-    <ArticlesIdEditTemplate
-      v-if="!success"
-      :article="article"
-      :errors="errors"
-      :processing="processing"
-      :loading="loading"
-      :alert="alert"
-      :notice="notice"
-      @article-update="onArticleUpdate"
-    />
+    <OneColumnContainer v-if="!success" class="pos-relative" fluid>
+      <TheLoading v-if="loading" />
+      <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
 
-    <ArticleCreateSuccessTemplate
+      <v-row v-if="!loading" justify="center">
+        <v-col cols="12" sm="10" md="10">
+          <ArticleEditCard
+            :article="article"
+            :processing="processing"
+            @article-update="onArticleUpdate"
+          />
+        </v-col>
+      </v-row>
+    </OneColumnContainer>
+
+    <ArticleCreateSuccessCard
       v-else
       :article="article"
       @to-edit="success = !success"

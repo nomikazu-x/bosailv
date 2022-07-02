@@ -1,12 +1,31 @@
 <template>
-  <SettingsEmailTemplate
-    :user="user"
-    :loading="loading"
-    :processing="processing"
-    @alert="alert = $event"
-    @notice="notice = $event"
-    @user-update="onUserUpdate"
-  />
+  <TwoColumnContainer
+    :left-cols="12"
+    :left-sm="4"
+    :right-cols="12"
+    :right-sm="8"
+  >
+    <template #top>
+      <TheLoading v-if="loading" />
+      <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
+    </template>
+
+    <template v-if="!loading" #left>
+      <div class="mb-4">
+        <SettingsIndexCard />
+      </div>
+    </template>
+
+    <template v-if="!loading" #right>
+      <div class="mb-4">
+        <SettingsEmailCard
+          :user="user"
+          :processing="processing"
+          @user-update="onUserUpdate"
+        />
+      </div>
+    </template>
+  </TwoColumnContainer>
 </template>
 
 <script>

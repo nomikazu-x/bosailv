@@ -1,16 +1,49 @@
 <template>
-  <ArticlesTemplate
-    :article-info="articleInfo"
-    :articles="articles"
-    :famous-article-info="famousArticleInfo"
-    :famous-articles="famousArticles"
-    :processing="processing"
-    :loading="loading"
-    :alert="alert"
-    :notice="notice"
-    @article-pagination="onArticlePagination"
-    @famous-article-pagination="onFamousArticlePagination"
-  />
+  <TwoColumnContainer
+    :left-cols="12"
+    :left-sm="8"
+    :right-cols="12"
+    :right-sm="4"
+  >
+    <template #top>
+      <TheLoading v-if="loading" />
+      <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
+    </template>
+
+    <template #left>
+      <v-row v-if="!loading" justify="center">
+        <v-col cols="12">
+          <BaseTitleCard title="災害時役立つ記事一覧">
+            <v-tabs v-model="tab" background-color="#FFFCFC" color="#ef5350" grow>
+              <v-tab v-for="title in titles" :key="title.name">{{ title.name }}</v-tab>
+            </v-tabs>
+            <v-tabs-items v-model="tab">
+              <v-tab-item>
+                <ArticleCardWithTab
+                  :processing="processing"
+                  :articles="articles"
+                  :info="articleInfo"
+                  @pagination="onArticlePagination"
+                />
+              </v-tab-item>
+              <v-tab-item>
+                <ArticleCardWithTab
+                  :processing="processing"
+                  :articles="famousArticles"
+                  :info="famousArticleInfo"
+                  @pagination="onFamousArticlePagination"
+                />
+              </v-tab-item>
+            </v-tabs-items>
+          </BaseTitleCard>
+        </v-col>
+      </v-row>
+    </template>
+
+    <template v-if="!loading" #right>
+      <DefaultRightColumnTemplate />
+    </template>
+  </TwoColumnContainer>
 </template>
 
 <script>
@@ -23,6 +56,11 @@ export default {
 
   data () {
     return {
+      tab: null,
+      titles: [
+        { name: '新着一覧' },
+        { name: 'ランキング' }
+      ],
       articlePage: 1,
       famousArticlePage: 1,
       articleInfo: null,

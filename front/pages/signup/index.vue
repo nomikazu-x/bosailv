@@ -1,12 +1,20 @@
 <template>
-  <SignupTemplate
-    :errors="errors"
-    :processing="processing"
-    :loading="loading"
-    :alert="alert"
-    :notice="notice"
-    @signup="onSignUp"
-  />
+  <OneColumnContainer>
+    <h1 class="main-heading mb-8 text-center">BosaiLevel</h1>
+
+    <TheLoading v-if="loading" />
+    <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
+
+    <v-row v-if="!loading" justify="center">
+      <v-col cols="12" sm="10" md="8">
+        <SignupCard
+          :processing="processing"
+          :errors="errors"
+          @signup="onSignUp"
+        />
+      </v-col>
+    </v-row>
+  </OneColumnContainer>
 </template>
 
 <script>

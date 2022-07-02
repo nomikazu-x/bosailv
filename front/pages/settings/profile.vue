@@ -1,15 +1,34 @@
 <template>
-  <SettingsProfileTemplate
-    :user="user"
-    :prefectures="prefectures"
-    :loading="loading"
-    :processing="processing"
-    @alert="alert = $event"
-    @notice="notice = $event"
-    @user-update="onUserUpdate"
-    @user-image-update="onUserImageUpdate"
-    @user-image-delete="onUserImageDelete"
-  />
+  <TwoColumnContainer
+    :left-cols="12"
+    :left-sm="4"
+    :right-cols="12"
+    :right-sm="8"
+  >
+    <template #top>
+      <TheLoading v-if="loading" />
+      <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
+    </template>
+
+    <template v-if="!loading" #left>
+      <div class="mb-4">
+        <SettingsIndexCard />
+      </div>
+    </template>
+
+    <template v-if="!loading" #right>
+      <div class="mb-4">
+        <SettingsProfileCard
+          :user="user"
+          :prefectures="prefectures"
+          :processing="processing"
+          @user-update="onUserUpdate"
+          @user-image-update="onUserImageUpdate"
+          @user-image-delete="onUserImageDelete"
+        />
+      </div>
+    </template>
+  </TwoColumnContainer>
 </template>
 
 <script>

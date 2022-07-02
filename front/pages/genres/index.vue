@@ -1,11 +1,30 @@
 <template>
-  <GenresTemplate
-    :genres="genres"
-    :processing="processing"
-    :loading="loading"
-    :alert="alert"
-    :notice="notice"
-  />
+  <TwoColumnContainer
+    :left-cols="12"
+    :left-sm="8"
+    :right-cols="12"
+    :right-sm="4"
+  >
+    <template #top>
+      <TheLoading v-if="loading" />
+      <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
+    </template>
+
+    <template #left>
+      <v-row v-if="!loading" justify="center">
+        <v-col cols="12">
+          <GenreCard
+            :genres="genres"
+            :processing="processing"
+          />
+        </v-col>
+      </v-row>
+    </template>
+
+    <template v-if="!loading" #right>
+      <DefaultRightColumnTemplate />
+    </template>
+  </TwoColumnContainer>
 </template>
 
 <script>

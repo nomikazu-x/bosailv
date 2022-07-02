@@ -1,15 +1,38 @@
 <template>
-  <UsernameTemplate
-    :can-action="canAction"
-    :current-username="currentUsername"
-    :user="user"
-    :genres="genres"
-    :required-point="requiredPoint"
-    :processing="processing"
-    :loading="loading"
-    :alert="alert"
-    :notice="notice"
-  />
+  <TwoColumnContainer
+    :left-cols="12"
+    :left-sm="4"
+    :right-cols="12"
+    :right-sm="8"
+  >
+    <template #top>
+      <TheLoading v-if="loading" />
+      <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
+    </template>
+
+    <template v-if="!loading" #left>
+      <div class="mb-4">
+        <UserIntroCard
+          :user="user"
+          :required-point="requiredPoint"
+        />
+      </div>
+    </template>
+
+    <template v-if="!loading" #right>
+      <BaseTitleCard :title="cardTitle">
+        <div class="pa-5">
+          <v-row>
+            <v-col v-if="canAction" cols="12" class="text-right">
+              <RedBtn class="my-b mr-4" to="/articles/new">記事を作成する</RedBtn>
+            </v-col>
+          </v-row>
+
+          <GenreImageCard :genres="genres" />
+        </div>
+      </BaseTitleCard>
+    </template>
+  </TwoColumnContainer>
 </template>
 
 <script>
@@ -37,6 +60,12 @@ export default {
     },
     currentUsername () {
       return this.$route.params.username
+    },
+    currentName () {
+      return (this.user && this.user.name) || this.$auth.user.name
+    },
+    cardTitle () {
+      return (this.canAction ? 'あなた' : this.currentName) + 'の災害時役立つ記事'
     }
   },
   async created () {
