@@ -20,6 +20,12 @@ if @article.present?
       json.lifelong_point @article.user.lifelong_point
       json.point_to_next @article.user.point_to_next
     end
+    json.genres do
+      json.array! @article.genres do |genre|
+        json.id genre.id
+        json.name genre.name
+      end
+    end
   end
 end
 

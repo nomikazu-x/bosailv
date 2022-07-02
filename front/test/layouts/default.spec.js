@@ -12,11 +12,12 @@ import { Helper } from '~/test/helper.js'
 const helper = new Helper()
 
 describe('default.vue', () => {
-  let storeGettersMock, storeSubcribeMock
+  let storeGettersMock, storeSubcribeMock, routeNameMock
 
   beforeEach(() => {
     storeGettersMock = jest.fn()
     storeSubcribeMock = jest.fn()
+    routeNameMock = jest.fn()
   })
 
   const mountFunction = (loggedIn) => {
@@ -47,6 +48,9 @@ describe('default.vue', () => {
             },
             infomation_unread_count: 12345
           }
+        },
+        $route: {
+          name: routeNameMock
         },
         $store: {
           getters: storeGettersMock,

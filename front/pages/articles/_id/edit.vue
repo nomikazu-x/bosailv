@@ -51,7 +51,6 @@ export default {
           return this.$router.push({ path: '/' })
         } else {
           this.article = response.data.article
-          console.log(this.article)
         }
       },
       (error) => {
@@ -91,8 +90,8 @@ export default {
           } else {
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
-            this.article = response.data.article
             this.success = true
+            this.article = response.data.article
           }
         },
         (error) => {

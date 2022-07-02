@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col cols="12">
+    <v-col v-if="getPreviewSrc != null" cols="12">
       <v-img
         :src="getPreviewSrc"
         max-height="300"

@@ -78,9 +78,7 @@ export default {
   created () {
     this.title = this.title || this.article.title
     this.content = this.content || this.article.content
-    this.selectedGenres = this.selectedGenres || this.article.genres.forEach((value) => {
-      this.selectedGenres.push(value.id)
-    })
+    this.selectedGenres = this.article.genres.forEach((value) => { this.selectedGenres.push(value.id) }) || this.selectedGenres
   },
   methods: {
     onArticleUpdate () {

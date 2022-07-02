@@ -20,7 +20,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   # POST /api/v1/articles/create(.json) 記事作成API(処理)
   def create
     @article = current_user.articles.build(article_params)
-    
+
     if @article.save
       ActiveRecord::Base.transaction do
         # ポイント獲得
@@ -53,7 +53,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
         point_record = PointRecorder.new(current_user).delete_record(Settings['article_create_obtained_point'])
         # 次のレベルに必要なポイントを返す
         @required_point = RequiredPoint.find_by(level: current_user.level)
-        
+
         render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.destroy') }
       end
     else
@@ -78,7 +78,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
         # 該当する記事を返す
         @articles = @articles.page(params[:page]).per(Settings['default_articles_limit'])
       end
-    
+
     # キーワードが存在せず、ジャンルが選択されている場合
     elsif params[:genre_ids].present?
       # ジャンルを繰り返し処理して、選択されたすべてのジャンルと関連する記事一覧を取得
@@ -88,7 +88,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
       end
       # 該当する記事を返す
       @articles = @articles.page(params[:page]).per(Settings['default_articles_limit'])
-    
+
     # キーワードもジャンルも選択されていない場合、すべての記事を返す
     else
       @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])

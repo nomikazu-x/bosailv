@@ -15,7 +15,7 @@ yarninstall:
 lint:
 	docker-compose run front yarn lint
 
-yarntest:
+jest:
 	docker-compose run front yarn test
 
 # Rails 
