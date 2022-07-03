@@ -36,6 +36,7 @@ export default {
       content: ''
     }
   },
+
   computed: {
     ...mapGetters({
       article: 'articles/article',
