@@ -9,6 +9,7 @@
       color="#3c3c3c"
       type="name"
       label="氏名"
+      @click="onClick"
     />
   </ValidationProvider>
 </template>
@@ -30,6 +31,11 @@ export default {
       set (newVal) {
         return this.$emit('input', newVal)
       }
+    }
+  },
+  methods: {
+    onClick () {
+      return this.$emit('click')
     }
   }
 }

@@ -55,7 +55,7 @@ export default {
         password: this.password,
         password_confirmation: this.passwordConfirmation
       }
-      this.$emit('signup', userInfo)
+      this.$emit('sign-up', userInfo)
     }
   }
 }

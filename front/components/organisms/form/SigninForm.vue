@@ -47,7 +47,7 @@ export default {
         email: this.email,
         password: this.password
       }
-      this.$emit('signin', userInfo)
+      this.$emit('sign-in', userInfo)
     }
   }
 }

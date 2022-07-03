@@ -18,13 +18,17 @@ if current_user.present?
     json.level current_user.level
     json.lifelong_point current_user.lifelong_point
     json.profile current_user.profile
-    json.prefecture do
-      json.id @prefecture.id
-      json.name @prefecture.name
+    if current_user.prefecture_id.present?
+      json.prefecture do
+        json.id @prefecture.id
+        json.name @prefecture.name
+      end
     end
-    json.city do
-      json.id @city.id
-      json.name @city.name
+    if current_user.city_id.present?
+      json.city do
+        json.id @city.id
+        json.name @city.name
+      end
     end
     json.point_to_next current_user.point_to_next
     json.profile current_user.profile if current_user.profile.present?

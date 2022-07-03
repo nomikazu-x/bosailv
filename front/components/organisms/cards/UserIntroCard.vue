@@ -1,5 +1,5 @@
 <template>
-  <BaseTitleCard title="あなたの情報">
+  <BaseTitleCard v-if="user != null" title="あなたの情報">
     <v-card class="text-center pt-4 py-2">
       <div>
         <v-row justify="center" class="my-4">
@@ -66,7 +66,7 @@ export default {
   },
   computed: {
     getUsername () {
-      return this.user && this.user.username
+      return this.user.username
     },
     getName () {
       if (!this.user) {
@@ -75,22 +75,25 @@ export default {
       return this.user.name
     },
     getLevel () {
-      return this.user && this.user.level
+      return this.user.level
     },
     getLifelongPoint () {
-      return this.user && this.user.lifelong_point
+      return this.user.lifelong_point
     },
     getPointToNext () {
-      return this.user && this.user.point_to_next
+      return this.user.point_to_next
     },
     getProfile () {
-      return this.user && this.user.profile
+      return this.user.profile
     },
     getAddress () {
-      return this.user && this.user.prefecture.name + this.user.city.name
+      if (this.user.prefecture && this.user.city) {
+        return this.user.prefecture.name + this.user.city.name
+      }
+      return null
     },
     getUserImage () {
-      return this.user && this.user.image_url.medium
+      return this.user.image_url.medium
     }
   }
 }

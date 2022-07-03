@@ -36,13 +36,17 @@ json.user do
   json.level @user.level
   json.username @user.username
   json.profile @user.profile
-  json.prefecture do
-    json.id @prefecture.id
-    json.name @prefecture.name
+  if current_user.prefecture_id.present?
+    json.prefecture do
+      json.id @prefecture.id
+      json.name @prefecture.name
+    end
   end
-  json.city do
-    json.id @city.id
-    json.name @city.name
+  if current_user.city_id.present?
+    json.city do
+      json.id @city.id
+      json.name @city.name
+    end
   end
   json.lifelong_point @user.lifelong_point
   json.point_to_next @user.point_to_next

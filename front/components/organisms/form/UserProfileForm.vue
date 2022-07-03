@@ -5,6 +5,7 @@
       <v-card-text>
         <UserNameTextField
           v-model="name"
+          @click="waiting = false"
         />
         <PrefecturesSelect
           v-model="selectPrefecture"
@@ -19,6 +20,7 @@
         />
         <ProfileTextarea
           v-model="profile"
+          @click="waiting = false"
         />
         <RedBtn
           id="user_update_btn"
@@ -63,10 +65,12 @@ export default {
 
   async created () {
     this.name = this.name || this.user.name
-    this.selectPrefecture = this.selectPrefecture || this.user.prefecture.id
     this.profile = this.profile || this.user.profile
-    await this.onGetCities(this.selectPrefecture)
-    this.selectCity = this.selectCity || this.user.city.id
+    if (this.user.prefecture && this.user.city) {
+      this.selectPrefecture = this.selectPrefecture || this.user.prefecture.id
+      await this.onGetCities(this.selectPrefecture)
+      this.selectCity = this.selectCity || this.user.city.id
+    }
     this.waiting = true
   },
 
