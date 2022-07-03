@@ -1,10 +1,11 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" ref="observer">
-    <Processing v-if="processing" />
+    <TheProcessing v-if="processing" />
     <v-form autocomplete="off">
       <v-card-text>
         <UserNameTextField
           v-model="name"
+          @click="waiting = false"
         />
         <PrefecturesSelect
           v-model="selectPrefecture"
@@ -15,13 +16,15 @@
         <CitiesSelect
           v-model="selectCity"
           :cities="cities"
+          @click="waiting = false"
         />
         <ProfileTextarea
           v-model="profile"
+          @click="waiting = false"
         />
         <RedBtn
           id="user_update_btn"
-          :disabled="invalid || processing"
+          :disabled="invalid || processing || waiting"
           @click="onUserUpdate"
         >
           変更
@@ -55,16 +58,20 @@ export default {
       selectPrefecture: null,
       cities: [],
       selectCity: null,
-      profile: ''
+      profile: '',
+      waiting: false
     }
   },
 
-  created () {
+  async created () {
     this.name = this.name || this.user.name
-    this.selectPrefecture = this.selectPrefecture || this.user.prefecture
-    this.selectCity = this.selectCity || this.user.city
     this.profile = this.profile || this.user.profile
-    this.onGetCities(this.selectPrefecture)
+    if (this.user.prefecture && this.user.city) {
+      this.selectPrefecture = this.selectPrefecture || this.user.prefecture.id
+      await this.onGetCities(this.selectPrefecture)
+      this.selectCity = this.selectCity || this.user.city.id
+    }
+    this.waiting = true
   },
 
   methods: {
@@ -88,6 +95,7 @@ export default {
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
             this.cities = response.data
+            this.waiting = true
           }
         },
         (error) => {
@@ -98,6 +106,7 @@ export default {
           } else {
             this.alert = error.response.data.alert
             this.notice = error.response.data.notice
+            this.waiting = true
           }
         })
     }

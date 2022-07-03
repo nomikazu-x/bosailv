@@ -1,6 +1,6 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" ref="observer">
-    <Processing v-if="processing" />
+    <TheProcessing v-if="processing" />
     <v-form autocomplete="off">
       <v-card-text>
         <ValidationProvider v-slot="{ errors }" name="content" rules="required">
@@ -21,7 +21,9 @@
 </template>
 
 <script>
+import Application from '~/plugins/application.js'
 export default {
+  mixins: [Application],
   props: {
     article: {
       type: Object,
@@ -55,6 +57,7 @@ export default {
           } else {
             this.$store.commit('articleComments/addArticleComments', response.data.comment, { root: true })
             this.content = ''
+            this.$refs.observer.reset()
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
           }

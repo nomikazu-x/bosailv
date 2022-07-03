@@ -10,10 +10,10 @@
             :label="genre.name"
             color="#ef5350"
             dense
-            :error-messages="errors"
           />
         </v-col>
       </v-row>
+      <v-card-text v-if="errors" class="mt-2 red--text">{{ errors[0] }}</v-card-text>
     </ValidationProvider>
   </div>
 </template>
@@ -41,8 +41,8 @@ export default {
       }
     }
   },
-  created () {
-    this.$axios.get(this.$config.apiBaseURL + this.$config.genresUrl)
+  async created () {
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.genresUrl)
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))

@@ -1,5 +1,5 @@
 <template>
-  <v-sheet style="background-color: #f9f5eb;">
+  <v-sheet v-if="articles != null" style="background-color: #f9f5eb;">
     <v-slide-group
       multiple
       show-arrows
@@ -27,11 +27,25 @@
 
 <script>
 export default {
-  props: {
-    articles: {
-      type: Array,
-      default: () => []
+  data () {
+    return {
+      articles: null
     }
+  },
+  async created () {
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl)
+      .then((response) => {
+        if (response.data == null || response.data.article == null) {
+          this.$toasted.error(this.$t('system.error'))
+          return this.$router.push({ path: '/' })
+        } else {
+          this.articles = response.data.articles
+        }
+      },
+      (error) => {
+        this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
+        return this.$router.push({ path: '/' })
+      })
   }
 }
 </script>

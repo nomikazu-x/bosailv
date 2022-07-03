@@ -12,6 +12,7 @@
       color="#3c3c3c"
       name="profile"
       maxlength="255"
+      @click="onClick"
     />
   </ValidationProvider>
 </template>
@@ -33,6 +34,11 @@ export default {
       set (newVal) {
         return this.$emit('input', newVal)
       }
+    }
+  },
+  methods: {
+    onClick () {
+      return this.$emit('click')
     }
   }
 }

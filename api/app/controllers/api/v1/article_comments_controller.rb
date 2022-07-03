@@ -8,7 +8,7 @@ class Api::V1::ArticleCommentsController < Api::V1::ApplicationController
     if @article_comment.save
       # 通知作成
       Infomation.new(started_at: Time.current, target: :User, user_id: @article_comment.article.user.id,
-                      action: 'ArticleComment', action_user_id: current_user.id, article_id: @article_comment.article.id).save!
+                     action: 'ArticleComment', action_user_id: current_user.id, article_id: @article_comment.article.id).save!
 
       render './api/v1/article_comments/success', locals: { notice: I18n.t('notice.article_comment.create') }
     else

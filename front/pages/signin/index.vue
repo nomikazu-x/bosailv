@@ -1,63 +1,27 @@
 <template>
-  <SigninTemplate
-    :errors="errors"
-    :processing="processing"
-    :loading="loading"
-    :alert="alert"
-    :notice="notice"
-    @signin="onSignIn"
-  />
+  <OneColumnContainer>
+    <h1 class="main-heading mb-8 text-center">BosaiLevel</h1>
+
+    <TheLoading v-if="loading" />
+    <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
+
+    <SigninCard v-if="!loading" />
+  </OneColumnContainer>
 </template>
 
 <script>
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'UsersSignin',
+  name: 'SigninIndex',
+
   mixins: [Application],
-  data () {
-    return {
-      errors: null
-    }
-  },
+
   created () {
     if (this.$auth.loggedIn) {
       return this.redirectAlreadyAuth()
     }
-    this.processing = false
     this.loading = false
-  },
-  methods: {
-    async onSignIn (userInfo) {
-      this.processing = true
-
-      await this.$auth.loginWith('local', {
-        data: {
-          email: userInfo.email,
-          password: userInfo.password
-        }
-      })
-        .then((response) => {
-          if (response.data == null) {
-            this.$toasted.error(this.$t('system.error'))
-          } else {
-            this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
-          }
-        },
-        (error) => {
-          if (error.response == null) {
-            this.$toasted.error(this.$t('network.failure'))
-          } else if (error.response.data == null) {
-            this.$toasted.error(this.$t('network.error'))
-          } else {
-            this.alert = error.response.data.alert
-            this.notice = error.response.data.notice
-          }
-        })
-
-      this.processing = false
-    }
   }
 }
 </script>

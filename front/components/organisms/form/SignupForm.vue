@@ -1,6 +1,6 @@
 <template>
   <ValidationObserver v-slot="{ invalid }" ref="observer">
-    <Processing v-if="processing" />
+    <TheProcessing v-if="processing" />
     <v-form autocomplete="on">
       <NameTextField
         v-model="name"
@@ -55,7 +55,7 @@ export default {
         password: this.password,
         password_confirmation: this.passwordConfirmation
       }
-      this.$emit('signup', userInfo)
+      this.$emit('sign-up', userInfo)
     }
   }
 }

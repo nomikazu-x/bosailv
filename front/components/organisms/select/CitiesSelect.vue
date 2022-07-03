@@ -11,6 +11,7 @@
           :items="cities"
           item-text="name"
           item-value="id"
+          @click="onClick"
         />
       </ValidationProvider>
     </v-col>
@@ -37,6 +38,11 @@ export default {
       set (newVal) {
         return this.$emit('input', newVal)
       }
+    }
+  },
+  methods: {
+    onClick () {
+      return this.$emit('click')
     }
   }
 }

@@ -1,5 +1,6 @@
 <template>
   <span>
+    <TheProcessing v-if="processing" />
     <v-btn v-if="isFavorited" x-large outlined icon color="red" @click="onUnFavorite($auth.user.id)">
       <v-icon size="30" color="red">mdi-heart</v-icon>
     </v-btn>
@@ -11,7 +12,9 @@
 </template>
 
 <script>
+import Application from '~/plugins/application.js'
 export default {
+  mixins: [Application],
   props: {
     article: {
       type: Object,
@@ -27,6 +30,10 @@ export default {
     return {
       isFavorited: this.article.is_favorited
     }
+  },
+
+  created () {
+    this.processing = false
   },
 
   methods: {
