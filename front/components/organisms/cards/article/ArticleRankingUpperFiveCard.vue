@@ -46,7 +46,7 @@
       block
       to="/articles"
     >
-      人気記事をもっと見る
+      記事をもっと見る
     </RedBtn>
   </BaseTitleCard>
 </template>

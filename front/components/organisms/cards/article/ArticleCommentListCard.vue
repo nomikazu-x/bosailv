@@ -5,7 +5,7 @@
         <v-card-text>この記事にコメントはありません。</v-card-text>
         <v-divider class="my-4" />
       </article>
-      <ArticleCommentCardText v-for="articleComment in articleComments" :key="articleComment.id" :article-comment="articleComment" />
+      <ArticleCommentListCardText v-for="articleComment in articleComments" :key="articleComment.id" :article-comment="articleComment" />
       <ArticleCommentTextarea v-if="$auth.loggedIn" :article="article" />
     </div>
   </BaseTitleCard>

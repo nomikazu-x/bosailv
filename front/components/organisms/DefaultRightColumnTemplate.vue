@@ -10,7 +10,7 @@
       <ImportantInfomationCard />
     </div>
     <div class="mb-4">
-      <ArticleRankingCard />
+      <ArticleRankingUpperFiveCard />
     </div>
     <div class="mb-4">
       <UserRankingUpperTenCard />

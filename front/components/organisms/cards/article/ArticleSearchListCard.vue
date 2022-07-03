@@ -20,7 +20,7 @@
             <v-card-title v-if="info">検索結果：{{ info.total_count }}件</v-card-title>
           </v-col>
           <v-col cols="12">
-            <ArticleCardWithTab
+            <ArticleListCardWithTab
               :articles="articles"
               :info="info"
               :processing="processing"

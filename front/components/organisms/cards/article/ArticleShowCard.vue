@@ -4,14 +4,14 @@
       <div v-if="user != null">
         <v-row>
           <v-col cols="12">
-            <ArticleDetailCard
+            <ArticleShowDetailCard
               :article="article"
               :user="user"
               :likers="likers"
             />
           </v-col>
           <v-col cols="12">
-            <ArticleCommentCard
+            <ArticleCommentListCard
               :user="user"
               :article-comments="articleComments"
               :article="article"

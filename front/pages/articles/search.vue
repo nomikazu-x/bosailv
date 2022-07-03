@@ -11,7 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
-      <ArticleSearchCard />
+      <ArticleSearchListCard />
     </template>
 
     <template v-if="!loading" #right>
