@@ -3,7 +3,7 @@
     <TheLoading v-if="loading" />
     <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
 
-    <LikerCard v-if="!loading" />
+    <ArticleLikerListCard v-if="!loading" />
   </OneColumnContainer>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <BaseTitleCard title="いいねしたユーザー">
-    <LikerListItem
+    <ArticleLikerListItem
       v-for="(liker, i) in likers"
       :key="liker.id"
       :liker="liker"
