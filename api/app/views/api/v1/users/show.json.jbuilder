@@ -36,13 +36,13 @@ json.user do
   json.level @user.level
   json.username @user.username
   json.profile @user.profile
-  if current_user.prefecture_id.present?
+  if @user.prefecture_id.present?
     json.prefecture do
       json.id @prefecture.id
       json.name @prefecture.name
     end
   end
-  if current_user.city_id.present?
+  if @user.city_id.present?
     json.city do
       json.id @city.id
       json.name @city.name
