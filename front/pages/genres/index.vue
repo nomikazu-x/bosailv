@@ -10,15 +10,8 @@
       <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
     </template>
 
-    <template #left>
-      <v-row v-if="!loading" justify="center">
-        <v-col cols="12">
-          <GenreCard
-            :genres="genres"
-            :processing="processing"
-          />
-        </v-col>
-      </v-row>
+    <template v-if="!loading" #left>
+      <GenreIndexCard />
     </template>
 
     <template v-if="!loading" #right>
@@ -33,27 +26,8 @@ import Application from '~/plugins/application.js'
 export default {
   name: 'GenresIndex',
   mixins: [Application],
-  data () {
-    return {
-      genres: null
-    }
-  },
-  async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.genresUrl)
-      .then((response) => {
-        if (response.data == null) {
-          this.$toasted.error(this.$t('system.error'))
-          this.articles = null
-        } else {
-          this.genres = response.data.genres
-        }
-      },
-      (error) => {
-        this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
-      })
-
+  created () {
     this.loading = false
-    this.processing = false
   }
 }
 </script>
