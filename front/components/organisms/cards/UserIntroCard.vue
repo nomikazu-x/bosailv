@@ -87,7 +87,7 @@ export default {
       return this.user && this.user.profile
     },
     getAddress () {
-      return this.user && this.user.prefecture + this.user.city
+      return this.user && this.user.prefecture.name + this.user.city.name
     },
     getUserImage () {
       return this.user && this.user.image_url.medium

@@ -9,8 +9,8 @@ class Api::V1::Auth::TokenValidationsController < DeviseTokenAuth::TokenValidati
 
   def render_validate_token_success
     @required_point = RequiredPoint.find_by(level: current_user.level).point
-    @prefecture = Prefecture.find(current_user.prefecture_id).name if current_user.prefecture_id.present?
-    @city = City.find(current_user.city_id).name if current_user.prefecture_id.present?
+    @prefecture = Prefecture.find(current_user.prefecture_id) if current_user.prefecture_id.present?
+    @city = City.find(current_user.city_id) if current_user.prefecture_id.present?
     render './api/v1/auth/success', locals: { notice: false }
   end
 

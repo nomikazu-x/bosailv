@@ -15,13 +15,14 @@
         <CitiesSelect
           v-model="selectCity"
           :cities="cities"
+          @click="waiting = false"
         />
         <ProfileTextarea
           v-model="profile"
         />
         <RedBtn
           id="user_update_btn"
-          :disabled="invalid || processing"
+          :disabled="invalid || processing || waiting"
           @click="onUserUpdate"
         >
           変更
@@ -55,18 +56,18 @@ export default {
       selectPrefecture: null,
       cities: [],
       selectCity: null,
-      profile: ''
+      profile: '',
+      waiting: false
     }
   },
 
-  created () {
+  async created () {
     this.name = this.name || this.user.name
-    this.selectPrefecture = this.selectPrefecture || this.user.prefecture
-    this.selectCity = this.selectCity || this.user.city
+    this.selectPrefecture = this.selectPrefecture || this.user.prefecture.id
     this.profile = this.profile || this.user.profile
-    if (!this.selectPrefecture == null) {
-      this.onGetCities(this.selectPrefecture)
-    }
+    await this.onGetCities(this.selectPrefecture)
+    this.selectCity = this.selectCity || this.user.city.id
+    this.waiting = true
   },
 
   methods: {
@@ -90,6 +91,7 @@ export default {
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
             this.cities = response.data
+            this.waiting = true
           }
         },
         (error) => {
@@ -100,6 +102,7 @@ export default {
           } else {
             this.alert = error.response.data.alert
             this.notice = error.response.data.notice
+            this.waiting = true
           }
         })
     }

@@ -1,5 +1,5 @@
 <template>
-  <BaseTitleCard :title="$auth.user.name">
+  <BaseTitleCard title="設定">
     <v-list>
       <v-list-item to="/settings/profile">
         <v-list-item-icon>

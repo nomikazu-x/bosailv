@@ -13,8 +13,8 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     @required_point = RequiredPoint.find_by(level: @user.level).point if @user.present?
 
     if @user.present? && @user.prefecture_id.present?
-      @prefecture = Prefecture.find(@user.prefecture_id).name 
-      @city = City.find(@user.city_id).name
+      @prefecture = Prefecture.find(@user.prefecture_id)
+      @city = City.find(@user.city_id)
     end
 
     if @user

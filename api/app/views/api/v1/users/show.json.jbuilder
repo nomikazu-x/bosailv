@@ -36,8 +36,14 @@ json.user do
   json.level @user.level
   json.username @user.username
   json.profile @user.profile
-  json.prefecture @prefecture
-  json.city @city
+  json.prefecture do
+    json.id @prefecture.id
+    json.name @prefecture.name
+  end
+  json.city do
+    json.id @city.id
+    json.name @city.name
+  end
   json.lifelong_point @user.lifelong_point
   json.point_to_next @user.point_to_next
   json.infomation_unread_count @user.infomation_unread_count

@@ -24,20 +24,42 @@
 </template>
 
 <script>
+import Application from '~/plugins/application.js'
+
 export default {
-  props: {
-    loading: {
-      type: Boolean,
-      default: false
-    },
-    processing: {
-      type: Boolean,
-      default: false
-    }
+  name: 'SettingsDeactivate',
+  mixins: [Application],
+
+  created () {
+    this.processing = false
   },
+
   methods: {
-    onUserDelete () {
-      this.$emit('user-delete')
+    async onUserDelete () {
+      this.processing = true
+
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.userDeleteUrl)
+        .then((response) => {
+          if (response.data == null) {
+            this.$toasted.error(this.$t('system.error'))
+          } else {
+            return this.signOut(null, '/signin', response.data.alert, response.data.notice)
+          }
+        },
+        (error) => {
+          if (error.response == null) {
+            this.$toasted.error(this.$t('network.failure'))
+          } else if (error.response.status === 401) {
+            return this.signOut()
+          } else if (error.response.data == null) {
+            this.$toasted.error(this.$t('network.error'))
+          } else {
+            this.$toasted.error(error.response.data.alert)
+            this.$toasted.info(error.response.data.notice)
+          }
+        })
+
+      this.processing = false
     }
   }
 }
