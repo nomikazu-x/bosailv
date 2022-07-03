@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="articles != null">
     <TheProcessing v-if="processing" />
     <BaseTitleCard title="新着一覧">
       <v-card v-if="articles != null && articles.length === 0">
@@ -22,24 +22,52 @@
 </template>
 
 <script>
+import Application from '~/plugins/application.js'
+
 export default {
-  props: {
-    articles: {
-      type: Array,
-      default: () => []
-    },
-    info: {
-      type: Object,
-      default: null
-    },
-    processing: {
-      type: Boolean,
-      default: false
+  name: 'Index',
+  mixins: [Application],
+  data () {
+    return {
+      page: 1,
+      info: null,
+      articles: null
     }
   },
+  async created () {
+    await this.onPagination(this.page)
+
+    this.processing = false
+  },
+
   methods: {
-    onPagination (value) {
-      return this.$emit('pagination', value)
+    async onPagination (page) {
+      this.processing = true
+
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl, {
+        params: { page }
+      })
+        .then((response) => {
+          if (response.data == null || response.data.article == null) {
+            this.$toasted.error(this.$t('system.error'))
+            if (this.info == null) {
+              return this.$router.push({ path: '/' })
+            }
+            this.page = this.info.current_page
+          } else {
+            this.info = response.data.article
+            this.articles = response.data.articles
+          }
+        },
+        (error) => {
+          this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
+          if (this.info == null) {
+            return this.$router.push({ path: '/' })
+          }
+          this.page = this.info.current_page
+        })
+
+      this.processing = false
     }
   }
 }

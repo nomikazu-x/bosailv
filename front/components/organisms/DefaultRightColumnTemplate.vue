@@ -1,10 +1,7 @@
 <template>
   <div>
     <div v-if="$auth.loggedIn" class="mb-4">
-      <UserIntroCard
-        :user="$auth.user"
-        :required-point="$auth.user.required_point"
-      />
+      <AuthUserIntroCard />
     </div>
     <div v-else class="mb-4">
       <SignUp />

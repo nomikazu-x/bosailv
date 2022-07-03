@@ -25,13 +25,8 @@ import Application from '~/plugins/application.js'
 
 export default {
   name: 'SettingsPassword',
-  mixins: [Application],
 
-  data () {
-    return {
-      user: null
-    }
-  },
+  mixins: [Application],
 
   async created () {
     try {

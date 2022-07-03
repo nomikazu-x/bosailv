@@ -14,6 +14,7 @@ import Application from '~/plugins/application.js'
 
 export default {
   name: 'SignUpIndex',
+
   mixins: [Application],
 
   created () {

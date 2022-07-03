@@ -25,6 +25,7 @@ import Application from '~/plugins/application.js'
 
 export default {
   name: 'SettingsEmail',
+
   mixins: [Application],
 
   async created () {

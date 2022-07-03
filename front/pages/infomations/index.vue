@@ -25,6 +25,7 @@ import Application from '~/plugins/application.js'
 
 export default {
   name: 'InfomationsIndex',
+
   mixins: [Application],
 
   created () {

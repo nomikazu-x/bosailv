@@ -25,7 +25,9 @@ import Application from '~/plugins/application.js'
 
 export default {
   name: 'GenresIndex',
+
   mixins: [Application],
+
   created () {
     this.loading = false
   }
