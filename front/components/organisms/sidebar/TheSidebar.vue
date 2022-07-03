@@ -20,7 +20,10 @@
         </v-list-item>
         <v-list-item to="/infomations" exact nuxt>
           <v-list-item-icon>
-            <v-badge :content="$auth.user.infomation_unread_count" :value="$auth.user.infomation_unread_count" color="red" overlap>
+            <v-badge v-if="$auth.loggedIn" :content="$auth.user.infomation_unread_count" :value="$auth.user.infomation_unread_count" color="red" overlap>
+              <v-icon>mdi-bell</v-icon>
+            </v-badge>
+            <v-badge v-else>
               <v-icon>mdi-bell</v-icon>
             </v-badge>
           </v-list-item-icon>
