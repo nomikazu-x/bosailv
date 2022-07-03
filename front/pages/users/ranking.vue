@@ -11,7 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
-      <UserRankingIndexCard />
+      <UserRankingListCard />
     </template>
 
     <template v-if="!loading" #right>

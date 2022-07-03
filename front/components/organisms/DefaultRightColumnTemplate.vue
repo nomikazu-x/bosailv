@@ -13,7 +13,7 @@
       <ArticleRankingCard />
     </div>
     <div class="mb-4">
-      <UserRankingCard />
+      <UserRankingUpperTenCard />
     </div>
   </div>
 </template>

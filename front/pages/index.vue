@@ -13,7 +13,7 @@
 
     <template v-if="!loading" #left>
       <TopTransitionCard />
-      <ArticleCard />
+      <NewArticleListCard />
       <GenreImageCardWithTitle />
     </template>
 
