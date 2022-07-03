@@ -7,7 +7,7 @@
         </v-col>
       </v-row>
 
-      <GenreImageCard :genres="genres" />
+      <GenreImageListCard :genres="genres" />
     </div>
   </BaseTitleCard>
 </template>

@@ -11,7 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
-      <GenreIndexCard />
+      <GenreListCardWithArticle />
     </template>
 
     <template v-if="!loading" #right>

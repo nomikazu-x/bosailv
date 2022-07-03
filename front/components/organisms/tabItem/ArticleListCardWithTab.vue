@@ -7,7 +7,7 @@
         <v-divider class="my-4" />
       </v-card>
       <div v-for="article in articles" :key="article.id">
-        <ArticleCardText
+        <ArticleListCardText
           :article="article"
         />
       </div>

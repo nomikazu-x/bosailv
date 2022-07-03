@@ -8,7 +8,7 @@
             <v-card-title class="genre-name mt-8 white--text justify-center align-center text-shadow">{{ genre.name }}</v-card-title>
           </v-img>
           <div v-for="article in genre.articles" :key="article.id">
-            <ArticleCardText
+            <ArticleListCardText
               :article="article"
             />
           </div>

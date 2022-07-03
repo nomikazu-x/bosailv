@@ -15,7 +15,7 @@
     </v-tabs>
     <v-tabs-items v-model="tab">
       <v-tab-item>
-        <ArticleCardWithTab
+        <ArticleListCardWithTab
           :processing="processing"
           :articles="articles"
           :info="articleInfo"
@@ -23,7 +23,7 @@
         />
       </v-tab-item>
       <v-tab-item>
-        <ArticleCardWithTab
+        <ArticleListCardWithTab
           :processing="processing"
           :articles="favoriteArticles"
           :info="favoriteArticleInfo"
