@@ -1,7 +1,7 @@
 <template>
   <BaseTitleCard v-if="genres != null" class="mt-5" title="ジャンル一覧">
     <v-card>
-      <GenreListImageCard
+      <GenreImageListCard
         :genres="genres"
         class="px-2"
       />

@@ -15,7 +15,7 @@
     </template>
 
     <template v-if="!loading" #right>
-      <UsernameCard />
+      <UserShowCardWithGenre />
     </template>
   </TwoColumnContainer>
 </template>

@@ -6,7 +6,7 @@
         <article v-if="infomations != null && infomations.length === 0">
           <span class="ml-1">お知らせはありません。</span>
         </article>
-        <InfomationList
+        <InfomationListItem
           v-for="infomation in infomations"
           :key="infomation.id"
           :infomation="infomation"

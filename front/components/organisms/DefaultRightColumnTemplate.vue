@@ -7,7 +7,7 @@
       <SignUp />
     </div>
     <div class="mb-4">
-      <ImportantInfomationCard />
+      <ImportantInfomationListCard />
     </div>
     <div class="mb-4">
       <ArticleRankingUpperFiveCard />

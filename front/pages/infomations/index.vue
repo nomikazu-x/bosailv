@@ -11,7 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
-      <InfomationIndexCard />
+      <InfomationListCard />
     </template>
 
     <template v-if="!loading" #right>
