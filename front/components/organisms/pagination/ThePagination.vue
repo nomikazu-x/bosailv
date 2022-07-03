@@ -5,6 +5,7 @@
       v-model="page"
       color="#ef5350"
       :length="info.total_pages"
+      :total-visible="7"
       @input="onPagination"
     />
   </div>
