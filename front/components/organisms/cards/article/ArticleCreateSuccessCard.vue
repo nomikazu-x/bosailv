@@ -28,6 +28,7 @@
 
 <script>
 export default {
+  name: 'ArticleCreateSuccessCard',
   props: {
     article: {
       type: Object,

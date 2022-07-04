@@ -20,6 +20,7 @@
 
 <script>
 export default {
+  name: 'GenreCheckbox',
   props: {
     value: {
       type: Array,

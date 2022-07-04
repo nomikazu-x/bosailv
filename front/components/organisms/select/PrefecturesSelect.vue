@@ -20,6 +20,7 @@
 
 <script>
 export default {
+  name: 'PrefecturesSelect',
   props: {
     prefectures: {
       type: Array,

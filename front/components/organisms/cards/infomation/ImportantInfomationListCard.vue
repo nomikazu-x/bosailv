@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'IndexInfomations',
+  name: 'ImportantInfomationListCard',
   data () {
     return {
       infomations: null

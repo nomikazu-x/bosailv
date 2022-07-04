@@ -20,6 +20,7 @@
 
 <script>
 export default {
+  name: 'TwoColumnContainer',
   props: {
     fluid: {
       type: Boolean,

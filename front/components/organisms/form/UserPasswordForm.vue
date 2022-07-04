@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'InfoEdit',
+  name: 'UserPasswordForm',
   props: {
     processing: {
       type: Boolean,

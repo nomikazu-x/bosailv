@@ -41,6 +41,7 @@
 
 <script>
 export default {
+  name: 'UserRankingListItem',
   props: {
     user: {
       type: Object,

@@ -21,7 +21,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'ArticlesIdEdit',
+  name: 'ArticleEditCard',
 
   mixins: [Application],
 

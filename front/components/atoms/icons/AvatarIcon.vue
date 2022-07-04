@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'AvatarIcon',
   props: {
     alt: {
       type: String,

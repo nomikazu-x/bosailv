@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  name: 'ArticleSearchTextField',
   inheritAttrs: false,
   props: {
     value: {

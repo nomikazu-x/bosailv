@@ -16,6 +16,7 @@
 
 <script>
 export default {
+  name: 'RedBtn',
   props: {
     disabled: {
       type: Boolean,

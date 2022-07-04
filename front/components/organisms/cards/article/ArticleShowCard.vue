@@ -27,7 +27,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'ArticlesId',
+  name: 'ArticleShowCard',
 
   data () {
     return {

@@ -56,7 +56,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'UsersUsername',
+  name: 'UserIntroCard',
   mixins: [Application],
 
   data () {

@@ -18,7 +18,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'PasswordResetConfirm',
+  name: 'PasswordResetConfirmCard',
 
   mixins: [Application],
 

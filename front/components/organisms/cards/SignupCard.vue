@@ -31,7 +31,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'SignUpIndex',
+  name: 'SignupCard',
   mixins: [Application],
   data () {
     return {

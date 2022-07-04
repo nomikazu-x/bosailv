@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  name: 'ArticleLikerListItem',
   props: {
     liker: {
       type: Object,

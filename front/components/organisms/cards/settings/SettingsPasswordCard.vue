@@ -16,7 +16,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'SettingsPassword',
+  name: 'SettingsPasswordCard',
   mixins: [Application],
 
   data () {

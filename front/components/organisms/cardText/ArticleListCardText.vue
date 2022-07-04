@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  name: 'ArticleListCardText',
   props: {
     article: {
       type: Object,

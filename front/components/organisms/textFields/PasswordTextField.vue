@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  name: 'PasswordTextField',
   inheritAttrs: false,
   props: {
     value: {

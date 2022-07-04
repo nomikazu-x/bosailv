@@ -20,7 +20,9 @@
   </ValidationObserver>
 </template>
 
-<script>export default {
+<script>
+export default {
+  name: 'PasswordResetConfirmForm',
   props: {
     processing: {
       type: Boolean,

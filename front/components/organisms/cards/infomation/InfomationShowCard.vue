@@ -33,7 +33,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'InfomationsId',
+  name: 'InfomationShowCard',
   mixins: [Application],
 
   data () {

@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'InfoEdit',
+  name: 'UserEmailForm',
   props: {
     processing: {
       type: Boolean,

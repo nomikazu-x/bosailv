@@ -41,7 +41,7 @@
 
 <script>
 export default {
-  name: 'ImageEdit',
+  name: 'UserImageFileInput',
 
   props: {
     processing: {

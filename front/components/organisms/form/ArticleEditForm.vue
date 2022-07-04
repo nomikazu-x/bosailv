@@ -50,7 +50,7 @@
 
 <script>
 export default {
-  name: 'InfoEdit',
+  name: 'ArticleEditForm',
   props: {
     processing: {
       type: Boolean,

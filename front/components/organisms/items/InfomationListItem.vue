@@ -38,6 +38,7 @@
 
 <script>
 export default {
+  name: 'InfomationListItem',
   props: {
     infomation: {
       type: Object,

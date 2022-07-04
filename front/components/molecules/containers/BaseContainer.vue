@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'BaseContainer',
   props: {
     id: {
       type: String,

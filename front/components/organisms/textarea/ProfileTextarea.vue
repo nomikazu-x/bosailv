@@ -19,6 +19,7 @@
 
 <script>
 export default {
+  name: 'ProfileTextarea',
   inheritAttrs: false,
   props: {
     value: {

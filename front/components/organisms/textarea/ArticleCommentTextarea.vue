@@ -22,7 +22,9 @@
 
 <script>
 import Application from '~/plugins/application.js'
+
 export default {
+  name: 'ArticleCommentTextarea',
   mixins: [Application],
   props: {
     article: {

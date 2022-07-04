@@ -20,6 +20,7 @@
 
 <script>
 export default {
+  name: 'UserRankingUpperTenCard',
   data () {
     return {
       users: null

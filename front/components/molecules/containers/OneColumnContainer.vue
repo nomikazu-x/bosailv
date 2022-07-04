@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  name: 'OneColumnContainer',
   props: {
     fluid: {
       type: Boolean,

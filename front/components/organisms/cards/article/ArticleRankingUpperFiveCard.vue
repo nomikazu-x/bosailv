@@ -53,6 +53,8 @@
 
 <script>
 export default {
+  name: 'ArticleRankingUpperFiveCard',
+
   data () {
     return {
       famousArticles: null

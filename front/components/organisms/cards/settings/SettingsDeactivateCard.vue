@@ -27,7 +27,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'SettingsDeactivate',
+  name: 'SettingsDeactivateCard',
   mixins: [Application],
 
   created () {

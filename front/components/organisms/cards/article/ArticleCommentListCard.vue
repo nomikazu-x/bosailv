@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: 'ArticleCommentListCard',
   props: {
     articleComments: {
       type: Array,

@@ -4,3 +4,9 @@
     <v-btn class="ml-5" large color="#3b5998" outlined icon><v-icon size="30" color="#3b5998">mdi-facebook</v-icon></v-btn>
   </v-row>
 </template>
+
+<script>
+export default {
+  name: 'ShareBtnGroup'
+}
+</script>

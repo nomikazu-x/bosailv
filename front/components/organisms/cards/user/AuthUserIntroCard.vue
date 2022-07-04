@@ -54,6 +54,7 @@
 
 <script>
 export default {
+  name: 'AuthUserIntroCard',
   computed: {
     getAddress () {
       if (this.$auth.user.prefecture && this.$auth.user.city) {

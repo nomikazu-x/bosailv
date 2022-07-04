@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'UsersActionLink',
+  name: 'ActionLinkBtnGroup',
 
   props: {
     action: {

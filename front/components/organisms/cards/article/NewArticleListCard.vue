@@ -25,7 +25,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'Index',
+  name: 'NewArticleListCard',
   mixins: [Application],
   data () {
     return {

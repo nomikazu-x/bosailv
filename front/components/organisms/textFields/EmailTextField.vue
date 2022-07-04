@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  name: 'EmailTextField',
   inheritAttrs: false,
   props: {
     value: {

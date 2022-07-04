@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  name: 'NameTextField',
   inheritAttrs: false,
   props: {
     value: {

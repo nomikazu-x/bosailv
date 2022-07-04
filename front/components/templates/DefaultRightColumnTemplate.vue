@@ -20,6 +20,6 @@
 
 <script>
 export default {
-  name: 'Index'
+  name: 'DefaultRightColumnTemplate'
 }
 </script>

@@ -48,6 +48,7 @@
 
 <script>
 export default {
+  name: 'ArticleNewForm',
   props: {
     errors: {
       type: Object,

@@ -32,7 +32,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'GenresIndex',
+  name: 'GenreListCardWithArticle',
   mixins: [Application],
   data () {
     return {

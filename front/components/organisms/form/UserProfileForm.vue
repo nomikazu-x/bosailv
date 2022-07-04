@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  name: 'InfoEdit',
+  name: 'UserProfileForm',
   props: {
     processing: {
       type: Boolean,

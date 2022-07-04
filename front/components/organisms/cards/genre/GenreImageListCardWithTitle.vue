@@ -13,7 +13,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'Index',
+  name: 'GenreImageListCardWithTitle',
   mixins: [Application],
   data () {
     return {

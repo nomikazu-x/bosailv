@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  name: 'SigninForm',
   props: {
     processing: {
       type: Boolean,

@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  name: 'TopSlide',
   data () {
     return {
       articles: null

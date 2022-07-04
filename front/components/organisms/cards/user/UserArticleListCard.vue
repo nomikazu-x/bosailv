@@ -38,7 +38,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'UsersUsernameGenresId',
+  name: 'UsersArticleListCard',
   mixins: [Application],
 
   data () {

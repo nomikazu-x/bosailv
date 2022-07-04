@@ -50,3 +50,9 @@
     </v-list>
   </BaseTitleCard>
 </template>
+
+<script>
+export default {
+  name: 'SettingsIndexCard'
+}
+</script>

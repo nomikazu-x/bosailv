@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  name: 'OrangeBtn',
   props: {
     disabled: {
       type: Boolean,

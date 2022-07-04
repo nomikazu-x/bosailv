@@ -32,7 +32,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
-  name: 'ArticlesIndex',
+  name: 'UsefulArticleListCard',
 
   mixins: [Application],
 

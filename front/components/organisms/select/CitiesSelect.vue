@@ -20,6 +20,7 @@
 
 <script>
 export default {
+  name: 'CitiesSelect',
   props: {
     cities: {
       type: Array,
