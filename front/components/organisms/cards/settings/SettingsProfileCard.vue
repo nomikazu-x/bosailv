@@ -22,9 +22,19 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import UserImageFileInput from '~/components/organisms/fileInputs/UserImageFileInput.vue'
+import UserProfileForm from '~/components/organisms/form/UserProfileForm.vue'
 
 export default {
   name: 'SettingsProfileCard',
+
+  components: {
+    BaseTitleCard,
+    UserImageFileInput,
+    UserProfileForm
+  },
+
   mixins: [Application],
 
   data () {

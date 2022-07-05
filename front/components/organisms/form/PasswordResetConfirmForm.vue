@@ -21,8 +21,19 @@
 </template>
 
 <script>
+import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
+import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
   name: 'PasswordResetConfirmForm',
+
+  components: {
+    TheProcessing,
+    PasswordConfirmationTextField,
+    RedBtn
+  },
+
   props: {
     processing: {
       type: Boolean,

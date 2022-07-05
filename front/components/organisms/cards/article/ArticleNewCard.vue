@@ -15,11 +15,21 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import ArticleNewForm from '~/components/organisms/form/ArticleNewForm.vue'
+import ArticleCreateSuccessCard from '~/components/organisms/cards/article/ArticleCreateSuccessCard.vue'
 
 export default {
   name: 'ArticleNewCard',
 
+  components: {
+    BaseTitleCard,
+    ArticleNewForm,
+    ArticleCreateSuccessCard
+  },
+
   mixins: [Application],
+
   data () {
     return {
       errors: null,

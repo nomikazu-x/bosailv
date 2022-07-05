@@ -20,8 +20,15 @@
 </template>
 
 <script>
+import BaseCard from '~/components/molecules/cards/BaseCard.vue'
+
 export default {
   name: 'ArticleListCardText',
+
+  components: {
+    BaseCard
+  },
+
   props: {
     article: {
       type: Object,

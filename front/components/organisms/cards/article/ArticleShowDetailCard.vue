@@ -60,10 +60,17 @@
 </template>
 
 <script>
+import FavoriteBtnGroup from 'front/components/organisms/btnGroup/FavoriteBtnGroup.vue'
+import ShareBtnGroup from 'front/components/organisms/btnGroup/ShareBtnGroup.vue'
 import Application from '~/plugins/application.js'
 
 export default {
   name: 'ArticleShowDetailCard',
+
+  components: {
+    FavoriteBtnGroup,
+    ShareBtnGroup
+  },
 
   mixins: [Application],
 

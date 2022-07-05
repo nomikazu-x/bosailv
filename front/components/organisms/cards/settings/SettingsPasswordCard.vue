@@ -14,9 +14,17 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import UserPasswordForm from '~/components/organisms/form/UserPasswordForm.vue'
 
 export default {
   name: 'SettingsPasswordCard',
+
+  components: {
+    BaseTitleCard,
+    UserPasswordForm
+  },
+
   mixins: [Application],
 
   data () {

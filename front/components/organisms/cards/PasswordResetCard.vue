@@ -31,18 +31,29 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import PasswordResetForm from '~/components/organisms/form/PasswordResetForm.vue'
 
 export default {
   name: 'PasswordResetCard',
+
+  components: {
+    BaseTitleCard,
+    PasswordResetForm
+  },
+
   mixins: [Application],
+
   data () {
     return {
       errors: null
     }
   },
+
   created () {
     this.processing = false
   },
+
   methods: {
     async onPasswordNew (email) {
       this.processing = true

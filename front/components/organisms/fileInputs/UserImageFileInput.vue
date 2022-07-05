@@ -40,8 +40,16 @@
 </template>
 
 <script>
+import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
   name: 'UserImageFileInput',
+
+  components: {
+    TheProcessing,
+    RedBtn
+  },
 
   props: {
     processing: {

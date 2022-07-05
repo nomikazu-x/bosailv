@@ -19,7 +19,21 @@
 </template>
 
 <script>
+import AuthUserIntroCard from '~/components/organisms/cards/user/AuthUserIntroCard.vue'
+import SignUp from '~/components/organisms/cards/SignUp.vue'
+import ImportantInfomationListCard from '~/components/organisms/cards/infomation/ImportantInfomationListCard.vue'
+import ArticleRankingUpperFiveCard from '~/components/organisms/cards/article/ArticleRankingUpperFiveCard.vue'
+import UserRankingUpperTenCard from '~/components/organisms/cards/user/UserRankingUpperTenCard.vue'
+
 export default {
-  name: 'DefaultRightColumnTemplate'
+  name: 'DefaultRightColumnTemplate',
+
+  components: {
+    AuthUserIntroCard,
+    SignUp,
+    ImportantInfomationListCard,
+    ArticleRankingUpperFiveCard,
+    UserRankingUpperTenCard
+  }
 }
 </script>

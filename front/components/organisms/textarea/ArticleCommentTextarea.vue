@@ -22,10 +22,17 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
   name: 'ArticleCommentTextarea',
+
+  components: {
+    RedBtn
+  },
+
   mixins: [Application],
+
   props: {
     article: {
       type: Object,

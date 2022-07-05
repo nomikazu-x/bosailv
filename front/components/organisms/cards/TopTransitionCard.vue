@@ -12,8 +12,17 @@
 </template>
 
 <script>
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import BaseBtn from '~/components/molecules/btns/BaseBtn.vue'
+
 export default {
   name: 'TopTransitonCard',
+
+  components: {
+    BaseTitleCard,
+    BaseBtn
+  },
+
   data () {
     return {
       items: [

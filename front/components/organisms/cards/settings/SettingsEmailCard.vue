@@ -14,9 +14,17 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import UserEmailForm from '~/components/organisms/form/UserEmailForm.vue'
 
 export default {
   name: 'SettingsEmailCard',
+
+  components: {
+    BaseTitleCard,
+    UserEmailForm
+  },
+
   mixins: [Application],
 
   data () {

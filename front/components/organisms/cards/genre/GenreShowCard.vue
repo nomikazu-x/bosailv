@@ -31,9 +31,14 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import ArticleListCardWithTab from '~/components/organisms/tabItem/ArticleListCardWithTab.vue'
 
 export default {
   name: 'GenreShowCard',
+
+  components: {
+    ArticleListCardWithTab
+  },
 
   mixins: [Application],
 

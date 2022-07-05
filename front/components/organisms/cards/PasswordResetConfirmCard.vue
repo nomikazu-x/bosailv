@@ -16,9 +16,16 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import PasswordResetConfirmForm from '~/components/organisms/form/PasswordResetConfirmForm.vue'
 
 export default {
   name: 'PasswordResetConfirmCard',
+
+  components: {
+    BaseTitleCard,
+    PasswordResetConfirmForm
+  },
 
   mixins: [Application],
 

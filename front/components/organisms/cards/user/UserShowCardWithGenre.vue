@@ -14,9 +14,19 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import GenreImageListCard from '~/components/organisms/cards/genre/GenreImageListCard.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
   name: 'UserShowCardWithGenre',
+
+  components: {
+    BaseTitleCard,
+    GenreImageListCard,
+    RedBtn
+  },
+
   mixins: [Application],
 
   data () {
@@ -26,6 +36,7 @@ export default {
       requiredPoint: 0
     }
   },
+
   computed: {
     authUsername () {
       return this.$auth.user.username

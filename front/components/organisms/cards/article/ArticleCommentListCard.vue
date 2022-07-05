@@ -12,8 +12,19 @@
 </template>
 
 <script>
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import ArticleCommentListCardText from '~/components/organisms/cardText/ArticleCommentListCardText.vue'
+import ArticleCommentTextarea from '~/components/organisms/textarea/ArticleCommentTextarea.vue'
+
 export default {
   name: 'ArticleCommentListCard',
+
+  components: {
+    BaseTitleCard,
+    ArticleCommentListCardText,
+    ArticleCommentTextarea
+  },
+
   props: {
     articleComments: {
       type: Array,

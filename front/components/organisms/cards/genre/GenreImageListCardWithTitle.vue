@@ -11,9 +11,17 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import GenreImageListCard from '~/components/organisms/cards/genre/GenreImageListCard.vue'
 
 export default {
   name: 'GenreImageListCardWithTitle',
+
+  components: {
+    BaseTitleCard,
+    GenreImageListCard
+  },
+
   mixins: [Application],
   data () {
     return {

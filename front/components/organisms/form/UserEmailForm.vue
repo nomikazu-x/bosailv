@@ -23,8 +23,21 @@
 </template>
 
 <script>
+import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
+import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
+import PasswordTextField from '~/components/organisms/textFields/PasswordTextField.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
   name: 'UserEmailForm',
+
+  components: {
+    TheProcessing,
+    EmailTextField,
+    PasswordTextField,
+    RedBtn
+  },
+
   props: {
     processing: {
       type: Boolean,

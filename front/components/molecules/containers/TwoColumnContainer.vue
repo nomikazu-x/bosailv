@@ -19,8 +19,15 @@
 </template>
 
 <script>
+import BaseContainer from '~/components/molecules/containers/BaseContainer.vue'
+
 export default {
   name: 'TwoColumnContainer',
+
+  components: {
+    BaseContainer
+  },
+
   props: {
     fluid: {
       type: Boolean,

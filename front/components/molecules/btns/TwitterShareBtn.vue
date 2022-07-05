@@ -9,9 +9,14 @@
 </template>
 
 <script>
+import TwitterBtn from '~/components/molecules/btns/TwitterBtn.vue'
+
 const TWITTER_TWEET_URL = 'https://twitter.com/intent/tweet'
 
 export default {
+  components: {
+    TwitterBtn
+  },
   props: {
     hashtag: {
       type: [String, Array],

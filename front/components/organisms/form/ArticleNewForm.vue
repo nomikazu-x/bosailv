@@ -47,8 +47,25 @@
 </template>
 
 <script>
+import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
+import ArticleThumbnailFileInput from '~/components/organisms/fileInputs/ArticleThumbnailFileInput.vue'
+import ArticleTitleTextField from '~/components/organisms/textFields/ArticleTitleTextField.vue'
+import GenresCheckbox from '~/components/organisms/checkbox/GenresCheckbox.vue'
+import Editor from '~/components/organisms/editor/Editor.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
   name: 'ArticleNewForm',
+
+  components: {
+    TheProcessing,
+    ArticleThumbnailFileInput,
+    ArticleTitleTextField,
+    GenresCheckbox,
+    Editor,
+    RedBtn
+  },
+
   props: {
     errors: {
       type: Object,

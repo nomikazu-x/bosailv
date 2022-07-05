@@ -29,9 +29,17 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import SignupForm from '~/components/organisms/form/SignupForm.vue'
 
 export default {
   name: 'SignupCard',
+
+  components: {
+    BaseTitleCard,
+    SignupForm
+  },
+
   mixins: [Application],
   data () {
     return {

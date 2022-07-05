@@ -22,8 +22,17 @@
 </template>
 
 <script>
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import InfomationLabel from '~/components/atoms/label/InfomationLabel.vue'
+
 export default {
   name: 'ImportantInfomationListCard',
+
+  components: {
+    BaseTitleCard,
+    InfomationLabel
+  },
+
   data () {
     return {
       infomations: null

@@ -11,10 +11,19 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import UserRankingListItem from '~/components/organisms/items/UserRankingListItem.vue'
 
 export default {
   name: 'UserRankingListCard',
+
+  components: {
+    BaseTitleCard,
+    UserRankingListItem
+  },
+
   mixins: [Application],
+
   data () {
     return {
       users: null

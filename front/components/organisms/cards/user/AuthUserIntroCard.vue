@@ -53,8 +53,21 @@
 </template>
 
 <script>
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import AvatarIcon from '~/components/atoms/icons/AvatarIcon.vue'
+import PointProgressLinear from '~/components/organisms/progressLinear/PointProgressLinear.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
   name: 'AuthUserIntroCard',
+
+  components: {
+    BaseTitleCard,
+    AvatarIcon,
+    PointProgressLinear,
+    RedBtn
+  },
+
   computed: {
     getAddress () {
       if (this.$auth.user.prefecture && this.$auth.user.city) {

@@ -29,18 +29,29 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import SigninForm from '~/components/organisms/form/SigninForm.vue'
 
 export default {
   name: 'SigninCard',
+
+  components: {
+    BaseTitleCard,
+    SigninForm
+  },
+
   mixins: [Application],
+
   data () {
     return {
       errors: null
     }
   },
+
   created () {
     this.processing = false
   },
+
   methods: {
     async onSignIn (userInfo) {
       this.processing = true

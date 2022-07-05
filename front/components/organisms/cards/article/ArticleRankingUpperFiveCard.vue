@@ -52,8 +52,18 @@
 </template>
 
 <script>
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import BaseCard from '~/components/molecules/cards/BaseCard.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
   name: 'ArticleRankingUpperFiveCard',
+
+  components: {
+    BaseTitleCard,
+    BaseCard,
+    RedBtn
+  },
 
   data () {
     return {

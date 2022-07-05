@@ -35,8 +35,25 @@
 </template>
 
 <script>
+import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
+import UserNameTextField from '~/components/organisms/textFields/UserNameTextField.vue'
+import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
+import CitiesSelect from '~/components/organisms/select/CitiesSelect.vue'
+import ProfileTextarea from '~/components/organisms/textarea/ProfileTextarea.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
   name: 'UserProfileForm',
+
+  components: {
+    TheProcessing,
+    UserNameTextField,
+    PrefecturesSelect,
+    CitiesSelect,
+    ProfileTextarea,
+    RedBtn
+  },
+
   props: {
     processing: {
       type: Boolean,
