@@ -12,7 +12,7 @@
 <script>
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
-import ArticleLikerListItem from '~components/organisms/items/ArticleLikerListItem.vue'
+import ArticleLikerListItem from '~/components/organisms/items/ArticleLikerListItem.vue'
 
 export default {
   name: 'ArticleLikerListCard',

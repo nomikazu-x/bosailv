@@ -60,8 +60,8 @@
 </template>
 
 <script>
-import FavoriteBtnGroup from 'front/components/organisms/btnGroup/FavoriteBtnGroup.vue'
-import ShareBtnGroup from 'front/components/organisms/btnGroup/ShareBtnGroup.vue'
+import FavoriteBtnGroup from '~/components/organisms/btnGroup/FavoriteBtnGroup.vue'
+import ShareBtnGroup from '~/components/organisms/btnGroup/ShareBtnGroup.vue'
 import Application from '~/plugins/application.js'
 
 export default {
