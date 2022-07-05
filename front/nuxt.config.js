@@ -51,12 +51,12 @@ export default {
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: [
-    {
-      path: '@/components/',
-      pathPrefix: false
-    }
-  ],
+  // components: [
+  //   {
+  //     path: '@/components/',
+  //     pathPrefix: false
+  //   }
+  // ],
   /*
   ** Nuxt.js dev-modules
   */

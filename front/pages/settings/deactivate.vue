@@ -22,9 +22,22 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
+import TheLoading from '~/components/organisms/application/TheLoading.vue'
+import TheMessage from '~/components/organisms/application/TheMessage.vue'
+import SettingsIndexCard from '~/components/organisms/cards/settings/SettingsIndexCard.vue'
+import SettingsDeactivateCard from '~/components/organisms/cards/settings/SettingsDeactivateCard.vue'
 
 export default {
   name: 'SettingsDeactivate',
+
+  components: {
+    TwoColumnContainer,
+    TheLoading,
+    TheMessage,
+    SettingsIndexCard,
+    SettingsDeactivateCard
+  },
 
   mixins: [Application],
 

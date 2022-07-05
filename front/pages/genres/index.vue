@@ -22,9 +22,22 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
+import TheLoading from '~/components/organisms/application/TheLoading.vue'
+import TheMessage from '~/components/organisms/application/TheMessage.vue'
+import GenreListCardWithArticle from '~/components/organisms/cards/genre/GenreListCardWithArticle.vue'
+import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {
   name: 'GenresIndex',
+
+  components: {
+    TwoColumnContainer,
+    TheLoading,
+    TheMessage,
+    GenreListCardWithArticle,
+    DefaultRightColumnTemplate
+  },
 
   mixins: [Application],
 

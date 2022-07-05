@@ -22,9 +22,22 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
+import TheLoading from '~/components/organisms/application/TheLoading.vue'
+import TheMessage from '~/components/organisms/application/TheMessage.vue'
+import ArticleShowCard from '~/components/organisms/cards/article/ArticleShowCard.vue'
+import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {
   name: 'ArticlesId',
+
+  components: {
+    TwoColumnContainer,
+    TheLoading,
+    TheMessage,
+    ArticleShowCard,
+    DefaultRightColumnTemplate
+  },
 
   mixins: [Application],
 

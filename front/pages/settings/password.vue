@@ -22,9 +22,22 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
+import TheLoading from '~/components/organisms/application/TheLoading.vue'
+import TheMessage from '~/components/organisms/application/TheMessage.vue'
+import SettingsIndexCard from '~/components/organisms/cards/settings/SettingsIndexCard.vue'
+import SettingsPasswordCard from '~/components/organisms/cards/settings/SettingsPasswordCard.vue'
 
 export default {
   name: 'SettingsPassword',
+
+  components: {
+    TwoColumnContainer,
+    TheLoading,
+    TheMessage,
+    SettingsIndexCard,
+    SettingsPasswordCard
+  },
 
   mixins: [Application],
 
