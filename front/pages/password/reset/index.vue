@@ -30,6 +30,7 @@ export default {
     if (this.$auth.loggedIn) {
       return this.redirectAlreadyAuth()
     }
+    this.setQueryMessage()
     this.loading = false
   }
 }

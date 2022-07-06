@@ -33,7 +33,7 @@ export default {
     if (this.$route.query.reset_password === 'false') {
       return this.$router.push({ path: '/password/reset', query: { alert: this.$route.query.alert, notice: this.$route.query.notice } })
     }
-    if (this.$route.query.reset_password_token) {
+    if (!this.$route.query.reset_password_token) {
       return this.$router.push({ path: '/password/reset', query: { alert: this.$t('auth.reset_password_token_blank') } })
     }
     this.loading = false
