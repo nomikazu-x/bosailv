@@ -12,7 +12,7 @@
 
       <div class="text-center mt-4">
         <RedBtn
-          type="submit"
+          id="sign_in_btn"
           :disabled="invalid || processing"
           @click="onSubmit"
         >
