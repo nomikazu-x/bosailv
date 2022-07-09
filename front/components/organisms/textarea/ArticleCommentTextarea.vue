@@ -21,13 +21,20 @@
 </template>
 
 <script>
+import { ValidationObserver, ValidationProvider, extend, configure, localize } from 'vee-validate'
+import { required } from 'vee-validate/dist/rules'
 import Application from '~/plugins/application.js'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
+extend('required', required)
+configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
 
 export default {
   name: 'ArticleCommentTextarea',
 
   components: {
+    ValidationObserver,
+    ValidationProvider,
     RedBtn
   },
 

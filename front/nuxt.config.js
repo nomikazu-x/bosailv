@@ -46,7 +46,6 @@ export default {
   plugins: [
     'plugins/axios',
     'plugins/utils',
-    'plugins/vee-validate',
     { src: 'plugins/vue-quill-editor', mode: 'client' }
   ],
 

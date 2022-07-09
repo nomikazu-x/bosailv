@@ -20,9 +20,23 @@
 </template>
 
 <script>
+import { ValidationProvider, extend, configure, localize } from 'vee-validate'
+import { required, min, max } from 'vee-validate/dist/rules'
+
+extend('required', required)
+extend('max', max)
+extend('min', min)
+configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
+
 export default {
   name: 'PasswordTextField',
+
+  components: {
+    ValidationProvider
+  },
+
   inheritAttrs: false,
+
   props: {
     value: {
       type: String,
@@ -33,11 +47,13 @@ export default {
       default: 'パスワード [8文字以上]'
     }
   },
+
   data () {
     return {
       showPassword: false
     }
   },
+
   computed: {
     valueModel: {
       get () {

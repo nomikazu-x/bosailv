@@ -8,7 +8,7 @@
       />
     </v-col>
     <v-col cols="12">
-      <ValidationProvider v-slot="{ errors }" name="thumbnail" rules="size_20MB:20000">
+      <ValidationProvider v-slot="{ errors }" name="thumbnail" rules="size_20MB:20480">
         <v-file-input
           v-model="valueModel"
           accept="image/jpeg,image/gif,image/png"
@@ -24,8 +24,18 @@
 </template>
 
 <script>
+import { ValidationProvider, extend, configure, localize } from 'vee-validate'
+import { size } from 'vee-validate/dist/rules'
+
+extend('size_20MB', size)
+configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
+
 export default {
   name: 'ArticleThumbnailFileInput',
+
+  components: {
+    ValidationProvider
+  },
 
   props: {
     oldSrc: {

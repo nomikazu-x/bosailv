@@ -6,7 +6,7 @@
         <v-avatar size="256px">
           <v-img :src="$auth.user.image_url.xlarge" />
         </v-avatar>
-        <ValidationProvider v-slot="{ errors }" name="image" rules="size_20MB:20000">
+        <ValidationProvider v-slot="{ errors }" name="image" rules="size_20MB:20480">
           <v-file-input
             v-model="image"
             accept="image/jpeg,image/gif,image/png"
@@ -40,13 +40,20 @@
 </template>
 
 <script>
+import { ValidationObserver, ValidationProvider, extend, configure, localize } from 'vee-validate'
+import { size } from 'vee-validate/dist/rules'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
+extend('size_20MB', size)
+configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
 
 export default {
   name: 'UserImageFileInput',
 
   components: {
+    ValidationObserver,
+    ValidationProvider,
     TheProcessing,
     RedBtn
   },

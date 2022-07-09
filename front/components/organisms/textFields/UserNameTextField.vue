@@ -15,15 +15,28 @@
 </template>
 
 <script>
+import { ValidationProvider, extend, configure, localize } from 'vee-validate'
+import { required } from 'vee-validate/dist/rules'
+
+extend('required', required)
+configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
+
 export default {
   name: 'UserNameTextField',
+
+  components: {
+    ValidationProvider
+  },
+
   inheritAttrs: false,
+
   props: {
     value: {
       type: String,
       default: undefined
     }
   },
+
   computed: {
     valueModel: {
       get () {
@@ -34,6 +47,7 @@ export default {
       }
     }
   },
+
   methods: {
     onClick () {
       return this.$emit('click')

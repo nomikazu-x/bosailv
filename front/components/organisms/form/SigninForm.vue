@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
 import PasswordTextField from '~/components/organisms/textFields/PasswordTextField.vue'
@@ -33,6 +34,7 @@ export default {
   name: 'SigninForm',
 
   components: {
+    ValidationObserver,
     TheProcessing,
     EmailTextField,
     PasswordTextField,

@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import PasswordTextField from '~/components/organisms/textFields/PasswordTextField.vue'
 import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
@@ -33,6 +34,7 @@ export default {
   name: 'UserPasswordForm',
 
   components: {
+    ValidationObserver,
     TheProcessing,
     PasswordTextField,
     PasswordConfirmationTextField,

@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import ArticleThumbnailFileInput from '~/components/organisms/fileInputs/ArticleThumbnailFileInput.vue'
 import ArticleTitleTextField from '~/components/organisms/textFields/ArticleTitleTextField.vue'
@@ -60,6 +61,7 @@ export default {
   name: 'ArticleEditForm',
 
   components: {
+    ValidationObserver,
     TheProcessing,
     ArticleThumbnailFileInput,
     ArticleTitleTextField,

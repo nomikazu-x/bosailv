@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import UserNameTextField from '~/components/organisms/textFields/UserNameTextField.vue'
 import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
@@ -46,6 +47,7 @@ export default {
   name: 'UserProfileForm',
 
   components: {
+    ValidationObserver,
     TheProcessing,
     UserNameTextField,
     PrefecturesSelect,

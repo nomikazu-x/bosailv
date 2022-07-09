@@ -10,15 +10,28 @@
     </ValidationProvider>
   </div>
 </template>
+
 <script>
+import { ValidationProvider, extend, configure, localize } from 'vee-validate'
+import { required } from 'vee-validate/dist/rules'
+
+extend('required', required)
+configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
+
 export default {
   name: 'Editor',
+
+  components: {
+    ValidationProvider
+  },
+
   props: {
     value: {
       type: String,
       default: undefined
     }
   },
+
   data () {
     return {
       editorOption: {
@@ -26,6 +39,7 @@ export default {
       }
     }
   },
+
   computed: {
     valueModel: {
       get () {

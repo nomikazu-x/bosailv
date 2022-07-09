@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
@@ -29,6 +30,7 @@ export default {
   name: 'PasswordResetConfirmForm',
 
   components: {
+    ValidationObserver,
     TheProcessing,
     PasswordConfirmationTextField,
     RedBtn

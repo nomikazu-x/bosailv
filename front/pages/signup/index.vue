@@ -5,7 +5,7 @@
     <TheLoading v-if="loading" />
     <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
 
-    <SignupCard v-if="!loading" />
+    <SignupCard v-if="!loading" @alert="alert = $event" @notice="notice = $event" />
   </OneColumnContainer>
 </template>
 

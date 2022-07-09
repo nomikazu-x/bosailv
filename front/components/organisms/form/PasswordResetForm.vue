@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
@@ -28,6 +29,7 @@ export default {
   name: 'PasswordResetForm',
 
   components: {
+    ValidationObserver,
     TheProcessing,
     EmailTextField,
     RedBtn
