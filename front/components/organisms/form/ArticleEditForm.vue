@@ -35,7 +35,7 @@
         </v-col>
         <div class="text-right">
           <RedBtn
-            id="article_create_btn"
+            id="article_update_btn"
             class="post-btn"
             :disabled="invalid || processing"
             @click="onArticleUpdate"
