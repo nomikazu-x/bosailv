@@ -8,7 +8,7 @@
 
       <div class="d-flex justify-end">
         <RedBtn
-          type="submit"
+          id="password_reset_btn"
           :disabled="invalid || processing"
           @click="onSubmit"
         >
