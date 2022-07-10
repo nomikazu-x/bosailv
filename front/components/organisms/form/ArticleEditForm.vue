@@ -35,7 +35,7 @@
         </v-col>
         <div class="text-right">
           <RedBtn
-            id="article_create_btn"
+            id="article_update_btn"
             class="post-btn"
             :disabled="invalid || processing"
             @click="onArticleUpdate"
@@ -49,8 +49,27 @@
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate'
+import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
+import ArticleThumbnailFileInput from '~/components/organisms/fileInputs/ArticleThumbnailFileInput.vue'
+import ArticleTitleTextField from '~/components/organisms/textFields/ArticleTitleTextField.vue'
+import GenresCheckbox from '~/components/organisms/checkbox/GenresCheckbox.vue'
+import Editor from '~/components/organisms/editor/Editor.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
-  name: 'InfoEdit',
+  name: 'ArticleEditForm',
+
+  components: {
+    ValidationObserver,
+    TheProcessing,
+    ArticleThumbnailFileInput,
+    ArticleTitleTextField,
+    GenresCheckbox,
+    Editor,
+    RedBtn
+  },
+
   props: {
     processing: {
       type: Boolean,

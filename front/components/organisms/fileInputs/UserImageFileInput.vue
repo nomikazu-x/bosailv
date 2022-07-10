@@ -6,7 +6,7 @@
         <v-avatar size="256px">
           <v-img :src="$auth.user.image_url.xlarge" />
         </v-avatar>
-        <ValidationProvider v-slot="{ errors }" name="image" rules="size_20MB:20000">
+        <ValidationProvider v-slot="{ errors }" name="image" rules="size_20MB:20480">
           <v-file-input
             v-model="image"
             accept="image/jpeg,image/gif,image/png"
@@ -40,15 +40,24 @@
 </template>
 
 <script>
-export default {
-  name: 'ImageEdit',
+import { ValidationObserver, ValidationProvider, extend, configure, localize } from 'vee-validate'
+import { size } from 'vee-validate/dist/rules'
+import Application from '~/plugins/application.js'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
-  props: {
-    processing: {
-      type: Boolean,
-      default: false
-    }
+extend('size_20MB', size)
+configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
+
+export default {
+  name: 'UserImageFileInput',
+
+  components: {
+    ValidationObserver,
+    ValidationProvider,
+    RedBtn
   },
+
+  mixins: [Application],
 
   data () {
     return {
@@ -56,14 +65,68 @@ export default {
     }
   },
 
+  created () {
+    this.processing = false
+  },
+
   methods: {
-    onUserImageUpdate () {
-      this.$emit('user-image-update', this.image)
-      this.image = null
+    async onUserImageUpdate (image) {
+      this.processing = true
+
+      const params = new FormData()
+      params.append('image', image)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.userImageUpdateUrl, params)
+        .then((response) => {
+          if (response.data == null) {
+            this.$toasted.error(this.$t('system.error'))
+          } else {
+            this.$auth.setUser(response.data.user)
+            this.$toasted.error(response.data.alert)
+            this.$toasted.info(response.data.notice)
+          }
+        },
+        (error) => {
+          if (error.response == null) {
+            this.$toasted.error(this.$t('network.failure'))
+          } else if (error.response.status === 401) {
+            return this.signOut()
+          } else if (error.response.data == null) {
+            this.$toasted.error(this.$t('network.error'))
+          } else {
+            this.alert = error.response.data.alert
+            this.notice = error.response.data.notice
+          }
+        })
+
+      this.processing = false
     },
-    onUserImageDelete () {
-      this.$emit('user-image-delete')
-      this.image = null
+    async onUserImageDelete () {
+      this.processing = true
+
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.userImageDeleteUrl)
+        .then((response) => {
+          if (response.data == null) {
+            this.$toasted.error(this.$t('system.error'))
+          } else {
+            this.$auth.setUser(response.data.user)
+            this.$toasted.error(response.data.alert)
+            this.$toasted.info(response.data.notice)
+          }
+        },
+        (error) => {
+          if (error.response == null) {
+            this.$toasted.error(this.$t('network.failure'))
+          } else if (error.response.status === 401) {
+            return this.signOut()
+          } else if (error.response.data == null) {
+            this.$toasted.error(this.$t('network.error'))
+          } else {
+            this.alert = error.response.data.alert
+            this.notice = error.response.data.notice
+          }
+        })
+
+      this.processing = false
     }
   }
 }

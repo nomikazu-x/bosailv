@@ -15,16 +15,29 @@
     </template>
 
     <template v-if="!loading" #right>
-      <SettingsProfileCard />
+      <SettingsProfileCard @alert="alert = $event" @notice="notice = $event" />
     </template>
   </TwoColumnContainer>
 </template>
 
 <script>
 import Application from '~/plugins/application.js'
+import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
+import TheLoading from '~/components/organisms/application/TheLoading.vue'
+import TheMessage from '~/components/organisms/application/TheMessage.vue'
+import SettingsIndexCard from '~/components/organisms/cards/settings/SettingsIndexCard.vue'
+import SettingsProfileCard from '~/components/organisms/cards/settings/SettingsProfileCard.vue'
 
 export default {
   name: 'SettingsProfile',
+
+  components: {
+    TwoColumnContainer,
+    TheLoading,
+    TheMessage,
+    SettingsIndexCard,
+    SettingsProfileCard
+  },
 
   mixins: [Application],
 

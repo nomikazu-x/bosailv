@@ -14,14 +14,30 @@
 </template>
 
 <script>
+import { ValidationProvider, extend, configure, localize } from 'vee-validate'
+import { required, email, max } from 'vee-validate/dist/rules'
+
+extend('required', required)
+extend('email', email)
+extend('max', max)
+configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
+
 export default {
+  name: 'EmailTextField',
+
+  components: {
+    ValidationProvider
+  },
+
   inheritAttrs: false,
+
   props: {
     value: {
       type: String,
       default: undefined
     }
   },
+
   computed: {
     valueModel: {
       get () {

@@ -22,9 +22,22 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
+import TheLoading from '~/components/organisms/application/TheLoading.vue'
+import TheMessage from '~/components/organisms/application/TheMessage.vue'
+import GenreShowCard from '~/components/organisms/cards/genre/GenreShowCard.vue'
+import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {
   name: 'GenresId',
+
+  components: {
+    TwoColumnContainer,
+    TheLoading,
+    TheMessage,
+    GenreShowCard,
+    DefaultRightColumnTemplate
+  },
 
   mixins: [Application],
 

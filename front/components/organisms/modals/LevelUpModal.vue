@@ -39,6 +39,7 @@
 
 <script>
 export default {
+  name: 'LevelUpModal',
   data () {
     return {
       levelUp: false,

@@ -37,7 +37,17 @@
 </template>
 
 <script>
+import InfomationLabel from '~/components/atoms/label/InfomationLabel.vue'
+import BaseListItem from '~/components/molecules/items/BaseListItem.vue'
+
 export default {
+  name: 'InfomationListItem',
+
+  components: {
+    InfomationLabel,
+    BaseListItem
+  },
+
   props: {
     infomation: {
       type: Object,

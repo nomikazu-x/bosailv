@@ -54,9 +54,21 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import AvatarIcon from '~/components/atoms/icons/AvatarIcon.vue'
+import PointProgressLinear from '~/components/organisms/progressLinear/PointProgressLinear.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
-  name: 'UsersUsername',
+  name: 'UserIntroCard',
+
+  components: {
+    BaseTitleCard,
+    AvatarIcon,
+    PointProgressLinear,
+    RedBtn
+  },
+
   mixins: [Application],
 
   data () {
@@ -65,6 +77,7 @@ export default {
       requiredPoint: 0
     }
   },
+
   computed: {
     getAddress () {
       if (this.user.prefecture && this.user.city) {

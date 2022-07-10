@@ -27,7 +27,9 @@
 
 <script>
 import Application from '~/plugins/application.js'
+
 export default {
+  name: 'ArticleCommentListCardText',
   mixins: [Application],
   props: {
     articleComment: {

@@ -40,7 +40,15 @@
 </template>
 
 <script>
+import BaseListItem from '~/components/molecules/items/BaseListItem.vue'
+
 export default {
+  name: 'UserRankingListItem',
+
+  components: {
+    BaseListItem
+  },
+
   props: {
     user: {
       type: Object,

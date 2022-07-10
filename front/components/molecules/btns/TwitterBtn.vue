@@ -21,7 +21,12 @@
 </template>
 
 <script>
+import TwitterIcon from '~/components/atoms/icons/TwitterIcon.vue'
+
 export default {
+  components: {
+    TwitterIcon
+  },
   props: {
     dark: {
       type: Boolean,

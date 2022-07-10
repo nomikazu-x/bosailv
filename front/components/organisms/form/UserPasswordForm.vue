@@ -24,8 +24,23 @@
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate'
+import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
+import PasswordTextField from '~/components/organisms/textFields/PasswordTextField.vue'
+import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
-  name: 'InfoEdit',
+  name: 'UserPasswordForm',
+
+  components: {
+    ValidationObserver,
+    TheProcessing,
+    PasswordTextField,
+    PasswordConfirmationTextField,
+    RedBtn
+  },
+
   props: {
     processing: {
       type: Boolean,

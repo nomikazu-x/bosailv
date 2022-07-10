@@ -1,5 +1,6 @@
 <template>
   <v-btn
+    :id="id"
     color="#ef5350"
     class="btn"
     :disabled="disabled"
@@ -16,7 +17,12 @@
 
 <script>
 export default {
+  name: 'RedBtn',
   props: {
+    id: {
+      type: String,
+      default: null
+    },
     disabled: {
       type: Boolean,
       default: false

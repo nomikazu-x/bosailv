@@ -12,6 +12,8 @@
 
 <script>
 export default {
+  name: 'GenreImageListCard',
+
   props: {
     genres: {
       type: Array,

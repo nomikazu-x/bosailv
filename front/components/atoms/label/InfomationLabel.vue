@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'InfomationsLabel',
+  name: 'InfomationLabel',
 
   props: {
     infomation: {

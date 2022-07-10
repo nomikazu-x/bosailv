@@ -29,18 +29,29 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import SigninForm from '~/components/organisms/form/SigninForm.vue'
 
 export default {
-  name: 'SigninIndex',
+  name: 'SigninCard',
+
+  components: {
+    BaseTitleCard,
+    SigninForm
+  },
+
   mixins: [Application],
+
   data () {
     return {
       errors: null
     }
   },
+
   created () {
     this.processing = false
   },
+
   methods: {
     async onSignIn (userInfo) {
       this.processing = true
@@ -65,8 +76,8 @@ export default {
           } else if (error.response.data == null) {
             this.$toasted.error(this.$t('network.error'))
           } else {
-            this.alert = error.response.data.alert
-            this.notice = error.response.data.notice
+            this.$emit('alert', error.response.data.alert)
+            this.$emit('notice', error.response.data.notice)
           }
         })
 

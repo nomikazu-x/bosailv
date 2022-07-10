@@ -17,6 +17,7 @@
 
       <div class="text-center mt-4">
         <RedBtn
+          id="sign_up_btn"
           :disabled="invalid || processing"
           @click="onSubmit"
         >
@@ -28,7 +29,25 @@
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate'
+import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
+import NameTextField from '~/components/organisms/textFields/NameTextField.vue'
+import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
+import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
+  name: 'SignupForm',
+
+  components: {
+    ValidationObserver,
+    TheProcessing,
+    NameTextField,
+    EmailTextField,
+    PasswordConfirmationTextField,
+    RedBtn
+  },
+
   props: {
     processing: {
       type: Boolean,

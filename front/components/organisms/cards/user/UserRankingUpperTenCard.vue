@@ -19,7 +19,19 @@
 </template>
 
 <script>
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import UserRankingListItem from '~/components/organisms/items/UserRankingListItem.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
+  name: 'UserRankingUpperTenCard',
+
+  components: {
+    BaseTitleCard,
+    UserRankingListItem,
+    RedBtn
+  },
+
   data () {
     return {
       users: null

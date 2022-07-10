@@ -22,7 +22,19 @@
 </template>
 
 <script>
+import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
+import ArticleListCardText from '~/components/organisms/cardText/ArticleListCardText.vue'
+import ThePagination from '~/components/organisms/pagination/ThePagination.vue'
+
 export default {
+  name: 'ArticleListCardWithTab',
+
+  components: {
+    TheProcessing,
+    ArticleListCardText,
+    ThePagination
+  },
+
   props: {
     articles: {
       type: Array,

@@ -14,7 +14,15 @@
 </template>
 
 <script>
+import BaseListItem from '~/components/molecules/items/BaseListItem.vue'
+
 export default {
+  name: 'ArticleLikerListItem',
+
+  components: {
+    BaseListItem
+  },
+
   props: {
     liker: {
       type: Object,

@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'BaseTitleCard',
   props: {
     title: {
       type: String,

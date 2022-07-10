@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: 'BaseCard',
   props: {
     to: {
       type: Object,

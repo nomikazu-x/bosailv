@@ -30,9 +30,17 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import ArticleListCardText from '~/components/organisms/cardText/ArticleListCardText.vue'
 
 export default {
-  name: 'GenresIndex',
+  name: 'GenreListCardWithArticle',
+
+  components: {
+    BaseTitleCard,
+    ArticleListCardText
+  },
+
   mixins: [Application],
   data () {
     return {

@@ -31,9 +31,17 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import InfomationLabel from '~/components/atoms/label/InfomationLabel.vue'
 
 export default {
-  name: 'InfomationsId',
+  name: 'InfomationShowCard',
+
+  components: {
+    BaseTitleCard,
+    InfomationLabel
+  },
+
   mixins: [Application],
 
   data () {

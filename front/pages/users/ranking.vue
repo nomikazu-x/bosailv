@@ -22,9 +22,22 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
+import TheLoading from '~/components/organisms/application/TheLoading.vue'
+import TheMessage from '~/components/organisms/application/TheMessage.vue'
+import UserRankingListCard from '~/components/organisms/cards/user/UserRankingListCard.vue'
+import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {
   name: 'UsersRanking',
+
+  components: {
+    TwoColumnContainer,
+    TheLoading,
+    TheMessage,
+    UserRankingListCard,
+    DefaultRightColumnTemplate
+  },
 
   mixins: [Application],
 

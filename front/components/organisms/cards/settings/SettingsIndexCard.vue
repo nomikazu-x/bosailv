@@ -50,3 +50,15 @@
     </v-list>
   </BaseTitleCard>
 </template>
+
+<script>
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+
+export default {
+  name: 'SettingsIndexCard',
+
+  components: {
+    BaseTitleCard
+  }
+}
+</script>

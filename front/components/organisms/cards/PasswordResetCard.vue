@@ -10,7 +10,7 @@
               <PasswordResetForm
                 :processing="processing"
                 :errors="errors"
-                @submit="onPasswordNew"
+                @password-new="onPasswordNew"
               />
             </v-col>
 
@@ -31,24 +31,35 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import PasswordResetForm from '~/components/organisms/form/PasswordResetForm.vue'
 
 export default {
-  name: 'PasswordResetIndex',
+  name: 'PasswordResetCard',
+
+  components: {
+    BaseTitleCard,
+    PasswordResetForm
+  },
+
   mixins: [Application],
+
   data () {
     return {
       errors: null
     }
   },
+
   created () {
     this.processing = false
   },
+
   methods: {
-    async onPasswordNew (email) {
+    async onPasswordNew (value) {
       this.processing = true
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.passwordNewUrl, {
-        email,
+        email: value.email,
         redirect_url: this.$config.frontBaseURL + this.$config.passwordRedirectUrl
       })
         .then((response) => {
@@ -64,8 +75,8 @@ export default {
           } else if (error.response.data == null) {
             this.$toasted.error(this.$t('network.error'))
           } else {
-            this.alert = error.response.data.alert
-            this.notice = error.response.data.notice
+            this.$emit('alert', error.response.data.alert)
+            this.$emit('notice', error.response.data.notice)
           }
         })
       this.processing = false

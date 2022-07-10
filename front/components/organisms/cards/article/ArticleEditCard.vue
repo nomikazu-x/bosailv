@@ -19,9 +19,18 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import ArticleEditForm from '~/components/organisms/form/ArticleEditForm.vue'
+import ArticleCreateSuccessCard from '~/components/organisms/cards/article/ArticleCreateSuccessCard.vue'
 
 export default {
-  name: 'ArticlesIdEdit',
+  name: 'ArticleEditCard',
+
+  components: {
+    BaseTitleCard,
+    ArticleEditForm,
+    ArticleCreateSuccessCard
+  },
 
   mixins: [Application],
 

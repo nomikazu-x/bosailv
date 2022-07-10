@@ -40,8 +40,24 @@
 </template>
 
 <script>
+import { ValidationProvider, extend, configure, localize } from 'vee-validate'
+import { required, min, max, confirmed } from 'vee-validate/dist/rules'
+
+extend('required', required)
+extend('max', max)
+extend('min', min)
+extend('confirmed_password', confirmed)
+configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
+
 export default {
+  name: 'PasswordConfirmationTextField',
+
+  components: {
+    ValidationProvider
+  },
+
   inheritAttrs: false,
+
   props: {
     value: {
       type: String,
@@ -52,11 +68,13 @@ export default {
       default: undefined
     }
   },
+
   data () {
     return {
       showPassword: false
     }
   },
+
   computed: {
     valueModel: {
       get () {

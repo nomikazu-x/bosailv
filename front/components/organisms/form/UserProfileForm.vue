@@ -35,8 +35,27 @@
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate'
+import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
+import UserNameTextField from '~/components/organisms/textFields/UserNameTextField.vue'
+import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
+import CitiesSelect from '~/components/organisms/select/CitiesSelect.vue'
+import ProfileTextarea from '~/components/organisms/textarea/ProfileTextarea.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
-  name: 'InfoEdit',
+  name: 'UserProfileForm',
+
+  components: {
+    ValidationObserver,
+    TheProcessing,
+    UserNameTextField,
+    PrefecturesSelect,
+    CitiesSelect,
+    ProfileTextarea,
+    RedBtn
+  },
+
   props: {
     processing: {
       type: Boolean,
@@ -67,11 +86,11 @@ export default {
     this.name = this.name || this.user.name
     this.profile = this.profile || this.user.profile
     if (this.user.prefecture && this.user.city) {
-      this.selectPrefecture = this.selectPrefecture || this.user.prefecture.id
+      this.selectPrefecture = this.user.prefecture.id
       await this.onGetCities(this.selectPrefecture)
-      this.selectCity = this.selectCity || this.user.city.id
+      this.selectCity = this.user.city.id
     }
-    this.waiting = true
+    this.waiting = false
   },
 
   methods: {
@@ -85,15 +104,12 @@ export default {
       this.$emit('user-update', userInfo)
     },
     async onGetCities () {
-      await this.$axios.post(this.$config.apiBaseURL + '/api/v1/set_cities', {
-        id: this.selectPrefecture
-      })
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.setCitiesUrl.replace('_id', this.selectPrefecture))
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
+            return this.$router.push({ path: '/' })
           } else {
-            this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
             this.cities = response.data
             this.waiting = true
           }
@@ -101,12 +117,17 @@ export default {
         (error) => {
           if (error.response == null) {
             this.$toasted.error(this.$t('network.failure'))
-          } else if (error.response.data == null) {
+            return this.$router.push({ path: '/' })
+          } else if (error.response.data == null && error.response.status !== 404) {
             this.$toasted.error(this.$t('network.error'))
+            return this.$router.push({ path: '/' })
           } else {
-            this.alert = error.response.data.alert
-            this.notice = error.response.data.notice
-            this.waiting = true
+            if (error.response.data != null) {
+              this.$toasted.error(error.response.data.alert)
+              this.$toasted.info(error.response.data.notice)
+              this.waiting = true
+            }
+            return this.$nuxt.error({ statusCode: error.response.status })
           }
         })
     }

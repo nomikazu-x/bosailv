@@ -35,9 +35,22 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import ArticleSearchTextField from '~/components/organisms/textFields/ArticleSearchTextField.vue'
+import GenresCheckbox from '~/components/organisms/checkbox/GenresCheckbox.vue'
+import ArticleListCardWithTab from '~/components/organisms/tabItem/ArticleListCardWithTab.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
-  name: 'ArticlesSearch',
+  name: 'ArticleSearchListCard',
+
+  components: {
+    BaseTitleCard,
+    ArticleSearchTextField,
+    GenresCheckbox,
+    ArticleListCardWithTab,
+    RedBtn
+  },
 
   mixins: [Application],
 

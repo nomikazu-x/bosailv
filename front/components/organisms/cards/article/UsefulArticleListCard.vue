@@ -30,9 +30,16 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import ArticleListCardWithTab from '~/components/organisms/tabItem/ArticleListCardWithTab.vue'
 
 export default {
-  name: 'ArticlesIndex',
+  name: 'UsefulArticleListCard',
+
+  components: {
+    BaseTitleCard,
+    ArticleListCardWithTab
+  },
 
   mixins: [Application],
 

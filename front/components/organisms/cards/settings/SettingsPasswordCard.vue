@@ -14,9 +14,17 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import UserPasswordForm from '~/components/organisms/form/UserPasswordForm.vue'
 
 export default {
-  name: 'SettingsPassword',
+  name: 'SettingsPasswordCard',
+
+  components: {
+    BaseTitleCard,
+    UserPasswordForm
+  },
+
   mixins: [Application],
 
   data () {
@@ -77,8 +85,8 @@ export default {
           } else if (error.response.data == null) {
             this.$toasted.error(this.$t('network.error'))
           } else {
-            this.alert = error.response.data.alert
-            this.notice = error.response.data.notice
+            this.$emit('alert', error.response.data.alert)
+            this.$emit('notice', error.response.data.notice)
           }
         })
 

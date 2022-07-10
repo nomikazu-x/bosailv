@@ -25,9 +25,15 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 
 export default {
-  name: 'SettingsDeactivate',
+  name: 'SettingsDeactivateCard',
+
+  components: {
+    BaseTitleCard
+  },
+
   mixins: [Application],
 
   created () {

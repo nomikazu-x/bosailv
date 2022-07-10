@@ -27,7 +27,19 @@
 </template>
 
 <script>
+import OneColumnContainer from '~/components/molecules/containers/OneColumnContainer.vue'
+import TwitterShareBtn from '~/components/molecules/btns/TwitterShareBtn.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
+  name: 'ArticleCreateSuccessCard',
+
+  components: {
+    OneColumnContainer,
+    TwitterShareBtn,
+    RedBtn
+  },
+
   props: {
     article: {
       type: Object,

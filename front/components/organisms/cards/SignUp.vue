@@ -12,7 +12,13 @@
 </template>
 
 <script>
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
 export default {
-  name: 'IndexSignUp'
+  name: 'SignUp',
+
+  components: {
+    RedBtn
+  }
 }
 </script>

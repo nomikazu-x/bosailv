@@ -60,9 +60,18 @@
 </template>
 
 <script>
+import FavoriteBtnGroup from '~/components/organisms/btnGroup/FavoriteBtnGroup.vue'
+import ShareBtnGroup from '~/components/organisms/btnGroup/ShareBtnGroup.vue'
 import Application from '~/plugins/application.js'
 
 export default {
+  name: 'ArticleShowDetailCard',
+
+  components: {
+    FavoriteBtnGroup,
+    ShareBtnGroup
+  },
+
   mixins: [Application],
 
   props: {

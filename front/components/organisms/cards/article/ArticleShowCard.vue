@@ -25,9 +25,16 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import ArticleShowDetailCard from '~/components/organisms/cards/article/ArticleShowDetailCard.vue'
+import ArticleCommentListCard from '~/components/organisms/cards/article/ArticleCommentListCard.vue'
 
 export default {
-  name: 'ArticlesId',
+  name: 'ArticleShowCard',
+
+  components: {
+    ArticleShowDetailCard,
+    ArticleCommentListCard
+  },
 
   data () {
     return {

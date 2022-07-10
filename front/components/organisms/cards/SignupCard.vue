@@ -29,9 +29,17 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import SignupForm from '~/components/organisms/form/SignupForm.vue'
 
 export default {
-  name: 'SignUpIndex',
+  name: 'SignupCard',
+
+  components: {
+    BaseTitleCard,
+    SignupForm
+  },
+
   mixins: [Application],
   data () {
     return {
@@ -64,8 +72,8 @@ export default {
           } else if (error.response.data == null) {
             this.$toasted.error(this.$t('network.error'))
           } else {
-            this.alert = error.response.data.alert
-            this.notice = error.response.data.notice
+            this.$emit('alert', error.response.data.alert)
+            this.$emit('notice', error.response.data.notice)
           }
         })
       this.processing = false

@@ -19,18 +19,32 @@
 </template>
 
 <script>
+import { ValidationProvider, extend, configure, localize } from 'vee-validate'
+import { required } from 'vee-validate/dist/rules'
+
+extend('required', required)
+configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
+
 export default {
+  name: 'GenreCheckbox',
+
+  components: {
+    ValidationProvider
+  },
+
   props: {
     value: {
       type: Array,
       default: () => []
     }
   },
+
   data () {
     return {
       genres: []
     }
   },
+
   computed: {
     valueModel: {
       get () {
@@ -41,6 +55,7 @@ export default {
       }
     }
   },
+
   async created () {
     await this.$axios.get(this.$config.apiBaseURL + this.$config.genresUrl)
       .then((response) => {

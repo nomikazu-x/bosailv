@@ -23,10 +23,21 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import ArticleListCardText from '~/components/organisms/cardText/ArticleListCardText.vue'
+import ThePagination from '~/components/organisms/pagination/ThePagination.vue'
 
 export default {
-  name: 'Index',
+  name: 'NewArticleListCard',
+
+  components: {
+    BaseTitleCard,
+    ArticleListCardText,
+    ThePagination
+  },
+
   mixins: [Application],
+
   data () {
     return {
       page: 1,

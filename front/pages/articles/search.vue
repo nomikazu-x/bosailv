@@ -22,9 +22,22 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
+import TheLoading from '~/components/organisms/application/TheLoading.vue'
+import TheMessage from '~/components/organisms/application/TheMessage.vue'
+import ArticleSearchListCard from '~/components/organisms/cards/article/ArticleSearchListCard.vue'
+import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {
   name: 'ArticlesSearch',
+
+  components: {
+    TwoColumnContainer,
+    TheLoading,
+    TheMessage,
+    ArticleSearchListCard,
+    DefaultRightColumnTemplate
+  },
 
   mixins: [Application],
 

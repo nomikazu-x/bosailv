@@ -8,7 +8,7 @@
 
       <div class="d-flex justify-end">
         <RedBtn
-          type="submit"
+          id="password_reset_btn"
           :disabled="invalid || processing"
           @click="onSubmit"
         >
@@ -19,7 +19,22 @@
   </ValidationObserver>
 </template>
 
-<script>export default {
+<script>
+import { ValidationObserver } from 'vee-validate'
+import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
+import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+
+export default {
+  name: 'PasswordResetForm',
+
+  components: {
+    ValidationObserver,
+    TheProcessing,
+    EmailTextField,
+    RedBtn
+  },
+
   props: {
     processing: {
       type: Boolean,
@@ -37,7 +52,7 @@
   },
   methods: {
     onSubmit () {
-      this.$emit('submit', this.email)
+      this.$emit('password-new', this.email)
     }
   }
 }

@@ -72,6 +72,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
+  name: 'Header',
   mixins: [Application],
 
   methods: {

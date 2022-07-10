@@ -105,6 +105,7 @@
 import Application from '~/plugins/application.js'
 
 export default {
+  name: 'Sidebar',
   mixins: [Application],
 
   data () {

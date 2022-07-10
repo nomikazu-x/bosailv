@@ -77,5 +77,9 @@ module.exports = {
   // コメント作成API
   commentCreateUrl: '/api/v1/article_comments/create.json',
   // コメント削除API
-  commentDeleteUrl: '/api/v1/article_comments/_id/delete.json'
+  commentDeleteUrl: '/api/v1/article_comments/_id/delete.json',
+
+  // ［市区町村］
+  // 一覧取得API
+  setCitiesUrl: '/api/v1/set_cities/_id.json'
 }

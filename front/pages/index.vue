@@ -25,9 +25,28 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
+import TheLoading from '~/components/organisms/application/TheLoading.vue'
+import TheMessage from '~/components/organisms/application/TheMessage.vue'
+import TopSlide from '~/components/organisms/slide/TopSlide.vue'
+import TopTransitionCard from '~/components/organisms/cards/TopTransitionCard.vue'
+import NewArticleListCard from '~/components/organisms/cards/article/NewArticleListCard.vue'
+import GenreImageListCardWithTitle from '~/components/organisms/cards/genre/GenreImageListCardWithTitle.vue'
+import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {
   name: 'Index',
+
+  components: {
+    TwoColumnContainer,
+    TheLoading,
+    TheMessage,
+    TopSlide,
+    TopTransitionCard,
+    NewArticleListCard,
+    GenreImageListCardWithTitle,
+    DefaultRightColumnTemplate
+  },
 
   mixins: [Application],
 

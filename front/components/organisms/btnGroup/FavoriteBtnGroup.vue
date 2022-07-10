@@ -13,7 +13,9 @@
 
 <script>
 import Application from '~/plugins/application.js'
+
 export default {
+  name: 'FavoriteBtnGroup',
   mixins: [Application],
   props: {
     article: {
