@@ -5,7 +5,7 @@
     <TheLoading v-if="loading" />
     <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
 
-    <SigninCard v-if="!loading" />
+    <SigninCard v-if="!loading" @alert="alert = $event" @notice="notice = $event" />
   </OneColumnContainer>
 </template>
 
@@ -32,6 +32,7 @@ export default {
     if (this.$auth.loggedIn) {
       return this.redirectAlreadyAuth()
     }
+    this.setQueryMessage()
     this.loading = false
   }
 }

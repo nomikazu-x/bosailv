@@ -16,7 +16,7 @@ describe('sign_up.vue', () => {
     routerPushMock = jest.fn()
   })
 
-  const mountFunction = (loggedIn) => {
+  const mountFunction = (loggedIn, query) => {
     const localVue = createLocalVue()
     const vuetify = new Vuetify()
     const wrapper = mount(Page, {
@@ -31,6 +31,10 @@ describe('sign_up.vue', () => {
       mocks: {
         $auth: {
           loggedIn
+        },
+        $route: {
+          path: '/users/sign_in',
+          query: { ...query }
         },
         $toasted: {
           error: toastedErrorMock,
