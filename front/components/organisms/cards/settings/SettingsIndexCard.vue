@@ -52,7 +52,13 @@
 </template>
 
 <script>
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+
 export default {
-  name: 'SettingsIndexCard'
+  name: 'SettingsIndexCard',
+
+  components: {
+    BaseTitleCard
+  }
 }
 </script>
