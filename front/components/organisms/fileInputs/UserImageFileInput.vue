@@ -42,7 +42,7 @@
 <script>
 import { ValidationObserver, ValidationProvider, extend, configure, localize } from 'vee-validate'
 import { size } from 'vee-validate/dist/rules'
-import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
+import Application from '~/plugins/application.js'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 extend('size_20MB', size)
@@ -54,16 +54,10 @@ export default {
   components: {
     ValidationObserver,
     ValidationProvider,
-    TheProcessing,
     RedBtn
   },
 
-  props: {
-    processing: {
-      type: Boolean,
-      default: false
-    }
-  },
+  mixins: [Application],
 
   data () {
     return {
@@ -71,14 +65,68 @@ export default {
     }
   },
 
+  created () {
+    this.processing = false
+  },
+
   methods: {
-    onUserImageUpdate () {
-      this.$emit('user-image-update', this.image)
-      this.image = null
+    async onUserImageUpdate (image) {
+      this.processing = true
+
+      const params = new FormData()
+      params.append('image', image)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.userImageUpdateUrl, params)
+        .then((response) => {
+          if (response.data == null) {
+            this.$toasted.error(this.$t('system.error'))
+          } else {
+            this.$auth.setUser(response.data.user)
+            this.$toasted.error(response.data.alert)
+            this.$toasted.info(response.data.notice)
+          }
+        },
+        (error) => {
+          if (error.response == null) {
+            this.$toasted.error(this.$t('network.failure'))
+          } else if (error.response.status === 401) {
+            return this.signOut()
+          } else if (error.response.data == null) {
+            this.$toasted.error(this.$t('network.error'))
+          } else {
+            this.alert = error.response.data.alert
+            this.notice = error.response.data.notice
+          }
+        })
+
+      this.processing = false
     },
-    onUserImageDelete () {
-      this.$emit('user-image-delete')
-      this.image = null
+    async onUserImageDelete () {
+      this.processing = true
+
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.userImageDeleteUrl)
+        .then((response) => {
+          if (response.data == null) {
+            this.$toasted.error(this.$t('system.error'))
+          } else {
+            this.$auth.setUser(response.data.user)
+            this.$toasted.error(response.data.alert)
+            this.$toasted.info(response.data.notice)
+          }
+        },
+        (error) => {
+          if (error.response == null) {
+            this.$toasted.error(this.$t('network.failure'))
+          } else if (error.response.status === 401) {
+            return this.signOut()
+          } else if (error.response.data == null) {
+            this.$toasted.error(this.$t('network.error'))
+          } else {
+            this.alert = error.response.data.alert
+            this.notice = error.response.data.notice
+          }
+        })
+
+      this.processing = false
     }
   }
 }

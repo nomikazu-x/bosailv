@@ -2,11 +2,7 @@
   <BaseTitleCard v-if="user != null" title="プロフィール変更">
     <v-row>
       <v-col cols="auto">
-        <UserImageFileInput
-          :processing="processing"
-          @user-image-update="onUserImageUpdate"
-          @user-image-delete="onUserImageDelete"
-        />
+        <UserImageFileInput />
       </v-col>
       <v-col cols="12">
         <UserProfileForm
@@ -100,64 +96,6 @@ export default {
           } else {
             this.$emit('alert', error.response.data.alert)
             this.$emit('notice', error.response.data.notice)
-          }
-        })
-
-      this.processing = false
-    },
-    async onUserImageUpdate (image) {
-      this.processing = true
-
-      const params = new FormData()
-      params.append('image', image)
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.userImageUpdateUrl, params)
-        .then((response) => {
-          if (response.data == null) {
-            this.$toasted.error(this.$t('system.error'))
-          } else {
-            this.$auth.setUser(response.data.user)
-            this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
-          }
-        },
-        (error) => {
-          if (error.response == null) {
-            this.$toasted.error(this.$t('network.failure'))
-          } else if (error.response.status === 401) {
-            return this.signOut()
-          } else if (error.response.data == null) {
-            this.$toasted.error(this.$t('network.error'))
-          } else {
-            this.alert = error.response.data.alert
-            this.notice = error.response.data.notice
-          }
-        })
-
-      this.processing = false
-    },
-    async onUserImageDelete () {
-      this.processing = true
-
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.userImageDeleteUrl)
-        .then((response) => {
-          if (response.data == null) {
-            this.$toasted.error(this.$t('system.error'))
-          } else {
-            this.$auth.setUser(response.data.user)
-            this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
-          }
-        },
-        (error) => {
-          if (error.response == null) {
-            this.$toasted.error(this.$t('network.failure'))
-          } else if (error.response.status === 401) {
-            return this.signOut()
-          } else if (error.response.data == null) {
-            this.$toasted.error(this.$t('network.error'))
-          } else {
-            this.alert = error.response.data.alert
-            this.notice = error.response.data.notice
           }
         })
 
