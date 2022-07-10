@@ -58,7 +58,7 @@ export default {
         password: this.password,
         password_confirmation: this.passwordConfirmation
       }
-      this.$emit('submit', userInfo)
+      this.$emit('password-update', userInfo)
     }
   }
 }

@@ -3,7 +3,7 @@
     <TheLoading v-if="loading" />
     <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
 
-    <PasswordResetConfirmCard v-if="!loading" />
+    <PasswordResetConfirmCard v-if="!loading" @alert="alert = $event" @notice="notice = $event" />
   </OneColumnContainer>
 </template>
 

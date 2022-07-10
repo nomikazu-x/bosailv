@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$emit('submit', this.email)
+      this.$emit('password-new', this.email)
     }
   }
 }

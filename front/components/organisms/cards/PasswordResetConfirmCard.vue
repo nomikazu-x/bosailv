@@ -6,7 +6,7 @@
           <PasswordResetConfirmForm
             :processing="processing"
             :errors="errors"
-            @submit="onPasswordUpdate"
+            @password-update="onPasswordUpdate"
           />
         </div>
       </BaseTitleCard>
@@ -66,8 +66,8 @@ export default {
           } else if (error.response.data.errors == null) {
             return this.$router.push({ path: '/password/reset/confirm', query: { alert: error.response.data.alert, notice: error.response.data.notice } })
           } else {
-            this.alert = error.response.data.alert
-            this.notice = error.response.data.notice
+            this.$emit('alert', error.response.data.alert)
+            this.$emit('notice', error.response.data.notice)
           }
         })
       this.processing = false
