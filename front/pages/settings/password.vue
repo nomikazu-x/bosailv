@@ -15,7 +15,7 @@
     </template>
 
     <template v-if="!loading" #right>
-      <SettingsPasswordCard />
+      <SettingsPasswordCard @alert="alert = $event" @notice="notice = $event" />
     </template>
   </TwoColumnContainer>
 </template>

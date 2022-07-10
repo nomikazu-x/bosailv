@@ -15,7 +15,7 @@
     </template>
 
     <template v-if="!loading" #right>
-      <SettingsProfileCard />
+      <SettingsProfileCard @alert="alert = $event" @notice="notice = $event" />
     </template>
   </TwoColumnContainer>
 </template>
