@@ -7,6 +7,8 @@ module.exports = {
   // ログアウトAPI
   authSignOutURL: '/api/v1/auth/sign_out.json',
   authRedirectLogOutURL: '/signin',
+  // ゲストログインAPI
+  guestSignInUrl: '/api/v1/auth/guest_sign_in.json',
   // トークン検証API
   authUserURL: '/api/v1/auth/validate_token.json',
   // アカウント登録API

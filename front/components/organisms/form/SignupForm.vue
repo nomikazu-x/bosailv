@@ -15,7 +15,7 @@
         :password-confirmation.sync="passwordConfirmation"
       />
 
-      <div class="text-center mt-4">
+      <div class="text-center">
         <RedBtn
           id="sign_up_btn"
           :disabled="invalid || processing"
@@ -23,6 +23,9 @@
         >
           新規登録
         </RedBtn>
+      </div>
+      <div class="text-center mt-4">
+        <GuestSigninBtn />
       </div>
     </v-form>
   </ValidationObserver>
@@ -35,6 +38,7 @@ import NameTextField from '~/components/organisms/textFields/NameTextField.vue'
 import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
 import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GuestSigninBtn from '~/components/organisms/btns/GuestSigninBtn.vue'
 
 export default {
   name: 'SignupForm',
@@ -45,7 +49,8 @@ export default {
     NameTextField,
     EmailTextField,
     PasswordConfirmationTextField,
-    RedBtn
+    RedBtn,
+    GuestSigninBtn
   },
 
   props: {
