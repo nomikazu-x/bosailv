@@ -71,6 +71,7 @@ class User < ActiveRecord::Base
   has_many :favorited_articles, through: :article_favorites, source: :article
 
   scope :point_ranking, -> { order(lifelong_point: :desc, id: :desc) }
+  scope :by_destroy_reserved, -> { where('destroy_schedule_at <= ?', Time.current) }
 
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
   VALID_PASSWORD_REGEX = /\A[!-~]+\z/
