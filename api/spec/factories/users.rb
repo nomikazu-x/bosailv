@@ -61,4 +61,13 @@ FactoryBot.define do
     password { Faker::Internet.password(min_length: 8) }
     confirmed_at { Time.now - 100 }
   end
+
+  factory :guest_user, class: 'User' do
+    name { Faker::Name.name }
+    sequence(:email) { |n| "#{n}_" + Faker::Internet.email }
+    sequence(:username) { |n| Faker::Internet.user_name(specifier: 'Nancy') + "_#{n}" }
+    password { ENV['GUEST_USER_PASSWORD'] }
+    confirmed_at { Time.now - 100 }
+    destroy_schedule_at { Time.current + Settings['destroy_schedule_days'].days }
+  end
 end

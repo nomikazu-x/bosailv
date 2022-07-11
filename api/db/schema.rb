@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_12_135413) do
+ActiveRecord::Schema.define(version: 2022_07_11_091909) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
@@ -135,7 +135,6 @@ ActiveRecord::Schema.define(version: 2022_06_12_135413) do
     t.text "tokens", comment: "認証トークン"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "power", default: 0, null: false, comment: "権限"
     t.datetime "infomation_check_last_started_at", comment: "お知らせ確認最終開始日時"
     t.integer "level", default: 1, null: false, comment: "レベル"
     t.integer "lifelong_point", default: 0, null: false, comment: "合計獲得ポイント"
@@ -144,6 +143,8 @@ ActiveRecord::Schema.define(version: 2022_06_12_135413) do
     t.text "profile", size: :tiny, comment: "自己紹介文"
     t.integer "prefecture_id", comment: "出身都道府県ID"
     t.integer "city_id", comment: "出身市区町村ID"
+    t.boolean "admin", default: false, null: false, comment: "管理者フラグ"
+    t.datetime "destroy_schedule_at", comment: "削除予定日時"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

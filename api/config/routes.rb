@@ -49,6 +49,7 @@ Rails.application.routes.draw do
         post 'auth/confirmation',    to: 'api/v1/auth/confirmations#create',             as: 'create_auth_confirmation'
         get  'auth/confirmation',    to: 'api/v1/auth/confirmations#show',               as: 'auth_confirmation'
         post 'auth/sign_in',         to: 'api/v1/auth/sessions#create',                  as: 'create_auth_session'
+        post 'auth/guest_sign_in',   to: 'api/v1/auth/sessions#create_guest',            as: 'create_guest_auth_session'
         post 'auth/sign_out',        to: 'api/v1/auth/sessions#destroy',                 as: 'destroy_auth_session'
         post 'auth/unlock',          to: 'api/v1/auth/unlocks#create',                   as: 'create_auth_unlock'
         get  'auth/unlock',          to: 'api/v1/auth/unlocks#show',                     as: 'auth_unlock'
