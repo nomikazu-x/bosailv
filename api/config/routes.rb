@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get  'genres',              to: 'genres#index',   as: 'genres'
       get  'genres/:id',          to: 'genres#show',    as: 'show_genre'
       post 'genres/create',       to: 'genres#create',  as: 'create_genre'
+      post 'genres/:id/update',   to: 'genres#update',       as: 'update_genre'
       post 'genres/:id/delete',   to: 'genres#destroy', as: 'destroy_genre'
 
       # お知らせ

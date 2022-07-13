@@ -20,7 +20,7 @@ class Api::V1::GenresController < Api::V1::ApplicationController
     render './api/v1/genres/show'
   end
 
-  # POST /genres/create(.json) ジャンル作成API
+  # POST /api/v1/genres/create(.json) ジャンル作成API
   def create
     genre = Genre.new(genre_params)
 
@@ -31,7 +31,18 @@ class Api::V1::GenresController < Api::V1::ApplicationController
     end
   end
 
-  # POST /genres/:id/delete(.json) ジャンル削除API
+  # POST /api/v1/genres/:id/update(.json) 記事更新API(処理)
+  def update
+    genre = Genre.find(params[:id])
+
+    if genre.update(genre_params)
+      render './api/v1/success', locals: { notice: I18n.t('notice.genre.update') }
+    else
+      render './api/v1/failure', locals: { alert: I18n.t('alert.genre.update') }, status: :unprocessable_entity
+    end
+  end
+
+  # POST /api/v1/genres/:id/delete(.json) ジャンル削除API
   def destroy
     genre = Genre.find(params[:id])
 

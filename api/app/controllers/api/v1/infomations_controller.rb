@@ -12,7 +12,7 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
     @infomations = Infomation.by_target(current_user).by_force
   end
 
-  # GET /infomations/:id(.json) お知らせ詳細API
+  # GET /api/v1/infomations/:id(.json) お知らせ詳細API
   def show
     @infomation = Infomation.find(params[:id])
     return head :not_found if @infomation.blank? || !@infomation.target_user?(current_user) || @infomation.started_at > Time.current
@@ -22,7 +22,7 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
     end
   end
 
-  # POST /infomations/create(.json) お知らせ作成API
+  # POST /api/v1/infomations/create(.json) お知らせ作成API
   def create
     infomation = Infomation.new(infomation_params)
 
@@ -33,7 +33,7 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
     end
   end
 
-  # POST /infomations/:id/delete(.json) お知らせ削除API
+  # POST /api/v1/infomations/:id/delete(.json) お知らせ削除API
   def destroy
     infomation = Infomation.find(params[:id])
 

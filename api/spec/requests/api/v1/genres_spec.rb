@@ -100,6 +100,59 @@ RSpec.describe Api::V1::GenresController, type: :request do
     end
   end
 
+  describe 'POST /api/v1/genres/:id/update' do
+    subject(:call_api) { post "/api/v1/genres/#{genre.id}/update.json", headers: headers, params: params }
+
+    let(:user) { create :confirmed_user }
+    let(:headers) { user.create_new_auth_token }
+    let(:genre) { create :genre }
+    let(:image) { Rack::Test::UploadedFile.new('spec/fixtures/test_image.jpg', 'image/jpeg') }
+    let(:params) {{ }}
+
+    context '投稿の更新に成功した場合' do
+      let(:params) do
+        {
+          genre: {
+            name: 'genre_name',
+            image: image
+          }
+        }
+      end
+
+      it 'レスポンスステータスが200で返ること' do
+        call_api
+        res = JSON.parse(response.body)
+        expect(res['success']).to eq(true)
+        expect(response.status).to eq 200
+      end
+    end
+
+    context '投稿の更新に失敗した場合' do
+      let(:params) do
+        {
+          genre: {
+            name: '',
+            image: image
+          }
+        }
+      end
+
+      it 'レスポンスステータスが422で返ること' do
+        call_api
+        res = JSON.parse(response.body)
+        expect(res['success']).to eq(false)
+        expect(response.status).to eq 422
+      end
+
+      it 'エラーが返ること' do
+        call_api
+        res = JSON.parse(response.body)
+        expect(res['success']).to eq(false)
+        expect(res['alert']).to eq(I18n.t('alert.genre.update'))
+      end
+    end
+  end
+
   describe 'POST /api/v1/genres/:id/delete' do
     subject(:call_api) { post "/api/v1/genres/#{genre.id}/delete.json", headers: headers }
 

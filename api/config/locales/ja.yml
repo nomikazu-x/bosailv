@@ -73,6 +73,7 @@ ja:
       destroy: 'お知らせを削除できました。'
     genre:
       create: 'ジャンルを作成できました。'
+      update: 'ジャンルを更新できました。'
       destroy: 'ジャンルを削除できました。'
   alert:
     user:
@@ -93,6 +94,7 @@ ja:
       destroy: '削除に失敗しました。'
     genre: 
       create: '作成に失敗しました。'
+      update: '更新に失敗しました。'
       destroy: '削除に失敗しました。'
     
   errors:
