@@ -44,7 +44,7 @@
           <v-icon>mdi-home</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>マイページへ戻る</v-list-item-title>
+          <v-list-item-title>トップへ戻る</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>

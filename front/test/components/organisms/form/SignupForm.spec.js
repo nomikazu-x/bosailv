@@ -5,6 +5,7 @@ import NameTextField from '~/components/organisms/textFields/NameTextField.vue'
 import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
 import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GuestSigninBtn from '~/components/organisms/btns/GuestSigninBtn.vue'
 import Component from '~/components/organisms/form/SignupForm.vue'
 
 import { Helper } from '~/test/helper.js'
@@ -17,6 +18,9 @@ describe('SignupForm.vue', () => {
     const wrapper = mount(Component, {
       localVue,
       vuetify,
+      stubs: {
+        GuestSigninBtn
+      },
       data () {
         return { ...values }
       }
@@ -32,6 +36,7 @@ describe('SignupForm.vue', () => {
     expect(wrapper.findComponent(EmailTextField).exists()).toBe(true)
     expect(wrapper.findComponent(PasswordConfirmationTextField).exists()).toBe(true)
     expect(wrapper.findComponent(RedBtn).exists()).toBe(true)
+    expect(wrapper.findComponent(GuestSigninBtn).exists()).toBe(true)
   }
 
   it('[無効]ボタンを押せない', async () => {
