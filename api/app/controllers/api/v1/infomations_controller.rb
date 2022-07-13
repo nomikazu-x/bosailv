@@ -27,7 +27,7 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
     infomation = Infomation.new(infomation_params)
 
     if infomation.save
-      render './api/v1/infomations/success', locals: { notice: I18n.t('notice.infomation.create') }
+      render './api/v1/success', locals: { notice: I18n.t('notice.infomation.create') }
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.infomation.create') }, status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
     infomation = Infomation.find(params[:id])
 
     if infomation.destroy
-      render './api/v1/infomations/success', locals: { notice: I18n.t('notice.infomation.destroy') }
+      render './api/v1/success', locals: { notice: I18n.t('notice.infomation.destroy') }
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.infomation.destroy') }, status: :unprocessable_entity
     end

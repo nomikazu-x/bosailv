@@ -73,7 +73,7 @@ RSpec.describe Api::V1::InfomationsController, type: :request do
     let(:headers) { user.create_new_auth_token }
     let(:params) {{ }}
 
-    context '投稿の作成に成功した場合' do
+    context '作成に成功した場合' do
       let(:params) do
         {
           infomation: {
@@ -94,12 +94,12 @@ RSpec.describe Api::V1::InfomationsController, type: :request do
         expect(response.status).to eq 200
       end
 
-      it '投稿が作成されていること' do
+      it '作成されていること' do
         expect { call_api }.to change { Infomation.count }.by(1)
       end
     end
 
-    context '投稿の作成に失敗した場合' do
+    context '作成に失敗した場合' do
       let(:params) do
         {
           infomation: {
@@ -136,7 +136,7 @@ RSpec.describe Api::V1::InfomationsController, type: :request do
     let(:headers) { user.create_new_auth_token }
     let(:infomation) { create(:infomation) }
 
-    context '投稿の削除に成功した場合' do
+    context '削除に成功した場合' do
       it 'レスポンスステータスが200で返ること' do
         call_api
         res = JSON.parse(response.body)
@@ -144,7 +144,7 @@ RSpec.describe Api::V1::InfomationsController, type: :request do
         expect(response.status).to eq 200
       end
 
-      it '投稿が削除されていること' do
+      it '削除されていること' do
         expect { call_api }.to change { Infomation.count }.by(0)
       end
 
