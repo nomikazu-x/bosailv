@@ -21,6 +21,28 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
     end
   end
 
+  # POST /infomations/create(.json) お知らせ作成API
+  def create
+    @infomation = Infomation.build(infomation_params)
+
+    if @infomation.save
+      render './api/v1/infomations/success', locals: { notice: I18n.t('notice.infomation.create') }
+    else
+      render './api/v1/failure', locals: { alert: I18n.t('alert.infomation.create') }, status: :unprocessable_entity
+    end
+  end
+
+  # POST /infomations/:id/delete(.json) お知らせ削除API
+  def destroy
+    infomation = Infomation.find(params[:id])
+
+    if infomation.destroy
+      render './api/v1/infomation/success', locals: { notice: I18n.t('notice.infomation.destroy') }
+    else
+      render './api/v1/failure', locals: { alert: I18n.t('alert.infomation.destroy') }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   # お知らせ確認情報更新
@@ -29,5 +51,9 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
 
     current_user.infomation_check_last_started_at = @infomations.first.started_at
     current_user.save!
+  end
+
+  def infomation_params
+    params.require(:infomation).permit(:label, :title, :summary, :body, :started_at, :ended_at, :force_started_at, :force_ended_at, :target, :user_id)
   end
 end

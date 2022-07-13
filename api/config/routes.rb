@@ -27,9 +27,11 @@ Rails.application.routes.draw do
       get  'genres/:id',          to: 'genres#show',    as: 'show_genre'
 
       # お知らせ
-      get 'infomations',           to: 'infomations#index',     as: 'infomations'
-      get 'infomations/important', to: 'infomations#important', as: 'important_infomations'
-      get 'infomations/:id',       to: 'infomations#show',      as: 'infomation'
+      get  'infomations',            to: 'infomations#index',     as: 'infomations'
+      get  'infomations/important',  to: 'infomations#important', as: 'important_infomations'
+      get  'infomations/:id',        to: 'infomations#show',      as: 'infomation'
+      post 'infomations/create',     to: 'infomations#create',    as: 'create_infomation'
+      post 'infomations/:id/delete', to: 'infomations#destroy',   as: 'destroy_infomation'
 
       # 市町村
       get 'set_cities/:id', to: 'cities#set_cities', as: 'set_cities'

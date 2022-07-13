@@ -68,6 +68,9 @@ ja:
     article_comment:
       create: 'コメントを作成できました。'
       destroy: 'コメントを削除できました。'
+    infomation:
+      create: 'お知らせを作成できました。'
+      destroy: 'お知らせを削除できました。'
   alert:
     user:
       destroy:
@@ -82,6 +85,9 @@ ja:
     article_comment:
       create: 'コメントに失敗しました。'
       destroy: 'コメントの削除に失敗しました。'
+    infomation: 
+      create: '作成に失敗しました。'
+      destroy: '削除に失敗しました。'
     
   errors:
     messages:
