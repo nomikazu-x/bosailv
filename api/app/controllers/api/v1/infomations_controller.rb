@@ -1,4 +1,5 @@
 class Api::V1::InfomationsController < Api::V1::ApplicationController
+  before_action :redirect_not_admin, only: %i[create destroy]
 
   # GET /api/v1/infomations(.json) お知らせ一覧API
   def index
@@ -23,9 +24,9 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
 
   # POST /infomations/create(.json) お知らせ作成API
   def create
-    @infomation = Infomation.build(infomation_params)
+    infomation = Infomation.new(infomation_params)
 
-    if @infomation.save
+    if infomation.save
       render './api/v1/infomations/success', locals: { notice: I18n.t('notice.infomation.create') }
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.infomation.create') }, status: :unprocessable_entity
@@ -37,7 +38,7 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
     infomation = Infomation.find(params[:id])
 
     if infomation.destroy
-      render './api/v1/infomation/success', locals: { notice: I18n.t('notice.infomation.destroy') }
+      render './api/v1/infomations/success', locals: { notice: I18n.t('notice.infomation.destroy') }
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.infomation.destroy') }, status: :unprocessable_entity
     end
@@ -55,5 +56,11 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
 
   def infomation_params
     params.require(:infomation).permit(:label, :title, :summary, :body, :started_at, :ended_at, :force_started_at, :force_ended_at, :target, :user_id)
+  end
+
+  def redirect_not_admin
+    return if current_user.admin?
+
+    render './api/v1/failure', locals: { alert: I18n.t('errors.messages.not_permission') }, status: :unauthorized
   end
 end

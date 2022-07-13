@@ -65,4 +65,94 @@ RSpec.describe Api::V1::InfomationsController, type: :request do
       end
     end
   end
+
+  describe 'POST /api/v1/infomations' do
+    subject(:call_api) { post '/api/v1/infomations/create.json', headers: headers, params: params }
+
+    let(:user) { create(:admin_user) }
+    let(:headers) { user.create_new_auth_token }
+    let(:params) {{ }}
+
+    context '投稿の作成に成功した場合' do
+      let(:params) do
+        {
+          infomation: {
+            title: 'infomation_title',
+            summary: 'infomation_summary',
+            body: 'infomation_body',
+            started_at: Time.current,
+            ended_at: Time.current + 3.hour,
+            target: 'All'
+          }
+        }
+      end
+
+      it 'レスポンスステータスが200で返ること' do
+        call_api
+        res = JSON.parse(response.body)
+        expect(res['success']).to eq(true)
+        expect(response.status).to eq 200
+      end
+
+      it '投稿が作成されていること' do
+        expect { call_api }.to change { Infomation.count }.by(1)
+      end
+    end
+
+    context '投稿の作成に失敗した場合' do
+      let(:params) do
+        {
+          infomation: {
+            title: 'infomation_title',
+            summary: 'infomation_summary',
+            body: 'infomation_body',
+            started_at: '',
+            ended_at: Time.current + 3.hour,
+            target: ''
+          }
+        }
+      end
+
+      it 'レスポンスステータスが422で返ること' do
+        call_api
+        res = JSON.parse(response.body)
+        expect(res['success']).to eq(false)
+        expect(response.status).to eq 422
+      end
+
+      it 'エラーが返ること' do
+        call_api
+        res = JSON.parse(response.body)
+        expect(res['success']).to eq(false)
+        expect(res['alert']).to eq(I18n.t('alert.infomation.create'))
+      end
+    end
+  end
+
+  describe 'POST /api/v1/infomations/:id/delete' do
+    subject(:call_api) { post "/api/v1/infomations/#{infomation.id}/delete.json", headers: headers }
+
+    let(:user) { create(:admin_user) }
+    let(:headers) { user.create_new_auth_token }
+    let(:infomation) { create(:infomation) }
+
+    context '投稿の削除に成功した場合' do
+      it 'レスポンスステータスが200で返ること' do
+        call_api
+        res = JSON.parse(response.body)
+        expect(res['success']).to eq(true)
+        expect(response.status).to eq 200
+      end
+
+      it '投稿が削除されていること' do
+        expect { call_api }.to change { Infomation.count }.by(0)
+      end
+
+      it 'レスポンスボディーに期待された値が返ること' do
+        call_api
+        res = JSON.parse(response.body)
+        expect(res['notice']).to eq(I18n.t('notice.infomation.destroy'))
+      end
+    end
+  end
 end
