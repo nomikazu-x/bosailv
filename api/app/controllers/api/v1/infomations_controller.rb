@@ -57,10 +57,4 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
   def infomation_params
     params.require(:infomation).permit(:label, :title, :summary, :body, :started_at, :ended_at, :force_started_at, :force_ended_at, :target, :user_id)
   end
-
-  def redirect_not_admin
-    return if current_user.admin?
-
-    render './api/v1/failure', locals: { alert: I18n.t('errors.messages.not_permission') }, status: :unauthorized
-  end
 end

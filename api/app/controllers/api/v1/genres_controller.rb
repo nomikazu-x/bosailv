@@ -1,5 +1,5 @@
 class Api::V1::GenresController < Api::V1::ApplicationController
-  before_action :redirect_not_admin, only: %i[create destroy]
+  before_action :redirect_not_admin, only: %i[create update destroy]
 
   # GET /api/v1/genres(.json) ジャンル一覧API
   def index
@@ -57,11 +57,5 @@ class Api::V1::GenresController < Api::V1::ApplicationController
 
   def genre_params
     params.require(:genre).permit(:name, :image)
-  end
-
-  def redirect_not_admin
-    return if current_user.admin?
-
-    render './api/v1/failure', locals: { alert: I18n.t('errors.messages.not_permission') }, status: :unauthorized
   end
 end

@@ -8,4 +8,12 @@ class Api::V1::ApplicationController < ApplicationController
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
+
+  private
+
+  def redirect_not_admin
+    return if current_user.admin?
+
+    render './api/v1/failure', locals: { alert: I18n.t('errors.messages.not_permission') }, status: :unauthorized
+  end
 end
