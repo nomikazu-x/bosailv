@@ -28,6 +28,10 @@ export default {
       this.$toasted.info(this.$t('auth.unauthenticated'))
       this.$auth.redirect('login') // Tips: ログイン後、元のページに戻す
     },
+    redirectNotAdmin () {
+      this.$toasted.error(this.$t('auth.admin_dedicated'))
+      this.$router.push({ path: '/' })
+    },
     redirectAlreadyAuth () {
       this.$toasted.info(this.$t('auth.already_authenticated'))
       this.$router.push({ path: '/' })
