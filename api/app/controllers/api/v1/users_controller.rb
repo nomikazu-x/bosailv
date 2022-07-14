@@ -2,9 +2,15 @@ class Api::V1::UsersController < Api::V1::ApplicationController
 
   # GET /api/v1/users(.json) ユーザー情報一覧取得API
   def index
+    @users = User.all
+    render './api/v1/users/index'
+  end
+
+  # GET /api/v1/users/ranking(.json) ユーザーランキング取得API
+  def ranking
     # ユーザーを獲得ポイント順に取得
     @users = User.point_ranking.page(params[:page]).per(Settings['default_users_limit'])
-    render './api/v1/users/index'
+    render './api/v1/users/ranking'
   end
 
   # GET /api/v1/users/:username(.json) ユーザー情報詳細取得API

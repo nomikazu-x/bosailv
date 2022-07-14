@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :request do
-  describe 'GET /api/v1/users' do
-    subject(:call_api){ get '/api/v1/users.json' }
+  describe 'GET /api/v1/users/ranking' do
+    subject(:call_api){ get '/api/v1/users/ranking.json' }
 
     let(:users) { create_list(:user, 5) }
 

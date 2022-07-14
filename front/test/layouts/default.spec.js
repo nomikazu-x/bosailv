@@ -4,6 +4,7 @@ import GoTop from '@inotom/vue-go-top'
 import Layout from '~/layouts/default.vue'
 import TheHeader from '~/components/organisms/header/TheHeader.vue'
 import TheSidebar from '~/components/organisms/sidebar/TheSidebar.vue'
+import TheDestroyInfo from '~/components/organisms/application/TheDestroyInfo.vue'
 import LevelUpModal from '~/components/organisms/modals/LevelUpModal.vue'
 import TheFooter from '~/components/organisms/footer/TheFooter.vue'
 
@@ -24,6 +25,7 @@ describe('default.vue', () => {
         GoTop: true,
         TheHeader: true,
         TheSidebar: true,
+        TheDestroyInfo: true,
         LevelUpModal: true,
         TheFooter: true,
         Nuxt: true
@@ -44,6 +46,7 @@ describe('default.vue', () => {
     expect(wrapper.findComponent(GoTop).exists()).toBe(true) // 上に戻る
     expect(wrapper.findComponent(TheHeader).exists()).toBe(true) // ヘッダー
     expect(wrapper.findComponent(TheSidebar).exists()).toBe(true) // サイドバー
+    expect(wrapper.findComponent(TheDestroyInfo).exists()).toBe(true) // レベルアップモーダル
     expect(wrapper.findComponent(LevelUpModal).exists()).toBe(true) // レベルアップモーダル
     expect(wrapper.findComponent(TheFooter).exists()).toBe(true) // フッター
     expect(wrapper.html()).toMatch('<nuxt-stub></nuxt-stub>')

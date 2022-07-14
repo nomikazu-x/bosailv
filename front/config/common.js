@@ -29,7 +29,7 @@ module.exports = {
   // ジャンル別記事一覧API
   userGenreArticlesUrl: '/api/v1/users/_username/genres/_id.json',
   // ランキングAPI
-  usersUrl: '/api/v1/users.json',
+  usersRankingUrl: '/api/v1/users/ranking.json',
   // 登録情報変更API
   userUpdateUrl: '/api/v1/auth/update.json',
   // 画像変更API

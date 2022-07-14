@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       # ユーザー
       get  'users',                      to: 'users#index',          as: 'users'
+      get  'users/ranking',              to: 'users#ranking',        as: 'ranking_users'
       get  'users/:username',            to: 'users#show',           as: 'show_users'
       get  'users/:username/genres/:id', to: 'users#genre_articles', as: 'genre_articles_users'
       
