@@ -4,7 +4,7 @@ import locales from '~/locales/ja.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
-import SettingsIndexCard from '~/components/organisms/cards/settings/SettingsIndexCard.vue'
+import SettingsMenusCard from '~/components/organisms/cards/settings/SettingsMenusCard.vue'
 import SettingsDeactivateCard from '~/components/organisms/cards/settings/SettingsDeactivateCard.vue'
 import Page from '~/pages/settings/deactivate.vue'
 
@@ -33,7 +33,7 @@ describe('deactivate.vue', () => {
         TwoColumnContainer: true,
         TheLoading: true,
         TheMessage: true,
-        SettingsIndexCard: true,
+        SettingsMenusCard: true,
         SettingsDeactivateCard: true
       },
       mocks: {
@@ -72,7 +72,7 @@ describe('deactivate.vue', () => {
     expect(wrapper.findComponent(TheMessage).exists()).toBe(true)
     expect(wrapper.findComponent(TheMessage).vm.$props.alert).toBe(null)
     expect(wrapper.findComponent(TheMessage).vm.$props.notice).toBe(null)
-    expect(wrapper.findComponent(SettingsIndexCard).exists()).toBe(true)
+    expect(wrapper.findComponent(SettingsMenusCard).exists()).toBe(true)
     expect(wrapper.findComponent(SettingsDeactivateCard).exists()).toBe(true)
   }
   const commonToastedTest = (alert, notice) => {

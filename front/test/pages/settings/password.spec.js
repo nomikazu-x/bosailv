@@ -4,7 +4,7 @@ import locales from '~/locales/ja.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
-import SettingsIndexCard from '~/components/organisms/cards/settings/SettingsIndexCard.vue'
+import SettingsMenusCard from '~/components/organisms/cards/settings/SettingsMenusCard.vue'
 import SettingsPasswordCard from '~/components/organisms/cards/settings/SettingsPasswordCard.vue'
 import Page from '~/pages/settings/password.vue'
 
@@ -33,7 +33,7 @@ describe('password.vue', () => {
         TwoColumnContainer: true,
         TheLoading: true,
         TheMessage: true,
-        SettingsIndexCard: true,
+        SettingsMenusCard: true,
         SettingsPasswordCard: true
       },
       mocks: {
@@ -72,7 +72,7 @@ describe('password.vue', () => {
     expect(wrapper.findComponent(TheMessage).exists()).toBe(true)
     expect(wrapper.findComponent(TheMessage).vm.$props.alert).toBe(null)
     expect(wrapper.findComponent(TheMessage).vm.$props.notice).toBe(null)
-    expect(wrapper.findComponent(SettingsIndexCard).exists()).toBe(true)
+    expect(wrapper.findComponent(SettingsMenusCard).exists()).toBe(true)
     expect(wrapper.findComponent(SettingsPasswordCard).exists()).toBe(true)
   }
   const commonToastedTest = (alert, notice) => {

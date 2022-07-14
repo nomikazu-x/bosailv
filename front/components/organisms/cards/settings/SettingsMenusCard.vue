@@ -55,7 +55,7 @@
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 
 export default {
-  name: 'SettingsIndexCard',
+  name: 'SettingMenusCard',
 
   components: {
     BaseTitleCard
