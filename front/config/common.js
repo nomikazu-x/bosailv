@@ -46,6 +46,10 @@ module.exports = {
   infomationsUrl: '/api/v1/infomations.json',
   // お知らせ詳細API
   infomationDetailUrl: '/api/v1/infomations/_id.json',
+  // 記事作成API(管理者のみ)
+  infomationCreateUrl: '/api/v1/infomations/create.json',
+  // 記事削除API(管理者のみ)
+  infomationDeleteUrl: '/api/v1/infomations/_id/delete.json',
 
   // 【記事】
   // 記事一覧API
@@ -66,6 +70,12 @@ module.exports = {
   genresUrl: '/api/v1/genres.json',
   // ジャンル詳細API
   genreShowUrl: '/api/v1/genres/_id.json',
+  // ジャンルAPI(管理者のみ)
+  genreCreateUrl: '/api/v1/genres/create.json',
+  // ジャンルAPI(管理者のみ)
+  genreUpdateUrl: '/api/v1/genres/_id/update.json',
+  // ジャンルAPI(管理者のみ)
+  genreDeleteUrl: '/api/v1/genres/_id/delete.json',
 
   // ［お気に入り］
   // お気に入り登録API

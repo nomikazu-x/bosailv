@@ -17,7 +17,7 @@ if current_user.present?
     json.username current_user.username
     json.level current_user.level
     json.lifelong_point current_user.lifelong_point
-    json.profile current_user.profile
+    json.admin current_user.admin?
     if current_user.prefecture_id.present?
       json.prefecture do
         json.id @prefecture.id
@@ -32,6 +32,7 @@ if current_user.present?
     end
     json.point_to_next current_user.point_to_next
     json.profile current_user.profile if current_user.profile.present?
+    json.destroy_schedule_at current_user.destroy_schedule_at if current_user.destroy_schedule_at.present?
     json.infomation_unread_count current_user.infomation_unread_count
     json.required_point @required_point
   end

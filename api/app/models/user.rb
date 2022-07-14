@@ -56,8 +56,6 @@ class User < ActiveRecord::Base
          :confirmable, :lockable, :timeoutable, :trackable
   include DeviseTokenAuth::Concerns::User
 
-  enum power: { Not: 1, Guest: 2, Admin: 3 }
-
   mount_uploader :image, ImageUploader
 
   alias_attribute :total, :lifelong_point
