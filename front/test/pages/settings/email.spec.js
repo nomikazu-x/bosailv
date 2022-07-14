@@ -92,7 +92,7 @@ describe('email.vue', () => {
   }
 
   it('[未ログイン]ログインにリダイレクトされる', async () => {
-    const wrapper = mountFunction(false)
+    const wrapper = mountFunction(false, {})
     commonLoadingTest(wrapper)
 
     await helper.sleep(1)
@@ -100,12 +100,20 @@ describe('email.vue', () => {
     commonRedirectTest(null, locales.auth.unauthenticated, 'login', authRedirectMock)
   })
   it('[ログイン中]表示される', async () => {
-    const wrapper = mountFunction(true)
+    const wrapper = mountFunction(true, { destroy_schedule_at: null })
     commonLoadingTest(wrapper)
 
     await helper.sleep(1)
     commonFetchUserCalledTest(0)
     commonViewTest(wrapper)
+  })
+  it('[ログイン中(ゲストユーザー)]トップページにリダイレクトされる', async () => {
+    const wrapper = mountFunction(true, { destroy_schedule_at: '2022-01-01T09:00:00+09:00' })
+    commonLoadingTest(wrapper)
+
+    await helper.sleep(1)
+    commonFetchUserCalledTest(0)
+    commonRedirectTest(locales.auth.destroy_reserved, null, { path: '/' })
   })
 
   describe('トークン検証API', () => {

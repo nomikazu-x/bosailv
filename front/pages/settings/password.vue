@@ -59,6 +59,10 @@ export default {
       return this.redirectAuth()
     }
 
+    if (this.$auth.user.destroy_schedule_at !== null) {
+      return this.redirectDestroyReserved()
+    }
+
     this.loading = false
   }
 }

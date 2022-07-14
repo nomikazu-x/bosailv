@@ -32,6 +32,10 @@ export default {
       this.$toasted.error(this.$t('auth.admin_dedicated'))
       this.$router.push({ path: '/' })
     },
+    redirectDestroyReserved () {
+      this.$toasted.error(this.$t('auth.destroy_reserved'))
+      this.$router.push({ path: '/' })
+    },
     redirectAlreadyAuth () {
       this.$toasted.info(this.$t('auth.already_authenticated'))
       this.$router.push({ path: '/' })
