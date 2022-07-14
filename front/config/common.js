@@ -24,6 +24,8 @@ module.exports = {
   passwordNewUrl: '/api/v1/auth/password.json',
   passwordRedirectUrl: '/password/reset/confirm',
   passwordUpdateUrl: '/api/v1/auth/password/update.json',
+  // ランキングAPI
+  usersUrl: '/api/v1/users.json',
   // 登録情報詳細API
   userShowUrl: '/api/v1/users/_username.json',
   // ジャンル別記事一覧API

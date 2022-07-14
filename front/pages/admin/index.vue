@@ -15,7 +15,7 @@
     </template>
 
     <template v-if="!loading" #right>
-      <p>admin only</p>
+      <AdminTabsCard />
     </template>
   </TwoColumnContainer>
 </template>
@@ -26,6 +26,7 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import AdminMenusCard from '~/components/organisms/cards/admin/AdminMenusCard.vue'
+import AdminTabsCard from '~/components/organisms/cards/admin/AdminTabsCard.vue'
 
 export default {
   name: 'AdminIndex',
@@ -34,7 +35,8 @@ export default {
     TwoColumnContainer,
     TheLoading,
     TheMessage,
-    AdminMenusCard
+    AdminMenusCard,
+    AdminTabsCard
   },
 
   mixins: [Application],
