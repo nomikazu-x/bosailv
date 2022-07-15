@@ -15,7 +15,7 @@
     </template>
 
     <template v-if="!loading" #right>
-      <p>admin only</p>
+      <UserSearchListCard />
     </template>
   </TwoColumnContainer>
 </template>
@@ -26,6 +26,7 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import AdminMenusCard from '~/components/organisms/cards/admin/AdminMenusCard.vue'
+import UserSearchListCard from '~/components/organisms/cards/user/UserSearchListCard.vue'
 
 export default {
   name: 'AdminUsersSearch',
@@ -34,7 +35,8 @@ export default {
     TwoColumnContainer,
     TheLoading,
     TheMessage,
-    AdminMenusCard
+    AdminMenusCard,
+    UserSearchListCard
   },
 
   mixins: [Application],

@@ -2,10 +2,7 @@
   <div>
     <TheProcessing v-if="processing" />
     <v-card tile>
-      <v-card v-if="users != null && users.length === 0">
-        <v-card-title class="ml-1">ユーザーはいません。</v-card-title>
-        <v-divider class="my-4" />
-      </v-card>
+      <v-card-title v-if="users != null && users.length === 0" class="ml-1">ユーザーはいません。</v-card-title>
       <UserListItem
         v-for="(user, i) in users"
         :key="user.id"

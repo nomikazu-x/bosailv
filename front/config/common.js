@@ -38,10 +38,12 @@ module.exports = {
   userImageUpdateUrl: '/api/v1/auth/image/update.json',
   // 画像削除API
   userImageDeleteUrl: '/api/v1/auth/image/delete.json',
-  // アカウント削除API
+  // 退会API
   userDeactivateUrl: '/api/v1/auth/delete.json',
   // アカウント削除API
   userDeleteUrl: '/api/v1/users/_username/delete.json',
+  // ユーザー検索API
+  usersSearchUrl: '/api/v1/users/search.json',
 
   // 【お知らせ】
   // 大切なお知らせAPI
