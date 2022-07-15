@@ -39,7 +39,9 @@ module.exports = {
   // 画像削除API
   userImageDeleteUrl: '/api/v1/auth/image/delete.json',
   // アカウント削除API
-  userDeleteUrl: '/api/v1/auth/delete.json',
+  userDeactivateUrl: '/api/v1/auth/delete.json',
+  // アカウント削除API
+  userDeleteUrl: '/api/v1/users/_username/delete.json',
 
   // 【お知らせ】
   // 大切なお知らせAPI

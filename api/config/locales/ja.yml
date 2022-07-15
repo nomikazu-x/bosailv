@@ -58,6 +58,7 @@ ja:
     user:
       image_update: '画像を変更しました。'
       image_destroy: '画像を削除しました。'
+      destroy: 'ユーザーを削除しました。'
     article:
       create: '記事を作成できました。'
       update: '記事を更新できました。'
@@ -79,6 +80,7 @@ ja:
     user:
       destroy:
         params_blank: 'パラメータが指定されていません。'
+        failure: '削除に失敗しました。'
     article: 
       create: '作成に失敗しました。'
       update: '更新に失敗しました。'

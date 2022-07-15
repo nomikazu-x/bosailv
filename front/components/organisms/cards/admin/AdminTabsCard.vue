@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import UserListWithTab from '~/components/organisms/tabItem/UserListWithTab.vue'
@@ -56,9 +57,14 @@ export default {
       articleInfo: null,
       articles: null,
       userPage: 1,
-      userInfo: null,
-      users: null
+      userInfo: null
     }
+  },
+
+  computed: {
+    ...mapGetters({
+      users: 'user/users'
+    })
   },
 
   async created () {
@@ -82,7 +88,7 @@ export default {
             this.userPage = this.userInfo.current_page
           } else {
             this.userInfo = response.data.user
-            this.users = response.data.users
+            this.$store.commit('user/setUsers', response.data.users, { root: true })
           }
         },
         (error) => {

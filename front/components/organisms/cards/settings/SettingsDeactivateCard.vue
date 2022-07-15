@@ -14,7 +14,7 @@
             </v-card-text>
             <v-card-actions class="justify-end">
               <v-btn id="user_delete_no_btn" color="secondary" @click="dialog.value = false">いいえ</v-btn>
-              <v-btn id="user_delete_yes_btn" color="error" @click="dialog.value = false; onUserDelete()">はい</v-btn>
+              <v-btn id="user_delete_yes_btn" color="error" @click="dialog.value = false; onUserDeactivate()">はい</v-btn>
             </v-card-actions>
           </v-card>
         </template>
@@ -41,10 +41,10 @@ export default {
   },
 
   methods: {
-    async onUserDelete () {
+    async onUserDeactivate () {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.userDeleteUrl)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.userDeactivateUrl)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
