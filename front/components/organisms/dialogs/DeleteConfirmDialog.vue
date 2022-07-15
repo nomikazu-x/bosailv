@@ -6,7 +6,7 @@
       </template>
       <template #default="dialog">
         <v-card>
-          <v-toolbar color="error" dark>削除</v-toolbar>
+          <v-toolbar color="error" dark>{{ title }}</v-toolbar>
           <v-card-text>
             <div class="text-h6 pa-6">本当に削除しますか？</div>
           </v-card-text>
@@ -22,6 +22,12 @@
 
 <script>
 export default {
+  props: {
+    title: {
+      type: String,
+      default: '削除'
+    }
+  },
   methods: {
     onClick () {
       this.$emit('click')

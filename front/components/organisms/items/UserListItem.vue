@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="10">
+    <v-col cols="9">
       <BaseListItem :to="`/users/${user.username}`">
         <v-list-item-avatar>
           <v-img :src="user.image_url.mini" />
@@ -10,8 +10,8 @@
         </v-list-item-title>
       </BaseListItem>
     </v-col>
-    <v-col cols="2">
-      <DeleteConfirmDialog @click="onUserDelete(user.id)" />
+    <v-col cols="3">
+      <DeleteConfirmDialog title="ユーザー削除" @click="onUserDelete(user.id)" />
     </v-col>
     <v-divider />
   </v-row>

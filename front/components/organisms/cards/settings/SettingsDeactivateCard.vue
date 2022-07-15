@@ -1,7 +1,7 @@
 <template>
   <BaseTitleCard title="アカウント削除" max-width="640px">
     <TheProcessing v-if="processing" />
-    <DeleteConfirmDialog @click="onUserDeactivate" />
+    <DeleteConfirmDialog title="アカウント削除" @click="onUserDeactivate" />
   </BaseTitleCard>
 </template>
 

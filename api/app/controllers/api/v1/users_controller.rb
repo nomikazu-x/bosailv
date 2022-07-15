@@ -1,5 +1,5 @@
 class Api::V1::UsersController < Api::V1::ApplicationController
-  before_action :redirect_not_admin, only: %i[destroy]
+  before_action :redirect_not_admin, only: %i[index destroy]
 
   # GET /api/v1/users(.json) ユーザー情報一覧取得API
   def index
