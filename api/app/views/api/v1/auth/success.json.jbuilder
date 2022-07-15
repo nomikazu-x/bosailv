@@ -32,7 +32,7 @@ if current_user.present?
     end
     json.point_to_next current_user.point_to_next
     json.profile current_user.profile if current_user.profile.present?
-    json.destroy_schedule_at current_user.destroy_schedule_at if current_user.destroy_schedule_at.present?
+    json.destroy_schedule_at current_user.destroy_schedule_at
     json.infomation_unread_count current_user.infomation_unread_count
     json.required_point @required_point
   end

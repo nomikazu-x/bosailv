@@ -27,7 +27,7 @@
 
       <div class="text-right">
         <FavoriteBtnGroup v-if="$auth.loggedIn" class="mr-3 mt-2" :article="article" :likers="likers" />
-        <v-menu v-if="canAction" bottom right>
+        <v-menu v-if="canAction || $auth.user.admin" bottom right>
           <template #activator="{ on, attrs }">
             <v-btn
               icon
