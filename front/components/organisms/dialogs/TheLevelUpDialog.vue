@@ -39,7 +39,7 @@
 
 <script>
 export default {
-  name: 'LevelUpModal',
+  name: 'TheLevelUpDialog',
   data () {
     return {
       levelUp: false,

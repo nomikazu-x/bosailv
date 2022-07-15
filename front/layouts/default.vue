@@ -4,7 +4,7 @@
 
     <TheSidebar />
 
-    <LevelUpModal />
+    <TheLevelUpDialog />
 
     <v-main style="background-color: #f9f5eb;">
       <TheDestroyInfo />
@@ -20,7 +20,7 @@
 import GoTop from '@inotom/vue-go-top'
 import TheHeader from '~/components/organisms/header/TheHeader.vue'
 import TheSidebar from '~/components/organisms/sidebar/TheSidebar.vue'
-import LevelUpModal from '~/components/organisms/modals/LevelUpModal.vue'
+import TheLevelUpDialog from '~/components/organisms/dialogs/TheLevelUpDialog.vue'
 import TheDestroyInfo from '~/components/organisms/application/TheDestroyInfo.vue'
 import TheFooter from '~/components/organisms/footer/TheFooter.vue'
 
@@ -30,7 +30,7 @@ export default {
   components: {
     TheHeader,
     TheSidebar,
-    LevelUpModal,
+    TheLevelUpDialog,
     TheFooter,
     TheDestroyInfo,
     GoTop
