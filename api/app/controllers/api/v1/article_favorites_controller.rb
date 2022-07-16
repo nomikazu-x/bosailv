@@ -32,7 +32,6 @@ class Api::V1::ArticleFavoritesController < Api::V1::ApplicationController
 
     if article
       ActiveRecord::Base.transaction do
-        p current_user.article_favorites
         current_user.article_unfavorite!(article)
         # 記事作成者のポイントを減らす
         author_point_record = PointRecorder.new(article.user).delete_record(Settings['article_favorite_author_obtained_point'])

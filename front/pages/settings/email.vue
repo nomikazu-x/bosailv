@@ -11,7 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
-      <SettingsIndexCard />
+      <SettingsMenusCard />
     </template>
 
     <template v-if="!loading" #right>
@@ -25,7 +25,7 @@ import Application from '~/plugins/application.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
-import SettingsIndexCard from '~/components/organisms/cards/settings/SettingsIndexCard.vue'
+import SettingsMenusCard from '~/components/organisms/cards/settings/SettingsMenusCard.vue'
 import SettingsEmailCard from '~/components/organisms/cards/settings/SettingsEmailCard.vue'
 
 export default {
@@ -35,7 +35,7 @@ export default {
     TwoColumnContainer,
     TheLoading,
     TheMessage,
-    SettingsIndexCard,
+    SettingsMenusCard,
     SettingsEmailCard
   },
 
@@ -57,6 +57,10 @@ export default {
 
     if (!this.$auth.loggedIn) {
       return this.redirectAuth()
+    }
+
+    if (this.$auth.user.destroy_schedule_at !== null) {
+      return this.redirectDestroyReserved()
     }
 
     this.loading = false

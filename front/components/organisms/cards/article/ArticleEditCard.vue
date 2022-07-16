@@ -34,34 +34,21 @@ export default {
 
   mixins: [Application],
 
+  props: {
+    article: {
+      type: Object,
+      default: null
+    }
+  },
+
   data () {
     return {
       errors: null,
-      article: null,
       success: false
     }
   },
 
-  async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.articleDetailUrl.replace('_id', this.$route.params.id))
-      .then((response) => {
-        if (response.data == null) {
-          this.$toasted.error(this.$t('system.error'))
-          return this.$router.push({ path: '/' })
-        } else {
-          this.article = response.data.article
-        }
-      },
-      (error) => {
-        if (error.response == null) {
-          this.$toasted.error(this.$t('network.failure'))
-        } else if (error.response.status === 401) {
-          return this.signOut()
-        } else {
-          this.$toasted.error(this.$t('network.error'))
-        }
-        return this.$router.push({ path: '/' })
-      })
+  created () {
     this.processing = false
   },
 
@@ -89,7 +76,7 @@ export default {
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
             this.success = true
-            this.article = response.data.article
+            this.$emit('article', response.data.article)
           }
         },
         (error) => {
@@ -98,8 +85,8 @@ export default {
           } else if (error.response.data == null) {
             this.$toasted.error(this.$t('network.error'))
           } else {
-            this.alert = error.response.data.alert
-            this.notice = error.response.data.notice
+            this.$emit('alert', error.response.data.alert)
+            this.$emit('notice', error.response.data.notice)
           }
         })
 

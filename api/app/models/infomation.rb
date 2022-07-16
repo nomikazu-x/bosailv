@@ -46,6 +46,9 @@ class Infomation < ApplicationRecord
     where('started_at > ?', infomation_check_last_started_at) if infomation_check_last_started_at.present?
   }
 
+  validates :started_at, presence: true
+  validates :target, presence: true
+
   # 対象ユーザーかを返却
   def target_user?(current_user)
     target.to_sym == :All || (target.to_sym == :User && user_id == current_user&.id)

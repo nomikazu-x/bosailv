@@ -25,8 +25,11 @@ export default {
       return (genre) => {
         if (this.$route.params.username) {
           return { name: 'users-username-genres-id___ja', params: { username: this.$route.params.username, id: genre.id } }
+        } else if (this.$route.path === '/admin/genres') {
+          return { name: 'admin-genres-id-edit___ja', params: { id: genre.id } }
+        } else {
+          return { name: 'genres-id___ja', params: { id: genre.id } }
         }
-        return { name: 'genres-id___ja', params: { id: genre.id } }
       }
     }
   }

@@ -3,8 +3,10 @@
     <TheProcessing v-if="processing" />
     <v-form autocomplete="off">
       <v-card-text>
-        <UserNameTextField
+        <BaseTextField
           v-model="name"
+          name="name"
+          label="氏名"
           @click="waiting = false"
         />
         <PrefecturesSelect
@@ -18,8 +20,10 @@
           :cities="cities"
           @click="waiting = false"
         />
-        <ProfileTextarea
+        <BaseTextarea
           v-model="profile"
+          name="profile"
+          label="プロフィール"
           @click="waiting = false"
         />
         <RedBtn
@@ -37,10 +41,10 @@
 <script>
 import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
-import UserNameTextField from '~/components/organisms/textFields/UserNameTextField.vue'
+import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
 import CitiesSelect from '~/components/organisms/select/CitiesSelect.vue'
-import ProfileTextarea from '~/components/organisms/textarea/ProfileTextarea.vue'
+import BaseTextarea from '~/components/molecules/textarea/BaseTextarea.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
@@ -49,10 +53,10 @@ export default {
   components: {
     ValidationObserver,
     TheProcessing,
-    UserNameTextField,
+    BaseTextField,
     PrefecturesSelect,
     CitiesSelect,
-    ProfileTextarea,
+    BaseTextarea,
     RedBtn
   },
 

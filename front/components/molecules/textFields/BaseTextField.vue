@@ -1,17 +1,14 @@
 <template>
-  <ValidationProvider v-slot="{ errors }" name="name" rules="required">
-    <v-textarea
+  <ValidationProvider v-slot="{ errors }" :name="name" rules="required">
+    <v-text-field
       v-model="valueModel"
       :value="value"
       :error-messages="errors"
       dense
       outlined
-      label="自己紹介"
-      auto-grow
-      counter
+      :prepend-icon="prependIcon"
       color="#3c3c3c"
-      name="profile"
-      maxlength="255"
+      :label="label"
       @click="onClick"
     />
   </ValidationProvider>
@@ -25,7 +22,7 @@ extend('required', required)
 configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
 
 export default {
-  name: 'ProfileTextarea',
+  name: 'BaseTextField',
 
   components: {
     ValidationProvider
@@ -37,6 +34,18 @@ export default {
     value: {
       type: String,
       default: undefined
+    },
+    label: {
+      type: String,
+      default: ''
+    },
+    name: {
+      type: String,
+      default: ''
+    },
+    prependIcon: {
+      type: String,
+      default: ''
     }
   },
 

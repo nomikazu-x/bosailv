@@ -4,7 +4,7 @@ import locales from '~/locales/ja.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
-import SettingsIndexCard from '~/components/organisms/cards/settings/SettingsIndexCard.vue'
+import SettingsMenusCard from '~/components/organisms/cards/settings/SettingsMenusCard.vue'
 import SettingsEmailCard from '~/components/organisms/cards/settings/SettingsEmailCard.vue'
 import Page from '~/pages/settings/email.vue'
 
@@ -33,7 +33,7 @@ describe('email.vue', () => {
         TwoColumnContainer: true,
         TheLoading: true,
         TheMessage: true,
-        SettingsIndexCard: true,
+        SettingsMenusCard: true,
         SettingsEmailCard: true
       },
       mocks: {
@@ -72,7 +72,7 @@ describe('email.vue', () => {
     expect(wrapper.findComponent(TheMessage).exists()).toBe(true)
     expect(wrapper.findComponent(TheMessage).vm.$props.alert).toBe(null)
     expect(wrapper.findComponent(TheMessage).vm.$props.notice).toBe(null)
-    expect(wrapper.findComponent(SettingsIndexCard).exists()).toBe(true)
+    expect(wrapper.findComponent(SettingsMenusCard).exists()).toBe(true)
     expect(wrapper.findComponent(SettingsEmailCard).exists()).toBe(true)
   }
   const commonToastedTest = (alert, notice) => {
@@ -92,7 +92,7 @@ describe('email.vue', () => {
   }
 
   it('[未ログイン]ログインにリダイレクトされる', async () => {
-    const wrapper = mountFunction(false)
+    const wrapper = mountFunction(false, {})
     commonLoadingTest(wrapper)
 
     await helper.sleep(1)
@@ -100,12 +100,20 @@ describe('email.vue', () => {
     commonRedirectTest(null, locales.auth.unauthenticated, 'login', authRedirectMock)
   })
   it('[ログイン中]表示される', async () => {
-    const wrapper = mountFunction(true)
+    const wrapper = mountFunction(true, { destroy_schedule_at: null })
     commonLoadingTest(wrapper)
 
     await helper.sleep(1)
     commonFetchUserCalledTest(0)
     commonViewTest(wrapper)
+  })
+  it('[ログイン中(ゲストユーザー)]トップページにリダイレクトされる', async () => {
+    const wrapper = mountFunction(true, { destroy_schedule_at: '2022-01-01T09:00:00+09:00' })
+    commonLoadingTest(wrapper)
+
+    await helper.sleep(1)
+    commonFetchUserCalledTest(0)
+    commonRedirectTest(locales.auth.destroy_reserved, null, { path: '/' })
   })
 
   describe('トークン検証API', () => {

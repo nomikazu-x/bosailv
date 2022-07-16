@@ -49,6 +49,14 @@
               <v-list-item-title>設定</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item v-if="$auth.loggedIn && $auth.user.admin === true" to="/admin" exact nuxt>
+            <v-list-item-icon>
+              <v-icon>mdi-account-cog</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>管理者ページ</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
           <v-list-item exact nuxt @click="onSignOut()">
             <v-list-item-icon>
               <v-icon>mdi-logout</v-icon>

@@ -30,7 +30,7 @@ export default {
     }
   },
   async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.usersUrl)
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.usersRankingUrl)
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))

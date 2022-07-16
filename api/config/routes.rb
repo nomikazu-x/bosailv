@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       # ユーザー
-      get  'users',                      to: 'users#index',          as: 'users'
-      get  'users/:username',            to: 'users#show',           as: 'show_users'
-      get  'users/:username/genres/:id', to: 'users#genre_articles', as: 'genre_articles_users'
+      get   'users',                      to: 'users#index',          as: 'users'
+      get   'users/ranking',              to: 'users#ranking',        as: 'ranking_users'
+      get   'users/search',               to: 'users#search',         as: 'search_users'
+      get   'users/:username',            to: 'users#show',           as: 'show_users'
+      get   'users/:username/genres/:id', to: 'users#genre_articles', as: 'genre_articles_users'
+      post  'users/:username/delete',     to: 'users#destroy',        as: 'destroy_users'
       
       # 記事
       get  'articles',            to: 'articles#index',        as: 'articles'
@@ -25,11 +28,16 @@ Rails.application.routes.draw do
       # ジャンル
       get  'genres',              to: 'genres#index',   as: 'genres'
       get  'genres/:id',          to: 'genres#show',    as: 'show_genre'
+      post 'genres/create',       to: 'genres#create',  as: 'create_genre'
+      post 'genres/:id/update',   to: 'genres#update',       as: 'update_genre'
+      post 'genres/:id/delete',   to: 'genres#destroy', as: 'destroy_genre'
 
       # お知らせ
-      get 'infomations',           to: 'infomations#index',     as: 'infomations'
-      get 'infomations/important', to: 'infomations#important', as: 'important_infomations'
-      get 'infomations/:id',       to: 'infomations#show',      as: 'infomation'
+      get  'infomations',            to: 'infomations#index',     as: 'infomations'
+      get  'infomations/important',  to: 'infomations#important', as: 'important_infomations'
+      get  'infomations/:id',        to: 'infomations#show',      as: 'infomation'
+      post 'infomations/create',     to: 'infomations#create',    as: 'create_infomation'
+      post 'infomations/:id/delete', to: 'infomations#destroy',   as: 'destroy_infomation'
 
       # 市町村
       get 'set_cities/:id', to: 'cities#set_cities', as: 'set_cities'

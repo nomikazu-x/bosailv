@@ -24,20 +24,26 @@ module.exports = {
   passwordNewUrl: '/api/v1/auth/password.json',
   passwordRedirectUrl: '/password/reset/confirm',
   passwordUpdateUrl: '/api/v1/auth/password/update.json',
+  // ランキングAPI
+  usersUrl: '/api/v1/users.json',
   // 登録情報詳細API
   userShowUrl: '/api/v1/users/_username.json',
   // ジャンル別記事一覧API
   userGenreArticlesUrl: '/api/v1/users/_username/genres/_id.json',
   // ランキングAPI
-  usersUrl: '/api/v1/users.json',
+  usersRankingUrl: '/api/v1/users/ranking.json',
   // 登録情報変更API
   userUpdateUrl: '/api/v1/auth/update.json',
   // 画像変更API
   userImageUpdateUrl: '/api/v1/auth/image/update.json',
   // 画像削除API
   userImageDeleteUrl: '/api/v1/auth/image/delete.json',
+  // 退会API
+  userDeactivateUrl: '/api/v1/auth/delete.json',
   // アカウント削除API
-  userDeleteUrl: '/api/v1/auth/delete.json',
+  userDeleteUrl: '/api/v1/users/_username/delete.json',
+  // ユーザー検索API
+  usersSearchUrl: '/api/v1/users/search.json',
 
   // 【お知らせ】
   // 大切なお知らせAPI
@@ -46,6 +52,10 @@ module.exports = {
   infomationsUrl: '/api/v1/infomations.json',
   // お知らせ詳細API
   infomationDetailUrl: '/api/v1/infomations/_id.json',
+  // 記事作成API(管理者のみ)
+  infomationCreateUrl: '/api/v1/infomations/create.json',
+  // 記事削除API(管理者のみ)
+  infomationDeleteUrl: '/api/v1/infomations/_id/delete.json',
 
   // 【記事】
   // 記事一覧API
@@ -66,6 +76,12 @@ module.exports = {
   genresUrl: '/api/v1/genres.json',
   // ジャンル詳細API
   genreShowUrl: '/api/v1/genres/_id.json',
+  // ジャンルAPI(管理者のみ)
+  genreCreateUrl: '/api/v1/genres/create.json',
+  // ジャンルAPI(管理者のみ)
+  genreUpdateUrl: '/api/v1/genres/_id/update.json',
+  // ジャンルAPI(管理者のみ)
+  genreDeleteUrl: '/api/v1/genres/_id/delete.json',
 
   // ［お気に入り］
   // お気に入り登録API

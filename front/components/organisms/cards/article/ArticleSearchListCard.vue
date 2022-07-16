@@ -4,7 +4,12 @@
       <BaseTitleCard title="記事検索">
         <v-row class="pa-5">
           <v-col cols="12">
-            <ArticleSearchTextField v-model="keyword" />
+            <BaseTextField
+              v-model="keyword"
+              name="keyword"
+              label="キーワード検索"
+              prepend-icon="mdi-magnify"
+            />
           </v-col>
           <v-col cols="12">
             <GenresCheckbox v-model="selectedGenres" />
@@ -36,7 +41,7 @@
 <script>
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
-import ArticleSearchTextField from '~/components/organisms/textFields/ArticleSearchTextField.vue'
+import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import GenresCheckbox from '~/components/organisms/checkbox/GenresCheckbox.vue'
 import ArticleListCardWithTab from '~/components/organisms/tabItem/ArticleListCardWithTab.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
@@ -46,7 +51,7 @@ export default {
 
   components: {
     BaseTitleCard,
-    ArticleSearchTextField,
+    BaseTextField,
     GenresCheckbox,
     ArticleListCardWithTab,
     RedBtn

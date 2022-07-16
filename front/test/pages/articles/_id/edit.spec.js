@@ -7,13 +7,14 @@ import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import ArticleEditCard from '~/components/organisms/cards/article/ArticleEditCard.vue'
 import Page from '~/pages/articles/_id/edit.vue'
 
-// import { Helper } from '~/test/helper.js'
-// const helper = new Helper()
+import { Helper } from '~/test/helper.js'
+const helper = new Helper()
 
 describe('edit.vue', () => {
-  let authRedirectMock, toastedErrorMock, toastedInfoMock, routerPushMock
+  let axiosGetMock, authRedirectMock, toastedErrorMock, toastedInfoMock, routerPushMock
 
   beforeEach(() => {
+    axiosGetMock = jest.fn()
     authRedirectMock = jest.fn()
     toastedErrorMock = jest.fn()
     toastedInfoMock = jest.fn()
@@ -33,8 +34,21 @@ describe('edit.vue', () => {
         ArticleEditCard: true
       },
       mocks: {
+        $config: {
+          apiBaseURL: 'https://example.com',
+          articleDetailUrl: '/api/v1/articles/_id.json'
+        },
+        $axios: {
+          get: axiosGetMock
+        },
         $auth: {
           loggedIn,
+          user: {
+            id: 1,
+            name: 'user1の氏名',
+            email: 'user1@example.com',
+            admin: true
+          },
           redirect: authRedirectMock
         },
         $toasted: {
@@ -43,6 +57,11 @@ describe('edit.vue', () => {
         },
         $router: {
           push: routerPushMock
+        },
+        $route: {
+          params: {
+            id: 1
+          }
         }
       }
     })
@@ -59,6 +78,10 @@ describe('edit.vue', () => {
     expect(wrapper.findComponent(TheMessage).vm.$props.notice).toBe(null)
     expect(wrapper.findComponent(ArticleEditCard).exists()).toBe(true)
   }
+  const commonGetApiCalledTest = () => {
+    expect(axiosGetMock).toBeCalledTimes(1)
+    expect(axiosGetMock).toBeCalledWith('https://example.com/api/v1/articles/1.json')
+  }
   const commonRedirectTest = (alert, notice, url, mock = routerPushMock) => {
     expect(toastedErrorMock).toBeCalledTimes(alert !== null ? 1 : 0)
     if (alert !== null) {
@@ -72,12 +95,24 @@ describe('edit.vue', () => {
     expect(mock).toBeCalledWith(url)
   }
 
-  it('[未ログイン]ログインにリダイレクトされる', () => {
-    mountFunction(false)
-    commonRedirectTest(null, locales.auth.unauthenticated, 'login', authRedirectMock)
-  })
-  it('[ログイン中]表示される', () => {
-    const wrapper = mountFunction(true)
-    commonViewTest(wrapper)
+  describe('リダイレクトテスト', () => {
+    const article = Object.freeze({ id: 1, user: { id: 1, name: 'user1の氏名', email: 'user1@example.com', admin: true } })
+
+    it('[未ログイン]ログインにリダイレクトされる', async () => {
+      axiosGetMock = jest.fn(() => Promise.resolve({ data: { article } }))
+      mountFunction(false)
+
+      await helper.sleep(1)
+      commonGetApiCalledTest(0)
+      commonRedirectTest(null, locales.auth.unauthenticated, 'login', authRedirectMock)
+    })
+    it('[ログイン中]表示される', async () => {
+      axiosGetMock = jest.fn(() => Promise.resolve({ data: { article } }))
+      const wrapper = mountFunction(true)
+
+      await helper.sleep(1)
+      commonGetApiCalledTest(0)
+      commonViewTest(wrapper)
+    })
   })
 })

@@ -1,37 +1,21 @@
 <template>
   <BaseTitleCard title="アカウント削除" max-width="640px">
     <TheProcessing v-if="processing" />
-    <v-card-text>
-      <v-dialog transition="dialog-top-transition" max-width="600px">
-        <template #activator="{ on, attrs }">
-          <v-btn id="user_delete_btn" color="error" :disabled="processing" v-bind="attrs" v-on="on">削除</v-btn>
-        </template>
-        <template #default="dialog">
-          <v-card id="user_delete_dialog">
-            <v-toolbar color="error" dark>アカウント削除</v-toolbar>
-            <v-card-text>
-              <div class="text-h6 pa-6">本当に削除しますか？</div>
-            </v-card-text>
-            <v-card-actions class="justify-end">
-              <v-btn id="user_delete_no_btn" color="secondary" @click="dialog.value = false">いいえ</v-btn>
-              <v-btn id="user_delete_yes_btn" color="error" @click="dialog.value = false; onUserDelete()">はい</v-btn>
-            </v-card-actions>
-          </v-card>
-        </template>
-      </v-dialog>
-    </v-card-text>
+    <DeleteConfirmDialog title="アカウント削除" @click="onUserDeactivate" />
   </BaseTitleCard>
 </template>
 
 <script>
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import DeleteConfirmDialog from '~/components/organisms/dialogs/DeleteConfirmDialog.vue'
 
 export default {
   name: 'SettingsDeactivateCard',
 
   components: {
-    BaseTitleCard
+    BaseTitleCard,
+    DeleteConfirmDialog
   },
 
   mixins: [Application],
@@ -41,10 +25,10 @@ export default {
   },
 
   methods: {
-    async onUserDelete () {
+    async onUserDeactivate () {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.userDeleteUrl)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.userDeactivateUrl)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))

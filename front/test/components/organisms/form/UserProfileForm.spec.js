@@ -2,10 +2,10 @@ import Vuetify from 'vuetify'
 import { createLocalVue, mount } from '@vue/test-utils'
 import locales from '~/locales/ja.js'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
-import UserNameTextField from '~/components/organisms/textFields/UserNameTextField.vue'
+import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
 import CitiesSelect from '~/components/organisms/select/CitiesSelect.vue'
-import ProfileTextarea from '~/components/organisms/textarea/ProfileTextarea.vue'
+import BaseTextarea from '~/components/molecules/textarea/BaseTextarea.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 import Component from '~/components/organisms/form/UserProfileForm.vue'
 
@@ -61,10 +61,10 @@ describe('UserProfileForm.vue', () => {
   const commonViewTest = (wrapper, user) => {
     // console.log(wrapper.html())
     expect(wrapper.findComponent(TheProcessing).exists()).toBe(false)
-    expect(wrapper.findComponent(UserNameTextField).exists()).toBe(true)
+    expect(wrapper.findComponent(BaseTextField).exists()).toBe(true)
     expect(wrapper.findComponent(PrefecturesSelect).exists()).toBe(true)
     expect(wrapper.findComponent(CitiesSelect).exists()).toBe(true)
-    expect(wrapper.findComponent(ProfileTextarea).exists()).toBe(true)
+    expect(wrapper.findComponent(BaseTextarea).exists()).toBe(true)
     expect(wrapper.findComponent(RedBtn).exists()).toBe(true)
     expect(wrapper.vm.$data.name).toBe(user.name)
     expect(wrapper.vm.$data.profile).toBe(user.profile)

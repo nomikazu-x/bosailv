@@ -58,6 +58,7 @@ ja:
     user:
       image_update: '画像を変更しました。'
       image_destroy: '画像を削除しました。'
+      destroy: 'ユーザーを削除しました。'
     article:
       create: '記事を作成できました。'
       update: '記事を更新できました。'
@@ -68,10 +69,18 @@ ja:
     article_comment:
       create: 'コメントを作成できました。'
       destroy: 'コメントを削除できました。'
+    infomation:
+      create: 'お知らせを作成できました。'
+      destroy: 'お知らせを削除できました。'
+    genre:
+      create: 'ジャンルを作成できました。'
+      update: 'ジャンルを更新できました。'
+      destroy: 'ジャンルを削除できました。'
   alert:
     user:
       destroy:
         params_blank: 'パラメータが指定されていません。'
+        failure: '削除に失敗しました。'
     article: 
       create: '作成に失敗しました。'
       update: '更新に失敗しました。'
@@ -82,9 +91,18 @@ ja:
     article_comment:
       create: 'コメントに失敗しました。'
       destroy: 'コメントの削除に失敗しました。'
+    infomation: 
+      create: '作成に失敗しました。'
+      destroy: '削除に失敗しました。'
+    genre: 
+      create: '作成に失敗しました。'
+      update: '更新に失敗しました。'
+      destroy: '削除に失敗しました。'
     
   errors:
     messages:
       image_update_blank: '選択してください。'
       not_permission: 'アクセスする権限がありません。'
       record_invalid: 'バリデーションに失敗しました: %{errors}'
+      infomation:
+        ended: '掲載期間が終了しました。'

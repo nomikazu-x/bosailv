@@ -2,8 +2,10 @@
   <ValidationObserver v-slot="{ invalid }" ref="observer">
     <TheProcessing v-if="processing" />
     <v-form autocomplete="on">
-      <NameTextField
+      <BaseTextField
         v-model="name"
+        name="name"
+        label="氏名"
       />
 
       <EmailTextField
@@ -34,7 +36,7 @@
 <script>
 import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
-import NameTextField from '~/components/organisms/textFields/NameTextField.vue'
+import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
 import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
@@ -46,7 +48,7 @@ export default {
   components: {
     ValidationObserver,
     TheProcessing,
-    NameTextField,
+    BaseTextField,
     EmailTextField,
     PasswordConfirmationTextField,
     RedBtn,

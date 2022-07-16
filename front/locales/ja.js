@@ -14,6 +14,9 @@ module.exports = {
     already_authenticated: '既にログインしています。',
     already_signed_out: '既にログアウトされています。',
     unauthenticated: 'ログインしてください。',
-    reset_password_token_blank: 'URLが正しくありません。最初からやり直してください。'
+    reset_password_token_blank: 'URLが正しくありません。最初からやり直してください。',
+    admin_dedicated: '管理者専用ページです。管理者でログインしてください。',
+    destroy_reserved: 'ゲストアカウントで削除予定の為、この操作はできません。',
+    not_permission: 'アクセスする権限がありません。'
   }
 }
