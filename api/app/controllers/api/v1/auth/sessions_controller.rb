@@ -14,7 +14,7 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
 
       # サインインする
       # ゲストユーザーのメールアドレスとパスワードでパラメータを設定（パスワードは既定のもの）
-      params.merge!(email: user.email, password: Rails.application.config.guest_user_password)
+      params.merge!(email: user.email, password: ENV['GUEST_USER_PASSWORD'])
       create
     end
   end
@@ -49,7 +49,7 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
       username: username,
       name: "ゲスト@" + username,
       email: email,
-      password: Rails.application.config.guest_user_password,
+      password: ENV['GUEST_USER_PASSWORD'],
       provider: 'email',
       uid: email,
       confirmed_at: Time.current,

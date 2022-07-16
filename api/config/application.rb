@@ -34,9 +34,6 @@ module App
     # i18nで使われるデフォルトのロケールファイルの指定(default :en)
     config.i18n.default_locale = :ja
 
-    # ゲストユーザーの共通パスワード
-    config.guest_user_password = ENV['GUEST_USER_PASSWORD']
-
     config.api_only = true
   end
 end
