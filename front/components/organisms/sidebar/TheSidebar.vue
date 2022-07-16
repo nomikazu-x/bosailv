@@ -64,7 +64,7 @@
             <v-list-item-title>設定</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item v-if="$auth.loggedIn && $auth.user.admin" to="/admin" exact nuxt>
+        <v-list-item v-if="$auth.loggedIn && $auth.user.admin === true" to="/admin" exact nuxt>
           <v-list-item-icon>
             <v-icon>mdi-account-cog</v-icon>
           </v-list-item-icon>
