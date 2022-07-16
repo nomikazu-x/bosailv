@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::InfomationsController, type: :request do
   describe 'GET /api/v1/infomations' do
-    subject(:call_api) { get '/api/v1/infomations.json' }
+    subject(:call_api) { get '/api/v1/infomations.json', headers: headers }
 
+    let(:user) { create(:admin_user) }
+    let(:headers) { user.create_new_auth_token }
     let!(:infomation) { create_list(:infomation, 5) }
 
     context 'リクエストに成功した場合' do
