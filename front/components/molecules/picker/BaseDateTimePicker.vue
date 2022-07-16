@@ -1,5 +1,5 @@
 <template>
-  <ValidationProvider v-slot="{ errors }" :name="name" rules="required">
+  <ValidationProvider v-slot="{ errors }" :name="name" :rules="rules">
     <v-card-text>
       {{ title }}
       <FlatPickr
@@ -38,6 +38,10 @@ export default {
       default: undefined
     },
     name: {
+      type: String,
+      default: ''
+    },
+    rules: {
       type: String,
       default: ''
     },

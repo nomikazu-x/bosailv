@@ -59,6 +59,6 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
   end
 
   def infomation_params
-    params.require(:infomation).permit(:label, :title, :summary, :body, :started_at, :ended_at, :force_started_at, :force_ended_at, :target, :user_id)
+    params.require(:infomation).permit(:label, :title, :summary, :body, :started_at, :ended_at, :force_started_at, :force_ended_at, :target)
   end
 end

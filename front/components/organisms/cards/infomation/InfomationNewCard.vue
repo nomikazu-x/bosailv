@@ -38,10 +38,18 @@ export default {
     async onInfomationCreate (infomationInfo) {
       this.processing = true
 
-      const formData = new FormData()
-      formData.append('infomation[title]', infomationInfo.title)
+      const params = new FormData()
+      params.append('infomation[label]', infomationInfo.label)
+      params.append('infomation[title]', infomationInfo.title)
+      params.append('infomation[summary]', infomationInfo.summary)
+      params.append('infomation[body]', infomationInfo.body)
+      params.append('infomation[started_at]', infomationInfo.startedAt)
+      params.append('infomation[ended_at]', infomationInfo.endedAt)
+      params.append('infomation[force_started_at]', infomationInfo.forceStartedAt)
+      params.append('infomation[force_ended_at]', infomationInfo.forceEndedAt)
+      params.append('infomation[target]', 'All')
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.infomationCreateUrl, formData)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.infomationCreateUrl, params)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
