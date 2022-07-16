@@ -1,14 +1,15 @@
 <template>
-  <ValidationProvider v-slot="{ errors }" name="keyword" rules="required">
+  <ValidationProvider v-slot="{ errors }" :name="name" rules="required">
     <v-text-field
       v-model="valueModel"
-      label="キーワード検索"
-      color="#3c3c3c"
-      prepend-icon="mdi-magnify"
-      :error-messages="errors"
       :value="value"
+      :error-messages="errors"
       dense
       outlined
+      :prepend-icon="prependIcon"
+      color="#3c3c3c"
+      :label="label"
+      @click="onClick"
     />
   </ValidationProvider>
 </template>
@@ -21,7 +22,7 @@ extend('required', required)
 configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
 
 export default {
-  name: 'ArticleSearchTextField',
+  name: 'BaseTextField',
 
   components: {
     ValidationProvider
@@ -33,6 +34,18 @@ export default {
     value: {
       type: String,
       default: undefined
+    },
+    label: {
+      type: String,
+      default: ''
+    },
+    name: {
+      type: String,
+      default: ''
+    },
+    prependIcon: {
+      type: String,
+      default: ''
     }
   },
 
@@ -44,6 +57,12 @@ export default {
       set (newVal) {
         return this.$emit('input', newVal)
       }
+    }
+  },
+
+  methods: {
+    onClick () {
+      return this.$emit('click')
     }
   }
 }

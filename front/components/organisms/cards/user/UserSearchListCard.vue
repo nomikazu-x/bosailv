@@ -4,7 +4,12 @@
       <BaseTitleCard title="記事検索">
         <v-row class="pa-5">
           <v-col cols="12">
-            <SearchTextField v-model="keyword" />
+            <BaseTextField
+              v-model="keyword"
+              name="keyword"
+              label="キーワード検索"
+              prepend-icon="mdi-magnify"
+            />
           </v-col>
           <v-col cols="12">
             <div class="text-center mt-5">
@@ -33,7 +38,7 @@
 <script>
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
-import SearchTextField from '~/components/organisms/textFields/SearchTextField.vue'
+import BaseTextField from '~/components/organisms/textFields/BaseTextField.vue'
 import UserListWithTab from '~/components/organisms/tabItem/UserListWithTab.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
@@ -42,7 +47,7 @@ export default {
 
   components: {
     BaseTitleCard,
-    SearchTextField,
+    BaseTextField,
     UserListWithTab,
     RedBtn
   },

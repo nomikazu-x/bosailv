@@ -13,8 +13,10 @@
         </v-col>
         <v-col cols="12">
           <v-sheet outlined class="pa-2" height="60">
-            <ArticleTitleTextField
+            <BaseTextField
               v-model="name"
+              name="name"
+              label="ジャンル名"
             />
           </v-sheet>
         </v-col>
@@ -37,7 +39,7 @@
 import { ValidationObserver } from 'vee-validate'
 import Application from '~/plugins/application.js'
 import GenreImageFileInput from '~/components/organisms/fileInputs/GenreImageFileInput.vue'
-import ArticleTitleTextField from '~/components/organisms/textFields/ArticleTitleTextField.vue'
+import BaseTextField from '~/components/organisms/textFields/BaseTextField.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 import DeleteConfirmDialog from '~/components/organisms/dialogs/DeleteConfirmDialog.vue'
 
@@ -47,7 +49,7 @@ export default {
   components: {
     ValidationObserver,
     GenreImageFileInput,
-    ArticleTitleTextField,
+    BaseTextField,
     RedBtn,
     DeleteConfirmDialog
   },

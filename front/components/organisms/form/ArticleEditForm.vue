@@ -14,8 +14,10 @@
         </v-col>
         <v-col cols="12">
           <v-sheet outlined class="pa-2" height="60">
-            <ArticleTitleTextField
+            <BaseTextField
               v-model="title"
+              name="title"
+              label="タイトル"
             />
           </v-sheet>
         </v-col>
@@ -52,7 +54,7 @@
 import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import ArticleThumbnailFileInput from '~/components/organisms/fileInputs/ArticleThumbnailFileInput.vue'
-import ArticleTitleTextField from '~/components/organisms/textFields/ArticleTitleTextField.vue'
+import BaseTextField from '~/components/organisms/textFields/BaseTextField.vue'
 import GenresCheckbox from '~/components/organisms/checkbox/GenresCheckbox.vue'
 import Editor from '~/components/organisms/editor/Editor.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
@@ -64,7 +66,7 @@ export default {
     ValidationObserver,
     TheProcessing,
     ArticleThumbnailFileInput,
-    ArticleTitleTextField,
+    BaseTextField,
     GenresCheckbox,
     Editor,
     RedBtn

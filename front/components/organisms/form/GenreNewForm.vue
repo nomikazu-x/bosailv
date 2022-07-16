@@ -12,8 +12,10 @@
         </v-col>
         <v-col cols="12">
           <v-sheet outlined class="pa-2" height="60">
-            <ArticleTitleTextField
+            <BaseTextField
               v-model="name"
+              name="name"
+              label="ジャンル名"
             />
           </v-sheet>
         </v-col>
@@ -35,7 +37,7 @@
 import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import GenreImageFileInput from '~/components/organisms/fileInputs/GenreImageFileInput.vue'
-import ArticleTitleTextField from '~/components/organisms/textFields/ArticleTitleTextField.vue'
+import BaseTextField from '~/components/organisms/textFields/BaseTextField.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
@@ -45,7 +47,7 @@ export default {
     ValidationObserver,
     TheProcessing,
     GenreImageFileInput,
-    ArticleTitleTextField,
+    BaseTextField,
     RedBtn
   },
 

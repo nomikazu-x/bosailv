@@ -1,7 +1,7 @@
 import Vuetify from 'vuetify'
 import { createLocalVue, mount } from '@vue/test-utils'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
-import NameTextField from '~/components/organisms/textFields/NameTextField.vue'
+import BaseTextField from '~/components/organisms/textFields/BaseTextField.vue'
 import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
 import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
@@ -32,7 +32,7 @@ describe('SignupForm.vue', () => {
   const commonViewTest = (wrapper) => {
     // console.log(wrapper.html())
     expect(wrapper.findComponent(TheProcessing).exists()).toBe(false)
-    expect(wrapper.findComponent(NameTextField).exists()).toBe(true)
+    expect(wrapper.findComponent(BaseTextField).exists()).toBe(true)
     expect(wrapper.findComponent(EmailTextField).exists()).toBe(true)
     expect(wrapper.findComponent(PasswordConfirmationTextField).exists()).toBe(true)
     expect(wrapper.findComponent(RedBtn).exists()).toBe(true)
