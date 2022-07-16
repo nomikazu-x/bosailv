@@ -8,7 +8,9 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
   # POST /api/v1/auth/guest_sign_in(.json) ゲストログインAPI(処理)
   def create_guest
     ActiveRecord::Base.transaction do
-      user = User.create(guest_user_params)
+      user = User.create!(guest_user_params)
+      p "====="
+      p user
 
       # サインインする
       # ゲストユーザーのメールアドレスとパスワードでパラメータを設定（パスワードは既定のもの）
