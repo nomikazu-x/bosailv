@@ -41,7 +41,7 @@ export default {
       const formData = new FormData()
       formData.append('infomation[title]', infomationInfo.title)
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.infomationCreate, formData)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.infomationCreateUrl, formData)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))

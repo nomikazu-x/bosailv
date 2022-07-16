@@ -54,7 +54,7 @@
 import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import ArticleThumbnailFileInput from '~/components/organisms/fileInputs/ArticleThumbnailFileInput.vue'
-import BaseTextField from '~/components/organisms/textFields/BaseTextField.vue'
+import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import GenresCheckbox from '~/components/organisms/checkbox/GenresCheckbox.vue'
 import Editor from '~/components/organisms/editor/Editor.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'

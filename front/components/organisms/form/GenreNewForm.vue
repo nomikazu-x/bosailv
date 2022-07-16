@@ -37,7 +37,7 @@
 import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import GenreImageFileInput from '~/components/organisms/fileInputs/GenreImageFileInput.vue'
-import BaseTextField from '~/components/organisms/textFields/BaseTextField.vue'
+import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {

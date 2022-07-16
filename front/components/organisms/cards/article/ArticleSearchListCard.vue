@@ -41,7 +41,7 @@
 <script>
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
-import BaseTextField from '~/components/organisms/textFields/BaseTextField.vue'
+import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import GenresCheckbox from '~/components/organisms/checkbox/GenresCheckbox.vue'
 import ArticleListCardWithTab from '~/components/organisms/tabItem/ArticleListCardWithTab.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'

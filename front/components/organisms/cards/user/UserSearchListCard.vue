@@ -38,7 +38,7 @@
 <script>
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
-import BaseTextField from '~/components/organisms/textFields/BaseTextField.vue'
+import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import UserListWithTab from '~/components/organisms/tabItem/UserListWithTab.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 

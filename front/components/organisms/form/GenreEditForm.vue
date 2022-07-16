@@ -39,7 +39,7 @@
 import { ValidationObserver } from 'vee-validate'
 import Application from '~/plugins/application.js'
 import GenreImageFileInput from '~/components/organisms/fileInputs/GenreImageFileInput.vue'
-import BaseTextField from '~/components/organisms/textFields/BaseTextField.vue'
+import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 import DeleteConfirmDialog from '~/components/organisms/dialogs/DeleteConfirmDialog.vue'
 

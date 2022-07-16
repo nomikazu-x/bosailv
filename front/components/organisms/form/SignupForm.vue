@@ -36,7 +36,7 @@
 <script>
 import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
-import BaseTextField from '~/components/organisms/textFields/BaseTextField.vue'
+import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
 import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
