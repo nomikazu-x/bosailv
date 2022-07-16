@@ -15,7 +15,7 @@
     </template>
 
     <template v-if="!loading" #right>
-      <p>admin only</p>
+      <GenreEditCard @alert="alert = $event" @notice="notice = $event" />
     </template>
   </TwoColumnContainer>
 </template>
@@ -26,6 +26,7 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import AdminMenusCard from '~/components/organisms/cards/admin/AdminMenusCard.vue'
+import GenreEditCard from '~/components/organisms/cards/genre/GenreEditCard.vue'
 
 export default {
   name: 'AdminGenresIdEdit',
@@ -34,7 +35,8 @@ export default {
     TwoColumnContainer,
     TheLoading,
     TheMessage,
-    AdminMenusCard
+    AdminMenusCard,
+    GenreEditCard
   },
 
   mixins: [Application],

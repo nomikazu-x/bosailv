@@ -17,7 +17,7 @@
             />
           </v-sheet>
         </v-col>
-        <div class="text-right">
+        <div>
           <RedBtn
             id="genre_create_btn"
             :disabled="invalid || processing"
@@ -39,7 +39,7 @@ import ArticleTitleTextField from '~/components/organisms/textFields/ArticleTitl
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
-  name: 'ArticleNewForm',
+  name: 'GenreNewForm',
 
   components: {
     ValidationObserver,
@@ -55,10 +55,6 @@ export default {
       default: undefined
     },
     processing: {
-      type: Boolean,
-      default: false
-    },
-    loading: {
       type: Boolean,
       default: false
     }
