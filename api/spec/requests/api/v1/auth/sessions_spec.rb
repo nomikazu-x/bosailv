@@ -70,6 +70,8 @@ RSpec.describe Api::V1::Auth::SessionsController, type: :request do
       it 'ゲストログインできる' do
         post(create_guest_auth_session_path(format: :json))
         res = JSON.parse(response.body)
+        p "====="
+        p res
         expect(res['success']).to be_truthy
         expect(response.status).to eq 200
       end
