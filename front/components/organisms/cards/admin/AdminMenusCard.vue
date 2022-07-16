@@ -24,7 +24,7 @@
           <v-icon>mdi-book-multiple</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>ジャンル一覧</v-list-item-title>
+          <v-list-item-title>ジャンル一覧・編集</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
