@@ -9,10 +9,12 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
   def create_guest
     ActiveRecord::Base.transaction do
       user = User.create(guest_user_params)
+      p "====="
+      p user
 
       # サインインする
       # ゲストユーザーのメールアドレスとパスワードでパラメータを設定（パスワードは既定のもの）
-      params.merge!(email: user.email, password: user.password)
+      params.merge!(email: user.email, password: ENV['GUEST_USER_PASSWORD'])
       create
     end
   end
