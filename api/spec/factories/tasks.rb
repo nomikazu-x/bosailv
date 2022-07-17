@@ -11,6 +11,9 @@
 #
 FactoryBot.define do
   factory :task do
-    
+    title { Faker::Lorem.characters(number: 20) }
+    image { File.new("#{Rails.root}/spec/fixtures/test_image.jpg") }
+    summary { Faker::Lorem.characters(number: 30) }
+    body { Faker::Lorem.characters(number: 50) }
   end
 end

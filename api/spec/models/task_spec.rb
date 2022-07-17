@@ -12,5 +12,63 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "correct_genre" do
+    let(:task) { build(:task) }
+
+    it "タスクが正しく作成されていること" do
+      expect(task).to be_valid
+    end
+  end
+
+  describe "validate length" do
+    context "titleの長さが31文字以上の時" do
+      let(:task) { build(:task, title: 'a' * 31) }
+      it "エラーメッセージが返る" do
+        task.valid?
+        expect(task).to be_invalid
+      end
+    end
+
+    context "summaryの長さが31文字以上の時" do
+      let(:task) { build(:task, summary: 'a' * 51) }
+      it "エラーメッセージが返る" do
+        task.valid?
+        expect(task).to be_invalid
+      end
+    end
+  end
+
+  describe "validate presence" do
+    context "titleがNULLの時" do
+      let(:task) { build(:task, title: nil) }
+      it "エラーメッセージが返る" do
+        task.valid?
+        expect(task).to be_invalid
+      end
+    end
+
+    context "imageがNULLの時" do
+      let(:task) { build(:task, image: nil) }
+      it "エラーメッセージが返る" do
+        task.valid?
+        expect(task).to be_invalid
+      end
+    end
+
+    context "summaryがNULLの時" do
+      let(:task) { build(:task, summary: nil) }
+      it "エラーメッセージが返る" do
+        task.valid?
+        expect(task).to be_invalid
+      end
+    end
+
+    context "bodyがNULLの時" do
+      let(:task) { build(:task, body: nil) }
+      it "エラーメッセージが返る" do
+        task.valid?
+        expect(task).to be_invalid
+      end
+    end
+  end
 end
