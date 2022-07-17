@@ -80,6 +80,9 @@ ja:
       create: '防災タスクを作成できました。'
       update: '防災タスクを更新できました。'
       destroy: '防災タスクを削除できました。'
+    task_complete:
+      create: '防災タスクを完了しました。'
+      destroy: '防災タスクを未完了にしました。'
   alert:
     user:
       destroy:
@@ -106,6 +109,9 @@ ja:
       create: '作成に失敗しました。'
       update: '更新に失敗しました。'
       destroy: '削除に失敗しました。'
+    task_complete:
+      create: '防災タスクの完了に失敗しました。'
+      destroy: '防災タスクをの未完了に失敗しました。'
     
   errors:
     messages:

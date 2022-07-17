@@ -42,7 +42,7 @@ Rails.application.routes.draw do
 
       # 記事お気に入り
       post 'articles/:id/article_favorites/create', to: 'article_favorites#create',    as: 'favorite_article'
-      post 'articles/:id/article_favorites/delete', to: 'article_favorites#destroy',   as: 'unfavorite_article'
+      post 'articles/:id/article_favorites/delete', to: 'article_favorites#destroy',   as: 'unfavorite_article'      
 
       # ジャンル
       get  'genres',              to: 'genres#index',   as: 'genres'
@@ -59,6 +59,10 @@ Rails.application.routes.draw do
       # 防災タスク
       get  'tasks',              to: 'tasks#index',   as: 'tasks'
       get  'tasks/:id',          to: 'tasks#show',    as: 'show_task'
+
+      # 防災タスク完了
+      post 'tasks/:id/task_completes/create', to: 'task_completes#create',    as: 'complete_task'
+      post 'tasks/:id/task_completes/delete', to: 'task_completes#destroy',   as: 'uncomplete_task'
     end
   end
 

@@ -9,11 +9,10 @@ class Api::V1::ArticleFavoritesController < Api::V1::ApplicationController
       ActiveRecord::Base.transaction do
         current_user.article_favorite!(article)
         # 記事作成者がポイント獲得
-        author_point_record = PointRecorder.new(article.user).record(Settings['article_favorite_author_obtained_point'])
-        author_required_point = RequiredPoint.find_by(level: article.user.level)
+        PointRecorder.new(article.user).record(Settings['article_favorite_author_obtained_point'])
         # 読者もポイント獲得
-        reader_point_record = PointRecorder.new(current_user).record(Settings['article_favorite_reader_obtained_point'])
-        @reader_required_point = RequiredPoint.find_by(level: current_user.level)
+        PointRecorder.new(current_user).record(Settings['article_favorite_reader_obtained_point'])
+        @required_point = RequiredPoint.find_by(level: current_user.level)
         # 通知作成
         Infomation.new(started_at: Time.current, target: :User, user_id: article.user.id,
                       action: 'ArticleFavorite', action_user_id: current_user.id, article_id: article.id).save!
@@ -34,11 +33,10 @@ class Api::V1::ArticleFavoritesController < Api::V1::ApplicationController
       ActiveRecord::Base.transaction do
         current_user.article_unfavorite!(article)
         # 記事作成者のポイントを減らす
-        author_point_record = PointRecorder.new(article.user).delete_record(Settings['article_favorite_author_obtained_point'])
-        author_required_point = RequiredPoint.find_by(level: article.user.level)
+        PointRecorder.new(article.user).delete_record(Settings['article_favorite_author_obtained_point'])
         # 読者のポイントを減らす
-        reader_point_record = PointRecorder.new(current_user).delete_record(Settings['article_favorite_reader_obtained_point'])
-        reader_required_point = RequiredPoint.find_by(level: current_user.level)
+        PointRecorder.new(current_user).delete_record(Settings['article_favorite_reader_obtained_point'])
+        @required_point = RequiredPoint.find_by(level: current_user.level)
 
         render './api/v1/article_favorites/success', { notice: I18n.t('notice.article_favorite.destroy') }
       end

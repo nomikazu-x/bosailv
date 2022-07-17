@@ -10,5 +10,6 @@ json.tasks do
       json.xlarge "#{Settings['base_image_url']}#{task.image_url(:xlarge)}"
       json.xxlarge "#{Settings['base_image_url']}#{task.image_url(:xxlarge)}"
     end
+    json.is_completed current_user&.task_complete?(task)
   end
 end
