@@ -42,7 +42,7 @@ export default {
       formData.append('genre[name]', genreInfo.name)
       formData.append('genre[image]', genreInfo.image)
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.genreCreateUrl, formData)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminGenreCreateUrl, formData)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))

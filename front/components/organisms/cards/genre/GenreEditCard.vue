@@ -64,7 +64,7 @@ export default {
       params.append('genre[name]', genreInfo.name)
       params.append('genre[image]', genreInfo.image)
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.genreUpdateUrl.replace('_id', this.$route.params.id), params)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminGenreUpdateUrl.replace('_id', this.$route.params.id), params)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))

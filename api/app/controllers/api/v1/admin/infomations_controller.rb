@@ -1,11 +1,6 @@
 class Api::V1::Admin::InfomationsController < Api::V1::ApplicationController
   before_action :redirect_not_admin, only: %i[create destroy]
 
-  # GET /api/v1/infomations(.json) お知らせ一覧API
-  def index
-    @infomations = Infomation.where(action: [nil, '']).page(params[:page]).per(Settings['default_infomations_limit'])
-  end
-
   # POST /api/v1/infomations/create(.json) お知らせ作成API
   def create
     infomation = Infomation.new(infomation_params)

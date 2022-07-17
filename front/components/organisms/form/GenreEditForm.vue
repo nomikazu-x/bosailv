@@ -92,7 +92,7 @@ export default {
     async onGenreDelete () {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.genreDeleteUrl.replace('_id', this.$route.params.id))
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminGenreDeleteUrl.replace('_id', this.$route.params.id))
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
