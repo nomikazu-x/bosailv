@@ -9,9 +9,9 @@ Rails.application.routes.draw do
         post 'users/:username/delete',     to: 'users#destroy',        as: 'destroy_users'
 
         # ジャンル
-        post 'genres/create',       to: 'genres#create',  as: 'create_genre'
+        post 'genres/create',       to: 'genres#create',       as: 'create_genre'
         post 'genres/:id/update',   to: 'genres#update',       as: 'update_genre'
-        post 'genres/:id/delete',   to: 'genres#destroy', as: 'destroy_genre'
+        post 'genres/:id/delete',   to: 'genres#destroy',      as: 'destroy_genre'
 
         # お知らせ
         post 'infomations/create',     to: 'infomations#create',    as: 'create_infomation'
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       end
 
       # ユーザー
-      get   'users',                      to: 'users#index',        as: 'users'
+      get   'users',                      to: 'users#index',          as: 'users'
       get   'users/:username',            to: 'users#show',           as: 'show_users'
       get   'users/:username/genres/:id', to: 'users#genre_articles', as: 'genre_articles_users'
       
