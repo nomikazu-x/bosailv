@@ -17,7 +17,6 @@ class Api::V1::TaskCompletesController < Api::V1::ApplicationController
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.task_complete.create') }, status: :unprocessable_entity
     end
-
   end
 
   # POST /api/v1/tasks/:id/task_complete/delete(.json) 防災タスク完了解除API(処理)

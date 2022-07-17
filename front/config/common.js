@@ -15,12 +15,20 @@ module.exports = {
   adminInfomationDeleteUrl: '/api/v1/admin/infomations/_id/delete.json',
 
   // 【ジャンル】
-  // ジャンルAPI
+  // ジャンル作成API
   adminGenreCreateUrl: '/api/v1/admin/genres/create.json',
-  // ジャンルAPI
+  // ジャンル更新API
   adminGenreUpdateUrl: '/api/v1/admin/genres/_id/update.json',
-  // ジャンルAPI
+  // ジャンル削除API
   adminGenreDeleteUrl: '/api/v1/admin/genres/_id/delete.json',
+
+  // 【防災タスク】
+  // 防災タスク作成API
+  adminTaskCreateUrl: '/api/v1/admin/tasks/create.json',
+  // 防災タスク更新API
+  adminTaskUpdateUrl: '/api/v1/admin/tasks/_id/update.json',
+  // 防災タスク削除API
+  adminTaskDeleteUrl: '/api/v1/admin/tasks/_id/delete.json',
 
   // 【共通】
   // 【ユーザー】
@@ -107,5 +115,17 @@ module.exports = {
 
   // 【市区町村】
   // 一覧取得API
-  setCitiesUrl: '/api/v1/set_cities/_id.json'
+  setCitiesUrl: '/api/v1/set_cities/_id.json',
+
+  // 【防災タスク】
+  // 防災タスク一覧API
+  tasksUrl: '/api/v1/tasks.json',
+  // 防災タスク詳細API
+  taskShowUrl: '/api/v1/tasks/_id.json',
+
+  // 【防災タスク完了】
+  // 防災タスク完了API
+  completeCreateUrl: '/api/v1/tasks/_id/task_completes/create.json',
+  // 防災タスク未完了API
+  completeDeleteUrl: '/api/v1/tasks/_id/task_completes/delete.json'
 }
