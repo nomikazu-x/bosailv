@@ -194,6 +194,11 @@ RSpec.describe User, type: :model do
       expect(rel.options[:through]).to eq :article_favorites
       expect(rel.options[:source]).to eq :article
     end
+
+    it "TaskAchieveテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:task_achieves)
+      expect(rel.macro).to eq :has_many
+    end
   end
 
   describe 'article_favorite/article_unfavorite/article_favorite? method' do

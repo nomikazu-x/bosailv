@@ -10,10 +10,27 @@
 #  updated_at      :datetime         not null
 #
 class Task < ApplicationRecord
+  has_many :task_achieves, dependent: :destroy
+
   mount_uploader :image, ImageUploader
 
   validates :image, presence: true
   validates :title, presence: true, length: { maximum: 30 }
   validates :summary, presence: true, length: { maximum: 50 }
   validates :body, presence: true
+
+  # 画像URLを返却
+  def image_url(version)
+    case version
+    when :large
+      image? ? image.large.url : "/images/task/#{version}_noimage.jpeg"
+    when :xlarge
+      image? ? image.xlarge.url : "/images/task/#{version}_noimage.jpeg"
+    when :xxlarge
+      image? ? image.xxlarge.url : "/images/task/#{version}_noimage.jpeg"
+    else
+      logger.warn("[WARN]Not found: Task.image_url(#{version})")
+      ''
+    end
+  end
 end

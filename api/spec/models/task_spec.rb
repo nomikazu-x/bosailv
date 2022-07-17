@@ -12,7 +12,7 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
-  describe "correct_genre" do
+  describe "correct_task" do
     let(:task) { build(:task) }
 
     it "タスクが正しく作成されていること" do
@@ -69,6 +69,13 @@ RSpec.describe Task, type: :model do
         task.valid?
         expect(task).to be_invalid
       end
+    end
+  end
+
+  describe "association" do
+    it "TaskAchieveテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:task_achieves)
+      expect(rel.macro).to eq :has_many
     end
   end
 end

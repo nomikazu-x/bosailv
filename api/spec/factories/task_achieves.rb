@@ -21,6 +21,7 @@
 #
 FactoryBot.define do
   factory :task_achieve do
-    
+    association :user
+    association :task
   end
 end

@@ -20,4 +20,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class TaskAchieve < ApplicationRecord
+  belongs_to :user
+  belongs_to :task
+
+  validates :user_id, presence: true
+  validates :task_id, presence: true
 end

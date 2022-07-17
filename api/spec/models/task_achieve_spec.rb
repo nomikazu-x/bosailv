@@ -22,5 +22,43 @@
 require 'rails_helper'
 
 RSpec.describe TaskAchieve, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "correct_article_favorite" do
+    let(:user) { create(:user) }
+    let(:task) { create(:task) }
+    let(:task_achieve) { build(:task_achieve, task: task, user: user) }
+
+    it "データが正しく作成されていること" do
+      expect(task_achieve).to be_valid
+    end
+  end
+
+  describe "validate presence" do
+    context "userがNULLの時" do
+      let(:task_achieve) { build(:task_achieve, user: nil) }
+      it "エラーメッセージが返る" do
+        task_achieve.valid?
+        expect(task_achieve).to be_invalid
+      end
+    end
+
+    context "taskがNULLの時" do
+      let(:task_achieve) { build(:task_achieve, task: nil) }
+      it "エラーメッセージが返る" do
+        task_achieve.valid?
+        expect(task_achieve).to be_invalid
+      end
+    end
+  end
+
+  describe "association" do
+    it "Userテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:user)
+      expect(rel.macro).to eq :belongs_to
+    end
+
+    it "Taskテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:task)
+      expect(rel.macro).to eq :belongs_to
+    end
+  end
 end
