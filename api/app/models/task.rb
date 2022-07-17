@@ -10,7 +10,7 @@
 #  updated_at      :datetime         not null
 #
 class Task < ApplicationRecord
-  has_many :task_achieves, dependent: :destroy
+  has_many :task_completes, dependent: :destroy
 
   mount_uploader :image, ImageUploader
 

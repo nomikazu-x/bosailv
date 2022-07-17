@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   has_many :infomations, dependent: :destroy
   has_many :article_favorites, dependent: :destroy
   has_many :article_comments, dependent: :destroy
-  has_many :task_achieves, dependent: :destroy
+  has_many :task_completes, dependent: :destroy
   has_many :point_records, dependent: :destroy
   has_many :favorited_articles, through: :article_favorites, source: :article
 

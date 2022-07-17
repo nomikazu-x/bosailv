@@ -73,8 +73,8 @@ RSpec.describe Task, type: :model do
   end
 
   describe "association" do
-    it "TaskAchieveテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:task_achieves)
+    it "TaskCompleteテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:task_completes)
       expect(rel.macro).to eq :has_many
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_17_093501) do
+ActiveRecord::Schema.define(version: 2022_07_17_112220) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
@@ -109,14 +109,14 @@ ActiveRecord::Schema.define(version: 2022_07_17_093501) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "task_achieves", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "task_completes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
     t.bigint "task_id", null: false, comment: "防災タスクID"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["task_id"], name: "index_task_achieves_on_task_id"
-    t.index ["user_id", "task_id"], name: "index_task_achieves_on_user_id_and_task_id", unique: true
-    t.index ["user_id"], name: "index_task_achieves_on_user_id"
+    t.index ["task_id"], name: "index_task_completes_on_task_id"
+    t.index ["user_id", "task_id"], name: "index_task_completes_on_user_id_and_task_id", unique: true
+    t.index ["user_id"], name: "index_task_completes_on_user_id"
   end
 
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -181,6 +181,6 @@ ActiveRecord::Schema.define(version: 2022_07_17_093501) do
   add_foreign_key "cities", "prefectures"
   add_foreign_key "infomations", "users"
   add_foreign_key "point_records", "users"
-  add_foreign_key "task_achieves", "tasks"
-  add_foreign_key "task_achieves", "users"
+  add_foreign_key "task_completes", "tasks"
+  add_foreign_key "task_completes", "users"
 end
