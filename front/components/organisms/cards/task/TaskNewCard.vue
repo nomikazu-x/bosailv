@@ -38,13 +38,13 @@ export default {
     async onTaskCreate (taskInfo) {
       this.processing = true
 
-      const formData = new FormData()
-      formData.append('task[title]', taskInfo.title)
-      formData.append('task[image]', taskInfo.image)
-      formData.append('task[summary]', taskInfo.summary)
-      formData.append('task[body]', taskInfo.body)
+      const params = new FormData()
+      params.append('task[title]', taskInfo.title)
+      params.append('task[image]', taskInfo.image)
+      params.append('task[summary]', taskInfo.summary)
+      params.append('task[body]', taskInfo.body)
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminTaskCreateUrl, formData)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminTaskCreateUrl, params)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))

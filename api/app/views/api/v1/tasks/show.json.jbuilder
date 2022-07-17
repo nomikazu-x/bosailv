@@ -3,6 +3,7 @@ json.success true
 json.task do
   json.id @task.id
   json.title @task.title
+  json.summary @task.summary
   json.body @task.body
   json.image_url do
     json.large "#{Settings['base_image_url']}#{@task.image_url(:large)}"

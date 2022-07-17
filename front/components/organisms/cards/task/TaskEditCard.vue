@@ -1,11 +1,13 @@
 <template>
   <v-row justify="center">
     <v-col cols="12" sm="10" md="8">
-      <BaseTitleCard title="ジャンル編集" />
-      <GenreEditForm
-        :genre="genre"
+      <BaseTitleCard title="防災タスク編集" />
+      <TaskEditForm
+        v-if="task != null"
+        :task="task"
         :processing="processing"
-        @genre-update="onGenreUpdate"
+        @task-update="onTaskUpdate"
+        @task-delete="onTaskDelete"
       />
     </v-col>
   </v-row>
@@ -14,14 +16,14 @@
 <script>
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
-import GenreEditForm from '~/components/organisms/form/GenreEditForm.vue'
+import TaskEditForm from '~/components/organisms/form/TaskEditForm.vue'
 
 export default {
   name: 'GenreEditCard',
 
   components: {
     BaseTitleCard,
-    GenreEditForm
+    TaskEditForm
   },
 
   mixins: [Application],
@@ -29,17 +31,17 @@ export default {
   data () {
     return {
       errors: null,
-      genre: null
+      task: null
     }
   },
   async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.genreShowUrl.replace('_id', this.$route.params.id))
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.taskShowUrl.replace('_id', this.$route.params.id))
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
           return this.$router.push({ path: '/' })
         } else {
-          this.genre = response.data.genre
+          this.task = response.data.task
         }
       },
       (error) => {
@@ -57,21 +59,23 @@ export default {
   },
 
   methods: {
-    async onGenreUpdate (genreInfo) {
+    async onTaskUpdate (taskInfo) {
       this.processing = true
 
       const params = new FormData()
-      params.append('genre[name]', genreInfo.name)
-      params.append('genre[image]', genreInfo.image)
+      params.append('task[title]', taskInfo.title)
+      params.append('task[image]', taskInfo.image)
+      params.append('task[summary]', taskInfo.summary)
+      params.append('task[body]', taskInfo.body)
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminGenreUpdateUrl.replace('_id', this.$route.params.id), params)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminTaskUpdateUrl.replace('_id', this.$route.params.id), params)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
-            this.$router.push({ path: '/admin/genres' })
+            this.$router.push({ path: '/admin/tasks' })
           }
         },
         (error) => {
@@ -82,6 +86,35 @@ export default {
           } else {
             this.$emit('alert', error.response.data.alert)
             this.$emit('notice', error.response.data.notice)
+          }
+        })
+
+      this.processing = false
+    },
+
+    async onTaskDelete () {
+      this.processing = true
+
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminTaskDeleteUrl.replace('_id', this.$route.params.id))
+        .then((response) => {
+          if (response.data == null) {
+            this.$toasted.error(this.$t('system.error'))
+          } else {
+            this.$toasted.error(response.data.alert)
+            this.$toasted.info(response.data.notice)
+            return this.$router.push({ path: '/admin/tasks' })
+          }
+        },
+        (error) => {
+          if (error.response == null) {
+            this.$toasted.error(this.$t('network.failure'))
+          } else if (error.response.status === 401) {
+            return this.signOut()
+          } else if (error.response.data == null) {
+            this.$toasted.error(this.$t('network.error'))
+          } else {
+            this.$toasted.error(error.response.data.alert)
+            this.$toasted.info(error.response.data.notice)
           }
         })
 
