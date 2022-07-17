@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_11_091909) do
+ActiveRecord::Schema.define(version: 2022_07_17_031531) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
@@ -105,6 +105,15 @@ ActiveRecord::Schema.define(version: 2022_07_11_091909) do
     t.integer "level", null: false, comment: "レベル"
     t.integer "point", null: false, comment: "次のレベルまでに必要なポイント"
     t.integer "lifelong_point", null: false, comment: "合計獲得ポイント"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.text "image", null: false, comment: "画像"
+    t.string "title", limit: 30, null: false, comment: "タイトル"
+    t.string "summary", limit: 50, null: false, comment: "概要"
+    t.text "body", size: :long, null: false, comment: "本文"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
