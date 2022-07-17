@@ -15,7 +15,7 @@
     </template>
 
     <template v-if="!loading" #right>
-      <p>admin only</p>
+      <TaskListCard />
     </template>
   </TwoColumnContainer>
 </template>
@@ -26,15 +26,17 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import AdminMenusCard from '~/components/organisms/cards/admin/AdminMenusCard.vue'
+import TaskListCard from '~/components/organisms/cards/task/TaskListCard.vue'
 
 export default {
-  name: 'AdminTasks',
+  TaskListCard: 'AdminTasks',
 
   components: {
     TwoColumnContainer,
     TheLoading,
     TheMessage,
-    AdminMenusCard
+    AdminMenusCard,
+    TaskListCard
   },
 
   mixins: [Application],
