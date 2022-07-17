@@ -16,6 +16,11 @@ Rails.application.routes.draw do
         # お知らせ
         post 'infomations/create',     to: 'infomations#create',    as: 'create_infomation'
         post 'infomations/:id/delete', to: 'infomations#destroy',   as: 'destroy_infomation'
+
+        # 防災タスク
+        post 'tasks/create',       to: 'tasks#create',       as: 'create_task'
+        post 'tasks/:id/update',   to: 'tasks#update',       as: 'update_task'
+        post 'tasks/:id/delete',   to: 'tasks#destroy',      as: 'destroy_task'
       end
 
       # ユーザー
@@ -50,6 +55,10 @@ Rails.application.routes.draw do
 
       # 市町村
       get 'set_cities/:id', to: 'cities#set_cities', as: 'set_cities'
+
+      # 防災タスク
+      get  'tasks',              to: 'tasks#index',   as: 'tasks'
+      get  'tasks/:id',          to: 'tasks#show',    as: 'show_task'
     end
   end
 
