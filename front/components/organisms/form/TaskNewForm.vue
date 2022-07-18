@@ -63,7 +63,7 @@ import BaseTextarea from '~/components/molecules/textarea/BaseTextarea.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
-  name: 'InfomationNewForm',
+  name: 'TaskNewForm',
 
   components: {
     ValidationObserver,

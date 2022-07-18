@@ -18,7 +18,7 @@ import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import TaskEditForm from '~/components/organisms/form/TaskEditForm.vue'
 
 export default {
-  name: 'GenreEditCard',
+  name: 'TaskEditCard',
 
   components: {
     BaseTitleCard,

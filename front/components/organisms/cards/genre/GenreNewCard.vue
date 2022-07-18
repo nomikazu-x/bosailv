@@ -16,7 +16,7 @@ import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import GenreNewForm from '~/components/organisms/form/GenreNewForm.vue'
 
 export default {
-  name: 'ArticleNewCard',
+  name: 'GenreNewCard',
 
   components: {
     BaseTitleCard,
