@@ -28,6 +28,9 @@ describe('UserProfileForm.vue', () => {
     const wrapper = mount(Component, {
       localVue,
       vuetify,
+      stubs: {
+        PrefecturesSelect: true
+      },
       mocks: {
         $config: {
           apiBaseURL: 'https://example.com',
