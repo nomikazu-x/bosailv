@@ -1,6 +1,6 @@
 <template>
   <BaseTitleCard v-if="tasks != null" title="防災タスク一覧">
-    <v-card v-for="task in tasks" :key="task.id">
+    <v-card v-for="task in tasks" :key="task.id" tile>
       <TaskListCardText
         :task="task"
         class="px-2"

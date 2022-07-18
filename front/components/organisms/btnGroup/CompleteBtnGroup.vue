@@ -1,36 +1,37 @@
 <template>
   <span>
     <TheProcessing v-if="processing" />
-    <v-btn v-if="isFavorited" x-large outlined icon color="red" @click="onUnFavorite($auth.user.id)">
-      <v-icon size="30" color="red">mdi-heart</v-icon>
-    </v-btn>
-    <v-btn v-else x-large outlined icon @click="onFavorite">
-      <v-icon size="30" color="red">mdi-heart-outline</v-icon>
-    </v-btn>
-    <span><NuxtLink :to="`/articles/${$route.params.id}/likers`" class="text-decoration-none">{{ likers.length }}</NuxtLink></span>
+    <OrangeBtn v-if="isCompleted" large @click="onUnComplete">
+      完了!
+    </OrangeBtn>
+    <GreenBtn v-else large @click="onComplete">
+      未完了
+    </GreenBtn>
   </span>
 </template>
 
 <script>
 import Application from '~/plugins/application.js'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'FavoriteBtnGroup',
+  components: {
+    OrangeBtn,
+    GreenBtn
+  },
   mixins: [Application],
   props: {
-    article: {
+    task: {
       type: Object,
       default: null
-    },
-    likers: {
-      type: Array,
-      default: () => []
     }
   },
 
   data () {
     return {
-      isFavorited: this.article.is_favorited
+      isCompleted: this.task.is_completed
     }
   },
 
@@ -39,20 +40,19 @@ export default {
   },
 
   methods: {
-    async onFavorite () {
+    async onComplete () {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.favoriteCreateUrl.replace('_id', this.$route.params.id), {
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.completeCreateUrl.replace('_id', this.$route.params.id), {
         user_id: this.$auth.user.id
       })
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
-            this.$store.commit('articles/addLikers', this.$auth.user, { root: true })
             this.$store.commit('user/setPoint', response.data.user, { root: true })
             this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
-            this.isFavorited = true
+            this.isCompleted = true
             this.$toasted.info(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
@@ -74,20 +74,19 @@ export default {
       this.processing = false
     },
 
-    async onUnFavorite (likerId) {
+    async onUnComplete () {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.favoriteDeleteUrl.replace('_id', this.$route.params.id), {
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.completeDeleteUrl.replace('_id', this.$route.params.id), {
         user_id: this.$auth.user.id
       })
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
-            this.$store.commit('articles/deleteLiker', likerId, { root: true })
             this.$store.commit('user/setPoint', response.data.user, { root: true })
             this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
-            this.isFavorited = false
+            this.isCompleted = false
             this.$toasted.info(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)

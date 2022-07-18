@@ -1,9 +1,9 @@
 <template>
   <TwoColumnContainer
     :left-cols="12"
-    :left-sm="4"
+    :left-sm="8"
     :right-cols="12"
-    :right-sm="8"
+    :right-sm="4"
   >
     <template #top>
       <TheLoading v-if="loading" />
@@ -11,12 +11,11 @@
     </template>
 
     <template v-if="!loading" #left>
-      <UserIntroCard />
+      <TaskShowCard />
     </template>
 
     <template v-if="!loading" #right>
-      <TaskListCard class="mb-4" />
-      <UserShowCardWithGenre />
+      <DefaultRightColumnTemplate />
     </template>
   </TwoColumnContainer>
 </template>
@@ -26,20 +25,18 @@ import Application from '~/plugins/application.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
-import UserIntroCard from '~/components/organisms/cards/user/UserIntroCard.vue'
-import TaskListCard from '~/components/organisms/cards/task/TaskListCard.vue'
-import UserShowCardWithGenre from '~/components/organisms/cards/user/UserShowCardWithGenre.vue'
+import TaskShowCard from '~/components/organisms/cards/task/TaskShowCard.vue'
+import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {
-  name: 'UsersUsername',
+  name: 'ArticlesId',
 
   components: {
     TwoColumnContainer,
     TheLoading,
     TheMessage,
-    UserIntroCard,
-    TaskListCard,
-    UserShowCardWithGenre
+    TaskShowCard,
+    DefaultRightColumnTemplate
   },
 
   mixins: [Application],
