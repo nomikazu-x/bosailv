@@ -32,11 +32,10 @@
           </v-sheet>
         </v-col>
         <v-col cols="12">
-          <v-sheet outlined class="pa-2">
-            <BaseTextarea
+          <v-sheet height="600">
+            <Editor
               v-model="body"
               name="body"
-              label="本文"
             />
           </v-sheet>
         </v-col>
@@ -60,6 +59,7 @@ import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import BaseImageFileInput from '~/components/molecules/fileInputs/BaseImageFileInput.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import BaseTextarea from '~/components/molecules/textarea/BaseTextarea.vue'
+import Editor from '~/components/organisms/editor/Editor.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
@@ -71,6 +71,7 @@ export default {
     BaseImageFileInput,
     BaseTextField,
     BaseTextarea,
+    Editor,
     RedBtn
   },
 

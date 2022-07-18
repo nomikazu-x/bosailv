@@ -35,6 +35,7 @@
           <v-sheet height="600">
             <Editor
               v-model="content"
+              name="content"
             />
           </v-sheet>
         </v-col>
