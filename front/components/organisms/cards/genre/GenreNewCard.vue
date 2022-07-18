@@ -38,11 +38,11 @@ export default {
     async onGenreCreate (genreInfo) {
       this.processing = true
 
-      const formData = new FormData()
-      formData.append('genre[name]', genreInfo.name)
-      formData.append('genre[image]', genreInfo.image)
+      const params = new FormData()
+      params.append('genre[name]', genreInfo.name)
+      params.append('genre[image]', genreInfo.image)
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminGenreCreateUrl, formData)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminGenreCreateUrl, params)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))

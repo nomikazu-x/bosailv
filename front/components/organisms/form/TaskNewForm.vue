@@ -7,7 +7,7 @@
           <v-sheet outlined class="pa-2">
             <BaseImageFileInput
               v-model="image"
-              label="画像"
+              label="画像を選択してください。"
               name="image"
               rules="required|size_20MB:20480"
             />

@@ -5,9 +5,12 @@
       <v-row justify="center">
         <v-col cols="12">
           <v-sheet outlined class="mt-5">
-            <GenreImageFileInput
+            <BaseImageFileInput
               v-model="image"
               :old-src="getImage"
+              label="画像を選択してください。"
+              title="image"
+              rules="required|size_20MB:20480"
             />
           </v-sheet>
         </v-col>
@@ -38,7 +41,7 @@
 <script>
 import { ValidationObserver } from 'vee-validate'
 import Application from '~/plugins/application.js'
-import GenreImageFileInput from '~/components/organisms/fileInputs/GenreImageFileInput.vue'
+import BaseImageFileInput from '~/components/molecules/fileInputs/BaseImageFileInput.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 import DeleteConfirmDialog from '~/components/organisms/dialogs/DeleteConfirmDialog.vue'
@@ -48,7 +51,7 @@ export default {
 
   components: {
     ValidationObserver,
-    GenreImageFileInput,
+    BaseImageFileInput,
     BaseTextField,
     RedBtn,
     DeleteConfirmDialog

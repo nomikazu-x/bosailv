@@ -8,9 +8,9 @@
             <BaseImageFileInput
               v-model="image"
               :old-src="getImage"
-              label="画像"
+              label="画像を選択してください。"
               title="image"
-              rules="size_20MB:20480"
+              rules="required|size_20MB:20480"
             />
           </v-sheet>
         </v-col>
