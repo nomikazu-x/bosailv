@@ -8,11 +8,11 @@
       />
     </v-col>
     <v-col cols="12">
-      <ValidationProvider v-slot="{ errors }" name="thumbnail" rules="size_20MB:20480">
+      <ValidationProvider v-slot="{ errors }" :name="name" :rules="rules">
         <v-file-input
           v-model="valueModel"
           accept="image/jpeg,image/gif,image/png"
-          label="サムネイルを選択してください"
+          :label="label"
           prepend-icon="mdi-camera"
           show-size
           :error-messages="errors"
@@ -25,13 +25,14 @@
 
 <script>
 import { ValidationProvider, extend, configure, localize } from 'vee-validate'
-import { size } from 'vee-validate/dist/rules'
+import { size, required } from 'vee-validate/dist/rules'
 
 extend('size_20MB', size)
+extend('required', required)
 configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
 
 export default {
-  name: 'ArticleThumbnailFileInput',
+  name: 'BaseFileInput',
 
   components: {
     ValidationProvider
@@ -44,6 +45,18 @@ export default {
     },
     value: {
       type: [File, String, Object],
+      default: undefined
+    },
+    label: {
+      type: String,
+      default: undefined
+    },
+    rules: {
+      type: String,
+      default: undefined
+    },
+    name: {
+      type: String,
       default: undefined
     }
   },

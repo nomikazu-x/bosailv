@@ -43,8 +43,7 @@ export default {
       this.processing = true
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.favoriteCreateUrl.replace('_id', this.$route.params.id), {
-        user_id: this.$auth.user.id,
-        article_id: this.article.id
+        user_id: this.$auth.user.id
       })
         .then((response) => {
           if (response.data == null) {
@@ -69,10 +68,6 @@ export default {
           } else {
             this.$emit('alert', error.response.data.alert)
             this.$emit('notice', error.response.data.notice)
-            if (error.response.data.errors != null) {
-              this.$refs.observer.setErrors(error.response.data.errors)
-              this.waiting = true
-            }
           }
         })
 
@@ -83,8 +78,7 @@ export default {
       this.processing = true
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.favoriteDeleteUrl.replace('_id', this.$route.params.id), {
-        user_id: this.$auth.user.id,
-        article_id: this.article.id
+        user_id: this.$auth.user.id
       })
         .then((response) => {
           if (response.data == null) {
@@ -109,10 +103,6 @@ export default {
           } else {
             this.$emit('alert', error.response.data.alert)
             this.$emit('notice', error.response.data.notice)
-            if (error.response.data.errors != null) {
-              this.$refs.observer.setErrors(error.response.data.errors)
-              this.waiting = true
-            }
           }
         })
 

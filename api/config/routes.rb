@@ -1,13 +1,32 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      # [管理者権限]
+      namespace :admin do
+        # ユーザー
+        get  'users',                      to: 'users#index',          as: 'users'
+        get  'users/search',               to: 'users#search',         as: 'search_users'
+        post 'users/:username/delete',     to: 'users#destroy',        as: 'destroy_users'
+
+        # ジャンル
+        post 'genres/create',       to: 'genres#create',       as: 'create_genre'
+        post 'genres/:id/update',   to: 'genres#update',       as: 'update_genre'
+        post 'genres/:id/delete',   to: 'genres#destroy',      as: 'destroy_genre'
+
+        # お知らせ
+        post 'infomations/create',     to: 'infomations#create',    as: 'create_infomation'
+        post 'infomations/:id/delete', to: 'infomations#destroy',   as: 'destroy_infomation'
+
+        # 防災タスク
+        post 'tasks/create',       to: 'tasks#create',       as: 'create_task'
+        post 'tasks/:id/update',   to: 'tasks#update',       as: 'update_task'
+        post 'tasks/:id/delete',   to: 'tasks#destroy',      as: 'destroy_task'
+      end
+
       # ユーザー
       get   'users',                      to: 'users#index',          as: 'users'
-      get   'users/ranking',              to: 'users#ranking',        as: 'ranking_users'
-      get   'users/search',               to: 'users#search',         as: 'search_users'
       get   'users/:username',            to: 'users#show',           as: 'show_users'
       get   'users/:username/genres/:id', to: 'users#genre_articles', as: 'genre_articles_users'
-      post  'users/:username/delete',     to: 'users#destroy',        as: 'destroy_users'
       
       # 記事
       get  'articles',            to: 'articles#index',        as: 'articles'
@@ -23,24 +42,30 @@ Rails.application.routes.draw do
 
       # 記事お気に入り
       post 'articles/:id/article_favorites/create', to: 'article_favorites#create',    as: 'favorite_article'
-      post 'articles/:id/article_favorites/delete', to: 'article_favorites#destroy',   as: 'unfavorite_article'
+      post 'articles/:id/article_favorites/delete', to: 'article_favorites#destroy',   as: 'unfavorite_article'      
 
       # ジャンル
       get  'genres',              to: 'genres#index',   as: 'genres'
       get  'genres/:id',          to: 'genres#show',    as: 'show_genre'
-      post 'genres/create',       to: 'genres#create',  as: 'create_genre'
-      post 'genres/:id/update',   to: 'genres#update',       as: 'update_genre'
-      post 'genres/:id/delete',   to: 'genres#destroy', as: 'destroy_genre'
 
       # お知らせ
       get  'infomations',            to: 'infomations#index',     as: 'infomations'
       get  'infomations/important',  to: 'infomations#important', as: 'important_infomations'
       get  'infomations/:id',        to: 'infomations#show',      as: 'infomation'
-      post 'infomations/create',     to: 'infomations#create',    as: 'create_infomation'
-      post 'infomations/:id/delete', to: 'infomations#destroy',   as: 'destroy_infomation'
+
+      # 都道府県
+      get 'prefectures', to: 'prefectures#index', as: 'prefectures'
 
       # 市町村
       get 'set_cities/:id', to: 'cities#set_cities', as: 'set_cities'
+
+      # 防災タスク
+      get  'tasks',              to: 'tasks#index',   as: 'tasks'
+      get  'tasks/:id',          to: 'tasks#show',    as: 'show_task'
+
+      # 防災タスク完了
+      post 'tasks/:id/task_completes/create', to: 'task_completes#create',    as: 'complete_task'
+      post 'tasks/:id/task_completes/delete', to: 'task_completes#destroy',   as: 'uncomplete_task'
     end
   end
 

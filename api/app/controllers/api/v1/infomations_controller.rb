@@ -1,5 +1,4 @@
 class Api::V1::InfomationsController < Api::V1::ApplicationController
-  before_action :redirect_not_admin, only: %i[create destroy]
 
   # GET /api/v1/infomations(.json) お知らせ一覧API
   def index
@@ -7,8 +6,8 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
       @infomations = Infomation.where(action: [nil, '']).page(params[:page]).per(Settings['default_infomations_limit'])
     else
       @infomations = Infomation.by_target(current_user).page(params[:page]).per(Settings['default_infomations_limit'])
+      update_infomation_check
     end
-    update_infomation_check
   end
 
   # GET /api/v1/infomations/important(.json) 大切なお知らせAPI
@@ -26,28 +25,6 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
     end
   end
 
-  # POST /api/v1/infomations/create(.json) お知らせ作成API
-  def create
-    infomation = Infomation.new(infomation_params)
-
-    if infomation.save
-      render './api/v1/success', locals: { notice: I18n.t('notice.infomation.create') }
-    else
-      render './api/v1/failure', locals: { alert: I18n.t('alert.infomation.create') }, status: :unprocessable_entity
-    end
-  end
-
-  # POST /api/v1/infomations/:id/delete(.json) お知らせ削除API
-  def destroy
-    infomation = Infomation.find(params[:id])
-
-    if infomation.destroy
-      render './api/v1/success', locals: { notice: I18n.t('notice.infomation.destroy') }
-    else
-      render './api/v1/failure', locals: { alert: I18n.t('alert.infomation.destroy') }, status: :unprocessable_entity
-    end
-  end
-
   private
 
   # お知らせ確認情報更新
@@ -56,9 +33,5 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
 
     current_user.infomation_check_last_started_at = @infomations.first.started_at
     current_user.save!
-  end
-
-  def infomation_params
-    params.require(:infomation).permit(:label, :title, :summary, :body, :started_at, :ended_at, :force_started_at, :force_ended_at, :target)
   end
 end

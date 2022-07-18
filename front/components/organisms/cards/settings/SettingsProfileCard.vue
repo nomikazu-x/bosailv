@@ -7,7 +7,6 @@
       <v-col cols="12">
         <UserProfileForm
           :user="user"
-          :prefectures="prefectures"
           :processing="processing"
           @user-update="onUserUpdate"
         />
@@ -35,8 +34,7 @@ export default {
 
   data () {
     return {
-      user: null,
-      prefectures: []
+      user: null
     }
   },
 
@@ -48,7 +46,6 @@ export default {
           return this.$router.push({ path: '/' })
         } else {
           this.user = response.data.user
-          this.prefectures = response.data.prefectures
         }
       },
       (error) => {
