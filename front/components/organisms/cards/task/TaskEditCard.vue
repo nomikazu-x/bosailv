@@ -1,9 +1,8 @@
 <template>
-  <v-row justify="center">
+  <v-row v-if="task != null" justify="center">
     <v-col cols="12" sm="10" md="8">
       <BaseTitleCard title="防災タスク編集" />
       <TaskEditForm
-        v-if="task != null"
         :task="task"
         :processing="processing"
         @task-update="onTaskUpdate"

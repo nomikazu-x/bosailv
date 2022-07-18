@@ -81,7 +81,7 @@ export default {
     }
   },
   created () {
-    this.name = this.name || (this.genre && this.genre.name)
+    this.name = this.name || this.genre.name
     this.processing = false
   },
   methods: {

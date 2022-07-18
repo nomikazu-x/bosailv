@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center">
+  <v-row v-if="genre != null" justify="center">
     <v-col cols="12" sm="10" md="8">
       <BaseTitleCard title="ジャンル編集" />
       <GenreEditForm
