@@ -113,6 +113,10 @@ module.exports = {
   // コメント削除API
   commentDeleteUrl: '/api/v1/article_comments/_id/delete.json',
 
+  // 【都道府県】
+  // 一覧取得API
+  prefecturesUrl: '/api/v1/prefectures.json',
+
   // 【市区町村】
   // 一覧取得API
   setCitiesUrl: '/api/v1/set_cities/_id.json',

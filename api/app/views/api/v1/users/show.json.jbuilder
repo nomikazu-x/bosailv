@@ -2,13 +2,6 @@ json.success true
 
 json.required_point @required_point
 
-json.prefectures do
-  json.array! Prefecture.all do |prefecture|
-    json.id prefecture.id
-    json.name prefecture.name
-  end
-end
-
 json.user do
   json.provider @user.provider
   json.upload_image @user.image?

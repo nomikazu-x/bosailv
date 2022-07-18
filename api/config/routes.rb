@@ -53,6 +53,9 @@ Rails.application.routes.draw do
       get  'infomations/important',  to: 'infomations#important', as: 'important_infomations'
       get  'infomations/:id',        to: 'infomations#show',      as: 'infomation'
 
+      # 都道府県
+      get 'prefectures', to: 'prefectures#index', as: 'prefectures'
+
       # 市町村
       get 'set_cities/:id', to: 'cities#set_cities', as: 'set_cities'
 
