@@ -1,12 +1,13 @@
 <template>
-  <BaseTitleCard v-if="tasks != null" title="防災タスク一覧">
-    <v-card v-for="task in tasks" :key="task.id" tile>
-      <TaskListCardText
-        :task="task"
-        class="px-2"
-      />
-    </v-card>
-  </BaseTitleCard>
+  <div>
+    <BaseTitleCard v-if="tasks != null" title="防災タスク一覧" style="background-color: #f9f5eb;" />
+    <TaskListCardText
+      v-for="task in tasks"
+      :key="task.id"
+      :task="task"
+      class="mt-2"
+    />
+  </div>
 </template>
 
 <script>
