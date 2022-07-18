@@ -92,33 +92,8 @@ export default {
       }
       this.$emit('genre-update', genreInfo)
     },
-    async onGenreDelete () {
-      this.processing = true
-
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminGenreDeleteUrl.replace('_id', this.$route.params.id))
-        .then((response) => {
-          if (response.data == null) {
-            this.$toasted.error(this.$t('system.error'))
-          } else {
-            this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
-            return this.$router.push({ path: '/admin/genres' })
-          }
-        },
-        (error) => {
-          if (error.response == null) {
-            this.$toasted.error(this.$t('network.failure'))
-          } else if (error.response.status === 401) {
-            return this.signOut()
-          } else if (error.response.data == null) {
-            this.$toasted.error(this.$t('network.error'))
-          } else {
-            this.$toasted.error(error.response.data.alert)
-            this.$toasted.info(error.response.data.notice)
-          }
-        })
-
-      this.processing = false
+    onGenreDelete () {
+      this.$emit('genre-delete')
     }
   }
 }
