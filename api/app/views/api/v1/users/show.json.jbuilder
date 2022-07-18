@@ -9,17 +9,6 @@ json.prefectures do
   end
 end
 
-json.genres do
-  json.array! Genre.all do |genre|
-    json.id genre.id
-    json.name genre.name
-    json.image_url do
-      json.large "#{Settings['base_image_url']}#{genre.image_url(:large)}"
-      json.xlarge "#{Settings['base_image_url']}#{genre.image_url(:xlarge)}"
-    end
-  end
-end
-
 json.user do
   json.provider @user.provider
   json.upload_image @user.image?
