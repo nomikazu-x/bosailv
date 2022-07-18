@@ -63,7 +63,9 @@ export default {
 
       const params = new FormData()
       params.append('genre[name]', genreInfo.name)
-      params.append('genre[image]', genreInfo.image)
+      if (genreInfo.image) {
+        params.append('genre[image]', genreInfo.image)
+      }
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.adminGenreUpdateUrl.replace('_id', this.$route.params.id), params)
         .then((response) => {

@@ -8,6 +8,7 @@
         <v-col cols="8">
           <v-card-title class="font-weight-bold">
             {{ task.title }}
+            <span v-if="task.is_completed" class="article-title ml-2 white--text text-center">済</span>
           </v-card-title>
           <v-card-text>
             {{ task.summary }}
@@ -48,3 +49,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.article-title {
+  background: rgba(0, 0, 0, 0.5);
+  width: 30px;
+  height: 30px;
+}
+</style>

@@ -1,12 +1,12 @@
 <template>
   <span>
     <TheProcessing v-if="processing" />
-    <OrangeBtn v-if="isCompleted" large @click="onUnComplete">
-      完了!
-    </OrangeBtn>
-    <GreenBtn v-else large @click="onComplete">
+    <GreenBtn v-if="isCompleted" large @click="onUnComplete">
       未完了
     </GreenBtn>
+    <OrangeBtn v-else large @click="onComplete">
+      完了!
+    </OrangeBtn>
   </span>
 </template>
 

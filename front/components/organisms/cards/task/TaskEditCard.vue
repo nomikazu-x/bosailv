@@ -63,9 +63,11 @@ export default {
 
       const params = new FormData()
       params.append('task[title]', taskInfo.title)
-      params.append('task[image]', taskInfo.image)
       params.append('task[summary]', taskInfo.summary)
       params.append('task[body]', taskInfo.body)
+      if (taskInfo.image) {
+        params.append('task[image]', taskInfo.image)
+      }
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.adminTaskUpdateUrl.replace('_id', this.$route.params.id), params)
         .then((response) => {
