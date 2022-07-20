@@ -16,6 +16,11 @@ Rails.application.routes.draw do
         # お知らせ
         post 'infomations/create',     to: 'infomations#create',    as: 'create_infomation'
         post 'infomations/:id/delete', to: 'infomations#destroy',   as: 'destroy_infomation'
+
+        # 防災タスク
+        post 'tasks/create',       to: 'tasks#create',       as: 'create_task'
+        post 'tasks/:id/update',   to: 'tasks#update',       as: 'update_task'
+        post 'tasks/:id/delete',   to: 'tasks#destroy',      as: 'destroy_task'
       end
 
       # ユーザー
@@ -32,12 +37,13 @@ Rails.application.routes.draw do
       get  'articles/:id',        to: 'articles#show',         as: 'article'
 
       # 記事コメント
-      post 'article_comments/create',     to: 'article_comments#create',    as: 'create_comment'
-      post 'article_comments/:id/delete', to: 'article_comments#destroy',   as: 'delete_comment'
+      get  'articles/:id/article_comments', to: 'article_comments#index',     as: 'comments'
+      post 'article_comments/create',       to: 'article_comments#create',    as: 'create_comment'
+      post 'article_comments/:id/delete',   to: 'article_comments#destroy',   as: 'delete_comment'
 
       # 記事お気に入り
       post 'articles/:id/article_favorites/create', to: 'article_favorites#create',    as: 'favorite_article'
-      post 'articles/:id/article_favorites/delete', to: 'article_favorites#destroy',   as: 'unfavorite_article'
+      post 'articles/:id/article_favorites/delete', to: 'article_favorites#destroy',   as: 'unfavorite_article'      
 
       # ジャンル
       get  'genres',              to: 'genres#index',   as: 'genres'
@@ -48,8 +54,19 @@ Rails.application.routes.draw do
       get  'infomations/important',  to: 'infomations#important', as: 'important_infomations'
       get  'infomations/:id',        to: 'infomations#show',      as: 'infomation'
 
+      # 都道府県
+      get 'prefectures', to: 'prefectures#index', as: 'prefectures'
+
       # 市町村
       get 'set_cities/:id', to: 'cities#set_cities', as: 'set_cities'
+
+      # 防災タスク
+      get  'tasks',              to: 'tasks#index',   as: 'tasks'
+      get  'tasks/:id',          to: 'tasks#show',    as: 'show_task'
+
+      # 防災タスク完了
+      post 'tasks/:id/task_completes/create', to: 'task_completes#create',    as: 'complete_task'
+      post 'tasks/:id/task_completes/delete', to: 'task_completes#destroy',   as: 'uncomplete_task'
     end
   end
 

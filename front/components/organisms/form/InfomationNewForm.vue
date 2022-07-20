@@ -25,24 +25,6 @@
           </v-sheet>
         </v-col>
         <v-col cols="12">
-          <v-sheet outlined class="pa-2" height="150">
-            <BaseTextarea
-              v-model="summary"
-              name="summary"
-              label="概要"
-            />
-          </v-sheet>
-        </v-col>
-        <v-col cols="12">
-          <v-sheet outlined class="pa-2" height="150">
-            <BaseTextarea
-              v-model="body"
-              name="body"
-              label="本文"
-            />
-          </v-sheet>
-        </v-col>
-        <v-col cols="12">
           <v-sheet outlined height="60">
             <BaseDateTimePicker
               v-model="startedAt"
@@ -79,6 +61,23 @@
             />
           </v-sheet>
         </v-col>
+        <v-col cols="12">
+          <v-sheet outlined class="pa-2" height="150">
+            <BaseTextarea
+              v-model="summary"
+              name="summary"
+              label="概要"
+            />
+          </v-sheet>
+        </v-col>
+        <v-col cols="12">
+          <v-sheet height="600">
+            <Editor
+              v-model="body"
+              name="body"
+            />
+          </v-sheet>
+        </v-col>
         <div>
           <RedBtn
             id="infomation_create_btn"
@@ -100,6 +99,7 @@ import BaseDateTimePicker from '~/components/molecules/picker/BaseDateTimePicker
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import BaseTextarea from '~/components/molecules/textarea/BaseTextarea.vue'
+import Editor from '~/components/organisms/editor/Editor.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
@@ -112,6 +112,7 @@ export default {
     TheProcessing,
     BaseTextField,
     BaseTextarea,
+    Editor,
     RedBtn
   },
 

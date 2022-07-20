@@ -49,7 +49,7 @@ export default {
       params.append('infomation[force_ended_at]', infomationInfo.forceEndedAt)
       params.append('infomation[target]', 'All')
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.infomationCreateUrl, params)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminInfomationCreateUrl, params)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))

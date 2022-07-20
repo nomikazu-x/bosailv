@@ -5,9 +5,12 @@
       <v-row justify="center">
         <v-col cols="12">
           <v-sheet outlined class="mt-5">
-            <GenreImageFileInput
+            <BaseImageFileInput
               v-model="image"
               :old-src="getImage"
+              label="画像を選択してください。"
+              title="image"
+              rules="size_20MB:20480"
             />
           </v-sheet>
         </v-col>
@@ -38,7 +41,7 @@
 <script>
 import { ValidationObserver } from 'vee-validate'
 import Application from '~/plugins/application.js'
-import GenreImageFileInput from '~/components/organisms/fileInputs/GenreImageFileInput.vue'
+import BaseImageFileInput from '~/components/molecules/fileInputs/BaseImageFileInput.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 import DeleteConfirmDialog from '~/components/organisms/dialogs/DeleteConfirmDialog.vue'
@@ -48,7 +51,7 @@ export default {
 
   components: {
     ValidationObserver,
-    GenreImageFileInput,
+    BaseImageFileInput,
     BaseTextField,
     RedBtn,
     DeleteConfirmDialog
@@ -78,7 +81,7 @@ export default {
     }
   },
   created () {
-    this.name = this.name || (this.genre && this.genre.name)
+    this.name = this.name || this.genre.name
     this.processing = false
   },
   methods: {
@@ -89,33 +92,8 @@ export default {
       }
       this.$emit('genre-update', genreInfo)
     },
-    async onGenreDelete () {
-      this.processing = true
-
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.genreDeleteUrl.replace('_id', this.$route.params.id))
-        .then((response) => {
-          if (response.data == null) {
-            this.$toasted.error(this.$t('system.error'))
-          } else {
-            this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
-            return this.$router.push({ path: '/admin/genres' })
-          }
-        },
-        (error) => {
-          if (error.response == null) {
-            this.$toasted.error(this.$t('network.failure'))
-          } else if (error.response.status === 401) {
-            return this.signOut()
-          } else if (error.response.data == null) {
-            this.$toasted.error(this.$t('network.error'))
-          } else {
-            this.$toasted.error(error.response.data.alert)
-            this.$toasted.info(error.response.data.notice)
-          }
-        })
-
-      this.processing = false
+    onGenreDelete () {
+      this.$emit('genre-delete')
     }
   }
 }

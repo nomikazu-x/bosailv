@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ValidationProvider v-slot="{ errors }" name="content" rules="required">
+    <ValidationProvider v-slot="{ errors }" :name="name" rules="required">
       <quill-editor
         v-model="valueModel"
         :options="editorOption"
@@ -29,6 +29,10 @@ export default {
     value: {
       type: String,
       default: undefined
+    },
+    name: {
+      type: String,
+      default: ''
     }
   },
 

@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
          :confirmable, :lockable, :timeoutable, :trackable
   include DeviseTokenAuth::Concerns::User
 
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, UserImageUploader
 
   alias_attribute :total, :lifelong_point
   alias_attribute :to_next, :point_to_next
@@ -65,6 +65,7 @@ class User < ActiveRecord::Base
   has_many :infomations, dependent: :destroy
   has_many :article_favorites, dependent: :destroy
   has_many :article_comments, dependent: :destroy
+  has_many :task_completes, dependent: :destroy
   has_many :point_records, dependent: :destroy
   has_many :favorited_articles, through: :article_favorites, source: :article
 
@@ -97,21 +98,42 @@ class User < ActiveRecord::Base
     end
   end
 
+  # お知らせの未読数
   def infomation_unread_count
     Infomation.by_target(self).by_unread(infomation_check_last_started_at).count
   end
 
+  # 記事をお気に入りする
   def article_favorite!(article)
     article_favorites.create!(article_id: article.id)
   end
 
+  # 記事をお気に入りを解除する
   def article_unfavorite!(article)
     article_favorite = article_favorites.find_by!(article_id: article.id)
 
     article_favorite.destroy
   end
 
+  # 記事をお気に入りしているか
   def article_favorite?(article)
     article_favorites.exists?(article_id: article.id)
+  end
+
+  # 防災タスクを完了する
+  def task_complete!(task)
+    task_completes.create!(task_id: task.id)
+  end
+
+  # 防災タスクを未完了にする
+  def task_uncomplete!(task)
+    task_complete = task_completes.find_by!(task_id: task.id)
+
+    task_complete.destroy
+  end
+
+  # 防災タスクを完了しているか
+  def task_complete?(task)
+    task_completes.exists?(task_id: task.id)
   end
 end

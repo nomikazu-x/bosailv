@@ -72,7 +72,7 @@ export default {
     async onSearchUserPagination (value) {
       this.processing = true
 
-      await this.$axios.get(this.$config.apiBaseURL + this.$config.usersSearchUrl, {
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.adminUsersSearchUrl, {
         params: {
           page: value,
           keyword: this.keyword
