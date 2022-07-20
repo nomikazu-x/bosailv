@@ -79,6 +79,8 @@ Rails.application.routes.draw do
         post 'auth/update',          to: 'api/v1/auth/registrations#update',             as: 'update_auth_registration'
         post 'auth/image/update',    to: 'api/v1/auth/registrations#image_update',       as: 'update_auth_image_registration'
         post 'auth/image/delete',    to: 'api/v1/auth/registrations#image_destroy',      as: 'delete_auth_image_registration'
+        post 'auth/task/update',     to: 'api/v1/auth/registrations#task_update',        as: 'update_auth_task_registration'
+        post 'auth/task/delete',     to: 'api/v1/auth/registrations#task_destroy',       as: 'delete_auth_task_registration'
         post 'auth/delete',          to: 'api/v1/auth/registrations#destroy',            as: 'destroy_auth_registration'
         post 'auth/confirmation',    to: 'api/v1/auth/confirmations#create',             as: 'create_auth_confirmation'
         get  'auth/confirmation',    to: 'api/v1/auth/confirmations#show',               as: 'auth_confirmation'

@@ -54,6 +54,30 @@ ja:
     article:
       blank:
         name: '[削除済み]'
+  active_flag:
+    user:
+     sns_tasks:
+       kantei_saigai: '首相官邸(災害・危機管理情報)'
+       fdma_japan: '総務省消防庁'
+       modjapan_jp: '防衛庁・自衛隊'
+       cao_bousai: '内閣府防災'
+       mlit_japan: '国土交通省'
+       jgsdf_pr: '陸上自衛隊'
+       jma_kishou: '気象庁'
+       jmaxmlalerts: '気象警戒アラート'
+       yahoo_weather: 'Yahoo!天気・災害'
+       wni_jp: 'ウェザーニュース'
+       earthquake_jp: '地震速報'
+       tenkijp_jishin: 'tenki.jp 地震速報'
+       un_nerv: '特務機関NERV'
+       nhk_news: 'NHKニュース'
+       nhk_seikatsu: 'NHK生活・防災'
+       twitterlifeline: 'Twitterライフライン'
+       nikkei: '日本経済新聞 電子版'
+       yomiuri_online: '読売新聞オンライン'
+       mainichijpnews: '毎日新聞ニュース'
+       asahi: '朝日新聞'
+       japantimes: 'The Japan Times'
   notice:
     user:
       image_update: '画像を変更しました。'

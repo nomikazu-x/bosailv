@@ -35,7 +35,7 @@ class Api::V1::UsersController < Api::V1::ApplicationController
       # 投稿した記事一覧を取得
       @articles = @user.articles.page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{@genre.id}")
     end
-    
+
     if @user
       render './api/v1/users/genre_articles'
     else
