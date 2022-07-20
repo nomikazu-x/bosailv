@@ -37,8 +37,9 @@ Rails.application.routes.draw do
       get  'articles/:id',        to: 'articles#show',         as: 'article'
 
       # 記事コメント
-      post 'article_comments/create',     to: 'article_comments#create',    as: 'create_comment'
-      post 'article_comments/:id/delete', to: 'article_comments#destroy',   as: 'delete_comment'
+      get  'articles/:id/article_comments', to: 'article_comments#index',     as: 'comments'
+      post 'article_comments/create',       to: 'article_comments#create',    as: 'create_comment'
+      post 'article_comments/:id/delete',   to: 'article_comments#destroy',   as: 'delete_comment'
 
       # 記事お気に入り
       post 'articles/:id/article_favorites/create', to: 'article_favorites#create',    as: 'favorite_article'

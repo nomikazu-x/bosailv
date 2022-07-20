@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
          :confirmable, :lockable, :timeoutable, :trackable
   include DeviseTokenAuth::Concerns::User
 
-  mount_uploader :image, ImageUploader
+  mount_uploader :image, UserImageUploader
 
   alias_attribute :total, :lifelong_point
   alias_attribute :to_next, :point_to_next
