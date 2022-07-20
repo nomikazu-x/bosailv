@@ -1,7 +1,7 @@
 import Vuetify from 'vuetify'
 import { createLocalVue, mount } from '@vue/test-utils'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
-import BaseImageFileInput from '~/components/molecules/fileInputs/BaseImageFileInput.vue'
+import ArticleThumbnailFileInput from '~/components/organisms/fileInputs/ArticleThumbnailFileInput.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import GenresCheckbox from '~/components/organisms/checkbox/GenresCheckbox.vue'
 import Editor from '~/components/organisms/editor/Editor.vue'
@@ -37,7 +37,7 @@ describe('ArticleEditForm.vue', () => {
   const commonViewTest = (wrapper, article) => {
     // console.log(wrapper.html())
     expect(wrapper.findComponent(TheProcessing).exists()).toBe(false)
-    expect(wrapper.findComponent(BaseImageFileInput).exists()).toBe(true)
+    expect(wrapper.findComponent(ArticleThumbnailFileInput).exists()).toBe(true)
     expect(wrapper.findComponent(BaseTextField).exists()).toBe(true)
     expect(wrapper.findComponent(GenresCheckbox).exists()).toBe(true)
     expect(wrapper.findComponent(Editor).exists()).toBe(true)

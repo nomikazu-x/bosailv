@@ -1,5 +1,5 @@
 <template>
-  <v-row v-if="genres != null">
+  <v-row>
     <v-col v-for="genre in genres" :key="genre.id" cols="6">
       <v-card :to="toGenre(genre)">
         <v-img :src="genre.image_url.xlarge" max-height="150" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.5)">
@@ -14,12 +14,12 @@
 export default {
   name: 'GenreImageListCard',
 
-  data () {
-    return {
-      genres: null
+  props: {
+    genres: {
+      type: Array,
+      default: () => []
     }
   },
-
   computed: {
     toGenre () {
       return (genre) => {
@@ -32,22 +32,6 @@ export default {
         }
       }
     }
-  },
-  async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.genresUrl)
-      .then((response) => {
-        if (response.data == null) {
-          this.$toasted.error(this.$t('system.error'))
-          this.genres = null
-        } else {
-          this.genres = response.data.genres
-        }
-      },
-      (error) => {
-        this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
-      })
-
-    this.processing = false
   }
 }
 </script>

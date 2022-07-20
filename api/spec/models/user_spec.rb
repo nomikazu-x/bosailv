@@ -194,11 +194,6 @@ RSpec.describe User, type: :model do
       expect(rel.options[:through]).to eq :article_favorites
       expect(rel.options[:source]).to eq :article
     end
-
-    it "TaskCompleteテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:task_completes)
-      expect(rel.macro).to eq :has_many
-    end
   end
 
   describe 'article_favorite/article_unfavorite/article_favorite? method' do
@@ -223,32 +218,6 @@ RSpec.describe User, type: :model do
       it 'article_unfavoriteすると無効な状態であること' do
         user.article_unfavorite!(article)
         expect(user.article_favorite?(article)).to eq false
-      end
-    end
-  end
-
-  describe 'task_complete/task_uncomplete/task_complete? method' do
-    let(:user) { create(:user) }
-    let(:task) { create(:task) }
-
-    context 'task_completeしていない状態の場合' do
-      it '無効な状態であること' do
-        expect(user.task_complete?(task)).to eq false
-      end
-    end
-
-    context 'task_completeした場合' do
-      before do
-        user.task_complete!(task)
-      end
-
-      it 'task_complete状態であること' do
-        expect(user.task_complete?(task)).to eq true
-      end
-
-      it 'task_uncompleteすると無効な状態であること' do
-        user.task_uncomplete!(task)
-        expect(user.task_complete?(task)).to eq false
       end
     end
   end

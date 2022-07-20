@@ -88,7 +88,7 @@ export default {
     async onInfomationDelete () {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminInfomationDeleteUrl.replace('_id', this.$route.params.id))
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.infomationDeleteUrl.replace('_id', this.$route.params.id))
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))

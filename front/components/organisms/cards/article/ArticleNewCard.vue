@@ -45,15 +45,17 @@ export default {
     async onArticleCreate (articleInfo) {
       this.processing = true
 
-      const params = new FormData()
-      params.append('article[title]', articleInfo.title)
-      params.append('article[content]', articleInfo.content)
-      params.append('article[thumbnail]', articleInfo.thumbnail)
+      const formData = new FormData()
+      formData.append('article[title]', articleInfo.title)
+      formData.append('article[content]', articleInfo.content)
+      formData.append('article[thumbnail]', articleInfo.thumbnail)
       articleInfo.selectedGenres.forEach((genre) => {
-        params.append('article[genre_ids][]', genre)
+        formData.append('article[genre_ids][]', genre)
       })
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.articleCreateUrl, params)
+      console.log(formData)
+
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.articleCreateUrl, formData)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))

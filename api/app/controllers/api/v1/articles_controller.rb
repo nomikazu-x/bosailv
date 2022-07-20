@@ -24,7 +24,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
     if @article.save
       ActiveRecord::Base.transaction do
         # ポイント獲得
-        PointRecorder.new(current_user).record(Settings['article_create_obtained_point'])
+        point_record = PointRecorder.new(current_user).record(Settings['article_create_obtained_point'])
         # 次のレベルに必要なポイントを返す
         @required_point = RequiredPoint.find_by(level: current_user.level)
 
@@ -49,7 +49,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
     if @article
       ActiveRecord::Base.transaction do
         # ポイントを減らす
-        PointRecorder.new(@article.user).delete_record(Settings['article_create_obtained_point'])
+        point_record = PointRecorder.new(@article.user).delete_record(Settings['article_create_obtained_point'])
         # 次のレベルに必要なポイントを返す
         @required_point = RequiredPoint.find_by(level: @article.user.level)
 

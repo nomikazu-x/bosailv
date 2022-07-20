@@ -37,24 +37,6 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item to="/admin/tasks">
-        <v-list-item-icon>
-          <v-icon>mdi-book-multiple</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>防災タスク一覧・編集</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-list-item to="/admin/tasks/new">
-        <v-list-item-icon>
-          <v-icon>mdi-book-plus-multiple</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>防災タスク作成</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
       <v-list-item to="/admin/articles/search">
         <v-list-item-icon>
           <v-icon>mdi-pencil-box-multiple</v-icon>

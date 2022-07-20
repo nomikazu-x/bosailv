@@ -5,11 +5,8 @@
       <v-row justify="center">
         <v-col cols="12">
           <v-sheet outlined class="mt-5">
-            <BaseImageFileInput
+            <ArticleThumbnailFileInput
               v-model="thumbnail"
-              name="thumbnail"
-              label="サムネイルを選択してください。"
-              rules="size_20MB:20480"
             />
           </v-sheet>
         </v-col>
@@ -33,7 +30,6 @@
           <v-sheet height="600">
             <Editor
               v-model="content"
-              name="content"
             />
           </v-sheet>
         </v-col>
@@ -55,7 +51,7 @@
 <script>
 import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
-import BaseImageFileInput from '~/components/molecules/fileInputs/BaseImageFileInput.vue'
+import ArticleThumbnailFileInput from '~/components/organisms/fileInputs/ArticleThumbnailFileInput.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import GenresCheckbox from '~/components/organisms/checkbox/GenresCheckbox.vue'
 import Editor from '~/components/organisms/editor/Editor.vue'
@@ -67,7 +63,7 @@ export default {
   components: {
     ValidationObserver,
     TheProcessing,
-    BaseImageFileInput,
+    ArticleThumbnailFileInput,
     BaseTextField,
     GenresCheckbox,
     Editor,

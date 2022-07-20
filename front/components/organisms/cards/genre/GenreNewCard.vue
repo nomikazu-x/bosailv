@@ -16,7 +16,7 @@ import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import GenreNewForm from '~/components/organisms/form/GenreNewForm.vue'
 
 export default {
-  name: 'GenreNewCard',
+  name: 'ArticleNewCard',
 
   components: {
     BaseTitleCard,
@@ -38,11 +38,11 @@ export default {
     async onGenreCreate (genreInfo) {
       this.processing = true
 
-      const params = new FormData()
-      params.append('genre[name]', genreInfo.name)
-      params.append('genre[image]', genreInfo.image)
+      const formData = new FormData()
+      formData.append('genre[name]', genreInfo.name)
+      formData.append('genre[image]', genreInfo.image)
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.adminGenreCreateUrl, params)
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.genreCreateUrl, formData)
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))

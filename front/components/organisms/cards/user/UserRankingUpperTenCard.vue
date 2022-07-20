@@ -1,7 +1,7 @@
 <template>
   <BaseTitleCard v-if="users != null && users.length > 0" class="pb-1 px-1" title="ポイントランキング">
     <UserRankingListItem
-      v-for="(user, i) in users.slice(0, 10)"
+      v-for="(user, i) in users.slice(0, 9)"
       :key="user.id"
       :user="user"
       :index="i"
@@ -38,7 +38,7 @@ export default {
     }
   },
   async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.usersUrl)
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.usersRankingUrl)
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))

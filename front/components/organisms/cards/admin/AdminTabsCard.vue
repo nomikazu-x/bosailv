@@ -76,7 +76,7 @@ export default {
   methods: {
     async onUserPagination (userPage) {
       this.processing = true
-      await this.$axios.get(this.$config.apiBaseURL + this.$config.adminUsersUrl, {
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.usersUrl, {
         params: { page: userPage }
       })
         .then((response) => {

@@ -7,7 +7,7 @@
         </v-col>
       </v-row>
 
-      <GenreImageListCard />
+      <GenreImageListCard :genres="genres" />
     </div>
   </BaseTitleCard>
 </template>
@@ -32,6 +32,7 @@ export default {
   data () {
     return {
       user: null,
+      genres: null,
       requiredPoint: 0
     }
   },
@@ -63,6 +64,7 @@ export default {
           return this.$router.push({ path: '/' })
         } else {
           this.user = response.data.user
+          this.genres = response.data.genres
           this.requiredPoint = response.data.required_point
         }
       },

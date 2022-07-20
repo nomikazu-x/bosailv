@@ -16,9 +16,6 @@ article_favorite_author_obtained_point: 2
 # 記事お気に入りした時の獲得ポイント
 article_favorite_reader_obtained_point: 1
 
-# 防災タスク完了時時獲得ポイント
-task_complete_obtained_point: 5
-
 ## ユーザー
 # 一覧のデフォルト最大表示件数
 default_users_limit: 20

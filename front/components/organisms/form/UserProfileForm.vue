@@ -11,6 +11,7 @@
         />
         <PrefecturesSelect
           v-model="selectPrefecture"
+          :prefectures="prefectures"
           class="mt-5"
           @change="onGetCities"
         />
@@ -63,6 +64,10 @@ export default {
     processing: {
       type: Boolean,
       default: false
+    },
+    prefectures: {
+      type: Array,
+      default: () => []
     },
     user: {
       type: Object,

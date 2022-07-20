@@ -1,7 +1,7 @@
 class Api::V1::Admin::GenresController < Api::V1::ApplicationController
   before_action :redirect_not_admin, only: %i[create update destroy]
 
-  # POST /api/v1/admin/genres/create(.json) ジャンル作成API
+  # POST /api/v1/genres/create(.json) ジャンル作成API
   def create
     genre = Genre.new(genre_params)
 
@@ -12,7 +12,7 @@ class Api::V1::Admin::GenresController < Api::V1::ApplicationController
     end
   end
 
-  # POST /api/v1/admin/genres/:id/update(.json) 記事更新API(処理)
+  # POST /api/v1/genres/:id/update(.json) 記事更新API(処理)
   def update
     genre = Genre.find(params[:id])
 
@@ -23,7 +23,7 @@ class Api::V1::Admin::GenresController < Api::V1::ApplicationController
     end
   end
 
-  # POST /api/v1/admin/genres/:id/delete(.json) ジャンル削除API
+  # POST /api/v1/genres/:id/delete(.json) ジャンル削除API
   def destroy
     genre = Genre.find(params[:id])
 

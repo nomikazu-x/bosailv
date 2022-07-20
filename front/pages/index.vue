@@ -13,7 +13,6 @@
 
     <template v-if="!loading" #left>
       <TopTransitionCard />
-      <TaskListCard />
       <NewArticleListCard />
       <GenreImageListCardWithTitle />
     </template>
@@ -31,7 +30,6 @@ import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import TopSlide from '~/components/organisms/slide/TopSlide.vue'
 import TopTransitionCard from '~/components/organisms/cards/TopTransitionCard.vue'
-import TaskListCard from '~/components/organisms/cards/task/TaskListCard.vue'
 import NewArticleListCard from '~/components/organisms/cards/article/NewArticleListCard.vue'
 import GenreImageListCardWithTitle from '~/components/organisms/cards/genre/GenreImageListCardWithTitle.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
@@ -45,7 +43,6 @@ export default {
     TheMessage,
     TopSlide,
     TopTransitionCard,
-    TaskListCard,
     NewArticleListCard,
     GenreImageListCardWithTitle,
     DefaultRightColumnTemplate
