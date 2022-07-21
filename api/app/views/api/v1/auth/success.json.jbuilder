@@ -35,6 +35,13 @@ if current_user.present?
     json.destroy_schedule_at current_user.destroy_schedule_at
     json.infomation_unread_count current_user.infomation_unread_count
     json.required_point @required_point
+
+    json.sns_tasks do
+      json.array! User.sns_tasks.pairs do |task|
+        json.name task[0]
+        json.is_completed current_user.sns_tasks.set?(task)
+      end
+    end
   end
 end
 
