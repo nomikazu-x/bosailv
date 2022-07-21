@@ -13,7 +13,12 @@
       </v-card-text>
       <v-divider class="my-5" />
       <div class="text-center">
-        <CompleteBtnGroup v-if="$auth.loggedIn" :task="task" />
+        <CompleteBtnGroup
+          v-if="$auth.loggedIn"
+          :task="task"
+          @complete="onComplete"
+          @un-complete="onUnComplete"
+        />
       </div>
     </v-col>
   </v-card>
@@ -64,6 +69,73 @@ export default {
       })
 
     this.processing = false
+  },
+  methods: {
+    async onComplete () {
+      this.processing = true
+
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.completeCreateUrl.replace('_id', this.$route.params.id), {
+        user_id: this.$auth.user.id
+      })
+        .then((response) => {
+          if (response.data == null) {
+            this.$toasted.error(this.$t('system.error'))
+          } else if (this.$auth.loggedIn) {
+            this.$store.commit('user/setPoint', response.data.user, { root: true })
+            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
+            this.$toasted.info(response.data.notice)
+          } else {
+            return this.redirectSignIn(response.data.alert, response.data.notice)
+          }
+        },
+        (error) => {
+          if (error.response == null) {
+            this.$toasted.error(this.$t('network.failure'))
+          } else if (error.response.status === 401) {
+            return this.signOut()
+          } else if (error.response.data == null) {
+            this.$toasted.error(this.$t('network.error'))
+          } else {
+            this.$emit('alert', error.response.data.alert)
+            this.$emit('notice', error.response.data.notice)
+          }
+        })
+
+      this.processing = false
+    },
+
+    async onUnComplete () {
+      this.processing = true
+
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.completeDeleteUrl.replace('_id', this.$route.params.id), {
+        user_id: this.$auth.user.id
+      })
+        .then((response) => {
+          if (response.data == null) {
+            this.$toasted.error(this.$t('system.error'))
+          } else if (this.$auth.loggedIn) {
+            this.$store.commit('user/setPoint', response.data.user, { root: true })
+            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
+            this.$toasted.info(response.data.notice)
+          } else {
+            return this.redirectSignIn(response.data.alert, response.data.notice)
+          }
+        },
+        (error) => {
+          if (error.response == null) {
+            this.$toasted.error(this.$t('network.failure'))
+          } else if (error.response.status === 401) {
+            return this.signOut()
+          } else if (error.response.data == null) {
+            this.$toasted.error(this.$t('network.error'))
+          } else {
+            this.$emit('alert', error.response.data.alert)
+            this.$emit('notice', error.response.data.notice)
+          }
+        })
+
+      this.processing = false
+    }
   }
 }
 </script>

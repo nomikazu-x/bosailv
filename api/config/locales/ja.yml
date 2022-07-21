@@ -82,6 +82,8 @@ ja:
     user:
       image_update: '画像を変更しました。'
       image_destroy: '画像を削除しました。'
+      task_update: 'タスクを達成しました。'
+      task_destroy: 'タスクの達成をリセットしました。'
       destroy: 'ユーザーを削除しました。'
     article:
       create: '記事を作成できました。'
@@ -109,6 +111,8 @@ ja:
       destroy: '防災タスクを未完了にしました。'
   alert:
     user:
+      task_update: 'タスクの達成に失敗しました。'
+      task_destroy: 'タスクのリセットに失敗しました。'
       destroy:
         params_blank: 'パラメータが指定されていません。'
         failure: '削除に失敗しました。'

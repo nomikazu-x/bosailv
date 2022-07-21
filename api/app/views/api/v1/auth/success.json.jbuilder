@@ -39,9 +39,11 @@ if current_user.present?
     json.sns_tasks do
       json.array! User.sns_tasks.pairs do |task|
         json.name task[0]
-        json.is_completed current_user.sns_tasks.set?(task)
+        json.value task[1]
+        json.is_completed current_user.sns_tasks.set?(task[1])
       end
     end
+    json.sns_task_complete current_user.sns_tasks.raw == 2097151
   end
 end
 

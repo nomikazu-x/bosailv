@@ -11,7 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
-      <TaskShowCard />
+      <TaskShowCard @alert="alert = $event" @notice="notice = $event" />
     </template>
 
     <template v-if="!loading" #right>

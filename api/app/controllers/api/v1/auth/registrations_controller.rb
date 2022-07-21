@@ -13,50 +13,48 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   # POST /api/v1/auth/task/update(.json) タスク更新API(処理)
   def task_update
     @user = User.find(current_user.id)
-    case params
-    when [:sns_tasks]
-      @user.sns_task.set([:sns_tasks])
-      if @user.update(params.permit(:sns_tasks))
+    if params[:sns_tasks]
+      @user.sns_tasks.set(params[:sns_tasks])
+      if @user.save!
         update_auth_header # 成功時のみ認証情報を返す
-        render './api/v1/auth/success'
+        render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.task_update') }
       else
-        render './api/v1/failure', status: :unprocessable_entity
+        render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_update') }, status: :unprocessable_entity
       end
-    when [:house_tasks]
-      @user.house_task.set([:house_tasks])
-      if @user.update(params.permit(:house_tasks))
+    elsif params[:house_tasks]
+      @user.house_tasks.set(params[:house_tasks])
+      if @user.save!
         update_auth_header # 成功時のみ認証情報を返す
-        render './api/v1/auth/success'
+        render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.task_update') }
       else
-        render './api/v1/failure', status: :unprocessable_entity
+        render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_update') }, status: :unprocessable_entity
       end
     else
-      reder './api/v1/failure'
+      render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_update') }, status: :unprocessable_entity
     end
   end
 
   # POST /api/v1/auth/task/delete(.json) タスクリセットAPI(処理)
   def task_destroy
     @user = User.find(current_user.id)
-    case params
-    when [:sns_task]
-      @user.sns_task.unset(task)
-      if @user.update(params.permit(:sns_task))
+    if params[:sns_tasks]
+      @user.sns_tasks.unset(params[:sns_tasks])
+      if @user.save!
         update_auth_header # 成功時のみ認証情報を返す
-        render './api/v1/auth/success'
+        render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.task_destroy') }
       else
-        render './api/v1/failure', status: :unprocessable_entity
+        render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_destroy') }, status: :unprocessable_entity
       end
-    when [:house_task]
-      @user.house_task.unset(task)
-      if @user.update(params.permit(:house_task))
+    elsif params[:house_tasks]
+      @user.house_tasks.unset(params[:sns_tasks])
+      if @user.save!
         update_auth_header # 成功時のみ認証情報を返す
-        render './api/v1/auth/success'
+        render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.task_destroy') }
       else
-        render './api/v1/failure', status: :unprocessable_entity
+        render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_destroy') }, status: :unprocessable_entity
       end
     else
-      reder './api/v1/failure'
+      render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_destroy') }, status: :unprocessable_entity
     end
   end
 
