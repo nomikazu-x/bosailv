@@ -14,8 +14,8 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   def task_update
     @user = User.find(current_user.id)
     if params[:sns_tasks]
-      @user.sns_tasks.set(params[:sns_tasks])
-      if @user.save!
+      task = @user.sns_tasks.set(params[:sns_tasks])
+      if @user.update(params.permit(sns_tasks: task))
         update_auth_header # 成功時のみ認証情報を返す
         render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.task_update') }
       else
@@ -38,8 +38,8 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   def task_destroy
     @user = User.find(current_user.id)
     if params[:sns_tasks]
-      @user.sns_tasks.unset(params[:sns_tasks])
-      if @user.save!
+      task = @user.sns_tasks.unset(params[:sns_tasks].to_sym) # Tips unsetメソッドの場合はシンボルにする必要がある。
+      if @user.update(params.permit(sns_tasks: task))
         update_auth_header # 成功時のみ認証情報を返す
         render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.task_destroy') }
       else

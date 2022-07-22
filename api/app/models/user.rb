@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
   has_many :point_records, dependent: :destroy
   has_many :favorited_articles, through: :article_favorites, source: :article
 
-  flag :sns_tasks, %i[kantei_saigai fdma_japan modjapan_jp car_bousai mlit_japan jgsdf_pr jma_kishou jmaxmlalerts yahoo_weather wni_jp earthquake_jp tenkijp_jishin un_nerv nhk_news nhk_seikatsu twitterlifeline nikkei yomiuri_online mainichijpnews asahi japantimes]
+  flag :sns_tasks, %i[kantei_saigai fdma_japan modjapan_jp cao_bousai mlit_japan jgsdf_pr jma_kishou jmaxmlalerts yahoo_weather wni_jp earthquake_jp tenkijp_jishin un_nerv nhk_news nhk_seikatsu twitterlifeline nikkei yomiuri_online mainichijpnews asahi japantimes]
   flag :house_tasks, %i[tv_rack_fixed tv_position fridge_fixed fridge_position not_put_object range_table_fixed window_glass home_electronics_fixed l_type_fitting pole_type_combination pole_type_reinforcement pole_type_position stopper_type_position plasterboard_reinforcement furniture_concatenation glass_film releasing_protection heavy_object_position select_fixed_equipment refuge_aisle_allocation]
 
   scope :point_ranking, -> { order(lifelong_point: :desc, id: :desc) }

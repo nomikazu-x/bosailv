@@ -1,34 +1,38 @@
 <template>
-  <v-card outlined tile>
+  <BaseTitleCard title="防災SNSフォロータスク">
     <TheProcessing v-if="processing" />
-    <v-col v-for="task in $auth.user.sns_tasks" :key="task.name" cols="12">
-      <v-card-title>
-        {{ task.name }}
-      </v-card-title>
-      <!-- <v-card-text>
-        {{ task.is_completed }}
-      </v-card-text> -->
-      <div class="text-right">
-        <CompleteBtnGroup
-          v-if="$auth.loggedIn"
-          :task="task"
-          @complete="onComplete(task.value)"
-          @un-complete="onUnComplete(task.value)"
-        />
-      </div>
-      <v-divider class="mt-5" />
-    </v-col>
-  </v-card>
+    <v-card v-for="task in $auth.user.sns_tasks" :key="task.name" class="my-3" tile>
+      <v-row align="center">
+        <v-col cols="8">
+          <v-card-subtitle>
+            {{ task.name }}
+          </v-card-subtitle>
+        </v-col>
+        <v-col cols="4">
+          <div class="text-center">
+            <CompleteBtnGroup
+              v-if="$auth.loggedIn"
+              :task="task"
+              @complete="onComplete(task.value)"
+              @un-complete="onUnComplete(task.value)"
+            />
+          </div>
+        </v-col>
+      </v-row>
+    </v-card>
+  </BaseTitleCard>
 </template>
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import CompleteBtnGroup from '~/components/organisms/btnGroup/CompleteBtnGroup.vue'
 
 export default {
   name: 'SnsTaskCard',
 
   components: {
+    BaseTitleCard,
     CompleteBtnGroup
   },
 
