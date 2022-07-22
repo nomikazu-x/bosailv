@@ -47,7 +47,7 @@ export default {
       this.processing = true
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.userTaskUpdateUrl, {
-        sns_tasks: task
+        sns_task: task
       })
         .then((response) => {
           if (response.data == null) {
@@ -80,7 +80,7 @@ export default {
       this.processing = true
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.userTaskDeleteUrl, {
-        sns_tasks: task
+        sns_task: task
       })
         .then((response) => {
           if (response.data == null) {
