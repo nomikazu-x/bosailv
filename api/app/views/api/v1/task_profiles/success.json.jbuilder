@@ -14,7 +14,7 @@ json.user do
       json.is_completed @task_profile.sns_tasks.set?(task[1])
     end
   end
-  # json.sns_task_complete current_user.sns_tasks.raw == 2097151
+  json.is_completed_sns_tasks current_user.prepare_task_profile.sns_tasks.raw == 2097151
 
   json.house_tasks do
     json.array! TaskProfile.house_tasks.pairs do |task|
@@ -23,7 +23,7 @@ json.user do
       json.is_completed @task_profile.house_tasks.set?(task[1])
     end
   end
-  # json.house_task_complete current_user.house_tasks.raw == 2097151
+  json.is_completed_house_tasks current_user.prepare_task_profile.house_tasks.raw == 134217727
 end
 
 json.notice notice if notice.present?

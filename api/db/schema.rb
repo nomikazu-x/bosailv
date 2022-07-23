@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_23_003748) do
+ActiveRecord::Schema.define(version: 2022_07_23_055656) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(version: 2022_07_23_003748) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
+  end
+
+  create_table "family_rules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false, comment: "ユーザーID"
+    t.text "contact_means_memo", null: false, comment: "緊急時連絡手段メモ"
+    t.text "refuge_memo", null: false, comment: "避難方法メモ"
+    t.text "family_role_memo", null: false, comment: "家族の役割分担メモ"
+    t.text "emergency_measure_memo", null: false, comment: "応急処置メモ"
+    t.text "leave_home_memo", null: false, comment: "家を離れるときメモ"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_family_rules_on_user_id"
   end
 
   create_table "genres", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -123,6 +135,7 @@ ActiveRecord::Schema.define(version: 2022_07_23_003748) do
     t.bigint "user_id", null: false, comment: "ユーザーID"
     t.integer "sns_tasks", default: 0, null: false, comment: "SNS関係防災タスク"
     t.integer "house_tasks", default: 0, null: false, comment: "家庭関係防災タスク"
+    t.boolean "is_completed_stock_task", default: false, null: false, comment: "備蓄防災タスク達成フラグ"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_task_profiles_on_user_id"
@@ -188,6 +201,7 @@ ActiveRecord::Schema.define(version: 2022_07_23_003748) do
   add_foreign_key "article_genre_relations", "genres"
   add_foreign_key "articles", "users"
   add_foreign_key "cities", "prefectures"
+  add_foreign_key "family_rules", "users"
   add_foreign_key "infomations", "users"
   add_foreign_key "point_records", "users"
   add_foreign_key "task_completes", "tasks"

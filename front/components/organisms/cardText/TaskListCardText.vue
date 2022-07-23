@@ -1,5 +1,5 @@
 <template>
-  <v-card :to="toTask(task)" outlined class="mb-3 rounded-lg">
+  <v-card :to="to" outlined class="mb-3 rounded-lg">
     <v-row class="black--text" no-gutters>
       <v-col v-if="task.is_completed" cols="1">
         <v-sheet height="132" color="red" class="rounded-l-lg" />
@@ -14,6 +14,7 @@
         <v-col cols="8">
           <v-card-title class="font-weight-bold">
             {{ task.title }}
+            <div v-if="!task.is_completed" class="ml-2 article-title text-center white--text">未</div>
           </v-card-title>
           <v-card-text>
             {{ task.summary }}
@@ -32,18 +33,10 @@ export default {
     task: {
       type: Object,
       default: null
-    }
-  },
-
-  computed: {
-    toTask () {
-      return (task) => {
-        if (this.$route.path === '/admin/tasks') {
-          return { name: 'admin-tasks-id-edit___ja', params: { id: task.id } }
-        } else {
-          return { name: 'tasks-id___ja', params: { id: task.id } }
-        }
-      }
+    },
+    to: {
+      type: [Object, String],
+      default: null
     }
   }
 }

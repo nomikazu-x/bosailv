@@ -62,6 +62,8 @@ class User < ActiveRecord::Base
   alias_attribute :to_next, :point_to_next
 
   has_one :task_profile, dependent: :destroy
+  has_one :family_rule, dependent: :destroy
+
   has_many :articles, dependent: :destroy
   has_many :infomations, dependent: :destroy
   has_many :article_favorites, dependent: :destroy
@@ -138,7 +140,18 @@ class User < ActiveRecord::Base
     task_completes.exists?(task_id: task.id)
   end
 
+  # 防災タスクプロフィールデータがあれば、データを返し、なければbuildする
   def prepare_task_profile
     task_profile || build_task_profile
+  end
+
+  # 家族ルールデータがあれば、データを返し、なければbuildする
+  def prepare_family_rule
+    family_rule || build_family_rule
+  end
+
+  # 家族ルールタスクを達成しているか
+  def is_completed_family_rule_tasks?(user)
+    FamilyRule.exists?(user_id: user.id)
   end
 end

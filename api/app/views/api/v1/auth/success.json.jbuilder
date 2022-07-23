@@ -35,8 +35,9 @@ if current_user.present?
     json.destroy_schedule_at current_user.destroy_schedule_at
     json.infomation_unread_count current_user.infomation_unread_count
     json.required_point @required_point
-    # json.sns_task_complete current_user.sns_tasks.raw == 2097151
-    # json.house_task_complete current_user.house_tasks.raw == 2097151
+    json.is_completed_sns_tasks current_user.prepare_task_profile.sns_tasks.raw == 2097151
+    json.is_completed_house_tasks current_user.prepare_task_profile.house_tasks.raw == 134217727
+    json.is_completed_family_rules_tasks current_user.is_completed_family_rule_tasks?(current_user)
   end
 end
 

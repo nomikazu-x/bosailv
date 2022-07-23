@@ -28,6 +28,9 @@ migratetest:
 rollback:
 	docker-compose run api rails db:rollback
 
+rollbacktest:
+	docker-compose run api rails db:rollback RAILS_ENV=test
+
 migratereset:
 	docker-compose run api rails db:migrate:reset
 
