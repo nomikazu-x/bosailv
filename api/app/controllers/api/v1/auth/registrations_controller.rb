@@ -87,9 +87,4 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   def default_username
     SecureRandom.alphanumeric(15)
   end
-
-  def set_default_username
-    default_username = "user" + SecureRandom.alphanumeric(15)
-    @resource.update
-  end
 end

@@ -11,7 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
-      <TaskShowCard @alert="alert = $event" @notice="notice = $event" />
+      <SnsTaskCard @alert="alert = $event" @notice="notice = $event" />
     </template>
 
     <template v-if="!loading" #right>
@@ -25,7 +25,7 @@ import Application from '~/plugins/application.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
-import TaskShowCard from '~/components/organisms/cards/task/TaskShowCard.vue'
+import SnsTaskCard from '~/components/organisms/cards/task/SnsTaskCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {
@@ -35,7 +35,7 @@ export default {
     TwoColumnContainer,
     TheLoading,
     TheMessage,
-    TaskShowCard,
+    SnsTaskCard,
     DefaultRightColumnTemplate
   },
 

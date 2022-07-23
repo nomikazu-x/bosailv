@@ -1,37 +1,38 @@
 <template>
-  <v-card v-if="task != null" outlined tile>
+  <BaseTitleCard v-if="tasks !== null" title="防災SNSフォロータスク">
     <TheProcessing v-if="processing" />
-    <v-img :src="task.image_url.xlarge" max-height="256" />
-    <v-col cols="12">
-      <v-card-title class="font-weight-bold">
-        {{ task.title }}
-      </v-card-title>
-      <v-divider class="my-5" />
-      <v-card-text v-if="task">
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <div v-if="task.body" class="mx-2 my-2" v-html="task.body" />
-      </v-card-text>
-      <v-divider class="my-5" />
-      <div class="text-center">
-        <CompleteBtnGroup
-          v-if="$auth.loggedIn"
-          :task="task"
-          @complete="onComplete"
-          @un-complete="onUnComplete"
-        />
-      </div>
-    </v-col>
-  </v-card>
+    <v-card v-for="task in tasks" :key="task.name" class="my-3" tile>
+      <v-row align="center">
+        <v-col cols="8">
+          <v-card-subtitle>
+            {{ task.name }}
+          </v-card-subtitle>
+        </v-col>
+        <v-col cols="4">
+          <div class="text-center">
+            <CompleteBtnGroup
+              v-if="$auth.loggedIn"
+              :task="task"
+              @complete="onComplete(task.value)"
+              @un-complete="onUnComplete(task.value)"
+            />
+          </div>
+        </v-col>
+      </v-row>
+    </v-card>
+  </BaseTitleCard>
 </template>
 
 <script>
 import Application from '~/plugins/application.js'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import CompleteBtnGroup from '~/components/organisms/btnGroup/CompleteBtnGroup.vue'
 
 export default {
-  name: 'TaskShowCard',
+  name: 'SnsTaskCard',
 
   components: {
+    BaseTitleCard,
     CompleteBtnGroup
   },
 
@@ -39,43 +40,33 @@ export default {
 
   data () {
     return {
-      user: null,
-      task: null
+      tasks: null
     }
   },
+
   async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.taskShowUrl.replace('_id', this.$route.params.id))
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.taskProfileUrl)
       .then((response) => {
-        if (response.data == null) {
+        if (response.data == null || response.data.sns_tasks == null) {
           this.$toasted.error(this.$t('system.error'))
           return this.$router.push({ path: '/' })
+        } else {
+          this.tasks = response.data.sns_tasks
         }
-        this.task = response.data.task
       },
       (error) => {
-        if (error.response == null) {
-          this.$toasted.error(this.$t('network.failure'))
-          return this.$router.push({ path: '/' })
-        } else if (error.response.data == null && error.response.status !== 404) {
-          this.$toasted.error(this.$t('network.error'))
-          return this.$router.push({ path: '/' })
-        } else {
-          if (error.response.data != null) {
-            this.$toasted.error(error.response.data.alert)
-            this.$toasted.info(error.response.data.notice)
-          }
-          return this.$nuxt.error({ statusCode: error.response.status })
-        }
+        this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
+        return this.$router.push({ path: '/' })
       })
-
     this.processing = false
   },
+
   methods: {
-    async onComplete () {
+    async onComplete (task) {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.completeCreateUrl.replace('_id', this.$route.params.id), {
-        user_id: this.$auth.user.id
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.taskProfileUpdateUrl, {
+        sns_task: task
       })
         .then((response) => {
           if (response.data == null) {
@@ -104,11 +95,11 @@ export default {
       this.processing = false
     },
 
-    async onUnComplete () {
+    async onUnComplete (task) {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.completeDeleteUrl.replace('_id', this.$route.params.id), {
-        user_id: this.$auth.user.id
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.taskProfileDeleteUrl, {
+        sns_task: task
       })
         .then((response) => {
           if (response.data == null) {

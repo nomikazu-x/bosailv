@@ -54,10 +54,64 @@ ja:
     article:
       blank:
         name: '[削除済み]'
+  active_flag:
+    task_profile:
+      sns_tasks:
+        kantei_saigai: '首相官邸(災害・危機管理情報)'
+        fdma_japan: '総務省消防庁'
+        modjapan_jp: '防衛庁・自衛隊'
+        cao_bousai: '内閣府防災'
+        mlit_japan: '国土交通省'
+        jgsdf_pr: '陸上自衛隊'
+        jma_kishou: '気象庁'
+        jmaxmlalerts: '気象警戒アラート'
+        yahoo_weather: 'Yahoo!天気・災害'
+        wni_jp: 'ウェザーニュース'
+        earthquake_jp: '地震速報'
+        tenkijp_jishin: 'tenki.jp 地震速報'
+        un_nerv: '特務機関NERV'
+        nhk_news: 'NHKニュース'
+        nhk_seikatsu: 'NHK生活・防災'
+        twitterlifeline: 'Twitterライフライン'
+        nikkei: '日本経済新聞 電子版'
+        yomiuri_online: '読売新聞オンライン'
+        mainichijpnews: '毎日新聞ニュース'
+        asahi: '朝日新聞'
+        japantimes: 'The Japan Times'
+      house_tasks:
+        tv_rack_fixed: 'テレビを壁またはテレビ台に固定するとともに、テレビ台も固定している'
+        tv_position: 'テレビが転倒・落下・移動しても、人に当たったり、避難障害にならないところに置いている。'
+        fridge_fixed: '冷蔵庫を、ベルトなどで壁に固定している。'
+        fridge_position: '冷蔵庫が移動しても、避難障害にならない場所に設置している。'
+        not_put_object: '冷蔵庫や家具類の上に、落下しやすい物を置いていない。'
+        range_table_fixed: '電子レンジをレンジ台などに固定するとともに、レンジ台も固定している。'
+        window_glass: '窓ガラスの近くに、大型の家電製品や家具を置いていない。'
+        home_electronics_fixed: '家電製品は、付属している取扱説明書に従って転倒・落下・移動防止対策を行っている。'
+        l_type_fitting: 'Ｌ型金具を使用する場合は、壁の下地材（間柱など）や柱など、強度がある部分に固定している。'
+        pole_type_combination: 'ポール式を使用する場合は、ストッパー式やマット式と併用している。'
+        pole_type_reinforcement: 'ポール式を使用する際、天井に強度がない場合は、あて板で補強している。'
+        pole_type_position: 'ポール式は、できるだけ奥に取付けている。'
+        stopper_type_position: 'ストッパー式は、家具の端から端まで敷いている。'
+        plasterboard_reinforcement: '石膏ボードに接着されているだけの付け鴨居の場合は、補強したうえで、転倒防止器具を取付けている。'
+        furniture_concatenation: '上下に分かれている家具は、上下を連結している。'
+        glass_film: 'ガラスにはフィルムを張るなど、飛散防止をしている。'
+        releasing_protection: '収納物が飛び出さないよう、扉に開放防止器具を付けている。'
+        heavy_object_position: '重いものを、できるだけ下に収納している。'
+        select_fixed_equipment: '固定に用いる器具は、家具類の重さや形状に応じて選んでいる。'
+        refuge_aisle_allocation: '家具が転倒しても、避難路を塞がない置き方をしている。'
+        caster_furniture_lock: '日常的に動かすキャスター付き家具類は、動かさないときはキャスターロックをするとともに、着脱式ベルトなどで壁につなげている。'
+        caster_furniture_fixed: '日常的に動かさないキャスター付き家具類は、キャスターをロックして下皿を設置するとともに、転倒防止対策をしている。'
+        table_non_slip: '壁に接していないテーブル等には、脚に滑り止めをしている。'
+        aquarium_fixed: '観賞用水槽等を台と固定し、台を壁と固定している。'
+        suspended_lighting_fixed: '吊り下げ式の照明に揺れ防止をしている。'
+        drawer_motion_protection: '引き出し式の家具類にはラッチがついているものを使用するなど、引き出しの飛び出し防止をしている。'
+        door_near_furniture: '出入口の近くにキャスター付きの家具類を置いていない。'
   notice:
     user:
       image_update: '画像を変更しました。'
       image_destroy: '画像を削除しました。'
+      task_update: 'タスクを達成しました。'
+      task_destroy: 'タスクの達成をリセットしました。'
       destroy: 'ユーザーを削除しました。'
     article:
       create: '記事を作成できました。'
@@ -85,6 +139,8 @@ ja:
       destroy: '防災タスクを未完了にしました。'
   alert:
     user:
+      task_update: 'タスクの達成に失敗しました。'
+      task_destroy: 'タスクのリセットに失敗しました。'
       destroy:
         params_blank: 'パラメータが指定されていません。'
         failure: '削除に失敗しました。'

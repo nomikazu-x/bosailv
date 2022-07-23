@@ -68,6 +68,12 @@ module.exports = {
   userImageUpdateUrl: '/api/v1/auth/image/update.json',
   // 画像削除API
   userImageDeleteUrl: '/api/v1/auth/image/delete.json',
+  // ユーザータスク取得API
+  taskProfileUrl: '/api/v1/task_profile.json',
+  // ユーザータスク更新API
+  taskProfileUpdateUrl: '/api/v1/task_profiles/update.json',
+  // ユーザータスクリセットAPI
+  taskProfileDeleteUrl: '/api/v1/task_profiles/delete.json',
   // 退会API
   userDeactivateUrl: '/api/v1/auth/delete.json',
 

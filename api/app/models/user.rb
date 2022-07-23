@@ -61,6 +61,7 @@ class User < ActiveRecord::Base
   alias_attribute :total, :lifelong_point
   alias_attribute :to_next, :point_to_next
 
+  has_one :task_profile, dependent: :destroy
   has_many :articles, dependent: :destroy
   has_many :infomations, dependent: :destroy
   has_many :article_favorites, dependent: :destroy
@@ -135,5 +136,9 @@ class User < ActiveRecord::Base
   # 防災タスクを完了しているか
   def task_complete?(task)
     task_completes.exists?(task_id: task.id)
+  end
+
+  def prepare_task_profile
+    task_profile || build_task_profile
   end
 end

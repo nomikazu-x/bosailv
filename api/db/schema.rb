@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_20_110709) do
+ActiveRecord::Schema.define(version: 2022_07_23_003748) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
@@ -119,6 +119,15 @@ ActiveRecord::Schema.define(version: 2022_07_20_110709) do
     t.index ["user_id"], name: "index_task_completes_on_user_id"
   end
 
+  create_table "task_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false, comment: "ユーザーID"
+    t.integer "sns_tasks", default: 0, null: false, comment: "SNS関係防災タスク"
+    t.integer "house_tasks", default: 0, null: false, comment: "家庭関係防災タスク"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_task_profiles_on_user_id"
+  end
+
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "image", null: false, comment: "画像"
     t.string "title", limit: 30, null: false, comment: "タイトル"
@@ -164,8 +173,6 @@ ActiveRecord::Schema.define(version: 2022_07_20_110709) do
     t.integer "city_id", comment: "出身市区町村ID"
     t.boolean "admin", default: false, null: false, comment: "管理者フラグ"
     t.datetime "destroy_schedule_at", comment: "削除予定日時"
-    t.integer "sns_task", default: 0, null: false, comment: "SNS関係防災タスク"
-    t.integer "house_task", default: 0, null: false, comment: "家庭関係防災タスク"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -185,4 +192,5 @@ ActiveRecord::Schema.define(version: 2022_07_20_110709) do
   add_foreign_key "point_records", "users"
   add_foreign_key "task_completes", "tasks"
   add_foreign_key "task_completes", "users"
+  add_foreign_key "task_profiles", "users"
 end

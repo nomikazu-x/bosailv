@@ -35,6 +35,8 @@ if current_user.present?
     json.destroy_schedule_at current_user.destroy_schedule_at
     json.infomation_unread_count current_user.infomation_unread_count
     json.required_point @required_point
+    # json.sns_task_complete current_user.sns_tasks.raw == 2097151
+    # json.house_task_complete current_user.house_tasks.raw == 2097151
   end
 end
 
