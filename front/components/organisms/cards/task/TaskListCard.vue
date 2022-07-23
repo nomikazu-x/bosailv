@@ -37,7 +37,8 @@ export default {
     return {
       constantTasks: [
         { id: 1, to: '/tasks/sns', is_completed: this.$auth.user.is_completed_sns_tasks, image_url: { large: '' }, title: '防災SNSをフォローしよう!', summary: '防災SNSをフォローしてもしものときに備えよう。' },
-        { id: 2, to: '/tasks/house', is_completed: this.$auth.user.is_completed_house_tasks, image_url: { large: '' }, title: '家具の固定をしよう!', summary: '家具類の転倒・落下・移動防止対策をしてもしものときに備えよう。' }
+        { id: 2, to: '/tasks/house', is_completed: this.$auth.user.is_completed_house_tasks, image_url: { large: '' }, title: '家具の固定をしよう!', summary: '家具類の転倒・落下・移動防止対策をしてもしものときに備えよう。' },
+        { id: 3, to: this.toFamilyRule(), is_completed: this.$auth.user.is_completed_family_rules_tasks, image_url: { large: '' }, title: '家族会議しよう!', summary: '災害に備えて家族でルールを決めておきましょう。' }
       ],
       tasks: null
     }
@@ -72,6 +73,16 @@ export default {
       })
 
     this.processing = false
+  },
+
+  methods: {
+    toFamilyRule () {
+      if (this.$auth.user.is_completed_family_rules_tasks) {
+        return '/tasks/family_rule'
+      } else {
+        return '/tasks/family_rule/edit'
+      }
+    }
   }
 }
 </script>

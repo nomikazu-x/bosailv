@@ -149,4 +149,9 @@ class User < ActiveRecord::Base
   def prepare_family_rule
     family_rule || build_family_rule
   end
+
+  # 家族ルールタスクを達成しているか
+  def is_completed_family_rule_tasks?(user)
+    FamilyRule.exists?(user_id: user.id)
+  end
 end
