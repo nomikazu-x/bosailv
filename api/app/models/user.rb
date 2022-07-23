@@ -138,6 +138,7 @@ class User < ActiveRecord::Base
     task_completes.exists?(task_id: task.id)
   end
 
+  # 防災タスクプロフィールがあれば、データを返し、なければbuildする
   def prepare_task_profile
     task_profile || build_task_profile
   end
