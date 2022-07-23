@@ -87,6 +87,14 @@ module.exports = {
   // 家族ルールリセットAPI
   familyRuleDeleteUrl: '/api/v1/family_rules/delete.json',
 
+  // 【緊急連絡先】
+  // 緊急連絡先一覧API
+  emergencyContactsUrl: '/api/v1/emergency_contacts.json',
+  // 緊急連絡先作成API
+  emergencyContactCreateUrl: '/api/v1/emergency_contacts/create.json',
+  // 緊急連絡先削除API
+  emergencyContactDeleteUrl: '/api/v1/emergency_contacts/_id/delete.json',
+
   // 【お知らせ】
   // 大切なお知らせAPI
   importantInfomationsUrl: '/api/v1/infomations/important.json',
