@@ -20,4 +20,10 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class FamilyRule < ApplicationRecord
+  belongs_to :user
+
+  validates :emergency_measure_memo, presence: true
+  validates :family_role_memo, presence: true
+  validates :leave_home_memo, presence: true
+  validates :refuge_memo, presence: true
 end

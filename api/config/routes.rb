@@ -28,10 +28,15 @@ Rails.application.routes.draw do
       get   'users/:username',            to: 'users#show',           as: 'show_users'
       get   'users/:username/genres/:id', to: 'users#genre_articles', as: 'genre_articles_users'
 
-      # ユーザー防災タスク
+      # ユーザー防災タスクプロフィール
       get  'task_profile',             to: 'task_profiles#show',          as: 'task_profile'
       post 'task_profiles/update',     to: 'task_profiles#update',        as: 'update_task_profile'
       post 'task_profiles/delete',     to: 'task_profiles#destroy',       as: 'delete_task_profile'
+
+      # 家族会議
+      get  'family_rule',             to: 'family_rules#show',          as: 'family_rule'
+      post 'family_rules/update',     to: 'family_rules#update',        as: 'update_family_rule'
+      post 'family_rules/delete',     to: 'family_rules#destroy',       as: 'delete_family_rule'
       
       # 記事
       get  'articles',            to: 'articles#index',        as: 'articles'

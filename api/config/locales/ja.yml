@@ -137,6 +137,9 @@ ja:
     task_complete:
       create: '防災タスクを完了しました。'
       destroy: '防災タスクを未完了にしました。'
+    family_rule:
+      update: '家族のルールを更新できました。'
+      destroy: '家族のルールをリセットしました。'
   alert:
     user:
       task_update: 'タスクの達成に失敗しました。'
@@ -168,6 +171,9 @@ ja:
     task_complete:
       create: '防災タスクの完了に失敗しました。'
       destroy: '防災タスクをの未完了に失敗しました。'
+    family_rule:
+      update: '家族ルールの更新に失敗しました。'
+      destroy: '家族ルールのリセットに失敗しました。'
     
   errors:
     messages:

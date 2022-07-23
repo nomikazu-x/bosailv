@@ -68,14 +68,24 @@ module.exports = {
   userImageUpdateUrl: '/api/v1/auth/image/update.json',
   // 画像削除API
   userImageDeleteUrl: '/api/v1/auth/image/delete.json',
-  // ユーザータスク取得API
-  taskProfileUrl: '/api/v1/task_profile.json',
-  // ユーザータスク更新API
-  taskProfileUpdateUrl: '/api/v1/task_profiles/update.json',
-  // ユーザータスクリセットAPI
-  taskProfileDeleteUrl: '/api/v1/task_profiles/delete.json',
   // 退会API
   userDeactivateUrl: '/api/v1/auth/delete.json',
+
+  // 【防災タスクプロフィール】
+  // 防災タスクプロフィール取得API
+  taskProfileUrl: '/api/v1/task_profile.json',
+  // 防災タスクプロフィール更新API
+  taskProfileUpdateUrl: '/api/v1/task_profiles/update.json',
+  // 防災タスクプロフィールリセットAPI
+  taskProfileDeleteUrl: '/api/v1/task_profiles/delete.json',
+
+  // 【家族ルール】
+  // 家族ルール取得API
+  familyRuleUrl: '/api/v1/family_rule.json',
+  // 家族ルール更新API
+  familyRuleUpdateUrl: '/api/v1/family_rules/update.json',
+  // 家族ルールリセットAPI
+  familyRuleDeleteUrl: '/api/v1/family_rules/delete.json',
 
   // 【お知らせ】
   // 大切なお知らせAPI
