@@ -61,6 +61,7 @@ class User < ActiveRecord::Base
   alias_attribute :total, :lifelong_point
   alias_attribute :to_next, :point_to_next
 
+  has_one :task_profile, dependent: :destroy
   has_many :articles, dependent: :destroy
   has_many :infomations, dependent: :destroy
   has_many :article_favorites, dependent: :destroy
@@ -68,9 +69,6 @@ class User < ActiveRecord::Base
   has_many :task_completes, dependent: :destroy
   has_many :point_records, dependent: :destroy
   has_many :favorited_articles, through: :article_favorites, source: :article
-
-  flag :sns_tasks, %i[kantei_saigai fdma_japan modjapan_jp cao_bousai mlit_japan jgsdf_pr jma_kishou jmaxmlalerts yahoo_weather wni_jp earthquake_jp tenkijp_jishin un_nerv nhk_news nhk_seikatsu twitterlifeline nikkei yomiuri_online mainichijpnews asahi japantimes]
-  flag :house_tasks, %i[tv_rack_fixed tv_position fridge_fixed fridge_position not_put_object range_table_fixed window_glass home_electronics_fixed l_type_fitting pole_type_combination pole_type_reinforcement pole_type_position stopper_type_position plasterboard_reinforcement furniture_concatenation glass_film releasing_protection heavy_object_position select_fixed_equipment refuge_aisle_allocation caster_furniture_lock caster_furniture_fixed table_non_slip aquarium_fixed suspended_lighting_fixed drawer_motion_protection door_near_furniture]
 
   scope :point_ranking, -> { order(lifelong_point: :desc, id: :desc) }
   scope :by_destroy_reserved, -> { where('destroy_schedule_at <= ?', Time.current) }
@@ -138,5 +136,9 @@ class User < ActiveRecord::Base
   # 防災タスクを完了しているか
   def task_complete?(task)
     task_completes.exists?(task_id: task.id)
+  end
+
+  def prepare_task_profile
+    task_profile || build_task_profile
   end
 end

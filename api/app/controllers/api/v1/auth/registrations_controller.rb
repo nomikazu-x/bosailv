@@ -10,56 +10,6 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   #   super
   # end
 
-  # POST /api/v1/auth/task/update(.json) タスク更新API(処理)
-  def task_update
-    @user = User.find(current_user.id)
-    case
-    when params[:sns_task]
-      task = @user.sns_tasks.set(params[:sns_task])
-      if @user.update(params.permit(sns_tasks: task))
-        update_auth_header # 成功時のみ認証情報を返す
-        render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.task_update') }
-      else
-        render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_update') }, status: :unprocessable_entity
-      end
-    when params[:house_task]
-      task = @user.house_tasks.set(params[:house_task])
-      if @user.update(params.permit(house_tasks: task))
-        update_auth_header # 成功時のみ認証情報を返す
-        render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.task_update') }
-      else
-        render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_update') }, status: :unprocessable_entity
-      end
-    else
-      render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_update') }, status: :unprocessable_entity
-    end
-  end
-
-  # POST /api/v1/auth/task/delete(.json) タスクリセットAPI(処理)
-  def task_destroy
-    @user = User.find(current_user.id)
-    case 
-    when params[:sns_task]
-      task = @user.sns_tasks.unset(params[:sns_task].to_sym) # Tips unsetメソッドの場合はシンボルにする必要がある。
-      if @user.update(params.permit(sns_tasks: task))
-        update_auth_header # 成功時のみ認証情報を返す
-        render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.task_destroy') }
-      else
-        render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_destroy') }, status: :unprocessable_entity
-      end
-    when params[:house_task]
-      task = @user.house_tasks.unset(params[:house_task].to_sym) # Tips unsetメソッドの場合はシンボルにする必要がある。
-      if @user.update(params.permit(house_tasks: task))
-        update_auth_header # 成功時のみ認証情報を返す
-        render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.task_destroy') }
-      else
-        render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_destroy') }, status: :unprocessable_entity
-      end
-    else
-      render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_destroy') }, status: :unprocessable_entity
-    end
-  end
-
   # POST /api/v1/auth/image/update(.json) 画像変更API(処理)
   def image_update
     @user = User.find(current_user.id)

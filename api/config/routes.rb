@@ -27,6 +27,11 @@ Rails.application.routes.draw do
       get   'users',                      to: 'users#index',          as: 'users'
       get   'users/:username',            to: 'users#show',           as: 'show_users'
       get   'users/:username/genres/:id', to: 'users#genre_articles', as: 'genre_articles_users'
+
+      # ユーザー防災タスク
+      get  'task_profile',             to: 'task_profiles#show',          as: 'task_profile'
+      post 'task_profiles/update',     to: 'task_profiles#update',        as: 'update_task_profile'
+      post 'task_profiles/delete',     to: 'task_profiles#destroy',       as: 'delete_task_profile'
       
       # 記事
       get  'articles',            to: 'articles#index',        as: 'articles'
@@ -79,8 +84,6 @@ Rails.application.routes.draw do
         post 'auth/update',          to: 'api/v1/auth/registrations#update',             as: 'update_auth_registration'
         post 'auth/image/update',    to: 'api/v1/auth/registrations#image_update',       as: 'update_auth_image_registration'
         post 'auth/image/delete',    to: 'api/v1/auth/registrations#image_destroy',      as: 'delete_auth_image_registration'
-        post 'auth/task/update',     to: 'api/v1/auth/registrations#task_update',        as: 'update_auth_task_registration'
-        post 'auth/task/delete',     to: 'api/v1/auth/registrations#task_destroy',       as: 'delete_auth_task_registration'
         post 'auth/delete',          to: 'api/v1/auth/registrations#destroy',            as: 'destroy_auth_registration'
         post 'auth/confirmation',    to: 'api/v1/auth/confirmations#create',             as: 'create_auth_confirmation'
         get  'auth/confirmation',    to: 'api/v1/auth/confirmations#show',               as: 'auth_confirmation'

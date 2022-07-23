@@ -1,7 +1,7 @@
 <template>
-  <BaseTitleCard title="防災SNSフォロータスク">
+  <BaseTitleCard v-if="tasks !== null" title="防災SNSフォロータスク">
     <TheProcessing v-if="processing" />
-    <v-card v-for="task in $auth.user.sns_tasks" :key="task.name" class="my-3" tile>
+    <v-card v-for="task in tasks" :key="task.name" class="my-3" tile>
       <v-row align="center">
         <v-col cols="8">
           <v-card-subtitle>
@@ -38,7 +38,26 @@ export default {
 
   mixins: [Application],
 
-  created () {
+  data () {
+    return {
+      tasks: null
+    }
+  },
+
+  async created () {
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.taskProfileUrl)
+      .then((response) => {
+        if (response.data == null || response.data.sns_tasks == null) {
+          this.$toasted.error(this.$t('system.error'))
+          return this.$router.push({ path: '/' })
+        } else {
+          this.tasks = response.data.sns_tasks
+        }
+      },
+      (error) => {
+        this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
+        return this.$router.push({ path: '/' })
+      })
     this.processing = false
   },
 
@@ -46,7 +65,7 @@ export default {
     async onComplete (task) {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.userTaskUpdateUrl, {
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.taskProfileUpdateUrl, {
         sns_task: task
       })
         .then((response) => {
@@ -79,7 +98,7 @@ export default {
     async onUnComplete (task) {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.userTaskDeleteUrl, {
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.taskProfileDeleteUrl, {
         sns_task: task
       })
         .then((response) => {

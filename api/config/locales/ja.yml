@@ -55,7 +55,7 @@ ja:
       blank:
         name: '[削除済み]'
   active_flag:
-    user:
+    task_profile:
       sns_tasks:
         kantei_saigai: '首相官邸(災害・危機管理情報)'
         fdma_japan: '総務省消防庁'
