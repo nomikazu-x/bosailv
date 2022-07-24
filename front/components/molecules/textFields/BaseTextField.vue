@@ -1,5 +1,5 @@
 <template>
-  <ValidationProvider v-slot="{ errors }" :name="name" rules="required">
+  <ValidationProvider v-slot="{ errors }" :name="name" :rules="rules">
     <v-text-field
       v-model="valueModel"
       :value="value"
@@ -15,10 +15,7 @@
 </template>
 
 <script>
-import { ValidationProvider, extend, configure, localize } from 'vee-validate'
-import { required } from 'vee-validate/dist/rules'
-
-extend('required', required)
+import { ValidationProvider, configure, localize } from 'vee-validate'
 configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
 
 export default {
@@ -42,6 +39,10 @@ export default {
     name: {
       type: String,
       default: ''
+    },
+    rules: {
+      type: [String, Object],
+      default: 'required'
     },
     prependIcon: {
       type: String,

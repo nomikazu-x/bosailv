@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_23_055656) do
+ActiveRecord::Schema.define(version: 2022_07_23_114703) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 2022_07_23_055656) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
+  end
+
+  create_table "emergency_contacts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false, comment: "ユーザーID"
+    t.string "name", null: false, comment: "連絡先名"
+    t.string "phone_number", null: false, comment: "電話番号"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_emergency_contacts_on_user_id"
   end
 
   create_table "family_rules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -201,6 +210,7 @@ ActiveRecord::Schema.define(version: 2022_07_23_055656) do
   add_foreign_key "article_genre_relations", "genres"
   add_foreign_key "articles", "users"
   add_foreign_key "cities", "prefectures"
+  add_foreign_key "emergency_contacts", "users"
   add_foreign_key "family_rules", "users"
   add_foreign_key "infomations", "users"
   add_foreign_key "point_records", "users"

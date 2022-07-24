@@ -37,6 +37,11 @@ Rails.application.routes.draw do
       get  'family_rule',             to: 'family_rules#show',          as: 'family_rule'
       post 'family_rules/update',     to: 'family_rules#update',        as: 'update_family_rule'
       post 'family_rules/delete',     to: 'family_rules#destroy',       as: 'delete_family_rule'
+
+      # 緊急連絡先
+      get  'emergency_contacts',            to: 'emergency_contacts#index',        as: 'emergency_contacts'
+      post 'emergency_contacts/create',     to: 'emergency_contacts#create',       as: 'create_emergency_contact'
+      post 'emergency_contacts/:id/delete', to: 'emergency_contacts#destroy',      as: 'destroy_emergency_contact'
       
       # 記事
       get  'articles',            to: 'articles#index',        as: 'articles'
