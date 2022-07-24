@@ -1,7 +1,8 @@
 class CreateStocks < ActiveRecord::Migration[6.1]
   def change
     create_table :stocks do |t|
-      t.references :family, null: false, foreign_key: true, comment: '家族ID'
+      t.integer    :sex, null: false,       default: 0,     comment: '性別'
+      t.integer    :age, null: false,       default: 0,     comment: '年代'
       t.integer    :water,                  default: 0,     comment: '水'
       t.integer    :retort_rice,            default: 0,     comment: 'レトルトご飯'
       t.integer    :retort_food,            default: 0,     comment: 'レトルト食品'

@@ -140,7 +140,8 @@ ActiveRecord::Schema.define(version: 2022_07_24_075722) do
   end
 
   create_table "stocks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "family_id", null: false, comment: "家族ID"
+    t.integer "sex", default: 0, null: false, comment: "性別"
+    t.integer "age", default: 0, null: false, comment: "年代"
     t.integer "water", default: 0, comment: "水"
     t.integer "retort_rice", default: 0, comment: "レトルトご飯"
     t.integer "retort_food", default: 0, comment: "レトルト食品"
@@ -177,7 +178,6 @@ ActiveRecord::Schema.define(version: 2022_07_24_075722) do
     t.integer "ruck_sack", default: 0, comment: "リュックサック"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["family_id"], name: "index_stocks_on_family_id"
   end
 
   create_table "task_completes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -265,7 +265,6 @@ ActiveRecord::Schema.define(version: 2022_07_24_075722) do
   add_foreign_key "family_rules", "users"
   add_foreign_key "infomations", "users"
   add_foreign_key "point_records", "users"
-  add_foreign_key "stocks", "families"
   add_foreign_key "task_completes", "tasks"
   add_foreign_key "task_completes", "users"
   add_foreign_key "task_profiles", "users"

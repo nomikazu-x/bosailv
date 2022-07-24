@@ -44,6 +44,26 @@ ja:
       target:
         All: '全員'
         User: '対象ユーザーのみ'
+    family:
+      sex:
+        Male: '男性'
+        Female: '女性'
+      age:
+        Infant: '乳幼児(0~2歳)'
+        Child: '子供(3歳~小6)'
+        Junior: '子供(中学生以上)'
+        Adult: '成人(20歳以上)'
+        Senior: '高齢者(65歳以上)'
+    stock:
+      sex:
+        Male: '男性'
+        Female: '女性'
+      age:
+        Infant: '乳幼児(0~2歳)'
+        Child: '子供(3歳~小6)'
+        Junior: '子供(中学生以上)'
+        Adult: '成人(20歳以上)'
+        Senior: '高齢者(65歳以上)'
   infomation:
     action:
       article_favorite: '%{action_user_name}さんがあなたの記事%{article_title}をいいねしました。'
@@ -106,6 +126,41 @@ ja:
         suspended_lighting_fixed: '吊り下げ式の照明に揺れ防止をしている。'
         drawer_motion_protection: '引き出し式の家具類にはラッチがついているものを使用するなど、引き出しの飛び出し防止をしている。'
         door_near_furniture: '出入口の近くにキャスター付きの家具類を置いていない。'
+      stock_tasks:
+        water: '水'
+        retort_rice: 'レトルトご飯'
+        retort_food: 'レトルト食品'
+        nutritional_supplement: '栄養補助食品'
+        confectionery: 'お菓子'
+        canned_fruits: '果物の缶詰'
+        wet_wipes: 'ウェットティッシュ'
+        alcohol_spray: 'アルコールスプレー'
+        mask: 'マスク'
+        medicine: '常備薬'
+        wrap: 'ラップ'
+        plastic_bag: 'ポリ袋'
+        aluminum_foil: 'アルミホイル'
+        toilet_paper: 'トイレットペーパー'
+        tissue_paper: 'ティッシュペーパー'
+        flashlight: '懐中電灯'
+        dry_cell_battery: '乾電池'
+        lighter: 'マッチ'
+        body_warmer: 'カイロ'
+        contact_lenses: 'コンタクトレンズ'
+        battery_charger: '充電器'
+        gloves: '軍手'
+        newspaper: '新聞紙'
+        radio: 'ラジオ'
+        simple_toilet: '簡易トイレ'
+        water_supply_bag: '給水袋'
+        sanitary_item: '生理用品'
+        milk_powder: '粉ミルク'
+        diaper: 'おむつ'
+        baby_wipe: 'お尻ふき'
+        baby_bottle: '哺乳瓶'
+        denture_cleaner: '入れ歯洗浄剤'
+        prescription_drug: '処方箋薬'
+        ruck_sack: 'リュックサック'
   notice:
     user:
       image_update: '画像を変更しました。'

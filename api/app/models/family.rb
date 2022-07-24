@@ -18,4 +18,8 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Family < ApplicationRecord
+  belongs_to :user
+
+  enum sex: { Male: 1, Female: 2 }
+  enum age: { Infant: 1, Child: 2, Junior: 3, Adult: 4, Senior: 5 }
 end
