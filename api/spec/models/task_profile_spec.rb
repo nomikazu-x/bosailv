@@ -2,13 +2,13 @@
 #
 # Table name: task_profiles
 #
-#  id                                                :bigint           not null, primary key
-#  house_tasks(家庭関係防災タスク)                   :integer          default(0), not null
-#  is_completed_stock_task(備蓄防災タスク達成フラグ) :boolean          default(FALSE), not null
-#  sns_tasks(SNS関係防災タスク)                      :integer          default(0), not null
-#  created_at                                        :datetime         not null
-#  updated_at                                        :datetime         not null
-#  user_id(ユーザーID)                               :bigint           not null
+#  id                              :bigint           not null, primary key
+#  house_tasks(家庭関係防災タスク) :integer          default(0), not null
+#  sns_tasks(SNS関係防災タスク)    :integer          default(0), not null
+#  stock_tasks(備蓄関係防災タスク) :integer          default(0), not null
+#  created_at                      :datetime         not null
+#  updated_at                      :datetime         not null
+#  user_id(ユーザーID)             :bigint           not null
 #
 # Indexes
 #
