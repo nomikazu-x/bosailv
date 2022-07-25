@@ -42,6 +42,11 @@ Rails.application.routes.draw do
       get  'emergency_contacts',            to: 'emergency_contacts#index',        as: 'emergency_contacts'
       post 'emergency_contacts/create',     to: 'emergency_contacts#create',       as: 'create_emergency_contact'
       post 'emergency_contacts/:id/delete', to: 'emergency_contacts#destroy',      as: 'destroy_emergency_contact'
+
+      # 家族構成
+      get  'families',            to: 'families#index',         as: 'families'
+      post 'families/create',     to: 'families#create',        as: 'create_family'
+      post 'families/:id/delete', to: 'families#destroy',       as: 'delete_family'
       
       # 記事
       get  'articles',            to: 'articles#index',        as: 'articles'

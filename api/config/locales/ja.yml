@@ -195,6 +195,9 @@ ja:
     family_rule:
       update: '家族のルールを更新できました。'
       destroy: '家族のルールをリセットしました。'
+    family:
+      create: '家族情報を登録できました。'
+      destroy: '家族情報を削除できました。'
     emergency_contact:
       create: '緊急連絡先を作成できました。'
       destroy: '緊急連絡先を削除できました。'
@@ -232,6 +235,9 @@ ja:
     family_rule:
       update: '家族ルールの更新に失敗しました。'
       destroy: '家族ルールのリセットに失敗しました。'
+    family:
+      create: '家族情報の登録に失敗しました。'
+      destroy: '家族情報の削除に失敗しました。'
     emergency_contact:
       create: '緊急連絡先の作成に失敗しました。'
       destroy: '緊急連絡先の削除に失敗しました。'
