@@ -1,6 +1,7 @@
 inherit_from: .rubocop_todo.yml
 
 AllCops:
+  TargetRubyVersion: 3.0
   SuggestExtensions: false
   # 除外するディレクトリ（自動生成されたファイル）
   # デフォルト設定にある"vendor/**/*"が無効化されないように記述

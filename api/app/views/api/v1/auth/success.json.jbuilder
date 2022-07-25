@@ -38,6 +38,7 @@ if current_user.present?
     json.is_completed_sns_tasks current_user.prepare_task_profile.sns_tasks.raw == 2097151
     json.is_completed_house_tasks current_user.prepare_task_profile.house_tasks.raw == 134217727
     json.is_completed_family_rules_tasks current_user.is_completed_family_rule_tasks?(current_user)
+    json.is_family_present current_user.families.present?
   end
 end
 

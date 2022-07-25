@@ -95,6 +95,10 @@ module.exports = {
   // 緊急連絡先削除API
   familyDeleteUrl: '/api/v1/families/_id/delete.json',
 
+  // 【備蓄品】
+  // 備蓄品一覧API
+  stocksUrl: '/api/v1/stocks.json',
+
   // 【緊急連絡先】
   // 緊急連絡先一覧API
   emergencyContactsUrl: '/api/v1/emergency_contacts.json',

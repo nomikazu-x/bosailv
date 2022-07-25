@@ -47,6 +47,9 @@ Rails.application.routes.draw do
       get  'families',            to: 'families#index',         as: 'families'
       post 'families/create',     to: 'families#create',        as: 'create_family'
       post 'families/:id/delete', to: 'families#destroy',       as: 'delete_family'
+
+      # 備蓄品
+      get  'stocks',              to: 'stocks#index',           as: 'stocks'
       
       # 記事
       get  'articles',            to: 'articles#index',        as: 'articles'
