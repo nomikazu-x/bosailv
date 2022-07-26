@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2022_07_24_075722) do
   end
 
   create_table "cities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "code", null: false, comment: "市町村コード"
     t.string "name", null: false, comment: "市区町村名"
     t.bigint "prefecture_id", null: false, comment: "都道府県ID"
     t.datetime "created_at", precision: 6, null: false

@@ -37,15 +37,6 @@ env_paths.each do |env_path|
   end
 end
 
-common_table_name = %w(required_point genre)
-common_table_name.each do |table_name|
-  path = Rails.root.join('db', 'seed', "#{table_name}.rb")
-  if File.exist?(path)
-    p "Creating #{table_name}....."
-    require(path)
-  end
-end
-
 # CSV読み込み
 file_path = 'lib/自治体.csv'
 csv_data = CSV.read(file_path)
@@ -55,9 +46,11 @@ prefectures_list = csv_data.map { |row| row[1] }.uniq
 
 # 市区町村データ抽出
 cities_list = csv_data.map do |row|
-    next if row[2] == nil
-    row[1, 2]
-  end.compact
+  next if row[2] == nil
+  p row
+  row[0..2]
+  p row
+end.compact
 
 # 都道府県データ作成
 prefectures_list.each do |prefecture|
@@ -66,8 +59,18 @@ prefectures_list.each do |prefecture|
 end
 
 # 市区町村データ作成
-cities_list.each do |prefecture, city|
+cities_list.each do |code, prefecture, city|
   prefecture = Prefecture.find_by(name: prefecture)
-  prefecture.cities.create(name: city)
-  p "Create: #{city}"
+  prefecture.cities.create(code: code, name: city)
+  p "Create: #{code} #{city}"
+end
+
+
+common_table_name = %w(genre required_point)
+common_table_name.each do |table_name|
+  path = Rails.root.join('db', 'seed', "#{table_name}.rb")
+  if File.exist?(path)
+    p "Creating #{table_name}....."
+    require(path)
+  end
 end
