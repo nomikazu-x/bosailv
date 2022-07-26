@@ -87,6 +87,18 @@ module.exports = {
   // 家族ルールリセットAPI
   familyRuleDeleteUrl: '/api/v1/family_rules/delete.json',
 
+  // 【家族構成】
+  // 家族構成更新API
+  familiesUrl: '/api/v1/families.json',
+  // 家族構成更新API
+  familyCreateUrl: '/api/v1/families/create.json',
+  // 緊急連絡先削除API
+  familyDeleteUrl: '/api/v1/families/_id/delete.json',
+
+  // 【備蓄品】
+  // 備蓄品一覧API
+  stocksUrl: '/api/v1/stocks.json',
+
   // 【緊急連絡先】
   // 緊急連絡先一覧API
   emergencyContactsUrl: '/api/v1/emergency_contacts.json',

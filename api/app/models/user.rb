@@ -72,6 +72,7 @@ class User < ActiveRecord::Base
   has_many :point_records, dependent: :destroy
   has_many :favorited_articles, through: :article_favorites, source: :article
   has_many :emergency_contacts, dependent: :destroy
+  has_many :families, dependent: :destroy
 
   scope :point_ranking, -> { order(lifelong_point: :desc, id: :desc) }
   scope :by_destroy_reserved, -> { where('destroy_schedule_at <= ?', Time.current) }

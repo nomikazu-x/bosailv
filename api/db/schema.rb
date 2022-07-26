@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_23_114703) do
+ActiveRecord::Schema.define(version: 2022_07_24_075722) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
@@ -66,6 +66,15 @@ ActiveRecord::Schema.define(version: 2022_07_23_114703) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_emergency_contacts_on_user_id"
+  end
+
+  create_table "families", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false, comment: "ユーザーID"
+    t.integer "sex", default: 0, null: false, comment: "性別"
+    t.integer "age", default: 0, null: false, comment: "年代"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_families_on_user_id"
   end
 
   create_table "family_rules", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -130,6 +139,47 @@ ActiveRecord::Schema.define(version: 2022_07_23_114703) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "stocks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "sex", default: 0, null: false, comment: "性別"
+    t.integer "age", default: 0, null: false, comment: "年代"
+    t.integer "water", default: 0, comment: "水"
+    t.integer "retort_rice", default: 0, comment: "レトルトご飯"
+    t.integer "retort_food", default: 0, comment: "レトルト食品"
+    t.integer "nutritional_supplement", default: 0, comment: "栄養補助食品"
+    t.integer "confectionery", default: 0, comment: "お菓子"
+    t.integer "canned_fruits", default: 0, comment: "果物の缶詰"
+    t.integer "wet_wipes", default: 0, comment: "ウェットティッシュ"
+    t.integer "alcohol_spray", default: 0, comment: "アルコールスプレー"
+    t.integer "mask", default: 0, comment: "マスク"
+    t.integer "medicine", default: 0, comment: "常備薬"
+    t.integer "wrap", default: 0, comment: "ラップ"
+    t.integer "plastic_bag", default: 0, comment: "ポリ袋"
+    t.integer "aluminum_foil", default: 0, comment: "アルミホイル"
+    t.integer "toilet_paper", default: 0, comment: "トイレットペーパー"
+    t.integer "tissue_paper", default: 0, comment: "ティッシュペーパー"
+    t.integer "flashlight", default: 0, comment: "懐中電灯"
+    t.integer "dry_cell_battery", default: 0, comment: "乾電池"
+    t.integer "lighter", default: 0, comment: "マッチ"
+    t.integer "body_warmer", default: 0, comment: "カイロ"
+    t.integer "contact_lenses", default: 0, comment: "コンタクトレンズ"
+    t.integer "battery_charger", default: 0, comment: "充電器"
+    t.integer "gloves", default: 0, comment: "軍手"
+    t.integer "newspaper", default: 0, comment: "新聞紙"
+    t.integer "radio", default: 0, comment: "ラジオ"
+    t.integer "simple_toilet", default: 0, comment: "簡易トイレ"
+    t.integer "water_supply_bag", default: 0, comment: "給水袋"
+    t.integer "sanitary_item", default: 0, comment: "生理用品"
+    t.integer "milk_powder", default: 0, comment: "粉ミルク"
+    t.integer "diaper", default: 0, comment: "おむつ"
+    t.integer "baby_wipe", default: 0, comment: "お尻ふき"
+    t.integer "baby_bottle", default: 0, comment: "哺乳瓶"
+    t.integer "denture_cleaner", default: 0, comment: "入れ歯洗浄剤"
+    t.integer "prescription_drug", default: 0, comment: "処方箋薬"
+    t.integer "ruck_sack", default: 0, comment: "リュックサック"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "task_completes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
     t.bigint "task_id", null: false, comment: "防災タスクID"
@@ -142,9 +192,9 @@ ActiveRecord::Schema.define(version: 2022_07_23_114703) do
 
   create_table "task_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
-    t.integer "sns_tasks", default: 0, null: false, comment: "SNS関係防災タスク"
-    t.integer "house_tasks", default: 0, null: false, comment: "家庭関係防災タスク"
-    t.boolean "is_completed_stock_task", default: false, null: false, comment: "備蓄防災タスク達成フラグ"
+    t.bigint "sns_tasks", default: 0, null: false, comment: "SNS関係防災タスク"
+    t.bigint "house_tasks", default: 0, null: false, comment: "家庭関係防災タスク"
+    t.bigint "stock_tasks", default: 0, null: false, comment: "備蓄関係防災タスク"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_task_profiles_on_user_id"
@@ -211,6 +261,7 @@ ActiveRecord::Schema.define(version: 2022_07_23_114703) do
   add_foreign_key "articles", "users"
   add_foreign_key "cities", "prefectures"
   add_foreign_key "emergency_contacts", "users"
+  add_foreign_key "families", "users"
   add_foreign_key "family_rules", "users"
   add_foreign_key "infomations", "users"
   add_foreign_key "point_records", "users"

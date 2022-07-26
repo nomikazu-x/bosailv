@@ -1,4 +1,5 @@
 users
 infomations
+stocks
 articles
 article_genre_relations
