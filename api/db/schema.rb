@@ -192,9 +192,9 @@ ActiveRecord::Schema.define(version: 2022_07_24_075722) do
 
   create_table "task_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
-    t.integer "sns_tasks", default: 0, null: false, comment: "SNS関係防災タスク"
-    t.integer "house_tasks", default: 0, null: false, comment: "家庭関係防災タスク"
-    t.integer "stock_tasks", default: 0, null: false, comment: "備蓄関係防災タスク"
+    t.bigint "sns_tasks", default: 0, null: false, comment: "SNS関係防災タスク"
+    t.bigint "house_tasks", default: 0, null: false, comment: "家庭関係防災タスク"
+    t.bigint "stock_tasks", default: 0, null: false, comment: "備蓄関係防災タスク"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_task_profiles_on_user_id"
