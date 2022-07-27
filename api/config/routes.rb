@@ -50,6 +50,9 @@ Rails.application.routes.draw do
 
       # 備蓄品
       get  'stocks',              to: 'stocks#index',           as: 'stocks'
+
+      # ハザードマップ
+      get  'hazard_map',          to: 'hazard_maps#show',       as: 'hazard_map'
       
       # 記事
       get  'articles',            to: 'articles#index',        as: 'articles'

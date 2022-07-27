@@ -99,6 +99,10 @@ module.exports = {
   // 備蓄品一覧API
   stocksUrl: '/api/v1/stocks.json',
 
+  // 【ハザードマップ】
+  // ハザードマップAPI
+  hazardMapUrl: '/api/v1/hazard_map.json',
+
   // 【緊急連絡先】
   // 緊急連絡先一覧API
   emergencyContactsUrl: '/api/v1/emergency_contacts.json',
