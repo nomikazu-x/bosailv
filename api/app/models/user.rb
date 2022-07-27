@@ -37,7 +37,7 @@
 #  username(ユーザーネーム)                                      :string(30)       not null
 #  created_at                                                    :datetime         not null
 #  updated_at                                                    :datetime         not null
-#  city_code(出身市区町村ID)                                       :integer
+#  city_id(出身市区町村ID)                                       :integer
 #  prefecture_id(出身都道府県ID)                                 :integer
 #
 # Indexes

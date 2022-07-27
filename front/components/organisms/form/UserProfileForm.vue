@@ -87,7 +87,7 @@ export default {
     if (this.user.prefecture && this.user.city) {
       this.selectPrefecture = this.user.prefecture.id
       await this.onGetCities(this.selectPrefecture)
-      this.selectCity = this.user.city.code
+      this.selectCity = this.user.city.id
     }
     this.waiting = false
   },

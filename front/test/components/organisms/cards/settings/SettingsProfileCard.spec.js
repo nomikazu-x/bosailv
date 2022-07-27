@@ -100,7 +100,7 @@ describe('SettingsProfileCard.vue', () => {
     expect(axiosPostMock).toBeCalledWith('https://example.com/api/v1/auth/update.json', {
       name: values.name,
       prefecture_id: values.selectPrefecture,
-      city_code: values.selectCity,
+      city_id: values.selectCity,
       profile: values.profile
     })
     expect(authSetUserMock).toBeCalledTimes(setUserCalled)

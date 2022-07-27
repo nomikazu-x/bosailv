@@ -24,9 +24,9 @@ json.user do
       json.name @prefecture.name
     end
   end
-  if @user.city_code.present?
+  if @user.city_id.present?
     json.city do
-      json.code @city.city_code
+      json.id @city.id
       json.name @city.name
     end
   end

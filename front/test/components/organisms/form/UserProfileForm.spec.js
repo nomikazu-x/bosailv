@@ -72,7 +72,7 @@ describe('UserProfileForm.vue', () => {
     expect(wrapper.vm.$data.name).toBe(user.name)
     expect(wrapper.vm.$data.profile).toBe(user.profile)
     expect(wrapper.vm.$data.selectPrefecture).toBe(user.prefecture.id)
-    expect(wrapper.vm.$data.selectCity).toBe(user.city.code)
+    expect(wrapper.vm.$data.selectCity).toBe(user.city.id)
   }
 
   const commonApiCalledTest = (values) => {
@@ -94,7 +94,7 @@ describe('UserProfileForm.vue', () => {
   }
 
   describe('表示される', () => {
-    const user = Object.freeze({ name: 'user_name', profile: 'user_profile', prefecture: { id: 1, name: 'prefecture' }, city: { code: 1, name: 'city' } })
+    const user = Object.freeze({ name: 'user_name', profile: 'user_profile', prefecture: { id: 1, name: 'prefecture' }, city: { id: 1, name: 'city' } })
     const values = Object.freeze({ selectPrefecture: 1 })
     const data = Object.freeze([{ id: 1, name: 'city1' }, { id: 2, name: 'city2' }])
     it('[無効]ボタンを押せない', async () => {

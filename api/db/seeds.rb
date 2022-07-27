@@ -1,24 +1,6 @@
 require 'csv'
 
 # CSV読み込み
-file_path = 'lib/hazard_map.csv'
-csv_data = CSV.read(file_path)
-
-csv_data.map do |row|
-  HazardMap.create(
-    city_code: row[0],
-    tsunami: row[1],
-    flood: row[2],
-    landslide: row[3],
-    inland_flood: row[4],
-    storm_surge: row[5],
-    volcano: row[6],
-    reservoir: row[7],
-  )
-  p row[0]
-end
-
-# CSV読み込み
 file_path = 'lib/自治体.csv'
 csv_data = CSV.read(file_path)
 
@@ -38,10 +20,10 @@ prefectures_list.each do |prefecture|
 end
 
 # 市区町村データ作成
-cities_list.each do |code, prefecture, city|
+cities_list.each do |id, prefecture, city|
   prefecture = Prefecture.find_by(name: prefecture)
-  prefecture.cities.create(city_code: code, name: city)
-  p "Create: #{code} #{city}"
+  prefecture.cities.create(id: id, name: city)
+  p "Create: #{id} #{city}"
 end
 
 common_table_name = %w(genre required_point)
@@ -51,6 +33,24 @@ common_table_name.each do |table_name|
     p "Creating #{table_name}....."
     require(path)
   end
+end
+
+# CSV読み込み
+file_path = 'lib/hazard_map.csv'
+csv_data = CSV.read(file_path)
+
+csv_data.map do |row|
+  HazardMap.create!(
+    city_id: row[0],
+    tsunami: row[1],
+    flood: row[2],
+    landslide: row[3],
+    inland_flood: row[4],
+    storm_surge: row[5],
+    volcano: row[6],
+    reservoir: row[7],
+  )
+  p row[0]
 end
 
 

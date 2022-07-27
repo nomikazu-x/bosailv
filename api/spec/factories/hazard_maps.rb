@@ -2,8 +2,7 @@
 #
 # Table name: hazard_maps
 #
-#  id                                      :bigint           not null
-#  city_code(市町村コード)                 :bigint           not null, primary key
+#  id                                      :bigint           not null, primary key
 #  flood(洪水ハザードマップURL)            :text(65535)
 #  inland_flood(内水氾濫ハザードマップURL) :text(65535)
 #  landslide(土砂災害ハザードマップURL)    :text(65535)
@@ -13,14 +12,15 @@
 #  volcano(火山ハザードマップURL)          :text(65535)
 #  created_at                              :datetime         not null
 #  updated_at                              :datetime         not null
+#  city_id(市町村ID)                       :bigint           not null
 #
 # Indexes
 #
-#  fk_rails_9f2602e932  (city_code)
+#  index_hazard_maps_on_city_id  (city_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (city_code => cities.city_code)
+#  fk_rails_...  (city_id => cities.id)
 #
 FactoryBot.define do
   factory :hazard_map do

@@ -2,7 +2,7 @@
 #
 # Table name: cities
 #
-#  city_code(市町村コード)   :bigint           not null, primary key
+#  id                        :bigint           not null, primary key
 #  name(市区町村名)          :string(255)      not null
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
@@ -19,9 +19,8 @@
 class City < ApplicationRecord
   belongs_to :prefecture
 
-  has_one :hazard_map, primary_key: :city_code
+  has_one :hazard_map
 
-  validates :city_code, presence: true
   validates :name, presence: true
   validates :prefecture_id, presence: true
 end
