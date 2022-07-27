@@ -1,5 +1,23 @@
 require 'csv'
 
+# CSV読み込み
+file_path = 'lib/hazard_map.csv'
+csv_data = CSV.read(file_path)
+
+csv_data.map do |row|
+  HazardMap.create(
+    code: row[0],
+    tsunami: row[1],
+    flood: row[2],
+    landslide: row[3],
+    inland_flood: row[4],
+    storm_surge: row[5],
+    volcano: row[6],
+    reservoir: row[7],
+  )
+  p row[0]
+end
+
 env_paths = ['', "#{Rails.env}/"]
 env_paths.each do |env_path|
   list_file = "#{Rails.root}/db/seed/#{env_path}_list.txt"
@@ -47,9 +65,7 @@ prefectures_list = csv_data.map { |row| row[1] }.uniq
 # 市区町村データ抽出
 cities_list = csv_data.map do |row|
   next if row[2] == nil
-  p row
   row[0..2]
-  p row
 end.compact
 
 # 都道府県データ作成

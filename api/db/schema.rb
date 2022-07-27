@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_24_075722) do
+ActiveRecord::Schema.define(version: 2022_07_27_004754) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
@@ -93,6 +93,19 @@ ActiveRecord::Schema.define(version: 2022_07_24_075722) do
   create_table "genres", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", limit: 10, null: false, comment: "ジャンル名"
     t.text "image", null: false, comment: "画像"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "hazard_maps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "code", null: false, comment: "市町村コード"
+    t.text "tsunami", comment: "津波ハザードマップURL"
+    t.text "flood", comment: "洪水ハザードマップURL"
+    t.text "landslide", comment: "土砂災害ハザードマップURL"
+    t.text "inland_flood", comment: "内水氾濫ハザードマップURL"
+    t.text "storm_surge", comment: "高潮ハザードマップURL"
+    t.text "volcano", comment: "火山ハザードマップURL"
+    t.text "reservoir", comment: "ため池ハザードマップURL"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
