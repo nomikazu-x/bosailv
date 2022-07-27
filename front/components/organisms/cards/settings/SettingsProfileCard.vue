@@ -68,7 +68,7 @@ export default {
       await this.$axios.post(this.$config.apiBaseURL + this.$config.userUpdateUrl, {
         name: userInfo.name,
         prefecture_id: userInfo.selectPrefecture,
-        city_id: userInfo.selectCity,
+        city_code: userInfo.selectCity,
         profile: userInfo.profile
       })
         .then((response) => {

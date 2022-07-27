@@ -51,8 +51,7 @@ ActiveRecord::Schema.define(version: 2022_07_27_004754) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
-  create_table "cities", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "code", null: false, comment: "市町村コード"
+  create_table "cities", primary_key: "city_code", id: { comment: "市町村コード" }, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false, comment: "市区町村名"
     t.bigint "prefecture_id", null: false, comment: "都道府県ID"
     t.datetime "created_at", precision: 6, null: false
@@ -98,7 +97,7 @@ ActiveRecord::Schema.define(version: 2022_07_27_004754) do
   end
 
   create_table "hazard_maps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "code", null: false, comment: "市町村コード"
+    t.bigint "city_code", null: false, comment: "市町村コード"
     t.text "tsunami", comment: "津波ハザードマップURL"
     t.text "flood", comment: "洪水ハザードマップURL"
     t.text "landslide", comment: "土砂災害ハザードマップURL"
@@ -108,6 +107,7 @@ ActiveRecord::Schema.define(version: 2022_07_27_004754) do
     t.text "reservoir", comment: "ため池ハザードマップURL"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_code"], name: "fk_rails_9f2602e932"
   end
 
   create_table "infomations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -256,8 +256,8 @@ ActiveRecord::Schema.define(version: 2022_07_27_004754) do
     t.string "username", limit: 30, null: false, comment: "ユーザーネーム"
     t.text "profile", size: :tiny, comment: "自己紹介文"
     t.integer "prefecture_id", comment: "出身都道府県ID"
-    t.integer "city_id", comment: "出身市区町村ID"
-    t.boolean "admin", default: false, null: false, comment: "管理者フラグ"
+    t.bigint "city_code", comment: "出身市区町村ID"
+    t.boolean "is_admin", default: false, null: false, comment: "管理者フラグ"
     t.datetime "destroy_schedule_at", comment: "削除予定日時"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -277,6 +277,7 @@ ActiveRecord::Schema.define(version: 2022_07_27_004754) do
   add_foreign_key "emergency_contacts", "users"
   add_foreign_key "families", "users"
   add_foreign_key "family_rules", "users"
+  add_foreign_key "hazard_maps", "cities", column: "city_code", primary_key: "city_code"
   add_foreign_key "infomations", "users"
   add_foreign_key "point_records", "users"
   add_foreign_key "task_completes", "tasks"

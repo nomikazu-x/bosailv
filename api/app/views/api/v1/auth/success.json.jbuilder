@@ -17,16 +17,16 @@ if current_user.present?
     json.username current_user.username
     json.level current_user.level
     json.lifelong_point current_user.lifelong_point
-    json.admin current_user.admin?
+    json.admin current_user.is_admin?
     if current_user.prefecture_id.present?
       json.prefecture do
         json.id @prefecture.id
         json.name @prefecture.name
       end
     end
-    if current_user.city_id.present?
+    if current_user.city_code.present?
       json.city do
-        json.id @city.id
+        json.code @city.city_code
         json.name @city.name
       end
     end

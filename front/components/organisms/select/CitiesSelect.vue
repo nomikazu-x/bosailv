@@ -10,7 +10,7 @@
           :error-messages="errors"
           :items="cities"
           item-text="name"
-          item-value="id"
+          item-value="city_code"
           @click="onClick"
         />
       </ValidationProvider>

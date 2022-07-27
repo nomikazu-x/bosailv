@@ -14,7 +14,7 @@ class Api::V1::UsersController < Api::V1::ApplicationController
 
     if @user.present? && @user.prefecture_id.present?
       @prefecture = Prefecture.find(@user.prefecture_id)
-      @city = City.find(@user.city_id)
+      @city = City.find(@user.city_code)
     end
 
     if @user

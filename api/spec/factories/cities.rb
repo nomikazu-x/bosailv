@@ -2,7 +2,7 @@
 #
 # Table name: cities
 #
-#  id                        :bigint           not null, primary key
+#  city_code(市町村コード)   :bigint           not null, primary key
 #  name(市区町村名)          :string(255)      not null
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
@@ -18,7 +18,8 @@
 #
 FactoryBot.define do
   factory :city do
-    name {  Faker::Lorem.characters(number: 10) }
+    city_code { 1111 }
+    name { Faker::Lorem.characters(number: 10) }
     association :prefecture
   end
 end

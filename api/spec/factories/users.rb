@@ -35,7 +35,7 @@
 #  username(ユーザーネーム)                                      :string(30)       not null
 #  created_at                                                    :datetime         not null
 #  updated_at                                                    :datetime         not null
-#  city_id(出身市区町村ID)                                       :integer
+#  city_code(出身市区町村ID)                                       :integer
 #  prefecture_id(出身都道府県ID)                                 :integer
 #
 # Indexes
@@ -77,6 +77,6 @@ FactoryBot.define do
     sequence(:username) { |n| Faker::Internet.user_name(specifier: 'Nancy') + "_#{n}" }
     password { Faker::Internet.password(min_length: 8) }
     confirmed_at { Time.now - 100 }
-    admin { true }
+    is_admin { true }
   end
 end

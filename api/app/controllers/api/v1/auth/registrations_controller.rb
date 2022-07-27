@@ -41,13 +41,13 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   end
 
   def account_update_params
-    params.permit(:name, :image, :email, :password, :profile, :username, :prefecture_id, :city_id)
+    params.permit(:name, :image, :email, :password, :profile, :username, :prefecture_id, :city_code)
   end
 
   def render_create_success
     @required_point = RequiredPoint.find_by(level: current_user.level).point
     @prefecture = Prefecture.find(current_user.prefecture_id) if current_user.prefecture_id.present?
-    @city = City.find(current_user.city_id) if current_user.prefecture_id.present?
+    @city = City.find(current_user.city_code) if current_user.prefecture_id.present?
     render './api/v1/auth/success', locals: { notice: I18n.t('devise.registrations.signed_up') }
   end
 
@@ -58,7 +58,7 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   def render_update_success
     @required_point = RequiredPoint.find_by(level: current_user.level).point
     @prefecture = Prefecture.find(current_user.prefecture_id) if current_user.prefecture_id.present?
-    @city = City.find(current_user.city_id) if current_user.prefecture_id.present?
+    @city = City.find(current_user.city_code) if current_user.prefecture_id.present?
     update_auth_header
 
     render './api/v1/auth/success', locals: { notice: I18n.t('devise.registrations.updated') }
