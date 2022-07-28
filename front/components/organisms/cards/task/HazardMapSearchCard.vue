@@ -10,7 +10,7 @@
               @change="onGetCities"
             />
           </v-col>
-          <v-col cols="12">
+          <v-col v-if="cities.length > 0" cols="12">
             <CitiesSelect
               v-model="selectCity"
               :cities="cities"
@@ -19,21 +19,13 @@
           </v-col>
           <v-col cols="12">
             <div class="text-center">
-              <RedBtn @click="onSearchHazardMap">検索</RedBtn>
+              <RedBtn :disabled="waiting" @click="onSearchHazardMap">検索</RedBtn>
             </div>
           </v-col>
         </v-row>
-        <!-- <v-row justify="center">
-          <v-col cols="12">
-            <ArticleListCardWithTab
-              :articles="articles"
-              :info="info"
-              :processing="processing"
-              @pagination="onSearchArticlePagination"
-            />
-          </v-col>
-        </v-row> -->
       </BaseTitleCard>
+
+      <HazardMapSearchCardText v-if="hazardMap !== null" :hazard-map="hazardMap" />
     </v-col>
   </v-row>
 </template>
@@ -43,6 +35,7 @@ import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
 import CitiesSelect from '~/components/organisms/select/CitiesSelect.vue'
+import HazardMapSearchCardText from '~/components/organisms/cardText/HazardMapSearchCardText.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
@@ -52,6 +45,7 @@ export default {
     BaseTitleCard,
     PrefecturesSelect,
     CitiesSelect,
+    HazardMapSearchCardText,
     RedBtn
   },
 
@@ -69,11 +63,14 @@ export default {
 
   created () {
     this.processing = false
+    this.waiting = true
   },
 
   methods: {
     async onSearchHazardMap () {
       this.processing = true
+
+      this.hazardMap = null
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.hazardMapUrl, {
         params: { id: this.selectCity }
