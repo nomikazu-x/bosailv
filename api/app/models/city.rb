@@ -19,6 +19,8 @@
 class City < ApplicationRecord
   belongs_to :prefecture
 
+  has_one :hazard_map
+
   validates :name, presence: true
   validates :prefecture_id, presence: true
 end

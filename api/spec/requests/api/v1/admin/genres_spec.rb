@@ -58,7 +58,7 @@ RSpec.describe Api::V1::Admin::GenresController, type: :request do
     end
 
     context '管理者ユーザー以外のユーザーでログインしている場合' do
-      before { user.update(admin: false) }
+      before { user.update(is_admin: false) }
 
       it 'アクセス権限がないと言われる' do
         call_api
@@ -124,7 +124,7 @@ RSpec.describe Api::V1::Admin::GenresController, type: :request do
     end
 
     context '管理者ユーザー以外のユーザーでログインしている場合' do
-      before { user.update(admin: false) }
+      before { user.update(is_admin: false) }
 
       it 'アクセス権限がないと言われる' do
         call_api
@@ -164,7 +164,7 @@ RSpec.describe Api::V1::Admin::GenresController, type: :request do
     end
 
     context '管理者ユーザー以外のユーザーでログインしている場合' do
-      before { user.update(admin: false) }
+      before { user.update(is_admin: false) }
 
       it 'アクセス権限がないと言われる' do
         call_api

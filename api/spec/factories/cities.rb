@@ -18,7 +18,7 @@
 #
 FactoryBot.define do
   factory :city do
-    name {  Faker::Lorem.characters(number: 10) }
+    name { Faker::Lorem.characters(number: 10) }
     association :prefecture
   end
 end

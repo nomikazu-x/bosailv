@@ -107,7 +107,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   end
 
   def correct_user?
-    return if current_user == @article.user || current_user.admin?
+    return if current_user == @article.user || current_user.is_admin?
 
     render './api/v1/failure', locals: { alert: I18n.t('errors.messages.not_permission') }, status: :unauthorized
   end
