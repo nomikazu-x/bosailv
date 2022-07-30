@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_27_004754) do
+ActiveRecord::Schema.define(version: 2022_07_28_145957) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
@@ -153,6 +153,28 @@ ActiveRecord::Schema.define(version: 2022_07_27_004754) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "shelters", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "city_id", null: false, comment: "市町村ID"
+    t.string "city_name", null: false, comment: "市町村名"
+    t.string "name", null: false, comment: "施設・場所名"
+    t.string "address", null: false, comment: "住所"
+    t.boolean "flood", default: false, null: false, comment: "洪水"
+    t.boolean "landslide", default: false, null: false, comment: "土砂"
+    t.boolean "storm_surge", default: false, null: false, comment: "高潮"
+    t.boolean "earthquake", default: false, null: false, comment: "地震"
+    t.boolean "tsunami", default: false, null: false, comment: "津波"
+    t.boolean "fire", default: false, null: false, comment: "火事"
+    t.boolean "inland_flood", default: false, null: false, comment: "内水氾濫"
+    t.boolean "volcano", default: false, null: false, comment: "火山"
+    t.boolean "duplicate", default: false, null: false, comment: "指定避難所との重複"
+    t.decimal "latitude", precision: 14, scale: 12, null: false, comment: "緯度"
+    t.decimal "longitude", precision: 15, scale: 12, null: false, comment: "経度"
+    t.string "remark", comment: "備考"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_id"], name: "index_shelters_on_city_id"
+  end
+
   create_table "stocks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "sex", default: 0, null: false, comment: "性別"
     t.integer "age", default: 0, null: false, comment: "年代"
@@ -280,6 +302,7 @@ ActiveRecord::Schema.define(version: 2022_07_27_004754) do
   add_foreign_key "hazard_maps", "cities"
   add_foreign_key "infomations", "users"
   add_foreign_key "point_records", "users"
+  add_foreign_key "shelters", "cities"
   add_foreign_key "task_completes", "tasks"
   add_foreign_key "task_completes", "users"
   add_foreign_key "task_profiles", "users"

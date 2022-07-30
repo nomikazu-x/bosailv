@@ -19,7 +19,8 @@
 class City < ApplicationRecord
   belongs_to :prefecture
 
-  has_one :hazard_map
+  has_one :hazard_map, dependent: :destroy
+  has_many :shelters, dependent: :destroy
 
   validates :name, presence: true
   validates :prefecture_id, presence: true
