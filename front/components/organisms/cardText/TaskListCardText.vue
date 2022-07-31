@@ -1,7 +1,7 @@
 <template>
   <v-card :to="to" outlined class="mb-3 rounded-lg">
     <v-row class="black--text" no-gutters>
-      <v-col v-if="task.is_completed" cols="1">
+      <v-col v-if="$auth.loggedIn && task.is_completed" cols="1">
         <v-sheet height="132" color="red" class="rounded-l-lg" />
       </v-col>
       <v-col v-else cols="1">
