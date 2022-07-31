@@ -103,6 +103,12 @@ module.exports = {
   // ハザードマップAPI
   hazardMapUrl: '/api/v1/hazard_map.json',
 
+  // 【避難所】
+  // 避難所一覧API
+  sheltersUrl: '/api/v1/shelters.json',
+  // 避難所詳細API
+  shelterShowUrl: '/api/v1/shelters/_id.json',
+
   // 【緊急連絡先】
   // 緊急連絡先一覧API
   emergencyContactsUrl: '/api/v1/emergency_contacts.json',

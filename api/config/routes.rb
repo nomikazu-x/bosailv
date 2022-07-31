@@ -53,6 +53,10 @@ Rails.application.routes.draw do
 
       # ハザードマップ
       get  'hazard_map',          to: 'hazard_maps#show',       as: 'hazard_map'
+
+      # 避難所
+      get  'shelters',              to: 'shelters#index',   as: 'shelters'
+      get  'shelters/:id',          to: 'shelters#show',    as: 'show_shelter'
       
       # 記事
       get  'articles',            to: 'articles#index',        as: 'articles'
