@@ -177,5 +177,8 @@ module.exports = {
   // 防災タスク完了API
   completeCreateUrl: '/api/v1/tasks/_id/task_completes/create.json',
   // 防災タスク未完了API
-  completeDeleteUrl: '/api/v1/tasks/_id/task_completes/delete.json'
+  completeDeleteUrl: '/api/v1/tasks/_id/task_completes/delete.json',
+
+  // 【Maps JavaScript API】
+  googleMapApi: process.env.GOOGLE_API_KEY
 }
