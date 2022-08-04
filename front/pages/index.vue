@@ -12,6 +12,7 @@
     </template>
 
     <template v-if="!loading" #left>
+      <SheltersMap />
       <TopTransitionCard />
       <TaskListCard />
       <NewArticleListCard />
@@ -30,6 +31,7 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import TopSlide from '~/components/organisms/slide/TopSlide.vue'
+import SheltersMap from '~/components/organisms/maps/SheltersMap.vue'
 import TopTransitionCard from '~/components/organisms/cards/TopTransitionCard.vue'
 import TaskListCard from '~/components/organisms/cards/task/TaskListCard.vue'
 import NewArticleListCard from '~/components/organisms/cards/article/NewArticleListCard.vue'
@@ -44,6 +46,7 @@ export default {
     TheLoading,
     TheMessage,
     TopSlide,
+    SheltersMap,
     TopTransitionCard,
     TaskListCard,
     NewArticleListCard,

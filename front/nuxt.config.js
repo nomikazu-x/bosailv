@@ -46,7 +46,8 @@ export default {
   plugins: [
     'plugins/axios',
     'plugins/utils',
-    { src: 'plugins/vue-quill-editor', mode: 'client' }
+    { src: '~/plugins/vue-quill-editor', mode: 'client' },
+    { src: '~/plugins/vue2-google-maps.js' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -154,6 +155,7 @@ export default {
       plugins: [
         ['@babel/plugin-proposal-private-methods', { loose: true }]
       ]
-    }
+    },
+    transpile: [/^vue2-google-maps($|\/)/]
   }
 }

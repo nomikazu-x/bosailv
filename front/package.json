@@ -25,7 +25,8 @@
     "nuxt": "^2.15.3",
     "vee-validate": "^3.4.13",
     "vue-flatpickr-component": "^8",
-    "vue-quill-editor": "^3.0.6"
+    "vue-quill-editor": "^3.0.6",
+    "vue2-google-maps": "^0.10.7"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.6",
