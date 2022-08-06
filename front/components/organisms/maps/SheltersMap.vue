@@ -51,7 +51,6 @@ export default {
       infoWindowPos: null,
       infoWinOpen: false,
       currentMidx: null,
-      selectMarkerText: '',
       infoOptions: {
         minWidth: 200,
         pixelOffset: {
