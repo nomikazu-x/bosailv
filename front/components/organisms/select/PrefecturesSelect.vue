@@ -4,7 +4,7 @@
       <ValidationProvider v-slot="{ errors }" name="prefecture" rules="required">
         <v-select
           v-model="valueModel"
-          label="出身都道府県"
+          label="都道府県"
           outlined
           :value="value"
           :error-messages="errors"

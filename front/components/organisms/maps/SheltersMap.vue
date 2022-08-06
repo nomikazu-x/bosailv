@@ -1,9 +1,9 @@
 <template>
-  <v-card outlined tile class="mt-4 py-2">
+  <v-card v-if="shelters !== null" outlined tile class="mt-4 py-2">
     <GmapMap
       map-type-id="roadmap"
-      :center="center"
-      :zoom="15"
+      :center="centerInfo(shelters)"
+      :zoom="14"
       :options="{
         zoomControl: true,
         mapTypeControl: false,
@@ -47,7 +47,7 @@ export default {
 
   data () {
     return {
-      center: { lat: 34.7054595, lng: 137.6852776 },
+      selectedShelter: {},
       infoWindowPos: null,
       infoWinOpen: false,
       currentMidx: null,
@@ -58,10 +58,10 @@ export default {
           width: 0,
           height: -35
         }
-      },
-      selectedShelter: {}
+      }
     }
   },
+
   methods: {
     toggleInfoWindow (shelter, idx) {
       this.infoWindowPos = { lat: parseFloat(shelter.latitude), lng: parseFloat(shelter.longitude) }
@@ -72,6 +72,10 @@ export default {
         this.infoWinOpen = true
         this.currentMidx = idx
       }
+    },
+
+    centerInfo (shelters) {
+      return { lat: parseFloat(shelters[0].latitude), lng: parseFloat(shelters[0].longitude) }
     }
   }
 }

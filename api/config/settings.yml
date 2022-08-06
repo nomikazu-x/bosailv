@@ -24,3 +24,7 @@ task_complete_obtained_point: 5
 default_users_limit: 20
 # ゲストアカウント削除の猶予期間（単位：日）
 destroy_schedule_days: 1
+
+## 避難所
+# 一覧のデフォルト最大表示件数
+default_shelters_limit: 25

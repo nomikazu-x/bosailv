@@ -4,7 +4,7 @@
       <ValidationProvider v-slot="{ errors }" name="city" rules="required">
         <v-select
           v-model="valueModel"
-          label="出身市町村"
+          label="市町村"
           outlined
           :value="value"
           :error-messages="errors"

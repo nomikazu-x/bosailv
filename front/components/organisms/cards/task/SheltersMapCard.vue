@@ -25,7 +25,18 @@
         </v-row>
       </BaseTitleCard>
 
-      <SheltersMap v-if="shelters !== null" :shelters="shelters" />
+      <SheltersMap
+        v-if="shelters !== null"
+        :shelters="shelters"
+      />
+
+      <SheltersListCard
+        v-if="shelters !== null"
+        :shelters="shelters"
+        :info="info"
+        :processing="processing"
+        @pagination="onSearchShelters"
+      />
     </v-col>
   </v-row>
 </template>
@@ -36,6 +47,7 @@ import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
 import CitiesSelect from '~/components/organisms/select/CitiesSelect.vue'
 import SheltersMap from '~/components/organisms/maps/SheltersMap.vue'
+import SheltersListCard from '~/components/organisms/cards/shelter/SheltersListCard.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
@@ -46,6 +58,7 @@ export default {
     PrefecturesSelect,
     CitiesSelect,
     SheltersMap,
+    SheltersListCard,
     RedBtn
   },
 
@@ -53,6 +66,8 @@ export default {
 
   data () {
     return {
+      page: 1,
+      info: null,
       shelters: null,
       cities: [],
       selectPrefecture: null,
@@ -67,26 +82,31 @@ export default {
   },
 
   methods: {
-    async onSearchShelters () {
+    async onSearchShelters (page) {
       this.processing = true
 
-      this.shelters = null
-
       await this.$axios.get(this.$config.apiBaseURL + this.$config.sheltersUrl, {
-        params: { id: this.selectCity }
+        params: { id: this.selectCity, page }
       })
         .then((response) => {
           if (response.data == null || response.data.shelters == null) {
             this.$toasted.error(this.$t('system.error'))
-            return this.$router.push({ path: '/' })
+            if (this.info == null) {
+              return this.$router.push({ path: '/' })
+            }
+            this.page = this.info.current_page
           } else {
+            this.info = response.data.shelter
             this.shelters = response.data.shelters
             this.waiting = true
           }
         },
         (error) => {
           this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
-          return this.$router.push({ path: '/' })
+          if (this.info == null) {
+            return this.$router.push({ path: '/' })
+          }
+          this.page = this.info.current_page
         })
 
       this.processing = false

@@ -1,5 +1,12 @@
 json.success true
 
+json.shelter do
+  json.total_count @shelters.total_count
+  json.current_page @shelters.current_page
+  json.total_pages @shelters.total_pages
+  json.limit_value @shelters.limit_value
+end
+
 json.shelters do
   json.array! @shelters do |shelter|
     json.id shelter.id
