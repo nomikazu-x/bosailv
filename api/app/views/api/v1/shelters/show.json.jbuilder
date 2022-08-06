@@ -16,4 +16,5 @@ json.shelter do
   json.latitude @shelter.latitude
   json.longitude @shelter.longitude
   json.remark @shelter.remark
+  json.is_registered current_user&.shelter_registerd?(@shelter)
 end

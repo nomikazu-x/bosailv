@@ -156,7 +156,7 @@ class User < ActiveRecord::Base
   end
 
   # 避難所を登録しているか
-  def shelter_registration?(shelter)
+  def shelter_registerd?(shelter)
     shelter_registrations.exists?(shelter_id: shelter.id)
   end
 

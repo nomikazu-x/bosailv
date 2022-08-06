@@ -13,6 +13,9 @@
             住所：{{ shelter.address }}
           </v-card-text>
         </v-col>
+        <div class="text-center mb-5">
+          <ShelterRegistrationBtnGroup v-if="$auth.loggedIn" :shelter="shelter" />
+        </div>
       </v-card>
     </v-col>
   </v-row>
@@ -20,12 +23,14 @@
 
 <script>
 import ShelterDetailMap from '~/components/organisms/maps/ShelterDetailsMap.vue'
+import ShelterRegistrationBtnGroup from '~/components/organisms/btnGroup/ShelterRegistrationBtnGroup.vue'
 
 export default {
   name: 'ShelterDetailCard',
 
   components: {
-    ShelterDetailMap
+    ShelterDetailMap,
+    ShelterRegistrationBtnGroup
   },
 
   data () {

@@ -5,7 +5,7 @@ class Api::V1::ShelterRegistrationsController < Api::V1::ApplicationController
   def create
     shelter = Shelter.find(params[:id])
 
-    if task
+    if shelter
       ActiveRecord::Base.transaction do
         current_user.shelter_registration!(shelter)
         # ポイント獲得
@@ -23,9 +23,9 @@ class Api::V1::ShelterRegistrationsController < Api::V1::ApplicationController
   def destroy
     shelter = Shelter.find(params[:id])
 
-    if task
+    if shelter
       ActiveRecord::Base.transaction do
-        current_user.shelter_registration!(shelter)
+        current_user.shelter_unregistration!(shelter)
         # ポイントを減らす
         PointRecorder.new(current_user).delete_record(Settings['shelter_registration_obtained_point'])
         @required_point = RequiredPoint.find_by(level: current_user.level)
