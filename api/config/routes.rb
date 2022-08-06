@@ -60,7 +60,7 @@ Rails.application.routes.draw do
 
       # 避難所登録
       post 'shelters/:id/shelter_registrations/create', to: 'shelter_registrations#create',    as: 'registration_shelter'
-      post 'shelters/:id/shelter_registrations/delete', to: 'shelter_registrations#destroy',   as: 'registration_shelter'
+      post 'shelters/:id/shelter_registrations/delete', to: 'shelter_registrations#destroy',   as: 'unregistration_shelter'
       
       # 記事
       get  'articles',            to: 'articles#index',        as: 'articles'

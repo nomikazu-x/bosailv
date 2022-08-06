@@ -109,6 +109,12 @@ module.exports = {
   // 避難所詳細API
   shelterShowUrl: '/api/v1/shelters/_id.json',
 
+  // 【避難所登録】
+  // 避難所登録API
+  shelterRegistrationCreateUrl: '/api/v1/shelters/_id/shelter_registrations/create.json',
+  // 避難所登録解除API
+  shelterRegistrationDeleteUrl: '/api/v1/shelters/_id/shelter_registrations/delete.json',
+
   // 【緊急連絡先】
   // 緊急連絡先一覧API
   emergencyContactsUrl: '/api/v1/emergency_contacts.json',
