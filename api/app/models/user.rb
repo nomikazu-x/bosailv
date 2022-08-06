@@ -73,6 +73,7 @@ class User < ActiveRecord::Base
   has_many :favorited_articles, through: :article_favorites, source: :article
   has_many :emergency_contacts, dependent: :destroy
   has_many :families, dependent: :destroy
+  has_many :shelter_registrations, dependent: :destroy
 
   scope :point_ranking, -> { order(lifelong_point: :desc, id: :desc) }
   scope :by_destroy_reserved, -> { where('destroy_schedule_at <= ?', Time.current) }
@@ -140,6 +141,23 @@ class User < ActiveRecord::Base
   # 防災タスクを完了しているか
   def task_complete?(task)
     task_completes.exists?(task_id: task.id)
+  end
+
+  # 避難所を登録する
+  def shelter_registration!(shelter)
+    shelter_registrations.create!(shelter_id: shelter.id)
+  end
+
+  # 避難所の登録のを解除する
+  def shelter_unregistration!(shelter)
+    shelter_registration = shelter_registrations.find_by!(shelter_id: shelter.id)
+
+    shelter_registration.destroy
+  end
+
+  # 避難所を登録しているか
+  def shelter_registerd?(shelter)
+    shelter_registrations.exists?(shelter_id: shelter.id)
   end
 
   # 防災タスクプロフィールデータがあれば、データを返し、なければbuildする

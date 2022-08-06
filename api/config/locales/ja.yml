@@ -201,6 +201,9 @@ ja:
     emergency_contact:
       create: '緊急連絡先を作成できました。'
       destroy: '緊急連絡先を削除できました。'
+    shelter_registration:
+      create: 'マイ避難所に登録しました。'
+      destroy: 'マイ避難所登録を解除しました。'
   alert:
     user:
       task_update: 'タスクの達成に失敗しました。'
@@ -241,6 +244,9 @@ ja:
     emergency_contact:
       create: '緊急連絡先の作成に失敗しました。'
       destroy: '緊急連絡先の削除に失敗しました。'
+    shelter_registration:
+      create: 'マイ避難所の登録を失敗しました。'
+      destroy: 'マイ避難所登録の解除に失敗しました。'
     
   errors:
     messages:

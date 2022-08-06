@@ -103,6 +103,18 @@ module.exports = {
   // ハザードマップAPI
   hazardMapUrl: '/api/v1/hazard_map.json',
 
+  // 【避難所】
+  // 避難所一覧API
+  sheltersUrl: '/api/v1/shelters.json',
+  // 避難所詳細API
+  shelterShowUrl: '/api/v1/shelters/_id.json',
+
+  // 【避難所登録】
+  // 避難所登録API
+  shelterRegistrationCreateUrl: '/api/v1/shelters/_id/shelter_registrations/create.json',
+  // 避難所登録解除API
+  shelterRegistrationDeleteUrl: '/api/v1/shelters/_id/shelter_registrations/delete.json',
+
   // 【緊急連絡先】
   // 緊急連絡先一覧API
   emergencyContactsUrl: '/api/v1/emergency_contacts.json',
@@ -171,5 +183,8 @@ module.exports = {
   // 防災タスク完了API
   completeCreateUrl: '/api/v1/tasks/_id/task_completes/create.json',
   // 防災タスク未完了API
-  completeDeleteUrl: '/api/v1/tasks/_id/task_completes/delete.json'
+  completeDeleteUrl: '/api/v1/tasks/_id/task_completes/delete.json',
+
+  // 【Maps JavaScript API】
+  googleMapApi: process.env.GOOGLE_API_KEY
 }
