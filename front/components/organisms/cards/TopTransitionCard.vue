@@ -3,8 +3,8 @@
     <v-card class="py-9 px-5" height="100">
       <v-row justify="space-around">
         <BaseBtn to="/genres">ジャンル別</BaseBtn>
-        <BaseBtn>避難所</BaseBtn>
-        <BaseBtn>ハザードマップ</BaseBtn>
+        <BaseBtn to="/shelters">避難所</BaseBtn>
+        <BaseBtn to="/hazard_maps">ハザードマップ</BaseBtn>
         <BaseBtn>おすすめ</BaseBtn>
       </v-row>
     </v-card>
