@@ -32,4 +32,6 @@
 #
 class Shelter < ApplicationRecord
   belongs_to :city
+
+  has_many :shelter_registrations, dependent: :destroy
 end
