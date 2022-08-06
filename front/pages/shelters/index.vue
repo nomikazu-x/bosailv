@@ -8,14 +8,10 @@
     <template #top>
       <TheLoading v-if="loading" />
       <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
-      <TopSlide v-if="!loading" />
     </template>
 
     <template v-if="!loading" #left>
-      <TopTransitionCard />
-      <TaskListCard />
-      <NewArticleListCard />
-      <GenreImageListCardWithTitle />
+      <SheltersMapCard />
     </template>
 
     <template v-if="!loading" #right>
@@ -29,25 +25,17 @@ import Application from '~/plugins/application.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
-import TopSlide from '~/components/organisms/slide/TopSlide.vue'
-import TopTransitionCard from '~/components/organisms/cards/TopTransitionCard.vue'
-import TaskListCard from '~/components/organisms/cards/task/TaskListCard.vue'
-import NewArticleListCard from '~/components/organisms/cards/article/NewArticleListCard.vue'
-import GenreImageListCardWithTitle from '~/components/organisms/cards/genre/GenreImageListCardWithTitle.vue'
+import SheltersMapCard from '~/components/organisms/cards/task/SheltersMapCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {
-  name: 'Index',
+  name: 'ArticlesSearch',
 
   components: {
     TwoColumnContainer,
     TheLoading,
     TheMessage,
-    TopSlide,
-    TopTransitionCard,
-    TaskListCard,
-    NewArticleListCard,
-    GenreImageListCardWithTitle,
+    SheltersMapCard,
     DefaultRightColumnTemplate
   },
 
