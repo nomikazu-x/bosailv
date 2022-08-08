@@ -15,12 +15,19 @@
         </v-card-text>
       </v-col>
     </v-row>
+    <HazardMapConfirmBtn v-if="$auth.loggedIn" class="text-center" />
   </v-card>
 </template>
 
 <script>
+import HazardMapConfirmBtn from '~/components/organisms/btns/HazardMapConfirmBtn.vue'
+
 export default {
   name: 'HazardMapSearchCardText',
+
+  components: {
+    HazardMapConfirmBtn
+  },
 
   props: {
     hazardMap: {

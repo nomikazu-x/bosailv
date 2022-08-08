@@ -33,6 +33,12 @@ class Api::V1::TaskProfilesController < Api::V1::ApplicationController
       else
         render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_update') }, status: :unprocessable_entity
       end
+    when params[:hazard_map_confirmed]
+      if @task_profile.set_hazard_map_confirm
+        render './api/v1/task_profiles/success', locals: { notice: I18n.t('notice.user.hazard_map_task_update') }
+      else
+        render './api/v1/failure', locals: { alert: I18n.t('alert.user.hazard_map_task_update') }, status: :unprocessable_entity
+      end
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.user.task_update') }, status: :unprocessable_entity
     end
