@@ -17,7 +17,7 @@ if @articles.exists?
     json.total_pages @articles.total_pages
     json.limit_value @articles.limit_value
   end
-  
+
   json.articles do
     json.array! @articles do |article|
       json.id article.id

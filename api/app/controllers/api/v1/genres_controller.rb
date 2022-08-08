@@ -2,7 +2,7 @@ class Api::V1::GenresController < Api::V1::ApplicationController
 
   # GET /api/v1/genres(.json) ジャンル一覧API
   def index
-    @genres = Genre.all
+    @genres = Genre.all.preload(:articles)
     render './api/v1/genres/index'
   end
 
