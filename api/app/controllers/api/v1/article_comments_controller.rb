@@ -2,7 +2,7 @@ class Api::V1::ArticleCommentsController < Api::V1::ApplicationController
   before_action :authenticate_user!, except: %i[index]
 
   def index
-    @article_comments = Article.find(params[:id]).article_comments
+    @article_comments = Article.find(params[:id]).article_comments.eager_load(:user)
   end
 
   # POST /api/v1/article_comments/create(.json) 記事コメント作成API(処理)

@@ -30,10 +30,10 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     @genre = Genre.find(params[:id])
     if params[:favorite]
       # お気に入りした記事一覧を取得
-      @articles = @user.favorited_articles.page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{@genre.id}")
+      @articles = @user.favorited_articles.preload(:genres).page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{@genre.id}")
     else
       # 投稿した記事一覧を取得
-      @articles = @user.articles.page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{@genre.id}")
+      @articles = @user.articles.preload(:genres).page(params[:page]).per(Settings['default_articles_limit']).joins(:article_genre_relations).where("genre_id = #{@genre.id}")
     end
 
     if @user
