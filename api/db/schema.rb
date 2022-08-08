@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_06_124438) do
+ActiveRecord::Schema.define(version: 2022_08_08_125056) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
@@ -243,6 +243,7 @@ ActiveRecord::Schema.define(version: 2022_08_06_124438) do
     t.bigint "stock_tasks", default: 0, null: false, comment: "備蓄関係防災タスク"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "hazard_map_confirmed_at", comment: "ハザードマップ確認日時"
     t.index ["user_id"], name: "index_task_profiles_on_user_id"
   end
 
