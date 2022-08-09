@@ -19,7 +19,12 @@
           </v-col>
           <v-col cols="12">
             <div class="text-center">
-              <RedBtn :disabled="waiting" @click="onSearchHazardMap">検索</RedBtn>
+              <RedBtn :disabled="waiting" @click="onSearchHazardMap(selectCity)">検索</RedBtn>
+            </div>
+          </v-col>
+          <v-col cols="12">
+            <div class="text-center">
+              <RedBtn @click="onSearchHazardMap($auth.user.city.id)">自分の出身市町村で検索する</RedBtn>
             </div>
           </v-col>
         </v-row>
@@ -67,13 +72,13 @@ export default {
   },
 
   methods: {
-    async onSearchHazardMap () {
+    async onSearchHazardMap (cityId) {
       this.processing = true
 
       this.hazardMap = null
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.hazardMapUrl, {
-        params: { id: this.selectCity }
+        params: { id: cityId }
       })
         .then((response) => {
           if (response.data == null || response.data.hazard_map == null) {
