@@ -45,7 +45,8 @@
             <span class="text-uppercase">FROM</span>: {{ getAddress }}
           </p>
 
-          <RedBtn :to="`/users/${$auth.user.username}`" text color="primary">マイページ</RedBtn>
+          <RedBtn :to="`/users/${$auth.user.username}`" text>マイページ</RedBtn>
+          <RedBtn v-if="$auth.user.city" :href="jmaUrl" text>気象情報</RedBtn>
         </div>
       </div>
     </v-card>
@@ -74,6 +75,12 @@ export default {
         return this.$auth.user.prefecture.name + this.$auth.user.city.name
       }
       return null
+    },
+    jmaUrl () {
+      if (this.$auth.user.city.id.toString().length === 4) {
+        return 'https://www.jma.go.jp/bosai/#area_type=class20s&area_code=0' + this.$auth.user.city.id + '00'
+      }
+      return 'https://www.jma.go.jp/bosai/#area_type=class20s&area_code=' + this.$auth.user.city.id + '00'
     }
   }
 }

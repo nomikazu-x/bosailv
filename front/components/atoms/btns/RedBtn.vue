@@ -8,6 +8,7 @@
     :block="block"
     :outlined="outlined"
     :to="to"
+    :href="href"
     depressed
     @click="onClick"
   >
@@ -41,6 +42,10 @@ export default {
     },
     to: {
       type: [String, Object],
+      default: undefined
+    },
+    href: {
+      type: String,
       default: undefined
     }
   },
