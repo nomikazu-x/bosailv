@@ -22,7 +22,7 @@
               <RedBtn :disabled="waiting" @click="onSearchHazardMap(selectCity)">検索</RedBtn>
             </div>
           </v-col>
-          <v-col cols="12">
+          <v-col v-if="$auth.user.city" cols="12">
             <div class="text-center">
               <RedBtn @click="onSearchHazardMap($auth.user.city.id)">自分の出身市町村で検索する</RedBtn>
             </div>

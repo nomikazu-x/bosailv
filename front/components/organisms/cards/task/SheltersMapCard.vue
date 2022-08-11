@@ -22,7 +22,7 @@
               <RedBtn :disabled="waiting" @click="onSearchShelters(page, selectCity)">検索</RedBtn>
             </div>
           </v-col>
-          <v-col v-if="$auth.user.city.id !== null" cols="12">
+          <v-col v-if="$auth.user.city" cols="12">
             <div class="text-center">
               <RedBtn @click="onSearchShelters(page, $auth.user.city.id)">自分の出身市町村で検索する</RedBtn>
             </div>
