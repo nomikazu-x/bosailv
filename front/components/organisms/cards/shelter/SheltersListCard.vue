@@ -2,10 +2,12 @@
   <div class="mt-4">
     <TheProcessing v-if="processing" />
     <BaseTitleCard title="避難所一覧">
-      <v-card v-if="shelters != null && shelters.length === 0">
-        <v-card-title class="ml-1">避難所はありません。</v-card-title>
-        <v-divider class="my-4" />
+      <v-card v-if="shelters != null && shelters.length === 0" outlined tile>
+        <v-card-title class="ml-1">該当する避難所はありません。</v-card-title>
       </v-card>
+      <v-col v-else cols="12">
+        <v-card-title v-if="info">検索結果：{{ info.total_count }}件</v-card-title>
+      </v-col>
       <div v-for="shelter in shelters" :key="shelter.id">
         <ShelterListCardText
           :shelter="shelter"

@@ -4,9 +4,14 @@
       <BaseTitleCard title="避難所検索">
         <v-row class="pa-5">
           <v-col cols="12">
+            <DisasterTypeSelect
+              v-model="selectDisasterType"
+              class="mt-2"
+            />
+          </v-col>
+          <v-col cols="12">
             <PrefecturesSelect
               v-model="selectPrefecture"
-              class="mt-5"
               @change="onGetCities"
             />
           </v-col>
@@ -51,6 +56,7 @@ import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
 import CitiesSelect from '~/components/organisms/select/CitiesSelect.vue'
+import DisasterTypeSelect from '~/components/organisms/select/DisasterTypeSelect.vue'
 import SheltersMap from '~/components/organisms/maps/SheltersMap.vue'
 import SheltersListCard from '~/components/organisms/cards/shelter/SheltersListCard.vue'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
@@ -62,6 +68,7 @@ export default {
     BaseTitleCard,
     PrefecturesSelect,
     CitiesSelect,
+    DisasterTypeSelect,
     SheltersMap,
     SheltersListCard,
     RedBtn
@@ -77,6 +84,7 @@ export default {
       cities: [],
       selectPrefecture: null,
       selectCity: null,
+      selectDisasterType: null,
       waiting: false
     }
   },
@@ -93,7 +101,7 @@ export default {
       this.selectCity = cityId
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.sheltersUrl, {
-        params: { id: this.selectCity, page }
+        params: { id: this.selectCity, page, disaster_type: this.selectDisasterType }
       })
         .then((response) => {
           if (response.data == null || response.data.shelters == null) {
@@ -106,6 +114,7 @@ export default {
             this.info = response.data.shelter
             this.shelters = response.data.shelters
             this.waiting = true
+            console.log(this.shelters)
           }
         },
         (error) => {
@@ -123,7 +132,7 @@ export default {
       this.processing = true
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.sheltersUrl, {
-        params: { id: this.selectCity, page }
+        params: { id: this.selectCity, page, disaster_type: this.selectDisasterType }
       })
         .then((response) => {
           if (response.data == null || response.data.shelters == null) {
