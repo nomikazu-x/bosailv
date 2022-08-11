@@ -19,7 +19,12 @@
           </v-col>
           <v-col cols="12">
             <div class="text-center">
-              <RedBtn :disabled="waiting" @click="onSearchShelters">検索</RedBtn>
+              <RedBtn :disabled="waiting" @click="onSearchShelters(page, selectCity)">検索</RedBtn>
+            </div>
+          </v-col>
+          <v-col v-if="$auth.user.city.id !== null" cols="12">
+            <div class="text-center">
+              <RedBtn @click="onSearchShelters(page, $auth.user.city.id)">自分の出身市町村で検索する</RedBtn>
             </div>
           </v-col>
         </v-row>
@@ -35,7 +40,7 @@
         :shelters="shelters"
         :info="info"
         :processing="processing"
-        @pagination="onSearchShelters"
+        @pagination="onSheltersPagination"
       />
     </v-col>
   </v-row>
@@ -82,7 +87,39 @@ export default {
   },
 
   methods: {
-    async onSearchShelters (page) {
+    async onSearchShelters (page, cityId) {
+      this.processing = true
+
+      this.selectCity = cityId
+
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.sheltersUrl, {
+        params: { id: this.selectCity, page }
+      })
+        .then((response) => {
+          if (response.data == null || response.data.shelters == null) {
+            this.$toasted.error(this.$t('system.error'))
+            if (this.info == null) {
+              return this.$router.push({ path: '/' })
+            }
+            this.page = this.info.current_page
+          } else {
+            this.info = response.data.shelter
+            this.shelters = response.data.shelters
+            this.waiting = true
+          }
+        },
+        (error) => {
+          this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
+          if (this.info == null) {
+            return this.$router.push({ path: '/' })
+          }
+          this.page = this.info.current_page
+        })
+
+      this.processing = false
+    },
+
+    async onSheltersPagination (page) {
       this.processing = true
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.sheltersUrl, {
