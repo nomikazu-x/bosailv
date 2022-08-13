@@ -46,15 +46,14 @@ export default {
       level: 1
     }
   },
-  mounted () {
-    this.$store.subscribe((mutation, state) => {
-      if (mutation.type === 'user/setPoint') {
-        const level = mutation.payload.level
+  created () {
+    this.$store.subscribe((mutation) => {
+      if (mutation.type === 'user/setLevel') {
+        const level = mutation.payload
         if (level > this.$auth.user.level) {
           this.levelUp = true
           this.level = level
         }
-        this.$store.commit('user/setLevel', level)
       }
     })
   }
