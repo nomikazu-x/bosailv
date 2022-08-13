@@ -10,8 +10,8 @@ class Api::V1::TaskCompletesController < Api::V1::ApplicationController
         current_user.task_complete!(task)
         # ポイント獲得
         PointRecorder.new(current_user).record(Settings['task_complete_obtained_point'])
-        @required_point = RequiredPoint.find_by(level: current_user.level)
-        
+        @required_point = RequiredPoint.find_by(level: current_user.level).point
+
         render './api/v1/task_completes/success', locals: { notice: I18n.t('notice.task_complete.create') }
       end
     else
@@ -28,7 +28,7 @@ class Api::V1::TaskCompletesController < Api::V1::ApplicationController
         current_user.task_uncomplete!(task)
         # ポイントを減らす
         PointRecorder.new(current_user).delete_record(Settings['task_complete_obtained_point'])
-        @required_point = RequiredPoint.find_by(level: current_user.level)
+        @required_point = RequiredPoint.find_by(level: current_user.level).point
 
         render './api/v1/task_completes/success', locals: { notice: I18n.t('notice.task_complete.destroy') }
       end

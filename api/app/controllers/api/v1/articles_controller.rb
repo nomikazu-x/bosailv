@@ -26,7 +26,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
         # ポイント獲得
         PointRecorder.new(current_user).record(Settings['article_create_obtained_point'])
         # 次のレベルに必要なポイントを返す
-        @required_point = RequiredPoint.find_by(level: current_user.level)
+        @required_point = RequiredPoint.find_by(level: current_user.level).point
 
         render './api/v1/articles/success', locals: { notice: I18n.t('notice.article.create') }
       end
@@ -49,9 +49,9 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
     if @article
       ActiveRecord::Base.transaction do
         # ポイントを減らす
-        PointRecorder.new(@article.user).delete_record(Settings['article_create_obtained_point'])
+        PointRecorder.new(current_user).delete_record(Settings['article_create_obtained_point'])
         # 次のレベルに必要なポイントを返す
-        @required_point = RequiredPoint.find_by(level: @article.user.level)
+        @required_point = RequiredPoint.find_by(level: current_user.level).point
 
         @article.destroy
 
