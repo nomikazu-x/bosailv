@@ -6,7 +6,8 @@ if @emergency_contact.present?
     json.name @emergency_contact.name
     json.phone_number @emergency_contact.phone_number
   end
-  json.partial! 'api/v1/users/user', user: current_user
 end
+
+json.partial! 'api/v1/users/user', user: current_user
 
 json.notice notice if notice.present?
