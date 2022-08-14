@@ -30,7 +30,7 @@
         </v-row>
       </BaseTitleCard>
 
-      <HazardMapSearchCardText v-if="hazardMap !== null" :hazard-map="hazardMap" />
+      <HazardMapSearchCardText v-if="hazardMap !== null" :hazard-map="hazardMap" :select-city="selectCity" />
     </v-col>
   </v-row>
 </template>
@@ -76,6 +76,7 @@ export default {
       this.processing = true
 
       this.hazardMap = null
+      this.selectCity = cityId
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.hazardMapUrl, {
         params: { id: cityId }

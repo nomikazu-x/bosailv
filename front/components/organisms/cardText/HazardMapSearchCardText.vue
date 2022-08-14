@@ -15,7 +15,7 @@
         </v-card-text>
       </v-col>
     </v-row>
-    <HazardMapConfirmBtn v-if="$auth.loggedIn" class="text-center" />
+    <HazardMapConfirmBtn v-if="$auth.loggedIn && ($auth.user.city && $auth.user.city.id === selectCity)" class="text-center" />
   </v-card>
 </template>
 
@@ -32,6 +32,11 @@ export default {
   props: {
     hazardMap: {
       type: Object,
+      default: null
+    },
+
+    selectCity: {
+      type: Number,
       default: null
     }
   },
