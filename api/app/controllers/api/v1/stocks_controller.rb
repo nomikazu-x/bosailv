@@ -12,6 +12,7 @@ class Api::V1::StocksController < Api::V1::ApplicationController
     @sum_stocks = stocks.inject { |old_stock, new_stock| old_stock.merge(new_stock) { |_, old_val, new_val| old_val + new_val } }
     # 使わない情報をインスタンス変数から除外する
     @sum_stocks.except!('id', 'sex', 'age', 'created_at', 'updated_at')
+
     # 防災タスクの達成状況を確認するためにタスクプロフィール情報を返す
     @task_profile = current_user.prepare_task_profile
   end

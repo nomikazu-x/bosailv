@@ -19,13 +19,15 @@
           name="age"
           label="世代"
         />
-        <RedBtn
-          id="family_update_btn"
-          :disabled="invalid || processing"
-          @click="onFamilyCreate"
-        >
-          登録
-        </RedBtn>
+        <div class="text-center">
+          <RedBtn
+            id="family_update_btn"
+            :disabled="invalid || processing"
+            @click="onFamilyCreate"
+          >
+            登録
+          </RedBtn>
+        </div>
       </v-card-text>
     </v-form>
   </ValidationObserver>

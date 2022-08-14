@@ -25,6 +25,9 @@
         </v-col>
       </v-row>
     </v-card>
+    <div class="text-center mt-5 mb-3">
+      <RedBtn to="/tasks/stocks/edit" text>あなたの家族情報を編集する</RedBtn>
+    </div>
   </BaseTitleCard>
 </template>
 
@@ -32,13 +35,15 @@
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import CompleteBtnGroup from '~/components/organisms/btnGroup/CompleteBtnGroup.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
   name: 'StockListCard',
 
   components: {
     BaseTitleCard,
-    CompleteBtnGroup
+    CompleteBtnGroup,
+    RedBtn
   },
 
   mixins: [Application],

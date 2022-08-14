@@ -11,6 +11,11 @@
           <FamilyListCardText v-for="family in families" :key="family.id" :family="family" />
           <FamilyEditForm v-if="$auth.loggedIn" @alert="alert = $event" @notice="notice = $event" />
         </div>
+
+        <v-divider />
+        <div class="text-center mt-5 mb-3">
+          <RedBtn to="/tasks/stocks" text>備蓄品リストを確認する</RedBtn>
+        </div>
       </BaseTitleCard>
     </v-col>
   </v-row>
@@ -22,6 +27,7 @@ import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import FamilyListCardText from '~/components/organisms/cardText/FamilyListCardText.vue'
 import FamilyEditForm from '~/components/organisms/form/FamilyEditForm.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
 
 export default {
   name: 'FamilyEditCard',
@@ -29,7 +35,8 @@ export default {
   components: {
     BaseTitleCard,
     FamilyListCardText,
-    FamilyEditForm
+    FamilyEditForm,
+    RedBtn
   },
 
   mixins: [Application],
