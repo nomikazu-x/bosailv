@@ -52,6 +52,7 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
+            this.$auth.setUser(response.data.user)
             this.$store.commit('emergencyContacts/deleteEmergencyContact', emergencyContactId, { root: true })
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)

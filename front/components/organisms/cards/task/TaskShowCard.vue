@@ -74,15 +74,13 @@ export default {
     async onComplete () {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.completeCreateUrl.replace('_id', this.$route.params.id), {
-        user_id: this.$auth.user.id
-      })
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.completeCreateUrl.replace('_id', this.$route.params.id))
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
-            this.$store.commit('user/setPoint', response.data.user, { root: true })
-            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
+            this.$store.commit('user/setLevel', response.data.user.level, { root: true })
+            this.$auth.setUser(response.data.user)
             this.$toasted.info(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
@@ -107,15 +105,12 @@ export default {
     async onUnComplete () {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.completeDeleteUrl.replace('_id', this.$route.params.id), {
-        user_id: this.$auth.user.id
-      })
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.completeDeleteUrl.replace('_id', this.$route.params.id))
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
-            this.$store.commit('user/setPoint', response.data.user, { root: true })
-            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
+            this.$auth.setUser(response.data.user)
             this.$toasted.info(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)

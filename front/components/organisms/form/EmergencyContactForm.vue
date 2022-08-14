@@ -67,6 +67,8 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
+            this.$store.commit('user/setLevel', response.data.user.level, { root: true })
+            this.$auth.setUser(response.data.user)
             this.$store.commit('emergencyContacts/addEmergencyContacts', response.data.emergency_contact, { root: true })
             this.name = ''
             this.phoneNumber = ''

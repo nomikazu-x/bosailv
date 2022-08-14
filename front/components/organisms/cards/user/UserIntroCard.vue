@@ -32,7 +32,7 @@
           </v-row>
 
           <PointProgressLinear
-            :required-point="requiredPoint"
+            :required-point="user.required_point"
             :point-to-next="user.point_to_next"
             class="pb-2"
           />

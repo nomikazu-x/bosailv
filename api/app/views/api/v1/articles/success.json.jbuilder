@@ -1,7 +1,5 @@
 json.success true
 
-json.required_point @required_point
-
 if @article.present?
   json.article do
     json.id @article.id
@@ -14,12 +12,7 @@ if @article.present?
     end
     json.created_at @article.created_at
     json.updated_at @article.updated_at
-    json.user do
-      json.id @article.user.id
-      json.level @article.user.level
-      json.lifelong_point @article.user.lifelong_point
-      json.point_to_next @article.user.point_to_next
-    end
+    json.partial! 'api/v1/users/user', user: current_user
     json.genres do
       json.array! @article.genres do |genre|
         json.id genre.id

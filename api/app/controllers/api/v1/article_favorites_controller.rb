@@ -22,7 +22,6 @@ class Api::V1::ArticleFavoritesController < Api::V1::ApplicationController
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.article_favorite.create') }, status: :unprocessable_entity
     end
-
   end
 
   # POST /api/v1/articles/:id/article_favorites/delete(.json) 記事お気にいり削除API(処理)

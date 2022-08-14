@@ -72,6 +72,8 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
+            this.$store.commit('user/setLevel', response.data.user.level, { root: true })
+            this.$auth.setUser(response.data.user)
             this.$toasted.error(response.data.alert)
             this.$toasted.info(response.data.notice)
             this.$router.push({ path: '/tasks/family_rule' })
