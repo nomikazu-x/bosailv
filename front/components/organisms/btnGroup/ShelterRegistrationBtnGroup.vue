@@ -54,7 +54,7 @@ export default {
             this.$store.commit('user/setLevel', response.data.user.level, { root: true })
             this.$auth.setUser(response.data.user)
             this.isRegistered = true
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
           }
@@ -85,7 +85,7 @@ export default {
           } else if (this.$auth.loggedIn) {
             this.$auth.setUser(response.data.user)
             this.isRegistered = false
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
           }

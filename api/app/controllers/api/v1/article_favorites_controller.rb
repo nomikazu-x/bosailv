@@ -12,7 +12,6 @@ class Api::V1::ArticleFavoritesController < Api::V1::ApplicationController
         PointRecorder.new(article.user).record(Settings['article_favorite_author_obtained_point'])
         # 読者もポイント獲得
         PointRecorder.new(current_user).record(Settings['article_favorite_reader_obtained_point'])
-        @required_point = RequiredPoint.find_by(level: current_user.level).point
         # 通知作成
         Infomation.new(started_at: Time.current, target: :User, user_id: article.user.id,
                        action: 'ArticleFavorite', action_user_id: current_user.id, article_id: article.id).save!
@@ -35,7 +34,6 @@ class Api::V1::ArticleFavoritesController < Api::V1::ApplicationController
         PointRecorder.new(article.user).delete_record(Settings['article_favorite_author_obtained_point'])
         # 読者のポイントを減らす
         PointRecorder.new(current_user).delete_record(Settings['article_favorite_reader_obtained_point'])
-        @required_point = RequiredPoint.find_by(level: current_user.level).point
 
         render './api/v1/auth/success', locals: { notice: I18n.t('notice.article_favorite.destroy') }
       end

@@ -62,7 +62,7 @@ export default {
             this.$auth.setUser(response.data.article.user)
             this.$store.commit('articles/addArticles', response.data.article, { root: true })
             this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
             this.success = true
             this.article = response.data.article
           }

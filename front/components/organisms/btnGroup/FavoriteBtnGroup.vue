@@ -51,7 +51,7 @@ export default {
             this.$store.commit('user/setLevel', response.data.user.level, { root: true })
             this.$auth.setUser(response.data.user)
             this.isFavorited = true
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
           }
@@ -83,7 +83,7 @@ export default {
             this.$store.commit('articles/deleteLiker', likerId, { root: true })
             this.$auth.setUser(response.data.user)
             this.isFavorited = false
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
           }

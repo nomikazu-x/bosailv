@@ -25,7 +25,7 @@ export default {
       this.$router.push({ path: this.$route.path }) // Tips: URLパラメータを消す為
     },
     redirectAuth () {
-      this.$toasted.info(this.$t('auth.unauthenticated'))
+      this.$toasted.success(this.$t('auth.unauthenticated'))
       this.$auth.redirect('login') // Tips: ログイン後、元のページに戻す
     },
     redirectNotAdmin () {
@@ -37,17 +37,17 @@ export default {
       this.$router.push({ path: '/' })
     },
     redirectAlreadyAuth () {
-      this.$toasted.info(this.$t('auth.already_authenticated'))
+      this.$toasted.success(this.$t('auth.already_authenticated'))
       this.$router.push({ path: '/' })
     },
     redirectSuccess (alert, notice) {
       this.$toasted.error(alert)
-      this.$toasted.info(notice)
+      this.$toasted.success(notice)
       this.$router.push({ path: '/' })
     },
     redirectSignIn (alert, notice) {
       this.$toasted.error(alert)
-      this.$toasted.info(notice)
+      this.$toasted.success(notice)
       this.$router.push({ path: '/signin', query: { alert, notice } })
     },
     async signOut (message = 'auth.unauthenticated', path = null, alert = null, notice = null) {
@@ -66,7 +66,7 @@ export default {
       }
 
       if (message !== null) {
-        this.$toasted.info(this.$t(message))
+        this.$toasted.success(this.$t(message))
       }
       if (path !== null) {
         this.$router.push({ path, query: { alert, notice } })

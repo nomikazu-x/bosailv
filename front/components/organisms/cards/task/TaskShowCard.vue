@@ -62,7 +62,7 @@ export default {
         } else {
           if (error.response.data != null) {
             this.$toasted.error(error.response.data.alert)
-            this.$toasted.info(error.response.data.notice)
+            this.$toasted.success(error.response.data.notice)
           }
           return this.$nuxt.error({ statusCode: error.response.status })
         }
@@ -81,7 +81,7 @@ export default {
           } else if (this.$auth.loggedIn) {
             this.$store.commit('user/setLevel', response.data.user.level, { root: true })
             this.$auth.setUser(response.data.user)
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
           }
@@ -111,7 +111,7 @@ export default {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
             this.$auth.setUser(response.data.user)
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
           }

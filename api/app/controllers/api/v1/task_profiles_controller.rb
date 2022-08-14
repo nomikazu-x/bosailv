@@ -15,8 +15,6 @@ class Api::V1::TaskProfilesController < Api::V1::ApplicationController
         ActiveRecord::Base.transaction do
           # ポイント獲得
           PointRecorder.new(current_user).record(Settings['sns_task_complete_obtained_point'])
-          # 次のレベルに必要なポイントを返す
-          @required_point = RequiredPoint.find_by(level: current_user.level).point
           update_auth_header # 成功時のみ認証情報を返す
           render './api/v1/task_profiles/success', locals: { notice: I18n.t('notice.user.task_update') }
         end
@@ -30,8 +28,6 @@ class Api::V1::TaskProfilesController < Api::V1::ApplicationController
         ActiveRecord::Base.transaction do
           # ポイント獲得
           PointRecorder.new(current_user).record(Settings['house_task_complete_obtained_point'])
-          # 次のレベルに必要なポイントを返す
-          @required_point = RequiredPoint.find_by(level: current_user.level).point
           update_auth_header # 成功時のみ認証情報を返す
           render './api/v1/task_profiles/success', locals: { notice: I18n.t('notice.user.task_update') }
         end
@@ -45,8 +41,6 @@ class Api::V1::TaskProfilesController < Api::V1::ApplicationController
         ActiveRecord::Base.transaction do
           # ポイント獲得
           PointRecorder.new(current_user).record(Settings['stock_task_complete_obtained_point'])
-          # 次のレベルに必要なポイントを返す
-          @required_point = RequiredPoint.find_by(level: current_user.level).point
           update_auth_header # 成功時のみ認証情報を返す
           render './api/v1/task_profiles/success', locals: { notice: I18n.t('notice.user.task_update') }
         end
@@ -59,8 +53,6 @@ class Api::V1::TaskProfilesController < Api::V1::ApplicationController
         ActiveRecord::Base.transaction do
           # ポイント獲得
           PointRecorder.new(current_user).record(Settings['hazard_map_confirm_obtained_point'])
-          # 次のレベルに必要なポイントを返す
-          @required_point = RequiredPoint.find_by(level: current_user.level).point
           render './api/v1/task_profiles/success', locals: { notice: I18n.t('notice.user.hazard_map_task_update') }
         end
       else
@@ -80,8 +72,6 @@ class Api::V1::TaskProfilesController < Api::V1::ApplicationController
         ActiveRecord::Base.transaction do
           # ポイントを減らす
           PointRecorder.new(current_user).delete_record(Settings['sns_task_complete_obtained_point'])
-          # 次のレベルに必要なポイントを返す
-          @required_point = RequiredPoint.find_by(level: current_user.level).point
           update_auth_header # 成功時のみ認証情報を返す
           render './api/v1/task_profiles/success', locals: { notice: I18n.t('notice.user.task_destroy') }
         end
@@ -95,8 +85,6 @@ class Api::V1::TaskProfilesController < Api::V1::ApplicationController
         ActiveRecord::Base.transaction do
           # ポイントを減らす
           PointRecorder.new(current_user).delete_record(Settings['house_task_complete_obtained_point'])
-          # 次のレベルに必要なポイントを返す
-          @required_point = RequiredPoint.find_by(level: current_user.level).point
           update_auth_header # 成功時のみ認証情報を返す
           render './api/v1/task_profiles/success', locals: { notice: I18n.t('notice.user.task_destroy') }
         end
@@ -110,8 +98,6 @@ class Api::V1::TaskProfilesController < Api::V1::ApplicationController
         ActiveRecord::Base.transaction do
           # ポイントを減らす
           PointRecorder.new(current_user).delete_record(Settings['stock_task_complete_obtained_point'])
-          # 次のレベルに必要なポイントを返す
-          @required_point = RequiredPoint.find_by(level: current_user.level).point
           update_auth_header # 成功時のみ認証情報を返す
           render './api/v1/task_profiles/success', locals: { notice: I18n.t('notice.user.task_destroy') }
         end

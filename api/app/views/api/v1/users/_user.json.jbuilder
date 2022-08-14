@@ -17,21 +17,21 @@ json.user do
   json.admin user.is_admin?
   if user.prefecture_id.present?
     json.prefecture do
-      json.id @prefecture.id
-      json.name @prefecture.name
+      json.id Prefecture.find(user.prefecture_id).id
+      json.name Prefecture.find(user.prefecture_id).name
     end
   end
   if user.city_id.present?
     json.city do
-      json.id @city.id
-      json.name @city.name
+      json.id City.find(user.city_id).id
+      json.name City.find(user.city_id).name
     end
   end
   json.point_to_next user.point_to_next
   json.profile user.profile if user.profile.present?
   json.destroy_schedule_at user.destroy_schedule_at
   json.infomation_unread_count user.infomation_unread_count
-  json.required_point @required_point
+  json.required_point RequiredPoint.find_by(level: user.level).point
   json.is_completed_sns_tasks user.prepare_task_profile.sns_tasks.raw == 2097151
   json.is_completed_house_tasks user.prepare_task_profile.house_tasks.raw == 134217727
   json.is_completed_family_rules_tasks user.is_completed_family_rule_tasks?(user)

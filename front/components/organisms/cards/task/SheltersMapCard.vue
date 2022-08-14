@@ -179,7 +179,7 @@ export default {
           } else {
             if (error.response.data != null) {
               this.$toasted.error(error.response.data.alert)
-              this.$toasted.info(error.response.data.notice)
+              this.$toasted.success(error.response.data.notice)
               this.waiting = true
             }
             return this.$nuxt.error({ statusCode: error.response.status })

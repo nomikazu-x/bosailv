@@ -13,8 +13,6 @@ class Api::V1::EmergencyContactsController < Api::V1::ApplicationController
       ActiveRecord::Base.transaction do
         # ポイント獲得
         PointRecorder.new(current_user).record(Settings['emergency_contact_create_obtained_point'])
-        # 次のレベルに必要なポイントを返す
-        @required_point = RequiredPoint.find_by(level: current_user.level).point
         render './api/v1/emergency_contacts/success', locals: { notice: I18n.t('notice.emergency_contact.create') }
       end
     else
@@ -30,8 +28,6 @@ class Api::V1::EmergencyContactsController < Api::V1::ApplicationController
       ActiveRecord::Base.transaction do
         # ポイントを減らす
         PointRecorder.new(current_user).delete_record(Settings['emergency_contact_create_obtained_point'])
-        # 次のレベルに必要なポイントを返す
-        @required_point = RequiredPoint.find_by(level: current_user.level).point
         render './api/v1/emergency_contacts/success', locals: { notice: I18n.t('notice.emergency_contact.destroy') }
       end
     else
