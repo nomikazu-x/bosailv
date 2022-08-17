@@ -11,12 +11,12 @@ import Page from '~/pages/password/reset/confirm.vue'
 // const helper = new Helper()
 
 describe('confirm.vue', () => {
-  let authSetUserMock, toastedErrorMock, toastedInfoMock, routerPushMock
+  let authSetUserMock, toastedErrorMock, toastedSuccessMock, routerPushMock
 
   beforeEach(() => {
     authSetUserMock = jest.fn()
     toastedErrorMock = jest.fn()
-    toastedInfoMock = jest.fn()
+    toastedSuccessMock = jest.fn()
     routerPushMock = jest.fn()
   })
 
@@ -42,7 +42,7 @@ describe('confirm.vue', () => {
         },
         $toasted: {
           error: toastedErrorMock,
-          info: toastedInfoMock
+          success: toastedSuccessMock
         },
         $router: {
           push: routerPushMock
@@ -67,9 +67,9 @@ describe('confirm.vue', () => {
     if (alert !== null) {
       expect(toastedErrorMock).toBeCalledWith(alert)
     }
-    expect(toastedInfoMock).toBeCalledTimes(notice !== null ? 1 : 0)
+    expect(toastedSuccessMock).toBeCalledTimes(notice !== null ? 1 : 0)
     if (notice !== null) {
-      expect(toastedInfoMock).toBeCalledWith(notice)
+      expect(toastedSuccessMock).toBeCalledWith(notice)
     }
     expect(routerPushMock).toBeCalledTimes(count)
     expect(routerPushMock).toBeCalledWith(url)

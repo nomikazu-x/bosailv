@@ -1,13 +1,13 @@
 <template>
   <div>
     <TheProcessing v-if="processing" />
-    <RedBtn
+    <GreenBtn
       id="guest_sign_in_btn"
       :disabled="processing"
       @click="onGuestSignIn"
     >
       ゲストログイン
-    </RedBtn>
+    </GreenBtn>
     <div class="text-caption mt-2 grey--text" style="text-align: left">
       ※こちらはメールアドレス、パスワードを入力せず、ご利用いただけます。
     </div>
@@ -16,13 +16,13 @@
 
 <script>
 import Application from '~/plugins/application.js'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'GuestSigninBtn',
 
   components: {
-    RedBtn
+    GreenBtn
   },
 
   mixins: [Application],

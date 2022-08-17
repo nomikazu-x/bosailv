@@ -39,7 +39,7 @@
         </v-row>
       </BaseCard>
     </div>
-    <RedBtn
+    <GreenBtn
       large
       class="mt-6 mb-2"
       outlined
@@ -47,14 +47,14 @@
       to="/articles"
     >
       記事をもっと見る
-    </RedBtn>
+    </GreenBtn>
   </BaseTitleCard>
 </template>
 
 <script>
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import BaseCard from '~/components/molecules/cards/BaseCard.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'ArticleRankingUpperFiveCard',
@@ -62,7 +62,7 @@ export default {
   components: {
     BaseTitleCard,
     BaseCard,
-    RedBtn
+    GreenBtn
   },
 
   data () {

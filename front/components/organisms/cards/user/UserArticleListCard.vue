@@ -7,7 +7,7 @@
         </v-img>
       </v-col>
       <v-col v-if="canAction" cols="12" class="text-right">
-        <RedBtn class="mb-4 mr-5" to="/articles/new">記事を作成する</RedBtn>
+        <GreenBtn class="mb-4 mr-5" to="/articles/new">記事を作成する</GreenBtn>
       </v-col>
     </v-row>
     <v-tabs v-model="tab" background-color="#FFFCFC" color="#ef5350" class="mt-4" grow>
@@ -38,7 +38,7 @@
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import ArticleListCardWithTab from '~/components/organisms/tabItem/ArticleListCardWithTab.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'UsersArticleListCard',
@@ -46,7 +46,7 @@ export default {
   components: {
     BaseTitleCard,
     ArticleListCardWithTab,
-    RedBtn
+    GreenBtn
   },
 
   mixins: [Application],

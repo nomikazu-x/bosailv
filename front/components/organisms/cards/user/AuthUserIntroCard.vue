@@ -45,8 +45,8 @@
             <span class="text-uppercase">FROM</span>: {{ getAddress }}
           </p>
 
-          <RedBtn :to="`/users/${$auth.user.username}`" text>マイページ</RedBtn>
-          <RedBtn v-if="$auth.user.city" :href="jmaUrl" text>気象情報</RedBtn>
+          <GreenBtn :to="`/users/${$auth.user.username}`" text>マイページ</GreenBtn>
+          <GreenBtn v-if="$auth.user.city" :href="jmaUrl" text>気象情報</GreenBtn>
         </div>
       </div>
     </v-card>
@@ -57,7 +57,7 @@
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import AvatarIcon from '~/components/atoms/icons/AvatarIcon.vue'
 import PointProgressLinear from '~/components/organisms/progressLinear/PointProgressLinear.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'AuthUserIntroCard',
@@ -66,7 +66,7 @@ export default {
     BaseTitleCard,
     AvatarIcon,
     PointProgressLinear,
-    RedBtn
+    GreenBtn
   },
 
   computed: {

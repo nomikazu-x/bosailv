@@ -45,7 +45,7 @@
             <span class="text-uppercase">FROM</span>: {{ getAddress }}
           </p>
 
-          <RedBtn :to="`/users/${user.username}`" text color="primary">{{ user.name }}のページ</RedBtn>
+          <GreenBtn :to="`/users/${user.username}`" text color="primary">{{ user.name }}のページ</GreenBtn>
         </div>
       </div>
     </v-card>
@@ -57,7 +57,7 @@ import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import AvatarIcon from '~/components/atoms/icons/AvatarIcon.vue'
 import PointProgressLinear from '~/components/organisms/progressLinear/PointProgressLinear.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'UserIntroCard',
@@ -66,7 +66,7 @@ export default {
     BaseTitleCard,
     AvatarIcon,
     PointProgressLinear,
-    RedBtn
+    GreenBtn
   },
 
   mixins: [Application],

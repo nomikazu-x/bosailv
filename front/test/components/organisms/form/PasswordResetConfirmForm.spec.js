@@ -2,7 +2,7 @@ import Vuetify from 'vuetify'
 import { createLocalVue, mount } from '@vue/test-utils'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 import Component from '~/components/organisms/form/PasswordResetConfirmForm.vue'
 
 import { Helper } from '~/test/helper.js'
@@ -27,7 +27,7 @@ describe('PasswordResetConfirmForm.vue', () => {
     // console.log(wrapper.html())
     expect(wrapper.findComponent(TheProcessing).exists()).toBe(false)
     expect(wrapper.findComponent(PasswordConfirmationTextField).exists()).toBe(true)
-    expect(wrapper.findComponent(RedBtn).exists()).toBe(true)
+    expect(wrapper.findComponent(OrangeBtn).exists()).toBe(true)
   }
 
   it('[無効]ボタンを押せない', async () => {

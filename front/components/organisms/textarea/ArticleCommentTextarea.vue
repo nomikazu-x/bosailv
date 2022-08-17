@@ -14,7 +14,7 @@
             @click="waiting = false"
           />
         </ValidationProvider>
-        <RedBtn id="comment_create_btn" :disabled="invalid || processing || waiting" @click="onCommentCreate()">作成</RedBtn>
+        <OrangeBtn id="comment_create_btn" :disabled="invalid || processing || waiting" @click="onCommentCreate()">作成</OrangeBtn>
       </v-card-text>
     </v-form>
   </ValidationObserver>
@@ -24,7 +24,7 @@
 import { ValidationObserver, ValidationProvider, extend, configure, localize } from 'vee-validate'
 import { required } from 'vee-validate/dist/rules'
 import Application from '~/plugins/application.js'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 extend('required', required)
 configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
@@ -35,7 +35,7 @@ export default {
   components: {
     ValidationObserver,
     ValidationProvider,
-    RedBtn
+    OrangeBtn
   },
 
   mixins: [Application],

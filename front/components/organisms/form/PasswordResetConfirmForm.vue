@@ -8,13 +8,13 @@
       />
 
       <div class="d-flex justify-end">
-        <RedBtn
+        <OrangeBtn
           id="password_reset_confirm_btn"
           :disabled="invalid || processing"
           @click="onSubmit"
         >
           送信
-        </RedBtn>
+        </OrangeBtn>
       </div>
     </v-form>
   </ValidationObserver>
@@ -24,7 +24,7 @@
 import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'PasswordResetConfirmForm',
@@ -33,7 +33,7 @@ export default {
     ValidationObserver,
     TheProcessing,
     PasswordConfirmationTextField,
-    RedBtn
+    OrangeBtn
   },
 
   props: {

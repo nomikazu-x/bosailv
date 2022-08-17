@@ -14,7 +14,7 @@
 
         <v-divider />
         <div class="text-center mt-5 mb-3">
-          <RedBtn to="/tasks/stocks" text>備蓄品リストを確認する</RedBtn>
+          <GreenBtn to="/tasks/stocks" text>備蓄品リストを確認する</GreenBtn>
         </div>
       </BaseTitleCard>
     </v-col>
@@ -27,7 +27,7 @@ import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import FamilyListCardText from '~/components/organisms/cardText/FamilyListCardText.vue'
 import FamilyEditForm from '~/components/organisms/form/FamilyEditForm.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'FamilyEditCard',
@@ -36,7 +36,7 @@ export default {
     BaseTitleCard,
     FamilyListCardText,
     FamilyEditForm,
-    RedBtn
+    GreenBtn
   },
 
   mixins: [Application],

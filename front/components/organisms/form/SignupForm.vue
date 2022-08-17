@@ -18,13 +18,13 @@
       />
 
       <div class="text-center">
-        <RedBtn
+        <OrangeBtn
           id="sign_up_btn"
           :disabled="invalid || processing"
           @click="onSubmit"
         >
           新規登録
-        </RedBtn>
+        </OrangeBtn>
       </div>
       <div class="text-center mt-4">
         <GuestSigninBtn />
@@ -39,7 +39,7 @@ import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
 import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 import GuestSigninBtn from '~/components/organisms/btns/GuestSigninBtn.vue'
 
 export default {
@@ -51,7 +51,7 @@ export default {
     BaseTextField,
     EmailTextField,
     PasswordConfirmationTextField,
-    RedBtn,
+    OrangeBtn,
     GuestSigninBtn
   },
 

@@ -54,13 +54,13 @@
           </v-sheet>
         </v-col>
         <div class="text-center">
-          <RedBtn
+          <OrangeBtn
             id="task_update_btn"
             :disabled="invalid || processing"
             @click="onFamilyRuleUpdate"
           >
             作成
-          </RedBtn>
+          </OrangeBtn>
         </div>
       </v-row>
     </v-form>
@@ -71,7 +71,7 @@
 import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import BaseTextarea from '~/components/molecules/textarea/BaseTextarea.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'TaskEditForm',
@@ -80,7 +80,7 @@ export default {
     ValidationObserver,
     TheProcessing,
     BaseTextarea,
-    RedBtn
+    OrangeBtn
   },
 
   props: {

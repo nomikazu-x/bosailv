@@ -10,13 +10,13 @@
           v-model="currentPassword"
           label="現在のパスワード"
         />
-        <RedBtn
+        <OrangeBtn
           id="user_update_btn"
           :disabled="invalid || processing"
           @click="onUserUpdate"
         >
           変更
-        </RedBtn>
+        </OrangeBtn>
       </v-card-text>
     </v-form>
   </ValidationObserver>
@@ -27,7 +27,7 @@ import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
 import PasswordTextField from '~/components/organisms/textFields/PasswordTextField.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'UserEmailForm',
@@ -37,7 +37,7 @@ export default {
     TheProcessing,
     EmailTextField,
     PasswordTextField,
-    RedBtn
+    OrangeBtn
   },
 
   props: {

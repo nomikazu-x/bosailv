@@ -40,14 +40,14 @@
           </v-sheet>
         </v-col>
         <div class="text-right">
-          <RedBtn
+          <OrangeBtn
             id="article_update_btn"
             class="post-btn"
             :disabled="invalid || processing"
             @click="onArticleUpdate"
           >
             作成
-          </RedBtn>
+          </OrangeBtn>
         </div>
       </v-row>
     </v-form>
@@ -61,7 +61,7 @@ import BaseImageFileInput from '~/components/molecules/fileInputs/BaseImageFileI
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import GenresCheckbox from '~/components/organisms/checkbox/GenresCheckbox.vue'
 import Editor from '~/components/organisms/editor/Editor.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'ArticleEditForm',
@@ -73,7 +73,7 @@ export default {
     BaseTextField,
     GenresCheckbox,
     Editor,
-    RedBtn
+    OrangeBtn
   },
 
   props: {

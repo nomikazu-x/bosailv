@@ -8,11 +8,11 @@ import SigninCard from '~/components/organisms/cards/SigninCard.vue'
 import Page from '~/pages/signin/index.vue'
 
 describe('sign_up.vue', () => {
-  let toastedErrorMock, toastedInfoMock, routerPushMock
+  let toastedErrorMock, toastedSuccessMock, routerPushMock
 
   beforeEach(() => {
     toastedErrorMock = jest.fn()
-    toastedInfoMock = jest.fn()
+    toastedSuccessMock = jest.fn()
     routerPushMock = jest.fn()
   })
 
@@ -38,7 +38,7 @@ describe('sign_up.vue', () => {
         },
         $toasted: {
           error: toastedErrorMock,
-          info: toastedInfoMock
+          success: toastedSuccessMock
         },
         $router: {
           push: routerPushMock
@@ -63,9 +63,9 @@ describe('sign_up.vue', () => {
     if (alert !== null) {
       expect(toastedErrorMock).toBeCalledWith(alert)
     }
-    expect(toastedInfoMock).toBeCalledTimes(notice !== null ? 1 : 0)
+    expect(toastedSuccessMock).toBeCalledTimes(notice !== null ? 1 : 0)
     if (notice !== null) {
-      expect(toastedInfoMock).toBeCalledWith(notice)
+      expect(toastedSuccessMock).toBeCalledWith(notice)
     }
     expect(routerPushMock).toBeCalledTimes(1)
     expect(routerPushMock).toBeCalledWith(url)

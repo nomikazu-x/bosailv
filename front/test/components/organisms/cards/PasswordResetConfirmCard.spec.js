@@ -9,13 +9,13 @@ import { Helper } from '~/test/helper.js'
 const helper = new Helper()
 
 describe('PasswordResetConfirmCard.vue', () => {
-  let axiosPostMock, authSetUserMock, toastedErrorMock, toastedInfoMock, routerPushMock
+  let axiosPostMock, authSetUserMock, toastedErrorMock, toastedSuccessMock, routerPushMock
 
   beforeEach(() => {
     axiosPostMock = null
     authSetUserMock = jest.fn()
     toastedErrorMock = jest.fn()
-    toastedInfoMock = jest.fn()
+    toastedSuccessMock = jest.fn()
     routerPushMock = jest.fn()
   })
 
@@ -46,7 +46,7 @@ describe('PasswordResetConfirmCard.vue', () => {
         },
         $toasted: {
           error: toastedErrorMock,
-          info: toastedInfoMock
+          success: toastedSuccessMock
         },
         $router: {
           push: routerPushMock
@@ -74,9 +74,9 @@ describe('PasswordResetConfirmCard.vue', () => {
     if (alert !== null) {
       expect(toastedErrorMock).toBeCalledWith(alert)
     }
-    expect(toastedInfoMock).toBeCalledTimes(notice !== null ? 1 : 0)
+    expect(toastedSuccessMock).toBeCalledTimes(notice !== null ? 1 : 0)
     if (notice !== null) {
-      expect(toastedInfoMock).toBeCalledWith(notice)
+      expect(toastedSuccessMock).toBeCalledWith(notice)
     }
   }
   const commonRedirectTest = (alert, notice, url) => {

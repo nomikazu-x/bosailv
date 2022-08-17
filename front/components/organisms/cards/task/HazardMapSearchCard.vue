@@ -19,12 +19,12 @@
           </v-col>
           <v-col cols="12">
             <div class="text-center">
-              <RedBtn :disabled="waiting" @click="onSearchHazardMap(selectCity)">検索</RedBtn>
+              <GreenBtn :disabled="waiting" @click="onSearchHazardMap(selectCity)">検索</GreenBtn>
             </div>
           </v-col>
           <v-col v-if="$auth.user.city" cols="12">
             <div class="text-center">
-              <RedBtn @click="onSearchHazardMap($auth.user.city.id)">自分の出身市町村で検索する</RedBtn>
+              <GreenBtn @click="onSearchHazardMap($auth.user.city.id)">自分の出身市町村で検索する</GreenBtn>
             </div>
           </v-col>
         </v-row>
@@ -41,7 +41,7 @@ import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
 import CitiesSelect from '~/components/organisms/select/CitiesSelect.vue'
 import HazardMapSearchCardText from '~/components/organisms/cardText/HazardMapSearchCardText.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'HazardMapSearchCard',
@@ -51,7 +51,7 @@ export default {
     PrefecturesSelect,
     CitiesSelect,
     HazardMapSearchCardText,
-    RedBtn
+    GreenBtn
   },
 
   mixins: [Application],

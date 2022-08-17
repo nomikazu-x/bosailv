@@ -24,12 +24,12 @@
           </v-col>
           <v-col cols="12">
             <div class="text-center">
-              <RedBtn :disabled="waiting" @click="onSearchShelters(page, selectCity)">検索</RedBtn>
+              <GreenBtn :disabled="waiting" @click="onSearchShelters(page, selectCity)">検索</GreenBtn>
             </div>
           </v-col>
           <v-col v-if="$auth.user.city" cols="12">
             <div class="text-center">
-              <RedBtn @click="onSearchShelters(page, $auth.user.city.id)">自分の出身市町村で検索する</RedBtn>
+              <GreenBtn @click="onSearchShelters(page, $auth.user.city.id)">自分の出身市町村で検索する</GreenBtn>
             </div>
           </v-col>
         </v-row>
@@ -59,7 +59,7 @@ import CitiesSelect from '~/components/organisms/select/CitiesSelect.vue'
 import DisasterTypeSelect from '~/components/organisms/select/DisasterTypeSelect.vue'
 import SheltersMap from '~/components/organisms/maps/SheltersMap.vue'
 import SheltersListCard from '~/components/organisms/cards/shelter/SheltersListCard.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'SheltersMapCard',
@@ -71,7 +71,7 @@ export default {
     DisasterTypeSelect,
     SheltersMap,
     SheltersListCard,
-    RedBtn
+    GreenBtn
   },
 
   mixins: [Application],

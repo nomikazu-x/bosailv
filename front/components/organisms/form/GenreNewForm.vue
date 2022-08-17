@@ -23,13 +23,13 @@
           </v-sheet>
         </v-col>
         <div>
-          <RedBtn
+          <OrangeBtn
             id="genre_create_btn"
             :disabled="invalid || processing"
             @click="onGenreCreate"
           >
             作成
-          </RedBtn>
+          </OrangeBtn>
         </div>
       </v-row>
     </v-form>
@@ -41,7 +41,7 @@ import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import BaseImageFileInput from '~/components/molecules/fileInputs/BaseImageFileInput.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'GenreNewForm',
@@ -51,7 +51,7 @@ export default {
     TheProcessing,
     BaseImageFileInput,
     BaseTextField,
-    RedBtn
+    OrangeBtn
   },
 
   props: {

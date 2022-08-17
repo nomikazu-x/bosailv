@@ -13,7 +13,7 @@
           </v-col>
           <v-col cols="12">
             <div class="text-center mt-5">
-              <RedBtn @click="onSearchUserPagination">検索</RedBtn>
+              <GreenBtn @click="onSearchUserPagination">検索</GreenBtn>
             </div>
           </v-col>
         </v-row>
@@ -40,7 +40,7 @@ import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import UserListWithTab from '~/components/organisms/tabItem/UserListWithTab.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'ArticleSearchListCard',
@@ -49,7 +49,7 @@ export default {
     BaseTitleCard,
     BaseTextField,
     UserListWithTab,
-    RedBtn
+    GreenBtn
   },
 
   mixins: [Application],

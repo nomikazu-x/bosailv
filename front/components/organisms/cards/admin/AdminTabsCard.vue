@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-col cols="12">
       <BaseTitleCard v-if="users != null && articles != null" title="一覧">
-        <v-tabs v-model="tab" background-color="#FFFCFC" color="#ef5350" grow>
+        <v-tabs v-model="tab" background-color="#FFFCFC" color="#117768" grow>
           <v-tab v-for="title in titles" :key="title.name">{{ title.name }}</v-tab>
         </v-tabs>
         <v-tabs-items v-model="tab">

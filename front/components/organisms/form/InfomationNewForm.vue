@@ -79,13 +79,13 @@
           </v-sheet>
         </v-col>
         <div>
-          <RedBtn
+          <OrangeBtn
             id="infomation_create_btn"
             :disabled="invalid || processing"
             @click="onInfomationCreate"
           >
             作成
-          </RedBtn>
+          </OrangeBtn>
         </div>
       </v-row>
     </v-form>
@@ -100,7 +100,7 @@ import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import BaseTextarea from '~/components/molecules/textarea/BaseTextarea.vue'
 import Editor from '~/components/organisms/editor/Editor.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'InfomationNewForm',
@@ -113,7 +113,7 @@ export default {
     BaseTextField,
     BaseTextarea,
     Editor,
-    RedBtn
+    OrangeBtn
   },
 
   props: {

@@ -4,7 +4,7 @@ import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
 import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 import GuestSigninBtn from '~/components/organisms/btns/GuestSigninBtn.vue'
 import Component from '~/components/organisms/form/SignupForm.vue'
 
@@ -35,7 +35,7 @@ describe('SignupForm.vue', () => {
     expect(wrapper.findComponent(BaseTextField).exists()).toBe(true)
     expect(wrapper.findComponent(EmailTextField).exists()).toBe(true)
     expect(wrapper.findComponent(PasswordConfirmationTextField).exists()).toBe(true)
-    expect(wrapper.findComponent(RedBtn).exists()).toBe(true)
+    expect(wrapper.findComponent(OrangeBtn).exists()).toBe(true)
     expect(wrapper.findComponent(GuestSigninBtn).exists()).toBe(true)
   }
 

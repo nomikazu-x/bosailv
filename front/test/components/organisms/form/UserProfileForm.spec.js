@@ -6,18 +6,18 @@ import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
 import CitiesSelect from '~/components/organisms/select/CitiesSelect.vue'
 import BaseTextarea from '~/components/molecules/textarea/BaseTextarea.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 import Component from '~/components/organisms/form/UserProfileForm.vue'
 
 import { Helper } from '~/test/helper.js'
 const helper = new Helper()
 
 describe('UserProfileForm.vue', () => {
-  let axiosGetMock, toastedErrorMock, toastedInfoMock, routerPushMock, nuxtErrorMock
+  let axiosGetMock, toastedErrorMock, toastedSuccessMock, routerPushMock, nuxtErrorMock
 
   beforeEach(() => {
     toastedErrorMock = jest.fn()
-    toastedInfoMock = jest.fn()
+    toastedSuccessMock = jest.fn()
     routerPushMock = jest.fn()
     nuxtErrorMock = jest.fn()
   })
@@ -41,7 +41,7 @@ describe('UserProfileForm.vue', () => {
         },
         $toasted: {
           error: toastedErrorMock,
-          info: toastedInfoMock
+          success: toastedSuccessMock
         },
         $router: {
           push: routerPushMock
@@ -68,7 +68,7 @@ describe('UserProfileForm.vue', () => {
     expect(wrapper.findComponent(PrefecturesSelect).exists()).toBe(true)
     expect(wrapper.findComponent(CitiesSelect).exists()).toBe(true)
     expect(wrapper.findComponent(BaseTextarea).exists()).toBe(true)
-    expect(wrapper.findComponent(RedBtn).exists()).toBe(true)
+    expect(wrapper.findComponent(OrangeBtn).exists()).toBe(true)
     expect(wrapper.vm.$data.name).toBe(user.name)
     expect(wrapper.vm.$data.profile).toBe(user.profile)
     expect(wrapper.vm.$data.selectPrefecture).toBe(user.prefecture.id)
@@ -85,9 +85,9 @@ describe('UserProfileForm.vue', () => {
     if (alert !== null) {
       expect(toastedErrorMock).toBeCalledWith(alert)
     }
-    expect(toastedInfoMock).toBeCalledTimes(notice !== null ? 1 : 0)
+    expect(toastedSuccessMock).toBeCalledTimes(notice !== null ? 1 : 0)
     if (notice !== null) {
-      expect(toastedInfoMock).toBeCalledWith(notice)
+      expect(toastedSuccessMock).toBeCalledWith(notice)
     }
     expect(mock).toBeCalledTimes(1)
     expect(mock).toBeCalledWith(url)
