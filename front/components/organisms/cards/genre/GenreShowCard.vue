@@ -4,7 +4,7 @@
       <v-img :src="genre.image_url.xlarge" max-height="150" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.3)">
         <v-card-title class="genre-name mt-8 white--text justify-center align-center text-shadow">{{ genre.name }}</v-card-title>
       </v-img>
-      <v-tabs v-model="tab" background-color="#FFFCFC" color="#ef5350" class="mt-4" grow>
+      <v-tabs v-model="tab" background-color="#FFFCFC" color="#117768" class="mt-4" grow>
         <v-tab v-for="title in titles" :key="title.name">{{ title.name }}</v-tab>
       </v-tabs>
       <v-tabs-items v-model="tab">

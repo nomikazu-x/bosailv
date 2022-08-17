@@ -24,12 +24,12 @@
           </v-col>
           <v-col cols="12">
             <div class="text-center">
-              <GreenBtn :disabled="waiting" @click="onSearchShelters(page, selectCity)">検索</GreenBtn>
+              <OrangeBtn :disabled="waiting" @click="onSearchShelters(page, selectCity)">検索</OrangeBtn>
             </div>
           </v-col>
           <v-col v-if="$auth.user.city" cols="12">
             <div class="text-center">
-              <GreenBtn @click="onSearchShelters(page, $auth.user.city.id)">自分の出身市町村で検索する</GreenBtn>
+              <OrangeBtn @click="onSearchShelters(page, $auth.user.city.id)">自分の出身市町村で検索する</OrangeBtn>
             </div>
           </v-col>
         </v-row>
@@ -59,7 +59,7 @@ import CitiesSelect from '~/components/organisms/select/CitiesSelect.vue'
 import DisasterTypeSelect from '~/components/organisms/select/DisasterTypeSelect.vue'
 import SheltersMap from '~/components/organisms/maps/SheltersMap.vue'
 import SheltersListCard from '~/components/organisms/cards/shelter/SheltersListCard.vue'
-import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'SheltersMapCard',
@@ -71,7 +71,7 @@ export default {
     DisasterTypeSelect,
     SheltersMap,
     SheltersListCard,
-    GreenBtn
+    OrangeBtn
   },
 
   mixins: [Application],
@@ -101,7 +101,7 @@ export default {
       this.selectCity = cityId
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.sheltersUrl, {
-        params: { id: this.selectCity, page, disaster_type: this.selectDisasterType }
+        params: { id: this.selectCity, page, disaster_type: this.selectDisasterType, prefecture_id: this.selectPrefecture }
       })
         .then((response) => {
           if (response.data == null || response.data.shelters == null) {

@@ -1,7 +1,7 @@
 <template>
   <div class="mt-4">
     <TheProcessing v-if="processing" />
-    <BaseTitleCard title="避難所一覧">
+    <BaseTitleCard :title="info.city_name + '付近の避難所一覧'">
       <v-card v-if="shelters != null && shelters.length === 0" outlined tile>
         <v-card-title class="ml-1">該当する避難所はありません。</v-card-title>
       </v-card>

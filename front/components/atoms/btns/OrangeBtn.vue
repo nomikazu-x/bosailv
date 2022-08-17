@@ -59,6 +59,6 @@ export default {
 
 <style lang="scss" scoped>
 .btn {
-  color: #747474;
+  color: white;
 }
 </style>
