@@ -14,6 +14,7 @@
           accept="image/jpeg,image/gif,image/png"
           label="サムネイルを選択してください"
           prepend-icon="mdi-camera"
+          color="#117768"
           show-size
           :error-messages="errors"
           @change="onInput"

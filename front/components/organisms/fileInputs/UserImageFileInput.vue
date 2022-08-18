@@ -14,9 +14,10 @@
             prepend-icon="mdi-camera"
             show-size
             :error-messages="errors"
+            color="#117768"
           />
         </ValidationProvider>
-        <GreenBtn id="user_image_update_btn" color="primary" :disabled="invalid || image === null || processing" @click="onUserImageUpdate">アップロード</GreenBtn>
+        <OrangeBtn id="user_image_update_btn" color="primary" :disabled="invalid || image === null || processing" @click="onUserImageUpdate">アップロード</OrangeBtn>
         <v-dialog transition="dialog-top-transition" max-width="600px">
           <template #activator="{ on, attrs }">
             <v-btn id="user_image_delete_btn" color="secondary" :disabled="!$auth.user.upload_image || processing" v-bind="attrs" v-on="on">画像削除</v-btn>
@@ -29,7 +30,7 @@
               </v-card-text>
               <v-card-actions class="justify-end">
                 <v-btn id="user_image_delete_no_btn" color="secondary" @click="dialog.value = false">いいえ</v-btn>
-                <GreenBtn id="user_image_delete_yes_btn" color="primary" @click="dialog.value = false; onUserImageDelete()">はい</GreenBtn>
+                <RedBtn id="user_image_delete_yes_btn" color="primary" @click="dialog.value = false; onUserImageDelete()">はい</RedBtn>
               </v-card-actions>
             </v-card>
           </template>
@@ -43,7 +44,8 @@
 import { ValidationObserver, ValidationProvider, extend, configure, localize } from 'vee-validate'
 import { size } from 'vee-validate/dist/rules'
 import Application from '~/plugins/application.js'
-import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
+import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 extend('size_20MB', size)
 configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
@@ -54,7 +56,8 @@ export default {
   components: {
     ValidationObserver,
     ValidationProvider,
-    GreenBtn
+    OrangeBtn,
+    RedBtn
   },
 
   mixins: [Application],

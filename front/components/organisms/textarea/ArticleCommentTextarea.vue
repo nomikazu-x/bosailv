@@ -7,7 +7,7 @@
           <v-textarea
             v-model="content"
             label="コメント"
-            color="#3c3c3c"
+            color="#117768"
             outlined
             autocomplete="off"
             :error-messages="errors"

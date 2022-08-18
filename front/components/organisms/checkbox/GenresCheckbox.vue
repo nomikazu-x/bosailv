@@ -8,7 +8,7 @@
             v-model="valueModel"
             :value="genre.id"
             :label="genre.name"
-            color="#ef5350"
+            color="#117768"
             dense
           />
         </v-col>
