@@ -20,7 +20,7 @@
       </div>
       <div v-else>
         <v-list-item-icon>
-          <v-icon>
+          <v-icon large class="ml-1 mr-2">
             {{ index + 1 }}
           </v-icon>
         </v-list-item-icon>

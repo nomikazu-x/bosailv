@@ -35,6 +35,8 @@ json.user do
   json.is_completed_sns_tasks user.prepare_task_profile.sns_tasks.raw == 2097151
   json.is_completed_house_tasks user.prepare_task_profile.house_tasks.raw == 134217727
   json.is_completed_family_rules_tasks user.is_completed_family_rule_tasks?(user)
+  json.is_completed_emergency_contact_task user.emergency_contacts.present?
+  json.is_completed_stock_tasks user.prepare_task_profile.stock_tasks.raw == 8657043455
   json.is_family_present user.families.present?
   json.is_hazard_map_confirmed user.task_profile.hazard_map_confirmed?
 end

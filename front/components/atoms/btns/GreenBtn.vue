@@ -5,6 +5,7 @@
     class="btn"
     :disabled="disabled"
     :large="large"
+    :small="small"
     :block="block"
     :outlined="outlined"
     :to="to"
@@ -29,6 +30,10 @@ export default {
       default: false
     },
     large: {
+      type: Boolean,
+      default: false
+    },
+    small: {
       type: Boolean,
       default: false
     },
