@@ -3,6 +3,7 @@ json.success true
 json.genre do
   json.id @genre.id
   json.name @genre.name
+  json.description @genre.description
   json.image_url do
     json.large "#{Settings['base_image_url']}#{@genre.image_url(:large)}"
     json.xlarge "#{Settings['base_image_url']}#{@genre.image_url(:xlarge)}"
