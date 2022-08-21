@@ -90,7 +90,7 @@ export default {
       return (this.user && this.user.name) || this.$auth.user.name
     },
     cardTitle () {
-      return (this.canAction ? 'あなた' : this.currentName) + 'の災害時役立つ記事'
+      return (this.canAction ? 'あなた' : this.currentName) + `の「${this.genre.name}」に関する記事`
     }
   },
   async created () {

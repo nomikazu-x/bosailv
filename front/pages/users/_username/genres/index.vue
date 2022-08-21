@@ -16,7 +16,7 @@
     </template>
 
     <template v-if="!loading" #right>
-      <UserArticleListCard />
+      <UserShowCardWithGenre />
     </template>
   </TwoColumnContainer>
 </template>
@@ -28,10 +28,10 @@ import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import UserIntroCard from '~/components/organisms/cards/user/UserIntroCard.vue'
 import UserMenusCard from '~/components/organisms/cards/user/UserMenusCard.vue'
-import UserArticleListCard from '~/components/organisms/cards/user/UserArticleListCard.vue'
+import UserShowCardWithGenre from '~/components/organisms/cards/user/UserShowCardWithGenre.vue'
 
 export default {
-  name: 'UsersUsernameGenresId',
+  name: 'UsersUsername',
 
   components: {
     TwoColumnContainer,
@@ -39,7 +39,7 @@ export default {
     TheMessage,
     UserIntroCard,
     UserMenusCard,
-    UserArticleListCard
+    UserShowCardWithGenre
   },
 
   mixins: [Application],

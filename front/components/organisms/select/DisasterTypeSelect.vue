@@ -12,6 +12,7 @@
           :items="disasterTypes"
           item-text="name"
           item-value="value"
+          @click="onClick"
         />
       </ValidationProvider>
     </v-col>
@@ -60,6 +61,12 @@ export default {
       set (newVal) {
         return this.$emit('input', newVal)
       }
+    }
+  },
+
+  methods: {
+    onClick () {
+      return this.$emit('click')
     }
   }
 }

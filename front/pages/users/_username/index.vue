@@ -11,12 +11,12 @@
     </template>
 
     <template v-if="!loading" #left>
-      <UserIntroCard />
+      <UserIntroCard class="mb-4" />
+      <UserMenusCard />
     </template>
 
     <template v-if="!loading" #right>
-      <TaskListCard class="mb-4" />
-      <UserShowCardWithGenre />
+      <TaskListCard />
     </template>
   </TwoColumnContainer>
 </template>
@@ -27,8 +27,8 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import UserIntroCard from '~/components/organisms/cards/user/UserIntroCard.vue'
+import UserMenusCard from '~/components/organisms/cards/user/UserMenusCard.vue'
 import TaskListCard from '~/components/organisms/cards/task/TaskListCard.vue'
-import UserShowCardWithGenre from '~/components/organisms/cards/user/UserShowCardWithGenre.vue'
 
 export default {
   name: 'UsersUsername',
@@ -38,8 +38,8 @@ export default {
     TheLoading,
     TheMessage,
     UserIntroCard,
-    TaskListCard,
-    UserShowCardWithGenre
+    UserMenusCard,
+    TaskListCard
   },
 
   mixins: [Application],
