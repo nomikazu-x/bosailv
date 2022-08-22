@@ -167,6 +167,7 @@ ja:
       image_destroy: '画像を削除しました。'
       task_update: 'タスクを達成しました。'
       task_destroy: 'タスクの達成をリセットしました。'
+      hazard_map_task_update: 'ハザードマップを確認しました。'
       destroy: 'ユーザーを削除しました。'
     article:
       create: '記事を作成できました。'
@@ -208,6 +209,7 @@ ja:
     user:
       task_update: 'タスクの達成に失敗しました。'
       task_destroy: 'タスクのリセットに失敗しました。'
+      hazard_map_task_update: 'ハザードマップの確認に失敗しました。'
       destroy:
         params_blank: 'パラメータが指定されていません。'
         failure: '削除に失敗しました。'

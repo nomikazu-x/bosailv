@@ -2,11 +2,12 @@
 #
 # Table name: genres
 #
-#  id               :bigint           not null, primary key
-#  image(画像)      :text(65535)      not null
-#  name(ジャンル名) :string(10)       not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id                  :bigint           not null, primary key
+#  description(説明文) :text(65535)      not null
+#  image(画像)         :text(65535)      not null
+#  name(ジャンル名)    :string(10)       not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 require 'rails_helper'
 
@@ -40,6 +41,14 @@ RSpec.describe Genre, type: :model do
 
     context "imageがNULLの時" do
       let(:genre) { build(:genre, image: nil) }
+      it "エラーメッセージが返る" do
+        genre.valid?
+        expect(genre).to be_invalid
+      end
+    end
+
+    context "descriptionがNULLの時" do
+      let(:genre) { build(:genre, description: nil) }
       it "エラーメッセージが返る" do
         genre.valid?
         expect(genre).to be_invalid

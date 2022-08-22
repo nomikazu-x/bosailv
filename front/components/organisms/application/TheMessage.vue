@@ -13,7 +13,7 @@
       v-if="notice"
       border="top"
       colored-border
-      type="info"
+      type="success"
       elevation="2"
     >
       {{ notice }}

@@ -6,7 +6,7 @@
       :error-messages="errors"
       dense
       outlined
-      color="#3c3c3c"
+      color="#117768"
       type="email"
       label="メールアドレス"
     />

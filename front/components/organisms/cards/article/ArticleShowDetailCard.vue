@@ -118,11 +118,10 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
-            this.$store.commit('user/setPoint', response.data.article.user, { root: true })
-            this.$store.commit('user/setRequiredPoint', response.data.required_exp, { root: true })
+            this.$auth.setUser(response.data.article.user)
             this.$store.commit('articles/deleteArticle', articleId, { root: true })
             this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
             return this.$router.push({ path: '/articles' })
           }
         },
@@ -133,7 +132,7 @@ export default {
             this.$toasted.error(this.$t('network.error'))
           } else {
             this.$toasted.error(error.response.data.alert)
-            this.$toasted.info(error.response.data.notice)
+            this.$toasted.success(error.response.data.notice)
           }
         })
 

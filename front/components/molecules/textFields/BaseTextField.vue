@@ -7,7 +7,7 @@
       dense
       outlined
       :prepend-icon="prependIcon"
-      color="#3c3c3c"
+      color="#117768"
       :label="label"
       @click="onClick"
     />

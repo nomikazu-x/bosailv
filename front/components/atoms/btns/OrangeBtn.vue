@@ -1,11 +1,15 @@
 <template>
   <v-btn
+    :id="id"
     color="amber darken-3"
-    class="btn white--text"
-    depressed
+    class="btn"
     :disabled="disabled"
     :large="large"
+    :block="block"
+    :outlined="outlined"
     :to="to"
+    :href="href"
+    depressed
     @click="onClick"
   >
     <slot />
@@ -16,6 +20,10 @@
 export default {
   name: 'OrangeBtn',
   props: {
+    id: {
+      type: String,
+      default: null
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -24,8 +32,20 @@ export default {
       type: Boolean,
       default: false
     },
+    block: {
+      type: Boolean,
+      default: false
+    },
+    outlined: {
+      type: Boolean,
+      default: false
+    },
     to: {
       type: [String, Object],
+      default: undefined
+    },
+    href: {
+      type: String,
       default: undefined
     }
   },
@@ -39,6 +59,6 @@ export default {
 
 <style lang="scss" scoped>
 .btn {
-  color: #747474;
+  color: white;
 }
 </style>

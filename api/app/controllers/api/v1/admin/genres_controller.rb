@@ -37,6 +37,6 @@ class Api::V1::Admin::GenresController < Api::V1::ApplicationController
   private
 
   def genre_params
-    params.require(:genre).permit(:name, :image)
+    params.require(:genre).permit(:name, :image, :description)
   end
 end

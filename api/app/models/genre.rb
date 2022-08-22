@@ -2,11 +2,12 @@
 #
 # Table name: genres
 #
-#  id               :bigint           not null, primary key
-#  image(画像)      :text(65535)      not null
-#  name(ジャンル名) :string(10)       not null
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id                  :bigint           not null, primary key
+#  description(説明文) :text(65535)      not null
+#  image(画像)         :text(65535)      not null
+#  name(ジャンル名)    :string(10)       not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 class Genre < ApplicationRecord
   has_many :article_genre_relations, dependent: :destroy
@@ -15,6 +16,7 @@ class Genre < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   validates :name, presence: true, length: { maximum: 10 }
+  validates :description, presence: true
   validates :image, presence: true
 
   # 画像URLを返却

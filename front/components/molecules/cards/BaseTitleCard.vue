@@ -1,6 +1,6 @@
 <template>
-  <v-card outlined tile style="border-top: 2px solid #ef5350;">
-    <v-card-title style="background-color: #FFFCFC;" v-text="title" />
+  <v-card outlined tile style="border-top: 3px solid #117768;">
+    <v-card-title style="background-color: white;" v-text="title" />
     <v-divider />
     <slot />
   </v-card>

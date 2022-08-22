@@ -19,13 +19,15 @@
           name="age"
           label="世代"
         />
-        <RedBtn
-          id="family_update_btn"
-          :disabled="invalid || processing"
-          @click="onFamilyCreate"
-        >
-          登録
-        </RedBtn>
+        <div class="text-center">
+          <GreenBtn
+            id="family_update_btn"
+            :disabled="invalid || processing"
+            @click="onFamilyCreate"
+          >
+            登録
+          </GreenBtn>
+        </div>
       </v-card-text>
     </v-form>
   </ValidationObserver>
@@ -35,7 +37,7 @@
 import { ValidationObserver } from 'vee-validate'
 import Application from '~/plugins/application.js'
 import BaseSelect from '~/components/molecules/select/BaseSelect.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'FamilyEditForm',
@@ -43,7 +45,7 @@ export default {
   components: {
     ValidationObserver,
     BaseSelect,
-    RedBtn
+    GreenBtn
   },
 
   mixins: [Application],
@@ -95,7 +97,7 @@ export default {
             this.sex = null
             this.$refs.observer.reset()
             this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
           }
         },
         (error) => {

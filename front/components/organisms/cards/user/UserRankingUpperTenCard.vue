@@ -6,7 +6,7 @@
       :user="user"
       :index="i"
     />
-    <RedBtn
+    <GreenBtn
       large
       class="my-3"
       outlined
@@ -14,14 +14,14 @@
       to="/users/ranking"
     >
       ランキングをもっと見る
-    </RedBtn>
+    </GreenBtn>
   </BaseTitleCard>
 </template>
 
 <script>
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import UserRankingListItem from '~/components/organisms/items/UserRankingListItem.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'UserRankingUpperTenCard',
@@ -29,7 +29,7 @@ export default {
   components: {
     BaseTitleCard,
     UserRankingListItem,
-    RedBtn
+    GreenBtn
   },
 
   data () {

@@ -14,6 +14,7 @@
           accept="image/jpeg,image/gif,image/png"
           :label="label"
           prepend-icon="mdi-camera"
+          color="#117768"
           show-size
           :error-messages="errors"
           @change="onInput"

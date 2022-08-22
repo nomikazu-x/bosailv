@@ -19,13 +19,18 @@
           </v-col>
           <v-col cols="12">
             <div class="text-center">
-              <RedBtn :disabled="waiting" @click="onSearchHazardMap">検索</RedBtn>
+              <OrangeBtn :disabled="waiting" @click="onSearchHazardMap(selectCity)">検索</OrangeBtn>
+            </div>
+          </v-col>
+          <v-col v-if="$auth.user.city" cols="12">
+            <div class="text-center">
+              <OrangeBtn @click="onSearchHazardMap($auth.user.city.id)">自分の出身市町村で検索する</OrangeBtn>
             </div>
           </v-col>
         </v-row>
       </BaseTitleCard>
 
-      <HazardMapSearchCardText v-if="hazardMap !== null" :hazard-map="hazardMap" />
+      <HazardMapSearchCardText v-if="hazardMap !== null" :hazard-map="hazardMap" :select-city="selectCity" />
     </v-col>
   </v-row>
 </template>
@@ -36,7 +41,7 @@ import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
 import CitiesSelect from '~/components/organisms/select/CitiesSelect.vue'
 import HazardMapSearchCardText from '~/components/organisms/cardText/HazardMapSearchCardText.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'HazardMapSearchCard',
@@ -46,7 +51,7 @@ export default {
     PrefecturesSelect,
     CitiesSelect,
     HazardMapSearchCardText,
-    RedBtn
+    OrangeBtn
   },
 
   mixins: [Application],
@@ -67,13 +72,14 @@ export default {
   },
 
   methods: {
-    async onSearchHazardMap () {
+    async onSearchHazardMap (cityId) {
       this.processing = true
 
       this.hazardMap = null
+      this.selectCity = cityId
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.hazardMapUrl, {
-        params: { id: this.selectCity }
+        params: { id: cityId, prefecture_id: this.selectPrefecture }
       })
         .then((response) => {
           if (response.data == null || response.data.hazard_map == null) {
@@ -113,7 +119,7 @@ export default {
           } else {
             if (error.response.data != null) {
               this.$toasted.error(error.response.data.alert)
-              this.$toasted.info(error.response.data.notice)
+              this.$toasted.success(error.response.data.notice)
               this.waiting = true
             }
             return this.$nuxt.error({ statusCode: error.response.status })

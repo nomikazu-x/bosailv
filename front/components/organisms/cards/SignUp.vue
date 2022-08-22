@@ -2,7 +2,7 @@
   <v-card>
     <v-card-title>新規登録はこちら</v-card-title>
     <v-card-text>
-      <RedBtn to="/signup" nuxt>無料で始める</RedBtn>
+      <GreenBtn to="/signup" nuxt>無料で始める</GreenBtn>
     </v-card-text>
     <v-divider />
     <v-card-actions class="ml-3">
@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'SignUp',
 
   components: {
-    RedBtn
+    GreenBtn
   }
 }
 </script>

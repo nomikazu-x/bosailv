@@ -5,7 +5,7 @@ import BaseImageFileInput from '~/components/molecules/fileInputs/BaseImageFileI
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import GenresCheckbox from '~/components/organisms/checkbox/GenresCheckbox.vue'
 import Editor from '~/components/organisms/editor/Editor.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 import Component from '~/components/organisms/form/ArticleEditForm.vue'
 
 import { Helper } from '~/test/helper.js'
@@ -41,7 +41,7 @@ describe('ArticleEditForm.vue', () => {
     expect(wrapper.findComponent(BaseTextField).exists()).toBe(true)
     expect(wrapper.findComponent(GenresCheckbox).exists()).toBe(true)
     expect(wrapper.findComponent(Editor).exists()).toBe(true)
-    expect(wrapper.findComponent(RedBtn).exists()).toBe(true)
+    expect(wrapper.findComponent(OrangeBtn).exists()).toBe(true)
     expect(wrapper.vm.$data.title).toBe(article.title)
     expect(wrapper.vm.$data.content).toBe(article.content)
     expect(wrapper.vm.$data.selectedGenres).toEqual(article.genres.map((value) => { return value.id }))

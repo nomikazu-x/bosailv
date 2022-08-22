@@ -11,13 +11,13 @@
           v-model="password"
           :password-confirmation.sync="passwordConfirmation"
         />
-        <RedBtn
+        <OrangeBtn
           id="user_update_btn"
           :disabled="invalid || processing"
           @click="onUserUpdate"
         >
           変更
-        </RedBtn>
+        </OrangeBtn>
       </v-card-text>
     </v-form>
   </ValidationObserver>
@@ -28,7 +28,7 @@ import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import PasswordTextField from '~/components/organisms/textFields/PasswordTextField.vue'
 import PasswordConfirmationTextField from '~/components/organisms/textFields/PasswordConfirmationTextField.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'UserPasswordForm',
@@ -38,7 +38,7 @@ export default {
     TheProcessing,
     PasswordTextField,
     PasswordConfirmationTextField,
-    RedBtn
+    OrangeBtn
   },
 
   props: {

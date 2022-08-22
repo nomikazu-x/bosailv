@@ -14,9 +14,10 @@
             prepend-icon="mdi-camera"
             show-size
             :error-messages="errors"
+            color="#117768"
           />
         </ValidationProvider>
-        <RedBtn id="user_image_update_btn" color="primary" :disabled="invalid || image === null || processing" @click="onUserImageUpdate">アップロード</RedBtn>
+        <OrangeBtn id="user_image_update_btn" color="primary" :disabled="invalid || image === null || processing" @click="onUserImageUpdate">アップロード</OrangeBtn>
         <v-dialog transition="dialog-top-transition" max-width="600px">
           <template #activator="{ on, attrs }">
             <v-btn id="user_image_delete_btn" color="secondary" :disabled="!$auth.user.upload_image || processing" v-bind="attrs" v-on="on">画像削除</v-btn>
@@ -44,6 +45,7 @@ import { ValidationObserver, ValidationProvider, extend, configure, localize } f
 import { size } from 'vee-validate/dist/rules'
 import Application from '~/plugins/application.js'
 import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 extend('size_20MB', size)
 configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
@@ -54,6 +56,7 @@ export default {
   components: {
     ValidationObserver,
     ValidationProvider,
+    OrangeBtn,
     RedBtn
   },
 
@@ -82,7 +85,7 @@ export default {
           } else {
             this.$auth.setUser(response.data.user)
             this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
           }
         },
         (error) => {
@@ -110,7 +113,7 @@ export default {
           } else {
             this.$auth.setUser(response.data.user)
             this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
           }
         },
         (error) => {

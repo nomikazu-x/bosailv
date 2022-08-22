@@ -3,7 +3,7 @@ import { createLocalVue, mount } from '@vue/test-utils'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
 import PasswordTextField from '~/components/organisms/textFields/PasswordTextField.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 import Component from '~/components/organisms/form/UserEmailForm.vue'
 
 import { Helper } from '~/test/helper.js'
@@ -32,7 +32,7 @@ describe('UserEmailForm.vue', () => {
     expect(wrapper.findComponent(TheProcessing).exists()).toBe(false)
     expect(wrapper.findComponent(EmailTextField).exists()).toBe(true)
     expect(wrapper.findComponent(PasswordTextField).exists()).toBe(true)
-    expect(wrapper.findComponent(RedBtn).exists()).toBe(true)
+    expect(wrapper.findComponent(OrangeBtn).exists()).toBe(true)
     expect(wrapper.vm.$data.email).toBe(user.email)
     expect(wrapper.vm.$data.currentPassword).toBe('')
   }

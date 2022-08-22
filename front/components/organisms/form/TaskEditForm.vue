@@ -41,13 +41,13 @@
           </v-sheet>
         </v-col>
         <div class="text-center">
-          <RedBtn
+          <OrangeBtn
             id="task_update_btn"
             :disabled="invalid || processing"
             @click="onTaskUpdate"
           >
             作成
-          </RedBtn>
+          </OrangeBtn>
           <DeleteConfirmDialog title="防災タスク削除" @click="onTaskDelete" />
         </div>
       </v-row>
@@ -62,7 +62,7 @@ import BaseImageFileInput from '~/components/molecules/fileInputs/BaseImageFileI
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import BaseTextarea from '~/components/molecules/textarea/BaseTextarea.vue'
 import Editor from '~/components/organisms/editor/Editor.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 import DeleteConfirmDialog from '~/components/organisms/dialogs/DeleteConfirmDialog.vue'
 
 export default {
@@ -75,7 +75,7 @@ export default {
     BaseTextField,
     BaseTextarea,
     Editor,
-    RedBtn,
+    OrangeBtn,
     DeleteConfirmDialog
   },
 

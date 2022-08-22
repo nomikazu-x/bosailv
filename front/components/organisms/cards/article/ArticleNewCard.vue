@@ -58,11 +58,11 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
-            this.$store.commit('user/setPoint', response.data.article.user, { root: true })
-            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
+            this.$store.commit('user/setLevel', response.data.article.user.level, { root: true })
+            this.$auth.setUser(response.data.article.user)
             this.$store.commit('articles/addArticles', response.data.article, { root: true })
             this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
             this.success = true
             this.article = response.data.article
           }

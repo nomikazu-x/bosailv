@@ -15,7 +15,7 @@
           :rules="{ required: true, regex: /^0(\d{1}[-(]?\d{4}|\d{2}[-(]?\d{3}|\d{3}[-(]?\d{2}|\d{4}[-(]?\d{1})[-)]?\d{4}$|^0[5789]0[-]?\d{4}[-]?\d{4}$/ }"
           @click="waiting = false"
         />
-        <RedBtn id="emergency_contact_create_btn" :disabled="invalid || processing || waiting" @click="onEmergencyContactCreate">作成</RedBtn>
+        <OrangeBtn id="emergency_contact_create_btn" :disabled="invalid || processing || waiting" @click="onEmergencyContactCreate">作成</OrangeBtn>
       </v-card-text>
     </v-form>
   </ValidationObserver>
@@ -26,7 +26,7 @@ import { ValidationObserver, extend, configure, localize } from 'vee-validate'
 import { required, regex } from 'vee-validate/dist/rules'
 import Application from '~/plugins/application.js'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 extend('required', required)
 extend('regex', regex)
@@ -38,7 +38,7 @@ export default {
   components: {
     ValidationObserver,
     BaseTextField,
-    RedBtn
+    OrangeBtn
   },
 
   mixins: [Application],
@@ -67,12 +67,14 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
+            this.$store.commit('user/setLevel', response.data.user.level, { root: true })
+            this.$auth.setUser(response.data.user)
             this.$store.commit('emergencyContacts/addEmergencyContacts', response.data.emergency_contact, { root: true })
             this.name = ''
             this.phoneNumber = ''
             this.$refs.observer.reset()
             this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
           }
         },
         (error) => {

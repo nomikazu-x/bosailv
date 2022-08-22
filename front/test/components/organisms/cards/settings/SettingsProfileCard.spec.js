@@ -10,7 +10,7 @@ import { Helper } from '~/test/helper.js'
 const helper = new Helper()
 
 describe('SettingsProfileCard.vue', () => {
-  let axiosGetMock, axiosPostMock, authSetUserMock, authLogoutMock, toastedErrorMock, toastedInfoMock, routerPushMock
+  let axiosGetMock, axiosPostMock, authSetUserMock, authLogoutMock, toastedErrorMock, toastedSuccessMock, routerPushMock
 
   beforeEach(() => {
     axiosGetMock = jest.fn()
@@ -18,7 +18,7 @@ describe('SettingsProfileCard.vue', () => {
     authSetUserMock = jest.fn()
     authLogoutMock = jest.fn()
     toastedErrorMock = jest.fn()
-    toastedInfoMock = jest.fn()
+    toastedSuccessMock = jest.fn()
     routerPushMock = jest.fn()
   })
 
@@ -51,7 +51,7 @@ describe('SettingsProfileCard.vue', () => {
         },
         $toasted: {
           error: toastedErrorMock,
-          info: toastedInfoMock
+          success: toastedSuccessMock
         },
         $router: {
           push: routerPushMock
@@ -81,9 +81,9 @@ describe('SettingsProfileCard.vue', () => {
     if (alert !== null) {
       expect(toastedErrorMock).toBeCalledWith(alert)
     }
-    expect(toastedInfoMock).toBeCalledTimes(notice !== null ? 1 : 0)
+    expect(toastedSuccessMock).toBeCalledTimes(notice !== null ? 1 : 0)
     if (notice !== null) {
-      expect(toastedInfoMock).toBeCalledWith(notice)
+      expect(toastedSuccessMock).toBeCalledWith(notice)
     }
   }
   const commonRedirectTest = (url) => {

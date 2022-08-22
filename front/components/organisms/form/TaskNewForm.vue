@@ -40,13 +40,13 @@
           </v-sheet>
         </v-col>
         <div>
-          <RedBtn
+          <OrangeBtn
             id="task_create_btn"
             :disabled="invalid || processing"
             @click="onTaskCreate"
           >
             作成
-          </RedBtn>
+          </OrangeBtn>
         </div>
       </v-row>
     </v-form>
@@ -60,7 +60,7 @@ import BaseImageFileInput from '~/components/molecules/fileInputs/BaseImageFileI
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import BaseTextarea from '~/components/molecules/textarea/BaseTextarea.vue'
 import Editor from '~/components/organisms/editor/Editor.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'TaskNewForm',
@@ -72,7 +72,7 @@ export default {
     BaseTextField,
     BaseTextarea,
     Editor,
-    RedBtn
+    OrangeBtn
   },
 
   props: {

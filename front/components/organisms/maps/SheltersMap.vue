@@ -1,5 +1,5 @@
 <template>
-  <v-card v-if="shelters !== null" outlined tile class="mt-4 py-2">
+  <v-card v-if="shelters.length > 0" outlined tile class="mt-4 py-2">
     <GmapMap
       map-type-id="roadmap"
       :center="centerInfo(shelters)"

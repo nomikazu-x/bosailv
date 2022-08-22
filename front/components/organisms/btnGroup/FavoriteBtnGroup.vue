@@ -42,18 +42,16 @@ export default {
     async onFavorite () {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.favoriteCreateUrl.replace('_id', this.$route.params.id), {
-        user_id: this.$auth.user.id
-      })
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.favoriteCreateUrl.replace('_id', this.$route.params.id))
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
             this.$store.commit('articles/addLikers', this.$auth.user, { root: true })
-            this.$store.commit('user/setPoint', response.data.user, { root: true })
-            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
+            this.$store.commit('user/setLevel', response.data.user.level, { root: true })
+            this.$auth.setUser(response.data.user)
             this.isFavorited = true
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
           }
@@ -77,18 +75,15 @@ export default {
     async onUnFavorite (likerId) {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.favoriteDeleteUrl.replace('_id', this.$route.params.id), {
-        user_id: this.$auth.user.id
-      })
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.favoriteDeleteUrl.replace('_id', this.$route.params.id))
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
             this.$store.commit('articles/deleteLiker', likerId, { root: true })
-            this.$store.commit('user/setPoint', response.data.user, { root: true })
-            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
+            this.$auth.setUser(response.data.user)
             this.isFavorited = false
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
           }

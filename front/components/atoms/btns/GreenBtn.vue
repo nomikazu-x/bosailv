@@ -1,11 +1,16 @@
 <template>
   <v-btn
-    color="green darken-3"
-    class="btn white--text"
-    depressed
+    :id="id"
+    color="#117768"
+    class="btn"
     :disabled="disabled"
     :large="large"
+    :small="small"
+    :block="block"
+    :outlined="outlined"
     :to="to"
+    :href="href"
+    depressed
     @click="onClick"
   >
     <slot />
@@ -16,6 +21,10 @@
 export default {
   name: 'GreenBtn',
   props: {
+    id: {
+      type: String,
+      default: null
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -24,8 +33,24 @@ export default {
       type: Boolean,
       default: false
     },
+    small: {
+      type: Boolean,
+      default: false
+    },
+    block: {
+      type: Boolean,
+      default: false
+    },
+    outlined: {
+      type: Boolean,
+      default: false
+    },
     to: {
       type: [String, Object],
+      default: undefined
+    },
+    href: {
+      type: String,
       default: undefined
     }
   },

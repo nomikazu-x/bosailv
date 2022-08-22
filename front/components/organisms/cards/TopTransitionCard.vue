@@ -5,7 +5,6 @@
         <BaseBtn to="/genres">ジャンル別</BaseBtn>
         <BaseBtn to="/shelters">避難所</BaseBtn>
         <BaseBtn to="/hazard_maps">ハザードマップ</BaseBtn>
-        <BaseBtn>おすすめ</BaseBtn>
       </v-row>
     </v-card>
   </BaseTitleCard>

@@ -11,7 +11,8 @@
     </template>
 
     <template v-if="!loading" #left>
-      <UserIntroCard />
+      <UserIntroCard class="mb-4" />
+      <UserMenusCard />
     </template>
 
     <template v-if="!loading" #right>
@@ -26,6 +27,7 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import UserIntroCard from '~/components/organisms/cards/user/UserIntroCard.vue'
+import UserMenusCard from '~/components/organisms/cards/user/UserMenusCard.vue'
 import UserArticleListCard from '~/components/organisms/cards/user/UserArticleListCard.vue'
 
 export default {
@@ -36,6 +38,7 @@ export default {
     TheLoading,
     TheMessage,
     UserIntroCard,
+    UserMenusCard,
     UserArticleListCard
   },
 

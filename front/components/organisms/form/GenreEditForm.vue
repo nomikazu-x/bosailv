@@ -24,13 +24,13 @@
           </v-sheet>
         </v-col>
         <div class="text-center">
-          <RedBtn
+          <OrangeBtn
             id="genre_update_btn"
             :disabled="invalid || processing"
             @click="onGenreUpdate"
           >
             作成
-          </RedBtn>
+          </OrangeBtn>
           <DeleteConfirmDialog title="ジャンル削除" @click="onGenreDelete" />
         </div>
       </v-row>
@@ -43,7 +43,7 @@ import { ValidationObserver } from 'vee-validate'
 import Application from '~/plugins/application.js'
 import BaseImageFileInput from '~/components/molecules/fileInputs/BaseImageFileInput.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 import DeleteConfirmDialog from '~/components/organisms/dialogs/DeleteConfirmDialog.vue'
 
 export default {
@@ -53,7 +53,7 @@ export default {
     ValidationObserver,
     BaseImageFileInput,
     BaseTextField,
-    RedBtn,
+    OrangeBtn,
     DeleteConfirmDialog
   },
 

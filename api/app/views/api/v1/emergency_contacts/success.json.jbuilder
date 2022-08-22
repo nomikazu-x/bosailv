@@ -8,4 +8,6 @@ if @emergency_contact.present?
   end
 end
 
+json.partial! 'api/v1/users/user', user: current_user
+
 json.notice notice if notice.present?

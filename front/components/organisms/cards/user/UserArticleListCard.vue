@@ -6,11 +6,16 @@
           <v-card-title class="genre-name mt-8 white--text justify-center align-center text-shadow">{{ genre.name }}</v-card-title>
         </v-img>
       </v-col>
+      <v-col cols="12">
+        <v-card-text>
+          {{ genre.description }}
+        </v-card-text>
+      </v-col>
       <v-col v-if="canAction" cols="12" class="text-right">
-        <RedBtn class="mb-4 mr-5" to="/articles/new">記事を作成する</RedBtn>
+        <OrangeBtn class="mb-4 mr-5" to="/articles/new">記事を作成する</OrangeBtn>
       </v-col>
     </v-row>
-    <v-tabs v-model="tab" background-color="#FFFCFC" color="#ef5350" class="mt-4" grow>
+    <v-tabs v-model="tab" background-color="#FFFCFC" color="#117768" class="mt-4" grow>
       <v-tab v-for="title in titles" :key="title.name">{{ title.name }}</v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab">
@@ -38,7 +43,7 @@
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import ArticleListCardWithTab from '~/components/organisms/tabItem/ArticleListCardWithTab.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'UsersArticleListCard',
@@ -46,7 +51,7 @@ export default {
   components: {
     BaseTitleCard,
     ArticleListCardWithTab,
-    RedBtn
+    OrangeBtn
   },
 
   mixins: [Application],
@@ -85,7 +90,7 @@ export default {
       return (this.user && this.user.name) || this.$auth.user.name
     },
     cardTitle () {
-      return (this.canAction ? 'あなた' : this.currentName) + 'の災害時役立つ記事'
+      return (this.canAction ? 'あなた' : this.currentName) + `の「${this.genre.name}」に関する記事`
     }
   },
   async created () {

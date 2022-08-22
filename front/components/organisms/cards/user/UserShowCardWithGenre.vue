@@ -3,7 +3,7 @@
     <div class="pa-5">
       <v-row>
         <v-col v-if="canAction" cols="12" class="text-right">
-          <RedBtn class="my-b mr-4" to="/articles/new">記事を作成する</RedBtn>
+          <OrangeBtn class="my-b mr-4" to="/articles/new">記事を作成する</OrangeBtn>
         </v-col>
       </v-row>
 
@@ -16,7 +16,7 @@
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import GenreImageListCard from '~/components/organisms/cards/genre/GenreImageListCard.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'UserShowCardWithGenre',
@@ -24,7 +24,7 @@ export default {
   components: {
     BaseTitleCard,
     GenreImageListCard,
-    RedBtn
+    OrangeBtn
   },
 
   mixins: [Application],

@@ -73,7 +73,7 @@ export default {
             this.$toasted.error(this.$t('system.error'))
           } else {
             this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
             this.$router.push({ path: '/admin/genres' })
           }
         },
@@ -100,7 +100,7 @@ export default {
             this.$toasted.error(this.$t('system.error'))
           } else {
             this.$toasted.error(response.data.alert)
-            this.$toasted.info(response.data.notice)
+            this.$toasted.success(response.data.notice)
             return this.$router.push({ path: '/admin/genres' })
           }
         },
@@ -113,7 +113,7 @@ export default {
             this.$toasted.error(this.$t('network.error'))
           } else {
             this.$toasted.error(error.response.data.alert)
-            this.$toasted.info(error.response.data.notice)
+            this.$toasted.success(error.response.data.notice)
           }
         })
 

@@ -5,6 +5,7 @@
         <v-select
           v-model="valueModel"
           label="市町村"
+          color="#117768"
           outlined
           :value="value"
           :error-messages="errors"

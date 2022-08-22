@@ -9,7 +9,7 @@
       :label="label"
       auto-grow
       counter
-      color="#3c3c3c"
+      color="#117768"
       :name="name"
       maxlength="255"
       @click="onClick"

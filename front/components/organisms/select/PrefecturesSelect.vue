@@ -5,6 +5,7 @@
         <v-select
           v-model="valueModel"
           label="都道府県"
+          color="#117768"
           outlined
           :value="value"
           :error-messages="errors"

@@ -11,12 +11,12 @@ import Page from '~/pages/articles/new.vue'
 // const helper = new Helper()
 
 describe('new.vue', () => {
-  let authRedirectMock, toastedErrorMock, toastedInfoMock, routerPushMock
+  let authRedirectMock, toastedErrorMock, toastedSuccessMock, routerPushMock
 
   beforeEach(() => {
     authRedirectMock = jest.fn()
     toastedErrorMock = jest.fn()
-    toastedInfoMock = jest.fn()
+    toastedSuccessMock = jest.fn()
     routerPushMock = jest.fn()
   })
 
@@ -39,7 +39,7 @@ describe('new.vue', () => {
         },
         $toasted: {
           error: toastedErrorMock,
-          info: toastedInfoMock
+          success: toastedSuccessMock
         },
         $router: {
           push: routerPushMock
@@ -64,9 +64,9 @@ describe('new.vue', () => {
     if (alert !== null) {
       expect(toastedErrorMock).toBeCalledWith(alert)
     }
-    expect(toastedInfoMock).toBeCalledTimes(notice !== null ? 1 : 0)
+    expect(toastedSuccessMock).toBeCalledTimes(notice !== null ? 1 : 0)
     if (notice !== null) {
-      expect(toastedInfoMock).toBeCalledWith(notice)
+      expect(toastedSuccessMock).toBeCalledWith(notice)
     }
     expect(mock).toBeCalledTimes(1)
     expect(mock).toBeCalledWith(url)

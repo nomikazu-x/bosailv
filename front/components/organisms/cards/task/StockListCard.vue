@@ -25,6 +25,9 @@
         </v-col>
       </v-row>
     </v-card>
+    <div class="text-center mt-5 mb-3">
+      <GreenBtn to="/tasks/stocks/edit" text>あなたの家族情報を編集する</GreenBtn>
+    </div>
   </BaseTitleCard>
 </template>
 
@@ -32,13 +35,15 @@
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import CompleteBtnGroup from '~/components/organisms/btnGroup/CompleteBtnGroup.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'StockListCard',
 
   components: {
     BaseTitleCard,
-    CompleteBtnGroup
+    CompleteBtnGroup,
+    GreenBtn
   },
 
   mixins: [Application],
@@ -77,9 +82,9 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
-            this.$store.commit('user/setPoint', response.data.user, { root: true })
-            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
-            this.$toasted.info(response.data.notice)
+            this.$store.commit('user/setLevel', response.data.user.level, { root: true })
+            this.$auth.setUser(response.data.user)
+            this.$toasted.success(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
           }
@@ -110,9 +115,8 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
-            this.$store.commit('user/setPoint', response.data.user, { root: true })
-            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
-            this.$toasted.info(response.data.notice)
+            this.$auth.setUser(response.data.user)
+            this.$toasted.success(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
           }

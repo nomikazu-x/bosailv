@@ -12,16 +12,15 @@
               :article="article"
             />
           </div>
-          <v-btn
+          <GreenBtn
             large
             class="my-5"
-            color="#ef5350"
             outlined
             block
             :to="{ name: 'genres-id___ja', params: { id: genre.id }}"
           >
             {{ genre.name }}をもっと見る
-          </v-btn>
+          </GreenBtn>
         </div>
       </BaseTitleCard>
     </v-col>
@@ -32,13 +31,15 @@
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import ArticleListCardText from '~/components/organisms/cardText/ArticleListCardText.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'GenreListCardWithArticle',
 
   components: {
     BaseTitleCard,
-    ArticleListCardText
+    ArticleListCardText,
+    GreenBtn
   },
 
   mixins: [Application],

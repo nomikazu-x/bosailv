@@ -10,12 +10,6 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   # GET /api/v1/users/:username(.json) ユーザー情報詳細取得API
   def show
     @user = User.find_by(username: params[:username])
-    @required_point = RequiredPoint.find_by(level: @user.level).point if @user.present?
-
-    if @user.present? && @user.prefecture_id.present?
-      @prefecture = Prefecture.find(@user.prefecture_id)
-      @city = City.find(@user.city_id)
-    end
 
     if @user
       render './api/v1/users/show'
@@ -41,5 +35,22 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     else
       head :not_found
     end
+  end
+
+  # GET /api/v1/users/:username/shelters(.json) ユーザー避難所一覧取得API
+  def shelters
+    if params[:prefecture_id].present?
+      @prefecture = Prefecture.find(params[:prefecture_id]).name
+      @city = City.find(params[:id]).name
+    else
+      @prefecture = Prefecture.find(current_user.prefecture_id).name
+      @city = City.find(current_user.city_id).name
+    end
+    @city_name = @prefecture + @city
+  
+    @shelters = current_user.registered_shelters.page(params[:page]).per(Settings['default_shelters_limit'])
+    @shelters = @shelters.where("city_id = #{params[:id]}") if params[:id]
+    @shelters = @shelters.where("#{params[:disaster_type]} = true") if params[:disaster_type]
+    render './api/v1/shelters/index'
   end
 end

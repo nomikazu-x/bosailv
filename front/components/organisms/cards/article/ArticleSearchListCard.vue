@@ -16,7 +16,7 @@
           </v-col>
           <v-col cols="12">
             <div class="text-center mt-5">
-              <RedBtn @click="onSearchArticlePagination">検索</RedBtn>
+              <OrangeBtn @click="onSearchArticlePagination">検索</OrangeBtn>
             </div>
           </v-col>
         </v-row>
@@ -44,7 +44,7 @@ import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import GenresCheckbox from '~/components/organisms/checkbox/GenresCheckbox.vue'
 import ArticleListCardWithTab from '~/components/organisms/tabItem/ArticleListCardWithTab.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'ArticleSearchListCard',
@@ -54,7 +54,7 @@ export default {
     BaseTextField,
     GenresCheckbox,
     ArticleListCardWithTab,
-    RedBtn
+    OrangeBtn
   },
 
   mixins: [Application],

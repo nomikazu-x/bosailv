@@ -11,13 +11,13 @@
       />
 
       <div class="text-center mt-4">
-        <RedBtn
+        <OrangeBtn
           id="sign_in_btn"
           :disabled="invalid || processing"
           @click="onSubmit"
         >
           ログイン
-        </RedBtn>
+        </OrangeBtn>
       </div>
     </v-form>
   </ValidationObserver>
@@ -28,7 +28,7 @@ import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue'
 import PasswordTextField from '~/components/organisms/textFields/PasswordTextField.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'SigninForm',
@@ -38,7 +38,7 @@ export default {
     TheProcessing,
     EmailTextField,
     PasswordTextField,
-    RedBtn
+    OrangeBtn
   },
 
   props: {

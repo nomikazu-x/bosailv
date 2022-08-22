@@ -12,7 +12,7 @@
     </v-main>
 
     <TheFooter />
-    <GoTop v-if="!isGoTopValidPath" :max-width="48" :size="48" :right="24" :bottom="24" bg-color="#ef5350" />
+    <GoTop v-if="!isGoTopValidPath" :max-width="48" :size="48" :right="24" :bottom="24" bg-color="#117768" />
   </v-app>
 </template>
 

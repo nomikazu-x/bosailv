@@ -25,13 +25,13 @@
           label="プロフィール"
           @click="waiting = false"
         />
-        <RedBtn
+        <OrangeBtn
           id="user_update_btn"
           :disabled="invalid || processing || waiting"
           @click="onUserUpdate"
         >
           変更
-        </RedBtn>
+        </OrangeBtn>
       </v-card-text>
     </v-form>
   </ValidationObserver>
@@ -44,7 +44,7 @@ import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
 import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
 import CitiesSelect from '~/components/organisms/select/CitiesSelect.vue'
 import BaseTextarea from '~/components/molecules/textarea/BaseTextarea.vue'
-import RedBtn from '~/components/atoms/btns/RedBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'UserProfileForm',
@@ -56,7 +56,7 @@ export default {
     PrefecturesSelect,
     CitiesSelect,
     BaseTextarea,
-    RedBtn
+    OrangeBtn
   },
 
   props: {
@@ -123,7 +123,7 @@ export default {
           } else {
             if (error.response.data != null) {
               this.$toasted.error(error.response.data.alert)
-              this.$toasted.info(error.response.data.notice)
+              this.$toasted.success(error.response.data.notice)
               this.waiting = true
             }
             return this.$nuxt.error({ statusCode: error.response.status })

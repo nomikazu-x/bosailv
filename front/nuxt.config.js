@@ -113,7 +113,9 @@ export default {
 
   toast: {
     position: 'top-right',
-    duration: 3000
+    duration: 3000,
+    theme: 'outline',
+    closeOnSwipe: true
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

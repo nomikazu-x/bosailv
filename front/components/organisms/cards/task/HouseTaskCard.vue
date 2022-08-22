@@ -72,9 +72,9 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
-            this.$store.commit('user/setPoint', response.data.user, { root: true })
-            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
-            this.$toasted.info(response.data.notice)
+            this.$store.commit('user/setLevel', response.data.user.level, { root: true })
+            this.$auth.setUser(response.data.user)
+            this.$toasted.success(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
           }
@@ -105,9 +105,8 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else if (this.$auth.loggedIn) {
-            this.$store.commit('user/setPoint', response.data.user, { root: true })
-            this.$store.commit('user/setRequiredPoint', response.data.required_point, { root: true })
-            this.$toasted.info(response.data.notice)
+            this.$auth.setUser(response.data.user)
+            this.$toasted.success(response.data.notice)
           } else {
             return this.redirectSignIn(response.data.alert, response.data.notice)
           }

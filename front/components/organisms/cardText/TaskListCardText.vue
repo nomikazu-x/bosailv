@@ -1,33 +1,40 @@
 <template>
   <v-card :to="to" outlined class="mb-3 rounded-lg">
-    <v-row class="black--text" no-gutters>
+    <v-row class="black--text" no-gutters align="center">
       <v-col v-if="$auth.loggedIn && task.is_completed" cols="1">
-        <v-sheet height="132" color="red" class="rounded-l-lg" />
+        <v-sheet height="132" color="#117768" class="rounded-l-lg" />
       </v-col>
       <v-col v-else cols="1">
-        <v-sheet height="132" color="grey" class="rounded-l-lg" />
+        <v-sheet height="132" color="#DFEEE5" class="rounded-l-lg" />
       </v-col>
-      <v-row align="center">
-        <v-col cols="3">
-          <v-img :src="task.image_url.large" max-height="128" max-width="192" class="ml-2 mt-1 rounded-lg" />
-        </v-col>
-        <v-col cols="8">
-          <v-card-title class="font-weight-bold">
-            {{ task.title }}
-            <div v-if="!task.is_completed" class="ml-2 article-title text-center white--text">未</div>
-          </v-card-title>
-          <v-card-text>
-            {{ task.summary }}
-          </v-card-text>
-        </v-col>
-      </v-row>
+      <v-col cols="11">
+        <v-row align="center">
+          <v-col cols="9">
+            <v-card-title class="font-weight-bold">
+              {{ task.title }}
+            </v-card-title>
+            <v-card-text>
+              {{ task.summary }}
+            </v-card-text>
+          </v-col>
+          <v-col cols="3">
+            <GreenBtn v-if="!task.is_completed" disabled outlined small class="mr-1">未達成</GreenBtn>
+          </v-col>
+        </v-row>
+      </v-col>
     </v-row>
   </v-card>
 </template>
 
 <script>
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
+
 export default {
   name: 'TaskListCardText',
+
+  components: {
+    GreenBtn
+  },
 
   props: {
     task: {
@@ -44,7 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 .article-title {
-  background: rgba(0, 0, 0, 0.5);
+  background: #DFEEE5;
   width: 30px;
   height: 30px;
 }

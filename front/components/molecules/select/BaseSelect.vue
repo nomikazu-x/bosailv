@@ -11,6 +11,7 @@
           :items="items"
           :item-text="itemText"
           :item-value="itemValue"
+          color="#117768"
         />
       </ValidationProvider>
     </v-col>

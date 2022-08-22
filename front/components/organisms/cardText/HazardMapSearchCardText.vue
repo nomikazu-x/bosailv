@@ -1,5 +1,5 @@
 <template>
-  <v-card tile outlined class="mt-5 pa-2">
+  <BaseTitleCard :title="hazardMap.city_name + 'のハザードマップ'" class="mt-5 pa-2">
     <v-row justify="center">
       <v-col v-for="item in hazardMapItems" :key="item.id" :cols="item.col">
         <v-card-text>
@@ -15,16 +15,30 @@
         </v-card-text>
       </v-col>
     </v-row>
-  </v-card>
+    <HazardMapConfirmBtn v-if="$auth.loggedIn && ($auth.user.city && $auth.user.city.id === selectCity)" class="text-center" />
+  </BaseTitleCard>
 </template>
 
 <script>
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import HazardMapConfirmBtn from '~/components/organisms/btns/HazardMapConfirmBtn.vue'
+
 export default {
   name: 'HazardMapSearchCardText',
+
+  components: {
+    BaseTitleCard,
+    HazardMapConfirmBtn
+  },
 
   props: {
     hazardMap: {
       type: Object,
+      default: null
+    },
+
+    selectCity: {
+      type: Number,
       default: null
     }
   },
