@@ -3,28 +3,28 @@
     <v-list>
       <v-list-item :to="`/users/${$route.params.username}`">
         <v-list-item-icon>
-          <v-icon>mdi-bell</v-icon>
+          <v-icon>mdi-book-multiple</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>タスク一覧</v-list-item-title>
+          <v-list-item-title>防災タスク一覧</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
       <v-list-item :to="`/users/${$route.params.username}/genres`">
         <v-list-item-icon>
-          <v-icon>mdi-bell-plus</v-icon>
+          <v-icon>mdi-pencil-box-multiple</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>お気に入り・執筆記事一覧</v-list-item-title>
+          <v-list-item-title>マイ記事ジャンル一覧</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
       <v-list-item :to="`/users/${$route.params.username}/shelters`">
         <v-list-item-icon>
-          <v-icon>mdi-book-multiple</v-icon>
+          <v-icon>mdi-exit-run</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>避難所</v-list-item-title>
+          <v-list-item-title>マイ避難所</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
