@@ -1,5 +1,5 @@
 <template>
-  <BaseCard :to="{ name: 'shelters-id___ja', params: { id: shelter.id }}" class="my-2">
+  <BaseCard :to="{ name: 'shelters-id___ja', params: { id: shelter.id }}">
     <v-card-text class="black--text">
       <v-row>
         <v-col cols="12">
