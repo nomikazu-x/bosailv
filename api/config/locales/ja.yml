@@ -254,6 +254,7 @@ ja:
     messages:
       image_update_blank: '選択してください。'
       not_permission: 'アクセスする権限がありません。'
+      not_correct_user: 'あなたは作成者なので、その操作はできません。'
       record_invalid: 'バリデーションに失敗しました: %{errors}'
       infomation:
         ended: '掲載期間が終了しました。'
