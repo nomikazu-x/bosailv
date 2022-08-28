@@ -48,8 +48,16 @@ describe('default.vue', () => {
     // console.log(links)
     expect(links.includes('/signin')).toBe(!loggedIn) // [未ログイン]ログイン
     expect(links.includes('/signup')).toBe(!loggedIn) // [未ログイン]アカウント登録
+    expect(links.includes('/shelters')).toBe(true) // 避難所検索
+    expect(links.includes('/hazard_maps')).toBe(true) // ハザードマップ検索
+    expect(links.includes('/sns_tasks')).toBe(true) // 防災SNS
+    expect(links.includes('/house_tasks')).toBe(true) // おうちタスク
+    expect(links.includes('/emergency_contacts')).toBe(true) // 緊急時連絡先一覧
+    expect(links.includes('/stocks')).toBe(true) // 備蓄品
+    expect(links.includes('/family_rule')).toBe(true) // 家族会議
     expect(links.includes('/infomations')).toBe(true) // お知らせ一覧
     expect(links.includes('/articles')).toBe(true) // 記事一覧
+    expect(links.includes('/genres')).toBe(true) // ジャンル一覧
     expect(links.includes('/articles/search')).toBe(true) // 記事検索
     expect(links.includes('/articles/new')).toBe(loggedIn) // [ログイン中]記事作成
     expect(links.includes('/settings/profile')).toBe(loggedIn) // [ログイン中]設定

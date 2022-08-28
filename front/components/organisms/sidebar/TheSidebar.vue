@@ -82,30 +82,46 @@
       </v-list-item-group>
 
       <v-list-group
-        v-for="item in items"
-        :key="item.title"
-        v-model="item.active"
-        :prepend-icon="item.action"
+        v-model="active"
+        prepend-icon="mdi-pencil-box-multiple"
         no-action
       >
         <template #activator>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title>災害時役立つ記事</v-list-item-title>
           </v-list-item-content>
         </template>
 
-        <v-list-item
-          v-for="child in item.items"
-          :key="child.title"
-          :to="child.to"
-          exact
-          nuxt
-        >
+        <v-list-item to="/articles" exact nuxt>
           <v-list-item-icon>
-            <v-icon>{{ child.icon }}</v-icon>
+            <v-icon>mdi-pencil-box-multiple</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title v-text="child.title" />
+            <v-list-item-title>一覧</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/genres" exact nuxt>
+          <v-list-item-icon>
+            <v-icon>mdi-pencil-box-multiple</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>ジャンル別</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/articles/search" exact nuxt>
+          <v-list-item-icon>
+            <v-icon>mdi-magnify</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>検索</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item v-if="$auth.loggedIn" to="/articles/new" exact nuxt>
+          <v-list-item-icon>
+            <v-icon>mdi-pencil</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>作成</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list-group>
@@ -157,18 +173,7 @@ export default {
   data () {
     return {
       menu: false,
-      items: [
-        {
-          action: 'mdi-pencil-box-multiple',
-          items: [
-            { title: '一覧', icon: 'mdi-pencil-box-multiple', to: '/articles' },
-            { title: 'ジャンル別', icon: 'mdi-pencil-box-multiple', to: '/genres' },
-            { title: '検索', icon: 'mdi-magnify', to: '/articles/search' },
-            { title: '作成', icon: 'mdi-pencil', to: '/articles/new' }
-          ],
-          title: '災害時役立つ記事'
-        }
-      ]
+      active: true
     }
   },
   computed: {

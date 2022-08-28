@@ -12,12 +12,13 @@ export default {
   ** Headers of the page
   */
   head: {
-    titleTemplate: '%s - ' + process.env.npm_package_name,
-    title: process.env.npm_package_name || '',
+    htmlAttrs: { lang: 'ja' },
+    titleTemplate: '%s | Bosai Lv',
+    title: 'Bosai Lv',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: 'あなたの防災レベルはいくつ？' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -121,7 +122,13 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      name: 'Bosai Lv|あなたの防災レベルはいくつ？',
+      lang: 'ja',
+      short_name: 'Bosai Lv',
+      title: 'Bosai Lv',
+      'og:title': 'Bosai Lv',
+      description: 'あなたの防災レベルはいくつ？',
+      'og:description': 'あなたの防災レベルはいくつ？'
     }
   },
 
