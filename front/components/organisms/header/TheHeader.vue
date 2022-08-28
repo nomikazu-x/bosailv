@@ -8,7 +8,7 @@
         :style="{ 'max-width': ($vuetify.breakpoint.width - 226) + 'px' }"
         class="ml-1 align-self-center d-inline-block text-truncate text--secondary"
       >
-        {{ $t('app_name') + $config.envName }}
+        <v-img :src="require('@/assets/images/ヘッダーロゴ.jpg')" />
       </v-toolbar-title>
     </NuxtLink>
     <v-spacer />
