@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <BaseTitleCard v-if="tasks != null" title="防災タスク一覧" style="background-color: #f9f5eb;" />
+  <div v-if="tasks != null">
+    <BaseTitleCard title="防災タスク一覧" style="background-color: #f9f5eb;" />
     <TaskListCardText
       v-for="task in constantTasks"
       :key="`first-${task.id}`"
@@ -36,32 +36,18 @@ export default {
   data () {
     return {
       constantTasks: [
-        { id: 1, to: '/sns_tasks', is_completed: this.$auth.user.is_completed_sns_tasks, image_url: { large: '' }, title: '防災SNSをフォローしよう!', summary: '防災SNSをフォローしてもしものときに備えよう。' },
-        { id: 2, to: '/house_tasks', is_completed: this.$auth.user.is_completed_house_tasks, image_url: { large: '' }, title: '家具の固定をしよう!', summary: '家具類の転倒・落下・移動防止対策をしてもしものときに備えよう。' },
-        { id: 3, to: this.toFamilyRule(), is_completed: this.$auth.user.is_completed_family_rules_tasks, image_url: { large: '' }, title: '家族会議しよう!', summary: '災害に備えて家族でルールを決めておきましょう。' },
-        { id: 4, to: '/emergency_contacts', is_completed: this.$auth.user.is_completed_emergency_contact_task, image_url: { large: '' }, title: '緊急連絡先を登録しよう!', summary: '緊急時にそなえて連絡先を登録しておこう。' },
-        { id: 5, to: this.toStock(), is_completed: this.$auth.user.is_completed_stock_tasks, image_url: { large: '' }, title: '災害用備蓄をしよう!', summary: '家族構成を登録して、必要な備蓄品を備蓄しておこう。' }
+        { id: 1, to: '/sns_tasks', title: '防災SNSをフォローしよう!', summary: '防災SNSをフォローしてもしものときに備えよう。' },
+        { id: 2, to: '/house_tasks', title: '家具の固定をしよう!', summary: '家具類の転倒・落下・移動防止対策をしてもしものときに備えよう。' },
+        { id: 3, to: '/family_rule', title: '家族会議しよう!', summary: '災害に備えて家族でルールを決めておきましょう。' },
+        { id: 4, to: '/emergency_contacts', title: '緊急連絡先を登録しよう!', summary: '緊急時にそなえて連絡先を登録しておこう。' },
+        { id: 5, to: '/stocks', title: '災害用備蓄をしよう!', summary: '家族構成を登録して、必要な備蓄品を備蓄しておこう。' }
       ],
       tasks: null
     }
   },
 
-  computed: {
-    toTask () {
-      return (task) => {
-        if (this.$route.path === '/admin/tasks') {
-          return { name: 'admin-tasks-id-edit___ja', params: { id: task.id } }
-        } else {
-          return { name: 'tasks-id___ja', params: { id: task.id } }
-        }
-      }
-    }
-  },
-
   async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.tasksUrl, {
-      params: { username: this.$route.params.username }
-    })
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.tasksUrl)
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
@@ -75,23 +61,6 @@ export default {
       })
 
     this.processing = false
-  },
-
-  methods: {
-    toFamilyRule () {
-      if (this.$auth.user.is_completed_family_rules_tasks) {
-        return '/family_rule'
-      } else {
-        return '/family_rule/edit'
-      }
-    },
-    toStock () {
-      if (this.$auth.user.is_family_present) {
-        return '/stocks'
-      } else {
-        return '/stocks/edit'
-      }
-    }
   }
 }
 </script>

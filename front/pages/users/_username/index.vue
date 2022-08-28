@@ -16,7 +16,7 @@
     </template>
 
     <template v-if="!loading" #right>
-      <TaskListCard />
+      <UserTaskListCard />
     </template>
   </TwoColumnContainer>
 </template>
@@ -28,7 +28,7 @@ import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import UserIntroCard from '~/components/organisms/cards/user/UserIntroCard.vue'
 import UserMenusCard from '~/components/organisms/cards/user/UserMenusCard.vue'
-import TaskListCard from '~/components/organisms/cards/task/TaskListCard.vue'
+import UserTaskListCard from '~/components/organisms/cards/user/UserTaskListCard.vue'
 
 export default {
   name: 'UsersUsername',
@@ -39,7 +39,7 @@ export default {
     TheMessage,
     UserIntroCard,
     UserMenusCard,
-    TaskListCard
+    UserTaskListCard
   },
 
   mixins: [Application],

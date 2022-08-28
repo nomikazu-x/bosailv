@@ -18,7 +18,7 @@
             </v-card-text>
           </v-col>
           <v-col cols="3">
-            <GreenBtn v-if="!task.is_completed" disabled outlined small class="mr-1">未達成</GreenBtn>
+            <GreenBtn v-if="$auth.loggedIn && !task.is_completed" disabled outlined small class="mr-1">未達成</GreenBtn>
           </v-col>
         </v-row>
       </v-col>
