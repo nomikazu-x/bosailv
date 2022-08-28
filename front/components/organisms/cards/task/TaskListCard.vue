@@ -36,10 +36,10 @@ export default {
   data () {
     return {
       constantTasks: [
-        { id: 1, to: '/tasks/sns', is_completed: this.$auth.user.is_completed_sns_tasks, image_url: { large: '' }, title: '防災SNSをフォローしよう!', summary: '防災SNSをフォローしてもしものときに備えよう。' },
-        { id: 2, to: '/tasks/house', is_completed: this.$auth.user.is_completed_house_tasks, image_url: { large: '' }, title: '家具の固定をしよう!', summary: '家具類の転倒・落下・移動防止対策をしてもしものときに備えよう。' },
+        { id: 1, to: '/sns_tasks', is_completed: this.$auth.user.is_completed_sns_tasks, image_url: { large: '' }, title: '防災SNSをフォローしよう!', summary: '防災SNSをフォローしてもしものときに備えよう。' },
+        { id: 2, to: '/house_tasks', is_completed: this.$auth.user.is_completed_house_tasks, image_url: { large: '' }, title: '家具の固定をしよう!', summary: '家具類の転倒・落下・移動防止対策をしてもしものときに備えよう。' },
         { id: 3, to: this.toFamilyRule(), is_completed: this.$auth.user.is_completed_family_rules_tasks, image_url: { large: '' }, title: '家族会議しよう!', summary: '災害に備えて家族でルールを決めておきましょう。' },
-        { id: 4, to: '/tasks/emergency_contacts', is_completed: this.$auth.user.is_completed_emergency_contact_task, image_url: { large: '' }, title: '緊急連絡先を登録しよう!', summary: '緊急時にそなえて連絡先を登録しておこう。' },
+        { id: 4, to: '/emergency_contacts', is_completed: this.$auth.user.is_completed_emergency_contact_task, image_url: { large: '' }, title: '緊急連絡先を登録しよう!', summary: '緊急時にそなえて連絡先を登録しておこう。' },
         { id: 5, to: this.toStock(), is_completed: this.$auth.user.is_completed_stock_tasks, image_url: { large: '' }, title: '災害用備蓄をしよう!', summary: '家族構成を登録して、必要な備蓄品を備蓄しておこう。' }
       ],
       tasks: null
@@ -80,16 +80,16 @@ export default {
   methods: {
     toFamilyRule () {
       if (this.$auth.user.is_completed_family_rules_tasks) {
-        return '/tasks/family_rule'
+        return '/family_rule'
       } else {
-        return '/tasks/family_rule/edit'
+        return '/family_rule/edit'
       }
     },
     toStock () {
       if (this.$auth.user.is_family_present) {
-        return '/tasks/stocks'
+        return '/stocks'
       } else {
-        return '/tasks/stocks/edit'
+        return '/stocks/edit'
       }
     }
   }
