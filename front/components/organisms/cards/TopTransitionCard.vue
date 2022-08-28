@@ -1,10 +1,15 @@
 <template>
   <BaseTitleCard class="mb-5" title="探す">
-    <v-card class="py-9 px-5" height="100">
-      <v-row justify="space-around">
-        <BaseBtn to="/genres">ジャンル別</BaseBtn>
-        <BaseBtn to="/shelters">避難所</BaseBtn>
-        <BaseBtn to="/hazard_maps">ハザードマップ</BaseBtn>
+    <v-card outline tile class="px-2">
+      <v-row align="center" justify="center">
+        <v-col v-for="item in items" :key="item.id" :cols="item.cols">
+          <BaseCard :to="item.to">
+            <div class="text-center">
+              <v-icon color="#117768" class="mt-3" size="50">{{ item.icon }}</v-icon>
+              <v-card-title class="justify-center">{{ item.title }}</v-card-title>
+            </div>
+          </BaseCard>
+        </v-col>
       </v-row>
     </v-card>
   </BaseTitleCard>
@@ -12,21 +17,23 @@
 
 <script>
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
-import BaseBtn from '~/components/molecules/btns/BaseBtn.vue'
+import BaseCard from '~/components/molecules/cards/BaseCard.vue'
 
 export default {
   name: 'TopTransitonCard',
 
   components: {
     BaseTitleCard,
-    BaseBtn
+    BaseCard
   },
 
   data () {
     return {
       items: [
-        { title: 'ジャンル別', to: '/genres' },
-        { title: 'ランキング', to: '/articles/ranking' }
+        { id: 1, title: '避難所', to: '/shelters', icon: 'mdi-exit-run', cols: '6' },
+        { id: 2, title: 'ハザードマップ', to: '/hazard_maps', icon: 'mdi-book-multiple', cols: '6' },
+        { id: 3, title: '記事検索', to: '/articles/search', icon: 'mdi-pencil-box-multiple', cols: '6' },
+        { id: 4, title: '緊急時連絡先', to: '/emergency_contacts', icon: 'mdi-phone-in-talk', cols: '6' }
       ]
     }
   }

@@ -3,6 +3,7 @@
     <v-card
       class="thumb-up"
       tile
+      outline
       :color="hover ? '#FFFDE8' : 'white' "
       :to="to"
     >
@@ -16,7 +17,7 @@ export default {
   name: 'BaseCard',
   props: {
     to: {
-      type: Object,
+      type: [Object, String],
       default: null
     }
   }
