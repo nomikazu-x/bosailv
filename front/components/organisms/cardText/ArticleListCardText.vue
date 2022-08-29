@@ -16,6 +16,7 @@
         </v-col>
       </v-row>
     </v-card-text>
+    <v-divider />
   </BaseCard>
 </template>
 
