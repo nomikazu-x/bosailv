@@ -1,15 +1,16 @@
 <template>
-  <BaseTitleCard v-if="user != null" :title="cardTitle">
-    <div class="pa-5">
+  <div>
+    <BaseTitleCard v-if="user != null" :title="cardTitle" />
+    <div>
       <v-row>
         <v-col v-if="canAction" cols="12" class="text-right">
-          <OrangeBtn class="my-b mr-4" to="/articles/new">記事を作成する</OrangeBtn>
+          <OrangeBtn class="my-3 mr-4" to="/articles/new">記事を作成する</OrangeBtn>
         </v-col>
       </v-row>
 
       <GenreImageListCard />
     </div>
-  </BaseTitleCard>
+  </div>
 </template>
 
 <script>

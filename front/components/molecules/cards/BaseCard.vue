@@ -3,6 +3,7 @@
     <v-card
       class="thumb-up"
       tile
+      outlined
       :color="hover ? '#FFFDE8' : 'white' "
       :to="to"
     >

@@ -1,12 +1,11 @@
 <template>
-  <BaseTitleCard v-if="genres != null" class="mt-5" title="ジャンル一覧">
-    <v-card>
-      <GenreImageListCard
-        :genres="genres"
-        class="px-2"
-      />
-    </v-card>
-  </BaseTitleCard>
+  <div>
+    <BaseTitleCard v-if="genres != null" class="mt-5" title="ジャンル一覧" />
+    <GenreImageListCard
+      :genres="genres"
+      class="mt-1"
+    />
+  </div>
 </template>
 
 <script>
