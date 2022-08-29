@@ -9,10 +9,13 @@
       </v-col>
       <v-col cols="11">
         <v-row align="center">
-          <v-col cols="9">
-            <v-card-title class="font-weight-bold">
+          <v-col class="text-center" cols="3">
+            <v-icon color="#117768" large>{{ task.icon }}</v-icon>
+            <div class="font-weight-bold mt-1">
               {{ task.title }}
-            </v-card-title>
+            </div>
+          </v-col>
+          <v-col cols="6">
             <v-card-text>
               {{ task.summary }}
             </v-card-text>
@@ -48,11 +51,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.article-title {
-  background: #DFEEE5;
-  width: 30px;
-  height: 30px;
-}
-</style>

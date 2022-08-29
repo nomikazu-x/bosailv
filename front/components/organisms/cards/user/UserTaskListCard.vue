@@ -36,11 +36,11 @@ export default {
   data () {
     return {
       constantTasks: [
-        { id: 1, to: '/sns_tasks', is_completed: this.$auth.user.is_completed_sns_tasks, title: '防災SNSをフォローしよう!', summary: '防災SNSをフォローしてもしものときに備えよう。' },
-        { id: 2, to: '/house_tasks', is_completed: this.$auth.user.is_completed_house_tasks, title: '家具の固定をしよう!', summary: '家具類の転倒・落下・移動防止対策をしてもしものときに備えよう。' },
-        { id: 3, to: this.toFamilyRule(), is_completed: this.$auth.user.is_completed_family_rules_tasks, title: '家族会議しよう!', summary: '災害に備えて家族でルールを決めておきましょう。' },
-        { id: 4, to: '/emergency_contacts', is_completed: this.$auth.user.is_completed_emergency_contact_task, title: '緊急連絡先を登録しよう!', summary: '緊急時にそなえて連絡先を登録しておこう。' },
-        { id: 5, to: this.toStock(), is_completed: this.$auth.user.is_completed_stock_tasks, title: '災害用備蓄をしよう!', summary: '家族構成を登録して、必要な備蓄品を備蓄しておこう。' }
+        { id: 1, to: '/sns_tasks', is_completed: this.$auth.user.is_completed_sns_tasks, icon: 'mdi-twitter', title: '防災SNS', summary: '防災SNSをフォローしてもしものときに備えよう。' },
+        { id: 2, to: '/house_tasks', is_completed: this.$auth.user.is_completed_house_tasks, icon: 'mdi-home', title: '家具の固定', summary: '家具類の転倒・落下・移動防止対策をしてもしものときに備えよう。' },
+        { id: 3, to: this.toFamilyRule(), is_completed: this.$auth.user.is_completed_family_rules_tasks, icon: 'mdi-human-male-female-child', title: '家族会議', summary: '災害に備えて家族でルールを決めておきましょう。' },
+        { id: 4, to: '/emergency_contacts', is_completed: this.$auth.user.is_completed_emergency_contact_task, icon: 'mdi-phone-in-talk', title: '緊急連絡先', summary: '緊急時にそなえて連絡先を登録しておこう。' },
+        { id: 5, to: this.toStock(), is_completed: this.$auth.user.is_completed_stock_tasks, icon: 'mdi-archive', title: '備蓄', summary: '家族構成を登録して、必要な備蓄品を備蓄しておこう。' }
       ],
       tasks: null
     }
