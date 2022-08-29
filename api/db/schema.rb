@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_20_000212) do
+ActiveRecord::Schema.define(version: 2022_08_29_130442) do
 
   create_table "article_comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false, comment: "ユーザーID"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 2022_08_20_000212) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.text "description", null: false, comment: "説明文"
+    t.string "icon", null: false, comment: "アイコン"
   end
 
   create_table "hazard_maps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

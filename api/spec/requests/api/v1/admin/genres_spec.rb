@@ -16,7 +16,8 @@ RSpec.describe Api::V1::Admin::GenresController, type: :request do
             genre: {
               name: 'genre_name',
               image: image,
-              description: 'genre_description'
+              description: 'genre_description',
+              icon: 'genre_icon'
             }
           }
         end
@@ -38,7 +39,8 @@ RSpec.describe Api::V1::Admin::GenresController, type: :request do
             genre: {
               name: '',
               image: '',
-              description: ''
+              description: '',
+              icon: ''
             }
           }
         end
@@ -87,7 +89,8 @@ RSpec.describe Api::V1::Admin::GenresController, type: :request do
             genre: {
               name: 'genre_name',
               image: image,
-              description: 'genre_description'
+              description: 'genre_description',
+              icon: 'genre_icon'
             }
           }
         end
@@ -106,7 +109,8 @@ RSpec.describe Api::V1::Admin::GenresController, type: :request do
             genre: {
               name: '',
               image: image,
-              description: ''
+              description: '',
+              icon: ''
             }
           }
         end
