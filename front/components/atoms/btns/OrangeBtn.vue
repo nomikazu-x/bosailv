@@ -9,7 +9,7 @@
     :outlined="outlined"
     :to="to"
     :href="href"
-    depressed
+    :depressed="depressed"
     @click="onClick"
   >
     <slot />
@@ -37,6 +37,10 @@ export default {
       default: false
     },
     outlined: {
+      type: Boolean,
+      default: false
+    },
+    depressed: {
       type: Boolean,
       default: false
     },
