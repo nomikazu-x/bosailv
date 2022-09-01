@@ -39,4 +39,5 @@ json.user do
   json.is_completed_stock_tasks user.prepare_task_profile.stock_tasks.raw == 8657043455
   json.is_family_present user.families.present?
   json.is_hazard_map_confirmed user.task_profile.hazard_map_confirmed?
+  json.is_shelter_registered user.registered_shelters.present?
 end

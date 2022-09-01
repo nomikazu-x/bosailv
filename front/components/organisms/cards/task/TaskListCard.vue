@@ -36,11 +36,13 @@ export default {
   data () {
     return {
       constantTasks: [
-        { id: 1, to: '/sns_tasks', icon: 'mdi-twitter', title: '防災SNS', summary: '防災SNSをフォローしてもしものときに備えよう。' },
-        { id: 2, to: '/house_tasks', icon: 'mdi-home', title: '家具の固定', summary: '家具類の転倒・落下・移動防止対策をしてもしものときに備えよう。' },
-        { id: 3, to: '/family_rule', icon: 'mdi-human-male-female-child', title: '家族会議', summary: '災害に備えて家族でルールを決めておきましょう。' },
-        { id: 4, to: '/emergency_contacts', icon: 'mdi-phone-in-talk', title: '緊急連絡先', summary: '緊急時にそなえて連絡先を登録しておこう。' },
-        { id: 5, to: '/stocks', icon: 'mdi-archive', title: '備蓄', summary: '家族構成を登録して、必要な備蓄品を備蓄しておこう。' }
+        { id: 1, to: '/hazard_maps', icon: 'mdi-book-multiple', title: 'ハザードマップ', summary: 'あなたの住む市町村のハザードマップを確認しよう。' },
+        { id: 2, to: '/shelters', icon: 'mdi-exit-run', title: '避難所', summary: '避難所を登録してもしものときに備えよう。' },
+        { id: 3, to: '/sns_tasks', icon: 'mdi-twitter', title: '防災SNS', summary: '防災SNSをフォローしてもしものときに備えよう。' },
+        { id: 4, to: '/house_tasks', icon: 'mdi-home', title: '家具の固定', summary: '家具類の転倒・落下・移動防止対策をしてもしものときに備えよう。' },
+        { id: 5, to: '/family_rule', icon: 'mdi-human-male-female-child', title: '家族会議', summary: '災害に備えて家族でルールを決めておきましょう。' },
+        { id: 6, to: '/emergency_contacts', icon: 'mdi-phone-in-talk', title: '緊急連絡先', summary: '緊急時にそなえて連絡先を登録しておこう。' },
+        { id: 7, to: '/stocks', icon: 'mdi-archive', title: '備蓄', summary: '家族構成を登録して、必要な備蓄品を備蓄しておこう。' }
       ],
       tasks: null
     }

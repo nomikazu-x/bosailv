@@ -23,20 +23,20 @@
       <v-list-item-group>
         <v-subheader>防災タスク</v-subheader>
         <v-divider />
-        <v-list-item to="/shelters" exact nuxt>
-          <v-list-item-icon>
-            <v-icon>mdi-exit-run</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>避難所検索</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
         <v-list-item to="/hazard_maps" exact nuxt>
           <v-list-item-icon>
             <v-icon>mdi-book-multiple</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>ハザードマップ検索</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/shelters" exact nuxt>
+          <v-list-item-icon>
+            <v-icon>mdi-exit-run</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>避難所検索</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-list-item to="/sns_tasks" exact nuxt>
@@ -55,6 +55,14 @@
             <v-list-item-title>おうち防災</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-list-item to="/family_rule" exact nuxt>
+          <v-list-item-icon>
+            <v-icon>mdi-human-male-female-child</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>家族会議</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-list-item to="/emergency_contacts" exact nuxt>
           <v-list-item-icon>
             <v-icon>mdi-phone-in-talk</v-icon>
@@ -69,14 +77,6 @@
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>備蓄品</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item to="/family_rule" exact nuxt>
-          <v-list-item-icon>
-            <v-icon>mdi-human-male-female-child</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>家族会議</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list-item-group>
