@@ -5,6 +5,10 @@
         <v-card v-if="shelters != null && shelters.length === 0" outlined tile>
           <v-card-title class="ml-1">該当する避難所はありません。</v-card-title>
         </v-card>
+        <SheltersMap
+          v-if="shelters !== null"
+          :shelters="shelters"
+        />
         <div v-for="shelter in shelters" :key="shelter.id">
           <ShelterListCardText
             :shelter="shelter"
@@ -24,6 +28,7 @@
 <script>
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import SheltersMap from '~/components/organisms/maps/SheltersMap.vue'
 import ShelterListCardText from '~/components/organisms/cardText/ShelterListCardText.vue'
 import ThePagination from '~/components/organisms/pagination/ThePagination.vue'
 
@@ -32,6 +37,7 @@ export default {
 
   components: {
     BaseTitleCard,
+    SheltersMap,
     ShelterListCardText,
     ThePagination
   },
