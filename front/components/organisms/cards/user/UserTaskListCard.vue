@@ -40,9 +40,9 @@ export default {
         { id: 2, to: '/shelters', is_completed: this.$auth.user.is_shelter_registered, icon: 'mdi-exit-run', title: '避難所', summary: '避難所を登録してもしものときに備えよう。' },
         { id: 3, to: '/sns_tasks', is_completed: this.$auth.user.is_completed_sns_tasks, icon: 'mdi-twitter', title: '防災SNS', summary: '防災SNSをフォローしてもしものときに備えよう。' },
         { id: 4, to: '/house_tasks', is_completed: this.$auth.user.is_completed_house_tasks, icon: 'mdi-home', title: '家具の固定', summary: '家具類の転倒・落下・移動防止対策をしてもしものときに備えよう。' },
-        { id: 5, to: this.toFamilyRule(), is_completed: this.$auth.user.is_completed_family_rules_tasks, icon: 'mdi-human-male-female-child', title: '家族会議', summary: '災害に備えて家族でルールを決めておきましょう。' },
+        { id: 5, to: '/family_rule', is_completed: this.$auth.user.is_completed_family_rules_tasks, icon: 'mdi-human-male-female-child', title: '家族会議', summary: '災害に備えて家族でルールを決めておきましょう。' },
         { id: 6, to: '/emergency_contacts', is_completed: this.$auth.user.is_completed_emergency_contact_task, icon: 'mdi-phone-in-talk', title: '緊急連絡先', summary: '緊急時にそなえて連絡先を登録しておこう。' },
-        { id: 7, to: this.toStock(), is_completed: this.$auth.user.is_completed_stock_tasks, icon: 'mdi-archive', title: '備蓄', summary: '家族構成を登録して、必要な備蓄品を備蓄しておこう。' }
+        { id: 7, to: '/stocks', is_completed: this.$auth.user.is_completed_stock_tasks, icon: 'mdi-archive', title: '備蓄', summary: '家族構成を登録して、必要な備蓄品を備蓄しておこう。' }
       ],
       tasks: null
     }
@@ -77,23 +77,6 @@ export default {
       })
 
     this.processing = false
-  },
-
-  methods: {
-    toFamilyRule () {
-      if (this.$auth.user.is_completed_family_rules_tasks) {
-        return '/family_rule'
-      } else {
-        return '/family_rule/edit'
-      }
-    },
-    toStock () {
-      if (this.$auth.user.is_family_present) {
-        return '/stocks'
-      } else {
-        return '/stocks/edit'
-      }
-    }
   }
 }
 </script>

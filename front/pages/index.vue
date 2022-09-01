@@ -13,7 +13,8 @@
 
     <template v-if="!loading" #left>
       <TopTransitionCard />
-      <TaskListCard />
+      <UserTaskListCard v-if="$auth.loggedIn" />
+      <TaskListCard v-else />
       <NewArticleListCard />
       <GenreImageListCardWithTitle />
     </template>
@@ -31,6 +32,7 @@ import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import TopSlide from '~/components/organisms/slide/TopSlide.vue'
 import TopTransitionCard from '~/components/organisms/cards/TopTransitionCard.vue'
+import UserTaskListCard from '~/components/organisms/cards/user/UserTaskListCard.vue'
 import TaskListCard from '~/components/organisms/cards/task/TaskListCard.vue'
 import NewArticleListCard from '~/components/organisms/cards/article/NewArticleListCard.vue'
 import GenreImageListCardWithTitle from '~/components/organisms/cards/genre/GenreImageListCardWithTitle.vue'
@@ -45,6 +47,7 @@ export default {
     TheMessage,
     TopSlide,
     TopTransitionCard,
+    UserTaskListCard,
     TaskListCard,
     NewArticleListCard,
     GenreImageListCardWithTitle,
