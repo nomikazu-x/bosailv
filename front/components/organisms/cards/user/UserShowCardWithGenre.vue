@@ -32,8 +32,7 @@ export default {
 
   data () {
     return {
-      user: null,
-      requiredPoint: 0
+      user: null
     }
   },
 
@@ -64,7 +63,6 @@ export default {
           return this.$router.push({ path: '/' })
         } else {
           this.user = response.data.user
-          this.requiredPoint = response.data.required_point
         }
       },
       (error) => {
