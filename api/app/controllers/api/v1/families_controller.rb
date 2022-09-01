@@ -25,6 +25,10 @@ class Api::V1::FamiliesController < Api::V1::ApplicationController
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.family.destroy') }, status: :unprocessable_entity
     end
+
+    if current_user.families.blank?
+      current_user.task_profile.update!(stock_tasks: 0)
+    end
   end
 
   private

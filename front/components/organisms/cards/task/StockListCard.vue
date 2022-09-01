@@ -26,7 +26,7 @@
       </v-row>
     </v-card>
     <div class="text-center mt-5 mb-3">
-      <GreenBtn to="/tasks/stocks/edit" text>あなたの家族情報を編集する</GreenBtn>
+      <GreenBtn to="/stocks/edit" text>あなたの家族情報を編集する</GreenBtn>
     </div>
   </BaseTitleCard>
 </template>

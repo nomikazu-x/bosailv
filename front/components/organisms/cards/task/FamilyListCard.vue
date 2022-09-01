@@ -14,7 +14,7 @@
 
         <v-divider />
         <div class="text-center mt-5 mb-3">
-          <GreenBtn to="/tasks/stocks" text>備蓄品リストを確認する</GreenBtn>
+          <GreenBtn to="/stocks" text>備蓄品リストを確認する</GreenBtn>
         </div>
       </BaseTitleCard>
     </v-col>
