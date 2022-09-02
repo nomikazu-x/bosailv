@@ -43,7 +43,7 @@ class Api::V1::EmergencyContactsController < Api::V1::ApplicationController
   end
 
   def check_count
-    return if current_user.emergency_contacts.count < 5
+    return if current_user.emergency_contacts.count < Settings['maximum_emergency_contacts_length']
 
     render './api/v1/failure', locals: { alert: I18n.t('alert.emergency_contact.create') }, status: :unprocessable_entity
   end

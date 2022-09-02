@@ -40,4 +40,6 @@ json.user do
   json.is_family_present user.families.present?
   json.is_hazard_map_confirmed user.task_profile.hazard_map_confirmed?
   json.is_shelter_registered user.registered_shelters.present?
+  json.is_max_emergency_contact user.emergency_contacts.count == Settings['maximum_emergency_contacts_length']
+  json.is_max_registered_shelters user.registered_shelters.count == Settings['maximum_registered_shelters_length']
 end

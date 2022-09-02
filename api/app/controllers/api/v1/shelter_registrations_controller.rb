@@ -39,7 +39,7 @@ class Api::V1::ShelterRegistrationsController < Api::V1::ApplicationController
   private
 
   def check_count
-    return if current_user.registered_shelters.count < 5
+    return if current_user.registered_shelters.count < Settings['maximum_registered_shelters_length']
 
     render './api/v1/failure', locals: { alert: I18n.t('alert.shelter_registration.create') }, status: :unprocessable_entity
   end

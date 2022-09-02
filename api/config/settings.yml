@@ -38,17 +38,22 @@ stock_task_complete_obtained_point: 1
 # ハザードマップ確認タスク達成時獲得ポイント
 hazard_map_confirm_obtained_point: 5
 
+# 避難所登録時時獲得ポイント
+shelter_registration_obtained_point: 5
+
 
 ## ユーザー
 # 一覧のデフォルト最大表示件数
 default_users_limit: 20
 # ゲストアカウント削除の猶予期間（単位：日）
 destroy_schedule_days: 1
+# 緊急時連絡先の登録上限数
+maximum_emergency_contacts_length: 5
+# マイ避難所の登録上限数
+maximum_registered_shelters_length: 5
+
 
 
 ## 避難所
 # 一覧のデフォルト最大表示件数
 default_shelters_limit: 25
-
-# 避難所登録時時獲得ポイント
-shelter_registration_obtained_point: 5
