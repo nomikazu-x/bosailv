@@ -1,5 +1,6 @@
 class Api::V1::ShelterRegistrationsController < Api::V1::ApplicationController
   before_action :authenticate_user!, only: %i[create destroy]
+  before_action :check_count, only: %i[create]
 
   # POST /api/v1/shelters/:id/shelter_registrations/create(.json) 避難所登録API(処理)
   def create
@@ -33,5 +34,13 @@ class Api::V1::ShelterRegistrationsController < Api::V1::ApplicationController
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.shelter_registration.destroy') }, status: :unprocessable_entity
     end
+  end
+
+  private
+
+  def check_count
+    return if current_user.registered_shelters.count < 5
+
+    render './api/v1/failure', locals: { alert: I18n.t('alert.shelter_registration.create') }, status: :unprocessable_entity
   end
 end

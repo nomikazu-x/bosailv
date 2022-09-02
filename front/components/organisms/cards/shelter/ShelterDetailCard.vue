@@ -1,27 +1,32 @@
 <template>
-  <v-row v-if="shelter !== null" justify="center">
-    <v-col cols="12">
-      <v-card outlined tile>
-        <v-col cols="12">
-          <ShelterDetailMap :shelter="shelter" />
-          <v-card-title class="font-weight-bold mt-3">
-            {{ shelter.name }}
-          </v-card-title>
+  <div>
+    <TheMessage :alert="alert" :notice="notice" />
 
-          <v-divider class="my-3" />
-          <v-card-text>
-            住所：{{ shelter.address }}
-          </v-card-text>
-        </v-col>
-        <div class="text-center mb-5">
-          <ShelterRegistrationBtnGroup v-if="$auth.loggedIn" :shelter="shelter" />
-        </div>
-      </v-card>
-    </v-col>
-  </v-row>
+    <v-row v-if="shelter !== null" justify="center">
+      <v-col cols="12">
+        <v-card outlined tile>
+          <v-col cols="12">
+            <ShelterDetailMap :shelter="shelter" />
+            <v-card-title class="font-weight-bold mt-3">
+              {{ shelter.name }}
+            </v-card-title>
+
+            <v-divider class="my-3" />
+            <v-card-text>
+              住所：{{ shelter.address }}
+            </v-card-text>
+          </v-col>
+          <div class="text-center mb-5">
+            <ShelterRegistrationBtnGroup v-if="$auth.loggedIn" :shelter="shelter" @alert="alert = $event" @notice="notice = $event" />
+          </div>
+        </v-card>
+      </v-col>
+    </v-row>
+  </div>
 </template>
 
 <script>
+import Application from '~/plugins/application.js'
 import ShelterDetailMap from '~/components/organisms/maps/ShelterDetailsMap.vue'
 import ShelterRegistrationBtnGroup from '~/components/organisms/btnGroup/ShelterRegistrationBtnGroup.vue'
 
@@ -33,9 +38,10 @@ export default {
     ShelterRegistrationBtnGroup
   },
 
+  mixins: [Application],
+
   data () {
     return {
-      errors: null,
       shelter: null
     }
   },
