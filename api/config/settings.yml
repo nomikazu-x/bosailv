@@ -51,6 +51,12 @@ destroy_schedule_days: 1
 maximum_emergency_contacts_length: 5
 # マイ避難所の登録上限数
 maximum_registered_shelters_length: 5
+# SNS関係防災タスク達成最大値
+maximum_sns_task: 2097151
+# 家庭関係防災タスク達成最大値
+maximum_house_task: 134217727
+# 備蓄関係防災タスク達成最大値
+maximum_stock_task: 17179869183
 
 
 

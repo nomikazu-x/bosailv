@@ -15,7 +15,7 @@
           :rules="{ required: true, regex: /^0(\d{1}[-(]?\d{4}|\d{2}[-(]?\d{3}|\d{3}[-(]?\d{2}|\d{4}[-(]?\d{1})[-)]?\d{4}$|^0[5789]0[-]?\d{4}[-]?\d{4}$/ }"
           @click="waiting = false"
         />
-        <OrangeBtn id="emergency_contact_create_btn" :disabled="invalid || processing || waiting" @click="onEmergencyContactCreate">作成</OrangeBtn>
+        <OrangeBtn id="emergency_contact_create_btn" :disabled="invalid || processing || waiting || $auth.user.is_max_emergency_contact" @click="onEmergencyContactCreate">作成</OrangeBtn>
       </v-card-text>
     </v-form>
   </ValidationObserver>

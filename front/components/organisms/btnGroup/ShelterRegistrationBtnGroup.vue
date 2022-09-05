@@ -1,7 +1,7 @@
 <template>
   <span>
     <TheProcessing v-if="processing" />
-    <GreenBtn v-if="isRegistered" @click="onUnRegistration">
+    <GreenBtn v-if="$auth.loggedIn && isRegistered" :disabled="$auth.user.is_max_registered_shelters" @click="onUnRegistration">
       マイ避難所登録を解除する
     </GreenBtn>
     <OrangeBtn v-else @click="onRegistration">
