@@ -11,7 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
-      <EmergencyContactListCard />
+      <EmergencyContactListCard v-if="$auth.loggedIn" />
     </template>
 
     <template v-if="!loading" #right>

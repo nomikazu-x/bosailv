@@ -48,6 +48,18 @@ export default {
     }
   },
 
+  computed: {
+    toTask () {
+      return (task) => {
+        if (this.$route.path === '/admin/tasks') {
+          return { name: 'admin-tasks-id-edit___ja', params: { id: task.id } }
+        } else {
+          return { name: 'tasks-id___ja', params: { id: task.id } }
+        }
+      }
+    }
+  },
+
   async created () {
     await this.$axios.get(this.$config.apiBaseURL + this.$config.tasksUrl)
       .then((response) => {

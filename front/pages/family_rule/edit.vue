@@ -11,7 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
-      <FamilyRuleTaskEditCard @alert="alert = $event" @notice="notice = $event" />
+      <FamilyRuleTaskEditCard v-if="$auth.loggedIn" @alert="alert = $event" @notice="notice = $event" />
     </template>
 
     <template v-if="!loading" #right>

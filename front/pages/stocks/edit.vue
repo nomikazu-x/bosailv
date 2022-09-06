@@ -11,7 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
-      <FamilyListCard @alert="alert = $event" @notice="notice = $event" />
+      <FamilyListCard v-if="$auth.loggedIn" @alert="alert = $event" @notice="notice = $event" />
     </template>
 
     <template v-if="!loading" #right>
