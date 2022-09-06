@@ -23,6 +23,24 @@
             />
           </v-sheet>
         </v-col>
+        <v-col cols="12">
+          <v-sheet outlined class="pa-2" height="60">
+            <BaseTextField
+              v-model="icon"
+              name="icon"
+              label="アイコン"
+            />
+          </v-sheet>
+        </v-col>
+        <v-col cols="12">
+          <v-sheet outlined class="pa-2">
+            <BaseTextarea
+              v-model="description"
+              name="description"
+              label="説明文"
+            />
+          </v-sheet>
+        </v-col>
         <div class="text-center">
           <OrangeBtn
             id="genre_update_btn"
@@ -43,6 +61,7 @@ import { ValidationObserver } from 'vee-validate'
 import Application from '~/plugins/application.js'
 import BaseImageFileInput from '~/components/molecules/fileInputs/BaseImageFileInput.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
+import BaseTextarea from '~/components/molecules/textarea/BaseTextarea.vue'
 import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 import DeleteConfirmDialog from '~/components/organisms/dialogs/DeleteConfirmDialog.vue'
 
@@ -53,6 +72,7 @@ export default {
     ValidationObserver,
     BaseImageFileInput,
     BaseTextField,
+    BaseTextarea,
     OrangeBtn,
     DeleteConfirmDialog
   },
@@ -72,7 +92,9 @@ export default {
   data () {
     return {
       image: null,
-      name: ''
+      name: '',
+      icon: '',
+      description: ''
     }
   },
   computed: {
@@ -82,13 +104,17 @@ export default {
   },
   created () {
     this.name = this.name || this.genre.name
+    this.icon = this.icon || this.genre.icon
+    this.description = this.description || this.genre.description
     this.processing = false
   },
   methods: {
     onGenreUpdate () {
       const genreInfo = {
         image: this.image,
-        name: this.name
+        name: this.name,
+        icon: this.icon,
+        description: this.description
       }
       this.$emit('genre-update', genreInfo)
     },

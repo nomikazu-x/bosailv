@@ -66,6 +66,8 @@ export default {
       if (genreInfo.image) {
         params.append('genre[image]', genreInfo.image)
       }
+      params.append('genre[icon]', genreInfo.icon)
+      params.append('genre[description]', genreInfo.description)
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.adminGenreUpdateUrl.replace('_id', this.$route.params.id), params)
         .then((response) => {
