@@ -17,7 +17,8 @@ RSpec.describe Api::V1::Admin::TasksController, type: :request do
               title: 'task_title',
               image: image,
               summary: 'task_summary',
-              body: 'task_body'
+              body: 'task_body',
+              icon: 'task_icon'
             }
           }
         end
@@ -40,7 +41,8 @@ RSpec.describe Api::V1::Admin::TasksController, type: :request do
               title: 'task_title',
               image: image,
               summary: 'task_summary',
-              body: ''
+              body: '',
+              icon: ''
             }
           }
         end
@@ -90,7 +92,8 @@ RSpec.describe Api::V1::Admin::TasksController, type: :request do
               title: 'task_title',
               image: image,
               summary: 'task_summary',
-              body: 'task_body'
+              body: 'task_body',
+              icon: 'task_icon'
             }
           }
         end
@@ -110,7 +113,8 @@ RSpec.describe Api::V1::Admin::TasksController, type: :request do
               title: 'task_title',
               image: image,
               summary: 'task_summary',
-              body: ''
+              body: '',
+              icon: ''
             }
           }
         end

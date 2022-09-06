@@ -18,6 +18,7 @@ class Genre < ApplicationRecord
   validates :name, presence: true, length: { maximum: 10 }
   validates :description, presence: true
   validates :image, presence: true
+  validates :icon, presence: true
 
   # 画像URLを返却
   def image_url(version)
