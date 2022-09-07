@@ -68,6 +68,7 @@ export default {
       if (taskInfo.image) {
         params.append('task[image]', taskInfo.image)
       }
+      params.append('task[icon]', taskInfo.icon)
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.adminTaskUpdateUrl.replace('_id', this.$route.params.id), params)
         .then((response) => {

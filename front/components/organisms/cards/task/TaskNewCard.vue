@@ -43,6 +43,7 @@ export default {
       params.append('task[image]', taskInfo.image)
       params.append('task[summary]', taskInfo.summary)
       params.append('task[body]', taskInfo.body)
+      params.append('task[icon]', taskInfo.icon)
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.adminTaskCreateUrl, params)
         .then((response) => {

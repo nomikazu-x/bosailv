@@ -24,6 +24,15 @@
           </v-sheet>
         </v-col>
         <v-col cols="12">
+          <v-sheet outlined class="pa-2" height="60">
+            <BaseTextField
+              v-model="icon"
+              name="icon"
+              label="アイコン"
+            />
+          </v-sheet>
+        </v-col>
+        <v-col cols="12">
           <v-sheet outlined class="pa-2">
             <BaseTextarea
               v-model="summary"
@@ -98,7 +107,8 @@ export default {
       title: '',
       summary: '',
       body: '',
-      image: null
+      image: null,
+      icon: ''
     }
   },
   computed: {
@@ -110,6 +120,7 @@ export default {
     this.title = this.title || this.task.title
     this.summary = this.summary || this.task.summary
     this.body = this.body || this.task.body
+    this.icon = this.icon || this.task.icon
   },
   methods: {
     onTaskUpdate () {
@@ -117,7 +128,8 @@ export default {
         title: this.title,
         summary: this.summary,
         body: this.body,
-        image: this.image
+        image: this.image,
+        icon: this.icon
       }
       this.$emit('task-update', taskInfo)
     },
