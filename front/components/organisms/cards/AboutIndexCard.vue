@@ -20,7 +20,7 @@
         <v-card class="mt-10">
           <v-row>
             <v-col cols="12" sm="6" order-sm="1">
-              <v-card-title class="my-5 justify-center" style="color: #117768;">ハザードマップの確認しよう</v-card-title>
+              <v-card-title class="my-5 justify-center" style="color: #117768;">ハザードマップを確認しよう</v-card-title>
               <v-card-text>出身市町村を設定すると、市町村で検索できるようになってる</v-card-text>
             </v-col>
             <v-col cols="12" sm="6" order-sm="2">
@@ -32,7 +32,7 @@
         <v-card class="mt-10">
           <v-row>
             <v-col cols="12" sm="6" order-sm="2">
-              <v-card-title class="my-5 justify-center" style="color: #117768;">避難所の確認しよう</v-card-title>
+              <v-card-title class="my-5 justify-center" style="color: #117768;">避難所を確認しよう</v-card-title>
               <v-card-text>出身市町村を設定すると、市町村で検索できるようになってる</v-card-text>
             </v-col>
             <v-col cols="12" sm="6" order-sm="1">

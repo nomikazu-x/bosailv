@@ -2,7 +2,7 @@
   <v-card outlined tile class="pa-4">
     <v-row align="center">
       <v-col cols="12">
-        <h1 class="main-heading mt-8 text-center">ハザードマップを確認しよう</h1>
+        <h1 class="main-heading mt-5 text-center">ハザードマップを確認しよう</h1>
         <v-divider color="#117768" />
       </v-col>
       <v-col cols="12">
@@ -85,13 +85,13 @@
           <v-list-item>
             <v-icon class="mr-2" color="#117768">mdi-numeric-1-circle</v-icon>
             <v-list-item-content>
-              <v-list-item-title>まず、検索したい都道府県を選択します。</v-list-item-title>
+              <v-list-item-title>検索したい都道府県を選択します。</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-list-item>
             <v-icon class="mr-2" color="#117768">mdi-numeric-2-circle</v-icon>
             <v-list-item-content>
-              <v-list-item-title class="wrap-text">次に、選択した都道府県の市町村一覧のセレクトボックスが出現するので、検索したい市町村を選択してください。</v-list-item-title>
+              <v-list-item-title class="wrap-text">選択した都道府県の市町村一覧のセレクトボックスが出現するので、検索したい市町村を選択してください。</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
           <v-list-item>

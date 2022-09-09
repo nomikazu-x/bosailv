@@ -11,6 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
+      <ShelterIntroCard class="mb-5" />
       <SheltersMapCard />
     </template>
 
@@ -25,6 +26,7 @@ import Application from '~/plugins/application.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
+import ShelterIntroCard from '~/components/organisms/cards/shelter/ShelterIntroCard.vue'
 import SheltersMapCard from '~/components/organisms/cards/task/SheltersMapCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
@@ -36,6 +38,7 @@ export default {
     TheLoading,
     TheMessage,
     SheltersMapCard,
+    ShelterIntroCard,
     DefaultRightColumnTemplate
   },
 

@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center">
     <v-col cols="12">
-      <BaseTitleCard title="避難所検索">
+      <BaseTitleCard id="shelter_map_search" title="避難所検索">
         <v-row class="pa-5">
           <v-col cols="12">
             <DisasterTypeSelect
