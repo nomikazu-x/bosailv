@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center">
     <v-col cols="12">
-      <BaseTitleCard title="ハザードマップ検索">
+      <BaseTitleCard id="hazard_map_search" title="ハザードマップ検索">
         <v-row class="pa-5">
           <v-col cols="12">
             <PrefecturesSelect
