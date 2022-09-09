@@ -113,11 +113,10 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-        <v-divider />
       </v-col>
       <v-col cols="12">
         <v-sheet outlined color="#FFD54F" class="pa-1">
-          <v-card outlined>
+          <v-card flat>
             <v-card-title>
               ポイント獲得方法
             </v-card-title>

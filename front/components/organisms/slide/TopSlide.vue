@@ -6,8 +6,10 @@
       center-active
     >
       <v-slide-item>
-        <v-card to="/about" class="ma-1" style="background-color: #DFEEE5;" max-width="500" height="300">
-          <v-card-title class="justify-center" style="background-color: #fff;"><v-img :src="image.LOGO_IMAGE" max-width="300" />ってなに？</v-card-title>
+        <v-card to="/about" class="ma-1" style="background-color: #fff;" max-width="500" height="300">
+          <v-card-title style="background-color: #fff; margin-top: 93px;">
+            <v-img :src="image.LOGO_IMAGE" max-width="300" />ってなに？
+          </v-card-title>
         </v-card>
       </v-slide-item>
       <v-slide-item
