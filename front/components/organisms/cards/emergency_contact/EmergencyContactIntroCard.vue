@@ -84,12 +84,19 @@
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
+          <v-list-item v-if="!$auth.loggedIn">
+            <v-icon class="mr-2" color="#FFD54F">mdi-alert</v-icon>
+            <v-list-item-content>
+              <v-list-item-subtitle class="wrap-text">
+                <NuxtLink to="/signup">ログイン</NuxtLink>しなければ表示されません。
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
           <v-list-item>
             <v-icon class="mr-2" color="#FFD54F">mdi-alert</v-icon>
             <v-list-item-content>
               <v-list-item-subtitle class="wrap-text">
-                <NuxtLink to="/signup">ログイン</NuxtLink>しなければ表示されません。<br>
-                緊急時連絡先登録上限数は5個です。<br>
+                緊急時連絡先登録上限数は5個です。
               </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>

@@ -42,6 +42,9 @@ export default {
   mixins: [Application],
 
   created () {
+    if (!this.$auth.loggedIn) {
+      return this.redirectAuth()
+    }
     this.loading = false
   }
 }

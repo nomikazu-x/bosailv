@@ -28,7 +28,15 @@
               <v-list-item-title class="wrap-text">家族情報を登録して、「備蓄品リストを確認する」をクリックして確認しましょう。</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-          <div class="text-center">
+          <v-list-item v-if="!$auth.loggedIn">
+            <v-icon class="mr-2" color="#FFD54F">mdi-alert</v-icon>
+            <v-list-item-content>
+              <v-list-item-subtitle class="wrap-text">
+                <NuxtLink to="/signup">ログイン</NuxtLink>しなければ表示されません。
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+          <div v-else class="text-center">
             <GreenBtn to="stocks/edit" class="my-2" large>
               家族情報を入力する
               <v-icon>mdi-chevron-right</v-icon>

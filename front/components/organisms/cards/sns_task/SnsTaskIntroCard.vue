@@ -207,6 +207,22 @@
             ジャパンタイムズの英語ニュースを発信しています。
           </v-card-text>
         </v-card>
+        <v-list class="mt-5">
+          <v-list-item>
+            <v-icon class="mr-2" color="#117768">mdi-checkbox-marked-circle</v-icon>
+            <v-list-item-content>
+              <v-list-item-title class="wrap-text">「防災SNSフォローチェックリスト」を使ってチェックしましょう。</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item v-if="!$auth.loggedIn">
+            <v-icon class="mr-2" color="#FFD54F">mdi-alert</v-icon>
+            <v-list-item-content>
+              <v-list-item-subtitle class="wrap-text">
+                <NuxtLink to="/signup">ログイン</NuxtLink>しなければチェックリストは表示されません。
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
       </v-col>
       <v-col cols="12">
         <v-sheet outlined color="#FFD54F" class="pa-1">

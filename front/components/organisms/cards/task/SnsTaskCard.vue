@@ -1,5 +1,5 @@
 <template>
-  <BaseTitleCard v-if="tasks !== null" title="防災SNSフォロータスク">
+  <BaseTitleCard v-if="tasks !== null" title="防災SNSフォローチェックリスト">
     <TheProcessing v-if="processing" />
     <v-card v-for="task in tasks" :key="task.name" class="my-3" tile>
       <v-row align="center">

@@ -91,7 +91,7 @@
                 実際に避難する避難所を見つけたら、避難所詳細ページの「マイ避難所に登録する」ボタンをクリックしましょう。
               </v-list-item-title>
               <v-list-item-subtitle>
-                ※<NuxtLink to="/signup">ログイン</NuxtLink>しなければ表示されません。<br>
+                <span v-if="!$auth.loggedIn">※<NuxtLink to="/signup">ログイン</NuxtLink>しなければ表示されません。</span><br>
                 ※マイ避難所登録上限数は5個です。確認はマイページからできます。<br>
               </v-list-item-subtitle>
             </v-list-item-content>
