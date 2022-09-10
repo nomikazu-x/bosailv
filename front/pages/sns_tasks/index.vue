@@ -11,6 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
+      <SnsTaskIntroCard class="mb-5" />
       <SnsTaskCard v-if="$auth.loggedIn" @alert="alert = $event" @notice="notice = $event" />
     </template>
 
@@ -26,6 +27,7 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import SnsTaskCard from '~/components/organisms/cards/task/SnsTaskCard.vue'
+import SnsTaskIntroCard from '~/components/organisms/cards/sns_task/SnsTaskIntroCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {
@@ -36,6 +38,7 @@ export default {
     TheLoading,
     TheMessage,
     SnsTaskCard,
+    SnsTaskIntroCard,
     DefaultRightColumnTemplate
   },
 
