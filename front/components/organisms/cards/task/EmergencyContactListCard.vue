@@ -2,7 +2,7 @@
   <v-row justify="center">
     <v-col cols="12">
       <TheMessage :alert="alert" :notice="notice" />
-      <BaseTitleCard class="mt-3" title="緊急連絡先一覧">
+      <BaseTitleCard class="mt-3" title="あなたの緊急連絡先一覧">
         <div class="pa-5">
           <article v-if="emergencyContacts !== null && emergencyContacts.length === 0">
             <v-card-text>緊急連絡先はありません。</v-card-text>

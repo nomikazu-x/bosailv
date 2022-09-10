@@ -11,6 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
+      <EmergencyContactIntroCard class="mb-5" />
       <EmergencyContactListCard v-if="$auth.loggedIn" />
     </template>
 
@@ -25,6 +26,7 @@ import Application from '~/plugins/application.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
+import EmergencyContactIntroCard from '~/components/organisms/cards/emergency_contact/EmergencyContactIntroCard.vue'
 import EmergencyContactListCard from '~/components/organisms/cards/task/EmergencyContactListCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
@@ -35,6 +37,7 @@ export default {
     TwoColumnContainer,
     TheLoading,
     TheMessage,
+    EmergencyContactIntroCard,
     EmergencyContactListCard,
     DefaultRightColumnTemplate
   },
