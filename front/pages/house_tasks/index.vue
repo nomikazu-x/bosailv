@@ -11,6 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
+      <HouseTaskIntroCard class="mb-5" />
       <HouseTaskCard v-if="$auth.loggedIn" @alert="alert = $event" @notice="notice = $event" />
     </template>
 
@@ -26,6 +27,7 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import HouseTaskCard from '~/components/organisms/cards/task/HouseTaskCard.vue'
+import HouseTaskIntroCard from '~/components/organisms/cards/house_task/HouseTaskIntroCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {
@@ -36,6 +38,7 @@ export default {
     TheLoading,
     TheMessage,
     HouseTaskCard,
+    HouseTaskIntroCard,
     DefaultRightColumnTemplate
   },
 
