@@ -1,5 +1,5 @@
 <template>
-  <BaseTitleCard v-if="tasks !== null" title="家具類の転倒・落下・移動防止対策タスク">
+  <BaseTitleCard v-if="tasks !== null" title="おうち防災チェックリスト">
     <TheProcessing v-if="processing" />
     <v-card v-for="task in tasks" :key="task.name" class="my-3" tile>
       <v-row align="center">

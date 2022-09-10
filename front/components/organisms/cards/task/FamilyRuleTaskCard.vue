@@ -1,44 +1,53 @@
 <template>
-  <v-card v-if="familyRule !== null" outlined tile>
+  <BaseTitleCard v-if="familyRule !== null" title="家族会議メモ" outlined tile>
     <TheProcessing v-if="processing" />
-    <!-- <v-img :src="familyRule.image_url.xlarge" max-height="256" /> -->
     <v-col cols="12">
       <v-card-text>
+        <div class="main-heading font-weight-bold" style="color: #117768;">非常時の連絡方法</div>
         <!-- eslint-disable-next-line vue/no-v-html -->
         <div class="mx-2 my-2" v-html="familyRule.contact_means_memo" />
       </v-card-text>
       <v-card-text>
+        <div class="main-heading font-weight-bold" style="color: #117768;">避難場所のルート</div>
         <!-- eslint-disable-next-line vue/no-v-html -->
         <div class="mx-2 my-2" v-html="familyRule.refuge_memo" />
       </v-card-text>
       <v-card-text>
+        <div class="main-heading font-weight-bold" style="color: #117768;">地震直後の家族の分担</div>
         <!-- eslint-disable-next-line vue/no-v-html -->
         <div class="mx-2 my-2" v-html="familyRule.family_role_memo" />
       </v-card-text>
       <v-card-text>
+        <div class="main-heading font-weight-bold" style="color: #117768;">誰かが下敷きになったら</div>
         <!-- eslint-disable-next-line vue/no-v-html -->
         <div class="mx-2 my-2" v-html="familyRule.emergency_measure_memo" />
       </v-card-text>
       <v-card-text>
+        <div class="main-heading font-weight-bold" style="color: #117768;">家を離れるときにすること</div>
         <!-- eslint-disable-next-line vue/no-v-html -->
         <div class="mx-2 my-2" v-html="familyRule.leave_home_memo" />
       </v-card-text>
       <v-divider class="my-5" />
       <div class="text-center">
-        <DeleteConfirmDialog title="家族会議のメモをリセット" @click="onFamilyRuleDelete" />
+        <GreenBtn to="family_rule/edit">編集する</GreenBtn>
+        <DeleteConfirmDialog name="リセット" title="家族会議のメモをリセット" @click="onFamilyRuleDelete" />
       </div>
     </v-col>
-  </v-card>
+  </BaseTitleCard>
 </template>
 
 <script>
 import Application from '~/plugins/application.js'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
+import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import DeleteConfirmDialog from '~/components/organisms/dialogs/DeleteConfirmDialog.vue'
 
 export default {
   name: 'FamilyRuleTaskCard',
 
   components: {
+    GreenBtn,
+    BaseTitleCard,
     DeleteConfirmDialog
   },
 
@@ -86,7 +95,7 @@ export default {
             this.$auth.setUser(response.data.user)
             this.$toasted.error(response.data.alert)
             this.$toasted.success(response.data.notice)
-            this.$router.push({ path: '/tasks/family_rule/edit' })
+            this.$router.push({ path: '/family_rule/edit' })
           }
         },
         (error) => {

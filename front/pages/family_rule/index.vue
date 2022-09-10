@@ -11,7 +11,8 @@
     </template>
 
     <template v-if="!loading" #left>
-      <FamilyRuleTaskCard v-if="$auth.loggedIn" @alert="alert = $event" @notice="notice = $event" />
+      <FamilyRuleIntroCard class="mb-5" />
+      <FamilyRuleTaskCard v-if="$auth.loggedIn && $auth.user.is_completed_family_rules_tasks" @alert="alert = $event" @notice="notice = $event" />
     </template>
 
     <template v-if="!loading" #right>
@@ -25,6 +26,7 @@ import Application from '~/plugins/application.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
+import FamilyRuleIntroCard from '~/components/organisms/cards/family_rule/FamillyRuleIntroCard.vue'
 import FamilyRuleTaskCard from '~/components/organisms/cards/task/FamilyRuleTaskCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
@@ -35,6 +37,7 @@ export default {
     TwoColumnContainer,
     TheLoading,
     TheMessage,
+    FamilyRuleIntroCard,
     FamilyRuleTaskCard,
     DefaultRightColumnTemplate
   },

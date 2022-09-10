@@ -1,7 +1,7 @@
 <template>
   <v-row v-if="familyRule !== null" justify="center">
     <v-col cols="12" sm="10" md="8">
-      <BaseTitleCard title="防災タスク編集" />
+      <BaseTitleCard title="おうち防災メモ用ページ" />
       <FamilyRuleTaskEditForm
         :family-rule="familyRule"
         :processing="processing"
@@ -76,7 +76,7 @@ export default {
             this.$auth.setUser(response.data.user)
             this.$toasted.error(response.data.alert)
             this.$toasted.success(response.data.notice)
-            this.$router.push({ path: '/tasks/family_rule' })
+            this.$router.push({ path: '/family_rule' })
           }
         },
         (error) => {
