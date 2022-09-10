@@ -167,15 +167,15 @@ ja:
       image_destroy: '画像を削除しました。'
       task_update: 'タスクを達成しました。'
       task_destroy: 'タスクの達成をリセットしました。'
-      hazard_map_task_update: 'ハザードマップを確認しました。'
+      hazard_map_task_update: 'ハザードマップを確認しました。5pt獲得！' # ポイント獲得メッセージの獲得ポイント数をSettingsで共通化したい。
       destroy: 'ユーザーを削除しました。'
     article:
-      create: '記事を作成できました。'
+      create: '記事を作成できました。5pt獲得！'
       update: '記事を更新できました。'
-      destroy: '記事を削除できました。'
+      destroy: '記事を削除できました。マイナス5pt'
     article_favorite:
-      create: 'お気に入りに登録しました。'
-      destroy: 'お気に入りを解除しました。'
+      create: 'お気に入りに登録しました。1pt獲得！'
+      destroy: 'お気に入りを解除しました。マイナス1pt'
     article_comment:
       create: 'コメントを作成できました。'
       destroy: 'コメントを削除できました。'
@@ -191,20 +191,20 @@ ja:
       update: '防災タスクを更新できました。'
       destroy: '防災タスクを削除できました。'
     task_complete:
-      create: '防災タスクを完了しました。'
-      destroy: '防災タスクを未完了にしました。'
+      create: '防災タスクを完了しました。1pt獲得！'
+      destroy: '防災タスクを未完了にしました。マイナス1pt'
     family_rule:
-      update: '家族のルールを更新できました。'
-      destroy: '家族のルールをリセットしました。'
+      update: '家族のルールを更新できました。5pt獲得！'
+      destroy: '家族のルールをリセットしました。マイナス5pt'
     family:
       create: '家族情報を登録できました。'
       destroy: '家族情報を削除できました。'
     emergency_contact:
-      create: '緊急連絡先を作成できました。'
-      destroy: '緊急連絡先を削除できました。'
+      create: '緊急連絡先を作成できました。5pt獲得！'
+      destroy: '緊急連絡先を削除できました。マイナス5pt'
     shelter_registration:
-      create: 'マイ避難所に登録しました。'
-      destroy: 'マイ避難所登録を解除しました。'
+      create: 'マイ避難所に登録しました。5pt獲得！'
+      destroy: 'マイ避難所登録を解除しました。マイナス5pt'
   alert:
     user:
       task_update: 'タスクの達成に失敗しました。'
