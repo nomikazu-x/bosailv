@@ -1,5 +1,5 @@
 <template>
-  <BaseTitleCard v-if="stocks !== null" title="備蓄品リスト">
+  <BaseTitleCard v-if="stocks !== null" title="備蓄品・持ち出し品リスト（1週間分）">
     <TheProcessing v-if="processing" />
     <v-card v-for="stock in stocks" :key="stock.id" class="my-3" tile>
       <v-row v-if="stock.count !== 0" align="center">

@@ -93,6 +93,7 @@ export default {
             this.$toasted.error(this.$t('system.error'))
           } else {
             this.$store.commit('families/addFamilies', response.data.family, { root: true })
+            this.$auth.setUser(response.data.user)
             this.age = null
             this.sex = null
             this.$refs.observer.reset()
