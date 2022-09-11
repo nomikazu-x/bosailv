@@ -27,7 +27,7 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import StockIntroCard from '~/components/organisms/cards/stock/StockIntroCard.vue'
-import StockListCard from '~/components/organisms/cards/task/StockListCard.vue'
+import StockListCard from '~/components/organisms/cards/stock/StockListCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {

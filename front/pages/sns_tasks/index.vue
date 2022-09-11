@@ -26,7 +26,7 @@ import Application from '~/plugins/application.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
-import SnsTaskCard from '~/components/organisms/cards/task/SnsTaskCard.vue'
+import SnsTaskCard from '~/components/organisms/cards/sns_task/SnsTaskCard.vue'
 import SnsTaskIntroCard from '~/components/organisms/cards/sns_task/SnsTaskIntroCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 

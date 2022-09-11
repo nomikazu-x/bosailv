@@ -27,7 +27,7 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import HazardMapIntroCard from '~/components/organisms/cards/hazard_map/HazardMapIntroCard.vue'
-import HazardMapSearchCard from '~/components/organisms/cards/task/HazardMapSearchCard.vue'
+import HazardMapSearchCard from '~/components/organisms/cards/hazard_map/HazardMapSearchCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {

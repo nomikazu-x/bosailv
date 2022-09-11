@@ -27,7 +27,7 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import FamilyRuleIntroCard from '~/components/organisms/cards/family_rule/FamillyRuleIntroCard.vue'
-import FamilyRuleTaskCard from '~/components/organisms/cards/task/FamilyRuleTaskCard.vue'
+import FamilyRuleTaskCard from '~/components/organisms/cards/family_rule/FamilyRuleTaskCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {

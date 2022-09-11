@@ -27,7 +27,7 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import EmergencyContactIntroCard from '~/components/organisms/cards/emergency_contact/EmergencyContactIntroCard.vue'
-import EmergencyContactListCard from '~/components/organisms/cards/task/EmergencyContactListCard.vue'
+import EmergencyContactListCard from '~/components/organisms/cards/emergency_contact/EmergencyContactListCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {

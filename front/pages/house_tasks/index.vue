@@ -26,7 +26,7 @@ import Application from '~/plugins/application.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
-import HouseTaskCard from '~/components/organisms/cards/task/HouseTaskCard.vue'
+import HouseTaskCard from '~/components/organisms/cards/house_task/HouseTaskCard.vue'
 import HouseTaskIntroCard from '~/components/organisms/cards/house_task/HouseTaskIntroCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 

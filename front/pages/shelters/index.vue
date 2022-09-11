@@ -27,7 +27,7 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import ShelterIntroCard from '~/components/organisms/cards/shelter/ShelterIntroCard.vue'
-import SheltersMapCard from '~/components/organisms/cards/task/SheltersMapCard.vue'
+import SheltersMapCard from '~/components/organisms/cards/shelter/SheltersMapCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {
