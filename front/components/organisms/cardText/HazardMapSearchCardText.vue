@@ -3,6 +3,7 @@
     <v-row justify="center">
       <v-col v-for="item in hazardMapItems" :key="item.id" :cols="item.col">
         <v-card-text>
+          <v-icon class="mr-1" color="#117768" large>{{ item.icon }}</v-icon>
           <a v-if="item.to !== null" :href="item.to" class="text-decoration-none">{{ item.title }}</a>
           <span v-else>{{ item.title }}</span>
         </v-card-text>
@@ -46,13 +47,13 @@ export default {
   data () {
     return {
       hazardMapItems: [
-        { id: 1, title: '津波', to: this.hazardMap.tsunami, col: 6 },
-        { id: 2, title: '洪水', to: this.hazardMap.flood, col: 6 },
-        { id: 3, title: '土砂災害', to: this.hazardMap.landslide, col: 6 },
-        { id: 4, title: '内水氾濫', to: this.hazardMap.inland_flood, col: 6 },
-        { id: 5, title: '高潮', to: this.hazardMap.storm_surge, col: 6 },
-        { id: 6, title: '火山', to: this.hazardMap.volcano, col: 6 },
-        { id: 7, title: 'ため池', to: this.hazardMap.reservoir, col: 12 }
+        { id: 1, title: '津波', to: this.hazardMap.tsunami, col: 6, icon: 'mdi-tsunami' },
+        { id: 2, title: '洪水', to: this.hazardMap.flood, col: 6, icon: 'mdi-home-flood' },
+        { id: 3, title: '土砂災害', to: this.hazardMap.landslide, col: 6, icon: 'mdi-landslide' },
+        { id: 4, title: '内水氾濫', to: this.hazardMap.inland_flood, col: 6, icon: 'mdi-home-flood' },
+        { id: 5, title: '高潮', to: this.hazardMap.storm_surge, col: 6, icon: 'mdi-tsunami' },
+        { id: 6, title: '火山', to: this.hazardMap.volcano, col: 6, icon: 'mdi-volcano' },
+        { id: 7, title: 'ため池', to: this.hazardMap.reservoir, col: 12, icon: 'mdi-waves' }
       ]
     }
   }
