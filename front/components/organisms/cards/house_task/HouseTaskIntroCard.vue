@@ -181,7 +181,7 @@
               <v-list-item>
                 <v-icon class="mr-2" color="#FFD54F">mdi-star-circle</v-icon>
                 <v-list-item-content>
-                  <v-list-item-title class="wrap-text">各防災SNSアカウントごとの「完了！」ボタンをクリックして1ポイント獲得！</v-list-item-title>
+                  <v-list-item-title class="wrap-text">各おうち防災タスクごとの「完了！」ボタンをクリックして1ポイント獲得！</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </v-list>

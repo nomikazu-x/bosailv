@@ -87,7 +87,7 @@
               <v-list-item>
                 <v-icon class="mr-2" color="#FFD54F">mdi-star-circle</v-icon>
                 <v-list-item-content>
-                  <v-list-item-title class="wrap-text">家族会議項目をすべてメモし、「作成」をクリックして5ポイント獲得！</v-list-item-title>
+                  <v-list-item-title class="wrap-text">家族会議の項目をメモし、「作成」をクリックして5ポイント獲得！</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
             </v-list>
