@@ -99,7 +99,7 @@ ja:
         asahi: '朝日新聞'
         japantimes: 'The Japan Times'
       house_tasks:
-        tv_rack_fixed: 'テレビを壁またはテレビ台に固定するとともに、テレビ台も固定している'
+        tv_rack_fixed: 'テレビを壁またはテレビ台に固定するとともに、テレビ台も固定している。'
         tv_position: 'テレビが転倒・落下・移動しても、人に当たったり、避難障害にならないところに置いている。'
         fridge_fixed: '冷蔵庫を、ベルトなどで壁に固定している。'
         fridge_position: '冷蔵庫が移動しても、避難障害にならない場所に設置している。'
