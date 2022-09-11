@@ -39,52 +39,12 @@
           </v-col>
           <v-col cols="12">
             <v-row no-gutters justify="center">
-              <v-col cols="1">
-                <v-icon class="mb-1" color="#117768">mdi-home-flood</v-icon>
-                <div class="text-caption text-center">洪水</div>
-                <div v-if="selectedShelter.flood" class="text-caption text-center font-weight-bold">○</div>
-                <div v-else class="text-caption text-center">×</div>
-              </v-col>
-              <v-col cols="1" class="ml-2">
-                <v-icon class="mb-1" color="#117768">mdi-landslide</v-icon>
-                <div class="text-caption text-center">土砂災害</div>
-                <div v-if="selectedShelter.landslide" class="text-caption text-center">○</div>
-                <div v-else class="text-caption text-center">×</div>
-              </v-col>
-              <v-col cols="1" class="ml-2">
-                <v-icon class="mb-1" color="#117768">mdi-tsunami</v-icon>
-                <div class="text-caption text-center">高潮</div>
-                <div v-if="selectedShelter.storm_surge" class="text-caption text-center">○</div>
-                <div v-else class="text-caption text-center">×</div>
-              </v-col>
-              <v-col cols="1" class="ml-2">
-                <v-icon class="mb-1" color="#117768">mdi-image-broken-variant</v-icon>
-                <div class="text-caption text-center">地震</div>
-                <div v-if="selectedShelter.earthquake" class="text-caption text-center">○</div>
-                <div v-else class="text-caption text-center">×</div>
-              </v-col>
-              <v-col cols="1" class="ml-2">
-                <v-icon class="mb-1" color="#117768">mdi-tsunami</v-icon>
-                <div class="text-caption text-center">津波</div>
-                <div v-if="selectedShelter.tsunami" class="text-caption text-center">○</div>
-                <div v-else class="text-caption text-center">×</div>
-              </v-col>
-              <v-col cols="1" class="ml-2">
-                <v-icon class="mb-1" color="#117768">mdi-fire</v-icon>
-                <div class="text-caption text-center">火事</div>
-                <div v-if="selectedShelter.fire" class="text-caption text-center">○</div>
-                <div v-else class="text-caption text-center">×</div>
-              </v-col>
-              <v-col cols="1" class="ml-2">
-                <v-icon class="mb-1" color="#117768">mdi-home-flood</v-icon>
-                <div class="text-caption text-center">内水氾濫</div>
-                <div v-if="selectedShelter.inland_flood" class="text-caption text-center">○</div>
-                <div v-else class="text-caption text-center">×</div>
-              </v-col>
-              <v-col cols="1" class="ml-2">
-                <v-icon class="mb-1" color="#117768">mdi-volcano</v-icon>
-                <div class="text-caption text-center">火山噴火</div>
-                <div v-if="selectedShelter.volcano" class="text-caption text-center">○</div>
+              <v-col v-for="info in shelterInfo" :key="info.id" cols="1.5">
+                <div class="text-center">
+                  <v-icon class="mb-1" color="#117768">{{ info.icon }}</v-icon>
+                </div>
+                <div class="text-caption text-center">{{ info.type }}</div>
+                <div v-if="info.is_selected" class="text-caption text-center font-weight-bold">○</div>
                 <div v-else class="text-caption text-center">×</div>
               </v-col>
             </v-row>
@@ -118,6 +78,25 @@ export default {
           width: 0,
           height: -35
         }
+      }
+    }
+  },
+
+  computed: {
+    shelterInfo () {
+      if (this.selectedShelter !== null) {
+        return [
+          { id: 1, type: '洪水', is_selected: this.selectedShelter.flood, icon: 'mdi-home-flood' },
+          { id: 2, type: '土砂災害', is_selected: this.selectedShelter.landslide, icon: 'mdi-landslide' },
+          { id: 3, type: '高潮', is_selected: this.selectedShelter.storm_surge, icon: 'mdi-tsunami' },
+          { id: 4, type: '地震', is_selected: this.selectedShelter.earthquake, icon: 'mdi-image-broken-variant' },
+          { id: 5, type: '津波', is_selected: this.selectedShelter.tsunami, icon: 'mdi-tsunami' },
+          { id: 6, type: '火事', is_selected: this.selectedShelter.fire, icon: 'mdi-fire' },
+          { id: 7, type: '内水氾濫', is_selected: this.selectedShelter.inland_flood, icon: 'mdi-home-flood' },
+          { id: 8, type: '火山噴火', is_selected: this.selectedShelter.volcano, icon: 'mdi-volcano' }
+        ]
+      } else {
+        return null
       }
     }
   },
