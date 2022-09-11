@@ -46,7 +46,7 @@ export default {
         { id: 1, type: '洪水', is_selected: this.shelter.flood },
         { id: 2, type: '土砂災害', is_selected: this.shelter.landslide },
         { id: 3, type: '高潮', is_selected: this.shelter.storm_surge },
-        { id: 4, type: '地震', is_selected: this.shelter.earthquake },
+        { id: 4, type: '高潮', is_selected: this.shelter.earthquake },
         { id: 5, type: '津波', is_selected: this.shelter.tsunami },
         { id: 6, type: '火事', is_selected: this.shelter.fire },
         { id: 7, type: '内水氾濫', is_selected: this.shelter.inland_flood },

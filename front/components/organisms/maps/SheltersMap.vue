@@ -27,8 +27,69 @@
         :opened="infoWinOpen"
         @closeClick="infoWinOpen = false"
       >
-        <div>{{ selectedShelter.name }}</div>
-        <NuxtLink :to="{ name: 'shelters-id___ja', params: { id: selectedShelter.id } }">詳細</NuxtLink>
+        <v-row>
+          <v-col cols="12">
+            <h3 class="main-heading font-weight-bold my-2" style="color: #117768;">
+              <NuxtLink :to="{ name: 'shelters-id___ja', params: { id: selectedShelter.id } }" class="text-decoration-none">
+                {{ selectedShelter.name }}
+              </NuxtLink>
+            </h3>
+            <div class="mb-2">{{ selectedShelter.address }}</div>
+            <v-divider />
+          </v-col>
+          <v-col cols="12">
+            <v-row no-gutters justify="center">
+              <v-col cols="1">
+                <v-icon class="mb-1" color="#117768">mdi-home-flood</v-icon>
+                <div class="text-caption text-center">洪水</div>
+                <div v-if="selectedShelter.flood" class="text-caption text-center font-weight-bold">○</div>
+                <div v-else class="text-caption text-center">×</div>
+              </v-col>
+              <v-col cols="1" class="ml-2">
+                <v-icon class="mb-1" color="#117768">mdi-landslide</v-icon>
+                <div class="text-caption text-center">土砂災害</div>
+                <div v-if="selectedShelter.landslide" class="text-caption text-center">○</div>
+                <div v-else class="text-caption text-center">×</div>
+              </v-col>
+              <v-col cols="1" class="ml-2">
+                <v-icon class="mb-1" color="#117768">mdi-tsunami</v-icon>
+                <div class="text-caption text-center">高潮</div>
+                <div v-if="selectedShelter.storm_surge" class="text-caption text-center">○</div>
+                <div v-else class="text-caption text-center">×</div>
+              </v-col>
+              <v-col cols="1" class="ml-2">
+                <v-icon class="mb-1" color="#117768">mdi-image-broken-variant</v-icon>
+                <div class="text-caption text-center">地震</div>
+                <div v-if="selectedShelter.earthquake" class="text-caption text-center">○</div>
+                <div v-else class="text-caption text-center">×</div>
+              </v-col>
+              <v-col cols="1" class="ml-2">
+                <v-icon class="mb-1" color="#117768">mdi-tsunami</v-icon>
+                <div class="text-caption text-center">津波</div>
+                <div v-if="selectedShelter.tsunami" class="text-caption text-center">○</div>
+                <div v-else class="text-caption text-center">×</div>
+              </v-col>
+              <v-col cols="1" class="ml-2">
+                <v-icon class="mb-1" color="#117768">mdi-fire</v-icon>
+                <div class="text-caption text-center">火事</div>
+                <div v-if="selectedShelter.fire" class="text-caption text-center">○</div>
+                <div v-else class="text-caption text-center">×</div>
+              </v-col>
+              <v-col cols="1" class="ml-2">
+                <v-icon class="mb-1" color="#117768">mdi-home-flood</v-icon>
+                <div class="text-caption text-center">内水氾濫</div>
+                <div v-if="selectedShelter.inland_flood" class="text-caption text-center">○</div>
+                <div v-else class="text-caption text-center">×</div>
+              </v-col>
+              <v-col cols="1" class="ml-2">
+                <v-icon class="mb-1" color="#117768">mdi-volcano</v-icon>
+                <div class="text-caption text-center">火山噴火</div>
+                <div v-if="selectedShelter.volcano" class="text-caption text-center">○</div>
+                <div v-else class="text-caption text-center">×</div>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
       </GmapInfoWindow>
     </GmapMap>
   </v-card>
