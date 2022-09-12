@@ -4,6 +4,7 @@ json.genres do
   json.array! @genres do |genre|
     json.id genre.id
     json.name genre.name
+    json.icon genre.icon
     json.image_url do
       json.large "#{Settings['base_image_url']}#{genre.image_url(:large)}"
       json.xlarge "#{Settings['base_image_url']}#{genre.image_url(:xlarge)}"

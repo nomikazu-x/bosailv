@@ -14,5 +14,6 @@ FactoryBot.define do
     name { Faker::Lorem.characters(number: 5) }
     image { File.new("#{Rails.root}/spec/fixtures/test_image.jpg") }
     description { "#{name}の説明文" }
+    icon { "#{name}のアイコン" }
   end
 end

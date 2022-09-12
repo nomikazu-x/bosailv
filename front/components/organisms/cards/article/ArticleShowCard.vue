@@ -17,6 +17,11 @@
               :article="article"
             />
           </v-col>
+          <v-col cols="12">
+            <ArticleGenreChipGroupCard
+              :genres="article.genres"
+            />
+          </v-col>
         </v-row>
       </div>
     </v-col>
@@ -27,13 +32,15 @@
 import { mapGetters } from 'vuex'
 import ArticleShowDetailCard from '~/components/organisms/cards/article/ArticleShowDetailCard.vue'
 import ArticleCommentListCard from '~/components/organisms/cards/article/ArticleCommentListCard.vue'
+import ArticleGenreChipGroupCard from '~/components/organisms/cards/article/ArticleGenreChipGroupCard.vue'
 
 export default {
   name: 'ArticleShowCard',
 
   components: {
     ArticleShowDetailCard,
-    ArticleCommentListCard
+    ArticleCommentListCard,
+    ArticleGenreChipGroupCard
   },
 
   data () {

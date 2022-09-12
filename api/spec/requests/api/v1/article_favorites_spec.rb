@@ -5,15 +5,16 @@ RSpec.describe Api::V1::ArticleFavoritesController, type: :request do
     subject(:call_api) { post "/api/v1/articles/#{article.id}/article_favorites/create.json", headers: headers, params: params }
 
     let(:user) { create(:confirmed_user) }
+    let(:user2) { create(:confirmed_user, username: 'user2') }
     let(:article) { create(:article, user: user)}
-    let(:headers) { user.create_new_auth_token }
+    let(:headers) { user2.create_new_auth_token }
     let(:params) {{ }}
 
     context 'お気に入りすることに成功した場合' do
       let(:params) do
         {
           article_favorite: {
-            user_id: user.id,
+            user_id: user2.id,
             article_id: article.id
           }
         }

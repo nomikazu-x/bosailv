@@ -18,6 +18,7 @@ class Task < ApplicationRecord
   validates :title, presence: true, length: { maximum: 30 }
   validates :summary, presence: true, length: { maximum: 50 }
   validates :body, presence: true
+  validates :icon, presence: true
 
   # 画像URLを返却
   def image_url(version)

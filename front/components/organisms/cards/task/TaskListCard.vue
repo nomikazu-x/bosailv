@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <BaseTitleCard v-if="tasks != null" title="防災タスク一覧" style="background-color: #f9f5eb;" />
+  <div v-if="tasks != null">
+    <BaseTitleCard title="防災タスク一覧" style="background-color: #f9f5eb;" />
     <TaskListCardText
       v-for="task in constantTasks"
       :key="`first-${task.id}`"
@@ -36,11 +36,13 @@ export default {
   data () {
     return {
       constantTasks: [
-        { id: 1, to: '/tasks/sns', is_completed: this.$auth.user.is_completed_sns_tasks, image_url: { large: '' }, title: '防災SNSをフォローしよう!', summary: '防災SNSをフォローしてもしものときに備えよう。' },
-        { id: 2, to: '/tasks/house', is_completed: this.$auth.user.is_completed_house_tasks, image_url: { large: '' }, title: '家具の固定をしよう!', summary: '家具類の転倒・落下・移動防止対策をしてもしものときに備えよう。' },
-        { id: 3, to: this.toFamilyRule(), is_completed: this.$auth.user.is_completed_family_rules_tasks, image_url: { large: '' }, title: '家族会議しよう!', summary: '災害に備えて家族でルールを決めておきましょう。' },
-        { id: 4, to: '/tasks/emergency_contacts', is_completed: this.$auth.user.is_completed_emergency_contact_task, image_url: { large: '' }, title: '緊急連絡先を登録しよう!', summary: '緊急時にそなえて連絡先を登録しておこう。' },
-        { id: 5, to: this.toStock(), is_completed: this.$auth.user.is_completed_stock_tasks, image_url: { large: '' }, title: '災害用備蓄をしよう!', summary: '家族構成を登録して、必要な備蓄品を備蓄しておこう。' }
+        { id: 1, to: '/hazard_maps', icon: 'mdi-book-multiple', title: 'ハザードマップ', summary: '災害は突然やってきます。思い立ったときにハザードマップを確認しておきましょう。' },
+        { id: 2, to: '/shelters', icon: 'mdi-exit-run', title: '避難所', summary: 'いざというときにあわてないように、近くにある避難場所をしっかり確認しておきましょう。' },
+        { id: 3, to: '/sns_tasks', icon: 'mdi-twitter', title: '防災SNS', summary: '災害時に役立つ情報を発信しているSNSアカウントをフォローしておきましょう。' },
+        { id: 4, to: '/house_tasks', icon: 'mdi-home', title: '家具の固定', summary: 'おうち防災タスクをこなして、震災時のけがから身を守りましょう。' },
+        { id: 5, to: '/family_rule', icon: 'mdi-human-male-female-child', title: '家族会議', summary: 'いざというときに備えて、家族会議をして各項目をメモしておきましょう。' },
+        { id: 6, to: '/emergency_contacts', icon: 'mdi-phone-in-talk', title: '緊急連絡先', summary: '緊急連絡先を登録して、災害時すぐに連絡できるようにしておきましょう。' },
+        { id: 7, to: '/stocks', icon: 'mdi-archive', title: '備蓄', summary: 'ライフラインが止まった場合や、避難生活が必要になったときのために防災用品を備えましょう。' }
       ],
       tasks: null
     }
@@ -59,9 +61,7 @@ export default {
   },
 
   async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.tasksUrl, {
-      params: { username: this.$route.params.username }
-    })
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.tasksUrl)
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
@@ -75,23 +75,6 @@ export default {
       })
 
     this.processing = false
-  },
-
-  methods: {
-    toFamilyRule () {
-      if (this.$auth.user.is_completed_family_rules_tasks) {
-        return '/tasks/family_rule'
-      } else {
-        return '/tasks/family_rule/edit'
-      }
-    },
-    toStock () {
-      if (this.$auth.user.is_family_present) {
-        return '/tasks/stocks'
-      } else {
-        return '/tasks/stocks/edit'
-      }
-    }
   }
 }
 </script>

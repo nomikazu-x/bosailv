@@ -26,7 +26,7 @@
       </v-card-title>
 
       <div class="text-right">
-        <FavoriteBtnGroup v-if="$auth.loggedIn" class="mr-3 mt-2" :article="article" :likers="likers" />
+        <FavoriteBtnGroup v-if="!canAction && $auth.loggedIn" class="mr-3 mt-2" :article="article" :likers="likers" />
         <v-menu v-if="canAction || $auth.user.admin === true" bottom right>
           <template #activator="{ on, attrs }">
             <v-btn

@@ -4,9 +4,15 @@
     <GreenBtn v-if="isRegistered" @click="onUnRegistration">
       マイ避難所登録を解除する
     </GreenBtn>
-    <OrangeBtn v-else @click="onRegistration">
-      マイ避難所に登録する
-    </OrangeBtn>
+
+    <div v-else>
+      <div v-if="$auth.user.is_max_registered_shelters" class="text-center text-caption mt-2 grey--text">
+        ※登録上限数に達しているため、マイ避難所に登録できません。
+      </div>
+      <OrangeBtn :disabled="$auth.user.is_max_registered_shelters" @click="onRegistration">
+        マイ避難所に登録する
+      </OrangeBtn>
+    </div>
   </span>
 </template>
 

@@ -22,6 +22,24 @@
             />
           </v-sheet>
         </v-col>
+        <v-col cols="12">
+          <v-sheet outlined class="pa-2" height="60">
+            <BaseTextField
+              v-model="icon"
+              name="icon"
+              label="アイコン"
+            />
+          </v-sheet>
+        </v-col>
+        <v-col cols="12">
+          <v-sheet outlined class="pa-2">
+            <BaseTextarea
+              v-model="description"
+              name="description"
+              label="説明文"
+            />
+          </v-sheet>
+        </v-col>
         <div>
           <OrangeBtn
             id="genre_create_btn"
@@ -41,6 +59,7 @@ import { ValidationObserver } from 'vee-validate'
 import TheProcessing from '~/components/organisms/application/TheProcessing.vue'
 import BaseImageFileInput from '~/components/molecules/fileInputs/BaseImageFileInput.vue'
 import BaseTextField from '~/components/molecules/textFields/BaseTextField.vue'
+import BaseTextarea from '~/components/molecules/textarea/BaseTextarea.vue'
 import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
@@ -51,6 +70,7 @@ export default {
     TheProcessing,
     BaseImageFileInput,
     BaseTextField,
+    BaseTextarea,
     OrangeBtn
   },
 
@@ -67,14 +87,18 @@ export default {
   data () {
     return {
       image: null,
-      name: ''
+      name: '',
+      icon: '',
+      description: ''
     }
   },
   methods: {
     onGenreCreate () {
       const genreInfo = {
         image: this.image,
-        name: this.name
+        name: this.name,
+        icon: this.icon,
+        description: this.description
       }
       this.$emit('genre-create', genreInfo)
     }

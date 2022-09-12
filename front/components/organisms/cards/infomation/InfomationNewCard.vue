@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col cols="12" sm="10" md="8">
+    <v-col cols="12">
       <BaseTitleCard title="お知らせ作成" />
       <InfomationNewForm
         :processing="processing"

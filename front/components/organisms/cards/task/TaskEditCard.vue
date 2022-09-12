@@ -1,6 +1,6 @@
 <template>
   <v-row v-if="task != null" justify="center">
-    <v-col cols="12" sm="10" md="8">
+    <v-col cols="12">
       <BaseTitleCard title="防災タスク編集" />
       <TaskEditForm
         :task="task"
@@ -68,6 +68,7 @@ export default {
       if (taskInfo.image) {
         params.append('task[image]', taskInfo.image)
       }
+      params.append('task[icon]', taskInfo.icon)
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.adminTaskUpdateUrl.replace('_id', this.$route.params.id), params)
         .then((response) => {

@@ -5,6 +5,7 @@ json.task do
   json.title @task.title
   json.summary @task.summary
   json.body @task.body
+  json.icon @task.icon
   json.image_url do
     json.large "#{Settings['base_image_url']}#{@task.image_url(:large)}"
     json.xlarge "#{Settings['base_image_url']}#{@task.image_url(:xlarge)}"

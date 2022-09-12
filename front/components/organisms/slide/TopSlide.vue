@@ -5,6 +5,13 @@
       show-arrows
       center-active
     >
+      <v-slide-item>
+        <v-card to="/about" class="ma-1" style="background-color: #fff;" max-width="500" height="300">
+          <v-card-title style="background-color: #fff; margin-top: 93px;">
+            <v-img :src="image.LOGO_IMAGE" max-width="300" />ってなに？
+          </v-card-title>
+        </v-card>
+      </v-slide-item>
       <v-slide-item
         v-for="article in articles.slice(0, 5)"
         :key="article.id"
@@ -26,6 +33,8 @@
 </template>
 
 <script>
+import LOGO_IMAGE from '~/assets/images/logo.jpg'
+
 export default {
   name: 'TopSlide',
   data () {
@@ -33,6 +42,15 @@ export default {
       articles: null
     }
   },
+
+  computed: {
+    image () {
+      return {
+        LOGO_IMAGE
+      }
+    }
+  },
+
   async created () {
     await this.$axios.get(this.$config.apiBaseURL + this.$config.articlesUrl)
       .then((response) => {

@@ -37,6 +37,6 @@ class Api::V1::Admin::TasksController < Api::V1::ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :image, :summary, :body)
+    params.require(:task).permit(:title, :image, :summary, :body, :icon)
   end
 end

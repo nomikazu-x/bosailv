@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col cols="12" sm="10" md="8">
+    <v-col cols="12">
       <BaseTitleCard title="防災タスク作成" />
       <TaskNewForm
         :processing="processing"
@@ -43,6 +43,7 @@ export default {
       params.append('task[image]', taskInfo.image)
       params.append('task[summary]', taskInfo.summary)
       params.append('task[body]', taskInfo.body)
+      params.append('task[icon]', taskInfo.icon)
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.adminTaskCreateUrl, params)
         .then((response) => {

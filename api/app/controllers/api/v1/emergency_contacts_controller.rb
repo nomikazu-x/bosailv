@@ -1,4 +1,5 @@
 class Api::V1::EmergencyContactsController < Api::V1::ApplicationController
+  before_action :check_count, only: %i[create]
 
   # GET /api/v1/emergency_contacts(.json) 緊急連絡先一覧API
   def index
@@ -39,5 +40,11 @@ class Api::V1::EmergencyContactsController < Api::V1::ApplicationController
 
   def emergency_contact_params
     params.require(:emergency_contact).permit(:name, :phone_number)
+  end
+
+  def check_count
+    return if current_user.emergency_contacts.count < Settings['maximum_emergency_contacts_length']
+
+    render './api/v1/failure', locals: { alert: I18n.t('alert.emergency_contact.create') }, status: :unprocessable_entity
   end
 end

@@ -1,6 +1,6 @@
 <template>
   <v-row v-if="genre != null" justify="center">
-    <v-col cols="12" sm="10" md="8">
+    <v-col cols="12">
       <BaseTitleCard title="ジャンル編集" />
       <GenreEditForm
         :genre="genre"
@@ -66,6 +66,8 @@ export default {
       if (genreInfo.image) {
         params.append('genre[image]', genreInfo.image)
       }
+      params.append('genre[icon]', genreInfo.icon)
+      params.append('genre[description]', genreInfo.description)
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.adminGenreUpdateUrl.replace('_id', this.$route.params.id), params)
         .then((response) => {

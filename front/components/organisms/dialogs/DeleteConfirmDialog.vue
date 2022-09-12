@@ -2,7 +2,7 @@
   <v-card-text>
     <v-dialog transition="dialog-top-transition" max-width="600px">
       <template #activator="{ on, attrs }">
-        <v-btn color="error" v-bind="attrs" v-on="on">削除</v-btn>
+        <v-btn color="error" v-bind="attrs" v-on="on">{{ name }}</v-btn>
       </template>
       <template #default="dialog">
         <v-card>
@@ -23,6 +23,10 @@
 <script>
 export default {
   props: {
+    name: {
+      type: String,
+      default: '削除'
+    },
     title: {
       type: String,
       default: '削除'

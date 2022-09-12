@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col cols="12" sm="8">
+    <v-col cols="12" sm="10">
       <BaseTitleCard title="新しいパスワードを入力してください">
         <div class="pa-5">
           <PasswordResetConfirmForm
