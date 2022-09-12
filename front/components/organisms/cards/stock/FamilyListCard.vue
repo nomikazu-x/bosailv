@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-col cols="12" sm="10" md="8">
+    <v-col cols="12">
       <TheMessage :alert="alert" :notice="notice" />
       <BaseTitleCard title="家族構成の情報">
         <div class="pa-5">

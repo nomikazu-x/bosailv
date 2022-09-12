@@ -29,7 +29,7 @@
       </v-card-text>
       <v-divider class="my-5" />
       <div class="text-center">
-        <GreenBtn to="family_rule/edit">編集する</GreenBtn>
+        <OrangeBtn to="family_rule/edit">編集する</OrangeBtn>
         <DeleteConfirmDialog name="リセット" title="家族会議のメモをリセット" @click="onFamilyRuleDelete" />
       </div>
     </v-col>
@@ -38,7 +38,7 @@
 
 <script>
 import Application from '~/plugins/application.js'
-import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import DeleteConfirmDialog from '~/components/organisms/dialogs/DeleteConfirmDialog.vue'
 
@@ -46,7 +46,7 @@ export default {
   name: 'FamilyRuleTaskCard',
 
   components: {
-    GreenBtn,
+    OrangeBtn,
     BaseTitleCard,
     DeleteConfirmDialog
   },

@@ -21,8 +21,8 @@
                 {{ task.summary }}
               </v-card-text>
             </v-col>
-            <v-col v-if="$auth.loggedIn" cols="3">
-              <GreenBtn v-if="!task.is_completed" disabled outlined small class="mr-1">未達成</GreenBtn>
+            <v-col v-if="$auth.loggedIn && !task.is_completed" cols="3">
+              <GreenBtn disabled outlined small class="mr-1">未達成</GreenBtn>
             </v-col>
             <v-col v-if="!$auth.loggedIn" cols="9">
               <v-card-text>

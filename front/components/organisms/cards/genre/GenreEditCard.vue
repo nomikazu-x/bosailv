@@ -1,6 +1,6 @@
 <template>
   <v-row v-if="genre != null" justify="center">
-    <v-col cols="12" sm="10" md="8">
+    <v-col cols="12">
       <BaseTitleCard title="ジャンル編集" />
       <GenreEditForm
         :genre="genre"
