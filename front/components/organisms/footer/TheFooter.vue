@@ -1,13 +1,91 @@
 <template>
-  <v-footer absolute inset app>
-    <div class="flex-grow-1 text-center">
-      <span>Copyright &copy; <a :href="$t('my_url')" target="_blank" rel="noopener noreferrer">{{ $t('my_name') }}</a> All Rights Reserved.</span>
-    </div>
-  </v-footer>
+  <div :style="{ marginTop: `${height}px` }">
+    <v-footer absolute color="#FFFCFC" :height="height">
+      <v-row justify="center" algin="center" class="mt-2">
+        <v-col cols="4">
+          <NuxtLink to="/" class="toolbar-title d-flex text-decoration-none">
+            <v-toolbar-title
+              v-if="$vuetify.breakpoint.width > 226"
+              :style="{ 'max-width': ($vuetify.breakpoint.width - 226) + 'px' }"
+              class="ml-1 align-self-center d-inline-block text-truncate text--secondary"
+            >
+              <v-img :src="require('@/assets/images/header_logo.jpg')" />
+            </v-toolbar-title>
+          </NuxtLink>
+        </v-col>
+        <v-col cols="4">
+          <ul class="list-style-none pl-0">
+            <li class="mb-1">
+              <NuxtLink
+                to="/about"
+                style="color: inherit;"
+                class="text-decoration-none text--secondary"
+              >
+                BosaiLvとは？
+              </NuxtLink>
+            </li>
+            <li class="mb-1">
+              <NuxtLink
+                to="/signup"
+                style="color: inherit;"
+                class="text-decoration-none text--secondary"
+              >
+                新規登録/ログイン
+              </NuxtLink>
+            </li>
+          </ul>
+        </v-col>
+        <v-col cols="4">
+          <ul class="list-style-none pl-0">
+            <li class="mb-1">
+              <NuxtLink
+                to="/rules"
+                style="color: inherit;"
+                class="text-decoration-none text--secondary"
+              >
+                利用規約
+              </NuxtLink>
+            </li>
+            <li class="mb-1">
+              <NuxtLink
+                to="/privacy"
+                style="color: inherit;"
+                class="text-decoration-none text--secondary"
+              >
+                プライバシーポリシー
+              </NuxtLink>
+            </li>
+          </ul>
+        </v-col>
+        <v-col cols="12" class="p-0">
+          <v-divider class="mb-2" />
+          <div class="text-center text-decoration-none text--secondary">
+            &copy;{{ copyRightYear }}
+            <a :href="$t('my_url')" target="_blank" rel="noopener noreferrer">{{
+              $t("my_name")
+            }}</a>
+          </div>
+        </v-col>
+      </v-row>
+    </v-footer>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Footer'
+  data () {
+    return {
+      height: 100
+    }
+  },
+  computed: {
+    copyRightYear () {
+      const beginningYear = 2021
+      const thisYear = new Date().getFullYear()
+      return beginningYear < thisYear
+        ? `${beginningYear} - ${thisYear}`
+        : beginningYear
+    }
+  }
 }
 </script>
