@@ -17,7 +17,7 @@
         <CitiesSelect
           v-model="selectCity"
           :cities="cities"
-          @click="waiting = false"
+          @change="waiting = false"
         />
         <BaseTextarea
           v-model="profile"

@@ -19,7 +19,7 @@
             <CitiesSelect
               v-model="selectCity"
               :cities="cities"
-              @click="waiting = false"
+              @change="waiting = false"
             />
           </v-col>
           <v-col cols="12">

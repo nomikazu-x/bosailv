@@ -22,7 +22,7 @@
             <v-col cols="12" sm="6" order-sm="1">
               <v-card-title class="my-5 justify-center" style="color: #117768;">ハザードマップを確認しよう</v-card-title>
               <v-card-text>災害は突然やってきます。思い立ったときにハザードマップを確認しておきましょう。</v-card-text>
-              <v-sheet outlined color="#FFD54F" class="pa-1">
+              <v-sheet outlined color="#FFD54F" class="pa-1 mx-4">
                 <v-card flat>
                   <v-list>
                     <v-list-item>
@@ -46,7 +46,7 @@
             <v-col cols="12" sm="6" order-sm="2">
               <v-card-title class="my-5 justify-center" style="color: #117768;">避難所を確認しよう</v-card-title>
               <v-card-text>いざというときにあわてないように、自宅や働いている場所の近くにある避難場所と安全な避難経路を、しっかり確認しておきましょう。</v-card-text>
-              <v-sheet outlined color="#FFD54F" class="pa-1">
+              <v-sheet outlined color="#FFD54F" class="pa-1 mx-4">
                 <v-card flat>
                   <v-list>
                     <v-list-item>
@@ -70,7 +70,7 @@
             <v-col cols="12" sm="6" order-sm="1">
               <v-card-title class="my-5 justify-center" style="color: #117768;">防災SNSをフォローしよう</v-card-title>
               <v-card-text>いざというときの情報収集に役立つSNS。災害時に役立つ情報を発信しているSNSアカウントをフォローしておきましょう。</v-card-text>
-              <v-sheet outlined color="#FFD54F" class="pa-1">
+              <v-sheet outlined color="#FFD54F" class="pa-1 mx-4">
                 <v-card flat>
                   <v-list>
                     <v-list-item>
@@ -94,7 +94,7 @@
             <v-col cols="12" sm="6" order-sm="2">
               <v-card-title class="my-5 justify-center" style="color: #117768;">おうち防災に取り組もう</v-card-title>
               <v-card-text>家具をしっかりと留めたり、ガラスの飛散防止対策を施すなどのおうち防災タスクをこなして、震災時のけがから身を守りましょう。</v-card-text>
-              <v-sheet outlined color="#FFD54F" class="pa-1">
+              <v-sheet outlined color="#FFD54F" class="pa-1 mx-4">
                 <v-card flat>
                   <v-list>
                     <v-list-item>
@@ -121,7 +121,7 @@
                 家庭によって生活スタイルはさまざまです。そこで、普段の生活を考えながら、災害時に困ることを家族で話し合えば、「必要なこと」が見えてきます。<br>
                 いざというときに備えて、家族会議をして各項目をメモしておきましょう。
               </v-card-text>
-              <v-sheet outlined color="#FFD54F" class="pa-1">
+              <v-sheet outlined color="#FFD54F" class="pa-1 mx-4">
                 <v-card flat>
                   <v-list>
                     <v-list-item>
@@ -145,7 +145,7 @@
             <v-col cols="12" sm="6" order-sm="2">
               <v-card-title class="my-5 justify-center" style="color: #117768;">緊急連絡先を登録しよう</v-card-title>
               <v-card-text>緊急連絡先を登録して、災害時すぐに連絡できるようにしておきましょう。</v-card-text>
-              <v-sheet outlined color="#FFD54F" class="pa-1">
+              <v-sheet outlined color="#FFD54F" class="pa-1 mx-4">
                 <v-card flat>
                   <v-list>
                     <v-list-item>
@@ -172,7 +172,7 @@
                 電気やガス、水道などのライフラインが止まった場合や、避難生活が必要になったときのために防災用品を備えましょう。<br>
                 家族情報を登録すると、必要な備蓄品の数量を計算して一覧で確認できます。
               </v-card-text>
-              <v-sheet outlined color="#FFD54F" class="pa-1">
+              <v-sheet outlined color="#FFD54F" class="pa-1 mx-4">
                 <v-card flat>
                   <v-list>
                     <v-list-item>
@@ -200,7 +200,7 @@
                 また、他の人の書いた記事をお気に入りすることでマイ記事に登録し、マイページからいつでも確認できます。<br>
                 もしものときに備えて作成したり、読んでお気に入りしたりして備えておきましょう。
               </v-card-text>
-              <v-sheet outlined color="#FFD54F" class="pa-1">
+              <v-sheet outlined color="#FFD54F" class="pa-1 mx-4">
                 <v-card flat>
                   <v-list>
                     <v-list-item>

@@ -1,10 +1,10 @@
 ## お知らせ
 # 一覧のデフォルト最大表示件数
-default_infomations_limit: 25
+default_infomations_limit: 10
 
 ## 記事
 # 一覧のデフォルト最大表示件数
-default_articles_limit: 30
+default_articles_limit: 10
 
 
 ## 獲得ポイント
@@ -62,4 +62,4 @@ maximum_stock_task: 17179869183
 
 ## 避難所
 # 一覧のデフォルト最大表示件数
-default_shelters_limit: 25
+default_shelters_limit: 10
