@@ -1,6 +1,6 @@
 # Composeファイルのバージョンを指定
 version: '3.3'
-
+  
 volumes:
   tmp:
   public:
@@ -56,10 +56,17 @@ services:
     image: mysql:8.0
     # 環境変数
     environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
       TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     # データベースの値を永続化
     volumes:
-      - ./tmp/db:/var/lib/mysql
+      - data:/var/lib/mysql
       - ./infra/db/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - 3306:3306

@@ -1,0 +1,17 @@
+# create nuxt-appコマンド成功確認済みのnode version
+FROM node:16.14.2-alpine3.15
+
+ENV HOME=/usr/src/app \
+    TZ=Asia/Tokyo
+
+# 作業ディレクトリに移動
+WORKDIR ${HOME}
+
+COPY ./ ./
+RUN apk update && apk add bash curl
+RUN yarn install
+RUN yarn run build
+
+EXPOSE 3000
+
+CMD ["yarn", "run", "dev"]
