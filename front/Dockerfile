@@ -1,7 +1,7 @@
 # create nuxt-appコマンド成功確認済みのnode version
 FROM node:16.13.1-alpine
 
-ENV HOME=/app \
+ENV HOME=/usr/src/app \
     # 以下でアプリケーションの中で使用する言語を明示
     LANG=C.UTF-8 \
     TZ=Asia/Tokyo \

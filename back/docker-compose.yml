@@ -13,12 +13,12 @@ services:
       MYSQL_ROOT_PASSWORD: password
     # データベースの値を永続化
     volumes:
-      - ./back/tmp/db:/var/lib/mysql
+      - ./tmp/db:/var/lib/mysql
 
   back:
     # サービスのベースイメージにDockerfileを指定
     build:
-      context: ./back
+      context: .
       # Dockerfileに渡す値を指定
       args:
         WORKDIR: app
@@ -29,30 +29,10 @@ services:
       BACK_DOMAIN: "localhost:8080"
     # 値を永続化
     volumes:
-      - ./back:/app
+      - ./app
     # dbサービスを先に起動するように定義
     depends_on:
       - db
     # 公開ポート番号を指定
     ports:
       - 3000:3000
-
-  front:
-    # サービスのベースイメージにDockerfileを指定
-    build:
-      context: ./front
-      # Dockerfileに渡す値を指定
-      args:
-        WORKDIR: app
-        CONTAINER_PORT: 3000
-        BACK_URL: "http://localhost:3000"
-    command: yarn run dev
-    # 値を永続化
-    volumes:
-      - ./front:/app
-    # 公開ポート番号を指定
-    ports:
-      - 8080:3000
-    # backサービスを先に起動するように定義
-    depends_on:
-      - back
