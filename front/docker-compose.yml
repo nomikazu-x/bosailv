@@ -5,14 +5,8 @@ version: '3.3'
 services:
   front:
     # サービスのベースイメージにDockerfileを指定
-    build:
-      context: .
-      # Dockerfileに渡す値を指定
-      args:
-        WORKDIR: app
-        CONTAINER_PORT: 3000
-        BACK_URL: "http://localhost:3000"
-    command: yarn run dev
+    build: .
+    command: bash -c " yarn install && yarn run dev"
     # 値を永続化
     volumes:
       - .:/usr/src/app
