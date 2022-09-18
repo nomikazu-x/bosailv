@@ -59,6 +59,6 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
   Rails.application.routes.default_url_options = {
     host: ENV.fetch('HOST_DEFAULT_URL_HOST', 'localhost'),
-    port: ENV.fetch('HOST_DEFAULT_URL_PORT', '3000')
+    port: ENV.fetch('HOST_DEFAULT_URL_PORT', '8081')
   }
 end

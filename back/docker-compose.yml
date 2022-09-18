@@ -13,7 +13,7 @@ services:
       - public:/app/public
       - tmp:/app/tmp
     ports:
-      - "80:80"
+      - "8081:80"
     depends_on:
       - app
 
@@ -32,7 +32,7 @@ services:
     # 環境変数
     environment:
       MYSQL_ROOT_PASSWORD: password
-      BACK_DOMAIN: "localhost:8080"
+      BACK_DOMAIN: "localhost:3000"
     # 値を永続化
     volumes:
       - .:/app
