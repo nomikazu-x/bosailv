@@ -7,7 +7,7 @@ ENV HOME=/app \
     TZ=Asia/Tokyo \
     # 以下を指定しないとブラウザからhttp://localhost へアクセスすることができない
     HOST=0.0.0.0 \
-    API_URL=${API_URL}
+    BACK_URL=${BACK_URL}
 
 # 作業ディレクトリに移動
 WORKDIR ${HOME}
