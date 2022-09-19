@@ -12,6 +12,7 @@ locals {
   host_domain = "bosailv.com"
   app_domain_name = "app.bosailv.com"
   api_domain_name = "api.bosailv.com"
+  ssm_parameter_store_base = "/bosailv/prod"
 }
 
 provider "aws" {
