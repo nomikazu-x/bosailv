@@ -9,8 +9,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: docker-compose build
-          command: docker-compose build
+          name: docker-compose -f ./back/docker-compose.yml build
+          command: docker-compose -f ./back/docker-compose.yml build
+      - run:
+          name: docker-compose -f ./front/docker-compose.yml build
+          command: docker-compose -f ./front/docker-compose.yml build
   # testするjob
   test:
     machine:
@@ -18,31 +21,37 @@ jobs:
     steps:
       - checkout
       - run:
-          name: docker-compose up -d
-          command: docker-compose up -d
+          name: docker-compose -f ./back/docker-compose.yml up -d
+          command: docker-compose -f ./back/docker-compose.yml up -d
+      - run:
+          name: docker-compose -f ./front/docker-compose.yml up -d
+          command: docker-compose -f ./front/docker-compose.yml up -d
       - run: sleep 10
       - run:
-          name: docker-compose run api rails db:create RAILS_ENV=test
-          command: docker-compose run api rails db:create RAILS_ENV=test
+          name: docker-compose -f ./back/docker-compose.yml run app rails db:create RAILS_ENV=test
+          command: docker-compose -f ./back/docker-compose.yml run app rails db:create RAILS_ENV=test
       - run:
-          name: docker-compose run api rails db:migrate RAILS_ENV=test
-          command: docker-compose run api rails db:migrate RAILS_ENV=test
+          name: docker-compose -f ./back/docker-compose.yml run app rails db:migrate RAILS_ENV=test
+          command: docker-compose -f ./back/docker-compose.yml run app rails db:migrate RAILS_ENV=test
       - run:
-          name: docker-compose run api rails db:seed RAILS_ENV=test
-          command: docker-compose run api rails db:seed RAILS_ENV=test
+          name: docker-compose -f ./back/docker-compose.yml run app rails db:seed RAILS_ENV=test
+          command: docker-compose -f ./back/docker-compose.yml run app rails db:seed RAILS_ENV=test
       - run:
-          name: docker-compose run api bundle exec rspec spec
-          command: docker-compose run api bundle exec rspec spec
+          name: docker-compose -f ./back/docker-compose.yml run app bundle exec rspec spec
+          command: docker-compose -f ./back/docker-compose.yml run app bundle exec rspec spec
       - run:
-          name: docker-compose run front yarn install
-          command: docker-compose run front yarn install
+          name: docker-compose -f ./front/docker-compose.yml run front yarn install
+          command: docker-compose -f ./front/docker-compose.yml run front yarn install
         # フロントエンド側テスト
       - run:
-          name: docker-compose run front yarn run test
-          command: docker-compose run front yarn test
+          name: docker-compose -f ./front/docker-compose.yml run front yarn run test
+          command: docker-compose -f ./front/docker-compose.yml run front yarn test
       - run:
-          name: docker-compose down
-          command: docker-compose down
+          name: docker-compose -f ./back/docker-compose.yml down
+          command: docker-compose -f ./back/docker-compose.yml down
+      - run:
+          name: docker-compose -f ./front/docker-compose.yml down
+          command: docker-compose -f ./front/docker-compose.yml down
 
 # 順番を制御するworkflow
 workflows:
