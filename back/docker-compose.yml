@@ -4,7 +4,6 @@ version: '3.3'
 volumes:
   tmp:
   public:
-  data:
 networks:
   web:
     driver: bridge
@@ -59,7 +58,7 @@ services:
       TZ: 'Asia/Tokyo'
     # データベースの値を永続化
     volumes:
-      - data:/var/lib/mysql
+      - ./tmp/db:/var/lib/mysql
       - ./infra/db/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - 3306:3306
