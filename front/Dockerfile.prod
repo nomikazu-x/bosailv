@@ -2,16 +2,16 @@
 FROM node:16.14.2-alpine3.15
 
 ENV HOME=/usr/src/app \
-    LANG=C.UTF-8 \
-    TZ=Asia/Tokyo \
-    # 以下を指定しないとブラウザからhttp://localhost へアクセスすることができない
-    HOST=0.0.0.0
+    TZ=Asia/Tokyo
 
 # 作業ディレクトリに移動
 WORKDIR ${HOME}
 
 COPY ./ ./
-RUN apk update && apk add bash
+RUN apk update && apk add bash curl
 RUN yarn install
+RUN yarn run build
+
+EXPOSE 3000
 
 CMD ["yarn", "run", "dev"]

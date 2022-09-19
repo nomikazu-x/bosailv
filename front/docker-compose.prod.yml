@@ -1,0 +1,22 @@
+# Composeファイルのバージョンを指定
+version: '3.3'
+
+# 以下で各コンテナの設定を行う
+services:
+  front:
+    container_name: front
+    # サービスのベースイメージにDockerfileを指定
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    # 値を永続化
+    volumes:
+      - .:/usr/src/app
+    # 公開ポート番号を指定
+    ports:
+      - 3000:3000
+    networks:
+      - back_web
+networks:
+  back_web:
+    external: true

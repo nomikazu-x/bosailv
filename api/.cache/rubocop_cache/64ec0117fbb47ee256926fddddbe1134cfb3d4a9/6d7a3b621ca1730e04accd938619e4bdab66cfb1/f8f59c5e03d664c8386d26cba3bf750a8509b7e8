@@ -1,1 +1,0 @@
-[{"severity":"convention","location":{"begin_pos":126,"end_pos":127},"message":"Layout/SpaceAfterColon: Space missing after colon.","cop_name":"Layout/SpaceAfterColon","status":"uncorrected"}]
