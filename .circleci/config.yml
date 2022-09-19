@@ -27,6 +27,7 @@ jobs:
           name: docker-compose -f ./front/docker-compose.yml up -d
           command: docker-compose -f ./front/docker-compose.yml up -d
       - run: sleep 10
+      # back test
       - run:
           name: docker-compose -f ./back/docker-compose.yml run app rails db:create RAILS_ENV=test
           command: docker-compose -f ./back/docker-compose.yml run app rails db:create RAILS_ENV=test
@@ -39,19 +40,19 @@ jobs:
       - run:
           name: docker-compose -f ./back/docker-compose.yml run app bundle exec rspec spec
           command: docker-compose -f ./back/docker-compose.yml run app bundle exec rspec spec
+      # front test
       - run:
           name: docker-compose -f ./front/docker-compose.yml run front yarn install
           command: docker-compose -f ./front/docker-compose.yml run front yarn install
-        # フロントエンド側テスト
       - run:
           name: docker-compose -f ./front/docker-compose.yml run front yarn run test
           command: docker-compose -f ./front/docker-compose.yml run front yarn test
       - run:
-          name: docker-compose -f ./back/docker-compose.yml down
-          command: docker-compose -f ./back/docker-compose.yml down
-      - run:
           name: docker-compose -f ./front/docker-compose.yml down
           command: docker-compose -f ./front/docker-compose.yml down
+      - run:
+          name: docker-compose -f ./back/docker-compose.yml down
+          command: docker-compose -f ./back/docker-compose.yml down
 
 # 順番を制御するworkflow
 workflows:
