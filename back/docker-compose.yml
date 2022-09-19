@@ -37,6 +37,7 @@ services:
     command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails server"
     # 環境変数
     environment:
+      MYSQL_ROOT_PASSWORD: password
       BACK_DOMAIN: "localhost:3000"
     # 値を永続化
     volumes:
@@ -56,6 +57,7 @@ services:
     # 環境変数
     environment:
       TZ: 'Asia/Tokyo'
+      MYSQL_ROOT_PASSWORD: password
     # データベースの値を永続化
     volumes:
       - ./tmp/db:/var/lib/mysql
