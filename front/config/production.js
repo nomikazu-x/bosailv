@@ -1,5 +1,5 @@
 module.exports = {
   envName: '',
-  apiBaseURL: 'https://example.com',
-  frontBaseURL: 'https://front.example.com'
+  apiBaseURL: 'https://api.bosailv.com',
+  frontBaseURL: 'https://app.bosailv.com'
 }
