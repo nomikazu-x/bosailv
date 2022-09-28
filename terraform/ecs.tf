@@ -349,7 +349,7 @@ resource "aws_lb_target_group" "backend" {
   port                 = 80
   protocol             = "HTTP"
   deregistration_delay = 60
-  health_check { path = "/api/health_check" }
+  health_check { path = "/api/v1/health_check" }
 }
 
 resource "aws_lb_listener_rule" "backend" {
