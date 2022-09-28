@@ -1,3 +1,3 @@
 env_name: ''
-base_domain: 'example.com'
-base_image_url: 'https://example.com'
+base_domain: 'api.bosailv.com'
+base_image_url: 'https://api.bosailv.com'
