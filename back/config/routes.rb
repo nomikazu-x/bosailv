@@ -102,9 +102,9 @@ Rails.application.routes.draw do
       # 防災タスク完了
       post 'tasks/:id/task_completes/create', to: 'task_completes#create',    as: 'complete_task'
       post 'tasks/:id/task_completes/delete', to: 'task_completes#destroy',   as: 'uncomplete_task'
-
-      get :health_check, to: 'health_check#index'
     end
+    
+    get :health_check, to: 'health_check#index'
   end
 
   scope :api do

@@ -197,8 +197,8 @@ resource "aws_ecs_task_definition" "backend" {
         readOnly: null
       }]
       dependsOn = [{
-          containerName: local.backend_task_app_container_name
-          condition: "START"
+        containerName: local.backend_task_app_container_name
+        condition: "START"
       }]
       logConfiguration = {
         logDriver = "awslogs"
@@ -293,7 +293,7 @@ resource "aws_lb_target_group" "frontend" {
   port                 = 80
   protocol             = "HTTP"
   deregistration_delay = 60
-  health_check { path = "/api/healthcheck" }
+  health_check { path = "/" }
 }
 
 resource "aws_lb_listener_rule" "frontend" {
@@ -349,7 +349,7 @@ resource "aws_lb_target_group" "backend" {
   port                 = 80
   protocol             = "HTTP"
   deregistration_delay = 60
-  health_check { path = "/api/v1/health_check" }
+  health_check { path = "/api/health_check" }
 }
 
 resource "aws_lb_listener_rule" "backend" {
