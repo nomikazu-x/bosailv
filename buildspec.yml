@@ -3,6 +3,9 @@ version: 0.2
 phases:
   pre_build:
     commands:
+#     - Dockerデーモンを起動するために必要な冒頭2行
+      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2 &
+      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
       - aws_account_id=$(echo ${CODEBUILD_BUILD_ARN} | cut -f 5 -d :)
       - aws --version
       - aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin ${aws_account_id}.dkr.ecr.ap-northeast-1.amazonaws.com
@@ -36,7 +39,7 @@ phases:
       - printf '[{"name":"bosailv-app-container-frontend","imageUri":"%s"}]' $CURRENT_FRONT_ECR_REPO_URL > frontend_imagedefinitions.json
       - printf '[{"name":"bosailv-app-container-nginx-backend","imageUri":"%s"}, {"name":"bosailv-app-container-rails-backend","imageUri":"%s"}]' $CURRENT_NGINX_ECR_REPO_URL $CURRENT_RAILS_ECR_REPO_URL > backend_imagedefinitions.json
       - cd back
-      - bundle install
+      - bundle install --without development test
       - bundle exec rails db:migrate RAILS_ENV=production
       - bundle exec rails db:seed RAILS_ENV=production
       - cd ..
