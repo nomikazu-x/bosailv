@@ -13,6 +13,8 @@ locals {
   app_domain_name = "app.bosailv.com"
   api_domain_name = "api.bosailv.com"
   ssm_parameter_store_base = "/bosailv/prod"
+  app_env_codebuild = "local"
+  app_debug_codebuild = "true"
 }
 
 provider "aws" {
