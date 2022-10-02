@@ -107,7 +107,7 @@ export default {
           if (response.data == null || response.data.shelters == null) {
             this.$toasted.error(this.$t('system.error'))
             if (this.info == null) {
-              return this.$router.push({ path: '/' })
+              return this.$router.push({ path: '/home' })
             }
             this.page = this.info.current_page
           } else {
@@ -119,7 +119,7 @@ export default {
         (error) => {
           this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
           if (this.info == null) {
-            return this.$router.push({ path: '/' })
+            return this.$router.push({ path: '/home' })
           }
           this.page = this.info.current_page
         })
@@ -137,7 +137,7 @@ export default {
           if (response.data == null || response.data.shelters == null) {
             this.$toasted.error(this.$t('system.error'))
             if (this.info == null) {
-              return this.$router.push({ path: '/' })
+              return this.$router.push({ path: '/home' })
             }
             this.page = this.info.current_page
           } else {
@@ -149,7 +149,7 @@ export default {
         (error) => {
           this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
           if (this.info == null) {
-            return this.$router.push({ path: '/' })
+            return this.$router.push({ path: '/home' })
           }
           this.page = this.info.current_page
         })
@@ -162,7 +162,7 @@ export default {
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
-            return this.$router.push({ path: '/' })
+            return this.$router.push({ path: '/home' })
           } else {
             this.cities = response.data
             this.waiting = true
@@ -171,10 +171,10 @@ export default {
         (error) => {
           if (error.response == null) {
             this.$toasted.error(this.$t('network.failure'))
-            return this.$router.push({ path: '/' })
+            return this.$router.push({ path: '/home' })
           } else if (error.response.data == null && error.response.status !== 404) {
             this.$toasted.error(this.$t('network.error'))
-            return this.$router.push({ path: '/' })
+            return this.$router.push({ path: '/home' })
           } else {
             if (error.response.data != null) {
               this.$toasted.error(error.response.data.alert)

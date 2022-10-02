@@ -37,7 +37,7 @@ export default {
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         } else {
           this.article = response.data.article
         }
@@ -50,7 +50,7 @@ export default {
         } else {
           this.$toasted.error(this.$t('network.error'))
         }
-        return this.$router.push({ path: '/' })
+        return this.$router.push({ path: '/home' })
       })
 
     if (!this.$auth.loggedIn) {
@@ -59,7 +59,7 @@ export default {
 
     if (!(this.$auth.user.id === this.article.user.id || this.$auth.user.admin)) {
       this.$toasted.error(this.$t('auth.not_permission'))
-      this.$router.push({ path: '/' })
+      this.$router.push({ path: '/home' })
     }
 
     this.loading = false

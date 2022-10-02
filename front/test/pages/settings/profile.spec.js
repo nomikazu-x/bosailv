@@ -117,7 +117,7 @@ describe('profile.vue', () => {
 
       await helper.sleep(1)
       commonFetchUserCalledTest(0)
-      commonRedirectTest(locales.network.failure, null, { path: '/' })
+      commonRedirectTest(locales.network.failure, null, { path: '/home' })
     })
     it('[認証エラー]未ログイン状態になり、ログインページにリダイレクトされる', async () => {
       authFetchUserMock = jest.fn(() => Promise.reject({ response: { status: 401 } }))
@@ -135,7 +135,7 @@ describe('profile.vue', () => {
 
       await helper.sleep(1)
       commonFetchUserCalledTest(0)
-      commonRedirectTest(locales.network.error, null, { path: '/' })
+      commonRedirectTest(locales.network.error, null, { path: '/home' })
     })
   })
 })

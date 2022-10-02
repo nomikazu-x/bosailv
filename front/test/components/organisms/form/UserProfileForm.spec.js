@@ -178,21 +178,21 @@ describe('UserProfileForm.vue', () => {
       mountFunction(user)
 
       await helper.sleep(1)
-      commonRedirectTest(locales.network.failure, null, { path: '/' })
+      commonRedirectTest(locales.network.failure, null, { path: '/home' })
     })
     it('[レスポンスエラー]トップページにリダイレクトされる', async () => {
       axiosGetMock = jest.fn(() => Promise.reject({ response: { status: 500 } }))
       mountFunction(user)
 
       await helper.sleep(1)
-      commonRedirectTest(locales.network.error, null, { path: '/' })
+      commonRedirectTest(locales.network.error, null, { path: '/home' })
     })
     it('[データなし]トップページにリダイレクトされる', async () => {
       axiosGetMock = jest.fn(() => Promise.resolve({ data: null }))
       mountFunction(user)
 
       await helper.sleep(1)
-      commonRedirectTest(locales.system.error, null, { path: '/' })
+      commonRedirectTest(locales.system.error, null, { path: '/home' })
     })
   })
 })

@@ -113,7 +113,7 @@ describe('email.vue', () => {
 
     await helper.sleep(1)
     commonFetchUserCalledTest(0)
-    commonRedirectTest(locales.auth.destroy_reserved, null, { path: '/' })
+    commonRedirectTest(locales.auth.destroy_reserved, null, { path: '/home' })
   })
 
   describe('トークン検証API', () => {
@@ -125,7 +125,7 @@ describe('email.vue', () => {
 
       await helper.sleep(1)
       commonFetchUserCalledTest(0)
-      commonRedirectTest(locales.network.failure, null, { path: '/' })
+      commonRedirectTest(locales.network.failure, null, { path: '/home' })
     })
     it('[認証エラー]未ログイン状態になり、ログインページにリダイレクトされる', async () => {
       authFetchUserMock = jest.fn(() => Promise.reject({ response: { status: 401 } }))
@@ -143,7 +143,7 @@ describe('email.vue', () => {
 
       await helper.sleep(1)
       commonFetchUserCalledTest(0)
-      commonRedirectTest(locales.network.error, null, { path: '/' })
+      commonRedirectTest(locales.network.error, null, { path: '/home' })
     })
   })
 })

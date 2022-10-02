@@ -59,14 +59,14 @@ export default {
       .then((response) => {
         if (response.data == null || response.data.stocks == null) {
           this.$toasted.error(this.$t('system.error'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         } else {
           this.stocks = response.data.stocks
         }
       },
       (error) => {
         this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
-        return this.$router.push({ path: '/' })
+        return this.$router.push({ path: '/home' })
       })
     this.processing = false
   },

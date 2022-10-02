@@ -38,7 +38,7 @@ export default {
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         } else {
           this.genre = response.data.genre
         }
@@ -51,7 +51,7 @@ export default {
         } else {
           this.$toasted.error(this.$t('network.error'))
         }
-        return this.$router.push({ path: '/' })
+        return this.$router.push({ path: '/home' })
       })
 
     this.processing = false

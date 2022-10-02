@@ -82,7 +82,7 @@ describe('confirm.vue', () => {
   })
   it('[ログイン中]トップページにリダイレクトされる', () => {
     mountFunction(true)
-    commonRedirectTest(null, locales.auth.already_authenticated, { path: '/' })
+    commonRedirectTest(null, locales.auth.already_authenticated, { path: '/home' })
   })
 
   describe('トークンエラー', () => {
@@ -93,7 +93,7 @@ describe('confirm.vue', () => {
     })
     it('[ログイン中]トップページにリダイレクトされる', () => {
       mountFunction(true, query)
-      commonRedirectTest(null, locales.auth.already_authenticated, { path: '/' })
+      commonRedirectTest(null, locales.auth.already_authenticated, { path: '/home' })
     })
   })
 
@@ -105,7 +105,7 @@ describe('confirm.vue', () => {
     })
     it('[ログイン中]トップページにリダイレクトされる', () => {
       mountFunction(true, query)
-      commonRedirectTest(null, locales.auth.already_authenticated, { path: '/' })
+      commonRedirectTest(null, locales.auth.already_authenticated, { path: '/home' })
     })
   })
 
@@ -117,7 +117,7 @@ describe('confirm.vue', () => {
     })
     it('[ログイン中]トップページにリダイレクトされる', () => {
       mountFunction(true, query)
-      commonRedirectTest(null, locales.auth.already_authenticated, { path: '/' })
+      commonRedirectTest(null, locales.auth.already_authenticated, { path: '/home' })
     })
   })
 })

@@ -3,7 +3,7 @@
     <v-footer absolute color="#FFFCFC" :height="height">
       <v-row justify="center" algin="center" class="mt-2">
         <v-col cols="4">
-          <NuxtLink to="/" class="toolbar-title d-flex text-decoration-none">
+          <NuxtLink to="/home" class="toolbar-title d-flex text-decoration-none">
             <v-toolbar-title
               v-if="$vuetify.breakpoint.width > 226"
               :style="{ 'max-width': ($vuetify.breakpoint.width - 226) + 'px' }"

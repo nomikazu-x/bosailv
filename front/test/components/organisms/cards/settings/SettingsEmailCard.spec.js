@@ -114,7 +114,7 @@ describe('SettingsEmailCard.vue', () => {
       await helper.sleep(1)
       commonGetApiCalledTest(0)
       commonToastedTest(locales.network.failure, null)
-      commonRedirectTest({ path: '/' })
+      commonRedirectTest({ path: '/home' })
     })
     it('[認証エラー]未ログイン状態になり、ログインページにリダイレクトされる', async () => {
       axiosGetMock = jest.fn(() => Promise.reject({ response: { status: 401 } }))
@@ -132,7 +132,7 @@ describe('SettingsEmailCard.vue', () => {
       await helper.sleep(1)
       commonGetApiCalledTest(0)
       commonToastedTest(locales.network.error, null)
-      commonRedirectTest({ path: '/' })
+      commonRedirectTest({ path: '/home' })
     })
     it('[データなし]トップページにリダイレクトされる', async () => {
       axiosGetMock = jest.fn(() => Promise.resolve({ data: null }))
@@ -141,7 +141,7 @@ describe('SettingsEmailCard.vue', () => {
       await helper.sleep(1)
       commonGetApiCalledTest(0)
       commonToastedTest(locales.system.error, null)
-      commonRedirectTest({ path: '/' })
+      commonRedirectTest({ path: '/home' })
     })
   })
 
@@ -163,7 +163,7 @@ describe('SettingsEmailCard.vue', () => {
       await helper.sleep(1)
       commonPostApiCalledTest(values, 1, 0)
       commonToastedTest(data.alert, data.notice)
-      commonRedirectTest({ path: '/' })
+      commonRedirectTest({ path: '/home' })
     })
 
     it('[成功]未ログイン状態になってしまった場合は、ログインページにリダイレクトされる', async () => {

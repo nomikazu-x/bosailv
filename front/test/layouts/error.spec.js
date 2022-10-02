@@ -26,7 +26,7 @@ describe('error.vue', () => {
     const links = helper.getLinks(wrapper)
 
     // console.log(links)
-    expect(links.includes('/')).toBe(true) // トップページ
+    expect(links.includes('/home')).toBe(true) // トップページ
   }
 
   it('[401]表示される', () => {

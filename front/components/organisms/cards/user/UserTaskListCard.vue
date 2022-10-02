@@ -83,7 +83,7 @@ export default {
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         } else {
           this.user = response.data.user
         }
@@ -96,7 +96,7 @@ export default {
         } else {
           this.$toasted.error(this.$t('network.error'))
         }
-        return this.$router.push({ path: '/' })
+        return this.$router.push({ path: '/home' })
       })
 
     await this.$axios.get(this.$config.apiBaseURL + this.$config.tasksUrl, {

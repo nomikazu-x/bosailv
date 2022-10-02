@@ -62,7 +62,7 @@ export default {
           if (response.data == null || response.data.article == null) {
             this.$toasted.error(this.$t('system.error'))
             if (this.info == null) {
-              return this.$router.push({ path: '/' })
+              return this.$router.push({ path: '/home' })
             }
             this.page = this.info.current_page
           } else {
@@ -73,7 +73,7 @@ export default {
         (error) => {
           this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
           if (this.info == null) {
-            return this.$router.push({ path: '/' })
+            return this.$router.push({ path: '/home' })
           }
           this.page = this.info.current_page
         })

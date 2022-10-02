@@ -2,7 +2,7 @@
   <v-app-bar app clipped-left color="#FFFCFC" dense fixed>
     <v-app-bar-nav-icon @click="onClick()" />
 
-    <NuxtLink to="/" class="toolbar-title d-flex text-decoration-none">
+    <NuxtLink to="/home" class="toolbar-title d-flex text-decoration-none">
       <v-toolbar-title
         v-if="$vuetify.breakpoint.width > 226"
         :style="{ 'max-width': ($vuetify.breakpoint.width - 226) + 'px' }"

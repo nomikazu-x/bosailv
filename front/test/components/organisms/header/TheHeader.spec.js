@@ -49,7 +49,7 @@ describe('default.vue', () => {
     const links = helper.getLinks(wrapper)
 
     // console.log(links)
-    expect(links.includes('/')).toBe(true) // トップページ
+    expect(links.includes('/home')).toBe(true) // トップページ
     expect(links.includes('/signin')).toBe(!loggedIn) // [未ログイン]ログイン
     expect(links.includes('/signup')).toBe(!loggedIn) // [未ログイン]アカウント登録
     expect(links.includes('/infomations')).toBe(loggedIn) // お知らせ一覧

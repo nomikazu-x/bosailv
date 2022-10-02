@@ -52,7 +52,7 @@ export default {
       } else {
         this.$toasted.error(this.$t('network.error'))
       }
-      return this.$router.push({ path: '/' })
+      return this.$router.push({ path: '/home' })
     }
 
     if (!this.$auth.loggedIn) {

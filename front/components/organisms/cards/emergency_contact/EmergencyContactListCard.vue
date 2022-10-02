@@ -51,17 +51,17 @@ export default {
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         }
         this.$store.commit('emergencyContacts/setEmergencyContacts', response.data.emergency_contacts, { root: true })
       },
       (error) => {
         if (error.response == null) {
           this.$toasted.error(this.$t('network.failure'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         } else if (error.response.data == null && error.response.status !== 404) {
           this.$toasted.error(this.$t('network.error'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         } else {
           if (error.response.data != null) {
             this.$toasted.error(error.response.data.alert)

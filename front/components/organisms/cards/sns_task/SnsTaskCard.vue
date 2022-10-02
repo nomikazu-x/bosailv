@@ -49,14 +49,14 @@ export default {
       .then((response) => {
         if (response.data == null || response.data.sns_tasks == null) {
           this.$toasted.error(this.$t('system.error'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         } else {
           this.tasks = response.data.sns_tasks
         }
       },
       (error) => {
         this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
-        return this.$router.push({ path: '/' })
+        return this.$router.push({ path: '/home' })
       })
     this.processing = false
   },
