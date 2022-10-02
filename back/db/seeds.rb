@@ -26,7 +26,7 @@ cities_list.each do |id, prefecture, city|
   p "Create: #{id} #{city}"
 end
 
-common_table_name = %w(genre required_point)
+common_table_name = %w(required_point)
 common_table_name.each do |table_name|
   path = Rails.root.join('db', 'seed', "#{table_name}.rb")
   if File.exist?(path)
@@ -35,23 +35,23 @@ common_table_name.each do |table_name|
   end
 end
 
-# # CSV読み込み
-# file_path = 'lib/hazard_map.csv'
-# csv_data = CSV.read(file_path)
+# CSV読み込み
+file_path = 'lib/hazard_map.csv'
+csv_data = CSV.read(file_path)
 
-# csv_data.map do |row|
-#   HazardMap.create!(
-#     city_id: row[0],
-#     tsunami: row[1],
-#     flood: row[2],
-#     landslide: row[3],
-#     inland_flood: row[4],
-#     storm_surge: row[5],
-#     volcano: row[6],
-#     reservoir: row[7],
-#   )
-#   p row[0]
-# end
+csv_data.map do |row|
+  HazardMap.create!(
+    city_id: row[0],
+    tsunami: row[1],
+    flood: row[2],
+    landslide: row[3],
+    inland_flood: row[4],
+    storm_surge: row[5],
+    volcano: row[6],
+    reservoir: row[7],
+  )
+  p row[0]
+end
 
 # # CSV読み込み
 # file_path = 'lib/shelters.csv'
