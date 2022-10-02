@@ -114,7 +114,6 @@ export default {
             this.info = response.data.shelter
             this.shelters = response.data.shelters
             this.waiting = true
-            console.log(this.shelters)
           }
         },
         (error) => {

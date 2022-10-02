@@ -156,7 +156,6 @@ export default {
         forceStartedAt: this.forceStartedAt,
         forceEndedAt: this.forceEndedAt
       }
-      console.log(infomationInfo)
       this.$emit('infomation-create', infomationInfo)
     }
   }
