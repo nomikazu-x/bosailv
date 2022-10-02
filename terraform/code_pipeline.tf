@@ -264,6 +264,10 @@ resource "aws_codebuild_project" "build" {
       name  = "APP_DEBUG"
       value = local.app_debug_codebuild
     }
+    environment_variable {
+      name  = "AWS_ACCOUNT_ID"
+      value = var.account_id
+    }
   }
   vpc_config {
     security_group_ids = [
