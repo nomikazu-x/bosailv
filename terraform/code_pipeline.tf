@@ -230,6 +230,7 @@ resource "aws_codebuild_project" "build" {
     compute_type = "BUILD_GENERAL1_SMALL"
     image        = local.aws_ecr_codebuild_image_url
     type         = "LINUX_CONTAINER"
+    image_pull_credentials_type = "SERVICE_ROLE"
     privileged_mode = true
     environment_variable {
       name  = "DB_HOST"
@@ -252,7 +253,7 @@ resource "aws_codebuild_project" "build" {
       type = "PARAMETER_STORE"
     }
     environment_variable {
-      name  = "APP_KEY"
+      name  = "SECRET_KEY_BASE"
       value = data.aws_ssm_parameter.app_key.name
       type = "PARAMETER_STORE"
     }
