@@ -1,13 +1,9 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      ruby: 3.0
   pre_build:
     commands:
-      - ruby -v
-#      - Dockerデーモンを起動するために必要な冒頭2行
+#     - Dockerデーモンを起動するために必要な冒頭2行
       - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2 &
       - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
       - aws_account_id=$(echo ${CODEBUILD_BUILD_ARN} | cut -f 5 -d :)
