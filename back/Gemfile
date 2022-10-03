@@ -33,9 +33,10 @@ gem 'devise_token_auth'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 
-# Use CarrierWave/MiniMagick
+# Use CarrierWave/MiniMagick/FogAws
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'fog-aws'
 
 # Use kaminari
 gem 'kaminari'
