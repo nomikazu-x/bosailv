@@ -15,10 +15,12 @@
             </span>
           </v-card-title>
           <v-card-text v-if="infomation">
-            <!-- eslint-disable-next-line vue/no-v-html -->
-            <div v-if="infomation.body" class="mx-2 my-2" v-html="infomation.body" />
-            <!-- eslint-disable-next-line vue/no-v-html -->
-            <div v-else-if="infomation.summary" class="mx-2 my-2" v-html="infomation.summary" />
+            <div v-if="infomation.body" class="mx-2 my-2">
+              {{ infomation.body }}
+            </div>
+            <div v-else-if="infomation.summary" class="mx-2 my-2">
+              {{ infomation.summary }}
+            </div>
             <div v-if="$auth.user.admin === true" class="text-right">
               <DeleteConfirmDialog title="おしらせ削除" @click="onInfomationDelete" />
             </div>

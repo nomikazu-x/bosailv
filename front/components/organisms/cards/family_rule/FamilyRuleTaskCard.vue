@@ -4,28 +4,33 @@
     <v-col cols="12">
       <v-card-text>
         <div class="main-heading font-weight-bold" style="color: #117768;">非常時の連絡方法</div>
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <div class="mx-2 my-2" v-html="familyRule.contact_means_memo" />
+        <div class="mx-2 my-2">
+          {{ familyRule.contact_means_memo }}
+        </div>
       </v-card-text>
       <v-card-text>
         <div class="main-heading font-weight-bold" style="color: #117768;">避難場所のルート</div>
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <div class="mx-2 my-2" v-html="familyRule.refuge_memo" />
+        <div class="mx-2 my-2">
+          {{ familyRule.refuge_memo }}
+        </div>
       </v-card-text>
       <v-card-text>
         <div class="main-heading font-weight-bold" style="color: #117768;">地震直後の家族の分担</div>
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <div class="mx-2 my-2" v-html="familyRule.family_role_memo" />
+        <div class="mx-2 my-2">
+          {{ familyRule.family_role_memo }}
+        </div>
       </v-card-text>
       <v-card-text>
         <div class="main-heading font-weight-bold" style="color: #117768;">誰かが下敷きになったら</div>
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <div class="mx-2 my-2" v-html="familyRule.emergency_measure_memo" />
+        <div class="mx-2 my-2">
+          {{ familyRule.emergency_measure_memo }}
+        </div>
       </v-card-text>
       <v-card-text>
         <div class="main-heading font-weight-bold" style="color: #117768;">家を離れるときにすること</div>
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <div class="mx-2 my-2" v-html="familyRule.leave_home_memo" />
+        <div class="mx-2 my-2">
+          {{ familyRule.leave_home_memo }}
+        </div>
       </v-card-text>
       <v-divider class="my-5" />
       <div class="text-center">

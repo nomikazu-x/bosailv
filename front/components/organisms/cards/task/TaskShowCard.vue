@@ -8,8 +8,9 @@
       </v-card-title>
       <v-divider class="my-5" />
       <v-card-text v-if="task">
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <div v-if="task.body" class="mx-2 my-2" v-html="task.body" />
+        <div v-if="task.body" class="mx-2 my-2">
+          {{ task.body }}
+        </div>
       </v-card-text>
       <v-divider class="my-5" />
       <div class="text-center">

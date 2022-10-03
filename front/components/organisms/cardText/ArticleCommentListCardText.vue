@@ -7,8 +7,9 @@
         <span class="ml-1">{{ articleComment.user.name }}</span>
       </v-col>
       <v-col cols="12">
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <v-card-text v-html="articleComment.content" />
+        <v-card-text>
+          {{ articleComment.content }}
+        </v-card-text>
         <div v-if="canAction" class="text-right">
           <v-btn icon>
             <v-icon size="20" @click="onCommentDelete(articleComment.id)">
