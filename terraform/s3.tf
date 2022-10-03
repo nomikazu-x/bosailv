@@ -8,7 +8,7 @@ resource "aws_s3_bucket" "public_access_bucket" {
   acl           = "public-read"
 
   cors_rule {
-    allowed_origins = ["https://api.bosailv.com"]
+    allowed_origins = ["https://${local.api_domain_name}"]
     allowed_methods = ["GET"]
     allowed_headers = ["*"]
     max_age_seconds = 3600
