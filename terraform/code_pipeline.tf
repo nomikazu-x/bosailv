@@ -265,6 +265,14 @@ resource "aws_codebuild_project" "build" {
       name  = "APP_DEBUG"
       value = local.app_debug_codebuild
     }
+    environment_variable {
+      name  = "AWS_ACCESS_KEY_ID"
+      value = var.aws_access_key
+    }
+    environment_variable {
+      name  = "AWS_SECRET_ACCESS_KEY"
+      value = var.aws_secret_key
+    }
   }
   vpc_config {
     security_group_ids = [

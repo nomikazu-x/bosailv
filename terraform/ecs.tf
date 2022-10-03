@@ -158,6 +158,14 @@ data "aws_ssm_parameter" "google_api_key" {
   name = "${local.ssm_parameter_store_base}/google_api_key"
 }
 
+data "aws_ssm_parameter" "aws_access_key" {
+  name = "${local.ssm_parameter_store_base}/aws_access_key"
+}
+
+data "aws_ssm_parameter" "aws_secret_key" {
+  name = "${local.ssm_parameter_store_base}/aws_secret_key"
+}
+
 resource "aws_ecs_task_definition" "frontend" {
   family                   = local.frontend_task_name
   network_mode             = "awsvpc"
@@ -246,6 +254,14 @@ resource "aws_ecs_task_definition" "backend" {
         {
           name: "DB_HOST"
           valueFrom: aws_ssm_parameter.database_url.arn
+        },
+        {
+          name: "AWS_ACCESS_KEY_ID"
+          valueFrom: data.aws_ssm_parameter.aws_access_key.arn
+        },
+        {
+          name: "AWS_SECRET_ACCESS_KEY"
+          valueFrom: data.aws_ssm_parameter.aws_secret_key.arn
         }
       ]
       logConfiguration = {

@@ -8,8 +8,8 @@ if Rails.env.production?
     config.fog_directory = 'bosailv-public-access-bucket'
     config.fog_credentials = {
       provider: 'AWS',
-      aws_access_key_id: Rails.application.credentials.dig(:aws, :access_key_id),
-      aws_secret_access_key: Rails.application.credentials.dig(:aws, :secret_access_key),
+      aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
       region: 'ap-northeast-1'
     }
   end
