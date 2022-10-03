@@ -154,6 +154,10 @@ data "aws_ssm_parameter" "app_key" {
   name = "${local.ssm_parameter_store_base}/app_key"
 }
 
+data "aws_ssm_parameter" "google_api_key" {
+  name = "${local.ssm_parameter_store_base}/google_api_key"
+}
+
 resource "aws_ecs_task_definition" "frontend" {
   family                   = local.frontend_task_name
   network_mode             = "awsvpc"
@@ -175,6 +179,12 @@ resource "aws_ecs_task_definition" "frontend" {
           awslogs-stream-prefix : "ecs"
         }
       }
+      secrets = [
+        {
+          name: "GOOGLE_API_KEY"
+          valueFrom: data.aws_ssm_parameter.google_api_key.arn
+        }
+      ]
     }
   ])
 }
