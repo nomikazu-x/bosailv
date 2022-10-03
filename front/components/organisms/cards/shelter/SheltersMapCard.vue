@@ -131,7 +131,7 @@ export default {
       this.processing = true
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.sheltersUrl, {
-        params: { id: this.selectCity, page, disaster_type: this.selectDisasterType }
+        params: { id: this.selectCity, page, disaster_type: this.selectDisasterType, prefecture_id: this.selectPrefecture }
       })
         .then((response) => {
           if (response.data == null || response.data.shelters == null) {
