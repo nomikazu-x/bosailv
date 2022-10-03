@@ -15,10 +15,12 @@
             </span>
           </v-card-title>
           <v-card-text v-if="infomation">
-            <!-- eslint-disable-next-line vue/no-v-html -->
-            <div v-if="infomation.body" class="mx-2 my-2" v-html="infomation.body" />
-            <!-- eslint-disable-next-line vue/no-v-html -->
-            <div v-else-if="infomation.summary" class="mx-2 my-2" v-html="infomation.summary" />
+            <div v-if="infomation.body" class="mx-2 my-2">
+              {{ infomation.body }}
+            </div>
+            <div v-else-if="infomation.summary" class="mx-2 my-2">
+              {{ infomation.summary }}
+            </div>
             <div v-if="$auth.user.admin === true" class="text-right">
               <DeleteConfirmDialog title="おしらせ削除" @click="onInfomationDelete" />
             </div>
@@ -61,17 +63,17 @@ export default {
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         }
         this.infomation = response.data.infomation
       },
       (error) => {
         if (error.response == null) {
           this.$toasted.error(this.$t('network.failure'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         } else if (error.response.data == null && error.response.status !== 404) {
           this.$toasted.error(this.$t('network.error'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         } else {
           if (error.response.data != null) {
             this.$toasted.error(error.response.data.alert)

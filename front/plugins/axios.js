@@ -1,19 +1,21 @@
 export default ({ $axios }) => {
-  // リクエストログ
-  $axios.onRequest((config) => {
-    // eslint-disable-next-line no-console
-    console.log(config)
-  })
-  // レスポンスログ
-  $axios.onResponse((config) => {
-    // eslint-disable-next-line no-console
-    console.log(config)
-  })
-  // エラーログ
-  $axios.onError((e) => {
-    // eslint-disable-next-line no-console
-    console.log(e.response)
-  })
+  if (process.env.NODE_ENV === 'development') {
+    // リクエストログ
+    $axios.onRequest((config) => {
+      // eslint-disable-next-line no-console
+      console.log(config)
+    })
+    // レスポンスログ
+    $axios.onResponse((config) => {
+      // eslint-disable-next-line no-console
+      console.log(config)
+    })
+    // エラーログ
+    $axios.onError((e) => {
+      // eslint-disable-next-line no-console
+      console.log(e.response)
+    })
+  }
   // devise_token_authが通信時に用いるaccess-token,client,uidのパラメータをセット
   $axios.onRequest((config) => {
     config.headers.client = window.localStorage.getItem('client')

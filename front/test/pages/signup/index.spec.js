@@ -73,6 +73,6 @@ describe('sign_up.vue', () => {
   })
   it('[ログイン中]トップページにリダイレクトされる', () => {
     mountFunction(true)
-    commonRedirectTest(null, locales.auth.already_authenticated, { path: '/' })
+    commonRedirectTest(null, locales.auth.already_authenticated, { path: '/home' })
   })
 })

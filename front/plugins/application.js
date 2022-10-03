@@ -30,20 +30,20 @@ export default {
     },
     redirectNotAdmin () {
       this.$toasted.error(this.$t('auth.admin_dedicated'))
-      this.$router.push({ path: '/' })
+      this.$router.push({ path: '/home' })
     },
     redirectDestroyReserved () {
       this.$toasted.error(this.$t('auth.destroy_reserved'))
-      this.$router.push({ path: '/' })
+      this.$router.push({ path: '/home' })
     },
     redirectAlreadyAuth () {
       this.$toasted.success(this.$t('auth.already_authenticated'))
-      this.$router.push({ path: '/' })
+      this.$router.push({ path: '/home' })
     },
     redirectSuccess (alert, notice) {
       this.$toasted.error(alert)
       this.$toasted.success(notice)
-      this.$router.push({ path: '/' })
+      this.$router.push({ path: '/home' })
     },
     redirectSignIn (alert, notice) {
       this.$toasted.error(alert)

@@ -7,7 +7,7 @@
 
       <h3 class="mb-2">{{ message }}</h3>
 
-      <p class="mb-2"><NuxtLink to="/">Home</NuxtLink></p>
+      <p class="mb-2"><NuxtLink to="/home">Home</NuxtLink></p>
     </div>
   </v-container>
 </template>

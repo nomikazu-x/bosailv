@@ -52,8 +52,9 @@
       </div>
       <v-divider class="my-5" />
       <v-card-text v-if="article">
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <div v-if="article.content" class="mx-2 my-2" v-html="article.content" />
+        <div v-if="article.content" class="mx-2 my-2">
+          {{ article.content }}
+        </div>
       </v-card-text>
     </v-col>
   </v-card>

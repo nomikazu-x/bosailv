@@ -78,7 +78,7 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
             if (this.articleInfo == null) {
-              return this.$router.push({ path: '/' })
+              return this.$router.push({ path: '/home' })
             }
             this.articlePage = this.articleInfo.current_page
           } else {
@@ -90,7 +90,7 @@ export default {
         (error) => {
           this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
           if (this.articleInfo == null) {
-            return this.$router.push({ path: '/' })
+            return this.$router.push({ path: '/home' })
           }
           this.articlePage = this.articleInfo.current_page
         })
@@ -107,7 +107,7 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
             if (this.famousArticleInfo == null) {
-              return this.$router.push({ path: '/' })
+              return this.$router.push({ path: '/home' })
             }
             this.famousArticlePage = this.famousArticleInfo.current_page
           } else {
@@ -119,7 +119,7 @@ export default {
         (error) => {
           this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
           if (this.famousArticleInfo == null) {
-            return this.$router.push({ path: '/' })
+            return this.$router.push({ path: '/home' })
           }
           this.famousArticlePage = this.famousArticleInfo.current_page
         })

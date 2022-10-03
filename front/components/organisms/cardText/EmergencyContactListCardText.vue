@@ -3,9 +3,7 @@
     <TheProcessing v-if="processing" />
     <v-row>
       <v-col cols="12">
-        <!-- eslint-disable-next-line vue/no-v-html -->
         <v-card-title>{{ emergencyContact.name }}</v-card-title>
-        <!-- eslint-disable-next-line vue/no-v-html -->
         <v-card-text>
           <a class="text-decoration-none" :href="`tel:${emergencyContact.phone_number}`">
             {{ emergencyContact.phone_number }}

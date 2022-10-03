@@ -108,7 +108,7 @@ describe('PasswordResetConfirmCard.vue', () => {
 
       await helper.sleep(1)
       commonApiCalledTest(values, 1)
-      commonRedirectTest(data.alert, data.notice, { path: '/' })
+      commonRedirectTest(data.alert, data.notice, { path: '/home' })
     })
 
     it('[入力エラー]エラーメッセージが表示される', async () => {

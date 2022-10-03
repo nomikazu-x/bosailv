@@ -8,8 +8,9 @@
       </v-card-title>
       <v-divider class="my-5" />
       <v-card-text v-if="task">
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <div v-if="task.body" class="mx-2 my-2" v-html="task.body" />
+        <div v-if="task.body" class="mx-2 my-2">
+          {{ task.body }}
+        </div>
       </v-card-text>
       <v-divider class="my-5" />
       <div class="text-center">
@@ -48,17 +49,17 @@ export default {
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         }
         this.task = response.data.task
       },
       (error) => {
         if (error.response == null) {
           this.$toasted.error(this.$t('network.failure'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         } else if (error.response.data == null && error.response.status !== 404) {
           this.$toasted.error(this.$t('network.error'))
-          return this.$router.push({ path: '/' })
+          return this.$router.push({ path: '/home' })
         } else {
           if (error.response.data != null) {
             this.$toasted.error(error.response.data.alert)
