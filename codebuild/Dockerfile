@@ -48,7 +48,7 @@ RUN set -ex \
           netbase openssl patch pkg-config procps python3-configobj \
           python-openssl rsync sgml-base sgml-data \
           tar tcl tcl8.6 tk tk-dev unzip wget xfsprogs xml-core xmlto xsltproc \
-          libzip5 libzip-dev vim xvfb xz-utils zip zlib1g-dev \
+          libzip5 libzip-dev vim xvfb xz-utils zip zlib1g-dev yarn imagemagick \
     && rm -rf /var/lib/apt/lists/*
 
 ENV LC_CTYPE="C.UTF-8"
