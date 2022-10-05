@@ -41,11 +41,11 @@ class Article < ApplicationRecord
   def thumbnail_url(version)
     case version
     when :large
-      thumbnail? ? thumbnail.large.url : "/images/article/#{version}_noimage.jpeg"
+      thumbnail? ? thumbnail.large.url : "#{Settings['base_image_url']}/images/article/#{version}_noimage.jpeg"
     when :xlarge
-      thumbnail? ? thumbnail.xlarge.url : "/images/article/#{version}_noimage.jpeg"
+      thumbnail? ? thumbnail.xlarge.url : "#{Settings['base_image_url']}/images/article/#{version}_noimage.jpeg"
     when :xxlarge
-      thumbnail? ? thumbnail.xxlarge.url : "/images/article/#{version}_noimage.jpeg"
+      thumbnail? ? thumbnail.xxlarge.url : "#{Settings['base_image_url']}/images/article/#{version}_noimage.jpeg"
     else
       logger.warn("[WARN]Not found: Article.thumbnail_url(#{version})")
       ''

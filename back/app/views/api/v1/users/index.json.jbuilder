@@ -11,11 +11,11 @@ json.users do
   json.array! @users do |user|
     json.id user.id
     json.image_url do
-      json.mini "#{Settings['base_image_url']}#{user.image_url(:mini)}"
-      json.small "#{Settings['base_image_url']}#{user.image_url(:small)}"
-      json.medium "#{Settings['base_image_url']}#{user.image_url(:medium)}"
-      json.large "#{Settings['base_image_url']}#{user.image_url(:large)}"
-      json.xlarge "#{Settings['base_image_url']}#{user.image_url(:xlarge)}"
+      json.mini "#{user.image_url(:mini)}"
+      json.small "#{user.image_url(:small)}"
+      json.medium "#{user.image_url(:medium)}"
+      json.large "#{user.image_url(:large)}"
+      json.xlarge "#{user.image_url(:xlarge)}"
     end
     json.name user.name
     json.level user.level

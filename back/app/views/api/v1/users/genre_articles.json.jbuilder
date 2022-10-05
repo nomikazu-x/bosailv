@@ -5,9 +5,9 @@ json.genre do
   json.name @genre.name
   json.description @genre.description
   json.image_url do
-    json.large "#{Settings['base_image_url']}#{@genre.image_url(:large)}"
-    json.xlarge "#{Settings['base_image_url']}#{@genre.image_url(:xlarge)}"
-    json.xxlarge "#{Settings['base_image_url']}#{@genre.image_url(:xxlarge)}"
+    json.large "#{@genre.image_url(:large)}"
+    json.xlarge "#{@genre.image_url(:xlarge)}"
+    json.xxlarge "#{@genre.image_url(:xxlarge)}"
   end
 end
 
@@ -31,9 +31,9 @@ if @articles.exists?
         end
       end
       json.thumbnail_url do
-        json.large "#{Settings['base_image_url']}#{article.thumbnail_url(:large)}"
-        json.xlarge "#{Settings['base_image_url']}#{article.thumbnail_url(:xlarge)}"
-        json.xxlarge "#{Settings['base_image_url']}#{article.thumbnail_url(:xxlarge)}"
+        json.large "#{article.thumbnail_url(:large)}"
+        json.xlarge "#{article.thumbnail_url(:xlarge)}"
+        json.xxlarge "#{article.thumbnail_url(:xxlarge)}"
       end
       json.created_at article.created_at
       json.updated_at article.updated_at

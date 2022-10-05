@@ -9,11 +9,11 @@ if @article_comment.present?
       json.id @article_comment.user.id
       json.name @article_comment.user.name
       json.image_url do
-        # json.mini "#{Settings['base_image_url']}#{@article.user.image_url(:mini)}"
-        json.small "#{Settings['base_image_url']}#{@article_comment.user.image_url(:small)}"
-        # json.medium "#{Settings['base_image_url']}#{@article.user.image_url(:medium)}"
-        # json.large "#{Settings['base_image_url']}#{@article.user.image_url(:large)}"
-        # json.xlarge "#{Settings['base_image_url']}#{@article.user.image_url(:xlarge)}"
+        # json.mini "#{@article.user.image_url(:mini)}"
+        json.small "#{@article_comment.user.image_url(:small)}"
+        # json.medium "#{@article.user.image_url(:medium)}"
+        # json.large "#{@article.user.image_url(:large)}"
+        # json.xlarge "#{@article.user.image_url(:xlarge)}"
       end
     end
   end

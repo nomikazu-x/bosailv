@@ -5,9 +5,9 @@ json.article do
   json.title @article.title
   json.content @article.content
   json.thumbnail_url do
-    json.large "#{Settings['base_image_url']}#{@article.thumbnail_url(:large)}"
-    json.xlarge "#{Settings['base_image_url']}#{@article.thumbnail_url(:xlarge)}"
-    json.xxlarge "#{Settings['base_image_url']}#{@article.thumbnail_url(:xxlarge)}"
+    json.large "#{@article.thumbnail_url(:large)}"
+    json.xlarge "#{@article.thumbnail_url(:xlarge)}"
+    json.xxlarge "#{@article.thumbnail_url(:xxlarge)}"
   end
   json.created_at @article.created_at
   json.updated_at @article.updated_at
@@ -23,11 +23,11 @@ json.article do
     json.name @article.user.name
     json.username @article.user.username
     json.image_url do
-      json.mini "#{Settings['base_image_url']}#{@article.user.image_url(:mini)}"
-      json.small "#{Settings['base_image_url']}#{@article.user.image_url(:small)}"
-      json.medium "#{Settings['base_image_url']}#{@article.user.image_url(:medium)}"
-      json.large "#{Settings['base_image_url']}#{@article.user.image_url(:large)}"
-      json.xlarge "#{Settings['base_image_url']}#{@article.user.image_url(:xlarge)}"
+      json.mini "#{@article.user.image_url(:mini)}"
+      json.small "#{@article.user.image_url(:small)}"
+      json.medium "#{@article.user.image_url(:medium)}"
+      json.large "#{@article.user.image_url(:large)}"
+      json.xlarge "#{@article.user.image_url(:xlarge)}"
     end
   end
   json.likers do
@@ -36,11 +36,11 @@ json.article do
       json.name liker.name
       json.username liker.username
       json.image_url do
-        json.mini "#{Settings['base_image_url']}#{liker.image_url(:mini)}"
-        json.small "#{Settings['base_image_url']}#{liker.image_url(:small)}"
-        json.medium "#{Settings['base_image_url']}#{liker.image_url(:medium)}"
-        json.large "#{Settings['base_image_url']}#{liker.image_url(:large)}"
-        json.xlarge "#{Settings['base_image_url']}#{liker.image_url(:xlarge)}"
+        json.mini "#{liker.image_url(:mini)}"
+        json.small "#{liker.image_url(:small)}"
+        json.medium "#{liker.image_url(:medium)}"
+        json.large "#{liker.image_url(:large)}"
+        json.xlarge "#{liker.image_url(:xlarge)}"
       end
     end
   end

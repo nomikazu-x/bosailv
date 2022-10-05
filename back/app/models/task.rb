@@ -24,11 +24,11 @@ class Task < ApplicationRecord
   def image_url(version)
     case version
     when :large
-      image? ? image.large.url : "/images/task/#{version}_noimage.jpeg"
+      image? ? image.large.url : "#{Settings['base_image_url']}/images/task/#{version}_noimage.jpeg"
     when :xlarge
-      image? ? image.xlarge.url : "/images/task/#{version}_noimage.jpeg"
+      image? ? image.xlarge.url : "#{Settings['base_image_url']}/images/task/#{version}_noimage.jpeg"
     when :xxlarge
-      image? ? image.xxlarge.url : "/images/task/#{version}_noimage.jpeg"
+      image? ? image.xxlarge.url : "#{Settings['base_image_url']}/images/task/#{version}_noimage.jpeg"
     else
       logger.warn("[WARN]Not found: Task.image_url(#{version})")
       ''
