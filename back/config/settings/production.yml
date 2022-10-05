@@ -1,3 +1,10 @@
 env_name: ''
 base_domain: 'api.bosailv.com'
 base_image_url: 'https://bosailv-public-access-bucket.s3.ap-northeast-1.amazonaws.com'
+redirect_whitelist: ['https://app.bosailv.com/*']
+default_confirm_success_url: ''
+default_password_reset_url: ''
+default_unlock_success_url: ''
+mailer_from:
+  name: '%{app_name}'
+  email: 'noreply@example.com'

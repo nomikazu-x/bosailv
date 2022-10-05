@@ -43,21 +43,35 @@ shelter_registration_obtained_point: 5
 
 
 ## ユーザー
+# メールアドレス確認URLの有効期限（単位：時間）
+confirm_within_hours: 24
+
+# パスワード再設定URLの有効期限（単位：時間）
+reset_password_within_hours: 24
+
+# アカウントロックの有効期間（単位：時間）
+unlock_in_hours: 1
+
 # 一覧のデフォルト最大表示件数
 default_users_limit: 20
+
 # ゲストアカウント削除の猶予期間（単位：日）
-destroy_schedule_days: 1
+destroy_schedule_days: 7
+
 # 緊急時連絡先の登録上限数
 maximum_emergency_contacts_length: 5
+
 # マイ避難所の登録上限数
 maximum_registered_shelters_length: 5
+
 # SNS関係防災タスク達成最大値
 maximum_sns_task: 2097151
+
 # 家庭関係防災タスク達成最大値
 maximum_house_task: 134217727
+
 # 備蓄関係防災タスク達成最大値
 maximum_stock_task: 17179869183
-
 
 
 ## 避難所

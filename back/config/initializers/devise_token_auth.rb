@@ -58,11 +58,7 @@ DeviseTokenAuth.setup do |config|
   # send email, set it to true. (This is a setting for compatibility)
   config.send_confirmation_email = true
 
-  if Rails.env.test?
-    config.default_confirm_success_url = 'http://test-confirm.dev'
-    config.default_password_reset_url = 'http://test-password-reset.dev'
-  else
-    config.default_confirm_success_url = "#{ENV.fetch('FRONT_SERVER_ORIGIN', 'http://localhost:3000')}/signin"
-    config.default_password_reset_url = "#{ENV.fetch('FRONT_SERVER_ORIGIN', 'http://localhost:3000')}/password/reset/confirm"
-  end
+  config.redirect_whitelist = Settings['redirect_whitelist']
+  config.default_confirm_success_url = Settings['default_confirm_success_url']
+  config.default_password_reset_url = Settings['default_password_reset_url']
 end
