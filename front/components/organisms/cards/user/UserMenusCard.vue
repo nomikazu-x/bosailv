@@ -39,7 +39,7 @@
 
       <v-divider class="mb-6" />
 
-      <v-list-item to="/">
+      <v-list-item to="/home">
         <v-list-item-icon>
           <v-icon>mdi-home</v-icon>
         </v-list-item-icon>

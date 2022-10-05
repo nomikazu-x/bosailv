@@ -1,7 +1,8 @@
-<p><%= t :hello %> <%= @resource.name %>!</p>
-
-<p><%= t '.account_lock_msg' %></p>
-
-<p><%= t '.unlock_link_msg' %></p>
-
-<p><%= link_to t('.unlock_link'), user_auth_unlock_url(@resource, unlock_token: @token, config: message['client-config'].to_s) %></p>
+<%= @resource.name %> 様<br>
+<br>
+<%= t('app_name') %> をご利用頂きありがとうございます。<br>
+<br>
+ログイン失敗が繰り返された為、アカウントがロックされました。<br>
+アカウントロックを解除するには、下記のリンクをクリックしてください。<br>
+※ロックは<%= Settings['unlock_in_hours'] %>時間後に自動で解除されます。<br>
+<%= link_to 'アカウントロック解除', auth_unlock_url(config: message['client-config'].to_s, redirect_url: message['redirect-url'].to_s, unlock_token: @token) %><br>

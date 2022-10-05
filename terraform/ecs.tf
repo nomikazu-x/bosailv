@@ -166,6 +166,14 @@ data "aws_ssm_parameter" "aws_secret_key" {
   name = "${local.ssm_parameter_store_base}/aws_secret_key"
 }
 
+data "aws_ssm_parameter" "gmail_account_password" {
+  name = "${local.ssm_parameter_store_base}/gmail_account_password"
+}
+
+data "aws_ssm_parameter" "guest_user_password" {
+  name = "${local.ssm_parameter_store_base}/guest_user_password"
+}
+
 resource "aws_ecs_task_definition" "frontend" {
   family                   = local.frontend_task_name
   network_mode             = "awsvpc"
@@ -262,6 +270,14 @@ resource "aws_ecs_task_definition" "backend" {
         {
           name: "AWS_SECRET_ACCESS_KEY"
           valueFrom: data.aws_ssm_parameter.aws_secret_key.arn
+        },
+        {
+          name: "GMAIL_ACCOUNT_PASSWORD"
+          valueFrom: data.aws_ssm_parameter.gmail_account_password.arn
+        },
+        {
+          name: "GUEST_USER_PASSWORD"
+          valueFrom: data.aws_ssm_parameter.guest_user_password.arn
         }
       ]
       logConfiguration = {

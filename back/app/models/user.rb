@@ -90,15 +90,15 @@ class User < ActiveRecord::Base
   def image_url(version)
     case version
     when :mini
-      image? ? image.mini.url : "/images/user/#{version}_noimage.jpg"
+      image? ? image.mini.url : "#{Settings['base_image_url']}/images/user/#{version}_noimage.jpg"
     when :small
-      image? ? image.small.url : "/images/user/#{version}_noimage.jpg"
+      image? ? image.small.url : "#{Settings['base_image_url']}/images/user/#{version}_noimage.jpg"
     when :medium
-      image? ? image.medium.url : "/images/user/#{version}_noimage.jpg"
+      image? ? image.medium.url : "#{Settings['base_image_url']}/images/user/#{version}_noimage.jpg"
     when :large
-      image? ? image.large.url : "/images/user/#{version}_noimage.jpg"
+      image? ? image.large.url : "#{Settings['base_image_url']}/images/user/#{version}_noimage.jpg"
     when :xlarge
-      image? ? image.xlarge.url : "/images/user/#{version}_noimage.jpg"
+      image? ? image.xlarge.url : "#{Settings['base_image_url']}/images/user/#{version}_noimage.jpg"
     else
       logger.warn("[WARN]Not found: User.image_url(#{version})")
       ''
