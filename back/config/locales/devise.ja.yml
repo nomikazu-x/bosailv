@@ -120,15 +120,12 @@ ja:
       unconfirmed: 'メールアドレスの確認が必要です。メールが届いていない場合は[メールアドレス確認]をしてください。'
     mailer:
       confirmation_instructions:
-        subject: '%{env_name}【%{app_name}】メールアドレス確認のお願い'
+        subject: 'BosaiLv メールアドレス確認のお願い'
       email_changed:
-        subject: '%{env_name}【%{app_name}】メールアドレス変更受け付けのお知らせ'
+        subject: 'BosaiLv メールアドレス変更受け付けのお知らせ'
       reset_password_instructions:
-        subject: '%{env_name}【%{app_name}】パスワード再設定方法のお知らせ'
-        admin_user_subject: '%{env_name}【%{app_name} Admin】パスワード再設定方法のお知らせ'
+        subject: 'BosaiLv パスワード再設定方法のお知らせ'
       password_change:
-        subject: '%{env_name}【%{app_name}】パスワード変更完了のお知らせ'
-        admin_user_subject: '%{env_name}【%{app_name} Admin】パスワード変更完了のお知らせ'
+        subject: 'BosaiLv パスワード変更完了のお知らせ'
       unlock_instructions:
-        subject: '%{env_name}【%{app_name}】アカウントロックのお知らせ'
-        admin_user_subject: '%{env_name}【%{app_name} Admin】アカウントロックのお知らせ'
+        subject: 'BosaiLv アカウントロックのお知らせ'

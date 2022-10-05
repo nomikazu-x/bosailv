@@ -1,5 +1,8 @@
-<p><%= t(:welcome).capitalize + ' ' + @resource.name %>!</p>
-
-<p><%= t '.confirm_link_msg' %> </p>
-
-<p><%= link_to t('.confirm_account_link'), auth_confirmation_url(@resource, {confirmation_token: @token, config: message['client-config'].to_s, redirect_url: message['redirect-url']}).html_safe %></p>
+<%= @resource.name %> 様<br>
+<br>
+BosaiLvをご利用頂きありがとうございます。<br>
+<br>
+下記のリンクをクリックして、メールアドレスの確認をしてください。<br>
+アカウント登録やメールアドレスの変更を行なっていない場合は、このメールを無視してください。<br>
+※このURLの有効期限は<%= Settings['confirm_within_hours'] %>時間です。<br>
+<%= link_to 'メールアドレス確認', create_auth_confirmation_url(config: message['client-config'].to_s, confirmation_token: @token, redirect_url: message['redirect-url'].to_s) %><br>

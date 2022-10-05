@@ -1,7 +1,12 @@
-<p><%= t(:hello).capitalize %> <%= @resource.name %>!</p>
-
+<%= @resource.name %> 様<br>
+<br>
+BosaiLvをご利用頂きありがとうございます。<br>
+<br>
 <% if @resource.try(:unconfirmed_email?) %>
-  <p><%= t '.being_change_password_msg', email: @resource.unconfirmed_email %></p>
+メールアドレスの変更を受け付けました。<br>
+下記の新しいメールアドレスにお送りしたメールを確認してください。<br>
+<%= @resource.unconfirmed_email %><br>
 <% else %>
-  <p><%= t '.has_been_changed_password_msg', email: @resource.unconfirmed_email %></p>
+下記のメールアドレスへの変更が完了しました。<br>
+<%= @resource.email %><br>
 <% end %>
