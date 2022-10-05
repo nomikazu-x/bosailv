@@ -35,7 +35,7 @@ module.exports = {
   // ログインAPI
   authSignInURL: '/api/v1/auth/sign_in.json',
   authRedirectSignInURL: '/signin',
-  authRedirectHomeURL: '/',
+  authRedirectHomeURL: '/home',
   // ログアウトAPI
   authSignOutURL: '/api/v1/auth/sign_out.json',
   authRedirectLogOutURL: '/signin',
