@@ -47,7 +47,7 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
       provider: 'email',
       uid: email,
       confirmed_at: Time.current,
-      destroy_schedule_at: Time.current + Settings['destroy_schedule_days'].days
+      destroy_schedule_at: Time.current + Settings['destroy_schedule_days'].minutes
     }
   end
 end
