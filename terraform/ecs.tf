@@ -55,6 +55,25 @@ resource "aws_iam_role_policy" "kms_decrypt_policy" {
   })
 }
 
+resource "aws_iam_role" "ecs_scheduled_tasks_role" {
+  name               = "ecs_scheduled_tasks_role"
+  assume_role_policy = jsonencode({
+    Version   = "2012-10-17"
+    Statement = [
+      {
+        Effect    = "Allow"
+        Principal = { Service = "events.amazonaws.com" }
+        Action    = "sts:AssumeRole"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "ecs_scheduled_tasks_role_attach" {
+  role       = aws_iam_role.ecs_scheduled_tasks_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceEventsRole"
+}
+
 ####################################################
 # ECS Task Container Log Groups
 ####################################################
@@ -288,6 +307,48 @@ resource "aws_ecs_task_definition" "backend" {
           awslogs-stream-prefix : "ecs"
         }
       }
+    }
+  ])
+}
+
+####################################################
+# ECS CloudWatch Event Target
+####################################################
+
+resource "aws_cloudwatch_event_rule" "guest_user_destroy_schedule" {
+  name                = "guest_user_destroy_schedule"
+  schedule_expression = "cron(0/5 * * * ? *)"
+}
+
+resource "aws_cloudwatch_event_target" "guest_user_destroy" {
+  target_id = "guest_user_destroy_schedule"
+  rule      = aws_cloudwatch_event_rule.guest_user_destroy_schedule.name
+  arn       = aws_ecs_cluster.this.arn
+  role_arn  = aws_iam_role.ecs_scheduled_tasks_role.arn
+
+  ecs_target {
+    launch_type         = "FARGATE"
+    task_count          = 1
+    task_definition_arn = aws_ecs_task_definition.backend.arn
+
+    network_configuration {
+      assign_public_ip = false
+      subnets          = [
+        aws_subnet.public_1c.id,
+      ]
+      security_groups = [
+        aws_security_group.app.id,
+      ]
+    }
+  }
+  input = jsonencode([
+    {
+      containerOverrides = [
+        {
+          name = local.backend_task_app_container_name
+          command = ["rails", "user:destroy[false]"]
+        }
+      ]
     }
   ])
 }
