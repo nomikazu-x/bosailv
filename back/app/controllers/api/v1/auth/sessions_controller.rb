@@ -7,13 +7,8 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
 
   # POST /api/v1/auth/guest_sign_in(.json) ゲストログインAPI(処理)
   def create_guest
-    ActiveRecord::Base.transaction do
-      user = User.create!(guest_user_params)
-      # サインインする
-      # ゲストユーザーのメールアドレスとパスワードでパラメータを設定（パスワードは既定のもの）
-      params.merge!(email: user.email, password: ENV['GUEST_USER_PASSWORD'])
-      create
-    end
+    user = User.create!(guest_user_params)
+    render json: { email: user.email, password: user.password }
   end
 
   # POST /api/v1/auth/sign_out(.json) ログアウトAPI(処理)
@@ -36,8 +31,8 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
   end
 
   def guest_user_params
-    username = 'guest' + SecureRandom.alphanumeric(5)
-    email = "guest#{username}@bosailevel.com"
+    username = SecureRandom.alphanumeric(5)
+    email = "guest#{username}@bosailv.com"
 
     {
       username: username,
@@ -47,7 +42,7 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
       provider: 'email',
       uid: email,
       confirmed_at: Time.current,
-      destroy_schedule_at: Time.current + Settings['destroy_schedule_days'].minutes
+      destroy_schedule_at: Time.current + Settings['destroy_schedule_days'].days
     }
   end
 end

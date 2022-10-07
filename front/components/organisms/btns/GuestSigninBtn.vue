@@ -40,7 +40,13 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
-            this.$auth.setUser(response.data.user)
+            console.log(response)
+            this.$auth.loginWith('local', {
+              data: {
+                email: response.data.email,
+                password: response.data.password
+              }
+            })
             this.$toasted.error(response.data.alert)
             this.$toasted.success(response.data.notice)
             this.$router.push({ path: '/home' })

@@ -1,12 +1,8 @@
 namespace :user do
   desc '削除予定日時を過ぎたユーザーのアカウントを削除'
-  task(:destroy, [:dry_run] => :environment) do |_, args|
-    args.with_defaults(dry_run: 'true')
-    dry_run = (args.dry_run != 'false')
-
+  task destroy: :environment do
     logger = Logger.new("log/user_destroy_#{Rails.env}.log")
     logger.info('=== START ===')
-    logger.info("dry_run: #{dry_run}")
 
     users = User.by_destroy_reserved
     logger.debug(users)
@@ -17,7 +13,6 @@ namespace :user do
     users.find_each.with_index(1) do |user, index|
       logger.info("[#{index}/#{count}] id: #{user.id}, destroy_schedule_at: #{user.destroy_schedule_at}")
       raise '削除予定日時が不正' if user.destroy_schedule_at > Time.current
-      next if dry_run
 
       unless user.destroy
         logger.error('削除失敗')
