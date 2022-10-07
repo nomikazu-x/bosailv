@@ -35,49 +35,49 @@ common_table_name.each do |table_name|
   end
 end
 
-# CSV読み込み
-file_path = 'lib/hazard_map.csv'
-csv_data = CSV.read(file_path)
+# # CSV読み込み
+# file_path = 'lib/hazard_map.csv'
+# csv_data = CSV.read(file_path)
 
-csv_data.map do |row|
-  HazardMap.create!(
-    city_id: row[0],
-    tsunami: row[1],
-    flood: row[2],
-    landslide: row[3],
-    inland_flood: row[4],
-    storm_surge: row[5],
-    volcano: row[6],
-    reservoir: row[7],
-  )
-  p row[0]
-end
+# csv_data.map do |row|
+#   HazardMap.create!(
+#     city_id: row[0],
+#     tsunami: row[1],
+#     flood: row[2],
+#     landslide: row[3],
+#     inland_flood: row[4],
+#     storm_surge: row[5],
+#     volcano: row[6],
+#     reservoir: row[7],
+#   )
+#   p row[0]
+# end
 
-# CSV読み込み
-file_path = 'lib/shelters.csv'
-csv_data = CSV.read(file_path)
+# # CSV読み込み
+# file_path = 'lib/shelters.csv'
+# csv_data = CSV.read(file_path)
 
-csv_data.map do |row|
-  Shelter.create!(
-    city: City.find_by(name: row[1].gsub(/東京都|北海道|(?:京都|大阪)府|.{2,3}県/, '')),
-    city_name: row[1],
-    name: row[3],
-    address: row[4],
-    flood: row[5].present?,
-    landslide: row[6].present?,
-    storm_surge: row[7].present?,
-    earthquake: row[8].present?,
-    tsunami: row[9].present?,
-    fire: row[10].present?,
-    inland_flood: row[11].present?,
-    volcano: row[12].present?,
-    duplicate: row[13].present?,
-    latitude: row[14],
-    longitude: row[15],
-    remark: row[16]
-  )
-  p row[3]
-end
+# csv_data.map do |row|
+#   Shelter.create!(
+#     city: City.find_by(name: row[1].gsub(/東京都|北海道|(?:京都|大阪)府|.{2,3}県/, '')),
+#     city_name: row[1],
+#     name: row[3],
+#     address: row[4],
+#     flood: row[5].present?,
+#     landslide: row[6].present?,
+#     storm_surge: row[7].present?,
+#     earthquake: row[8].present?,
+#     tsunami: row[9].present?,
+#     fire: row[10].present?,
+#     inland_flood: row[11].present?,
+#     volcano: row[12].present?,
+#     duplicate: row[13].present?,
+#     latitude: row[14],
+#     longitude: row[15],
+#     remark: row[16]
+#   )
+#   p row[3]
+# end
 
 
 env_paths = ['', "#{Rails.env}/"]
