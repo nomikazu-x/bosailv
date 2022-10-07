@@ -56,7 +56,7 @@ resource "aws_iam_role_policy" "kms_decrypt_policy" {
 }
 
 resource "aws_iam_role" "ecs_scheduled_tasks_role" {
-  name               = "ecs_scheduled_tasks_role"
+  name               = "${local.app_name}_ecs_scheduled_tasks_role"
   assume_role_policy = jsonencode({
     Version   = "2012-10-17"
     Statement = [
@@ -332,25 +332,25 @@ resource "aws_cloudwatch_event_target" "guest_user_destroy" {
     task_definition_arn = aws_ecs_task_definition.backend.arn
 
     network_configuration {
-      assign_public_ip = false
+      assign_public_ip = true
       subnets          = [
-        aws_subnet.public_1c.id,
+        aws_subnet.public_1c.id
       ]
       security_groups = [
-        aws_security_group.app.id,
+        aws_security_group.app.id
       ]
     }
   }
-  input = jsonencode([
+  input = <<DOCUMENT
+{
+  "containerOverrides": [
     {
-      containerOverrides = [
-        {
-          name = local.backend_task_app_container_name
-          command = ["rails", "user:destroy[false]"]
-        }
-      ]
+      "name": "${local.backend_task_app_container_name}",
+      "command": ["bundle", "exec", "rails", "user:destroy", "RAILS_ENV=production", "--trace"]
     }
-  ])
+  ]
+}
+DOCUMENT
 }
 
 ####################################################
