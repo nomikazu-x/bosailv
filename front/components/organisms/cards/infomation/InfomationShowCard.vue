@@ -15,9 +15,8 @@
             </span>
           </v-card-title>
           <v-card-text v-if="infomation">
-            <div v-if="infomation.body" class="mx-2 my-2">
-              {{ infomation.body }}
-            </div>
+            <!-- eslint-disable-next-line vue/no-v-html -->
+            <div v-if="infomation.body" class="mx-2 my-2" v-html="infomation.body" />
             <div v-else-if="infomation.summary" class="mx-2 my-2">
               {{ infomation.summary }}
             </div>

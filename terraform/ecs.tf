@@ -316,12 +316,12 @@ resource "aws_ecs_task_definition" "backend" {
 ####################################################
 
 resource "aws_cloudwatch_event_rule" "guest_user_destroy_schedule" {
-  name                = "guest_user_destroy_schedule"
-  schedule_expression = "cron(0/5 * * * ? *)"
+  name                = "${local.app_name}_guest_user_destroy_schedule"
+  schedule_expression = "cron(0 11 * * ? *)"
 }
 
 resource "aws_cloudwatch_event_target" "guest_user_destroy" {
-  target_id = "guest_user_destroy_schedule"
+  target_id = "${local.app_name}_guest_user_destroy_schedule"
   rule      = aws_cloudwatch_event_rule.guest_user_destroy_schedule.name
   arn       = aws_ecs_cluster.this.arn
   role_arn  = aws_iam_role.ecs_scheduled_tasks_role.arn

@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
   <v-card outlined tile>
     <TheProcessing v-if="processing" />
@@ -52,9 +53,7 @@
       </div>
       <v-divider class="my-5" />
       <v-card-text v-if="article">
-        <div v-if="article.content" class="mx-2 my-2">
-          {{ article.content }}
-        </div>
+        <div v-if="article.content" class="mx-2 my-2" v-html="article.content" />
       </v-card-text>
     </v-col>
   </v-card>
