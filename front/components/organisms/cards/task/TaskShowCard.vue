@@ -7,10 +7,7 @@
         {{ task.title }}
       </v-card-title>
       <v-divider class="my-5" />
-      <v-card-text v-if="task">
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <div v-if="task.body" class="mx-2 my-2" v-html="task.body" />
-      </v-card-text>
+      <ReadOnlyEditor v-if="task.body" class="mx-2 my-2" :content="task.body" />
       <v-divider class="my-5" />
       <div class="text-center">
         <CompleteBtnGroup
@@ -26,13 +23,15 @@
 
 <script>
 import Application from '~/plugins/application.js'
+import ReadOnlyEditor from '~/components/organisms/editor/ReadOnlyEditor.vue'
 import CompleteBtnGroup from '~/components/organisms/btnGroup/CompleteBtnGroup.vue'
 
 export default {
   name: 'TaskShowCard',
 
   components: {
-    CompleteBtnGroup
+    CompleteBtnGroup,
+    ReadOnlyEditor
   },
 
   mixins: [Application],
