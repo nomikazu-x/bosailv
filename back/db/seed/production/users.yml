@@ -1,15 +1,22 @@
 - id: 1
   username: '0000000000000000000000000001'
-  name: 'user1の氏名'
+  name: '管理者'
   email: 'user1@example.com'
   uid: 'user1@example.com'
-  password: 'changepassword'
+  password: <%= ENV['GUEST_USER_PASSWORD'] %>
   confirmed_at: '0000-01-01 00:00:00+0000'
   is_admin: true
 - id: 2
   username: '0000000000000000000000000002'
-  name: 'user2の氏名'
+  name: '防災太郎'
   email: 'user2@example.com'
   uid: 'user2@example.com'
-  password: 'changepassword'
+  password: <%= ENV['GUEST_USER_PASSWORD'] %>
+  confirmed_at: '0000-01-01 00:00:00+0000'
+- id: 3
+  username: '0000000000000000000000000003'
+  name: '防災花子'
+  email: 'user3@example.com'
+  uid: 'user3@example.com'
+  password: <%= ENV['GUEST_USER_PASSWORD'] %>
   confirmed_at: '0000-01-01 00:00:00+0000'

@@ -56,7 +56,7 @@ unlock_in_hours: 1
 default_users_limit: 20
 
 # ゲストアカウント削除の猶予期間（単位：日）
-destroy_schedule_days: 7
+destroy_schedule_days: 1
 
 # 緊急時連絡先の登録上限数
 maximum_emergency_contacts_length: 5
