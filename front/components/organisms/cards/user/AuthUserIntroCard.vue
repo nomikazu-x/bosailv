@@ -13,8 +13,8 @@
         <div>
           <v-row class="py-5">
             <v-col cols="6">
-              <v-row justify="center">
-                <h1>Lv.{{ $auth.user.level }}</h1>
+              <v-row justify="center" class="amber--text">
+                <h1>{{ $auth.user.level }}</h1>
               </v-row>
               <v-row justify="center">
                 <span>Level</span>
@@ -22,11 +22,11 @@
             </v-col>
 
             <v-col cols="6">
-              <v-row justify="center">
+              <v-row justify="center" class="amber--text">
                 <h1>{{ $auth.user.lifelong_point }}</h1>
               </v-row>
               <v-row justify="center">
-                <span>合計EXP</span>
+                <span>Point</span>
               </v-row>
             </v-col>
           </v-row>

@@ -3,19 +3,19 @@
     <h1 class="text-center main-heading mb-4">投稿完了しました!</h1>
 
     <v-row class="mb-4" justify="center">
-      <TwitterShareBtn :text="shareText" :hashtag="hashtag">
+      <TwitterShareBtn :text="shareText" :url="shareUrl" :hashtag="hashtag">
         <span class="ml-2">Twitterに投稿する</span>
       </TwitterShareBtn>
     </v-row>
 
     <v-row class="mb-12" justify="center">
-      <GreenBtn :to="{ name: 'articles-id-edit___ja', params: { id: article.id }}" class="mr-2" @click="toEdit">
+      <OrangeBtn :to="{ name: 'articles-id-edit___ja', params: { id: article.id }}" class="mr-2" @click="toEdit">
         編集する
-      </GreenBtn>
+      </OrangeBtn>
 
-      <GreenBtn :to="{ name: 'articles-id___ja', params: { id: article.id }}">
+      <OrangeBtn :to="{ name: 'articles-id___ja', params: { id: article.id }}">
         投稿を見る
-      </GreenBtn>
+      </OrangeBtn>
     </v-row>
 
     <div class="max-width-600 mb-4 mx-auto">
@@ -29,7 +29,7 @@
 <script>
 import OneColumnContainer from '~/components/molecules/containers/OneColumnContainer.vue'
 import TwitterShareBtn from '~/components/molecules/btns/TwitterShareBtn.vue'
-import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'ArticleCreateSuccessCard',
@@ -37,7 +37,7 @@ export default {
   components: {
     OneColumnContainer,
     TwitterShareBtn,
-    GreenBtn
+    OrangeBtn
   },
 
   props: {
@@ -48,7 +48,10 @@ export default {
   },
   computed: {
     shareText () {
-      return 'BosaiLevel'
+      return 'BosaiLvのこの記事役に立つよ！'
+    },
+    shareUrl () {
+      return this.$config.frontBaseURL + '/articles/' + this.article.id // Tips: window.location.hrefではeditで支障をきたすため
     },
     hashtag () {
       return '防災,BosaiLevel'

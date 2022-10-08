@@ -32,7 +32,7 @@
         {{ user.name }}
       </v-list-item-title>
       <v-list-item-title class="amber--text text--darken-4">
-        {{ user.lifelong_point }}<span class="black--text px-2">point</span>
+        {{ user.lifelong_point }}<span class="black--text px-2">pt</span>
       </v-list-item-title>
     </BaseListItem>
     <v-divider />

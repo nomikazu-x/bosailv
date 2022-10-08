@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
   <v-card outlined tile>
     <TheProcessing v-if="processing" />
@@ -17,7 +18,6 @@
           </v-avatar>
           <NuxtLink :to="{ name: 'users-username___ja', params: { username: article.user.username }}" class="text-decoration-none">{{ article.user.name }}</NuxtLink>
         </span>
-        <ShareBtnGroup />
       </v-card-subtitle>
     </v-col>
     <v-col cols="12">
@@ -52,17 +52,22 @@
       </div>
       <v-divider class="my-5" />
       <v-card-text v-if="article">
-        <div v-if="article.content" class="mx-2 my-2">
-          {{ article.content }}
-        </div>
+        <div v-if="article.content" class="mx-2 my-2" v-html="article.content" />
       </v-card-text>
     </v-col>
+
+    <v-divider class="my-5" />
+    <div class="text-center mb-5">
+      <TwitterShareBtn :text="shareText" :url="shareUrl" :hashtag="hashtag">
+        <span class="ml-2">Twitterに投稿する</span>
+      </TwitterShareBtn>
+    </div>
   </v-card>
 </template>
 
 <script>
 import FavoriteBtnGroup from '~/components/organisms/btnGroup/FavoriteBtnGroup.vue'
-import ShareBtnGroup from '~/components/organisms/btnGroup/ShareBtnGroup.vue'
+import TwitterShareBtn from '~/components/molecules/btns/TwitterShareBtn.vue'
 import Application from '~/plugins/application.js'
 
 export default {
@@ -70,7 +75,7 @@ export default {
 
   components: {
     FavoriteBtnGroup,
-    ShareBtnGroup
+    TwitterShareBtn
   },
 
   mixins: [Application],
@@ -105,6 +110,15 @@ export default {
     },
     currentUsername () {
       return this.user && this.user.username
+    },
+    shareText () {
+      return 'BosaiLvのこの記事役に立つよ！'
+    },
+    shareUrl () {
+      return this.$config.frontBaseURL + '/articles/' + this.article.id // Tips: window.location.hrefではeditで支障をきたすため
+    },
+    hashtag () {
+      return '防災,BosaiLevel'
     }
   },
   created () {

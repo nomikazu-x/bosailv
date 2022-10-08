@@ -120,6 +120,7 @@ export default {
 
 <style lang="scss" scoped>
 .post-btn {
+  z-index: 100;
   position: fixed;
   bottom: 5vh;
   right: 5vw;

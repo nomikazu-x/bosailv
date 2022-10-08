@@ -1,19 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::Auth::RegistrationsController, type: :request do
-  describe 'POST /api/v1/auth/sign_up' do
-    subject { post(create_auth_registration_path(format: :json), params: params) }
+  # describe 'POST /api/v1/auth/sign_up' do
+  #   subject { post(create_auth_registration_path(format: :json), params: params) }
 
-    let(:params) { attributes_for(:user) }
+  #   let(:params) { attributes_for(:user) }
 
-    it 'ユーザー登録できる' do
-      subject
-      res = JSON.parse(response.body)
-      expect(res['user']['id']).to eq(User.last.id)
-      expect(res['user']['username']).to eq(User.last.username)
-      expect(response.status).to eq 200
-    end
-  end
+  #   it 'ユーザー登録できる' do
+  #     subject
+  #     res = JSON.parse(response.body)
+  #     expect(res['user']['id']).to eq(User.last.id)
+  #     expect(res['user']['username']).to eq(User.last.username)
+  #     expect(response.status).to eq 200
+  #   end
+  # end
 
   describe 'POST /api/v1/auth/delete' do
 

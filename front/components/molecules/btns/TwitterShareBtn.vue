@@ -22,6 +22,10 @@ export default {
       type: [String, Array],
       default: undefined
     },
+    url: {
+      type: String,
+      default: undefined
+    },
     text: {
       type: String,
       default: undefined
@@ -32,15 +36,12 @@ export default {
       const map = new Map()
       this.text && map.set('text', this.text)
       this.hashtag && map.set('hashtags', this.getHashtagStr)
+      this.url && map.set('url', this.url)
       const params = new URLSearchParams(map) // クエリパラメータの生成
       return `${TWITTER_TWEET_URL}?${params.toString()}`
     },
-    /**
-     * hashtagをURL用に文字列で取得する
-     *
-     */
     getHashtagStr () {
-      return this.hashtag ? this.hashtag : this.hashtag.join(',')
+      return this.hashtag ? this.hashtag : this.hashtag.join(',') // Tips: hashtagをURL用に文字列で取得する
     }
   }
 }
