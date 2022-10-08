@@ -173,7 +173,7 @@ export default {
   data () {
     return {
       menu: false,
-      active: false
+      active: true
     }
   },
   computed: {
