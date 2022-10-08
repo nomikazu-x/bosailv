@@ -41,7 +41,7 @@ phases:
       - cd back
       - bundle install --without development test
       - bundle exec rails db:migrate RAILS_ENV=production
-      - bundle exec rails db:seed RAILS_ENV=production
+      # - bundle exec rails db:seed RAILS_ENV=production
       - cd ..
 artifacts:
   files:
