@@ -273,6 +273,11 @@ resource "aws_codebuild_project" "build" {
       name  = "AWS_SECRET_ACCESS_KEY"
       value = var.aws_secret_key
     }
+    environment_variable {
+      name  = "GUEST_USER_PASSWORD"
+      value = data.aws_ssm_parameter.guest_user_password.name
+      type = "PARAMETER_STORE"
+    }
   }
   vpc_config {
     security_group_ids = [
