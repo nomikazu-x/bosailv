@@ -3,7 +3,7 @@
     <h1 class="text-center main-heading mb-4">投稿完了しました!</h1>
 
     <v-row class="mb-4" justify="center">
-      <TwitterShareBtn :text="shareText" :hashtag="hashtag">
+      <TwitterShareBtn :text="shareText" :url="shareUrl" :hashtag="hashtag">
         <span class="ml-2">Twitterに投稿する</span>
       </TwitterShareBtn>
     </v-row>
@@ -48,7 +48,10 @@ export default {
   },
   computed: {
     shareText () {
-      return 'BosaiLevel'
+      return 'BosaiLvのこの記事役に立つよ！'
+    },
+    shareUrl () {
+      return this.$config.frontBaseURL + '/articles/' + this.article.id // Tips: window.location.hrefではeditで支障をきたすため
     },
     hashtag () {
       return '防災,BosaiLevel'
