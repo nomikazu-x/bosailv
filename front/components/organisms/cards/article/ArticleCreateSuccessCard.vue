@@ -9,13 +9,13 @@
     </v-row>
 
     <v-row class="mb-12" justify="center">
-      <GreenBtn :to="{ name: 'articles-id-edit___ja', params: { id: article.id }}" class="mr-2" @click="toEdit">
+      <OrangeBtn :to="{ name: 'articles-id-edit___ja', params: { id: article.id }}" class="mr-2" @click="toEdit">
         編集する
-      </GreenBtn>
+      </OrangeBtn>
 
-      <GreenBtn :to="{ name: 'articles-id___ja', params: { id: article.id }}">
+      <OrangeBtn :to="{ name: 'articles-id___ja', params: { id: article.id }}">
         投稿を見る
-      </GreenBtn>
+      </OrangeBtn>
     </v-row>
 
     <div class="max-width-600 mb-4 mx-auto">
@@ -29,7 +29,7 @@
 <script>
 import OneColumnContainer from '~/components/molecules/containers/OneColumnContainer.vue'
 import TwitterShareBtn from '~/components/molecules/btns/TwitterShareBtn.vue'
-import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
+import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
   name: 'ArticleCreateSuccessCard',
@@ -37,7 +37,7 @@ export default {
   components: {
     OneColumnContainer,
     TwitterShareBtn,
-    GreenBtn
+    OrangeBtn
   },
 
   props: {

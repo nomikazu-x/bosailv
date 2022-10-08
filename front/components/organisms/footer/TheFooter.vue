@@ -1,6 +1,6 @@
 <template>
   <div :style="{ marginTop: `${height}px` }">
-    <v-footer absolute color="#FFFCFC" :height="height">
+    <v-footer app absolute inset color="#FFFCFC" :height="height">
       <v-row justify="center" algin="center" class="mt-2">
         <v-col cols="4">
           <NuxtLink to="/home" class="toolbar-title d-flex text-decoration-none">
