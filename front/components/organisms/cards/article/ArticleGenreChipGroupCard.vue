@@ -1,6 +1,6 @@
 <template>
   <BaseTitleCard class="mt-3" title="関連するジャンル">
-    <v-card-text v-if="genres">
+    <v-card-text v-if="genres.length > 0">
       <v-chip-group
         active-class="primary--text"
         column
@@ -20,6 +20,9 @@
           </nuxt-link>
         </v-chip>
       </v-chip-group>
+    </v-card-text>
+    <v-card-text v-else>
+      関連するジャンルはありません。
     </v-card-text>
   </BaseTitleCard>
 </template>

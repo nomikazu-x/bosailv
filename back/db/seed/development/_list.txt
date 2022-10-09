@@ -2,4 +2,4 @@ users
 infomations
 stocks
 articles
-article_genre_relations
+point_records

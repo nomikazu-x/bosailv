@@ -1,14 +1,51 @@
 - id: 1
-  username: '0000000000000000000000000001'
-  name: 'user1の氏名'
+  username: '000000000000001'
+  name: '管理者'
   email: 'user1@example.com'
   uid: 'user1@example.com'
-  password: 'changepassword'
+  password: 'password'
   confirmed_at: '0000-01-01 00:00:00+0000'
+  is_admin: true
+  level: 7
+  lifelong_point: 50
+  point_to_next: 12
 - id: 2
-  username: '0000000000000000000000000002'
-  name: 'user2の氏名'
+  username: '000000000000002'
+  name: '防災太郎'
   email: 'user2@example.com'
   uid: 'user2@example.com'
-  password: 'changepassword'
+  password: 'password'
   confirmed_at: '0000-01-01 00:00:00+0000'
+  level: 7
+  lifelong_point: 50
+  point_to_next: 12
+- id: 3
+  username: '000000000000003'
+  name: '防災花子'
+  email: 'user3@example.com'
+  uid: 'user3@example.com'
+  password: 'password'
+  confirmed_at: '0000-01-01 00:00:00+0000'
+  level: 7
+  lifelong_point: 50
+  point_to_next: 12
+- id: 4
+  username: '000000000000004'
+  name: '防災大成'
+  email: 'user4@example.com'
+  uid: 'user4@example.com'
+  password: 'password'
+  confirmed_at: '0000-01-01 00:00:00+0000'
+  level: 7
+  lifelong_point: 50
+  point_to_next: 12
+- id: 5
+  username: '000000000000005'
+  name: '防災春菜'
+  email: 'user5@example.com'
+  uid: 'user5@example.com'
+  password: 'password'
+  confirmed_at: '0000-01-01 00:00:00+0000'
+  level: 7
+  lifelong_point: 50
+  point_to_next: 12
