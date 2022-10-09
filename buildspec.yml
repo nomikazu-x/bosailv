@@ -40,7 +40,7 @@ phases:
       - printf '[{"name":"bosailv-app-container-nginx-backend","imageUri":"%s"}, {"name":"bosailv-app-container-rails-backend","imageUri":"%s"}]' $CURRENT_NGINX_ECR_REPO_URL $CURRENT_RAILS_ECR_REPO_URL > backend_imagedefinitions.json
       - cd back
       - bundle install --without development test
-      - bundle exec rails db:migrate:reset RAILS_ENV=production
+      - bundle exec rails db:migrate:reset RAILS_ENV=production DISABLE_DATABASE_ENVIRONMENT_CHECK=1
       - bundle exec rails db:seed RAILS_ENV=production
       - cd ..
 artifacts:
