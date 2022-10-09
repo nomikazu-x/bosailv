@@ -12,7 +12,7 @@
       rotateControl: false,
       fullscreenControl: true,
     }"
-    style="width: 500px; height: 350px; margin: auto"
+    style="width: 100%; height: 350px; margin: auto"
   >
     <GmapMarker
       :position="{ lat: parseFloat(shelter.latitude), lng: parseFloat(shelter.longitude) }"

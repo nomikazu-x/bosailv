@@ -1,4 +1,3 @@
-<!-- eslint-disable vue/no-v-html -->
 <template>
   <v-card outlined tile>
     <TheProcessing v-if="processing" />
@@ -27,7 +26,7 @@
 
       <div class="text-right">
         <FavoriteBtnGroup v-if="!canAction && $auth.loggedIn" class="mr-3 mt-2" :article="article" :likers="likers" />
-        <v-menu v-if="canAction || $auth.user.admin === true" bottom right>
+        <v-menu v-if="canAction || ($auth.loggedIn && $auth.user.admin === true)" bottom right>
           <template #activator="{ on, attrs }">
             <v-btn
               icon
@@ -51,9 +50,7 @@
         </v-menu>
       </div>
       <v-divider class="my-5" />
-      <v-card-text v-if="article">
-        <div v-if="article.content" class="mx-2 my-2" v-html="article.content" />
-      </v-card-text>
+      <ReadOnlyEditor v-if="article.content" class="mx-2 my-2" :content="article.content" />
     </v-col>
 
     <v-divider class="my-5" />
@@ -68,6 +65,7 @@
 <script>
 import FavoriteBtnGroup from '~/components/organisms/btnGroup/FavoriteBtnGroup.vue'
 import TwitterShareBtn from '~/components/molecules/btns/TwitterShareBtn.vue'
+import ReadOnlyEditor from '~/components/organisms/editor/ReadOnlyEditor.vue'
 import Application from '~/plugins/application.js'
 
 export default {
@@ -75,7 +73,8 @@ export default {
 
   components: {
     FavoriteBtnGroup,
-    TwitterShareBtn
+    TwitterShareBtn,
+    ReadOnlyEditor
   },
 
   mixins: [Application],
@@ -156,3 +155,9 @@ export default {
   }
 }
 </script>
+
+// <style lang="scss" scoped>
+// .img {
+//   width: 100px !important;
+// }
+// </style>

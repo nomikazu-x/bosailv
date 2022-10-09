@@ -15,8 +15,7 @@
             </span>
           </v-card-title>
           <v-card-text v-if="infomation">
-            <!-- eslint-disable-next-line vue/no-v-html -->
-            <div v-if="infomation.body" class="mx-2 my-2" v-html="infomation.body" />
+            <ReadOnlyEditor v-if="infomation.body" class="mx-2 my-2" :content="infomation.body" />
             <div v-else-if="infomation.summary" class="mx-2 my-2">
               {{ infomation.summary }}
             </div>
@@ -38,6 +37,7 @@
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import InfomationLabel from '~/components/atoms/label/InfomationLabel.vue'
+import ReadOnlyEditor from '~/components/organisms/editor/ReadOnlyEditor.vue'
 import DeleteConfirmDialog from '~/components/organisms/dialogs/DeleteConfirmDialog.vue'
 
 export default {
@@ -46,6 +46,7 @@ export default {
   components: {
     BaseTitleCard,
     InfomationLabel,
+    ReadOnlyEditor,
     DeleteConfirmDialog
   },
 

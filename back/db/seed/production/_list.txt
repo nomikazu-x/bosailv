@@ -1,2 +1,4 @@
 users
 stocks
+articles
+point_records
