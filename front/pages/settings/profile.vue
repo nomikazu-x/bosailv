@@ -8,6 +8,7 @@
     <template #top>
       <TheLoading v-if="loading" />
       <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
+      <AddressSettingInfo v-if="!loading" />
     </template>
 
     <template v-if="!loading" #left>
@@ -23,6 +24,7 @@
 <script>
 import Application from '~/plugins/application.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
+import AddressSettingInfo from '~/components/molecules/alert/AddressSettingInfo.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import SettingsMenusCard from '~/components/organisms/cards/settings/SettingsMenusCard.vue'
@@ -33,6 +35,7 @@ export default {
 
   components: {
     TwoColumnContainer,
+    AddressSettingInfo,
     TheLoading,
     TheMessage,
     SettingsMenusCard,
