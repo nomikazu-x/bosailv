@@ -10,6 +10,7 @@
       color="#117768"
       :label="label"
       @click="onClick"
+      @change="onChange"
     />
   </ValidationProvider>
 </template>
@@ -64,6 +65,10 @@ export default {
   methods: {
     onClick () {
       return this.$emit('click')
+    },
+
+    onChange () {
+      return this.$emit('change')
     }
   }
 }

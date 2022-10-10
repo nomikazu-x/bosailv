@@ -1,7 +1,7 @@
 <template>
   <BaseTitleCard v-if="user != null" title="プロフィール変更">
     <v-row>
-      <v-col cols="auto">
+      <v-col cols="12">
         <UserImageFileInput />
       </v-col>
       <v-col cols="12">

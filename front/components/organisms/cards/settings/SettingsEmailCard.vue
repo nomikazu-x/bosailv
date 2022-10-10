@@ -1,7 +1,7 @@
 <template>
   <BaseTitleCard v-if="user != null" title="メールアドレス変更">
     <v-row>
-      <v-col cols="auto">
+      <v-col cols="12">
         <UserEmailForm
           :user="user"
           :processing="processing"

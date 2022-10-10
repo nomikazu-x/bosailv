@@ -13,6 +13,7 @@
           item-text="name"
           item-value="value"
           @click="onClick"
+          @change="onChange"
         />
       </ValidationProvider>
     </v-col>
@@ -67,6 +68,9 @@ export default {
   methods: {
     onClick () {
       return this.$emit('click')
+    },
+    onChange () {
+      return this.$emit('change')
     }
   }
 }
