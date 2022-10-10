@@ -3,9 +3,7 @@
     <v-col cols="12">
       <BaseTitleCard title="通知一覧">
         <TheProcessing v-if="processing" />
-        <article v-if="infomations != null && infomations.length === 0">
-          <span class="ml-1">お知らせはありません。</span>
-        </article>
+        <v-card-title v-if="infomations != null && infomations.length === 0" class="ml-1">お知らせはありません。</v-card-title>
         <InfomationListItem
           v-for="infomation in infomations"
           :key="infomation.id"
@@ -14,8 +12,8 @@
 
         <ThePagination
           class="mt-5"
-          :info="info"
-          @pagination="onPagination"
+          :info="infomationInfo"
+          @pagination="onInfomationPagination"
         />
       </BaseTitleCard>
     </v-col>
@@ -42,40 +40,40 @@ export default {
   data () {
     return {
       page: 1,
-      info: null,
+      infomationInfo: null,
       infomations: null
     }
   },
 
   async created () {
-    await this.onPagination(this.page)
+    await this.onInfomationPagination(this.page)
     this.processing = false
   },
 
   methods: {
-    async onPagination (page) {
+    async onInfomationPagination (page) {
       this.processing = true
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.infomationsUrl, { params: { page } })
         .then((response) => {
           if (response.data == null || response.data.infomation == null) {
             this.$toasted.error(this.$t('system.error'))
-            if (this.info == null) {
+            if (this.infomationInfo == null) {
               return this.$router.push({ path: '/home' })
             }
-            this.page = this.info.current_page
+            this.page = this.infomationInfo.current_page
           } else {
-            this.info = response.data.infomation
+            this.infomationInfo = response.data.infomation
             this.infomations = response.data.infomations
             if (this.$auth.loggedIn && this.$auth.user.infomation_unread_count !== 0 && this.page === 1) { this.$auth.fetchUser() } // Tips: お知らせ未読数をリセット
           }
         },
         (error) => {
           this.$toasted.error(this.$t(error.response == null ? 'network.failure' : 'network.error'))
-          if (this.info == null) {
+          if (this.infomationInfo == null) {
             return this.$router.push({ path: '/home' })
           }
-          this.page = this.info.current_page
+          this.page = this.infomationInfo.current_page
         })
 
       this.processing = false
