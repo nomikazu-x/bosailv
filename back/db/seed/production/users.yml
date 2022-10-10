@@ -41,7 +41,7 @@
   point_to_next: 11
 - id: 5
   username: '000000000000005'
-  name: 'ryouta'
+  name: 'riho'
   email: 'user5@example.com'
   uid: 'user5@example.com'
   password: 'changepassword'
