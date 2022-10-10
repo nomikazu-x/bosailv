@@ -137,7 +137,8 @@ export default {
       login: commonConfig.authRedirectSignInURL, // ログインURL
       logout: commonConfig.authRedirectLogOutURL, // ログアウト後の遷移先
       callback: false,
-      home: commonConfig.authRedirectHomeURL // ログイン後の遷移先URL
+      home: false
+      // home: commonConfig.authRedirectHomeURL // ログイン後の遷移先URL
     },
     strategies: {
       local: {

@@ -31,7 +31,10 @@ json.user do
   json.profile user.profile if user.profile.present?
   json.destroy_schedule_at user.destroy_schedule_at
   json.infomation_unread_count user.infomation_unread_count
+  json.is_first_time_login user.sign_in_count == 1
+
   json.required_point RequiredPoint.find_by(level: user.level).point
+
   json.is_completed_sns_tasks user.prepare_task_profile.sns_tasks.raw == Settings['maximum_sns_task']
   json.is_completed_house_tasks user.prepare_task_profile.house_tasks.raw == Settings['maximum_house_task']
   json.is_completed_family_rules_tasks user.is_completed_family_rule_tasks?(user)

@@ -147,7 +147,6 @@ describe('UserProfileForm.vue', () => {
         await helper.sleep(10)
         if (!button.vm.disabled) { break }
       }
-      console.log(wrapper.vm.$data.waiting)
       expect(button.vm.disabled).toBe(false) // 有効
     })
   })

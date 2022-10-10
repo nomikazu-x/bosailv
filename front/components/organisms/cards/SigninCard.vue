@@ -48,6 +48,12 @@ export default {
     }
   },
 
+  computed: {
+    authRedirectPath () {
+      return this.$auth.user.is_first_time_login ? { path: '/settings/profile' } : { path: '/home' }
+    }
+  },
+
   created () {
     this.processing = false
   },
@@ -68,6 +74,7 @@ export default {
           } else {
             this.$toasted.error(response.data.alert)
             this.$toasted.success(response.data.notice)
+            this.$router.push(this.authRedirectPath)
           }
         },
         (error) => {

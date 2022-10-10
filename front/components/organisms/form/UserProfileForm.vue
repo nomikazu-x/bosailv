@@ -7,7 +7,6 @@
           v-model="name"
           name="name"
           label="氏名"
-          @change="waiting = false"
         />
         <PrefecturesSelect
           v-model="selectPrefecture"
@@ -23,7 +22,6 @@
           v-model="profile"
           name="profile"
           label="プロフィール"
-          @change="waiting = false"
         />
         <OrangeBtn
           id="user_update_btn"
@@ -89,7 +87,7 @@ export default {
       await this.onGetCities(this.selectPrefecture)
       this.selectCity = this.user.city.id
     }
-    this.waiting = true
+    this.waiting = false
   },
 
   methods: {
