@@ -36,6 +36,7 @@ module.exports = {
   authSignInURL: '/api/v1/auth/sign_in.json',
   authRedirectSignInURL: '/signin',
   authRedirectHomeURL: '/home',
+  authFirstTimeRedirectURL: '/settings/profile',
   // ログアウトAPI
   authSignOutURL: '/api/v1/auth/sign_out.json',
   authRedirectLogOutURL: '/signin',
@@ -60,6 +61,8 @@ module.exports = {
   usersUrl: '/api/v1/users.json',
   // 登録情報詳細API
   userShowUrl: '/api/v1/users/_username.json',
+  // マイ記事一覧API
+  userArticlesUrl: '/api/v1/users/_username/articles.json',
   // ジャンル別記事一覧API
   userGenreArticlesUrl: '/api/v1/users/_username/genres/_id.json',
   // 避難所一覧API

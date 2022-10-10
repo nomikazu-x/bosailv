@@ -27,6 +27,12 @@ export default {
 
   mixins: [Application],
 
+  computed: {
+    authRedirectPath () {
+      return (this.$auth.user.prefecture == null && this.$auth.user.city == null) ? { path: '/settings/profile' } : { path: '/home' }
+    }
+  },
+
   created () {
     this.processing = false
   },
@@ -40,16 +46,33 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
-            console.log(response)
             this.$auth.loginWith('local', {
               data: {
                 email: response.data.email,
                 password: response.data.password
               }
             })
+              .then((response) => {
+                if (response.data == null) {
+                  this.$toasted.error(this.$t('system.error'))
+                } else {
+                  this.$toasted.error(response.data.alert)
+                  this.$toasted.success(response.data.notice)
+                  this.$router.push(this.authRedirectPath)
+                }
+              },
+              (error) => {
+                if (error.response == null) {
+                  this.$toasted.error(this.$t('network.failure'))
+                } else if (error.response.data == null) {
+                  this.$toasted.error(this.$t('network.error'))
+                } else {
+                  this.$emit('alert', error.response.data.alert)
+                  this.$emit('notice', error.response.data.notice)
+                }
+              })
             this.$toasted.error(response.data.alert)
             this.$toasted.success(response.data.notice)
-            this.$router.push({ path: '/home' })
           }
         },
         (error) => {

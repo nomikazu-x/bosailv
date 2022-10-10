@@ -2,13 +2,19 @@
   <div>
     <BaseTitleCard v-if="user != null" :title="cardTitle" />
     <div>
-      <v-row>
-        <v-col v-if="canAction" cols="12" class="text-right">
-          <OrangeBtn class="my-3 mr-4" to="/articles/new">記事を作成する</OrangeBtn>
-        </v-col>
-      </v-row>
-
-      <GenreImageListCard />
+      <div v-if="canAction" cols="12" class="text-right">
+        <OrangeBtn class="mt-2 mr-4" to="/articles/new">記事を作成する</OrangeBtn>
+      </div>
+      <GenreImageListCard class="mt-2" />
+      <GreenBtn
+        large
+        class="mt-6 mb-2"
+        outlined
+        block
+        :to="`/users/${$route.params.username}/articles`"
+      >
+        すべてのマイ記事を見る
+      </GreenBtn>
     </div>
   </div>
 </template>
@@ -18,6 +24,7 @@ import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import GenreImageListCard from '~/components/organisms/cards/genre/GenreImageListCard.vue'
 import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
+import GreenBtn from '~/components/atoms/btns/GreenBtn.vue'
 
 export default {
   name: 'UserShowCardWithGenre',
@@ -25,7 +32,8 @@ export default {
   components: {
     BaseTitleCard,
     GenreImageListCard,
-    OrangeBtn
+    OrangeBtn,
+    GreenBtn
   },
 
   mixins: [Application],

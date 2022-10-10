@@ -7,7 +7,6 @@
           v-model="name"
           name="name"
           label="氏名"
-          @click="waiting = false"
         />
         <PrefecturesSelect
           v-model="selectPrefecture"
@@ -23,7 +22,6 @@
           v-model="profile"
           name="profile"
           label="プロフィール"
-          @click="waiting = false"
         />
         <OrangeBtn
           id="user_update_btn"

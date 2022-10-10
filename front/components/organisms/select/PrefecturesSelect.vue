@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <v-col>
-      <ValidationProvider v-slot="{ errors }" name="prefecture" rules="required">
+      <ValidationProvider v-slot="{ errors }" name="prefecture" :rules="rules">
         <v-select
           v-model="valueModel"
           label="都道府県"
@@ -37,6 +37,10 @@ export default {
     value: {
       type: [Object, Number],
       default: undefined
+    },
+    rules: {
+      type: [String, Object],
+      default: ''
     }
   },
 

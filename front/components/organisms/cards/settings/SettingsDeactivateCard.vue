@@ -1,7 +1,46 @@
 <template>
   <BaseTitleCard title="アカウント削除" max-width="640px">
     <TheProcessing v-if="processing" />
-    <DeleteConfirmDialog title="アカウント削除" @click="onUserDeactivate" />
+    <v-card-title>退会前にご確認ください。</v-card-title>
+    <v-card-text>
+      メールアドレスや、プロフィールを変更したい場合は、下記のメニューから変更できます。退会の手続きは必要ありません。引き続きBosaiLvをお楽しみください。
+      <v-list>
+        <v-list-item to="/settings/profile">
+          <v-list-item-icon>
+            <v-icon>mdi-account-edit</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>プロフィール編集</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item to="/settings/password">
+          <v-list-item-icon>
+            <v-icon>mdi-lock</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>パスワード変更</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item to="/settings/email">
+          <v-list-item-icon>
+            <v-icon>mdi-email</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>メールアドレス変更</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-card-text>
+
+    <v-card-text class="red--text">
+      ※BosaiLvを退会すると、これまでに登録したデータなどが失われ、元に戻すことはできません。
+    </v-card-text>
+
+    <div class="text-center">
+      <DeleteConfirmDialog title="アカウント削除" name="退会する" @click="onUserDeactivate" />
+    </div>
   </BaseTitleCard>
 </template>
 

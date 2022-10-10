@@ -1,34 +1,38 @@
 <template>
   <v-row justify="center">
     <v-col cols="12">
-      <BaseTitleCard id="hazard_map_search" title="ハザードマップ検索">
-        <v-row class="pa-5">
-          <v-col cols="12">
-            <PrefecturesSelect
-              v-model="selectPrefecture"
-              class="mt-5"
-              @change="onGetCities"
-            />
-          </v-col>
-          <v-col v-if="cities.length > 0" cols="12">
-            <CitiesSelect
-              v-model="selectCity"
-              :cities="cities"
-              @change="waiting = false"
-            />
-          </v-col>
-          <v-col cols="12">
-            <div class="text-center">
-              <OrangeBtn :disabled="waiting" @click="onSearchHazardMap(selectCity)">検索</OrangeBtn>
-            </div>
-          </v-col>
-          <v-col v-if="$auth.loggedIn && $auth.user.city" cols="12">
-            <div class="text-center">
-              <OrangeBtn @click="onSearchHazardMap($auth.user.city.id)">自分の出身市町村で検索する</OrangeBtn>
-            </div>
-          </v-col>
-        </v-row>
-      </BaseTitleCard>
+      <ValidationObserver v-slot="{ invalid }" ref="observer">
+        <BaseTitleCard id="hazard_map_search" title="ハザードマップ検索">
+          <v-row class="pa-5">
+            <v-col cols="12">
+              <PrefecturesSelect
+                v-model="selectPrefecture"
+                class="mt-5"
+                rules="required"
+                @change="onGetCities"
+              />
+            </v-col>
+            <v-col cols="12">
+              <CitiesSelect
+                v-model="selectCity"
+                :cities="cities"
+                rules="required"
+                @change="waiting = false"
+              />
+            </v-col>
+            <v-col cols="12">
+              <div class="text-center">
+                <OrangeBtn :disabled="invalid || waiting" @click="onSearchHazardMap(selectCity)">検索</OrangeBtn>
+              </div>
+            </v-col>
+            <v-col v-if="$auth.loggedIn && $auth.user.city" cols="12">
+              <div class="text-center">
+                <OrangeBtn @click="onSearchHazardMap($auth.user.city.id)">自分の出身市町村で検索する</OrangeBtn>
+              </div>
+            </v-col>
+          </v-row>
+        </BaseTitleCard>
+      </ValidationObserver>
 
       <HazardMapSearchCardText v-if="hazardMap !== null" :hazard-map="hazardMap" :select-city="selectCity" />
     </v-col>
@@ -36,6 +40,7 @@
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate'
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
@@ -47,6 +52,7 @@ export default {
   name: 'HazardMapSearchCard',
 
   components: {
+    ValidationObserver,
     BaseTitleCard,
     PrefecturesSelect,
     CitiesSelect,

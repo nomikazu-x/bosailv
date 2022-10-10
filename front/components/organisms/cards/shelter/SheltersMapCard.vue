@@ -1,57 +1,63 @@
 <template>
-  <v-row justify="center">
-    <v-col cols="12">
-      <BaseTitleCard id="shelter_map_search" title="避難所検索">
-        <v-row class="pa-5">
-          <v-col cols="12">
-            <DisasterTypeSelect
-              v-model="selectDisasterType"
-              class="mt-2"
-            />
-          </v-col>
-          <v-col cols="12">
-            <PrefecturesSelect
-              v-model="selectPrefecture"
-              @change="onGetCities"
-            />
-          </v-col>
-          <v-col v-if="cities.length > 0" cols="12">
-            <CitiesSelect
-              v-model="selectCity"
-              :cities="cities"
-              @change="waiting = false"
-            />
-          </v-col>
-          <v-col cols="12">
-            <div class="text-center">
-              <OrangeBtn :disabled="waiting" @click="onSearchShelters(page, selectCity)">検索</OrangeBtn>
-            </div>
-          </v-col>
-          <v-col v-if="$auth.loggedIn && $auth.user.city" cols="12">
-            <div class="text-center">
-              <OrangeBtn @click="onSearchShelters(page, $auth.user.city.id)">自分の出身市町村で検索する</OrangeBtn>
-            </div>
-          </v-col>
-        </v-row>
-      </BaseTitleCard>
+  <ValidationObserver v-slot="{ invalid }" ref="observer">
+    <v-row justify="center">
+      <v-col cols="12">
+        <BaseTitleCard id="shelter_map_search" title="避難所検索">
+          <v-row class="pa-5">
+            <v-col cols="12">
+              <DisasterTypeSelect
+                v-model="selectDisasterType"
+                class="mt-2"
+                @change="waiting = false"
+              />
+            </v-col>
+            <v-col cols="12">
+              <PrefecturesSelect
+                v-model="selectPrefecture"
+                rules="required"
+                @change="onGetCities"
+              />
+            </v-col>
+            <v-col cols="12">
+              <CitiesSelect
+                v-model="selectCity"
+                rules="required"
+                :cities="cities"
+                @change="waiting = false"
+              />
+            </v-col>
+            <v-col cols="12">
+              <div class="text-center">
+                <OrangeBtn :disabled="invalid || waiting" @click="onSearchShelters(page, selectCity)">検索</OrangeBtn>
+              </div>
+            </v-col>
+            <v-col v-if="$auth.loggedIn && $auth.user.city" cols="12">
+              <div class="text-center">
+                <OrangeBtn @click="onSearchShelters(page, $auth.user.city.id)">自分の出身市町村で検索する</OrangeBtn>
+              </div>
+            </v-col>
+          </v-row>
+        </BaseTitleCard>
 
-      <SheltersMap
-        v-if="shelters !== null"
-        :shelters="shelters"
-      />
+        <SheltersMap
+          v-if="shelters !== null"
+          :shelters="shelters"
+        />
 
-      <SheltersListCard
-        v-if="shelters !== null"
-        :shelters="shelters"
-        :info="info"
-        :processing="processing"
-        @pagination="onSheltersPagination"
-      />
-    </v-col>
-  </v-row>
+        <SheltersListCard
+          v-if="shelters !== null"
+          :shelters="shelters"
+          :info="info"
+          :processing="processing"
+          @pagination="onSheltersPagination"
+        />
+      </v-col>
+    </v-row>
+  </ValidationObserver>
 </template>
 
 <script>
+import { ValidationObserver } from 'vee-validate'
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import PrefecturesSelect from '~/components/organisms/select/PrefecturesSelect.vue'
@@ -65,6 +71,7 @@ export default {
   name: 'SheltersMapCard',
 
   components: {
+    ValidationObserver,
     BaseTitleCard,
     PrefecturesSelect,
     CitiesSelect,

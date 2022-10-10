@@ -25,7 +25,7 @@
       </v-card-title>
 
       <div class="text-right">
-        <FavoriteBtnGroup v-if="!canAction && $auth.loggedIn" class="mr-3 mt-2" :article="article" :likers="likers" />
+        <FavoriteBtnGroup v-if="$auth.loggedIn" class="mr-3 mt-2" :article="article" :likers="likers" :disabled="canAction" />
         <v-menu v-if="canAction || ($auth.loggedIn && $auth.user.admin === true)" bottom right>
           <template #activator="{ on, attrs }">
             <v-btn
@@ -117,7 +117,7 @@ export default {
       return this.$config.frontBaseURL + '/articles/' + this.article.id // Tips: window.location.hrefではeditで支障をきたすため
     },
     hashtag () {
-      return '防災,BosaiLevel'
+      return '防災,BosaiLv'
     }
   },
   created () {

@@ -54,7 +54,7 @@ export default {
       return this.$config.frontBaseURL + '/articles/' + this.article.id // Tips: window.location.hrefではeditで支障をきたすため
     },
     hashtag () {
-      return '防災,BosaiLevel'
+      return '防災,BosaiLv'
     }
   },
   methods: {

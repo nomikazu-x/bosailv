@@ -2,7 +2,7 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
 
   # GET /api/v1/infomations(.json) お知らせ一覧API
   def index
-    if current_user.is_admin?
+    if current_user.present? && current_user.is_admin?
       @infomations = Infomation.where(action: [nil, '']).page(params[:page]).per(Settings['default_infomations_limit'])
     else
       @infomations = Infomation.by_target(current_user).page(params[:page]).per(Settings['default_infomations_limit'])
@@ -29,7 +29,7 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
 
   # お知らせ確認情報更新
   def update_infomation_check
-    return if current_user.blank? || @infomations.blank? || @infomations.current_page != 1
+    return if  current_user.blank? || @infomations.blank? || @infomations.current_page != 1
 
     current_user.infomation_check_last_started_at = @infomations.first.started_at
     current_user.save!

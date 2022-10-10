@@ -136,7 +136,7 @@ describe('UserProfileForm.vue', () => {
 
       // 再入力
       wrapper.vm.$data.name = 'user_name2'
-      wrapper.vm.$data.profile = 'user_profile'
+      wrapper.vm.$data.profile = 'user_profile2'
       wrapper.vm.$data.selectPrefecture = 2
       wrapper.vm.$data.selectCity = 2
 

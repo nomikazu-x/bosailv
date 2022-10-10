@@ -3,32 +3,51 @@
     <InfomationLabel v-if="infomation != null && infomation.label !== 'Not'" :infomation="infomation" class="ml-1" />
     <div v-if="infomation.article_id_present === true">
       <BaseListItem dense :to="{ name: 'articles-id___ja', params: { id: infomation.article_id }}">
-        <v-icon class="mr-4">mdi-account-heart</v-icon>
-        <v-list-item-title>{{ infomation.title }}</v-list-item-title>
-        <span>
-          ({{ $dateFormat(infomation.started_at, 'ja') }})
-        </span>
+        <v-list-item-icon>
+          <v-icon>mdi-bell</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title class="wrap-text">
+            {{ infomation.title }}
+          </v-list-item-title>
+          <v-list-item-subtitle class="text-right">
+            <v-icon small>mdi-calendar-range</v-icon>
+            {{ $dateFormat(infomation.started_at, 'ja') }}
+          </v-list-item-subtitle>
+        </v-list-item-content>
       </BaseListItem>
     </div>
     <div v-else>
       <div v-if="infomation.body_present === true">
         <BaseListItem dense :to="{ name: 'infomations-id___ja', params: { id: infomation.id }}">
-          <v-icon class="mr-4">mdi-bell</v-icon>
-          <v-list-item-title>{{ infomation.title }}</v-list-item-title>
-          <span>
-            ({{ $dateFormat(infomation.started_at, 'ja') }})
-          </span>
+          <v-list-item-icon>
+            <v-icon>mdi-bell</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title class="wrap-text">
+              {{ infomation.title }}
+            </v-list-item-title>
+            <v-list-item-subtitle class="text-right">
+              <v-icon small>mdi-calendar-range</v-icon>
+              {{ $dateFormat(infomation.started_at, 'ja') }}
+            </v-list-item-subtitle>
+          </v-list-item-content>
         </BaseListItem>
       </div>
       <div v-else>
         <v-list-item dense>
-          <v-icon class="mr-4">mdi-bell</v-icon>
-          <v-list-item-title>
-            {{ infomation.title }}
-          </v-list-item-title>
-          <span>
-            ({{ $dateFormat(infomation.started_at, 'ja') }})
-          </span>
+          <v-list-item-icon>
+            <v-icon>mdi-bell</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title class="wrap-text">
+              {{ infomation.title }}
+            </v-list-item-title>
+            <v-list-item-subtitle class="text-right">
+              <v-icon small>mdi-calendar-range</v-icon>
+              {{ $dateFormat(infomation.started_at, 'ja') }}
+            </v-list-item-subtitle>
+          </v-list-item-content>
         </v-list-item>
       </div>
     </div>
@@ -56,3 +75,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.wrap-text {
+  word-break: break-all;
+  white-space: normal;
+}
+</style>
