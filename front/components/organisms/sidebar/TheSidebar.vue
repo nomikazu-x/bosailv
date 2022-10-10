@@ -134,9 +134,7 @@
             <v-badge v-if="$auth.loggedIn" :content="$auth.user.infomation_unread_count" :value="$auth.user.infomation_unread_count" color="red" overlap>
               <v-icon>mdi-bell</v-icon>
             </v-badge>
-            <v-badge v-else>
-              <v-icon>mdi-bell</v-icon>
-            </v-badge>
+            <v-icon v-else>mdi-bell</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>お知らせ</v-list-item-title>
