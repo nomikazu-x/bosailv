@@ -1,7 +1,5 @@
 <template>
   <OneColumnContainer>
-    <h1 class="main-heading mb-8 text-center">BosaiLevel</h1>
-
     <TheLoading v-if="loading" />
     <TheMessage v-if="!loading" :alert="alert" :notice="notice" />
 
