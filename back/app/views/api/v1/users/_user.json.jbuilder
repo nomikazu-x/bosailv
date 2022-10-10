@@ -31,7 +31,6 @@ json.user do
   json.profile user.profile if user.profile.present?
   json.destroy_schedule_at user.destroy_schedule_at
   json.infomation_unread_count user.infomation_unread_count
-  json.is_first_time_login user.sign_in_count == 1
 
   json.required_point RequiredPoint.find_by(level: user.level).point
 

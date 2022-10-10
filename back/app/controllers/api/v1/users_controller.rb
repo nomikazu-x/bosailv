@@ -37,6 +37,24 @@ class Api::V1::UsersController < Api::V1::ApplicationController
     end
   end
 
+  # GET /api/v1/users/:username/article(.json) ユーザー記事一覧取得API
+  def articles
+    @user = User.find_by(username: params[:username])
+    if params[:favorite]
+      # お気に入りした記事一覧を取得
+      @articles = @user.favorited_articles.preload(:genres).page(params[:page]).per(Settings['default_articles_limit'])
+    else
+      # 投稿した記事一覧を取得
+      @articles = @user.articles.preload(:genres).page(params[:page]).per(Settings['default_articles_limit'])
+    end
+
+    if @user
+      render './api/v1/users/articles'
+    else
+      head :not_found
+    end
+  end
+
   # GET /api/v1/users/:username/shelters(.json) ユーザー避難所一覧取得API
   def shelters
     @user = User.find_by(username: params[:username])

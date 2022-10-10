@@ -15,7 +15,7 @@
           <v-icon>mdi-pencil-box-multiple</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>マイ記事ジャンル一覧</v-list-item-title>
+          <v-list-item-title>マイ記事一覧</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -24,7 +24,7 @@
           <v-icon>mdi-exit-run</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>マイ避難所</v-list-item-title>
+          <v-list-item-title>マイ避難所一覧</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 

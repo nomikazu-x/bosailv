@@ -29,7 +29,7 @@ export default {
 
   computed: {
     authRedirectPath () {
-      return this.$auth.user.is_first_time_login ? { path: '/settings/profile' } : { path: '/home' }
+      return (this.$auth.user.prefecture == null && this.$auth.user.city == null) ? { path: '/settings/profile' } : { path: '/home' }
     }
   },
 
