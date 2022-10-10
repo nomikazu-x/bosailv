@@ -1,7 +1,7 @@
 <template>
   <v-card outlined tile>
     <TheProcessing v-if="processing" />
-    <v-img :src="article.thumbnail_url.xlarge" max-height="256" />
+    <v-img :src="article.thumbnail_url.xxlarge" max-height="256" />
     <v-col>
       <v-card-subtitle>
         <span>

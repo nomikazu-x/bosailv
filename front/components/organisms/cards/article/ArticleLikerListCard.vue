@@ -6,6 +6,7 @@
       :liker="liker"
       :index="i"
     />
+    <v-card-title v-if="likers != null && likers.length === 0" class="ml-1">ユーザーはいません。</v-card-title>
   </BaseTitleCard>
 </template>
 
