@@ -4,7 +4,7 @@
     <v-btn v-if="isFavorited" x-large outlined icon color="red" @click="onUnFavorite($auth.user.id)">
       <v-icon size="30" color="red">mdi-heart</v-icon>
     </v-btn>
-    <v-btn v-else x-large outlined icon @click="onFavorite">
+    <v-btn v-else x-large outlined icon :disabled="disabled" @click="onFavorite">
       <v-icon size="30" color="red">mdi-heart-outline</v-icon>
     </v-btn>
     <span><NuxtLink :to="`/articles/${$route.params.id}/likers`" class="text-decoration-none">{{ likers.length }}</NuxtLink></span>
@@ -25,6 +25,10 @@ export default {
     likers: {
       type: Array,
       default: () => []
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
 

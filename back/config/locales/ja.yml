@@ -66,8 +66,8 @@ ja:
         Senior: '高齢者(65歳以上)'
   infomation:
     action:
-      article_favorite: '%{action_user_name}さんがあなたの記事%{article_title}をいいねしました。'
-      article_comment: '%{action_user_name}さんがあなたの記事%{article_title}にコメントしました。'
+      article_favorite: '%{action_user_name}さんがあなたの記事「%{article_title}」をいいねしました。'
+      article_comment: '%{action_user_name}さんがあなたの記事「%{article_title}」にコメントしました。'
     action_user:
       blank:
         name: '[削除済み]'
