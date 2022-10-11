@@ -1,22 +1,19 @@
 <template>
   <BaseTitleCard v-if="infomations != null && infomations.length > 0" title="大切なお知らせ">
-    <v-card>
-      <v-card-text>
-        <article v-for="infomation in infomations" :key="infomation.id" class="mb-1">
-          <span class="ml-1">
-            <InfomationLabel :infomation="infomation" />
-            <template v-if="infomation.body_present === true || infomation.summary !== null">
-              <NuxtLink :to="{ name: 'infomations-id___ja', params: { id: infomation.id }}" class="text-decoration-none">{{ infomation.title }}</NuxtLink>
-            </template>
-            <template v-else>
-              {{ infomation.title }}
-            </template>
-          </span>
-          <span class="ml-1">
-            ({{ $dateFormat(infomation.started_at, 'ja') }})
-          </span>
-        </article>
+    <v-card v-for="infomation in infomations" :key="infomation.id" tile outlined>
+      <InfomationLabel :infomation="infomation" class="mt-3 ml-3" />
+      <v-card-text class="ml-1">
+        <template v-if="infomation.body_present === true || infomation.summary !== null">
+          <NuxtLink :to="{ name: 'infomations-id___ja', params: { id: infomation.id }}" class="text-decoration-none">{{ infomation.title }}</NuxtLink>
+        </template>
+        <template v-else>
+          {{ infomation.title }}
+        </template>
       </v-card-text>
+      <div class="text-caption grey--text text-right mr-2">
+        <v-icon small>mdi-calendar-range</v-icon>
+        {{ $dateFormat(infomation.started_at, 'ja') }}
+      </div>
     </v-card>
   </BaseTitleCard>
 </template>
