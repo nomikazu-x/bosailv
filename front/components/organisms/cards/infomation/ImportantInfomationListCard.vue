@@ -1,28 +1,25 @@
 <template>
   <BaseTitleCard v-if="infomations != null && infomations.length > 0" title="大切なお知らせ">
-    <v-card>
-      <v-card-text>
-        <article v-for="infomation in infomations" :key="infomation.id" class="mb-1">
-          <span class="ml-1">
-            <InfomationLabel :infomation="infomation" />
-            <template v-if="infomation.body_present === true || infomation.summary !== null">
-              <NuxtLink :to="{ name: 'infomations-id___ja', params: { id: infomation.id }}" class="text-decoration-none">{{ infomation.title }}</NuxtLink>
-            </template>
-            <template v-else>
-              {{ infomation.title }}
-            </template>
-          </span>
-          <span class="ml-1">
-            ({{ $dateFormat(infomation.started_at, 'ja') }})
-          </span>
-        </article>
+    <BaseCard v-for="infomation in infomations" :key="infomation.id" :to="{ name: 'infomations-id___ja', params: { id: infomation.id }}">
+      <InfomationLabel :infomation="infomation" class="mt-3 ml-3" />
+      <template v-if="infomation.body_present === true || infomation.summary !== null">
+        <v-card-subtitle class="black--text font-weight-bold">{{ infomation.title }}</v-card-subtitle>
+      </template>
+      <v-card-subtitle v-else class="black--text font-weight-bold">
+        {{ infomation.title }}
+      </v-card-subtitle>
+      <v-card-text class="mt-2 text-right">
+        <v-icon small>mdi-calendar-range</v-icon>
+        {{ $dateFormat(infomation.started_at, 'ja') }}
       </v-card-text>
-    </v-card>
+      <v-divider />
+    </BaseCard>
   </BaseTitleCard>
 </template>
 
 <script>
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import BaseCard from '~/components/molecules/cards/BaseCard.vue'
 import InfomationLabel from '~/components/atoms/label/InfomationLabel.vue'
 
 export default {
@@ -30,6 +27,7 @@ export default {
 
   components: {
     BaseTitleCard,
+    BaseCard,
     InfomationLabel
   },
 

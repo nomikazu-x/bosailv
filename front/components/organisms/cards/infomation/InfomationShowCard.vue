@@ -9,24 +9,26 @@
             <span class="ml-1 font-weight-bold">
               {{ infomation.title }}
             </span>
-            <span class="ml-1">
+          </v-card-title>
+          <div class="text-right">
+            <span class="mr-5">
               <v-icon>mdi-calendar-range</v-icon>
               {{ $dateFormat(infomation.started_at, 'ja') }}
             </span>
-          </v-card-title>
+          </div>
           <v-card-text v-if="infomation">
             <ReadOnlyEditor v-if="infomation.body" class="mx-2 my-2" :content="infomation.body" />
             <div v-else-if="infomation.summary" class="mx-2 my-2">
               {{ infomation.summary }}
             </div>
-            <div v-if="$auth.user.admin === true" class="text-right">
+            <div v-if="$auth.loggedIn && $auth.user.admin === true" class="text-right">
               <DeleteConfirmDialog title="おしらせ削除" @click="onInfomationDelete" />
             </div>
           </v-card-text>
           <v-divider />
-          <v-card-actions>
+          <div class="text-right mt-3">
             <NuxtLink to="/infomations" class="ml-2 text-decoration-none">一覧へ</NuxtLink>
-          </v-card-actions>
+          </div>
         </div>
       </BaseTitleCard>
     </v-col>
