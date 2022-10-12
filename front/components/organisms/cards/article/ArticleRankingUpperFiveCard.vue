@@ -28,7 +28,10 @@
             <v-img :src="article.thumbnail_url.large" max-height="128" max-width="192" class="ml-2 rounded-lg" />
           </v-col>
           <v-col cols="8" sm="8">
-            <v-card-title>
+            <v-card-subtitle v-if="$vuetify.breakpoint.smAndUp" class="font-weight-bold">
+              {{ article.title }}
+            </v-card-subtitle>
+            <v-card-title v-else>
               {{ article.title }}
             </v-card-title>
             <v-card-text class="mt-2 text-right d-sm-none">

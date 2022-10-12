@@ -21,7 +21,7 @@
             <div v-else-if="infomation.summary" class="mx-2 my-2">
               {{ infomation.summary }}
             </div>
-            <div v-if="$auth.user.admin === true" class="text-right">
+            <div v-if="$auth.loggedIn && $auth.user.admin === true" class="text-right">
               <DeleteConfirmDialog title="おしらせ削除" @click="onInfomationDelete" />
             </div>
           </v-card-text>

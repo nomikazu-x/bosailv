@@ -1,25 +1,25 @@
 <template>
   <BaseTitleCard v-if="infomations != null && infomations.length > 0" title="大切なお知らせ">
-    <v-card v-for="infomation in infomations" :key="infomation.id" tile outlined>
+    <BaseCard v-for="infomation in infomations" :key="infomation.id" :to="{ name: 'infomations-id___ja', params: { id: infomation.id }}">
       <InfomationLabel :infomation="infomation" class="mt-3 ml-3" />
-      <v-card-text class="ml-1">
-        <template v-if="infomation.body_present === true || infomation.summary !== null">
-          <NuxtLink :to="{ name: 'infomations-id___ja', params: { id: infomation.id }}" class="text-decoration-none">{{ infomation.title }}</NuxtLink>
-        </template>
-        <template v-else>
-          {{ infomation.title }}
-        </template>
-      </v-card-text>
-      <div class="text-caption grey--text text-right mr-2">
+      <template v-if="infomation.body_present === true || infomation.summary !== null">
+        <v-card-subtitle class="black--text font-weight-bold">{{ infomation.title }}</v-card-subtitle>
+      </template>
+      <v-card-subtitle v-else class="black--text font-weight-bold">
+        {{ infomation.title }}
+      </v-card-subtitle>
+      <v-card-text class="mt-2 text-right">
         <v-icon small>mdi-calendar-range</v-icon>
         {{ $dateFormat(infomation.started_at, 'ja') }}
-      </div>
-    </v-card>
+      </v-card-text>
+      <v-divider />
+    </BaseCard>
   </BaseTitleCard>
 </template>
 
 <script>
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
+import BaseCard from '~/components/molecules/cards/BaseCard.vue'
 import InfomationLabel from '~/components/atoms/label/InfomationLabel.vue'
 
 export default {
@@ -27,6 +27,7 @@ export default {
 
   components: {
     BaseTitleCard,
+    BaseCard,
     InfomationLabel
   },
 

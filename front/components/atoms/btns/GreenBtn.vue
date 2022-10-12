@@ -10,7 +10,7 @@
     :outlined="outlined"
     :to="to"
     :href="href"
-    depressed
+    :depressed="depressed"
     @click="onClick"
   >
     <slot />
@@ -52,6 +52,10 @@ export default {
     href: {
       type: String,
       default: undefined
+    },
+    depressed: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {

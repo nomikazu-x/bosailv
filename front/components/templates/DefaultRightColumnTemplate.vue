@@ -4,7 +4,7 @@
       <AuthUserIntroCard />
     </div>
     <div v-else class="mb-4">
-      <SignUp />
+      <SignupSuggestCard />
     </div>
     <div class="mb-4">
       <ImportantInfomationListCard />
@@ -20,7 +20,7 @@
 
 <script>
 import AuthUserIntroCard from '~/components/organisms/cards/user/AuthUserIntroCard.vue'
-import SignUp from '~/components/organisms/cards/SignUp.vue'
+import SignupSuggestCard from '~/components/organisms/cards/SignupSuggestCard.vue'
 import ImportantInfomationListCard from '~/components/organisms/cards/infomation/ImportantInfomationListCard.vue'
 import ArticleRankingUpperFiveCard from '~/components/organisms/cards/article/ArticleRankingUpperFiveCard.vue'
 import UserRankingUpperTenCard from '~/components/organisms/cards/user/UserRankingUpperTenCard.vue'
@@ -30,7 +30,7 @@ export default {
 
   components: {
     AuthUserIntroCard,
-    SignUp,
+    SignupSuggestCard,
     ImportantInfomationListCard,
     ArticleRankingUpperFiveCard,
     UserRankingUpperTenCard
