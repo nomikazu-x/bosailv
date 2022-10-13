@@ -22,6 +22,7 @@ class EmergencyContact < ApplicationRecord
 
   VALID_PHONE_NUMBER_REGEX = /\A0(\d{1}[-(]?\d{4}|\d{2}[-(]?\d{3}|\d{3}[-(]?\d{2}|\d{4}[-(]?\d{1})[-)]?\d{4}\z|\A0[5789]0[-]?\d{4}[-]?\d{4}\z/
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { maximum: 10 }
   validates :phone_number, presence: true, format: { with: VALID_PHONE_NUMBER_REGEX }
+  validates :user_id, presence: true
 end

@@ -19,6 +19,8 @@
 #
 FactoryBot.define do
   factory :emergency_contact do
-    
+    association :user
+    name { Faker::Lorem.characters(number: 10) }
+    phone_number { '090-1234-5678' }
   end
 end

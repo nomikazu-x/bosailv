@@ -30,6 +30,9 @@ migrateresettest:
 seed:
 	docker-compose run app rails db:seed
 
+seedtest:
+	docker-compose run app rails db:seed RAILS_ENV=test
+
 seedreset:
 	docker-compose run app rails db:reset
 

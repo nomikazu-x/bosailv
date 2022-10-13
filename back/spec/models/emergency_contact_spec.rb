@@ -20,5 +20,65 @@
 require 'rails_helper'
 
 RSpec.describe EmergencyContact, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "correct_emergency_contact" do
+    let(:user) { create(:user) }
+    let(:emergency_contact) { build(:emergency_contact, user: user) }
+
+    it "緊急時連絡先が正しく作成されていること" do
+      expect(emergency_contact).to be_valid
+    end
+  end
+
+  describe "validate length" do
+    context "nameの長さが11文字以上の時" do
+      let(:emergency_contact) { build(:emergency_contact, name: 'a' * 11) }
+      it "エラーメッセージが返る" do
+        emergency_contact.valid?
+        expect(emergency_contact).to be_invalid
+      end
+    end
+  end
+
+  describe "validates regular expression" do
+    context "電話番号にハイフンがない場合" do
+      let(:emergency_contact) { build(:emergency_contact, phone_number: '09012345678') }
+      it "エラーメッセージが返る" do
+        emergency_contact.valid?
+        expect(emergency_contact).to be_invalid
+      end
+    end
+  end
+
+  describe "validate presence" do
+    context "nameがNULLの時" do
+      let(:emergency_contact) { build(:emergency_contact, name: nil) }
+      it "エラーメッセージが返る" do
+        emergency_contact.valid?
+        expect(emergency_contact).to be_invalid
+      end
+    end
+
+    context "phone_numberがNULLの時" do
+      let(:emergency_contact) { build(:emergency_contact, phone_number: nil) }
+      it "エラーメッセージが返る" do
+        emergency_contact.valid?
+        expect(emergency_contact).to be_invalid
+      end
+    end
+
+    context "userがNULLの時" do
+      let(:emergency_contact) { build(:emergency_contact, user: nil) }
+      it "エラーメッセージが返る" do
+        emergency_contact.valid?
+        expect(emergency_contact).to be_invalid
+      end
+    end
+  end
+
+  describe "association" do
+    it "Userテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:user)
+      expect(rel.macro).to eq :belongs_to
+    end
+  end
 end
