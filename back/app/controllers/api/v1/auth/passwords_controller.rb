@@ -14,11 +14,4 @@ class Api::V1::Auth::PasswordsController < DeviseTokenAuth::PasswordsController
   # def update
   #   super
   # end
-  
-  protected
-
-  # エラー画面にリダイレクトする
-  def render_edit_error
-    redirect_to(Rails.application.config.redirect_system_error_url)
-  end
 end

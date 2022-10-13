@@ -6,9 +6,7 @@ class Api::V1::Auth::ConfirmationsController < DeviseTokenAuth::ConfirmationsCon
   # end
 
   # GET /api/v1/auth/confirmation メールアドレス確認(処理)
-  def show
-    super
-  rescue ActionController::RoutingError => _e
-    redirect_to(Rails.application.config.redirect_system_error_url)
-  end
+  # def show
+  #   super
+  # end
 end
