@@ -9,6 +9,8 @@ module.exports = {
   adminUsersSearchUrl: '/api/v1/admin/users/search.json',
 
   // 【お知らせ】
+  // お知らせ一覧API
+  adminInfomationsUrl: '/api/v1/admin/infomations.json',
   // お知らせ作成API
   adminInfomationCreateUrl: '/api/v1/admin/infomations/create.json',
   // お知らせ削除API

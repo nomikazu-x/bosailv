@@ -15,7 +15,7 @@
     </template>
 
     <template v-if="!loading" #right>
-      <InfomationListCard />
+      <AdminInfomationListCard />
     </template>
   </TwoColumnContainer>
 </template>
@@ -26,7 +26,7 @@ import TwoColumnContainer from '~/components/molecules/containers/TwoColumnConta
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
 import AdminMenusCard from '~/components/organisms/cards/admin/AdminMenusCard.vue'
-import InfomationListCard from '~/components/organisms/cards/infomation/InfomationListCard.vue'
+import AdminInfomationListCard from '~/components/organisms/cards/admin/AdminInfomationListCard.vue'
 
 export default {
   name: 'AdminInfomations',
@@ -36,7 +36,7 @@ export default {
     TheLoading,
     TheMessage,
     AdminMenusCard,
-    InfomationListCard
+    AdminInfomationListCard
   },
 
   mixins: [Application],

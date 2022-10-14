@@ -2,12 +2,8 @@ class Api::V1::InfomationsController < Api::V1::ApplicationController
 
   # GET /api/v1/infomations(.json) お知らせ一覧API
   def index
-    if current_user.present? && current_user.is_admin?
-      @infomations = Infomation.where(action: [nil, '']).page(params[:page]).per(Settings['default_infomations_limit'])
-    else
-      @infomations = Infomation.by_target(current_user).page(params[:page]).per(Settings['default_infomations_limit'])
-      update_infomation_check
-    end
+    @infomations = Infomation.by_target(current_user).page(params[:page]).per(Settings['default_infomations_limit'])
+    update_infomation_check
   end
 
   # GET /api/v1/infomations/important(.json) 大切なお知らせAPI

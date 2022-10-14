@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         post 'genres/:id/delete',   to: 'genres#destroy',      as: 'destroy_genre'
 
         # お知らせ
+        get  'infomations',            to: 'infomations#index',     as: 'infomations'
         post 'infomations/create',     to: 'infomations#create',    as: 'create_infomation'
         post 'infomations/:id/delete', to: 'infomations#destroy',   as: 'destroy_infomation'
 
