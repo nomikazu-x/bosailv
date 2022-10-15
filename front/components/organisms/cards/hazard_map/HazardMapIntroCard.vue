@@ -124,13 +124,13 @@
               <v-list-item>
                 <v-icon class="mr-2" color="#FFD54F">mdi-star-circle</v-icon>
                 <v-list-item-content>
-                  <v-list-item-title class="wrap-text"><NuxtLink to="/settings/profile">設定ページ</NuxtLink>で自分の出身市町村を設定すると、「自分の出身市町村で検索する」ボタンが出現して検索できるようになります。</v-list-item-title>
+                  <v-list-item-title class="wrap-text"><NuxtLink to="/settings/profile">設定ページ</NuxtLink>で自分の市町村を設定すると、「自分の市町村で検索する」ボタンが出現して検索できるようになります。</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
               <v-list-item>
                 <v-icon class="mr-2" color="#FFD54F">mdi-star-circle</v-icon>
                 <v-list-item-content>
-                  <v-list-item-title class="wrap-text">自分の出身市町村で検索すると、表示される「ハザードマップを確認した！」をクリックして5ポイント獲得！</v-list-item-title>
+                  <v-list-item-title class="wrap-text">自分の市町村で検索すると、表示される「ハザードマップを確認した！」をクリックして5ポイント獲得！</v-list-item-title>
                   <v-list-item-subtitle v-if="!$auth.loggedIn" class="wrap-text">
                     ※<NuxtLink to="/signup">ログイン</NuxtLink>しなければハザードマップを確認した！」ボタンは表示されません。
                   </v-list-item-subtitle>

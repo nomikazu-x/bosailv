@@ -33,7 +33,7 @@
             </v-col>
             <v-col v-if="$auth.loggedIn && $auth.user.city" cols="12">
               <div class="text-center">
-                <OrangeBtn @click="onSearchShelters(page, $auth.user.city.id)">自分の出身市町村で検索する</OrangeBtn>
+                <OrangeBtn @click="onSearchShelters(page, $auth.user.city.id)">自分の市町村で検索する</OrangeBtn>
               </div>
             </v-col>
           </v-row>
