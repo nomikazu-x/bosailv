@@ -81,7 +81,7 @@
         <h2 class="py-5">第１０条（お問い合わせ窓口）</h2>
         <p>
           本ポリシーに関するお問い合わせは，下記の窓口までお願いいたします。<br>
-          メールアドレス：BosaiLvLevel@gmail.com
+          メールアドレス：bosailevel@gmail.com
         </p>
         <p class="pt-7">以上</p>
       </v-card-text>
