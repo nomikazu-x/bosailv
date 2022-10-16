@@ -16,18 +16,13 @@
                 {{ task.title }}
               </div>
             </v-col>
-            <v-col v-if="$auth.loggedIn" cols="6">
+            <v-col cols="6">
               <v-card-text>
                 {{ task.summary }}
               </v-card-text>
             </v-col>
-            <v-col v-if="$auth.loggedIn && !task.is_completed" cols="3">
+            <v-col v-if="!task.is_completed" cols="3">
               <GreenBtn disabled outlined small class="mr-1">未達成</GreenBtn>
-            </v-col>
-            <v-col v-if="!$auth.loggedIn" cols="9">
-              <v-card-text>
-                {{ task.summary }}
-              </v-card-text>
             </v-col>
           </v-row>
         </v-col>
