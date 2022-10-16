@@ -2,7 +2,7 @@
   <v-hover v-slot="{ hover }">
     <v-card :to="to" outlined class="mb-3 rounded-lg thumb-up" :color="hover ? '#FFFDE8' : 'white' ">
       <v-row class="black--text" no-gutters align="center">
-        <v-col v-if="$auth.loggedIn && task.is_completed" cols="1">
+        <v-col v-if="task.is_completed" cols="1">
           <v-sheet height="132" color="#117768" class="rounded-l-lg" />
         </v-col>
         <v-col v-else cols="1">
