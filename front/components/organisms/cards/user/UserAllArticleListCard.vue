@@ -1,6 +1,6 @@
 <template>
   <BaseTitleCard v-if="user != null" :title="cardTitle">
-    <v-tabs v-model="tab" background-color="#FFFCFC" color="#117768" class="mt-4" grow>
+    <v-tabs v-model="tab" background-color="#fff" color="#117768" class="mt-4" grow>
       <v-tab v-for="title in titles" :key="title.name">{{ title.name }}</v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab">

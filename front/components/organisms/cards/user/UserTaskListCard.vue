@@ -5,14 +5,14 @@
       v-for="task in constantTasks"
       :key="`first-${task.id}`"
       :task="task"
-      :to="task.to"
+      :to="toUserTask(task)"
       class="mt-2"
     />
     <TaskListCardText
       v-for="task in tasks"
       :key="`second-${task.id}`"
       :task="task"
-      :to="toTask(task)"
+      :to="toAdminTaskOrTaskId(task)"
       class="mt-2"
     />
   </div>
@@ -41,13 +41,20 @@ export default {
   },
 
   computed: {
-    toTask () {
+    toAdminTaskOrTaskId () {
       return (task) => {
         if (this.$route.path === '/admin/tasks') {
           return { name: 'admin-tasks-id-edit___ja', params: { id: task.id } }
-        } else {
+        } else if (this.canAction) {
           return { name: 'tasks-id___ja', params: { id: task.id } }
+        } else {
+          return null
         }
+      }
+    },
+    toUserTask () {
+      return (task) => {
+        return this.canAction ? task.to : null
       }
     },
     authUsername () {
