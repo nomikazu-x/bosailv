@@ -1,7 +1,7 @@
 <template>
-  <v-row>
-    <v-col style="background-color: #fff;">
-      <div class="text-center mb-5">
+  <v-row no-gutters>
+    <v-col>
+      <v-card class="text-center mb-5 pb-5 pt-1" style="background-color: #fff;">
         <v-img class="mx-auto mt-10 px-4" :src="image.LOGO_IMAGE" max-width="700" />
 
         <v-card-subtitle>
@@ -14,9 +14,9 @@
           さっそくはじめる
           <v-icon>mdi-chevron-right</v-icon>
         </OrangeBtn>
-      </div>
+      </v-card>
 
-      <div class="pa-5" style="background-color: #DFEEE5;">
+      <div style="background-color: #DFEEE5;">
         <v-card class="mt-10 pa-1">
           <v-row>
             <v-col cols="12" sm="6" order-sm="1">
