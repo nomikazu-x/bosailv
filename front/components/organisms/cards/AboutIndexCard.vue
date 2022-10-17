@@ -10,15 +10,34 @@
           「防災タスク」をこなして、あなたの防災レベルをあげよう！
         </v-card-subtitle>
 
+        <div class="my-10 text-center">
+          <v-card class="mt-10 pa-1" flat>
+            <v-row align="center">
+              <v-col cols="12" sm="6" order-sm="2">
+                <v-card-title class="justify-center" style="color: #FF8F00;">「防災タスク」を達成すると獲得できる<br class="hidden-sm-only">ポイントに応じてレベルアップ！</v-card-title>
+              </v-col>
+              <v-col cols="12" sm="6" order-sm="1">
+                <v-img :src="image.LEVELUP_IMAGE" />
+              </v-col>
+            </v-row>
+          </v-card>
+        </div>
+
         <OrangeBtn to="/signup" class="my-2" large>
           さっそくはじめる
           <v-icon>mdi-chevron-right</v-icon>
         </OrangeBtn>
       </v-card>
 
-      <div style="background-color: #DFEEE5;">
-        <v-card class="mt-10 pa-1">
-          <v-row>
+      <div class="text-center">
+        <v-row>
+          <v-col cols="12">
+            <h1 class="mt-10 mb-5 justify-center" style="color: #117768;">防災タスクの紹介</h1>
+          </v-col>
+        </v-row>
+
+        <v-card class="pa-1">
+          <v-row align="center">
             <v-col cols="12" sm="6" order-sm="1">
               <v-card-title class="my-5 justify-center" style="color: #117768;">ハザードマップを確認しよう</v-card-title>
               <v-card-text>災害は突然やってきます。思い立ったときにハザードマップを確認しておきましょう。</v-card-text>
@@ -42,7 +61,7 @@
         </v-card>
 
         <v-card class="mt-10 pa-1">
-          <v-row>
+          <v-row align="center">
             <v-col cols="12" sm="6" order-sm="2">
               <v-card-title class="my-5 justify-center" style="color: #117768;">避難所を確認しよう</v-card-title>
               <v-card-text>いざというときにあわてないように、自宅や働いている場所の近くにある避難場所と安全な避難経路を、しっかり確認しておきましょう。</v-card-text>
@@ -66,7 +85,7 @@
         </v-card>
 
         <v-card class="mt-10 pa-1">
-          <v-row>
+          <v-row align="center">
             <v-col cols="12" sm="6" order-sm="1">
               <v-card-title class="my-5 justify-center" style="color: #117768;">防災SNSをフォローしよう</v-card-title>
               <v-card-text>いざというときの情報収集に役立つSNS。災害時に役立つ情報を発信しているSNSアカウントをフォローしておきましょう。</v-card-text>
@@ -90,7 +109,7 @@
         </v-card>
 
         <v-card class="mt-10 pa-1">
-          <v-row>
+          <v-row align="center">
             <v-col cols="12" sm="6" order-sm="2">
               <v-card-title class="my-5 justify-center" style="color: #117768;">おうち防災に取り組もう</v-card-title>
               <v-card-text>家具をしっかりと留めたり、ガラスの飛散防止対策を施すなどのおうち防災タスクをこなして、震災時のけがから身を守りましょう。</v-card-text>
@@ -114,7 +133,7 @@
         </v-card>
 
         <v-card class="mt-10 pa-1">
-          <v-row>
+          <v-row align="center">
             <v-col cols="12" sm="6" order-sm="1">
               <v-card-title class="my-5 justify-center" style="color: #117768;">家族会議しよう</v-card-title>
               <v-card-text>
@@ -141,7 +160,7 @@
         </v-card>
 
         <v-card class="mt-10 pa-1">
-          <v-row>
+          <v-row align="center">
             <v-col cols="12" sm="6" order-sm="2">
               <v-card-title class="my-5 justify-center" style="color: #117768;">緊急連絡先を登録しよう</v-card-title>
               <v-card-text>緊急連絡先を登録して、災害時すぐに連絡できるようにしておきましょう。</v-card-text>
@@ -165,7 +184,7 @@
         </v-card>
 
         <v-card class="mt-10 pa-1">
-          <v-row>
+          <v-row align="center">
             <v-col cols="12" sm="6" order-sm="1">
               <v-card-title class="my-5 justify-center" style="color: #117768;">備蓄品を確認しよう</v-card-title>
               <v-card-text>
@@ -192,7 +211,7 @@
         </v-card>
 
         <v-card class="mt-10 pa-1">
-          <v-row>
+          <v-row align="center">
             <v-col cols="12" sm="6" order-sm="2">
               <v-card-title class="my-5 justify-center" style="color: #117768;">災害時役立つ記事を活用しよう</v-card-title>
               <v-card-text>
@@ -237,6 +256,7 @@
 import Application from '~/plugins/application.js'
 import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 import LOGO_IMAGE from '~/assets/images/logo.jpg'
+import LEVELUP_IMAGE from '~/assets/images/levelup_image.png'
 import HAZARD_MAP_IMAGE from '~/assets/images/hazard_map_image.png'
 import SHELTER_IMAGE from '~/assets/images/shelter_image.png'
 import SNS_TASK_IMAGE from '~/assets/images/sns_task_image.png'
@@ -260,6 +280,7 @@ export default {
     image () {
       return {
         LOGO_IMAGE,
+        LEVELUP_IMAGE,
         HAZARD_MAP_IMAGE,
         SHELTER_IMAGE,
         SNS_TASK_IMAGE,
