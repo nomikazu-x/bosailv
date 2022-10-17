@@ -38,7 +38,7 @@
     </v-tabs-items>
     <div v-if="canAction" class="text-center">
       <v-card-text>
-        <NuxtLink to="/articles" class="text-decoration-none">記事一覧から探す</NuxtLink>
+        <NuxtLink :to="`/genres/${genre.id}`" class="text-decoration-none">記事一覧から探す</NuxtLink>
       </v-card-text>
     </div>
   </BaseTitleCard>
