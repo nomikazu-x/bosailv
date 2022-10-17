@@ -48,7 +48,7 @@
             </li>
             <li class="mb-1">
               <NuxtLink
-                to="/privacy"
+                to="/privacy_policy"
                 style="color: inherit;"
                 class="text-decoration-none text--secondary"
               >

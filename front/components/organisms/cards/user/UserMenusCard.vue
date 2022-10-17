@@ -28,7 +28,7 @@
         </v-list-item-content>
       </v-list-item>
 
-      <v-list-item to="/settings/profile">
+      <v-list-item v-if="canAction" to="/settings/profile">
         <v-list-item-icon>
           <v-icon>mdi-cog</v-icon>
         </v-list-item-icon>
@@ -59,6 +59,20 @@ export default {
 
   components: {
     BaseTitleCard
+  },
+
+  computed: {
+    authUsername () {
+      return this.$auth.user.username
+    },
+    canAction () {
+      return this.$auth.loggedIn
+        ? this.currentUsername === this.authUsername
+        : false
+    },
+    currentUsername () {
+      return this.$route.params.username
+    }
   }
 }
 </script>

@@ -40,7 +40,7 @@ export default {
       }
     },
     maxLevel () {
-      if (this.requiredPoint === 1660) {
+      if (this.requiredPoint === 104) {
         return true
       }
       return false

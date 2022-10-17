@@ -6,7 +6,7 @@
 
     <TheLevelUpDialog />
 
-    <v-main style="background-color: #f9f5eb;">
+    <v-main :style="bgColorPath">
       <TheDestroyInfo />
       <nuxt />
     </v-main>
@@ -40,6 +40,10 @@ export default {
     isGoTopValidPath () {
       const currentPath = this.$route.name
       return (currentPath === 'articles-id-edit___ja') || (currentPath === 'articles-new___ja')
+    },
+    bgColorPath () {
+      const currentPath = this.$route.name
+      return (currentPath === 'about___ja') ? 'background-color: #DFEEE5;' : 'background-color: #f9f5eb;'
     }
   }
 }

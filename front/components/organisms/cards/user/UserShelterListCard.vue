@@ -4,6 +4,11 @@
       <BaseTitleCard :title="cardTitle">
         <v-card v-if="shelters != null && shelters.length === 0" outlined tile>
           <v-card-title class="ml-1">該当する避難所はありません。</v-card-title>
+          <div class="text-center">
+            <v-card-text>
+              <NuxtLink to="/shelters" class="text-decoration-none">避難所を探してみる</NuxtLink>
+            </v-card-text>
+          </div>
         </v-card>
         <SheltersMap
           v-if="shelters !== null"
