@@ -40,6 +40,15 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
   BASE_WIDTH = 16
   BASE_HEIGHT = 16
+  version :mini do
+    process resize_and_pad: [BASE_WIDTH * 1.5, BASE_HEIGHT * 1.5]
+  end
+  version :small do
+    process resize_and_pad: [BASE_WIDTH * 2, BASE_HEIGHT * 2]
+  end
+  version :medium do
+    process resize_and_pad: [BASE_WIDTH * 4, BASE_HEIGHT * 4]
+  end
   version :large do
     process resize_and_pad: [BASE_WIDTH * 8, BASE_HEIGHT * 8]
   end
