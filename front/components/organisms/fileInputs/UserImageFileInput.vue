@@ -73,11 +73,11 @@ export default {
   },
 
   methods: {
-    async onUserImageUpdate (image) {
+    async onUserImageUpdate () {
       this.processing = true
 
       const params = new FormData()
-      params.append('image', image)
+      params.append('image', this.image)
       await this.$axios.post(this.$config.apiBaseURL + this.$config.userImageUpdateUrl, params)
         .then((response) => {
           if (response.data == null) {
