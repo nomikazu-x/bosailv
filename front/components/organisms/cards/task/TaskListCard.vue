@@ -36,13 +36,13 @@ export default {
   data () {
     return {
       constantTasks: [
-        { id: 1, to: '/hazard_maps', icon: 'mdi-book-multiple', title: 'ハザードマップ', summary: '災害は突然やってきます。思い立ったときにハザードマップを確認しておきましょう。' },
-        { id: 2, to: '/shelters', icon: 'mdi-exit-run', title: '避難所', summary: 'いざというときにあわてないように、近くにある避難場所をしっかり確認しておきましょう。' },
-        { id: 3, to: '/sns_tasks', icon: 'mdi-twitter', title: '防災SNS', summary: '災害時に役立つ情報を発信しているSNSアカウントをフォローしておきましょう。' },
+        { id: 1, to: '/hazard_maps', icon: 'mdi-book-multiple', title: 'ハザードマップ', summary: '思い立ったときにハザードマップを確認しましょう。' },
+        { id: 2, to: '/shelters', icon: 'mdi-exit-run', title: '避難所', summary: 'いざという時に慌てないように、近くにある避難所を確認しましょう。' },
+        { id: 3, to: '/sns_tasks', icon: 'mdi-twitter', title: '防災SNS', summary: '災害時に役立つ情報を発信しているSNSアカウントをフォローしましょう。' },
         { id: 4, to: '/house_tasks', icon: 'mdi-home', title: '家具の固定', summary: 'おうち防災タスクをこなして、震災時のけがから身を守りましょう。' },
-        { id: 5, to: '/family_rule', icon: 'mdi-human-male-female-child', title: '家族会議', summary: 'いざというときに備えて、家族会議をして各項目をメモしておきましょう。' },
-        { id: 6, to: '/emergency_contacts', icon: 'mdi-phone-in-talk', title: '緊急連絡先', summary: '緊急連絡先を登録して、災害時すぐに連絡できるようにしておきましょう。' },
-        { id: 7, to: '/stocks', icon: 'mdi-archive', title: '備蓄', summary: 'ライフラインが止まった場合や、避難生活が必要になったときのために防災用品を備えましょう。' }
+        { id: 5, to: '/family_rule', icon: 'mdi-human-male-female-child', title: '家族会議', summary: 'いざというときに備えて、家族会議をして各項目をメモしましょう。' },
+        { id: 6, to: '/emergency_contacts', icon: 'mdi-phone-in-talk', title: '緊急連絡先', summary: '緊急連絡先を登録して、災害時すぐに連絡できるようにしましょう。' },
+        { id: 7, to: '/stocks', icon: 'mdi-archive', title: '備蓄', summary: '避難生活が必要になった時のために防災用品を備えましょう。' }
       ],
       tasks: null
     }
