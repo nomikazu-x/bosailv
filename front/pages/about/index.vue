@@ -1,13 +1,13 @@
 <template>
   <div>
     <TheProcessing v-if="processing" />
-    <v-img :src="image.FLOOD_IMAGE" max-height="450" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.5)" class="background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <v-img :src="image.FLOOD_IMAGE" max-height="550" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.5)" class="background-repeat: no-repeat; background-size: cover; background-position: center center;">
       <div class="mask rgba-gradient align-center">
         <v-container style="height: 100%!important">
           <v-row align="center" class="h-100">
             <v-col sm="11" md="8" lg="7" class="white--text text-center text-md-left mb-5 align-center" style="margin-top: 57px">
               <h1 class="mt-4 mt-sm-5 text-left">
-                <p class="mb-1">防災タスクを達成してあなたの防災レベルをあげませんか？</p>
+                「防災タスク」を達成して、あなたの防災レベルをあげませんか？
               </h1>
 
               <v-divider class="my-4" color="white" />
@@ -15,7 +15,7 @@
               <h5 class="mb-4 text-left">
                 最近は災害が増えているため、みなさんの防災意識は高まっているのではないでしょうか。
                 <br>
-                しかし、「何から取り組めばいいんだろう」と悩んでいる人も多いはずです。
+                しかし、「何から取り組めばいいんだろう」と悩んでいる人も多いはず。
                 <br>
                 Bosai Lv (防災レベル) ではそんな方向けにやるべきことを「防災タスク」として設定しています。
                 <br>
@@ -31,7 +31,7 @@
               </div>
             </v-col>
 
-            <div class="d-none d-md-block col-md-4 col-lg-5 wow fadeInRight align-self-center" data-wow-delay="0.3s" style="margin-top: 80px">
+            <div class="d-none d-md-block col-md-4 col-lg-5 align-self-center" style="margin-top: 80px">
               <v-img :src="image.FAMILY_IMAGE" class="float-right mt-5" style="max-width: 90%; height: auto; filter: drop-shadow(30px 25px 3px rgba(0, 0, 0, 0.514));" />
             </div>
           </v-row>
@@ -114,7 +114,7 @@
                     <v-icon color="#117768">mdi-checkbox-marked-circle</v-icon>
                   </v-col>
                   <v-col cols="10">
-                    防災って何から始めればいいんだろう
+                    そもそも防災って何から始めればいいんだろう
                   </v-col>
                 </v-row>
               </v-card>
@@ -126,7 +126,7 @@
                     <v-icon color="#117768">mdi-checkbox-marked-circle</v-icon>
                   </v-col>
                   <v-col cols="10">
-                    防災ってむずかしそう
+                    いざという時、どこに避難すればいいんだろう
                   </v-col>
                 </v-row>
               </v-card>
@@ -140,7 +140,7 @@
                     <v-icon color="#117768">mdi-checkbox-marked-circle</v-icon>
                   </v-col>
                   <v-col cols="10">
-                    防災ってめんどくさそう
+                    どのくらい食料を備蓄しておけばいいんだろう
                   </v-col>
                 </v-row>
               </v-card>
@@ -152,7 +152,7 @@
                     <v-icon color="#117768">mdi-checkbox-marked-circle</v-icon>
                   </v-col>
                   <v-col cols="10">
-                    みんなの防災知識を参考にしたい
+                    みんなはどんなことして災害に備えているんだろう
                   </v-col>
                 </v-row>
               </v-card>
@@ -169,17 +169,20 @@
     <v-container style="margin-top: 120px">
       <v-row justify="center" align="center" no-gutters>
         <v-col cols="8" class="text-center">
-          <h3>\  <span style="color: #117768;">簡単3ステップ♪</span>  /</h3>
+          <h3>\  <span style="color: #117768;">簡単<span class="text-h4 mx-1 font-weight-bold">3</span>ステップ♪</span>  /</h3>
         </v-col>
         <v-col cols="8" class="text-center">
-          <v-img :src="image.LOGO_AND_USAGE_IMAGE" class="pb-1 pb-lg-2" max-height="65" />
+          <v-img :src="image.LOGO_AND_USAGE_IMAGE" class="pb-1 pb-lg-2" max-height="70" />
+        </v-col>
+        <v-col cols="12">
           <v-divider class="my-1 mb-5" />
         </v-col>
-        <v-row justify="center" align="center">
-          <v-col cols="3" class="text-center align-self-center pa-3">
+
+        <v-row justify="center" align="center" no-gutters>
+          <v-col cols="8" sm="3" lg="3" xl="3" md="3" class="text-center align-self-center pa-3">
             <v-card class="pa-2 rounded-lg mb-3" elevation="0">
               <v-row>
-                <v-icon style="position: absolute; z-index: 1;" color="#117768">
+                <v-icon style="position: absolute; z-index: 1;" color="#117768" :large="isIconLarge">
                   mdi-numeric-1-circle
                 </v-icon>
                 <v-col cols="12">
@@ -189,29 +192,31 @@
             </v-card>
             <v-img :src="image.SIGNUP_MOBILE_IMAGE" />
           </v-col>
-          <v-col cols="1" class="text-center align-self-center">
-            <v-icon color="#117768" large>mdi-chevron-right</v-icon>
+          <v-col cols="8" sm="1" lg="1" xl="1" md="1" class="text-center align-self-center">
+            <v-icon color="#117768" size="72" class="hidden-xs-only">mdi-menu-right</v-icon>
+            <v-icon color="#117768" size="72" class="hidden-sm-and-up">mdi-menu-down</v-icon>
           </v-col>
-          <v-col cols="3" class="text-center align-self-center pa-3">
+          <v-col cols="8" sm="3" lg="3" xl="3" md="3" class="text-center align-self-center pa-3">
             <v-card class="pa-2 rounded-lg mb-3" elevation="0">
               <v-row>
-                <v-icon style="position: absolute; z-index: 1;" color="#117768">
+                <v-icon style="position: absolute; z-index: 1;" color="#117768" :large="isIconLarge">
                   mdi-numeric-2-circle
                 </v-icon>
                 <v-col cols="12">
-                  プロフィールを設定
+                  プロフィール設定
                 </v-col>
               </v-row>
             </v-card>
             <v-img :src="image.SETTING_MOBILE_IMAGE" />
           </v-col>
-          <v-col cols="1" class="text-center align-self-center">
-            <v-icon color="#117768" large>mdi-chevron-right</v-icon>
+          <v-col cols="8" sm="1" lg="1" xl="1" md="1" class="text-center align-self-center">
+            <v-icon color="#117768" size="72" class="hidden-xs-only">mdi-menu-right</v-icon>
+            <v-icon color="#117768" size="72" class="hidden-sm-and-up">mdi-menu-down</v-icon>
           </v-col>
-          <v-col cols="3" class="text-center align-self-center pa-3">
+          <v-col cols="8" sm="3" lg="3" xl="3" md="3" class="text-center align-self-center pa-3">
             <v-card class="pa-2 rounded-lg mb-3" elevation="0">
               <v-row>
-                <v-icon style="position: absolute; z-index: 1;" color="#117768">
+                <v-icon style="position: absolute; z-index: 1;" color="#117768" :large="isIconLarge">
                   mdi-numeric-3-circle
                 </v-icon>
                 <v-col cols="12">
@@ -227,9 +232,11 @@
 
     <v-container style="margin-top: 120px">
       <v-row justify="center" no-gutters>
-        <v-col md="12" class="text-center">
-          <h1>ー さぁ、今すぐ無料で始めましょう ー</h1>
-          <v-divider />
+        <v-col cols="8" class="text-center">
+          <v-img :src="image.SIGNUP_SUGGEST_IMAGE" />
+        </v-col>
+        <v-col cols="12">
+          <v-divider class="my-1 mb-5" />
         </v-col>
         <v-col cols="12" class="text-center my-4">
           <h4 class="mb-3">全ての機能が無料で使えます。</h4>
@@ -266,6 +273,7 @@ import DISCOVER_BOY_IMAGE from '~/assets/images/discover_boy.png'
 import SIGNUP_MOBILE_IMAGE from '~/assets/images/signup_mobile.png'
 import SETTING_MOBILE_IMAGE from '~/assets/images/setting_mobile.png'
 import TASK_MOBILE_IMAGE from '~/assets/images/task_mobile.png'
+import SIGNUP_SUGGEST_IMAGE from '~/assets/images/signup_suggest.png'
 
 export default {
   name: 'AboutIndexCard',
@@ -294,12 +302,17 @@ export default {
         DISCOVER_BOY_IMAGE,
         SIGNUP_MOBILE_IMAGE,
         SETTING_MOBILE_IMAGE,
-        TASK_MOBILE_IMAGE
+        TASK_MOBILE_IMAGE,
+        SIGNUP_SUGGEST_IMAGE
       }
     },
 
     authRedirectPath () {
       return (this.$auth.user.prefecture == null && this.$auth.user.city == null) ? { path: '/settings/profile' } : { path: '/home' }
+    },
+
+    isIconLarge () {
+      return !this.$vuetify.breakpoint.smOnly
     }
   },
 
