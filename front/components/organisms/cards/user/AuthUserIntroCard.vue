@@ -38,7 +38,7 @@
           />
         </div>
 
-        <p v-if="$auth.user.profile" class="text-center mb-4 px-8 px-sm-12">{{ $auth.user.profile }}</p>
+        <p v-if="$auth.user.profile" class="text-left mb-4 px-8 px-sm-12">{{ $auth.user.profile }}</p>
 
         <div class="my-3">
           <p v-if="getAddress">

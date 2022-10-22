@@ -19,14 +19,14 @@
                 <br>
                 Bosai Lv (防災レベル) ではそんな方向けにやるべきことを「防災タスク」として設定しています。
                 <br>
-                しかも、「防災タスク」を達成するごとにポイントを獲得・あなたの防災レベルがあがります！
+                さらに、「防災タスク」を達成するごとにポイントを獲得・あなたの防災レベルがあがります！
               </h5>
 
               <div class="text-center">
                 <OrangeBtn to="/signup" class="h5 font-weight-bold" style="padding: 15px 40px">無料で登録</OrangeBtn>
                 <GreenBtn class="h5 font-weight-bold ml-3" style="padding: 15px 40px" @click="onGuestSignIn">機能を試す</GreenBtn>
                 <h5 class="mt-3">
-                  <NuxtLink to="/signin" class="font-weight-bold" style="color: #00E676;">すでにアカウトをお持ちですか？ログイン</NuxtLink>
+                  <NuxtLink to="/signin" class="font-weight-bold" style="color: #00E676;">すでにアカウントをお持ちの方はこちら</NuxtLink>
                 </h5>
               </div>
             </v-col>
@@ -67,7 +67,7 @@
       <v-row justify="center" class="py-1 mb-3">
         <v-col cols="11" lg="7" xl="6" md="6" class="pl-lg-3 pl-xl-5 align-self-center" order="1" order-sm="1" order-md="2" order-lg="2">
           <h2 class="mb-4" style="color: #117768;">
-            防災タスクを達成して災害に備えましょう
+            防災タスクを達成して災害に備えることができる
             <v-icon class="ml-1 ml-md-2 pb-1" color="#117768">mdi-book-multiple</v-icon>
           </h2>
           <h4 class="font-weight-light">
@@ -82,11 +82,11 @@
       <v-row justify="center" class="py-1 mb-3">
         <v-col cols="11" lg="7" xl="6" md="6" class="pl-lg-3 pl-xl-5 align-self-center">
           <h2 class="mb-4" style="color: #117768;">
-            防災タスクを達成して獲得したポイントに応じて防災レベルが上がる
+            防災タスクを達成すると獲得できるポイントに応じて防災レベルが上がる
             <v-icon class="ml-1 ml-md-2 pb-1" color="#117768">mdi-transfer-up</v-icon>
           </h2>
           <h4 class="font-weight-light">
-            防災タスクに達成するたびにポイントを獲得・防災レベルが上がります。あなたの防災レベルを上げて「楽しく」災害に備えていきましょう。
+            防災タスクを達成するたびにポイントを獲得でき、防災レベルが上がります。あなたの防災レベルを上げて「楽しく」災害に備えていきましょう。
             詳細は、右上の<v-icon color="amber" class="pb-1">mdi-file-powerpoint-box</v-icon>をチェックしましょう。
           </h4>
         </v-col>
@@ -186,7 +186,7 @@
                   mdi-numeric-1-circle
                 </v-icon>
                 <v-col cols="12">
-                  まずは新規登録！
+                  <h4>まずは新規登録！</h4>
                 </v-col>
               </v-row>
             </v-card>
@@ -203,7 +203,7 @@
                   mdi-numeric-2-circle
                 </v-icon>
                 <v-col cols="12">
-                  プロフィール設定
+                  <h4>プロフィール設定</h4>
                 </v-col>
               </v-row>
             </v-card>
@@ -220,7 +220,7 @@
                   mdi-numeric-3-circle
                 </v-icon>
                 <v-col cols="12">
-                  防災タスク達成！
+                  <h4>防災タスク達成！</h4>
                 </v-col>
               </v-row>
             </v-card>
@@ -245,7 +245,7 @@
             <OrangeBtn to="/signup" class="h5 font-weight-bold" style="padding: 20px 50px">無料で登録</OrangeBtn>
             <GreenBtn class="h5 font-weight-bold ml-3" style="padding: 20px 50px" @click="onGuestSignIn">機能を試す</GreenBtn>
             <h5 class="mt-3">
-              <NuxtLink to="/signin" class="font-weight-bold" style="color: #00E676;">すでにアカウトをお持ちですか？ログイン</NuxtLink>
+              <NuxtLink to="/signin" class="font-weight-bold" style="color: #00E676;">すでにアカウントをお持ちの方はこちら</NuxtLink>
             </h5>
           </div>
         </v-col>
