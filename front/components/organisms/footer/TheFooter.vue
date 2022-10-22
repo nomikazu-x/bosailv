@@ -9,7 +9,7 @@
               :style="{ 'max-width': ($vuetify.breakpoint.width - 226) + 'px' }"
               class="ml-1 align-self-center d-inline-block text-truncate text--secondary"
             >
-              <v-img :src="require('@/assets/images/header_logo.jpg')" />
+              <v-img :src="image.HEADER_LOGO" />
             </v-toolbar-title>
           </NuxtLink>
         </v-col>
@@ -72,6 +72,8 @@
 </template>
 
 <script>
+import HEADER_LOGO from '~/assets/images/header_logo.jpg'
+
 export default {
   data () {
     return {
@@ -79,6 +81,11 @@ export default {
     }
   },
   computed: {
+    image () {
+      return {
+        HEADER_LOGO
+      }
+    },
     copyRightYear () {
       const beginningYear = 2021
       const thisYear = new Date().getFullYear()

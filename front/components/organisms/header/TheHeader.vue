@@ -8,7 +8,7 @@
         :style="{ 'max-width': ($vuetify.breakpoint.width - 226) + 'px' }"
         class="ml-1 align-self-center d-inline-block text-truncate text--secondary"
       >
-        <v-img :src="require('@/assets/images/header_logo.jpg')" />
+        <v-img :src="image.HEADER_LOGO_IMAGE" />
       </v-toolbar-title>
     </NuxtLink>
     <v-spacer />
@@ -80,6 +80,7 @@
 <script>
 import Application from '~/plugins/application.js'
 import ObtainPointIntroDialog from '~/components/organisms/dialogs/ObtainPointIntroDialog.vue'
+import HEADER_LOGO_IMAGE from '~/assets/images/header_logo.jpg'
 
 export default {
   name: 'Header',
@@ -89,6 +90,14 @@ export default {
   },
 
   mixins: [Application],
+
+  computed: {
+    image () {
+      return {
+        HEADER_LOGO_IMAGE
+      }
+    }
+  },
 
   methods: {
     onClick () {
