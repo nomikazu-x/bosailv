@@ -26,7 +26,7 @@
                 <OrangeBtn to="/signup" class="h5 font-weight-bold" style="padding: 15px 40px">無料で登録</OrangeBtn>
                 <GreenBtn class="h5 font-weight-bold ml-3" style="padding: 15px 40px" @click="onGuestSignIn">機能を試す</GreenBtn>
                 <h5 class="mt-3">
-                  <NuxtLink to="/signin" class="font-weight-bold" style="color: #00E676;">すでにアカウトをお持ちですか？ログイン</NuxtLink>
+                  <NuxtLink to="/signin" class="font-weight-bold" style="color: #00E676;">すでにアカウントをお持ちの方はこちら</NuxtLink>
                 </h5>
               </div>
             </v-col>
@@ -245,7 +245,7 @@
             <OrangeBtn to="/signup" class="h5 font-weight-bold" style="padding: 20px 50px">無料で登録</OrangeBtn>
             <GreenBtn class="h5 font-weight-bold ml-3" style="padding: 20px 50px" @click="onGuestSignIn">機能を試す</GreenBtn>
             <h5 class="mt-3">
-              <NuxtLink to="/signin" class="font-weight-bold" style="color: #00E676;">すでにアカウトをお持ちですか？ログイン</NuxtLink>
+              <NuxtLink to="/signin" class="font-weight-bold" style="color: #00E676;">すでにアカウントをお持ちの方はこちら</NuxtLink>
             </h5>
           </div>
         </v-col>
