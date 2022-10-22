@@ -186,7 +186,7 @@
                   mdi-numeric-1-circle
                 </v-icon>
                 <v-col cols="12">
-                  まずは新規登録！
+                  <h4>まずは新規登録！</h4>
                 </v-col>
               </v-row>
             </v-card>
@@ -203,7 +203,7 @@
                   mdi-numeric-2-circle
                 </v-icon>
                 <v-col cols="12">
-                  プロフィール設定
+                  <h4>プロフィール設定</h4>
                 </v-col>
               </v-row>
             </v-card>
@@ -220,7 +220,7 @@
                   mdi-numeric-3-circle
                 </v-icon>
                 <v-col cols="12">
-                  防災タスク達成！
+                  <h4>防災タスク達成！</h4>
                 </v-col>
               </v-row>
             </v-card>
