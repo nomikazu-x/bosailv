@@ -1,5 +1,6 @@
 <template>
   <div>
+    <TheProcessing v-if="processing" />
     <v-img :src="image.FLOOD_IMAGE" max-height="450" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.5)" class="background-repeat: no-repeat; background-size: cover; background-position: center center;">
       <div class="mask rgba-gradient align-center">
         <v-container style="height: 100%!important">
@@ -23,7 +24,7 @@
 
               <div class="text-center">
                 <OrangeBtn to="/signup" class="h5 font-weight-bold" style="padding: 15px 40px">無料で登録</OrangeBtn>
-                <GreenBtn to="/signup" class="h5 font-weight-bold ml-3" style="padding: 15px 40px">機能を試す</GreenBtn>
+                <GreenBtn class="h5 font-weight-bold ml-3" style="padding: 15px 40px" @click="onGuestSignIn">機能を試す</GreenBtn>
                 <h5 class="mt-3">
                   <NuxtLink to="/signin" class="font-weight-bold" style="color: #00E676;">すでにアカウトをお持ちですか？ログイン</NuxtLink>
                 </h5>
@@ -235,7 +236,7 @@
 
           <div class="text-center">
             <OrangeBtn to="/signup" class="h5 font-weight-bold" style="padding: 20px 50px">無料で登録</OrangeBtn>
-            <GreenBtn to="/signup" class="h5 font-weight-bold ml-3" style="padding: 20px 50px">機能を試す</GreenBtn>
+            <GreenBtn class="h5 font-weight-bold ml-3" style="padding: 20px 50px" @click="onGuestSignIn">機能を試す</GreenBtn>
             <h5 class="mt-3">
               <NuxtLink to="/signin" class="font-weight-bold" style="color: #00E676;">すでにアカウトをお持ちですか？ログイン</NuxtLink>
             </h5>
@@ -295,11 +296,69 @@ export default {
         SETTING_MOBILE_IMAGE,
         TASK_MOBILE_IMAGE
       }
+    },
+
+    authRedirectPath () {
+      return (this.$auth.user.prefecture == null && this.$auth.user.city == null) ? { path: '/settings/profile' } : { path: '/home' }
     }
   },
 
   created () {
+    this.processing = false
     this.loading = false
+  },
+
+  methods: {
+    async onGuestSignIn () {
+      this.processing = true
+
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.guestSignInUrl)
+        .then((response) => {
+          if (response.data == null) {
+            this.$toasted.error(this.$t('system.error'))
+          } else {
+            this.$auth.loginWith('local', {
+              data: {
+                email: response.data.email,
+                password: response.data.password
+              }
+            })
+              .then((response) => {
+                if (response.data == null) {
+                  this.$toasted.error(this.$t('system.error'))
+                } else {
+                  this.$toasted.error(response.data.alert)
+                  this.$toasted.success(response.data.notice)
+                  this.$router.push(this.authRedirectPath)
+                }
+              },
+              (error) => {
+                if (error.response == null) {
+                  this.$toasted.error(this.$t('network.failure'))
+                } else if (error.response.data == null) {
+                  this.$toasted.error(this.$t('network.error'))
+                } else {
+                  this.$emit('alert', error.response.data.alert)
+                  this.$emit('notice', error.response.data.notice)
+                }
+              })
+            this.$toasted.error(response.data.alert)
+            this.$toasted.success(response.data.notice)
+          }
+        },
+        (error) => {
+          if (error.response == null) {
+            this.$toasted.error(this.$t('network.failure'))
+          } else if (error.response.data == null) {
+            this.$toasted.error(this.$t('network.error'))
+          } else {
+            this.$emit('alert', error.response.data.alert)
+            this.$emit('notice', error.response.data.notice)
+          }
+        })
+
+      this.processing = false
+    }
   }
 }
 </script>
