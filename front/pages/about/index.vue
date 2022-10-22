@@ -19,7 +19,7 @@
                 <br>
                 Bosai Lv (防災レベル) ではそんな方向けにやるべきことを「防災タスク」として設定しています。
                 <br>
-                しかも、「防災タスク」を達成するごとにポイントを獲得・あなたの防災レベルがあがります！
+                さらに、「防災タスク」を達成するごとにポイントを獲得・あなたの防災レベルがあがります！
               </h5>
 
               <div class="text-center">
@@ -67,7 +67,7 @@
       <v-row justify="center" class="py-1 mb-3">
         <v-col cols="11" lg="7" xl="6" md="6" class="pl-lg-3 pl-xl-5 align-self-center" order="1" order-sm="1" order-md="2" order-lg="2">
           <h2 class="mb-4" style="color: #117768;">
-            防災タスクを達成して災害に備えましょう
+            防災タスクを達成して災害に備えることができる
             <v-icon class="ml-1 ml-md-2 pb-1" color="#117768">mdi-book-multiple</v-icon>
           </h2>
           <h4 class="font-weight-light">
@@ -82,11 +82,11 @@
       <v-row justify="center" class="py-1 mb-3">
         <v-col cols="11" lg="7" xl="6" md="6" class="pl-lg-3 pl-xl-5 align-self-center">
           <h2 class="mb-4" style="color: #117768;">
-            防災タスクを達成して獲得したポイントに応じて防災レベルが上がる
+            防災タスクを達成すると獲得できるポイントに応じて防災レベルが上がる
             <v-icon class="ml-1 ml-md-2 pb-1" color="#117768">mdi-transfer-up</v-icon>
           </h2>
           <h4 class="font-weight-light">
-            防災タスクに達成するたびにポイントを獲得・防災レベルが上がります。あなたの防災レベルを上げて「楽しく」災害に備えていきましょう。
+            防災タスクを達成するたびにポイントを獲得でき、防災レベルが上がります。あなたの防災レベルを上げて「楽しく」災害に備えていきましょう。
             詳細は、右上の<v-icon color="amber" class="pb-1">mdi-file-powerpoint-box</v-icon>をチェックしましょう。
           </h4>
         </v-col>
