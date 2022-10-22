@@ -71,11 +71,8 @@ export default {
           this.$toasted.error(this.$t('network.error'))
           return this.$router.push({ path: '/home' })
         } else {
-          if (error.response.data != null) {
-            this.$toasted.error(error.response.data.alert)
-            this.$toasted.success(error.response.data.notice)
-          }
-          return this.$nuxt.error({ statusCode: error.response.status })
+          this.$toasted.error(error.response.data.alert)
+          this.$toasted.success(error.response.data.notice)
         }
       })
 

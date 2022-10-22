@@ -164,8 +164,8 @@ describe('SettingsProfileCard.vue', () => {
       wrapper.findComponent(UserProfileForm).vm.$emit('user-update', values)
       await helper.sleep(1)
       commonPostApiCalledTest(values, 1, 0)
-      commonToastedTest(data.alert, data.notice)
-      commonRedirectTest({ path: '/home' })
+      // commonToastedTest(data.alert, data.notice)
+      commonRedirectTest({ path: `/users/${user.username}` })
     })
 
     it('[成功]未ログイン状態になってしまった場合は、ログインページにリダイレクトされる', async () => {

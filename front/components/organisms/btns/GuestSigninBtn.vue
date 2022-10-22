@@ -3,7 +3,7 @@
     <TheProcessing v-if="processing" />
     <OrangeBtn
       id="guest_sign_in_btn"
-      :disabled="processing"
+      :disabled="processing || disabled"
       @click="onGuestSignIn"
     >
       ゲストログイン
@@ -26,6 +26,13 @@ export default {
   },
 
   mixins: [Application],
+
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  },
 
   computed: {
     authRedirectPath () {

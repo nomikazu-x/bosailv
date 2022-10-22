@@ -77,7 +77,9 @@ export default {
           } else {
             this.$auth.setUser(response.data.user)
             if (this.$auth.loggedIn) {
-              return this.redirectSuccess(response.data.alert, response.data.notice)
+              this.$toasted.error(response.data.alert)
+              this.$toasted.success(response.data.noticee)
+              this.$router.push({ path: `/users/${this.$auth.user.username}` })
             } else {
               return this.redirectSignIn(response.data.alert, response.data.notice)
             }
