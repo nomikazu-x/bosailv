@@ -12,6 +12,7 @@
       </v-toolbar-title>
     </NuxtLink>
     <v-spacer />
+    <ObtainPointIntroDialog />
     <template v-if="!$auth.loggedIn">
       <v-btn to="/signin" text rounded exact nuxt>
         <v-icon>mdi-login</v-icon>
@@ -23,7 +24,6 @@
       </v-btn>
     </template>
     <template v-else>
-      <ObtainPointIntroCard />
       <v-menu offset-y>
         <template #activator="{ on, attrs }">
           <v-btn class="d-inline-block" max-width="400px" style="text-transform: none" text v-bind="attrs" v-on="on">
@@ -79,13 +79,13 @@
 
 <script>
 import Application from '~/plugins/application.js'
-import ObtainPointIntroCard from '~/components/organisms/dialogs/ObtainPointIntroDialog.vue'
+import ObtainPointIntroDialog from '~/components/organisms/dialogs/ObtainPointIntroDialog.vue'
 
 export default {
   name: 'Header',
 
   components: {
-    ObtainPointIntroCard
+    ObtainPointIntroDialog
   },
 
   mixins: [Application],
