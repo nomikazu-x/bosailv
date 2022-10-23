@@ -1,5 +1,4 @@
 users
 infomations
-stocks
 articles
 point_records
