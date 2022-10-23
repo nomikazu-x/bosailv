@@ -165,8 +165,6 @@ ja:
     user:
       image_update: '画像を変更しました。'
       image_destroy: '画像を削除しました。'
-      task_update: 'タスクを達成しました。'
-      task_destroy: 'タスクの達成をリセットしました。'
       hazard_map_task_update: 'ハザードマップを確認しました。5pt獲得！' # ポイント獲得メッセージの獲得ポイント数をSettingsで共通化したい。
       destroy: 'ユーザーを削除しました。'
     article:
@@ -191,8 +189,11 @@ ja:
       update: '防災タスクを更新できました。'
       destroy: '防災タスクを削除できました。'
     task_complete:
-      create: '防災タスクを完了しました。1pt獲得！'
-      destroy: '防災タスクを未完了にしました。マイナス1pt'
+      create: '防災タスクを完了しました。5pt獲得！'
+      destroy: '防災タスクを未完了にしました。マイナス5pt'
+    task_profile:
+      update: 'タスクを達成しました。1pt獲得！'
+      destroy: 'タスクの達成をリセットしました。マイナス1pt'
     family_rule:
       update: '家族のルールを更新できました。5pt獲得！'
       destroy: '家族のルールをリセットしました。マイナス5pt'
