@@ -23,9 +23,9 @@
               </h5>
 
               <div class="text-center">
-                <OrangeBtn to="/signup" class="h5 font-weight-bold" style="padding: 15px 40px">無料で登録</OrangeBtn>
-                <GreenBtn class="h5 font-weight-bold ml-3" style="padding: 15px 40px" @click="onGuestSignIn">機能を試す</GreenBtn>
-                <h5 class="mt-3">
+                <OrangeBtn v-if="!$auth.loggedIn" to="/signup" class="h5 font-weight-bold" style="padding: 15px 40px">無料で登録</OrangeBtn>
+                <GreenBtn v-if="!$auth.loggedIn" class="h5 font-weight-bold ml-3" style="padding: 15px 40px" @click="onGuestSignIn">機能を試す</GreenBtn>
+                <h5 v-if="!$auth.loggedIn" class="mt-3">
                   <NuxtLink to="/signin" class="font-weight-bold" style="color: #00E676;">すでにアカウントをお持ちの方はこちら</NuxtLink>
                 </h5>
               </div>
@@ -230,7 +230,7 @@
       </v-row>
     </v-container>
 
-    <v-container style="margin-top: 120px">
+    <v-container v-if="!$auth.loggedIn" style="margin-top: 120px">
       <v-row justify="center" no-gutters>
         <v-col cols="8" class="text-center">
           <v-img :src="image.SIGNUP_SUGGEST_IMAGE" />
