@@ -70,8 +70,8 @@ maximum_sns_task: 2097151
 # 家庭関係防災タスク達成最大値
 maximum_house_task: 134217727
 
-# 備蓄関係防災タスク達成最大値
-maximum_stock_task: 17179869183
+# 備蓄関係防災タスク達成値
+maximum_stock_task: 8657043455
 
 
 ## 避難所

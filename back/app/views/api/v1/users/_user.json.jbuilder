@@ -38,7 +38,7 @@ json.user do
   json.is_completed_house_tasks user.prepare_task_profile.house_tasks.raw == Settings['maximum_house_task']
   json.is_completed_family_rules_tasks user.is_completed_family_rule_tasks?(user)
   json.is_completed_emergency_contact_task user.emergency_contacts.present?
-  json.is_completed_stock_tasks user.prepare_task_profile.stock_tasks.raw == Settings['maximum_stock_task']
+  json.is_completed_stock_tasks user.prepare_task_profile.stock_tasks.raw >= Settings['maximum_stock_task']
   json.is_family_present user.families.present?
   json.is_hazard_map_confirmed user.task_profile.hazard_map_confirmed?
   json.is_shelter_registered user.registered_shelters.present?
