@@ -51,6 +51,9 @@ gem 'config'
 # Use ActiveFlag
 gem 'active_flag'
 
+# Use ActiveHash
+gem 'active_hash'
+
 # コンソール出力結果を表にする Doc: https://github.com/cldwalker/hirb
 gem 'hirb', '~> 0.7.3'
 
