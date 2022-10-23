@@ -137,8 +137,7 @@ https://app.bosailv.com
 <br />
 
 # ER図
-![ER図](https://user-images.githubusercontent.com/100994776/195884451-b953dc90-3b54-4803-aa7d-f934b426ced4.png)
-
+![ER図](https://user-images.githubusercontent.com/100994776/197386560-37790e1e-4e4c-47b4-b563-0541d57f1cba.png)
 <br />
 
 # 使用技術
