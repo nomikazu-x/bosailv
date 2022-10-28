@@ -22,6 +22,11 @@
 #
 FactoryBot.define do
   factory :family_rule do
-    
+    association :user
+    contact_means_memo { Faker::Lorem.characters(number: 10) }
+    emergency_measure_memo { Faker::Lorem.characters(number: 10) }
+    family_role_memo { Faker::Lorem.characters(number: 10) }
+    leave_home_memo { Faker::Lorem.characters(number: 10) }
+    refuge_memo { Faker::Lorem.characters(number: 10) }
   end
 end
