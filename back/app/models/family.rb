@@ -22,4 +22,8 @@ class Family < ApplicationRecord
 
   enum sex: { Male: 1, Female: 2 }
   enum age: { Infant: 1, Child: 2, Junior: 3, Adult: 4, Senior: 5 }
+
+  validates :sex, presence: true
+  validates :age, presence: true
+  validates :user_id, presence: true
 end
