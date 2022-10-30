@@ -24,6 +24,13 @@
 #
 FactoryBot.define do
   factory :hazard_map do
-    
+    flood { 'flood' }
+    inland_flood { 'inland_flood' }
+    landslide { 'landslide' }
+    reservoir { 'reservoir' }
+    storm_surge { 'storm_surge' }
+    tsunami { 'tsunami' }
+    volcano { 'volcano' }
+    association :city
   end
 end
