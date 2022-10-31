@@ -2,7 +2,19 @@
 
 ![logo](https://user-images.githubusercontent.com/100994776/195891384-ba180de7-a36a-4ff9-8e98-447f9770980d.jpg)
 
+![about](https://camo.qiitausercontent.com/0d6b4ae5d9754717d5dae73b6b79f656919861e0/68747470733a2f2f757365722d696d616765732e67697468756275736572636f6e74656e742e636f6d2f3130303939343737362f3139373534333237382d32393639353038612d393432662d346233302d623864392d6166646663383863303831352e676966)
+
 ### 「Bosai Lv」は、防災に関するタスクを達成すると、防災レベルが上がるサービスです。
+
+<br>
+
+# スライド
+
+以下のリンクにあるスライドに、市場調査・開発背景等を分かりやすくまとめておりますので、まずはご覧ください。
+
+<br>
+
+### [Bosai Lvの概要スライド](https://docs.google.com/presentation/d/1FEpAxQ8cVzMYrd7wMn1fcBBaOq5SkIj8jwVw4iP3iOc/edit?usp=sharing)
 
 <br />
 
@@ -184,3 +196,15 @@ https://app.bosailv.com
 | refactor |  リファクタリング<br> バグの修正も機能の追加も行わないコード変更 |
 | perf     |  パーフォマンスを向上させるための変更 |
 | test     |  テストの追加・修正 |
+
+<br />
+
+# 合わせて読んでほしい記事
+
+### 1. ポートフォリオの紹介 / 2.利用してもらった感想 と フィードバックによる改善
+
+[【完全SPA】独学・未経験者が「防災啓発」アプリを開発した話(1/2)【Rails/Nuxt.js/AWS/Docker/CircleCI/Terraform】](https://qiita.com/kazuki-ayimon/items/a1b0c76a634663654cbf)
+
+### 3.技術選定理由 と 使用した教材の紹介 / 4.反省 と 今後の課題
+
+[【完全SPA】独学・未経験者が「防災啓発」アプリを開発した話(2/2)【Rails/Nuxt.js/AWS/Docker/CircleCI/Terraform】](https://qiita.com/kazuki-ayimon/items/6b6c089cd5e1c631ef22)
