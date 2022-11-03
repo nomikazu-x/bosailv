@@ -21,6 +21,10 @@
 #
 FactoryBot.define do
   factory :task_profile do
-    
+    hazard_map_confirmed_at { Time.now }
+    house_tasks { 1 }
+    sns_tasks { 1 }
+    stock_tasks { 1 }
+    association :user
   end
 end
