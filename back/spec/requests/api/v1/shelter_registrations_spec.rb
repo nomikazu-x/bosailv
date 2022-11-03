@@ -10,7 +10,7 @@ RSpec.describe Api::V1::ShelterRegistrationsController, type: :request do
     let(:headers) { user2.create_new_auth_token }
     let(:params) {{ }}
 
-    context 'お気に入りすることに成功した場合' do
+    context 'マイ避難所に登録することに成功した場合' do
       let(:params) do
         {
           shelter_registration: {
@@ -27,7 +27,7 @@ RSpec.describe Api::V1::ShelterRegistrationsController, type: :request do
         expect(response.status).to eq 200
       end
 
-      it 'お気に入りされていること' do
+      it 'マイ避難所に登録されていること' do
         expect { call_api }.to change { ShelterRegistration.count }.by(1)
       end
 
@@ -49,7 +49,7 @@ RSpec.describe Api::V1::ShelterRegistrationsController, type: :request do
     let!(:shelter_registration) { create :shelter_registration, user_id: user.id, shelter_id: shelter.id }
     let!(:point_record) { create :point_record, user_id: user.id, obtained_point: Settings['shelter_registration_obtained_point'] }
 
-    context 'お気に入りの削除に成功した場合' do
+    context 'マイ避難所からの削除に成功した場合' do
       it 'レスポンスステータスが200で返ること' do
         call_api
         res = JSON.parse(response.body)

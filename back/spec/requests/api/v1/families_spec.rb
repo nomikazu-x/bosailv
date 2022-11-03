@@ -31,7 +31,7 @@ RSpec.describe Api::V1::FamiliesController, type: :request do
     let(:headers) { user.create_new_auth_token }
     let(:params) {{ }}
 
-    context '緊急時連絡先の作成に成功した場合' do
+    context '家族情報の作成に成功した場合' do
       let(:params) do
         {
           family: {
@@ -49,7 +49,7 @@ RSpec.describe Api::V1::FamiliesController, type: :request do
         expect(response.status).to eq 200
       end
 
-      it '緊急時連絡先が作成されていること' do
+      it '家族情報が作成されていること' do
         expect { call_api }.to change { Family.count }.by(1)
       end
 
@@ -62,7 +62,7 @@ RSpec.describe Api::V1::FamiliesController, type: :request do
       end
     end
 
-    context '緊急時連絡先の作成に失敗した場合' do
+    context '家族情報の作成に失敗した場合' do
       let(:params) do
         {
           family: {
@@ -97,8 +97,8 @@ RSpec.describe Api::V1::FamiliesController, type: :request do
     let(:headers) { user.create_new_auth_token }
     let(:family) { create :family, user_id: user.id }
 
-    context 'ログインユーザーと緊急時連絡先ユーザーが一致している場合' do
-      context '緊急時連絡先の削除に成功した場合' do
+    context 'ログインユーザーと家族情報を作成したユーザーが一致している場合' do
+      context '家族情報の削除に成功した場合' do
         it 'レスポンスステータスが200で返ること' do
           call_api
           res = JSON.parse(response.body)
@@ -106,7 +106,7 @@ RSpec.describe Api::V1::FamiliesController, type: :request do
           expect(response.status).to eq 200
         end
 
-        it '緊急時連絡先が削除されていること' do
+        it '家族情報が削除されていること' do
           expect { call_api }.to change { Family.count }.by(0)
         end
 
@@ -118,7 +118,7 @@ RSpec.describe Api::V1::FamiliesController, type: :request do
       end
     end
 
-    context 'ログインユーザーと緊急時連絡先ユーザーが一致していない場合' do
+    context 'ログインユーザーと家族情報を作成したユーザーが一致していない場合' do
       before { family.update(user_id: user2.id) }
 
       it 'アクセス権限がないと言われる' do

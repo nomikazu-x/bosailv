@@ -8,7 +8,7 @@ RSpec.describe Api::V1::TaskProfilesController, type: :request do
     let(:headers) { user.create_new_auth_token }
     let(:params) {{ }}
 
-    context 'お気に入りすることに成功した場合' do
+    context 'タスクを完了することに成功した場合' do
       let(:params) do
         {
           sns_task: 1
@@ -22,7 +22,7 @@ RSpec.describe Api::V1::TaskProfilesController, type: :request do
         expect(response.status).to eq 200
       end
 
-      it 'お気に入りされていること' do
+      it 'タスクが完了されていること' do
         expect { call_api }.to change { TaskProfile.count }.by(1)
       end
 
@@ -43,7 +43,7 @@ RSpec.describe Api::V1::TaskProfilesController, type: :request do
     let!(:task_profile) { create :task_profile, user_id: user.id }
     let!(:point_record) { create :point_record, user_id: user.id, obtained_point: Settings['sns_task_complete_obtained_point'] }
 
-    context 'お気に入りの削除に成功した場合' do
+    context 'タスクの未完了に成功した場合' do
       let(:params) do
         {
           sns_task: 1
