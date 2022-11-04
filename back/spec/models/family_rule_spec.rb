@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: family_rules
+# Table contact_means_memo: family_rules
 #
 #  id                                     :bigint           not null, primary key
 #  contact_means_memo(緊急時連絡手段メモ) :text(65535)      not null
@@ -23,5 +23,69 @@
 require 'rails_helper'
 
 RSpec.describe FamilyRule, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "correct_family_rule" do
+    let(:user) { create(:user) }
+    let(:family_rule) { build(:family_rule, user: user) }
+
+    it "緊急時連絡先が正しく作成されていること" do
+      expect(family_rule).to be_valid
+    end
+  end
+
+  describe "validate presence" do
+    context "contact_means_memoがNULLの時" do
+      let(:family_rule) { build(:family_rule, contact_means_memo: nil) }
+      it "エラーメッセージが返る" do
+        family_rule.valid?
+        expect(family_rule).to be_invalid
+      end
+    end
+
+    context "emergency_measure_memoがNULLの時" do
+      let(:family_rule) { build(:family_rule, emergency_measure_memo: nil) }
+      it "エラーメッセージが返る" do
+        family_rule.valid?
+        expect(family_rule).to be_invalid
+      end
+    end
+
+    context "family_role_memoがNULLの時" do
+      let(:family_rule) { build(:family_rule, family_role_memo: nil) }
+      it "エラーメッセージが返る" do
+        family_rule.valid?
+        expect(family_rule).to be_invalid
+      end
+    end
+
+    context "leave_home_memoがNULLの時" do
+      let(:family_rule) { build(:family_rule, leave_home_memo: nil) }
+      it "エラーメッセージが返る" do
+        family_rule.valid?
+        expect(family_rule).to be_invalid
+      end
+    end
+
+    context "refuge_memoがNULLの時" do
+      let(:family_rule) { build(:family_rule, refuge_memo: nil) }
+      it "エラーメッセージが返る" do
+        family_rule.valid?
+        expect(family_rule).to be_invalid
+      end
+    end
+
+    context "userがNULLの時" do
+      let(:family_rule) { build(:family_rule, user: nil) }
+      it "エラーメッセージが返る" do
+        family_rule.valid?
+        expect(family_rule).to be_invalid
+      end
+    end
+  end
+
+  describe "association" do
+    it "Userテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:user)
+      expect(rel.macro).to eq :belongs_to
+    end
+  end
 end
