@@ -25,5 +25,85 @@
 require 'rails_helper'
 
 RSpec.describe HazardMap, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "correct_hazard_map" do
+    let(:city) { create(:city) }
+    let(:hazard_map) { build(:hazard_map, city: city) }
+
+    it "緊急時連絡先が正しく作成されていること" do
+      expect(hazard_map).to be_valid
+    end
+  end
+
+  describe "validate presence" do
+    context "floodがNULLの時" do
+      let(:hazard_map) { build(:hazard_map, flood: nil) }
+      it "エラーメッセージが返る" do
+        hazard_map.valid?
+        expect(hazard_map).to be_invalid
+      end
+    end
+
+    context "inland_floodがNULLの時" do
+      let(:hazard_map) { build(:hazard_map, inland_flood: nil) }
+      it "エラーメッセージが返る" do
+        hazard_map.valid?
+        expect(hazard_map).to be_invalid
+      end
+    end
+
+    context "landslideがNULLの時" do
+      let(:hazard_map) { build(:hazard_map, landslide: nil) }
+      it "エラーメッセージが返る" do
+        hazard_map.valid?
+        expect(hazard_map).to be_invalid
+      end
+    end
+
+    context "reservoirがNULLの時" do
+      let(:hazard_map) { build(:hazard_map, reservoir: nil) }
+      it "エラーメッセージが返る" do
+        hazard_map.valid?
+        expect(hazard_map).to be_invalid
+      end
+    end
+
+    context "storm_surgeがNULLの時" do
+      let(:hazard_map) { build(:hazard_map, storm_surge: nil) }
+      it "エラーメッセージが返る" do
+        hazard_map.valid?
+        expect(hazard_map).to be_invalid
+      end
+    end
+
+    context "tsunamiがNULLの時" do
+      let(:hazard_map) { build(:hazard_map, tsunami: nil) }
+      it "エラーメッセージが返る" do
+        hazard_map.valid?
+        expect(hazard_map).to be_invalid
+      end
+    end
+
+    context "volcanoがNULLの時" do
+      let(:hazard_map) { build(:hazard_map, volcano: nil) }
+      it "エラーメッセージが返る" do
+        hazard_map.valid?
+        expect(hazard_map).to be_invalid
+      end
+    end
+
+    context "cityがNULLの時" do
+      let(:hazard_map) { build(:hazard_map, city: nil) }
+      it "エラーメッセージが返る" do
+        hazard_map.valid?
+        expect(hazard_map).to be_invalid
+      end
+    end
+  end
+
+  describe "association" do
+    it "Cityテーブルに正しく紐づいていること" do
+      rel = described_class.reflect_on_association(:city)
+      expect(rel.macro).to eq :belongs_to
+    end
+  end
 end
