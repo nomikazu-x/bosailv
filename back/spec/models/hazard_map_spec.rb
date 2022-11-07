@@ -29,7 +29,7 @@ RSpec.describe HazardMap, type: :model do
     let(:city) { create(:city) }
     let(:hazard_map) { build(:hazard_map, city: city) }
 
-    it "緊急時連絡先が正しく作成されていること" do
+    it "ハザードマップが正しく作成されていること" do
       expect(hazard_map).to be_valid
     end
   end
