@@ -1,21 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::TaskCompletesController, type: :request do
-  describe 'POST /api/v1/tasks/:id/task_completes/create' do
-    subject(:call_api) { post "/api/v1/tasks/#{task.id}/task_completes/create.json", headers: headers, params: params }
+RSpec.describe Api::V1::TaskProfilesController, type: :request do
+  describe 'POST /api/v1/task_profiles/update' do
+    subject(:call_api) { post "/api/v1/task_profiles/update.json", headers: headers, params: params }
 
     let(:user) { create(:confirmed_user) }
-    let(:task) { create(:task)}
     let(:headers) { user.create_new_auth_token }
     let(:params) {{ }}
 
     context 'タスクを完了することに成功した場合' do
       let(:params) do
         {
-          task_complete: {
-            user_id: user.id,
-            task_id: task.id
-          }
+          sns_task: 1
         }
       end
 
@@ -27,7 +23,7 @@ RSpec.describe Api::V1::TaskCompletesController, type: :request do
       end
 
       it 'タスクが完了されていること' do
-        expect { call_api }.to change { TaskComplete.count }.by(1)
+        expect { call_api }.to change { TaskProfile.count }.by(1)
       end
 
       it 'レスポンスボディーに期待された値が返ること' do
@@ -38,16 +34,21 @@ RSpec.describe Api::V1::TaskCompletesController, type: :request do
     end
   end
 
-  describe 'POST /api/v1/tasks/:id/task_completes/delete' do
-    subject(:call_api) { post "/api/v1/tasks/#{task.id}/task_completes/delete.json", headers: headers }
+  describe 'POST /api/v1/task_profiles/delete' do
+    subject(:call_api) { post "/api/v1/task_profiles/delete.json", headers: headers, params: params }
 
     let(:user) { create :confirmed_user }
     let(:headers) { user.create_new_auth_token }
-    let(:task) { create :task }
-    let!(:task_complete) { create :task_complete, user_id: user.id, task_id: task.id }
-    let!(:point_record) { create :point_record, user_id: user.id, obtained_point: Settings['task_complete_obtained_point'] }
+    let(:params) {{ }}
+    let!(:task_profile) { create :task_profile, user_id: user.id }
+    let!(:point_record) { create :point_record, user_id: user.id, obtained_point: Settings['sns_task_complete_obtained_point'] }
 
-    context 'タスクを未完了に成功した場合' do
+    context 'タスクの未完了に成功した場合' do
+      let(:params) do
+        {
+          sns_task: 1
+        }
+      end
       it 'レスポンスステータスが200で返ること' do
         call_api
         res = JSON.parse(response.body)

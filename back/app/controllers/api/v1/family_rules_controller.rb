@@ -8,7 +8,7 @@ class Api::V1::FamilyRulesController < Api::V1::ApplicationController
 
   # POST /api/v1/family_rules/update(.json) 家族ルール更新API(処理)
   def update
-    if @family_rule.update!(family_rule_params)
+    if @family_rule.update(family_rule_params)
       ActiveRecord::Base.transaction do
         # ポイント獲得
         PointRecorder.new(current_user).record(Settings['family_rule_update_obtained_point'])

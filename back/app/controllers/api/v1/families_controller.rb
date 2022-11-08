@@ -1,4 +1,6 @@
 class Api::V1::FamiliesController < Api::V1::ApplicationController
+  before_action :authenticate_user!, only: %i[index create destroy]
+  before_action :correct_user?, only: %i[destroy]
 
   # GET /api/v1/families(.json) 緊急連絡先一覧API
   def index
@@ -35,5 +37,12 @@ class Api::V1::FamiliesController < Api::V1::ApplicationController
 
   def family_params
     params.require(:family).permit(:sex, :age)
+  end
+
+  def correct_user?
+    @family = Family.find(params[:id])
+    return if current_user == @family.user
+
+    render './api/v1/failure', locals: { alert: I18n.t('errors.messages.not_permission') }, status: :unauthorized
   end
 end

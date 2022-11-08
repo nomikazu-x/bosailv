@@ -32,6 +32,21 @@
 #
 FactoryBot.define do
   factory :shelter do
-    
+    address { 'address' }
+    city_name  { 'city_name' }
+    duplicate  { 'duplicate' }
+    earthquake  { true }
+    fire  { true }
+    flood { true }
+    inland_flood { true }
+    landslide { true }
+    latitude { 1.0 }
+    longitude { 1.0 }
+    name { 'name' }
+    remark  { 'remark' }
+    storm_surge { true }
+    tsunami { true }
+    volcano { true }
+    association :city
   end
 end
