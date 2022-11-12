@@ -232,8 +232,9 @@
 
     <v-container v-if="!$auth.loggedIn" style="margin-top: 120px">
       <v-row justify="center" no-gutters>
-        <v-col cols="8" class="text-center">
-          <v-img :src="image.SIGNUP_SUGGEST_IMAGE" />
+        <v-col cols="12" sm="12" lg="8" xl="8" md="8" class="text-center">
+          <h1 class="hidden-xs-only">ー さぁ、今すぐ無料で始めましょう ー</h1>
+          <h2 class="hidden-sm-and-up">ー さぁ、今すぐ無料で始めましょう ー</h2>
         </v-col>
         <v-col cols="12">
           <v-divider class="my-1 mb-5" />
@@ -273,7 +274,6 @@ import DISCOVER_BOY_IMAGE from '~/assets/images/discover_boy.png'
 import SIGNUP_MOBILE_IMAGE from '~/assets/images/signup_mobile.png'
 import SETTING_MOBILE_IMAGE from '~/assets/images/setting_mobile.png'
 import TASK_MOBILE_IMAGE from '~/assets/images/task_mobile.png'
-import SIGNUP_SUGGEST_IMAGE from '~/assets/images/signup_suggest.png'
 
 export default {
   name: 'AboutIndexCard',
@@ -302,8 +302,7 @@ export default {
         DISCOVER_BOY_IMAGE,
         SIGNUP_MOBILE_IMAGE,
         SETTING_MOBILE_IMAGE,
-        TASK_MOBILE_IMAGE,
-        SIGNUP_SUGGEST_IMAGE
+        TASK_MOBILE_IMAGE
       }
     },
 
