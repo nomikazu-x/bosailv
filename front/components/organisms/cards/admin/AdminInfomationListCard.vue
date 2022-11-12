@@ -11,7 +11,7 @@
         />
 
         <ThePagination
-          class="mt-5"
+          class="my-3"
           :info="infomationInfo"
           @pagination="onInfomationPagination"
         />

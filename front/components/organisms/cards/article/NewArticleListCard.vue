@@ -10,7 +10,7 @@
       </div>
 
       <ThePagination
-        class="mt-5"
+        class="my-3"
         :info="info"
         @pagination="onPagination"
       />

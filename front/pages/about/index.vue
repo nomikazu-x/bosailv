@@ -87,7 +87,8 @@
           </h2>
           <h4 class="font-weight-light">
             防災タスクを達成するたびにポイントを獲得でき、防災レベルが上がります。あなたの防災レベルを上げて「楽しく」災害に備えていきましょう。
-            詳細は、右上の<v-icon color="amber" class="pb-1">mdi-file-powerpoint-box</v-icon>をチェックしましょう。
+            詳細は、右上の<v-icon color="amber" class="pb-1">mdi-file-powerpoint-box</v-icon>をチェックしましょう<br>
+            <span class="text-caption font-weight-light">※獲得した防災ポイントは、本アプリ内の防災レベルを上げるためにしか使用できません。</span>
           </h4>
         </v-col>
         <v-col cols="11" lg="5" xl="6" md="6" class="text-center align-self-center">
@@ -232,8 +233,9 @@
 
     <v-container v-if="!$auth.loggedIn" style="margin-top: 120px">
       <v-row justify="center" no-gutters>
-        <v-col cols="8" class="text-center">
-          <v-img :src="image.SIGNUP_SUGGEST_IMAGE" />
+        <v-col cols="12" sm="12" lg="8" xl="8" md="8" class="text-center">
+          <h1 class="hidden-xs-only">ー さぁ、今すぐ無料で始めましょう ー</h1>
+          <h2 class="hidden-sm-and-up">ー さぁ、今すぐ無料で始めましょう ー</h2>
         </v-col>
         <v-col cols="12">
           <v-divider class="my-1 mb-5" />
@@ -245,7 +247,7 @@
             <OrangeBtn to="/signup" class="h5 font-weight-bold" style="padding: 20px 50px">無料で登録</OrangeBtn>
             <GreenBtn class="h5 font-weight-bold ml-3" style="padding: 20px 50px" @click="onGuestSignIn">機能を試す</GreenBtn>
             <h5 class="mt-3">
-              <NuxtLink to="/signin" class="font-weight-bold" style="color: #00E676;">すでにアカウントをお持ちの方はこちら</NuxtLink>
+              <NuxtLink to="/signin" class="font-weight-bold">すでにアカウントをお持ちの方はこちら</NuxtLink>
             </h5>
           </div>
         </v-col>
@@ -273,7 +275,6 @@ import DISCOVER_BOY_IMAGE from '~/assets/images/discover_boy.png'
 import SIGNUP_MOBILE_IMAGE from '~/assets/images/signup_mobile.png'
 import SETTING_MOBILE_IMAGE from '~/assets/images/setting_mobile.png'
 import TASK_MOBILE_IMAGE from '~/assets/images/task_mobile.png'
-import SIGNUP_SUGGEST_IMAGE from '~/assets/images/signup_suggest.png'
 
 export default {
   name: 'AboutIndexCard',
@@ -302,8 +303,7 @@ export default {
         DISCOVER_BOY_IMAGE,
         SIGNUP_MOBILE_IMAGE,
         SETTING_MOBILE_IMAGE,
-        TASK_MOBILE_IMAGE,
-        SIGNUP_SUGGEST_IMAGE
+        TASK_MOBILE_IMAGE
       }
     },
 

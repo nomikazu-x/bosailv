@@ -1,26 +1,26 @@
 <template>
   <div>
     <BaseListItem :to="`/users/${user.username}`">
-      <div v-if="[0, 1, 2].includes(index)">
+      <div v-if="[0, 1, 2].includes(index)" style="width: 50px;" class="text-center">
         <v-list-item-icon v-if="index === 0">
-          <v-icon style="color: #ffc400;" large>
+          <v-icon style="color: #ffc400;">
             mdi-medal-outline
           </v-icon>
         </v-list-item-icon>
         <v-list-item-icon v-if="index === 1">
-          <v-icon style="color: #c9c9c9;" large>
+          <v-icon style="color: #c9c9c9;">
             mdi-medal-outline
           </v-icon>
         </v-list-item-icon>
         <v-list-item-icon v-if="index === 2">
-          <v-icon style="color: #ac6d4d;" large>
+          <v-icon style="color: #ac6d4d;">
             mdi-medal-outline
           </v-icon>
         </v-list-item-icon>
       </div>
-      <div v-else>
+      <div v-else style="width: 50px;" class="text-center">
         <v-list-item-icon>
-          <v-icon large class="ml-1 mr-2">
+          <v-icon class="ml-1 mr-2">
             {{ index + 1 }}
           </v-icon>
         </v-list-item-icon>

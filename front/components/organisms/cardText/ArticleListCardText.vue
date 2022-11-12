@@ -1,7 +1,7 @@
 <template>
   <BaseCard :to="{ name: 'articles-id___ja', params: { id: article.id }}">
     <v-card-text class="black--text">
-      <v-row align="center">
+      <v-row align="center" no-gutters>
         <v-col cols="4">
           <v-img :src="article.thumbnail_url.large" max-height="128" max-width="192" class="rounded-lg" />
         </v-col>
@@ -9,10 +9,10 @@
           <v-card-title>
             {{ article.title }}
           </v-card-title>
-          <v-card-text class="mt-2 text-right">
+          <div class="mt-7 text-right">
             <v-icon small>mdi-calendar-range</v-icon>
             {{ $dateFormat(article.created_at, 'ja') }}
-          </v-card-text>
+          </div>
         </v-col>
       </v-row>
     </v-card-text>

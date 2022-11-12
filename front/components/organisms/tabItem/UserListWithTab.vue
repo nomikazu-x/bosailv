@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheProcessing v-if="processing" />
-    <v-card tile>
+    <v-card tile outlined>
       <v-card-title v-if="users != null && users.length === 0" class="ml-1">ユーザーはいません。</v-card-title>
       <UserListItem
         v-for="(user, i) in users"
@@ -11,7 +11,7 @@
       />
 
       <ThePagination
-        class="mt-5"
+        class="my-3"
         :info="info"
         @pagination="onPagination"
       />
