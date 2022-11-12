@@ -34,6 +34,8 @@
           </template>
         </v-data-table>
 
+        <div class="text-caption font-weight-light text-left ml-2">※獲得した防災ポイントは、本アプリ内の防災レベルを上げるためにしか使用できません。</div>
+
         <v-card-actions>
           <v-spacer />
           <v-btn

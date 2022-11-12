@@ -87,7 +87,8 @@
           </h2>
           <h4 class="font-weight-light">
             防災タスクを達成するたびにポイントを獲得でき、防災レベルが上がります。あなたの防災レベルを上げて「楽しく」災害に備えていきましょう。
-            詳細は、右上の<v-icon color="amber" class="pb-1">mdi-file-powerpoint-box</v-icon>をチェックしましょう。
+            詳細は、右上の<v-icon color="amber" class="pb-1">mdi-file-powerpoint-box</v-icon>をチェックしましょう<br>
+            <span class="text-caption font-weight-light">※獲得した防災ポイントは、本アプリ内の防災レベルを上げるためにしか使用できません。</span>
           </h4>
         </v-col>
         <v-col cols="11" lg="5" xl="6" md="6" class="text-center align-self-center">
