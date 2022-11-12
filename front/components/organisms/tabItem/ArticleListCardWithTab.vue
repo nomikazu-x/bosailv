@@ -1,7 +1,7 @@
 <template>
   <div>
     <TheProcessing v-if="processing" />
-    <v-card tile>
+    <v-card tile outlined>
       <v-card-title v-if="articles != null && articles.length === 0" class="ml-1">記事はありません。</v-card-title>
       <div v-for="article in articles" :key="article.id">
         <ArticleListCardText
@@ -10,7 +10,7 @@
       </div>
 
       <ThePagination
-        class="mt-5"
+        class="my-3"
         :info="info"
         @pagination="onPagination"
       />
