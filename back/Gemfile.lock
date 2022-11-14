@@ -335,6 +335,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     ssrf_filter (1.0.7)
+    test-prof (1.0.11)
     thor (1.2.1)
     tilt (2.0.10)
     tzinfo (2.0.4)
@@ -385,6 +386,7 @@ DEPENDENCIES
   sassc-rails
   spring
   spring-commands-rspec
+  test-prof
   tzinfo-data
 
 RUBY VERSION
