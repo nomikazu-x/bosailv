@@ -55,6 +55,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable
   include DeviseTokenAuth::Concerns::User
+  attr_accessor :redirect_url # Tips: /api/v1/auth/{update,sign_in}で使用
 
   mount_uploader :image, ImageUploader
 
@@ -82,6 +83,8 @@ class User < ActiveRecord::Base
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
   VALID_PASSWORD_REGEX = /\A[!-~]+\z/
 
+  validates :code, presence: true
+  validates :code, uniqueness: { case_sensitive: true }
   validates :name, length: { maximum: 30 }
   validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX }, allow_nil: true
   validates :username, length: { maximum: 30 }, uniqueness: true, allow_nil: true, presence: true, format: { with: VALID_USERNAME_REGEX }
@@ -103,6 +106,11 @@ class User < ActiveRecord::Base
       logger.warn("[WARN]Not found: User.image_url(#{version})")
       ''
     end
+  end
+
+  # 削除予定があるか返却
+  def destroy_reserved?
+    destroy_schedule_at.present?
   end
 
   # お知らせの未読数
