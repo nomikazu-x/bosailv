@@ -1,21 +1,21 @@
 <template>
   <v-row justify="center">
     <v-col cols="12" sm="10" md="10">
-      <BaseTitleCard title="新規登録">
+      <BaseTitleCard title="アカウントロック解除">
         <div class="pa-5">
           <v-row justify="center">
             <v-col cols="12" sm="8" md="6">
-              <SignupForm
+              <UserUnlockNewForm
                 :processing="processing"
                 :errors="errors"
-                @sign-up="onSignUp"
+                @unlock-new="onUnlockNew"
               />
             </v-col>
 
             <v-col cols="12" sm="12" md="9" class="text-right">
               <v-divider class="mb-2" />
 
-              <UsersActionLink action="sign_up" />
+              <UsersActionLink action="unlock" />
             </v-col>
           </v-row>
         </div>
@@ -27,36 +27,36 @@
 <script>
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
-import SignupForm from '~/components/organisms/form/SignupForm.vue'
+import UserUnlockNewForm from '~/components/organisms/form/UserUnlockNewForm.vue'
 import UsersActionLink from '~/components/molecules/links/UsersActionLink.vue'
 
 export default {
-  name: 'SignupCard',
+  name: 'UserUnlockNewCard',
 
   components: {
     BaseTitleCard,
-    SignupForm,
+    UserUnlockNewForm,
     UsersActionLink
   },
 
   mixins: [Application],
+
   data () {
     return {
       errors: null
     }
   },
+
   created () {
     this.processing = false
   },
+
   methods: {
-    async onSignUp (userInfo) {
+    async onUnlockNew (userInfo) {
       this.processing = true
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.singUpUrl, {
-        name: userInfo.name,
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.unlockNewUrl, {
         email: userInfo.email,
-        password: userInfo.password,
-        password_confirmation: userInfo.password_confirmation,
-        confirm_success_url: this.$config.frontBaseURL + this.$config.singUpSuccessUrl
+        redirect_url: this.$config.frontBaseURL + this.$config.unlockRedirectUrl
       })
         .then((response) => {
           if (response.data == null) {
@@ -80,11 +80,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.other-heading {
-  font-size: 1rem;
-  font-weight: normal;
-  margin-bottom: 0.5rem;
-}
-</style>

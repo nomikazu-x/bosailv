@@ -8,7 +8,7 @@
 
       <div class="text-center mt-4">
         <OrangeBtn
-          id="password_reset_btn"
+          id="confirmation_new_btn"
           :disabled="invalid || processing"
           @click="onSubmit"
         >
@@ -26,8 +26,7 @@ import EmailTextField from '~/components/organisms/textFields/EmailTextField.vue
 import OrangeBtn from '~/components/atoms/btns/OrangeBtn.vue'
 
 export default {
-  name: 'PasswordResetForm',
-
+  name: 'UsersConfirmationNew',
   components: {
     ValidationObserver,
     TheProcessing,
@@ -52,7 +51,10 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$emit('password-new', this.email)
+      const userInfo = {
+        email: this.email
+      }
+      this.$emit('confirmation-new', userInfo)
     }
   }
 }

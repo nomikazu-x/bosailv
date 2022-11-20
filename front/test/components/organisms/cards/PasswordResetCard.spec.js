@@ -87,7 +87,7 @@ describe('PasswordResetCard.vue', () => {
   const commonApiCalledTest = (values) => {
     expect(axiosPostMock).toBeCalledTimes(1)
     expect(axiosPostMock).toBeCalledWith('https://example.com/api/v1/auth/password.json', {
-      email: values.email,
+      email: values,
       redirect_url: 'https://front.example.com/password/reset/confirm'
     })
   }

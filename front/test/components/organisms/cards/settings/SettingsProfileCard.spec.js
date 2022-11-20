@@ -36,8 +36,8 @@ describe('SettingsProfileCard.vue', () => {
       mocks: {
         $config: {
           apiBaseURL: 'https://example.com',
-          userShowUrl: '/api/v1/users/_username.json',
-          userUpdateUrl: '/api/v1/auth/update.json'
+          userDetailUrl: '/api/v1/auth/detail.json',
+          userProfileUpdateUrl: '/api/v1/auth/profile/update.json'
         },
         $axios: {
           get: axiosGetMock,
@@ -92,12 +92,12 @@ describe('SettingsProfileCard.vue', () => {
   }
   const commonGetApiCalledTest = (logoutCalled) => {
     expect(axiosGetMock).toBeCalledTimes(1)
-    expect(axiosGetMock).toBeCalledWith('https://example.com/api/v1/users/12345.json')
+    expect(axiosGetMock).toBeCalledWith('https://example.com/api/v1/auth/detail.json')
     expect(authLogoutMock).toBeCalledTimes(logoutCalled)
   }
   const commonPostApiCalledTest = (values, setUserCalled, logoutCalled) => {
     expect(axiosPostMock).toBeCalledTimes(1)
-    expect(axiosPostMock).toBeCalledWith('https://example.com/api/v1/auth/update.json', {
+    expect(axiosPostMock).toBeCalledWith('https://example.com/api/v1/auth/profile/update.json', {
       name: values.name,
       prefecture_id: values.selectPrefecture,
       city_id: values.selectCity,

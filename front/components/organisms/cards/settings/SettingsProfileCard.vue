@@ -39,7 +39,7 @@ export default {
   },
 
   async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.userShowUrl.replace('_username', this.$auth.user.username))
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.userDetailUrl)
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
@@ -65,7 +65,7 @@ export default {
     async onUserUpdate (userInfo) {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.userUpdateUrl, {
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.userProfileUpdateUrl, {
         name: userInfo.name,
         prefecture_id: userInfo.selectPrefecture,
         city_id: userInfo.selectCity,
@@ -78,7 +78,7 @@ export default {
             this.$auth.setUser(response.data.user)
             if (this.$auth.loggedIn) {
               this.$toasted.error(response.data.alert)
-              this.$toasted.success(response.data.noticee)
+              this.$toasted.success(response.data.notice)
               this.$router.push({ path: `/users/${this.$auth.user.username}` })
             } else {
               return this.redirectSignIn(response.data.alert, response.data.notice)

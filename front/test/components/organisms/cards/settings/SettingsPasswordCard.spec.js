@@ -34,8 +34,10 @@ describe('SettingsPasswordCard.vue', () => {
       mocks: {
         $config: {
           apiBaseURL: 'https://example.com',
-          userShowUrl: '/api/v1/users/_username.json',
-          userUpdateUrl: '/api/v1/auth/update.json'
+          userDetailUrl: '/api/v1/auth/detail.json',
+          userUpdateUrl: '/api/v1/auth/update.json',
+          frontBaseURL: 'https://front.example.com',
+          confirmationSuccessUrl: '/signin'
         },
         $axios: {
           get: axiosGetMock,
@@ -89,7 +91,7 @@ describe('SettingsPasswordCard.vue', () => {
   }
   const commonGetApiCalledTest = (logoutCalled) => {
     expect(axiosGetMock).toBeCalledTimes(1)
-    expect(axiosGetMock).toBeCalledWith('https://example.com/api/v1/users/12345.json')
+    expect(axiosGetMock).toBeCalledWith('https://example.com/api/v1/auth/detail.json')
     expect(authLogoutMock).toBeCalledTimes(logoutCalled)
   }
   const commonPostApiCalledTest = (values, setUserCalled, logoutCalled) => {
@@ -97,7 +99,8 @@ describe('SettingsPasswordCard.vue', () => {
     expect(axiosPostMock).toBeCalledWith('https://example.com/api/v1/auth/update.json', {
       password: values.password,
       current_password: values.current_password,
-      password_confirmation: values.password_confirmation
+      password_confirmation: values.password_confirmation,
+      confirm_redirect_url: 'https://front.example.com/signin'
     })
     expect(authSetUserMock).toBeCalledTimes(setUserCalled)
     expect(authLogoutMock).toBeCalledTimes(logoutCalled)

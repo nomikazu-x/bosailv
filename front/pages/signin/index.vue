@@ -27,9 +27,31 @@ export default {
   mixins: [Application],
 
   created () {
+    switch (this.$route.query.account_confirmation_success) {
+      case 'true':
+        if (this.$auth.loggedIn) {
+          return this.redirectSuccess(this.$route.query.alert, this.$route.query.notice)
+        }
+        break
+      case 'false':
+        return this.$router.push({ path: '/users/confirmation/new', query: { alert: this.$route.query.alert, notice: this.$route.query.notice } })
+    }
+    switch (this.$route.query.unlock) {
+      case 'true':
+      case 'false':
+        if (this.$auth.loggedIn) {
+          return this.redirectSuccess(this.$route.query.alert, this.$route.query.notice)
+        }
+    }
+
     if (this.$auth.loggedIn) {
       return this.redirectAlreadyAuth()
     }
+
+    if (this.$route.query.account_confirmation_success === 'true' || this.$route.query.unlock === 'true') {
+      this.$route.query.notice += this.$t('auth.unauthenticated')
+    }
+
     this.setQueryMessage()
     this.loading = false
   }
