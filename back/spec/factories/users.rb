@@ -48,35 +48,69 @@
 #
 FactoryBot.define do
   factory :user do
-    name { Faker::Name.name }
-    sequence(:email) { |n| "#{n}_" + Faker::Internet.email }
-    sequence(:username) { |n| Faker::Internet.user_name(specifier: 'Nancy') + "_#{n}" }
-    password { Faker::Internet.password(min_length: 8) }
-  end
-  
-  factory :confirmed_user, class: User do
-    name { Faker::Name.name }
-    sequence(:email) { |n| "#{n}_" + Faker::Internet.email }
-    sequence(:username) { |n| Faker::Internet.user_name(specifier: 'Nancy') + "_#{n}" }
-    password { Faker::Internet.password(min_length: 8) }
-    confirmed_at { Time.now - 100 }
-  end
+    code               { Digest::MD5.hexdigest(SecureRandom.uuid).to_i(16).to_s(36).rjust(25, '0') }
+    sequence(:name)    { |n| "user(#{n})" }
+    email              { Faker::Internet.safe_email(name: "#{name}#{Faker::Number.hexadecimal(digits: 3)}") }
+    username           { SecureRandom.alphanumeric(15) }
+    password           { Faker::Internet.password(min_length: 8) }
+    confirmed_at       { '0000-01-01 00:00:00+0000' }
+    sign_in_count      { 1 }
+    current_sign_in_at { Time.now.utc - 1.hour }
+    last_sign_in_at    { Time.now.utc - 2.hours }
+    current_sign_in_ip { Faker::Internet.ip_v4_address }
+    last_sign_in_ip    { Faker::Internet.ip_v4_address }
 
-  factory :guest_user, class: 'User' do
-    name { Faker::Name.name }
-    sequence(:email) { |n| "#{n}_" + Faker::Internet.email }
-    sequence(:username) { |n| Faker::Internet.user_name(specifier: 'Nancy') + "_#{n}" }
-    password { ENV['GUEST_USER_PASSWORD'] }
-    confirmed_at { Time.now - 100 }
-    destroy_schedule_at { Time.current + Settings['destroy_schedule_days'].days }
-  end
+    # ロック中
+    trait :locked do
+      unlock_token    { Devise.token_generator.digest(self, :unlock_token, email) }
+      locked_at       { Time.now.utc - 1.minute }
+      failed_attempts { Devise.maximum_attempts }
+    end
 
-  factory :admin_user, class: 'User' do
-    name { Faker::Name.name }
-    sequence(:email) { |n| "#{n}_" + Faker::Internet.email }
-    sequence(:username) { |n| Faker::Internet.user_name(specifier: 'Nancy') + "_#{n}" }
-    password { Faker::Internet.password(min_length: 8) }
-    confirmed_at { Time.now - 100 }
-    is_admin { true }
+    # ロック前
+    trait :before_lock1 do
+      failed_attempts { Devise.maximum_attempts - 1 }
+    end
+
+    # ロック前の前
+    trait :before_lock2 do
+      failed_attempts { Devise.maximum_attempts - 2 }
+    end
+
+    # ロック前の前の前
+    trait :before_lock3 do
+      failed_attempts { Devise.maximum_attempts - 3 }
+    end
+
+    # メール未確認
+    trait :unconfirmed do
+      confirmation_token   { Devise.token_generator.digest(self, :confirmation_token, email) }
+      confirmation_sent_at { Time.now.utc - 1.minute }
+      confirmed_at         { nil }
+    end
+
+    # メールアドレス変更中
+    trait :email_changed do
+      confirmation_token   { Devise.token_generator.digest(self, :confirmation_token, email) }
+      confirmation_sent_at { Time.now.utc - 1.minute }
+      unconfirmed_email    { Faker::Internet.safe_email }
+    end
+
+    # メールアドレス変更期限切れ
+    trait :expired_email_change do
+      confirmation_token   { Devise.token_generator.digest(self, :confirmation_token, email) }
+      confirmation_sent_at { Time.now.utc - User.confirm_within - 1.minute }
+      unconfirmed_email    { Faker::Internet.safe_email }
+    end
+
+    # 削除予定(ゲスト)
+    trait :destroy_reserved do
+      destroy_schedule_at  { Time.current - 1.minute + Settings['destroy_schedule_days'].days }
+    end
+
+    # 削除対象
+    trait :destroy_targeted do
+      destroy_schedule_at  { Time.current - 1.minute }
+    end
   end
 end
