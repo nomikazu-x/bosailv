@@ -21,7 +21,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   def create
     @article = current_user.articles.build(article_params)
 
-    if @article.save
+    if @article.save!
       ActiveRecord::Base.transaction do
         # ポイント獲得
         PointRecorder.new(current_user).record(Settings['article_create_obtained_point'])
@@ -93,7 +93,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :user_id, :thumbnail, genre_ids: [])
+    params.require(:article).permit(:title, :content, :thumbnail, genre_ids: [])
   end
 
   def set_article
@@ -101,7 +101,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   end
 
   def correct_user?
-    return if current_user == @article.user || current_user.is_admin?
+    return if current_user == @article.user
 
     render './api/v1/failure', locals: { alert: I18n.t('errors.messages.not_permission') }, status: :unauthorized
   end

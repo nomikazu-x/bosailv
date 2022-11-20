@@ -1,4 +1,7 @@
 class Api::V1::Auth::TokenValidationsController < DeviseTokenAuth::TokenValidationsController
+  include DeviseTokenAuth::Concerns::SetUserByToken
+  skip_before_action :verify_authenticity_token
+  prepend_before_action :update_request_uid_header
 
   # GET /api/v1/auth/validate_token(.json) トークン検証API(処理)
   # def validate_token
@@ -8,7 +11,7 @@ class Api::V1::Auth::TokenValidationsController < DeviseTokenAuth::TokenValidati
   protected
 
   def render_validate_token_success
-    render './api/v1/auth/success', locals: { notice: false }
+    render './api/v1/auth/success'
   end
 
   def render_validate_token_error

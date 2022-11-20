@@ -1,4 +1,7 @@
 ja:
+  app_name: 'Bosai Lv'
+  my_name: 'kazuki-ayimon'
+  my_url: 'https://github.com/kazuki-ayimon'
   activerecord:
     models:
       infomation: 'お知らせ'
