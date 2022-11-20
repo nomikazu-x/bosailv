@@ -34,7 +34,7 @@ export default {
   },
 
   async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.userShowUrl.replace('_username', this.$auth.user.username))
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.userDetailUrl)
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))
@@ -63,7 +63,8 @@ export default {
       await this.$axios.post(this.$config.apiBaseURL + this.$config.userUpdateUrl, {
         current_password: userInfo.current_password,
         password: userInfo.password,
-        password_confirmation: userInfo.password_confirmation
+        password_confirmation: userInfo.password_confirmation,
+        confirm_redirect_url: this.$config.frontBaseURL + this.$config.confirmationSuccessUrl
       })
         .then((response) => {
           if (response.data == null) {

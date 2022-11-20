@@ -12,7 +12,11 @@ if @article.present?
     end
     json.created_at @article.created_at
     json.updated_at @article.updated_at
-    json.partial! 'api/v1/users/user', user: current_user
+    if current_user.present?
+      json.user do
+        json.partial! 'api/v1/auth/current_user', use_email: false
+      end
+    end
     json.genres do
       json.array! @article.genres do |genre|
         json.id genre.id

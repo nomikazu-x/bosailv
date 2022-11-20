@@ -48,7 +48,7 @@ ja:
               too_short: '%{count}文字以上で入力してください。'
               too_long: '%{count}文字以下で入力してください。'
               invalid: '形式が正しくありません。'
-              taken: '既に使用されています。'
+              taken: '既に使用されています。パスワードが不明な場合は[パスワード再設定]をしてください。'
             password:
               blank: '入力してください。'
               too_short: '%{count}文字以上で入力してください。'
@@ -81,11 +81,10 @@ ja:
     registrations:
       signed_up: 'アカウント登録が完了しました。'
       signed_up_but_unconfirmed: 'メールアドレス確認のメールを送信しました。メールを確認してください。'
-      updated: '登録情報を変更しました。'
-      updated_but_not_signed_in: '登録情報を変更しました。ログインし直してください。'
-      update_needs_confirmation: '登録情報の変更を受け付けました。メールを確認してください。'
+      updated: 'ユーザー情報を変更しました。'
+      updated_but_not_signed_in: 'ユーザー情報を変更しました。ログインし直してください。'
+      update_needs_confirmation: 'ユーザー情報の変更を受け付けました。メールを確認してください。'
       destroyed: 'アカウントを削除しました。またのご利用をお待ちしております。'
-      destroy_reserved: 'アカウント削除を受け付けました。またのご利用をお待ちしております。'
     confirmations:
       send_instructions: 'メールアドレスの確認メールを送信しました。メールを確認してください。'
       send_paranoid_instructions: 'メールアドレスの確認メールを送信しました。メールを確認してください。'
@@ -120,12 +119,15 @@ ja:
       unconfirmed: 'メールアドレスの確認が必要です。メールが届いていない場合は[メールアドレス確認]をしてください。'
     mailer:
       confirmation_instructions:
-        subject: 'BosaiLv メールアドレス確認のお願い'
+        subject: '%{env_name}【%{app_name}】メールアドレス確認のお願い'
       email_changed:
-        subject: 'BosaiLv メールアドレス変更受け付けのお知らせ'
+        subject: '%{env_name}【%{app_name}】メールアドレス変更受け付けのお知らせ'
       reset_password_instructions:
-        subject: 'BosaiLv パスワード再設定方法のお知らせ'
+        subject: '%{env_name}【%{app_name}】パスワード再設定方法のお知らせ'
+        admin_user_subject: '%{env_name}【%{app_name} Admin】パスワード再設定方法のお知らせ'
       password_change:
-        subject: 'BosaiLv パスワード変更完了のお知らせ'
+        subject: '%{env_name}【%{app_name}】パスワード変更完了のお知らせ'
+        admin_user_subject: '%{env_name}【%{app_name} Admin】パスワード変更完了のお知らせ'
       unlock_instructions:
-        subject: 'BosaiLv アカウントロックのお知らせ'
+        subject: '%{env_name}【%{app_name}】アカウントロックのお知らせ'
+        admin_user_subject: '%{env_name}【%{app_name} Admin】アカウントロックのお知らせ'

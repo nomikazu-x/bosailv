@@ -34,7 +34,7 @@ describe('SettingsEmailCard.vue', () => {
       mocks: {
         $config: {
           apiBaseURL: 'https://example.com',
-          userShowUrl: '/api/v1/users/_username.json',
+          userDetailUrl: '/api/v1/auth/detail.json',
           userUpdateUrl: '/api/v1/auth/update.json',
           frontBaseURL: 'https://front.example.com',
           confirmationSuccessUrl: '/signin'
@@ -91,7 +91,7 @@ describe('SettingsEmailCard.vue', () => {
   }
   const commonGetApiCalledTest = (logoutCalled) => {
     expect(axiosGetMock).toBeCalledTimes(1)
-    expect(axiosGetMock).toBeCalledWith('https://example.com/api/v1/users/12345.json')
+    expect(axiosGetMock).toBeCalledWith('https://example.com/api/v1/auth/detail.json')
     expect(authLogoutMock).toBeCalledTimes(logoutCalled)
   }
   const commonPostApiCalledTest = (values, setUserCalled, logoutCalled) => {

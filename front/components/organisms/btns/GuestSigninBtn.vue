@@ -56,7 +56,8 @@ export default {
             this.$auth.loginWith('local', {
               data: {
                 email: response.data.email,
-                password: response.data.password
+                password: response.data.password,
+                unlock_redirect_url: this.$config.frontBaseURL + this.$config.unlockRedirectUrl
               }
             })
               .then((response) => {

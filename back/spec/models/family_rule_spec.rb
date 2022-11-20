@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table contact_means_memo: family_rules
+# Table name: family_rules
 #
 #  id                                     :bigint           not null, primary key
 #  contact_means_memo(緊急時連絡手段メモ) :text(65535)      not null

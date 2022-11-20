@@ -5,11 +5,11 @@ DeviseTokenAuth.setup do |config|
   # client is responsible for keeping track of the changing tokens. Change
   # this to false to prevent the Authorization header from changing after
   # each request.
-  config.change_headers_on_each_request = false
+  # config.change_headers_on_each_request = false
 
   # By default, users will need to re-authenticate after 2 weeks. This setting
   # determines how long tokens will remain valid after they are issued.
-  config.token_lifespan = 2.weeks
+  # config.token_lifespan = 2.weeks
 
   # Limiting the token_cost to just 4 in testing will increase the performance of
   # your test suite dramatically. The possible cost value is within range from 4
@@ -35,7 +35,7 @@ DeviseTokenAuth.setup do |config|
   # Uncomment to enforce current_password param to be checked before all
   # attribute updates. Set it to :password if you want it to be checked only if
   # password is updated.
-  # config.check_current_password_before_update = :attributes
+  config.check_current_password_before_update = :attributes
 
   # By default we will use callbacks for single omniauth.
   # It depends on fields like email, provider and uid.
@@ -61,4 +61,6 @@ DeviseTokenAuth.setup do |config|
   config.redirect_whitelist = Settings['redirect_whitelist']
   config.default_confirm_success_url = Settings['default_confirm_success_url']
   config.default_password_reset_url = Settings['default_password_reset_url']
+
+  config.require_client_password_reset_token = true
 end

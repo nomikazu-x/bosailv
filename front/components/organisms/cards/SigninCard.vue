@@ -15,10 +15,7 @@
             <v-col cols="12" sm="12" md="9" class="text-right">
               <v-divider class="mb-2" />
 
-              <ul class="list-style-none pl-0">
-                <li class="mb-1"><NuxtLink to="/password/reset">パスワードをリセット</NuxtLink></li>
-                <li class="mb-1"><NuxtLink to="/signup">新規登録へ</NuxtLink></li>
-              </ul>
+              <UsersActionLink action="sign_in" />
             </v-col>
           </v-row>
         </div>
@@ -31,13 +28,15 @@
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import SigninForm from '~/components/organisms/form/SigninForm.vue'
+import UsersActionLink from '~/components/molecules/links/UsersActionLink.vue'
 
 export default {
   name: 'SigninCard',
 
   components: {
     BaseTitleCard,
-    SigninForm
+    SigninForm,
+    UsersActionLink
   },
 
   mixins: [Application],
@@ -65,7 +64,8 @@ export default {
       await this.$auth.loginWith('local', {
         data: {
           email: userInfo.email,
-          password: userInfo.password
+          password: userInfo.password,
+          unlock_redirect_url: this.$config.frontBaseURL + this.$config.unlockRedirectUrl
         }
       })
         .then((response) => {

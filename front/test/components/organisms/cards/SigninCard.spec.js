@@ -31,7 +31,8 @@ describe('SigninCard.vue', () => {
       mocks: {
         $config: {
           frontBaseURL: 'https://front.example.com',
-          singUpSuccessUrl: '/signin'
+          singUpSuccessUrl: '/signin',
+          unlockRedirectUrl: '/signin'
         },
         $auth: {
           loggedIn,
@@ -81,7 +82,8 @@ describe('SigninCard.vue', () => {
     expect(authLoginWithMock).toBeCalledWith('local', {
       data: {
         email: values.email,
-        password: values.password
+        password: values.password,
+        unlock_redirect_url: 'https://front.example.com/signin'
       }
     })
   }

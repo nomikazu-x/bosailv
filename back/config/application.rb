@@ -26,7 +26,7 @@ module App
 
     # Railsアプリデフォルトのタイムゾーン(default 'UTC')
     # TimeZoneList: http://api.rubyonrails.org/classes/ActiveSupport/TimeZone.html
-    config.time_zone = ENV['TZ']
+    config.time_zone = 'Tokyo'
 
     # データベースの読み書きに使用するタイムゾーン(:local | :utc(default))
     config.active_record.default_timezone = :utc
@@ -35,5 +35,6 @@ module App
     config.i18n.default_locale = :ja
 
     config.api_only = true
+    config.middleware.use ActionDispatch::Flash
   end
 end

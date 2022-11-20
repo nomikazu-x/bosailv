@@ -15,10 +15,7 @@
             <v-col cols="12" sm="12" md="9" class="text-right">
               <v-divider class="mb-2" />
 
-              <ul class="list-style-none pl-0">
-                <li class="mb-1"><NuxtLink to="/password/reset">パスワードをリセット</NuxtLink></li>
-                <li class="mb-1"><NuxtLink to="/signin">ログインへ</NuxtLink></li>
-              </ul>
+              <UsersActionLink action="sign_up" />
             </v-col>
           </v-row>
         </div>
@@ -31,13 +28,15 @@
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import SignupForm from '~/components/organisms/form/SignupForm.vue'
+import UsersActionLink from '~/components/molecules/links/UsersActionLink.vue'
 
 export default {
   name: 'SignupCard',
 
   components: {
     BaseTitleCard,
-    SignupForm
+    SignupForm,
+    UsersActionLink
   },
 
   mixins: [Application],

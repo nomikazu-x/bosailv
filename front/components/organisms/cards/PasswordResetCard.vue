@@ -14,13 +14,10 @@
               />
             </v-col>
 
-            <v-col cols="12" sm="12">
+            <v-col cols="12" sm="12" md="9" class="text-right">
               <v-divider class="mb-2" />
 
-              <ul class="list-style-none pl-0">
-                <li class="mb-1"><NuxtLink to="/signin">ログインへ</NuxtLink></li>
-                <li class="mb-1"><NuxtLink to="/signup">新規登録へ</NuxtLink></li>
-              </ul>
+              <UsersActionLink action="password" />
             </v-col>
           </v-row>
         </div>
@@ -33,13 +30,15 @@
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
 import PasswordResetForm from '~/components/organisms/form/PasswordResetForm.vue'
+import UsersActionLink from '~/components/molecules/links/UsersActionLink.vue'
 
 export default {
   name: 'PasswordResetCard',
 
   components: {
     BaseTitleCard,
-    PasswordResetForm
+    PasswordResetForm,
+    UsersActionLink
   },
 
   mixins: [Application],
@@ -59,7 +58,7 @@ export default {
       this.processing = true
 
       await this.$axios.post(this.$config.apiBaseURL + this.$config.passwordNewUrl, {
-        email: value.email,
+        email: value,
         redirect_url: this.$config.frontBaseURL + this.$config.passwordRedirectUrl
       })
         .then((response) => {

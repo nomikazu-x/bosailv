@@ -57,7 +57,7 @@ export default {
       return this.redirectAuth()
     }
 
-    if (!(this.$auth.user.id === this.article.user.id || this.$auth.user.admin)) {
+    if (this.$auth.user.username !== this.article.user.username) {
       this.$toasted.error(this.$t('auth.not_permission'))
       this.$router.push({ path: '/home' })
     }

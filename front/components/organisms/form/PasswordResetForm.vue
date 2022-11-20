@@ -6,7 +6,7 @@
         v-model="email"
       />
 
-      <div class="d-flex justify-end">
+      <div class="text-center mt-4">
         <OrangeBtn
           id="password_reset_btn"
           :disabled="invalid || processing"

@@ -50,18 +50,20 @@ module.exports = {
   singUpUrl: '/api/v1/auth/sign_up.json',
   singUpSuccessUrl: '/signin',
   // メールアドレス確認API
-  confirmationNewUrl: '/auth/confirmation.json',
+  confirmationNewUrl: '/api/v1/auth/confirmation.json',
   confirmationSuccessUrl: '/signin',
   // アカウントロック解除API
-  unlockNewUrl: '/auth/unlock.json',
+  unlockNewUrl: '/api/v1/auth/unlock.json',
   unlockRedirectUrl: '/signin',
   // パスワード再設定API
   passwordNewUrl: '/api/v1/auth/password.json',
   passwordRedirectUrl: '/password/reset/confirm',
   passwordUpdateUrl: '/api/v1/auth/password/update.json',
+  // 登録情報詳細API
+  userDetailUrl: '/api/v1/auth/detail.json',
   // ユーザーAPI
   usersUrl: '/api/v1/users.json',
-  // 登録情報詳細API
+  // ユーザー情報詳細API
   userShowUrl: '/api/v1/users/_username.json',
   // マイ記事一覧API
   userArticlesUrl: '/api/v1/users/_username/articles.json',
@@ -71,6 +73,8 @@ module.exports = {
   userSheltersUrl: '/api/v1/users/_username/shelters.json',
   // 登録情報変更API
   userUpdateUrl: '/api/v1/auth/update.json',
+  // プロフィール変更API
+  userProfileUpdateUrl: '/api/v1/auth/profile/update.json',
   // 画像変更API
   userImageUpdateUrl: '/api/v1/auth/image/update.json',
   // 画像削除API

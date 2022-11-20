@@ -1,19 +1,23 @@
 class Api::V1::ApplicationController < ApplicationController
   include DeviseTokenAuth::Concerns::SetUserByToken
-  skip_before_action :verify_authenticity_token, if: :devise_controller?, raise: false
-  before_action :configure_permitted_parameters, if: :devise_controller?
-
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-  end
+  skip_before_action :verify_authenticity_token, unless: :format_html?
+  prepend_before_action :update_request_uid_header
+  before_action :standard_devise_support
 
   private
 
-  def redirect_not_admin
-    return if current_user.is_admin?
+  # URLの拡張子がない場合のみ、Device認証を有効にする（APIでCSRFトークン検証をしない為）
+  def standard_devise_support
+    DeviseTokenAuth.enable_standard_devise_support = format_html?
+  end
 
-    render './api/v1/failure', locals: { alert: I18n.t('errors.messages.not_permission') }, status: :unauthorized
+  protected
+
+  def render_authenticate_error
+    if format_html?
+      warden.authenticate!({ scope: :user })
+    else
+      unauthenticated_response
+    end
   end
 end
