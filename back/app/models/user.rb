@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
   has_many :shelter_registrations, dependent: :destroy
   has_many :registered_shelters, through: :shelter_registrations, source: :shelter
 
-  scope :point_ranking, -> { order(lifelong_point: :desc, id: :desc) }
+  scope :by_point_ranking, -> { order(lifelong_point: :desc, id: :desc) }
   scope :by_destroy_reserved, -> { where('destroy_schedule_at <= ?', Time.current) }
 
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i

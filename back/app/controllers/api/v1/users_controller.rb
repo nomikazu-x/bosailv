@@ -3,19 +3,14 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   # GET /api/v1/users/ranking(.json) ユーザーランキング取得API
   def index
     # ユーザーを獲得ポイント順に取得
-    @users = User.point_ranking.page(params[:page]).per(Settings['default_users_limit'])
-    render './api/v1/users/index'
+    @users = User.by_point_ranking.page(params[:page]).per(Settings['default_users_limit'])
   end
 
   # GET /api/v1/users/:username(.json) ユーザー情報詳細取得API
   def show
     @user = User.find_by(username: params[:username])
 
-    if @user
-      render './api/v1/users/show'
-    else
-      head :not_found
-    end
+    return head :not_found if @user.blank?
   end
 
   # GET /api/v1/users/:username/genres/:id(.json) ユーザーのジャンル別記事一覧取得API
