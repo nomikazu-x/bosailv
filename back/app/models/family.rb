@@ -25,5 +25,4 @@ class Family < ApplicationRecord
 
   validates :sex, presence: true
   validates :age, presence: true
-  validates :user_id, presence: true
 end

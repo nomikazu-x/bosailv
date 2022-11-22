@@ -15,8 +15,10 @@ class Genre < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
-  validates :name, presence: true, length: { maximum: 10 }
+  validates :name, presence: true
+  validates :name, length: { maximum: Settings['genre_name_maximum'] }
   validates :description, presence: true
+  validates :description, length: { maximum: Settings['genre_description_maximum'] }
   validates :image, presence: true
   validates :icon, presence: true
 

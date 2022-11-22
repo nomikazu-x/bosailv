@@ -23,7 +23,6 @@ class ArticleComment < ApplicationRecord
   belongs_to :user
   belongs_to :article
 
-  validates :user_id, presence: true
-  validates :article_id, presence: true
-  validates :content, presence: true, length: { maximum: 255 }
+  validates :content, presence: true
+  validates :content, length: { maximum: Settings['article_comment_content_maximum'] }
 end

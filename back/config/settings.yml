@@ -17,74 +17,89 @@ default_infomations_limit: 10
 ## 記事
 # 一覧のデフォルト最大表示件数
 default_articles_limit: 10
+# タイトルの最大文字数
+article_title_maximum: 30
 
+## 記事コメント
+# 内容の最大文字数
+article_comment_content_maximum: 300
+
+## タスク
+# タイトルの最大文字数
+task_title_maximum: 20
+# 概要の最大文字数
+task_summary_maximum: 30
+
+## ジャンル
+# ジャンル名の最大文字数
+genre_name_maximum: 10
+# 説明文の最大文字数
+genre_description_maximum: 100
+
+## 家族会議メモ
+# 緊急時連絡手段メモの最大文字数
+family_rule_contact_means_memo_maximum: 300
+# 応急処置メモの最大文字数
+family_rule_emergency_measure_memo_maximum: 300
+# 家族の役割分担メモの最大文字数
+family_rule_family_role_memo_maximum: 300
+# 家を離れるときメモの最大文字数
+family_rule_leave_home_memo_maximum: 300
+# 避難方法メモの最大文字数
+family_rule_refuge_memo_maximum: 300
+
+## 緊急時連絡先
+# 連絡先名の最大文字数
+emergency_contact_name_maximum: 20
 
 ## 獲得ポイント
 # 記事作成時獲得ポイント
 article_create_obtained_point: 5
-
 # 記事お気に入りされた時の獲得ポイント
 article_favorite_author_obtained_point: 1
-
 # 記事お気に入りした時の獲得ポイント
 article_favorite_reader_obtained_point: 1
-
 # 防災タスク完了時獲得ポイント
 task_complete_obtained_point: 5
-
 # 緊急時連絡先追加時獲得ポイント
 emergency_contact_create_obtained_point: 5
-
 # 家族ルール作成時獲得ポイント
 family_rule_update_obtained_point: 5
-
 # SNS関係防災タスク達成時獲得ポイント
 sns_task_complete_obtained_point: 1
-
 # 家庭関係防災タスク達成時獲得ポイント
 house_task_complete_obtained_point: 1
-
 # 備蓄関係防災タスク達成時獲得ポイント
 stock_task_complete_obtained_point: 1
-
 # ハザードマップ確認タスク達成時獲得ポイント
 hazard_map_confirm_obtained_point: 5
-
 # 避難所登録時時獲得ポイント
 shelter_registration_obtained_point: 5
 
-
 ## ユーザー
+# 氏名の最小・最大文字数
+user_name_minimum: 1
+user_name_maximum: 10
 # メールアドレス確認URLの有効期限（単位：時間）
 confirm_within_hours: 24
-
 # パスワード再設定URLの有効期限（単位：時間）
 reset_password_within_hours: 24
-
 # アカウントロックの有効期間（単位：時間）
 unlock_in_hours: 1
-
 # 一覧のデフォルト最大表示件数
 default_users_limit: 20
-
 # ゲストアカウント削除の猶予期間（単位：日）
 destroy_schedule_days: 1
-
 # 緊急時連絡先の登録上限数
 maximum_emergency_contacts_length: 5
-
 # マイ避難所の登録上限数
 maximum_registered_shelters_length: 5
-
 # SNS関係防災タスク達成最大値
 maximum_sns_task: 2097151
-
 # 家庭関係防災タスク達成最大値
 maximum_house_task: 134217727
-
 # 備蓄関係防災タスク達成値
 maximum_stock_task: 8657043455
-
 
 ## 避難所
 # 一覧のデフォルト最大表示件数

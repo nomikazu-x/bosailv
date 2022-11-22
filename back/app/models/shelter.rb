@@ -49,5 +49,4 @@ class Shelter < ApplicationRecord
   validates :storm_surge, presence: true
   validates :tsunami, presence: true
   validates :volcano, presence: true
-  validates :city_id, presence: true
 end

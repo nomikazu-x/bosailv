@@ -23,5 +23,4 @@ class City < ApplicationRecord
   has_many :shelters, dependent: :destroy
 
   validates :name, presence: true
-  validates :prefecture_id, presence: true
 end

@@ -81,13 +81,13 @@ class User < ActiveRecord::Base
   scope :by_destroy_reserved, -> { where('destroy_schedule_at <= ?', Time.current) }
 
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
-  VALID_PASSWORD_REGEX = /\A[!-~]+\z/
 
   validates :code, presence: true
   validates :code, uniqueness: { case_sensitive: true }
-  validates :name, length: { maximum: 30 }
-  validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX }, allow_nil: true
-  validates :username, length: { maximum: 30 }, uniqueness: true, allow_nil: true, presence: true, format: { with: VALID_USERNAME_REGEX }
+  validates :name, length: { in: Settings['user_name_minimum']..Settings['user_name_maximum'] }, if: proc { |user| user.name.present? }
+  validates :username, presence: true
+  validates :username, uniqueness: { case_sensitive: true }
+  validates :username, format: { with: VALID_USERNAME_REGEX }
 
   # 画像URLを返却
   def image_url(version)
