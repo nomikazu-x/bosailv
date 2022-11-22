@@ -1,13 +1,11 @@
 class Api::V1::TaskCompletesController < Api::V1::ApplicationController
   before_action :authenticate_user!, only: %i[create destroy]
+  before_action :set_task, only: %i[create destroy]
 
   # POST /api/v1/tasks/:id/task_complete/create(.json) 防災タスク完了API(処理)
   def create
-    task = Task.find(params[:id])
-
-    if task
+    if current_user.task_complete!(@task)
       ActiveRecord::Base.transaction do
-        current_user.task_complete!(task)
         # ポイント獲得
         PointRecorder.new(current_user).record(Settings['task_complete_obtained_point'])
 
@@ -20,11 +18,8 @@ class Api::V1::TaskCompletesController < Api::V1::ApplicationController
 
   # POST /api/v1/tasks/:id/task_complete/delete(.json) 防災タスク完了解除API(処理)
   def destroy
-    task = Task.find(params[:id])
-
-    if task
+    if current_user.task_uncomplete!(@task)
       ActiveRecord::Base.transaction do
-        current_user.task_uncomplete!(task)
         # ポイントを減らす
         PointRecorder.new(current_user).delete_record(Settings['task_complete_obtained_point'])
 
@@ -33,5 +28,11 @@ class Api::V1::TaskCompletesController < Api::V1::ApplicationController
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.task_complete.destroy') }, status: :unprocessable_entity
     end
+  end
+
+  private
+
+  def set_task
+    @task = Task.find(params[:id])
   end
 end

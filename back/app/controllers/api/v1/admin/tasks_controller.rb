@@ -1,5 +1,6 @@
 class Api::V1::Admin::TasksController < Api::V1::ApplicationController
   before_action :redirect_not_admin, only: %i[create update destroy]
+  before_action :set_task, only: %i[update destroy]
 
   # POST /api/v1/admin/tasks/create(.json) 防災タスク作成API
   def create
@@ -35,6 +36,10 @@ class Api::V1::Admin::TasksController < Api::V1::ApplicationController
   end
 
   private
+
+  def set_task
+    @task = Task.find(params[:id])
+  end
 
   def task_params
     params.require(:task).permit(:title, :image, :summary, :body, :icon)

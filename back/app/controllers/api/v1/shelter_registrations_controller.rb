@@ -1,14 +1,12 @@
 class Api::V1::ShelterRegistrationsController < Api::V1::ApplicationController
   before_action :authenticate_user!, only: %i[create destroy]
+  before_action :set_shelter, only: %i[create destroy]
   before_action :check_count, only: %i[create]
 
   # POST /api/v1/shelters/:id/shelter_registrations/create(.json) 避難所登録API(処理)
   def create
-    shelter = Shelter.find(params[:id])
-
-    if shelter
+    if current_user.shelter_registration!(@shelter)
       ActiveRecord::Base.transaction do
-        current_user.shelter_registration!(shelter)
         # ポイント獲得
         PointRecorder.new(current_user).record(Settings['shelter_registration_obtained_point'])
 
@@ -21,11 +19,8 @@ class Api::V1::ShelterRegistrationsController < Api::V1::ApplicationController
 
   # POST /api/v1/shelters/:id/shelter_registrations/delete(.json) 避難所登録解除API(処理)
   def destroy
-    shelter = Shelter.find(params[:id])
-
-    if shelter
+    if current_user.shelter_unregistration!(@shelter)
       ActiveRecord::Base.transaction do
-        current_user.shelter_unregistration!(shelter)
         # ポイントを減らす
         PointRecorder.new(current_user).delete_record(Settings['shelter_registration_obtained_point'])
 
@@ -37,6 +32,10 @@ class Api::V1::ShelterRegistrationsController < Api::V1::ApplicationController
   end
 
   private
+
+  def set_shelter
+    @shelter = Shelter.find(params[:id])
+  end
 
   def check_count
     return if current_user.registered_shelters.count < Settings['maximum_registered_shelters_length']
