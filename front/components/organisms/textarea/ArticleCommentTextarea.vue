@@ -3,7 +3,7 @@
     <TheProcessing v-if="processing" />
     <v-form autocomplete="off">
       <v-card-text>
-        <ValidationProvider v-slot="{ errors }" name="content" rules="required">
+        <ValidationProvider v-slot="{ errors }" name="content" rules="required|max:300">
           <v-textarea
             v-model="content"
             label="コメント"

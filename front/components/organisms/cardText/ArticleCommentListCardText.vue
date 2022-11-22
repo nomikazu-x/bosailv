@@ -41,7 +41,7 @@ export default {
 
   computed: {
     canAction () {
-      return (this.$auth.user && this.$auth.user.id) === this.articleComment.user.id
+      return (this.$auth.user && this.$auth.user.username) === this.articleComment.user.username
     }
   },
 

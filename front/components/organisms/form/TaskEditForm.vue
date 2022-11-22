@@ -20,6 +20,7 @@
               v-model="title"
               title="title"
               label="タイトル"
+              rules="required|max:20"
             />
           </v-sheet>
         </v-col>
@@ -38,6 +39,7 @@
               v-model="summary"
               title="summary"
               label="概要"
+              rules="required|max:30"
             />
           </v-sheet>
         </v-col>

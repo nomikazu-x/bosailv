@@ -6,7 +6,7 @@
         <BaseTextField
           v-model="name"
           label="連絡先名"
-          rules="required|max:10"
+          rules="required|max:20"
           @click="waiting = false"
         />
         <BaseTextField

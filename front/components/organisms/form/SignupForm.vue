@@ -6,6 +6,7 @@
         v-model="name"
         name="name"
         label="氏名"
+        rules="required|max:10"
       />
 
       <EmailTextField
