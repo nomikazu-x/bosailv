@@ -82,12 +82,11 @@ class User < ActiveRecord::Base
 
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
 
-  validates :code, presence: true
-  validates :code, uniqueness: { case_sensitive: true }
   validates :name, length: { in: Settings['user_name_minimum']..Settings['user_name_maximum'] }, if: proc { |user| user.name.present? }
   validates :username, presence: true
   validates :username, uniqueness: { case_sensitive: true }
   validates :username, format: { with: VALID_USERNAME_REGEX }
+  validates :profile, length: { maximum: Settings['user_profile_maximum'] }
 
   # 画像URLを返却
   def image_url(version)

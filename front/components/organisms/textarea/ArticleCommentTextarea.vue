@@ -62,9 +62,7 @@ export default {
     async onCommentCreate () {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.commentCreateUrl.replace('_id', this.$route.params.id), {
-        user_id: this.$auth.user.id,
-        article_id: this.article.id,
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.commentCreateUrl.replace('_article_id', this.$route.params.id), {
         content: this.content
       })
         .then((response) => {

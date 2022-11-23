@@ -40,7 +40,7 @@ export default {
   },
 
   async created () {
-    await this.$axios.get(this.$config.apiBaseURL + this.$config.commentsUrl.replace('_id', this.$route.params.id))
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.commentsUrl.replace('_article_id', this.$route.params.id))
       .then((response) => {
         if (response.data == null) {
           this.$toasted.error(this.$t('system.error'))

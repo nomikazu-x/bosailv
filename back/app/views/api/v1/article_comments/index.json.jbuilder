@@ -7,15 +7,7 @@ json.comments do
     json.created_at article_comment.created_at
     json.updated_at article_comment.updated_at
     json.user do
-      json.id article_comment.user.id
-      json.name article_comment.user.name
-      json.image_url do
-        # json.mini "#{@article.user.image_url(:mini)}"
-        json.small "#{article_comment.user.image_url(:small)}"
-        # json.medium "#{@article.user.image_url(:medium)}"
-        # json.large "#{@article.user.image_url(:large)}"
-        # json.xlarge "#{@article.user.image_url(:xlarge)}"
-      end
+      json.partial! 'api/v1/auth/user', user: article_comment.user, use_email: false
     end
   end
 end

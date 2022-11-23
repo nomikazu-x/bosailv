@@ -170,11 +170,11 @@ module.exports = {
 
   // 【コメント】
   // コメント一覧API
-  commentsUrl: '/api/v1/articles/_id/article_comments.json',
+  commentsUrl: '/api/v1/articles/_article_id/article_comments.json',
   // コメント作成API
-  commentCreateUrl: '/api/v1/article_comments/create.json',
+  commentCreateUrl: '/api/v1/articles/_article_id/article_comments/create.json',
   // コメント削除API
-  commentDeleteUrl: '/api/v1/article_comments/_id/delete.json',
+  commentDeleteUrl: '/api/v1/articles/_article_id/article_comments/_id/delete.json',
 
   // 【都道府県】
   // 一覧取得API
