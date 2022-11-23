@@ -1,11 +1,11 @@
 class Api::V1::Admin::UsersController < Api::V1::ApplicationController
-  before_action :redirect_not_admin, only: %i[index destroy search]
+  before_action :redirect_not_admin, only: %i[index destroy]
 
   # GET /api/v1/users(.json) ユーザー情報一覧取得API
   def index
-    @keyword = params[:keyword]&.slice(..(255 - 1))
+    keyword = params[:keyword]&.slice(..(255 - 1))
 
-    @users = User.search(@keyword).page(params[:page]).per(Settings['default_users_limit'])
+    @users = User.search(keyword).page(params[:page]).per(Settings['default_users_limit'])
     render './api/v1/users/index'
   end
 

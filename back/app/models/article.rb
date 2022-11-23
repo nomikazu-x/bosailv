@@ -30,11 +30,16 @@ class Article < ApplicationRecord
   mount_uploader :thumbnail, ImageUploader
 
   default_scope { order(created_at: :desc, id: :desc) }
-
   # お気に入り数の多い順に一覧を取得
-  scope :by_favorite_ranking, -> { joins(:article_favorites).group(:id).order('count(article_favorites.article_id) desc', id: :desc) }
+  scope :by_favorite_count_ranking, lambda { |famous|
+    return unless famous
+
+    article = all
+    article = article.joins(:article_favorites).group(:id).order('count(article_favorites.article_id) desc', id: :desc)
+    article
+  }
   # キーワードを含む記事一覧を取得
-  scope :search, lambda { |keyword|
+  scope :search_keyword, lambda { |keyword|
     return if keyword&.strip.blank?
 
     article = all
@@ -46,7 +51,7 @@ class Article < ApplicationRecord
     article
   }
   # 選択されたジャンルと関連する記事一覧を取得
-  scope :genre, lambda { |genre_ids|
+  scope :search_genre, lambda { |genre_ids|
     return if genre_ids.blank?
 
     article = all

@@ -1,15 +1,16 @@
 class Api::V1::ArticlesController < Api::V1::ApplicationController
-  before_action :authenticate_user!, except: %i[index show search]
-  before_action :set_article, except: %i[create index search]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_article, except: %i[create index]
   before_action :correct_user?, only: %i[update destroy]
 
   # GET /api/v1/articles(.json) 記事一覧API
   def index
-    if params[:famous]
-      @articles = Article.all.by_favorite_ranking.page(params[:page]).per(Settings['default_articles_limit'])
-    else
-      @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
-    end
+    keyword = params[:keyword]&.slice(..(255 - 1))
+
+    @articles = Article.by_favorite_count_ranking(params[:famous]) # Tips: famousがtrueの場合、お気に入り数ランキング順で取得
+                       .search_keyword(keyword) # Tips: keywordがある場合、ワード検索
+                       .search_genre(params[:genre_ids]) # Tips: genre_idがある場合、合致するジャンルで検索
+                       .page(params[:page]).per(Settings['default_articles_limit'])
   end
 
   # GET /api/v1/articles/:id(.json) 記事詳細API
@@ -54,14 +55,6 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.article.destroy') }, status: :unprocessable_entity
     end
-  end
-
-  # GET /api/v1/articles/search(.json) 記事検索API(処理)
-  def search
-    keyword = params[:keyword]&.slice(..(255 - 1))
-    genre_ids = params[:genre_ids]
-
-    @articles = Article.search(keyword).genre(genre_ids).page(params[:page]).per(Settings['default_articles_limit'])
   end
 
   private
