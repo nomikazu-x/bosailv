@@ -7,8 +7,6 @@ Rails.application.routes.draw do
       # ユーザー
       get   'users',                      to: 'users#index',          as: 'users'
       get   'users/:username',            to: 'users#show',           as: 'show_users'
-      get   'users/:username/genres/:id', to: 'users#genre_articles', as: 'genre_articles_users'
-      get   'users/:username/shelters',   to: 'users#shelters',       as: 'shelters_users'
 
       # ユーザー防災タスクプロフィール
       get  'task_profile',             to: 'task_profiles#show',          as: 'task_profile'
