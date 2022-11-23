@@ -21,7 +21,6 @@
               v-model="title"
               name="title"
               label="タイトル"
-              rules="required|max:30"
             />
           </v-sheet>
         </v-col>
