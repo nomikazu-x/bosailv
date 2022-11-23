@@ -10,7 +10,7 @@ class Api::V1::ShelterRegistrationsController < Api::V1::ApplicationController
         # ポイント獲得
         PointRecorder.new(current_user).record(Settings['shelter_registration_obtained_point'])
 
-        render './api/v1/shelter_registrations/success', locals: { notice: I18n.t('notice.shelter_registration.create') }
+        render './api/v1/auth/success', locals: { notice: I18n.t('notice.shelter_registration.create') }
       end
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.shelter_registration.create') }, status: :unprocessable_entity
@@ -24,7 +24,7 @@ class Api::V1::ShelterRegistrationsController < Api::V1::ApplicationController
         # ポイントを減らす
         PointRecorder.new(current_user).delete_record(Settings['shelter_registration_obtained_point'])
 
-        render './api/v1/shelter_registrations/success', locals: { notice: I18n.t('notice.shelter_registration.destroy') }
+        render './api/v1/auth/success', locals: { notice: I18n.t('notice.shelter_registration.destroy') }
       end
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.shelter_registration.destroy') }, status: :unprocessable_entity

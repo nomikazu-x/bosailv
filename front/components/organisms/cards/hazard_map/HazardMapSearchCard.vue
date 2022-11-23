@@ -83,6 +83,9 @@ export default {
 
       this.hazardMap = null
 
+      this.selectPrefecture = prefectureId
+      this.selectCity = cityId
+
       await this.$axios.get(this.$config.apiBaseURL + this.$config.hazardMapUrl, {
         params: { prefecture_id: prefectureId, city_id: cityId }
       })

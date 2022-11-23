@@ -9,7 +9,7 @@ class Api::V1::TaskCompletesController < Api::V1::ApplicationController
         # ポイント獲得
         PointRecorder.new(current_user).record(Settings['task_complete_obtained_point'])
 
-        render './api/v1/task_completes/success', locals: { notice: I18n.t('notice.task_complete.create') }
+        render './api/v1/auth/success', locals: { notice: I18n.t('notice.task_complete.create') }
       end
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.task_complete.create') }, status: :unprocessable_entity
@@ -23,7 +23,7 @@ class Api::V1::TaskCompletesController < Api::V1::ApplicationController
         # ポイントを減らす
         PointRecorder.new(current_user).delete_record(Settings['task_complete_obtained_point'])
 
-        render './api/v1/task_completes/success', locals: { notice: I18n.t('notice.task_complete.destroy') }
+        render './api/v1/auth/success', locals: { notice: I18n.t('notice.task_complete.destroy') }
       end
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.task_complete.destroy') }, status: :unprocessable_entity
