@@ -4,8 +4,8 @@ module Api::V1::StocksConcern
   def set_stock_list
     @stock_list = [
       {
-        sex: 'Male',
-        age: 'Infant',
+        sex: 'male',
+        age: 'infant',
         water: 8,
         retort_rice: 0,
         retort_food: 0,
@@ -43,8 +43,8 @@ module Api::V1::StocksConcern
       },
       {
         # 男性、子供(3歳~小6)
-        sex: 'Male',
-        age: 'Child',
+        sex: 'male',
+        age: 'child',
         water: 8,
         retort_rice: 8,
         retort_food: 3,
@@ -82,8 +82,8 @@ module Api::V1::StocksConcern
       },
       {
         # 男性、子供(中学生以上)
-        sex: 'Male',
-        age: 'Junior',
+        sex: 'male',
+        age: 'junior',
         water: 9,
         retort_rice: 9,
         retort_food: 3,
@@ -121,8 +121,8 @@ module Api::V1::StocksConcern
       },
       {
         # 男性、成人(20歳以上)
-        sex: 'Male',
-        age: 'Adult',
+        sex: 'male',
+        age: 'adult',
         water: 9,
         retort_rice: 9,
         retort_food: 3,
@@ -160,8 +160,8 @@ module Api::V1::StocksConcern
       },
       {
         # 男性、高齢者(65歳以上)
-        sex: 'Male',
-        age: 'Senior',
+        sex: 'male',
+        age: 'senior',
         water: 9,
         retort_rice: 9,
         retort_food: 3,
@@ -199,8 +199,8 @@ module Api::V1::StocksConcern
       },
       {
         # 女性、乳幼児(0~2歳)
-        sex: 'Female',
-        age: 'Infant',
+        sex: 'female',
+        age: 'infant',
         water: 8,
         retort_rice: 0,
         retort_food: 0,
@@ -238,8 +238,8 @@ module Api::V1::StocksConcern
       },
       {
         # 女性、子供(3歳~小6)
-        sex: 'Female',
-        age: 'Child',
+        sex: 'female',
+        age: 'child',
         water: 8,
         retort_rice: 8,
         retort_food: 3,
@@ -277,8 +277,8 @@ module Api::V1::StocksConcern
       },
       {
         # 女性、子供(中学生以上)
-        sex: 'Female',
-        age: 'Junior',
+        sex: 'female',
+        age: 'junior',
         water: 9,
         retort_rice: 9,
         retort_food: 3,
@@ -316,8 +316,8 @@ module Api::V1::StocksConcern
       },
       {
         # 女性、成人(20歳以上)
-        sex: 'Female',
-        age: 'Adult',
+        sex: 'female',
+        age: 'adult',
         water: 9,
         retort_rice: 9,
         retort_food: 3,
@@ -355,8 +355,8 @@ module Api::V1::StocksConcern
       },
       {
         # 女性、高齢者(65歳以上)
-        sex: 'Female',
-        age: 'Senior',
+        sex: 'female',
+        age: 'senior',
         water: 9,
         retort_rice: 9,
         retort_food: 3,

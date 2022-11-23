@@ -40,33 +40,33 @@ ja:
   enums:
     infomation:
       label:
-        Not: ''
-        Hindrance: '障害'
-        Maintenance: 'メンテナンス'
-        Other: 'その他'
+        not: ''
+        hindrance: '障害'
+        maintenance: 'メンテナンス'
+        other: 'その他'
       target:
-        All: '全員'
-        User: '対象ユーザーのみ'
+        all: '全員'
+        user: '対象ユーザーのみ'
     family:
       sex:
-        Male: '男性'
-        Female: '女性'
+        male: '男性'
+        female: '女性'
       age:
-        Infant: '乳幼児(0~2歳)'
-        Child: '子供(3歳~小6)'
-        Junior: '子供(中学生以上)'
-        Adult: '成人(20歳以上)'
-        Senior: '高齢者(65歳以上)'
+        infant: '乳幼児(0~2歳)'
+        child: '子供(3歳~小6)'
+        junior: '子供(中学生以上)'
+        adult: '成人(20歳以上)'
+        senior: '高齢者(65歳以上)'
     stock:
       sex:
-        Male: '男性'
-        Female: '女性'
+        male: '男性'
+        female: '女性'
       age:
-        Infant: '乳幼児(0~2歳)'
-        Child: '子供(3歳~小6)'
-        Junior: '子供(中学生以上)'
-        Adult: '成人(20歳以上)'
-        Senior: '高齢者(65歳以上)'
+        infant: '乳幼児(0~2歳)'
+        child: '子供(3歳~小6)'
+        junior: '子供(中学生以上)'
+        adult: '成人(20歳以上)'
+        senior: '高齢者(65歳以上)'
   infomation:
     action:
       article_favorite: '%{action_user_name}さんがあなたの記事「%{article_title}」をいいねしました。'

@@ -60,15 +60,15 @@ export default {
   data () {
     return {
       sexItems: [
-        { name: '男性', label: 'Male' },
-        { name: '女性', label: 'Female' }
+        { name: '男性', label: 'male' },
+        { name: '女性', label: 'female' }
       ],
       ageItems: [
-        { name: '乳幼児(0~2歳)', label: 'Infant' },
-        { name: '子供(3歳~小6)', label: 'Child' },
-        { name: '子供(中学生以上)', label: 'Junior' },
-        { name: '成人(20歳以上)', label: 'Adult' },
-        { name: '高齢者(65歳以上)', label: 'Senior' }
+        { name: '乳幼児(0~2歳)', label: 'infant' },
+        { name: '子供(3歳~小6)', label: 'child' },
+        { name: '子供(中学生以上)', label: 'junior' },
+        { name: '成人(20歳以上)', label: 'adult' },
+        { name: '高齢者(65歳以上)', label: 'senior' }
       ],
       selectAge: null,
       selectSex: null

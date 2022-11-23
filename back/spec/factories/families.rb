@@ -20,7 +20,7 @@
 FactoryBot.define do
   factory :family do
     association :user
-    sex { 'Male' }
-    age { 'Infant' }
+    sex { 'male' }
+    age { 'infant' }
   end
 end

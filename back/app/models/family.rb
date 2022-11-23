@@ -20,8 +20,8 @@
 class Family < ApplicationRecord
   belongs_to :user
 
-  enum sex: { Male: 1, Female: 2 }
-  enum age: { Infant: 1, Child: 2, Junior: 3, Adult: 4, Senior: 5 }
+  enum sex: { male: 1, female: 2 }, _prefix: true
+  enum age: { infant: 1, child: 2, junior: 3, adult: 4, senior: 5 }, _prefix: true
 
   validates :sex, presence: true
   validates :age, presence: true
