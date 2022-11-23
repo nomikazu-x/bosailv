@@ -23,7 +23,6 @@
 #  locked_at(アカウントロック日時)                               :datetime
 #  name(氏名)                                                    :string(30)       not null
 #  point_to_next(現レベルにおける次のレベルまでに必要なポイント) :integer          default(5), not null
-#  power(権限)                                                   :integer          default(NULL), not null
 #  profile(自己紹介文)                                           :text(255)
 #  provider(認証方法)                                            :string(255)      default("email"), not null
 #  remember_created_at(ログイン状態維持開始日時)                 :datetime
@@ -77,17 +76,30 @@ class User < ActiveRecord::Base
   has_many :shelter_registrations, dependent: :destroy
   has_many :registered_shelters, through: :shelter_registrations, source: :shelter
 
-  scope :point_ranking, -> { order(lifelong_point: :desc, id: :desc) }
+  # 獲得ポイント順に取得
+  scope :by_point_ranking, -> { order(lifelong_point: :desc, id: :desc) }
+  # ゲストで削除予定が過ぎているユーザーを取得
   scope :by_destroy_reserved, -> { where('destroy_schedule_at <= ?', Time.current) }
+  # キーワードを含む記事一覧を取得
+  scope :search, lambda { |keyword|
+    return if keyword&.strip.blank?
+
+    user = all
+    keyword.split(/[[:blank:]]+/).each do |word|
+      value = "%#{word}%"
+      user = user.where("name LIKE ? OR profile LIKE ?", value, value)
+    end
+
+    user
+  }
 
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
-  VALID_PASSWORD_REGEX = /\A[!-~]+\z/
 
-  validates :code, presence: true
-  validates :code, uniqueness: { case_sensitive: true }
-  validates :name, length: { maximum: 30 }
-  validates :password, presence: true, format: { with: VALID_PASSWORD_REGEX }, allow_nil: true
-  validates :username, length: { maximum: 30 }, uniqueness: true, allow_nil: true, presence: true, format: { with: VALID_USERNAME_REGEX }
+  validates :name, length: { in: Settings['user_name_minimum']..Settings['user_name_maximum'] }, if: proc { |user| user.name.present? }
+  validates :username, presence: true
+  validates :username, uniqueness: { case_sensitive: true }
+  validates :username, format: { with: VALID_USERNAME_REGEX }
+  validates :profile, length: { maximum: Settings['user_profile_maximum'] }
 
   # 画像URLを返却
   def image_url(version)

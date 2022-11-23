@@ -9,7 +9,7 @@
               v-model="contactMeansMemo"
               title="contact_means_memo"
               label="非常時の連絡方法に関するメモ"
-              rules="required"
+              rules="required|max:300"
             />
           </v-sheet>
         </v-col>
@@ -19,7 +19,7 @@
               v-model="refugeMemo"
               title="refuge_memo"
               label="避難場所のルートに関するメモ"
-              rules="required"
+              rules="required|max:300"
             />
           </v-sheet>
         </v-col>
@@ -29,7 +29,7 @@
               v-model="familyRoleMemo"
               title="family_role_memo"
               label="災害直後の家族の役割分担に関するメモ"
-              rules="required"
+              rules="required|max:300"
             />
           </v-sheet>
         </v-col>
@@ -39,7 +39,7 @@
               v-model="emergencyMeasureMemo"
               title="emergency_measure_memo"
               label="応急処置に関するメモ"
-              rules="required"
+              rules="required|max:300"
             />
           </v-sheet>
         </v-col>
@@ -49,7 +49,7 @@
               v-model="leaveHomeMemo"
               title="leave_home_memo"
               label="家を離れるときのメモ"
-              rules="required"
+              rules="required|max:300"
             />
           </v-sheet>
         </v-col>

@@ -41,7 +41,7 @@ export default {
 
   computed: {
     canAction () {
-      return (this.$auth.user && this.$auth.user.id) === this.articleComment.user.id
+      return (this.$auth.user && this.$auth.user.username) === this.articleComment.user.username
     }
   },
 
@@ -53,9 +53,7 @@ export default {
     async onCommentDelete (articleCommentId) {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.commentDeleteUrl.replace('_id', articleCommentId), {
-        user_id: this.$auth.user.id
-      })
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.commentDeleteUrl.replace('_article_id', this.$route.params.id).replace('_id', articleCommentId))
         .then((response) => {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))

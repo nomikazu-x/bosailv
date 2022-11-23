@@ -17,8 +17,5 @@ RSpec.describe Api::V1::ArticlesController, type: :routing do
     it 'routes to #destroy' do
       expect(post: '/api/v1/articles/1/delete.json').to route_to('api/v1/articles#destroy', id: '1', format: 'json')
     end
-    it 'routes to #search' do
-      expect(get: '/api/v1/articles/search.json').to route_to('api/v1/articles#search', format: 'json')
-    end
   end
 end

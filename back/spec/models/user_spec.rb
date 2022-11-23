@@ -115,14 +115,6 @@ RSpec.describe User, type: :model do
         expect(user).to be_invalid
       end
     end
-
-    context "ユーザーネームが31文字以上の場合" do
-      let(:user) { build(:user, username: 'a' * 31) }
-      it "エラーになる" do
-        user.valid?
-        expect(user).to be_invalid
-      end
-    end
   end
 
   describe "validates regular expression" do
@@ -130,14 +122,6 @@ RSpec.describe User, type: :model do
       let(:user) { build(:user, password: 'pass_*&^%word') }
       it "正常に保存できる" do
         expect(user).to be_valid
-      end
-    end
-
-    context "パスワードが制御文字と半角を除いたASCII文字以外を含む場合" do
-      let(:user) { build(:user, password: 'a' * 7 + 'あ') }
-      it "エラーになる" do
-        user.valid?
-        expect(user).to be_invalid
       end
     end
 

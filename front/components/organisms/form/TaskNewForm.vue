@@ -19,6 +19,7 @@
               v-model="title"
               name="title"
               label="タイトル"
+              rules="required|max:20"
             />
           </v-sheet>
         </v-col>
@@ -37,6 +38,7 @@
               v-model="summary"
               name="summary"
               label="概要"
+              rules="required|max:30"
             />
           </v-sheet>
         </v-col>
@@ -48,7 +50,7 @@
             />
           </v-sheet>
         </v-col>
-        <div>
+        <div class="text-center">
           <OrangeBtn
             id="task_create_btn"
             :disabled="invalid || processing"

@@ -29,26 +29,6 @@ RSpec.describe EmergencyContact, type: :model do
     end
   end
 
-  describe "validate length" do
-    context "nameの長さが11文字以上の時" do
-      let(:emergency_contact) { build(:emergency_contact, name: 'a' * 11) }
-      it "エラーメッセージが返る" do
-        emergency_contact.valid?
-        expect(emergency_contact).to be_invalid
-      end
-    end
-  end
-
-  describe "validates regular expression" do
-    context "電話番号にハイフンがない場合" do
-      let(:emergency_contact) { build(:emergency_contact, phone_number: '09012345678') }
-      it "エラーメッセージが返る" do
-        emergency_contact.valid?
-        expect(emergency_contact).to be_invalid
-      end
-    end
-  end
-
   describe "validate presence" do
     context "nameがNULLの時" do
       let(:emergency_contact) { build(:emergency_contact, name: nil) }

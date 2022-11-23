@@ -22,12 +22,12 @@
             </v-col>
             <v-col cols="12">
               <div class="text-center">
-                <OrangeBtn :disabled="invalid ||waiting" @click="onSearchHazardMap(selectCity)">検索</OrangeBtn>
+                <OrangeBtn :disabled="invalid || waiting" @click="onSearchHazardMap(selectPrefecture, selectCity)">検索</OrangeBtn>
               </div>
             </v-col>
             <v-col v-if="$auth.loggedIn && $auth.user.city" cols="12">
               <div class="text-center">
-                <OrangeBtn @click="onSearchHazardMap($auth.user.city.id)">自分の市町村で検索する</OrangeBtn>
+                <OrangeBtn :disabled="selectPrefecture !== null" @click="onSearchHazardMap($auth.user.prefecture.id, $auth.user.city.id)">自分の市町村で検索する</OrangeBtn>
               </div>
             </v-col>
           </v-row>
@@ -78,14 +78,16 @@ export default {
   },
 
   methods: {
-    async onSearchHazardMap (cityId) {
+    async onSearchHazardMap (prefectureId, cityId) {
       this.processing = true
 
       this.hazardMap = null
+
+      this.selectPrefecture = prefectureId
       this.selectCity = cityId
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.hazardMapUrl, {
-        params: { id: cityId, prefecture_id: this.selectPrefecture }
+        params: { prefecture_id: prefectureId, city_id: cityId }
       })
         .then((response) => {
           if (response.data == null || response.data.hazard_map == null) {

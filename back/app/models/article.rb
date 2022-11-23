@@ -30,11 +30,45 @@ class Article < ApplicationRecord
   mount_uploader :thumbnail, ImageUploader
 
   default_scope { order(created_at: :desc, id: :desc) }
+  # お気に入り数の多い順に一覧を取得
+  scope :by_favorite_count_ranking, lambda { |famous|
+    return unless famous
 
-  scope :ranking, -> { joins(:article_favorites).group(:id).order('count(article_favorites.article_id) desc', id: :desc) }
+    article = all
+    article = article.joins(:article_favorites).group(:id).order('count(article_favorites.article_id) desc', id: :desc)
+    article
+  }
+  # 執筆記事かマイ記事一覧を取得
+  scope :by_target, lambda { |user, favorite|
+    return if user.blank?
 
-  validates :user_id, presence: true
-  validates :title, presence: true, length: { maximum: 30 }
+    article = favorite ? user.favorited_articles : user.articles
+
+    article
+  }
+  # キーワードを含む記事一覧を取得
+  scope :search_keyword, lambda { |keyword|
+    return if keyword&.strip.blank?
+
+    article = all
+    keyword.split(/[[:blank:]]+/).each do |word|
+      value = "%#{word}%"
+      article = article.where("title LIKE ? OR content LIKE ?", value, value)
+    end
+
+    article
+  }
+  # 選択されたジャンルと関連する記事一覧を取得
+  scope :search_genre, lambda { |genre_ids|
+    return if genre_ids.blank?
+
+    article = all
+    article = article.joins(:article_genre_relations).merge(ArticleGenreRelation.where(genre_id: genre_ids)).group('article_genre_relations.article_id').having('count(articles.id) = ?', genre_ids.length)
+    article
+  }
+
+  validates :title, presence: true
+  validates :title, length: { maximum: Settings['article_title_maximum'] }
   validates :content, presence: true
 
   # 画像URLを返却

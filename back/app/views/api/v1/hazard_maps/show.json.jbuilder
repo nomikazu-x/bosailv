@@ -2,7 +2,7 @@ json.success true
 
 json.hazard_map do
   json.id @hazard_map.city_id
-  json.city_name @city_name
+  json.city_name @prefecture.name + @city.name
   json.tsunami @hazard_map.tsunami
   json.flood @hazard_map.flood
   json.landslide @hazard_map.landslide

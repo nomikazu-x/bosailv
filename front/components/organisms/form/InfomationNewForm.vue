@@ -78,7 +78,7 @@
             />
           </v-sheet>
         </v-col>
-        <div>
+        <div class="text-center">
           <OrangeBtn
             id="infomation_create_btn"
             :disabled="invalid || processing"

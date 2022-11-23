@@ -14,5 +14,6 @@
 class Prefecture < ApplicationRecord
   has_many :cities
 
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :name, presence: true
+  validates :name, uniqueness: { case_sensitive: false }
 end

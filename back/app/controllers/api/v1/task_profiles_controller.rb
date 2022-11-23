@@ -38,7 +38,7 @@ class Api::V1::TaskProfilesController < Api::V1::ApplicationController
         ActiveRecord::Base.transaction do
           # ポイント獲得
           PointRecorder.new(current_user).record(Settings['hazard_map_confirm_obtained_point'])
-          render './api/v1/task_profiles/success', locals: { notice: I18n.t('notice.user.hazard_map_task_update') }
+          render './api/v1/auth/success', locals: { notice: I18n.t('notice.user.hazard_map_task_update') }
         end
       else
         render './api/v1/failure', locals: { alert: I18n.t('alert.user.hazard_map_task_update') }, status: :unprocessable_entity
@@ -90,7 +90,7 @@ class Api::V1::TaskProfilesController < Api::V1::ApplicationController
       # ポイント獲得
       PointRecorder.new(current_user).record(obtained_point)
       update_auth_header # 成功時のみ認証情報を返す
-      render './api/v1/task_profiles/success', locals: { notice: I18n.t('notice.task_profile.update') }
+      render './api/v1/auth/success', locals: { notice: I18n.t('notice.task_profile.update') }
     end
   end
 
@@ -99,7 +99,7 @@ class Api::V1::TaskProfilesController < Api::V1::ApplicationController
       # ポイントを減らす
       PointRecorder.new(current_user).delete_record(obtained_point)
       update_auth_header # 成功時のみ認証情報を返す
-      render './api/v1/task_profiles/success', locals: { notice: I18n.t('notice.task_profile.destroy') }
+      render './api/v1/auth/success', locals: { notice: I18n.t('notice.task_profile.destroy') }
     end
   end
 end

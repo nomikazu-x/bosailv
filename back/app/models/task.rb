@@ -15,8 +15,10 @@ class Task < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   validates :image, presence: true
-  validates :title, presence: true, length: { maximum: 30 }
-  validates :summary, presence: true, length: { maximum: 50 }
+  validates :title, presence: true
+  validates :title, length: { maximum: Settings['task_title_maximum'] }
+  validates :summary, presence: true
+  validates :summary, length: { maximum: Settings['task_summary_maximum'] }
   validates :body, presence: true
   validates :icon, presence: true
 

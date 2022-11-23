@@ -5,8 +5,6 @@ module.exports = {
   adminUsersUrl: '/api/v1/admin/users.json',
   // アカウント削除API
   adminUserDeleteUrl: '/api/v1/admin/users/_username/delete.json',
-  // ユーザー検索API
-  adminUsersSearchUrl: '/api/v1/admin/users/search.json',
 
   // 【お知らせ】
   // お知らせ一覧API
@@ -65,12 +63,6 @@ module.exports = {
   usersUrl: '/api/v1/users.json',
   // ユーザー情報詳細API
   userShowUrl: '/api/v1/users/_username.json',
-  // マイ記事一覧API
-  userArticlesUrl: '/api/v1/users/_username/articles.json',
-  // ジャンル別記事一覧API
-  userGenreArticlesUrl: '/api/v1/users/_username/genres/_id.json',
-  // 避難所一覧API
-  userSheltersUrl: '/api/v1/users/_username/shelters.json',
   // 登録情報変更API
   userUpdateUrl: '/api/v1/auth/update.json',
   // プロフィール変更API
@@ -153,8 +145,6 @@ module.exports = {
   articleUpdateUrl: '/api/v1/articles/_id/update.json',
   // 記事削除API
   articleDeleteUrl: '/api/v1/articles/_id/delete.json',
-  // 記事検索API
-  articlesSearchUrl: '/api/v1/articles/search.json',
 
   // 【ジャンル】
   // ジャンル一覧API
@@ -170,11 +160,11 @@ module.exports = {
 
   // 【コメント】
   // コメント一覧API
-  commentsUrl: '/api/v1/articles/_id/article_comments.json',
+  commentsUrl: '/api/v1/articles/_article_id/article_comments.json',
   // コメント作成API
-  commentCreateUrl: '/api/v1/article_comments/create.json',
+  commentCreateUrl: '/api/v1/articles/_article_id/article_comments/create.json',
   // コメント削除API
-  commentDeleteUrl: '/api/v1/article_comments/_id/delete.json',
+  commentDeleteUrl: '/api/v1/articles/_article_id/article_comments/_id/delete.json',
 
   // 【都道府県】
   // 一覧取得API

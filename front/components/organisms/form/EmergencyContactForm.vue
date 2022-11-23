@@ -6,7 +6,7 @@
         <BaseTextField
           v-model="name"
           label="連絡先名"
-          rules="required|max:10"
+          rules="required|max:20"
           @click="waiting = false"
         />
         <BaseTextField
@@ -18,7 +18,9 @@
         <div v-if="$auth.user.is_max_emergency_contact" class="text-center text-caption mt-2 grey--text">
           ※登録上限数に達しているため、登録できません。
         </div>
-        <OrangeBtn id="emergency_contact_create_btn" :disabled="invalid || processing || waiting || $auth.user.is_max_emergency_contact" @click="onEmergencyContactCreate">作成</OrangeBtn>
+        <div class="text-center">
+          <OrangeBtn id="emergency_contact_create_btn" :disabled="invalid || processing || waiting || $auth.user.is_max_emergency_contact" @click="onEmergencyContactCreate">作成</OrangeBtn>
+        </div>
       </v-card-text>
     </v-form>
   </ValidationObserver>

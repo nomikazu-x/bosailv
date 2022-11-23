@@ -32,16 +32,6 @@ RSpec.describe ArticleComment, type: :model do
     end
   end
 
-  describe "validate length" do
-    context "contentの長さが256文字以上の時" do
-      let(:article_comment) { build(:article_comment, content: 'a' * 256) }
-      it "エラーメッセージが返る" do
-        article_comment.valid?
-        expect(article_comment).to be_invalid
-      end
-    end
-  end
-
   describe "validate presence" do
     context "contentがNULLの時" do
       let(:article_comment) { build(:article_comment, content: nil) }

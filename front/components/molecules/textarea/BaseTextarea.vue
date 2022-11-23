@@ -20,9 +20,10 @@
 
 <script>
 import { ValidationProvider, extend, configure, localize } from 'vee-validate'
-import { required } from 'vee-validate/dist/rules'
+import { required, max } from 'vee-validate/dist/rules'
 
 extend('required', required)
+extend('max', max)
 configure({ generateMessage: localize('ja', require('~/locales/validate.ja.js')) })
 
 export default {

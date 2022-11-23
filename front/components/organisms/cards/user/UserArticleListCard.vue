@@ -127,8 +127,8 @@ export default {
   methods: {
     async onArticlePagination (articlePage) {
       this.processing = true
-      await this.$axios.get(this.$config.apiBaseURL + this.$config.userGenreArticlesUrl.replace('_username', this.currentUsername).replace('_id', this.$route.params.id), {
-        params: { page: articlePage }
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.genreShowUrl.replace('_id', this.$route.params.id), {
+        params: { page: articlePage, username: this.currentUsername }
       })
         .then((response) => {
           if (response.data == null) {
@@ -156,8 +156,8 @@ export default {
 
     async onFavoriteArticlePagination (favoriteArticlePage) {
       this.processing = true
-      await this.$axios.get(this.$config.apiBaseURL + this.$config.userGenreArticlesUrl.replace('_username', this.currentUsername).replace('_id', this.$route.params.id), {
-        params: { page: favoriteArticlePage, favorite: true }
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.genreShowUrl.replace('_id', this.$route.params.id), {
+        params: { page: favoriteArticlePage, favorite: true, username: this.currentUsername }
       })
         .then((response) => {
           if (response.data == null) {

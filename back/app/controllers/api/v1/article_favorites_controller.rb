@@ -5,9 +5,8 @@ class Api::V1::ArticleFavoritesController < Api::V1::ApplicationController
 
   # POST /api/v1/articles/:id/article_favorites/create(.json) 記事お気にいりAPI(処理)
   def create
-    if @article
+    if current_user.article_favorite!(@article)
       ActiveRecord::Base.transaction do
-        current_user.article_favorite!(@article)
         # 記事作成者がポイント獲得
         PointRecorder.new(@article.user).record(Settings['article_favorite_author_obtained_point'])
         # 読者もポイント獲得
@@ -25,9 +24,8 @@ class Api::V1::ArticleFavoritesController < Api::V1::ApplicationController
 
   # POST /api/v1/articles/:id/article_favorites/delete(.json) 記事お気にいり削除API(処理)
   def destroy
-    if @article
+    if current_user.article_unfavorite!(@article)
       ActiveRecord::Base.transaction do
-        current_user.article_unfavorite!(@article)
         # 記事作成者のポイントを減らす
         PointRecorder.new(@article.user).delete_record(Settings['article_favorite_author_obtained_point'])
         # 読者のポイントを減らす

@@ -3,7 +3,7 @@
     <TheProcessing v-if="processing" />
     <v-form autocomplete="off">
       <v-card-text>
-        <ValidationProvider v-slot="{ errors }" name="content" rules="required">
+        <ValidationProvider v-slot="{ errors }" name="content" rules="required|max:300">
           <v-textarea
             v-model="content"
             label="コメント"
@@ -14,7 +14,9 @@
             @click="waiting = false"
           />
         </ValidationProvider>
-        <OrangeBtn id="comment_create_btn" :disabled="invalid || processing || waiting" @click="onCommentCreate()">作成</OrangeBtn>
+        <div class="text-center">
+          <OrangeBtn id="comment_create_btn" :disabled="invalid || processing || waiting" @click="onCommentCreate()">作成</OrangeBtn>
+        </div>
       </v-card-text>
     </v-form>
   </ValidationObserver>
@@ -62,9 +64,7 @@ export default {
     async onCommentCreate () {
       this.processing = true
 
-      await this.$axios.post(this.$config.apiBaseURL + this.$config.commentCreateUrl.replace('_id', this.$route.params.id), {
-        user_id: this.$auth.user.id,
-        article_id: this.article.id,
+      await this.$axios.post(this.$config.apiBaseURL + this.$config.commentCreateUrl.replace('_article_id', this.$route.params.id), {
         content: this.content
       })
         .then((response) => {

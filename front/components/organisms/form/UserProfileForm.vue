@@ -7,6 +7,7 @@
           v-model="name"
           name="name"
           label="氏名"
+          rules="required|max:10"
         />
         <PrefecturesSelect
           v-model="selectPrefecture"
@@ -22,14 +23,17 @@
           v-model="profile"
           name="profile"
           label="プロフィール"
+          rules="max:255"
         />
-        <OrangeBtn
-          id="user_update_btn"
-          :disabled="invalid || processing || waiting"
-          @click="onUserUpdate"
-        >
-          変更
-        </OrangeBtn>
+        <div class="text-center">
+          <OrangeBtn
+            id="user_update_btn"
+            :disabled="invalid || processing || waiting"
+            @click="onUserUpdate"
+          >
+            変更
+          </OrangeBtn>
+        </div>
       </v-card-text>
     </v-form>
   </ValidationObserver>

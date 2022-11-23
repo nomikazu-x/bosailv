@@ -19,6 +19,7 @@
               v-model="name"
               name="name"
               label="ジャンル名"
+              rules="required|max:10"
             />
           </v-sheet>
         </v-col>
@@ -37,10 +38,11 @@
               v-model="description"
               name="description"
               label="説明文"
+              rules="required|max:100"
             />
           </v-sheet>
         </v-col>
-        <div>
+        <div class="text-center">
           <OrangeBtn
             id="genre_create_btn"
             :disabled="invalid || processing"

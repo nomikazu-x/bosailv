@@ -24,8 +24,13 @@ class FamilyRule < ApplicationRecord
   belongs_to :user
 
   validates :contact_means_memo, presence: true
+  validates :contact_means_memo, length: { maximum: Settings['family_rule_contact_means_memo_maximum'] }
   validates :emergency_measure_memo, presence: true
+  validates :emergency_measure_memo, length: { maximum: Settings['family_rule_emergency_measure_memo_maximum'] }
   validates :family_role_memo, presence: true
+  validates :family_role_memo, length: { maximum: Settings['family_rule_family_role_memo_maximum'] }
   validates :leave_home_memo, presence: true
+  validates :leave_home_memo, length: { maximum: Settings['family_rule_leave_home_memo_maximum'] }
   validates :refuge_memo, presence: true
+  validates :refuge_memo, length: { maximum: Settings['family_rule_refuge_memo_maximum'] }
 end
