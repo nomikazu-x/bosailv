@@ -9,3 +9,12 @@ default_unlock_success_url: ''
 mailer_from:
   name: '%{app_name}'
   email: 'noreply@localhost.test'
+
+## お知らせ
+# 一覧のデフォルト最大表示件数
+default_infomations_limit: 4
+test_infomations:
+  all_forever_count: 1
+  all_future_count: 1
+  user_forever_count: 1
+  user_future_count: 1
