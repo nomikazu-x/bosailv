@@ -25,13 +25,15 @@
           label="プロフィール"
           rules="max:255"
         />
-        <OrangeBtn
-          id="user_update_btn"
-          :disabled="invalid || processing || waiting"
-          @click="onUserUpdate"
-        >
-          変更
-        </OrangeBtn>
+        <div class="text-center">
+          <OrangeBtn
+            id="user_update_btn"
+            :disabled="invalid || processing || waiting"
+            @click="onUserUpdate"
+          >
+            変更
+          </OrangeBtn>
+        </div>
       </v-card-text>
     </v-form>
   </ValidationObserver>

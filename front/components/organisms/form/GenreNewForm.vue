@@ -42,7 +42,7 @@
             />
           </v-sheet>
         </v-col>
-        <div>
+        <div class="text-center">
           <OrangeBtn
             id="genre_create_btn"
             :disabled="invalid || processing"

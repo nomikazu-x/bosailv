@@ -14,7 +14,9 @@
             @click="waiting = false"
           />
         </ValidationProvider>
-        <OrangeBtn id="comment_create_btn" :disabled="invalid || processing || waiting" @click="onCommentCreate()">作成</OrangeBtn>
+        <div class="text-center">
+          <OrangeBtn id="comment_create_btn" :disabled="invalid || processing || waiting" @click="onCommentCreate()">作成</OrangeBtn>
+        </div>
       </v-card-text>
     </v-form>
   </ValidationObserver>

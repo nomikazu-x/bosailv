@@ -50,7 +50,7 @@
             />
           </v-sheet>
         </v-col>
-        <div>
+        <div class="text-center">
           <OrangeBtn
             id="task_create_btn"
             :disabled="invalid || processing"
