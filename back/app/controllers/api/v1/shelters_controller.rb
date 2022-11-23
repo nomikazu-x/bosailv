@@ -2,11 +2,11 @@ class Api::V1::SheltersController < Api::V1::ApplicationController
 
   # GET /api/v1/shelters(.json) 避難所一覧API
   def index
-    return if params[:prefecture_id].blank? && params[:city_id].blank?
+    @prefecture = Prefecture.find(params[:prefecture_id]) if params[:prefecture_id].present?
+    @city = City.find(params[:city_id]) if params[:city_id].present?
+    user = User.find_by(username: params[:username])
 
-    @prefecture = Prefecture.find(params[:prefecture_id])
-    @city = City.find(params[:city_id])
-    @shelters = @city.shelters.page(params[:page]).per(Settings['default_shelters_limit'])
+    @shelters = Shelter.where(city: @city).by_target(user).page(params[:page]).per(Settings['default_shelters_limit'])
     @shelters = @shelters.where("#{params[:disaster_type]} = true") if params[:disaster_type]
   end
 

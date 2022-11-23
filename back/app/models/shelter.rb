@@ -35,6 +35,15 @@ class Shelter < ApplicationRecord
 
   has_many :shelter_registrations, dependent: :destroy
 
+  # マイ記事一覧を取得
+  scope :by_target, lambda { |user|
+    return if user.blank?
+
+    shelter = user.registered_shelters
+
+    shelter
+  }
+
   validates :address, presence: true
   validates :city_name, presence: true
   validates :duplicate, presence: true

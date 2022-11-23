@@ -51,6 +51,7 @@ export default {
 
   data () {
     return {
+      user: null,
       page: 1,
       info: null,
       shelters: null
@@ -78,6 +79,25 @@ export default {
   },
 
   async created () {
+    await this.$axios.get(this.$config.apiBaseURL + this.$config.userShowUrl.replace('_username', this.currentUsername))
+      .then((response) => {
+        if (response.data == null) {
+          this.$toasted.error(this.$t('system.error'))
+          return this.$router.push({ path: '/home' })
+        } else {
+          this.user = response.data.user
+        }
+      },
+      (error) => {
+        if (error.response == null) {
+          this.$toasted.error(this.$t('network.failure'))
+        } else if (error.response.status === 401) {
+          return this.signOut()
+        } else {
+          this.$toasted.error(this.$t('network.error'))
+        }
+        return this.$router.push({ path: '/home' })
+      })
     await this.onSheltersPagination(this.page)
     this.processing = false
   },
@@ -86,8 +106,8 @@ export default {
     async onSheltersPagination (page) {
       this.processing = true
 
-      await this.$axios.get(this.$config.apiBaseURL + this.$config.userSheltersUrl.replace('_username', this.currentUsername), {
-        params: { page, disaster_type: this.selectDisasterType }
+      await this.$axios.get(this.$config.apiBaseURL + this.$config.sheltersUrl, {
+        params: { page, disaster_type: this.selectDisasterType, username: this.currentUsername }
       })
         .then((response) => {
           if (response.data == null || response.data.shelters == null) {

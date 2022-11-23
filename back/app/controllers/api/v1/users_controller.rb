@@ -31,11 +31,4 @@ class Api::V1::UsersController < Api::V1::ApplicationController
       head :not_found
     end
   end
-
-  # GET /api/v1/users/:username/shelters(.json) ユーザー避難所一覧取得API
-  def shelters
-    @user = User.find_by(username: params[:username])
-    @shelters = @user.registered_shelters.page(params[:page]).per(Settings['default_shelters_limit'])
-    render './api/v1/shelters/index'
-  end
 end

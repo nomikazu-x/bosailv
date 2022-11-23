@@ -57,8 +57,7 @@ export default {
       articleInfo: null,
       favoriteArticleInfo: null,
       articles: null,
-      favoriteArticles: null,
-      requiredPoint: 0
+      favoriteArticles: null
     }
   },
   computed: {
@@ -88,7 +87,6 @@ export default {
           return this.$router.push({ path: '/home' })
         } else {
           this.user = response.data.user
-          this.requiredPoint = response.data.required_point
         }
       },
       (error) => {

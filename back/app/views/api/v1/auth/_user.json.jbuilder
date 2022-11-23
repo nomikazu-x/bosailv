@@ -1,3 +1,4 @@
+json.id user.id
 json.code user.code
 json.username user.username
 json.image_url do
