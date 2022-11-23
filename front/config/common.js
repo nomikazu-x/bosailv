@@ -5,8 +5,6 @@ module.exports = {
   adminUsersUrl: '/api/v1/admin/users.json',
   // アカウント削除API
   adminUserDeleteUrl: '/api/v1/admin/users/_username/delete.json',
-  // ユーザー検索API
-  adminUsersSearchUrl: '/api/v1/admin/users/search.json',
 
   // 【お知らせ】
   // お知らせ一覧API

@@ -5,7 +5,6 @@ Rails.application.routes.draw do
       namespace :admin do
         # ユーザー
         get  'users',                      to: 'users#index',          as: 'users'
-        get  'users/search',               to: 'users#search',         as: 'search_users'
         post 'users/:username/delete',     to: 'users#destroy',        as: 'destroy_users'
 
         # ジャンル
