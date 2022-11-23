@@ -55,7 +55,7 @@ class Article < ApplicationRecord
     return if genre_ids.blank?
 
     article = all
-    article = article.joins(:article_genre_relations).merge(ArticleGenreRelation.where(genre_id: genre_ids)).group(:article_id).having('count(articles.id) = ?', genre_ids.length)
+    article = article.joins(:article_genre_relations).merge(ArticleGenreRelation.where(genre_id: genre_ids)).group('article_genre_relations.article_id').having('count(articles.id) = ?', genre_ids.length)
     article
   }
 
