@@ -31,7 +31,28 @@ class Article < ApplicationRecord
 
   default_scope { order(created_at: :desc, id: :desc) }
 
-  scope :ranking, -> { joins(:article_favorites).group(:id).order('count(article_favorites.article_id) desc', id: :desc) }
+  # お気に入り数の多い順に一覧を取得
+  scope :by_favorite_ranking, -> { joins(:article_favorites).group(:id).order('count(article_favorites.article_id) desc', id: :desc) }
+  # キーワードを含む記事一覧を取得
+  scope :search, lambda { |keyword|
+    return if keyword&.strip.blank?
+
+    article = all
+    keyword.split(/[[:blank:]]+/).each do |word|
+      value = "%#{word}%"
+      article = article.where("title LIKE ? OR content LIKE ?", value, value)
+    end
+
+    article
+  }
+  # 選択されたジャンルと関連する記事一覧を取得
+  scope :genre, lambda { |genre_ids|
+    return if genre_ids.blank?
+
+    article = all
+    article = article.joins(:article_genre_relations).merge(ArticleGenreRelation.where(genre_id: genre_ids)).group(:article_id).having('count(articles.id) = ?', genre_ids.length)
+    article
+  }
 
   validates :title, presence: true
   validates :title, length: { maximum: Settings['article_title_maximum'] }

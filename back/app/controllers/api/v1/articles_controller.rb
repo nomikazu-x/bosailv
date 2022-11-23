@@ -6,7 +6,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   # GET /api/v1/articles(.json) 記事一覧API
   def index
     if params[:famous]
-      @articles = Article.all.ranking.page(params[:page]).per(Settings['default_articles_limit'])
+      @articles = Article.all.by_favorite_ranking.page(params[:page]).per(Settings['default_articles_limit'])
     else
       @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
     end
@@ -58,36 +58,10 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
 
   # GET /api/v1/articles/search(.json) 記事検索API(処理)
   def search
-    # キーワードが存在する場合
-    if params[:keyword].present?
-      # キーワード検索
-      @articles = Article.where('title Like ? OR content Like ?', "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(Settings['default_articles_limit'])
+    keyword = params[:keyword]&.slice(..(255 - 1))
+    genre_ids = params[:genre_ids]
 
-      # キーワードが選択されており、かつジャンルが選択されている場合
-      if params[:genre_ids].present?
-        # ジャンルを繰り返し処理して、選択されたすべてのジャンルと関連する記事一覧を取得
-        params[:genre_ids].each do |genre_id|
-          genre = Genre.find(genre_id)
-          @articles = @articles.joins(:article_genre_relations).where("genre_id = #{genre.id}")
-        end
-        # 該当する記事を返す
-        @articles = @articles.page(params[:page]).per(Settings['default_articles_limit'])
-      end
-
-    # キーワードが存在せず、ジャンルが選択されている場合
-    elsif params[:genre_ids].present?
-      # ジャンルを繰り返し処理して、選択されたすべてのジャンルと関連する記事一覧を取得
-      params[:genre_ids].each do |genre_id|
-        genre = Genre.find(genre_id)
-        @articles = Article.all.joins(:article_genre_relations).where("genre_id = #{genre.id}")
-      end
-      # 該当する記事を返す
-      @articles = @articles.page(params[:page]).per(Settings['default_articles_limit'])
-
-    # キーワードもジャンルも選択されていない場合、すべての記事を返す
-    else
-      @articles = Article.all.page(params[:page]).per(Settings['default_articles_limit'])
-    end
+    @articles = Article.search(keyword).genre(genre_ids).page(params[:page]).per(Settings['default_articles_limit'])
   end
 
   private
