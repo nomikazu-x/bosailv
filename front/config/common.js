@@ -63,8 +63,6 @@ module.exports = {
   usersUrl: '/api/v1/users.json',
   // ユーザー情報詳細API
   userShowUrl: '/api/v1/users/_username.json',
-  // マイ記事一覧API
-  userArticlesUrl: '/api/v1/users/_username/articles.json',
   // ジャンル別記事一覧API
   userGenreArticlesUrl: '/api/v1/users/_username/genres/_id.json',
   // 避難所一覧API

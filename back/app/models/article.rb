@@ -38,6 +38,14 @@ class Article < ApplicationRecord
     article = article.joins(:article_favorites).group(:id).order('count(article_favorites.article_id) desc', id: :desc)
     article
   }
+  # 執筆記事かマイ記事一覧を取得
+  scope :by_target, lambda { |user, favorite|
+    return if user.blank?
+
+    article = favorite ? user.favorited_articles : user.articles
+
+    article
+  }
   # キーワードを含む記事一覧を取得
   scope :search_keyword, lambda { |keyword|
     return if keyword&.strip.blank?
