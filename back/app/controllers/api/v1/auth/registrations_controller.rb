@@ -2,12 +2,12 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   include Api::V1::Auth::RegistrationsConcern
   include DeviseTokenAuth::Concerns::SetUserByToken
   skip_before_action :verify_authenticity_token
-  prepend_before_action :unauthenticated_response, only: %i[show update image_update image_destroy destroy], unless: :user_signed_in?
+  prepend_before_action :unauthenticated_response, only: %i[show update profile_update image_update image_destroy destroy], unless: :user_signed_in?
   prepend_before_action :already_authenticated_response, only: %i[create], if: :user_signed_in?
   prepend_before_action :update_request_uid_header
   before_action :configure_sign_up_params, only: %i[create]
   before_action :configure_account_update_params, only: %i[update]
-  skip_after_action :update_auth_header, only: %i[update image_update]
+  skip_after_action :update_auth_header, only: %i[update profile_update image_update]
 
   # POST /api/v1/auth/sign_up(.json) アカウント登録API(処理)
   def create
@@ -49,7 +49,7 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   def profile_update
     @user = User.find(current_user.id)
     if @user.update(params.permit(:name, :profile, :prefecture_id, :city_id))
-      # update_auth_header # 成功時のみ認証情報を返す
+      update_auth_header # 成功時のみ認証情報を返す
       render './api/v1/auth/success', locals: { notice: I18n.t('devise.registrations.updated') }
     else
       render './api/v1/failure', locals: { errors: @user.errors, alert: I18n.t('errors.messages.not_saved.one') }, status: :unprocessable_entity

@@ -12,8 +12,7 @@ class Api::V1::Admin::UsersController < Api::V1::ApplicationController
   # POST /api/v1/users/:username/delete(.json) ユーザー削除API(管理者専用)
   def destroy
     user = User.find_by(username: params[:username])
-    if user
-      user.destroy
+    if user.destroy
       render './api/v1/success', locals: { notice: I18n.t('notice.user.destroy') }
     else
       render './api/v1/failure', locals: { alert: I18n.t('alert.user.destroy.failure') }, status: :unprocessable_entity

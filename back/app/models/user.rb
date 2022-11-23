@@ -80,6 +80,7 @@ class User < ActiveRecord::Base
   scope :by_point_ranking, -> { order(lifelong_point: :desc, id: :desc) }
   # ゲストで削除予定が過ぎているユーザーを取得
   scope :by_destroy_reserved, -> { where('destroy_schedule_at <= ?', Time.current) }
+  # キーワードを含む記事一覧を取得
   scope :search, lambda { |keyword|
     return if keyword&.strip.blank?
 
