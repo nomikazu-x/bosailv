@@ -1,7 +1,7 @@
 json.success true
 
 json.shelter do
-  json.city_name @city_name if @city_name.present?
+  json.city_name @prefecture.name + @city.name
   json.total_count @shelters.total_count
   json.current_page @shelters.current_page
   json.total_pages @shelters.total_pages

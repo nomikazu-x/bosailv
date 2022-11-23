@@ -28,12 +28,12 @@
             </v-col>
             <v-col cols="12">
               <div class="text-center">
-                <OrangeBtn :disabled="invalid || waiting" @click="onSearchShelters(page, selectCity)">検索</OrangeBtn>
+                <OrangeBtn :disabled="invalid || waiting" @click="onSearchShelters(page, selectPrefecture, selectCity)">検索</OrangeBtn>
               </div>
             </v-col>
             <v-col v-if="$auth.loggedIn && $auth.user.city" cols="12">
               <div class="text-center">
-                <OrangeBtn @click="onSearchShelters(page, $auth.user.city.id)">自分の市町村で検索する</OrangeBtn>
+                <OrangeBtn :disabled="selectPrefecture !== null" @click="onSearchShelters(page, $auth.user.prefecture.id, $auth.user.city.id)">自分の市町村で検索する</OrangeBtn>
               </div>
             </v-col>
           </v-row>
@@ -102,13 +102,14 @@ export default {
   },
 
   methods: {
-    async onSearchShelters (page, cityId) {
+    async onSearchShelters (page, prefectureId, cityId) {
       this.processing = true
 
+      this.selectPrefecture = prefectureId
       this.selectCity = cityId
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.sheltersUrl, {
-        params: { id: this.selectCity, page, disaster_type: this.selectDisasterType, prefecture_id: this.selectPrefecture }
+        params: { city_id: cityId, page, disaster_type: this.selectDisasterType, prefecture_id: prefectureId }
       })
         .then((response) => {
           if (response.data == null || response.data.shelters == null) {
@@ -138,7 +139,7 @@ export default {
       this.processing = true
 
       await this.$axios.get(this.$config.apiBaseURL + this.$config.sheltersUrl, {
-        params: { id: this.selectCity, page, disaster_type: this.selectDisasterType, prefecture_id: this.selectPrefecture }
+        params: { city_id: this.selectCity, page, disaster_type: this.selectDisasterType, prefecture_id: this.selectPrefecture }
       })
         .then((response) => {
           if (response.data == null || response.data.shelters == null) {

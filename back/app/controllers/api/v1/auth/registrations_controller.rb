@@ -49,6 +49,7 @@ class Api::V1::Auth::RegistrationsController < DeviseTokenAuth::RegistrationsCon
   def profile_update
     @user = User.find(current_user.id)
     if @user.update(params.permit(:name, :profile, :prefecture_id, :city_id))
+      # update_auth_header # 成功時のみ認証情報を返す
       render './api/v1/auth/success', locals: { notice: I18n.t('devise.registrations.updated') }
     else
       render './api/v1/failure', locals: { errors: @user.errors, alert: I18n.t('errors.messages.not_saved.one') }, status: :unprocessable_entity
