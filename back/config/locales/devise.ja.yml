@@ -77,6 +77,7 @@ ja:
       not_saved:
         one: '入力内容を確認してください。'
         other: '入力内容を確認してください。'
+      validate_params: 'パラメータが指定されていません。'
   devise:
     registrations:
       signed_up: 'アカウント登録が完了しました。'

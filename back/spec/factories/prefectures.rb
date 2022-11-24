@@ -13,6 +13,6 @@
 #
 FactoryBot.define do
   factory :prefecture do
-    name {  Faker::Lorem.characters(number: 10) }
+    sequence(:name) { |n| "都道府県(#{n})" }
   end
 end

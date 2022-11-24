@@ -18,7 +18,7 @@
 #
 FactoryBot.define do
   factory :city do
-    name { Faker::Lorem.characters(number: 10) }
+    sequence(:name) { |n| "市町村(#{n})" }
     association :prefecture
   end
 end
