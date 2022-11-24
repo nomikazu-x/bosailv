@@ -81,7 +81,7 @@ RSpec.describe 'Api::V1::Auth::Registrations', type: :request do
       it_behaves_like 'ToMsg', NilClass, 0, nil, nil, 'devise.failure.unauthenticated', nil
     end
     context 'APIログイン中' do
-      include_context 'APIログイン処理', :email_changed
+      include_context 'APIログイン処理', :email_changed, true
       it_behaves_like 'ToOK'
       it_behaves_like 'ToMsg', NilClass, 0, nil, nil, nil, nil
     end
