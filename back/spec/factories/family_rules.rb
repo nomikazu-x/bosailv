@@ -22,11 +22,11 @@
 #
 FactoryBot.define do
   factory :family_rule do
+    sequence(:contact_means_memo) { |n| "緊急時連絡手段メモ(#{n})" }
+    sequence(:emergency_measure_memo) { |n| "応急処置メモ(#{n})" }
+    sequence(:family_role_memo) { |n| "家族の役割分担メモ(#{n})" }
+    sequence(:leave_home_memo) { |n| "家を離れるときメモ(#{n})" }
+    sequence(:refuge_memo) { |n| "避難方法メモ(#{n})" }
     association :user
-    contact_means_memo { Faker::Lorem.characters(number: 10) }
-    emergency_measure_memo { Faker::Lorem.characters(number: 10) }
-    family_role_memo { Faker::Lorem.characters(number: 10) }
-    leave_home_memo { Faker::Lorem.characters(number: 10) }
-    refuge_memo { Faker::Lorem.characters(number: 10) }
   end
 end

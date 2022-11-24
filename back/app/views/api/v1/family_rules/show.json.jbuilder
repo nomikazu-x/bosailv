@@ -6,6 +6,4 @@ json.family_rule do
   json.family_role_memo @family_rule.family_role_memo
   json.emergency_measure_memo @family_rule.emergency_measure_memo
   json.leave_home_memo @family_rule.leave_home_memo
-  json.created_at @family_rule.created_at
-  json.updated_at @family_rule.updated_at
 end

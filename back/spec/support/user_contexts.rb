@@ -1,4 +1,5 @@
-shared_context '未ログイン処理' do
+shared_context '未ログイン処理' do |trait = nil, use_image = false|
+  include_context 'ユーザー作成', trait, use_image
   let(:auth_headers) { {} }
 end
 shared_context 'ログイン処理' do |trait = nil, use_image = false|

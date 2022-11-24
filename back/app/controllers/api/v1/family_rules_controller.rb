@@ -1,10 +1,11 @@
 class Api::V1::FamilyRulesController < Api::V1::ApplicationController
+  before_action :authenticate_user!, only: %i[show update destroy]
   before_action :set_family_rule, only: %i[show update destroy]
 
   # GET /api/v1/family_rule(.json) 家族ルール取得API
-  # def show
-
-  # end
+  def show
+    return head :not_found if @family_rule.blank?
+  end
 
   # POST /api/v1/family_rules/update(.json) 家族ルール更新API(処理)
   def update
