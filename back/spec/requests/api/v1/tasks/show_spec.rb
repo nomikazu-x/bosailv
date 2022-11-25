@@ -6,7 +6,6 @@ RSpec.describe 'Api::V1::Tasks', type: :request do
   #   なし
   # テストパターン
   #   未ログイン, ログイン中, APIログイン中
-  #   有効なパラメータ(存在する, 存在しない), 無効なパラメータ
   describe 'GET #show' do
     subject { get api_v1_show_task_path(id: task.id, format: :json), headers: auth_headers }
 

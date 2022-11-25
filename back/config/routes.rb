@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       # ユーザー
       get   'users',                      to: 'users#index',          as: 'users'
-      get   'users/:username',            to: 'users#show',           as: 'show_users'
+      get   'users/:username',            to: 'users#show',           as: 'user'
 
       # ユーザー防災タスクプロフィール
       get  'task_profile',             to: 'task_profiles#show',          as: 'task_profile'
