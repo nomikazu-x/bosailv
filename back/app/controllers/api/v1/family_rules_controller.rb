@@ -3,9 +3,9 @@ class Api::V1::FamilyRulesController < Api::V1::ApplicationController
   before_action :set_family_rule, only: %i[show update destroy]
 
   # GET /api/v1/family_rule(.json) 家族ルール取得API
-  def show
-    return head :not_found if @family_rule.blank?
-  end
+  # def show
+    
+  # end
 
   # POST /api/v1/family_rules/update(.json) 家族ルール更新API(処理)
   def update
@@ -39,6 +39,8 @@ class Api::V1::FamilyRulesController < Api::V1::ApplicationController
 
   def set_family_rule
     @family_rule = current_user.prepare_family_rule
+
+    return head :not_found if @family_rule.blank?
   end
 
   def family_rule_params
