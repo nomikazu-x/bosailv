@@ -11,10 +11,10 @@
 #
 FactoryBot.define do
   factory :task do
-    title { Faker::Lorem.characters(number: 20) }
-    image { File.new("#{Rails.root}/spec/fixtures/test_image.jpg") }
-    summary { Faker::Lorem.characters(number: 30) }
-    body { Faker::Lorem.characters(number: 50) }
+    sequence(:title) { |n| "task(#{n})" }
+    image { File.new(TEST_IMAGE_FILE) }
+    summary { "#{title}の要約" }
+    body { "#{title}の本文" }
     icon { "#{title}のアイコン" }
   end
 end
