@@ -18,6 +18,7 @@ RSpec.describe 'Api::V1::Articles', type: :request do
         expect(JSON.parse(response.body)['success']).to eq(true)
 
         response_json = JSON.parse(response.body)['article']
+        p articles
         expect(response_json['total_count']).to eq(articles.count)
         expect(response_json['current_page']).to eq(subject_page)
         expect(response_json['total_pages']).to eq((articles.count - 1).div(Settings['default_articles_limit']) + 1)
@@ -50,52 +51,40 @@ RSpec.describe 'Api::V1::Articles', type: :request do
 
     # テストケース
     shared_examples_for '[*]記事がない' do
-      include_context '記事一覧作成', 0, 0, 0, 0
+      include_context '記事一覧作成', 0, 0, 0
       it_behaves_like 'ToOK', 1
     end
     shared_examples_for '[未ログイン]記事が最大表示数と同じ' do
-      count = Settings['test_articles']
-      all = count['genre_exist_count'] + count['genre_none_count'] + count['favorite_exist_count'] + count['favorite_none_count']
-      include_context '記事一覧作成', 0, all, 0, 0
+      include_context '記事一覧作成', Settings['default_articles_limit'], 0, 0
       it_behaves_like 'ToOK', 1
       it_behaves_like 'リスト表示', 1
     end
     shared_examples_for '[ログイン中]記事が最大表示数と同じ' do
-      count = Settings['test_articles']
-      all = count['genre_exist_count'] + count['genre_none_count'] + count['favorite_exist_count'] + count['favorite_none_count']
-      include_context '記事一覧作成', 0, all, 0, 0
+      include_context '記事一覧作成', Settings['default_articles_limit'], 0, 0
       it_behaves_like 'ToOK', 1
       it_behaves_like 'リスト表示', 1
     end
     shared_examples_for '[APIログイン中]記事が最大表示数と同じ' do
-      count = Settings['test_articles']
-      all = count['genre_exist_count'] + count['genre_none_count'] + count['favorite_exist_count'] + count['favorite_none_count']
-      include_context '記事一覧作成', 0, all, 0, 0
+      include_context '記事一覧作成', Settings['default_articles_limit'], 0, 0
       it_behaves_like 'ToOK', 1
       it_behaves_like 'リスト表示', 1
     end
     shared_examples_for '[未ログイン]記事が最大表示数より多い' do
-      count = Settings['test_articles']
-      all = count['genre_exist_count'] + count['genre_none_count'] + count['favorite_exist_count'] + count['favorite_none_count']
-      include_context '記事一覧作成', 0, all + 1, 0, 0
+      include_context '記事一覧作成', Settings['default_articles_limit'] + 1, 0, 0
       it_behaves_like 'ToOK', 1
       it_behaves_like 'ToOK', 2
       it_behaves_like 'リスト表示', 1
       it_behaves_like 'リスト表示', 2
     end
     shared_examples_for '[ログイン中]記事が最大表示数より多い' do
-      count = Settings['test_articles']
-      all = count['genre_exist_count'] + count['genre_none_count'] + count['favorite_exist_count'] + count['favorite_none_count']
-      include_context '記事一覧作成', 0, all + 1, 0, 0
+      include_context '記事一覧作成', Settings['default_articles_limit'] + 1, 0, 0
       it_behaves_like 'ToOK', 1
       it_behaves_like 'ToOK', 2
       it_behaves_like 'リスト表示', 1
       it_behaves_like 'リスト表示', 2
     end
     shared_examples_for '[APIログイン中]記事が最大表示数より多い' do
-      count = Settings['test_articles']
-      all = count['genre_exist_count'] + count['genre_none_count'] + count['favorite_exist_count'] + count['favorite_none_count']
-      include_context '記事一覧作成', 0, all + 1, 0, 0
+      include_context '記事一覧作成', Settings['default_articles_limit'] + 1, 0, 0
       it_behaves_like 'ToOK', 1
       it_behaves_like 'ToOK', 2
       it_behaves_like 'リスト表示', 1
