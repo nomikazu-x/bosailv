@@ -2,11 +2,9 @@ shared_context '記事一覧作成' do |genre_exist_count, genre_none_count, fav
   before_all do
     # ジャンルあり
     @all_articles = FactoryBot.create_list(:article, genre_exist_count, user: user)
-    genres = FactoryBot.create_list(:genre, genre_exist_count)
+    @genre = FactoryBot.create(:genre)
     @all_articles.each do |article|
-      genres.each do |genre|
-        FactoryBot.create(:article_genre_relation, article: article, genre: genre)
-      end
+      FactoryBot.create(:article_genre_relation, article: article, genre: @genre)
     end
 
     # ジャンルなし
@@ -16,11 +14,9 @@ shared_context '記事一覧作成' do |genre_exist_count, genre_none_count, fav
     @all_favorite_articles = @all_articles
     if favorite_exist_count.positive?
       articles = FactoryBot.create_list(:article, favorite_exist_count, user: user)
-      users = FactoryBot.create_list(:user, favorite_exist_count)
+      @user = FactoryBot.create(:user)
       articles.each do |article|
-        users.each do |user|
-          FactoryBot.create(:article_favorite, article: article, user: user)
-        end
+        FactoryBot.create(:article_favorite, article: article, user: @user)
       end
       @all_favorite_articles += articles
     end

@@ -60,7 +60,7 @@ Rails.application.routes.draw do
 
       # ジャンル
       get  'genres',              to: 'genres#index',   as: 'genres'
-      get  'genres/:id',          to: 'genres#show',    as: 'show_genre'
+      get  'genres/:id',          to: 'genres#show',    as: 'genre'
 
       # お知らせ
       get  'infomations',            to: 'infomations#index',     as: 'infomations'
