@@ -20,8 +20,9 @@
 #
 FactoryBot.define do
   factory :article do
+    sequence(:title) { |n| "title(#{n})" }
+    content     { "content(#{title})" }
     association :user
-    title { Faker::Lorem.characters(number: 10) }
-    content { Faker::Lorem.characters(number: 100) }
+    thumbnail { File.new(TEST_IMAGE_FILE) }
   end
 end

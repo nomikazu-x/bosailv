@@ -11,8 +11,8 @@
 #
 FactoryBot.define do
   factory :genre do
-    name { Faker::Lorem.characters(number: 5) }
-    image { File.new("#{Rails.root}/spec/fixtures/test_image.jpg") }
+    sequence(:name) { |n| "name#{n}" }
+    image { File.new(TEST_IMAGE_FILE) }
     description { "#{name}の説明文" }
     icon { "#{name}のアイコン" }
   end
