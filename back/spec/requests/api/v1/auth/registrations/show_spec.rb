@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Api::V1::Auth::Registrations', type: :request do
   # テスト内容（共通）
-  shared_examples_for 'ToMsg' do |error_class, errors_count, error_msg, message, alert, notice|
+  shared_examples_for 'ToMsg' do |error_class, errors_count, error_msg, alert, notice|
     it '対象のメッセージと一致する' do
       subject
       response_json = JSON.parse(response.body)
@@ -73,17 +73,17 @@ RSpec.describe 'Api::V1::Auth::Registrations', type: :request do
     context '未ログイン' do
       include_context '未ログイン処理'
       it_behaves_like 'ToNG', 401
-      it_behaves_like 'ToMsg', NilClass, 0, nil, nil, 'devise.failure.unauthenticated', nil
+      it_behaves_like 'ToMsg', NilClass, 0, nil, 'devise.failure.unauthenticated', nil
     end
     context 'ログイン中' do
       include_context 'ログイン処理'
       it_behaves_like 'ToNG', 401
-      it_behaves_like 'ToMsg', NilClass, 0, nil, nil, 'devise.failure.unauthenticated', nil
+      it_behaves_like 'ToMsg', NilClass, 0, nil, 'devise.failure.unauthenticated', nil
     end
     context 'APIログイン中' do
       include_context 'APIログイン処理', :email_changed, true
       it_behaves_like 'ToOK'
-      it_behaves_like 'ToMsg', NilClass, 0, nil, nil, nil, nil
+      it_behaves_like 'ToMsg', NilClass, 0, nil, nil, nil
     end
   end
 end
