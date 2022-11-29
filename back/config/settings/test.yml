@@ -10,6 +10,10 @@ mailer_from:
   name: '%{app_name}'
   email: 'noreply@localhost.test'
 
+## 共通
+# 一覧のデフォルト最大表示数
+default_index_limit: 4
+
 ## お知らせ
 # 一覧のデフォルト最大表示件数
 default_infomations_limit: 4
