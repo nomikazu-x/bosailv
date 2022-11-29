@@ -1,5 +1,6 @@
 class Api::V1::Admin::InfomationsController < Api::V1::ApplicationController
-  before_action :redirect_not_admin, only: %i[create destroy]
+  before_action :authenticate_user!, only: %i[index create destroy]
+  before_action :redirect_not_admin, only: %i[index create destroy]
 
   # GET /api/v1/admin/infomations(.json) お知らせ一覧API
   def index
