@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::Users', type: :request do
-  # GET /api/v1/users/:username(.json) タスク詳細API
+  # GET /api/v1/users/:username(.json) ユーザー詳細API
   # 前提条件
   #   なし
   # テストパターン
@@ -9,7 +9,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
   describe 'GET #show' do
     subject { get api_v1_user_path(username: other_user.username, format: :json), headers: auth_headers }
 
-    shared_context 'タスク作成' do
+    shared_context '他ユーザー作成' do
       let_it_be(:other_user) { FactoryBot.create(:user) }
     end
 
@@ -48,17 +48,17 @@ RSpec.describe 'Api::V1::Users', type: :request do
 
     context '未ログイン' do
       include_context '未ログイン処理'
-      include_context 'タスク作成'
+      include_context '他ユーザー作成'
       it_behaves_like 'ToOK'
     end
     context 'ログイン中' do
       include_context 'ログイン処理'
-      include_context 'タスク作成'
+      include_context '他ユーザー作成'
       it_behaves_like 'ToOK'
     end
     context 'APIログイン中' do
       include_context 'APIログイン処理'
-      include_context 'タスク作成'
+      include_context '他ユーザー作成'
       it_behaves_like 'ToOK'
     end
   end

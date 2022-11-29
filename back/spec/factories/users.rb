@@ -112,5 +112,10 @@ FactoryBot.define do
     trait :destroy_targeted do
       destroy_schedule_at  { Time.current - 1.minute }
     end
+
+    # 管理者
+    trait :admin do
+      is_admin { true }
+    end
   end
 end

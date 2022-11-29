@@ -76,8 +76,9 @@ class User < ActiveRecord::Base
   has_many :shelter_registrations, dependent: :destroy
   has_many :registered_shelters, through: :shelter_registrations, source: :shelter
 
+  default_scope { order(id: :desc) }
   # 獲得ポイント順に取得
-  scope :by_point_ranking, -> { order(lifelong_point: :desc, id: :desc) }
+  scope :by_point_ranking, -> { order(lifelong_point: :desc) }
   # ゲストで削除予定が過ぎているユーザーを取得
   scope :by_destroy_reserved, -> { where('destroy_schedule_at <= ?', Time.current) }
   # キーワードを含む記事一覧を取得
