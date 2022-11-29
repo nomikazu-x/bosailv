@@ -36,7 +36,7 @@ Rails.application.routes.draw do
 
       # 避難所
       get  'shelters',              to: 'shelters#index',   as: 'shelters'
-      get  'shelters/:id',          to: 'shelters#show',    as: 'show_shelter'
+      get  'shelters/:id',          to: 'shelters#show',    as: 'shelter'
 
       # 避難所登録
       post 'shelters/:id/shelter_registrations/create', to: 'shelter_registrations#create',    as: 'registration_shelter'

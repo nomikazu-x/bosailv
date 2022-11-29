@@ -35,6 +35,8 @@ class Shelter < ApplicationRecord
 
   has_many :shelter_registrations, dependent: :destroy
 
+  default_scope { order(id: :desc) }
+
   # マイ記事一覧を取得
   scope :by_target, lambda { |user|
     return if user.blank?

@@ -18,7 +18,6 @@ RSpec.describe 'Api::V1::Articles', type: :request do
         expect(JSON.parse(response.body)['success']).to eq(true)
 
         response_json = JSON.parse(response.body)['article']
-        p articles
         expect(response_json['total_count']).to eq(articles.count)
         expect(response_json['current_page']).to eq(subject_page)
         expect(response_json['total_pages']).to eq((articles.count - 1).div(Settings['default_articles_limit']) + 1)

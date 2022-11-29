@@ -25,3 +25,9 @@ default_articles_limit: 4
 test_articles:
   genre_exist_count: 1
   favorite_exist_count: 1
+
+## 避難所
+# 一覧のデフォルト最大表示件数
+default_shelters_limit: 4
+test_shelters:
+  favorite_exist_count: 1
