@@ -11,9 +11,9 @@ class Api::V1::ArticleCommentsController < Api::V1::ApplicationController
   def create
     @article_comment = current_user.article_comments.build(article_comment_params)
 
-    if @article_comment.save!
+    if @article_comment.save
       # 通知作成
-      Infomation.new(started_at: Time.current, target: :User, user_id: @article_comment.article.user.id,
+      Infomation.new(started_at: Time.current, target: :user, user_id: @article_comment.article.user.id,
                      action: 'ArticleComment', action_user_id: current_user.id, article_id: @article_comment.article.id).save!
 
       render './api/v1/article_comments/success', locals: { notice: I18n.t('notice.article_comment.create') }
