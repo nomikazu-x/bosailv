@@ -5,7 +5,7 @@ RSpec.describe 'Api::V1::ArticleComments', type: :request do
   # 前提条件
   #   なし
   # テストパターン
-  #   未ログイン, ログイン中, APIログイン中, 管理者APIログイン中
+  #   未ログイン, ログイン中, APIログイン中
   #   無効なパラメータ, 有効なパラメータ
   describe 'POST #create' do
     subject { post api_v1_create_comment_path(article_id: article.id, format: :json), params: attributes, headers: auth_headers }
