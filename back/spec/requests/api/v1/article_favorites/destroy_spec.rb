@@ -18,12 +18,12 @@ RSpec.describe 'Api::V1::ArticleFavorites', type: :request do
     # テスト内容
     shared_examples_for 'OK' do
       it '削除される' do
-        expect { subject }.to change(ArticleComment, :count).by(-1) && change(PointRecord, :count).by(-2)
+        expect { subject }.to change(ArticleFavorite, :count).by(-1) && change(PointRecord, :count).by(-2)
       end
     end
     shared_examples_for 'NG' do
       it '削除されない' do
-        expect { subject }.to change(ArticleComment, :count).by(0) && change(PointRecord, :count).by(0)
+        expect { subject }.to change(ArticleFavorite, :count).by(0) && change(PointRecord, :count).by(0)
       end
     end
 

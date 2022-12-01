@@ -24,7 +24,7 @@ class Api::V1::ArticlesController < Api::V1::ApplicationController
   def create
     @article = current_user.articles.build(article_params)
 
-    if @article.save!
+    if @article.save
       ActiveRecord::Base.transaction do
         # ポイント獲得
         PointRecorder.new(current_user).record(Settings['article_create_obtained_point'])

@@ -12,7 +12,7 @@
 FactoryBot.define do
   factory :required_point do
     level { 1 }
-    lifelong_point { 5 }
-    point { 5 }
+    lifelong_point { 100 }
+    point { 100 }
   end
 end
