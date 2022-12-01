@@ -7,7 +7,7 @@ RSpec.describe 'Api::V1::EmergencyContacts', type: :request do
   # テストパターン
   #   未ログイン, ログイン中, APIログイン中
   describe 'POST #destroy' do
-    subject { post api_v1_destroy_emergency_contact_path(id: emergency_contact.id, format: :json), headers: auth_headers }
+    subject { post api_v1_delete_emergency_contact_path(id: emergency_contact.id, format: :json), headers: auth_headers }
     let!(:emergency_contact) { FactoryBot.create(:emergency_contact, user: user) }
     let!(:point_record) { FactoryBot.create(:point_record, user: emergency_contact.user, obtained_point: Settings['emergency_contact_create_obtained_point']) }
     let(:current_user) { user }
