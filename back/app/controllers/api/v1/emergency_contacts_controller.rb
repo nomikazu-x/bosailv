@@ -1,5 +1,5 @@
 class Api::V1::EmergencyContactsController < Api::V1::ApplicationController
-  before_action :authenticate_user!, only: %i[create destroy]
+  before_action :authenticate_user!, only: %i[index create destroy]
   before_action :check_count, only: %i[create]
   before_action :correct_user?, only: %i[destroy]
 

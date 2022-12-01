@@ -6,7 +6,7 @@ RSpec.describe 'Api::V1::ArticleComments', type: :request do
   #   なし
   # テストパターン
   #   未ログイン, ログイン中, APIログイン中
-  describe 'GET #show' do
+  describe 'GET #index' do
     subject { get api_v1_comments_path(article_id: article.id, format: :json), headers: auth_headers }
 
     shared_context '記事コメント一覧作成' do

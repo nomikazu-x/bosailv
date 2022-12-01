@@ -10,7 +10,7 @@ RSpec.describe 'Api::V1::Articles', type: :request do
     subject { get api_v1_article_path(id: article.id, format: :json), headers: auth_headers }
 
     shared_context '記事作成' do
-      let_it_be(:current_user) { FactoryBot.create(:user) }
+      let_it_be(:current_user) { user }
       let_it_be(:article) { FactoryBot.create(:article, user_id: current_user.id) }
     end
 

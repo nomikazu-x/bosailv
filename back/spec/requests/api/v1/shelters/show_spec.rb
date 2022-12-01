@@ -10,7 +10,7 @@ RSpec.describe 'Api::V1::Shelters', type: :request do
     subject { get api_v1_shelter_path(id: shelter.id, format: :json), headers: auth_headers }
 
     shared_context '避難所作成' do
-      let_it_be(:current_user) { FactoryBot.create(:user) }
+      let_it_be(:current_user) { user }
       let_it_be(:shelter) { FactoryBot.create(:shelter) }
     end
 

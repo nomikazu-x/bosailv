@@ -1,4 +1,5 @@
 class Api::V1::Admin::GenresController < Api::V1::ApplicationController
+  before_action :authenticate_user!, only: %i[create update destroy]
   before_action :redirect_not_admin, only: %i[create update destroy]
   before_action :set_genre, only: %i[update destroy]
 
@@ -6,6 +7,7 @@ class Api::V1::Admin::GenresController < Api::V1::ApplicationController
   def create
     genre = Genre.new(genre_params)
 
+    p genre
     if genre.save
       render './api/v1/success', locals: { notice: I18n.t('notice.genre.create') }
     else

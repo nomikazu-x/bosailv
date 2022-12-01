@@ -10,7 +10,7 @@ RSpec.describe 'Api::V1::Tasks', type: :request do
     subject { get api_v1_show_task_path(id: task.id, format: :json), headers: auth_headers }
 
     shared_context 'タスク作成' do
-      let_it_be(:current_user) { FactoryBot.create(:user) }
+      let_it_be(:current_user) { user }
       let_it_be(:task) { FactoryBot.create(:task) }
     end
 

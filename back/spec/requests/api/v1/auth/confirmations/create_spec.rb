@@ -44,7 +44,7 @@ RSpec.describe 'Api::V1::Auth::Confirmations', type: :request do
         expect(ActionMailer::Base.deliveries[0].subject).to eq(get_subject('devise.mailer.confirmation_instructions.subject')) # メールアドレス確認のお願い
       end
     end
-  
+
     shared_examples_for 'NG' do
       it 'メールが送信されない' do
         expect { subject }.to change(ActionMailer::Base.deliveries, :count).by(0)
