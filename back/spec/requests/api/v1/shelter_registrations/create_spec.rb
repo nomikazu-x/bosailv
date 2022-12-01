@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::ShelterRegistrations', type: :request do
-  # POST /api/v1/shelters/:id/shelter_registrations/create(.json) 記事お気に入り作成API(処理)
+  # POST /api/v1/shelters/:id/shelter_registrations/create(.json) マイ避難所登録API(処理)
   # 前提条件
   #   なし
   # テストパターン

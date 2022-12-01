@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::ShelterRegistrations', type: :request do
-  # POST /api/v1/shelters/:id/shelter_registrations/delete(.json) 記事お気に入り削除API(処理)
+  # POST /api/v1/shelters/:id/shelter_registrations/delete(.json) マイ避難所解除API(処理)
   # 前提条件
   #   なし
   # テストパターン
