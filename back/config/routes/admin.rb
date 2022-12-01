@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       namespace :admin do
         # ユーザー
         get  'users',                      to: 'users#index',          as: 'users'
-        post 'users/:username/delete',     to: 'users#destroy',        as: 'destroy_users'
+        post 'users/:username/delete',     to: 'users#destroy',        as: 'destroy_user'
 
         # ジャンル
         post 'genres/create',       to: 'genres#create',       as: 'create_genre'
