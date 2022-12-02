@@ -96,6 +96,7 @@ class User < ActiveRecord::Base
 
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
 
+  validates :name, presence: true
   validates :name, length: { in: Settings['user_name_minimum']..Settings['user_name_maximum'] }, if: proc { |user| user.name.present? }
   validates :username, presence: true
   validates :username, uniqueness: { case_sensitive: true }

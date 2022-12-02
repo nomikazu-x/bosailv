@@ -49,190 +49,309 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe "validates presence" do
-    context "全カラムの値を指定しているとき" do
-      let(:user) { create(:user) }
+  # テスト内容（共通）
+  shared_examples_for 'Valid' do
+    it '保存できる' do
+      expect(user).to be_valid
+    end
+  end
+  shared_examples_for 'InValid' do
+    it '保存できない' do
+      expect(user).to be_invalid
+    end
+  end
 
-      it "userのレコードが作成される" do
-        expect(user).to be_valid
+  # ユーザーネーム
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   ない, 正常値, 重複
+  describe 'validates :username' do
+    let(:user) { FactoryBot.build_stubbed(:user, username: username) }
+    let(:valid_username) { SecureRandom.alphanumeric(15) }
+
+    # テストケース
+    context 'ない' do
+      let(:username) { nil }
+      it_behaves_like 'InValid'
+    end
+    context '正常値' do
+      let(:username) { valid_username }
+      it_behaves_like 'Valid'
+    end
+    context '重複' do
+      before { FactoryBot.create(:user, username: username) }
+      let(:username) { valid_username }
+      it_behaves_like 'InValid'
+    end
+  end
+
+  # 氏名
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   ない, 最大文字数と同じ, 最大文字数よりも多い
+  describe 'validates :name' do
+    let(:user) { FactoryBot.build_stubbed(:user, name: name) }
+
+    # テストケース
+    context 'ない' do
+      let(:name) { nil }
+      it_behaves_like 'InValid'
+    end
+    context '最大文字数と同じ' do
+      let(:name) { 'a' * Settings['user_name_maximum'] }
+      it_behaves_like 'Valid'
+    end
+    context '最大文字数よりも多い' do
+      let(:name) { 'a' * (Settings['user_name_maximum'] + 1) }
+      it_behaves_like 'InValid'
+    end
+  end
+
+  # プロフィール
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   ない, 最大文字数と同じ, 最大文字数よりも多い
+  describe 'validates :profile' do
+    let(:user) { FactoryBot.build_stubbed(:user, profile: profile) }
+
+    # テストケース
+    context 'ない' do
+      let(:profile) { nil }
+      it_behaves_like 'Valid'
+    end
+    context '最大文字数と同じ' do
+      let(:profile) { 'a' * Settings['user_profile_maximum'] }
+      it_behaves_like 'Valid'
+    end
+    context '最大文字数よりも多い' do
+      let(:profile) { 'a' * (Settings['user_profile_maximum'] + 1) }
+      it_behaves_like 'InValid'
+    end
+  end
+
+  # 削除予約済みか返却
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   削除予定日時: ない（予約なし）, ある（予約済み）
+  describe '#destroy_reserved?' do
+    subject { user.destroy_reserved? }
+    let(:user) { FactoryBot.build_stubbed(:user, destroy_schedule_at: destroy_schedule_at) }
+
+    context '削除予定日時がない（予約なし）' do
+      let(:destroy_schedule_at) { nil }
+      it 'false' do
+        is_expected.to eq(false)
       end
     end
-
-    context "emailを指定していないとき" do
-      let(:user) { build(:user, email: nil) }
-
-      it "エラーになる" do
-        user.valid?
-        expect(user).to be_invalid
-      end
-    end
-
-    context "passwordを指定していないとき" do
-      let(:user) { build(:user, password: nil) }
-
-      it "エラーになる" do
-        user.valid?
-        expect(user).to be_invalid
+    context '削除予定日時がある（予約済み）' do
+      let(:destroy_schedule_at) { Time.current }
+      it 'true' do
+        is_expected.to eq(true)
       end
     end
   end
 
-  describe "validates uniqueness" do
-    context "保存されたメールアドレスが指定されたとき" do
-      let(:user1) { create(:user) }
-      let(:user2) { build(:user, email: user1.email) }
+  # 画像URLを返却
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   画像: ない, ある
+  #   mini, small, medium, large, xlarge, 未定義
+  describe '#image_url' do
+    subject { user.image_url(version) }
+    let(:user) { FactoryBot.create(:user, image: image) }
 
-      it "エラーになる" do
-        user2.valid?
-        expect(user2).to be_invalid
+    # テスト内容
+    shared_examples_for 'OK' do |version|
+      let(:version) { version }
+      it 'デフォルトではないURL' do
+        is_expected.not_to be_blank
+        is_expected.not_to include('_noimage.jpg')
+      end
+    end
+    shared_examples_for 'Def' do |version|
+      let(:version) { version }
+      it 'デフォルトのURL' do
+        is_expected.to include('_noimage.jpg')
+      end
+    end
+    shared_examples_for 'Not' do |version|
+      let(:version) { version }
+      it 'URLが返却されない' do
+        is_expected.to be_blank
       end
     end
 
-    context "保存されたユーザーネームが指定されたとき" do
-      let(:user1) { create(:user) }
-      let(:user2) { build(:user, username: user1.username) }
-
-      it "エラーになる" do
-        user2.valid?
-        expect(user2).to be_invalid
-      end
+    # テストケース
+    context '画像がない' do
+      let_it_be(:image) { nil }
+      it_behaves_like 'Def', :mini, true
+      it_behaves_like 'Def', :small, true
+      it_behaves_like 'Def', :medium, true
+      it_behaves_like 'Def', :large, true
+      it_behaves_like 'Def', :xlarge, true
+      it_behaves_like 'Not', nil
+    end
+    context '画像がある' do
+      let_it_be(:image) { File.new(TEST_IMAGE_FILE) }
+      let_it_be(:user)  { FactoryBot.create(:user, image: image) }
+      it_behaves_like 'OK', :mini, false
+      it_behaves_like 'OK', :small, false
+      it_behaves_like 'OK', :medium, false
+      it_behaves_like 'OK', :large, false
+      it_behaves_like 'OK', :xlarge, false
+      it_behaves_like 'Not', nil
     end
   end
 
-  describe "validates length" do
-    context "パスワードが8文字未満の場合" do
-      let(:user) { build(:user, password: 'aaaa') }
-      it "エラーになる" do
-        user.valid?
-        expect(user).to be_invalid
+  # お知らせの未読数を返却
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   お知らせ対象: 0件, 1件（全員）, 1件（自分）, 2件（全員＋自分）
+  #   お知らせ確認最終開始日時: ない, 過去, 現在
+  describe '#infomation_unread_count' do
+    subject { user.infomation_unread_count }
+    let(:user) { FactoryBot.create(:user, infomation_check_last_started_at: infomation_check_last_started_at) }
+
+    # テスト内容
+    shared_examples_for 'Count' do |count|
+      it "件数(#{count})" do
+        is_expected.to eq(count)
       end
     end
 
-    context "名前が31文字以上の場合" do
-      let(:user) { build(:user, name: 'a' * 31) }
-      it "エラーになる" do
-        user.valid?
-        expect(user).to be_invalid
-      end
+    # テストケース
+    shared_examples_for '[0件]お知らせ確認最終開始日時がない' do
+      let(:infomation_check_last_started_at) { nil }
+      it_behaves_like 'Count', 0
     end
+    shared_examples_for '[1件]お知らせ確認最終開始日時がない' do
+      let(:infomation_check_last_started_at) { nil }
+      it_behaves_like 'Count', 1
+    end
+    shared_examples_for '[2件]お知らせ確認最終開始日時がない' do
+      let(:infomation_check_last_started_at) { nil }
+      it_behaves_like 'Count', 2
+    end
+    shared_examples_for '[0件]お知らせ確認最終開始日時が過去' do
+      let(:infomation_check_last_started_at) { Time.current - 1.month }
+      it_behaves_like 'Count', 0
+    end
+    shared_examples_for '[1件]お知らせ確認最終開始日時が過去' do
+      let(:infomation_check_last_started_at) { Time.current - 1.month }
+      it_behaves_like 'Count', 1
+    end
+    shared_examples_for '[2件]お知らせ確認最終開始日時が過去' do
+      let(:infomation_check_last_started_at) { Time.current - 1.month }
+      it_behaves_like 'Count', 2
+    end
+    shared_examples_for '[*]お知らせ確認最終開始日時が現在' do
+      let(:infomation_check_last_started_at) { Time.current }
+      it_behaves_like 'Count', 0
+    end
+
+    context 'お知らせ対象が0件' do
+      include_context 'お知らせ一覧作成', 0, 0, 0, 0
+      it_behaves_like '[0件]お知らせ確認最終開始日時がない'
+      it_behaves_like '[0件]お知らせ確認最終開始日時が過去'
+      it_behaves_like '[*]お知らせ確認最終開始日時が現在'
+    end
+    context 'お知らせ対象が1件（全員）' do
+      include_context 'お知らせ一覧作成', 1, 0, 0, 0
+      it_behaves_like '[1件]お知らせ確認最終開始日時がない'
+      it_behaves_like '[1件]お知らせ確認最終開始日時が過去'
+      it_behaves_like '[*]お知らせ確認最終開始日時が現在'
+    end
+    # context 'お知らせ対象が1件（自分）' do
+    #   include_context 'お知らせ一覧作成', 0, 0, 1, 0
+    #   it_behaves_like '[1件]お知らせ確認最終開始日時がない'
+    #   it_behaves_like '[1件]お知らせ確認最終開始日時が過去'
+    #   it_behaves_like '[*]お知らせ確認最終開始日時が現在'
+    # end
+    # context 'お知らせ対象が2件（全員＋自分）' do
+    #   include_context 'お知らせ一覧作成', 0, 1, 0, 1
+    #   it_behaves_like '[2件]お知らせ確認最終開始日時がない'
+    #   it_behaves_like '[2件]お知らせ確認最終開始日時が過去'
+    #   it_behaves_like '[*]お知らせ確認最終開始日時が現在'
+    # end
   end
 
-  describe "validates regular expression" do
-    context "パスワードが制御文字と半角を除いたASCII文字の場合" do
-      let(:user) { build(:user, password: 'pass_*&^%word') }
-      it "正常に保存できる" do
-        expect(user).to be_valid
-      end
-    end
+  # 記事をお気に入りしているかを返却
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   記事をお気に入り: している, していない
+  describe '#article_favorite?' do
+    let_it_be(:article) { FactoryBot.create(:article) }
+    let_it_be(:user)  { FactoryBot.create(:user) }
+    subject { user.article_favorite?(article) }
 
-    context "ユーザーネームが半角英数字とアンダーバーのみの場合" do
-      let(:user) { create(:user) }
-      it "正常に更新できる" do
-        user.update(username: 'test_name')
-        expect(user).to be_valid
-      end
-    end
-
-    context "ユーザーネームが半角英数字とアンダーバー以外を含む場合" do
-      let(:user) { create(:user) }
-      it "正常に更新できない" do
-        user.update(username: 'a' * 7 + 'あ')
-        expect(user).to be_invalid
-      end
-    end
-  end
-
-  describe "association" do
-    it "Articleテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:articles)
-      expect(rel.macro).to eq :has_many
-      expect(rel.options[:dependent]).to eq :destroy
-    end
-
-    it "Infomationテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:infomations)
-      expect(rel.macro).to eq :has_many
-      expect(rel.options[:dependent]).to eq :destroy
-    end
-
-    it "ArticleFavoriteテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:article_favorites)
-      expect(rel.macro).to eq :has_many
-      expect(rel.options[:dependent]).to eq :destroy
-    end
-
-    it "ArticleCommentテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:article_comments)
-      expect(rel.macro).to eq :has_many
-      expect(rel.options[:dependent]).to eq :destroy
-    end
-
-    it "PointRecordテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:point_records)
-      expect(rel.macro).to eq :has_many
-      expect(rel.options[:dependent]).to eq :destroy
-    end
-
-    it "ArticleFavoriteテーブルを通じて、お気に入りした記事一覧を取得できること" do
-      rel = described_class.reflect_on_association(:favorited_articles)
-      expect(rel.options[:through]).to eq :article_favorites
-      expect(rel.options[:source]).to eq :article
-    end
-
-    it "TaskCompleteテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:task_completes)
-      expect(rel.macro).to eq :has_many
-    end
-  end
-
-  describe 'article_favorite/article_unfavorite/article_favorite? method' do
-    let(:user) { create(:user) }
-    let(:article) { create(:article, user: user) }
-
-    context 'article_favoriteしていない状態の場合' do
-      it '無効な状態であること' do
-        expect(user.article_favorite?(article)).to eq false
-      end
-    end
-
-    context 'article_favoriteした場合' do
-      before do
+    context '#article_favorite!' do
+      it 'true' do
         user.article_favorite!(article)
+        is_expected.to eq(true)
       end
-
-      it 'article_favorite状態であること' do
-        expect(user.article_favorite?(article)).to eq true
-      end
-
-      it 'article_unfavoriteすると無効な状態であること' do
+    end
+    context '#article_unfavorite!' do
+      before { user.article_favorite!(article) }
+      it 'false' do
         user.article_unfavorite!(article)
-        expect(user.article_favorite?(article)).to eq false
+        is_expected.to eq(false)
       end
     end
   end
 
-  describe 'task_complete/task_uncomplete/task_complete? method' do
-    let(:user) { create(:user) }
-    let(:task) { create(:task) }
+  # タスクを完了しているかを返却
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   タスクを完了: している, していない
+  describe '#task_complete?' do
+    let_it_be(:task) { FactoryBot.create(:task) }
+    let_it_be(:user)  { FactoryBot.create(:user) }
+    subject { user.task_complete?(task) }
 
-    context 'task_completeしていない状態の場合' do
-      it '無効な状態であること' do
-        expect(user.task_complete?(task)).to eq false
+    context '#task_complete!' do
+      it 'true' do
+        user.task_complete!(task)
+        is_expected.to eq(true)
       end
     end
-
-    context 'task_completeした場合' do
-      before do
-        user.task_complete!(task)
-      end
-
-      it 'task_complete状態であること' do
-        expect(user.task_complete?(task)).to eq true
-      end
-
-      it 'task_uncompleteすると無効な状態であること' do
+    context '#task_uncomplete!' do
+      before { user.task_complete!(task) }
+      it 'false' do
         user.task_uncomplete!(task)
-        expect(user.task_complete?(task)).to eq false
+        is_expected.to eq(false)
+      end
+    end
+  end
+
+  # 避難所を登録しているかを返却
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   避難所を登録: している, していない
+  describe '#shelter_registerd?' do
+    let_it_be(:shelter) { FactoryBot.create(:shelter) }
+    let_it_be(:user)  { FactoryBot.create(:user) }
+    subject { user.shelter_registerd?(shelter) }
+
+    context '#shelter_registration!' do
+      it 'true' do
+        user.shelter_registration!(shelter)
+        is_expected.to eq(true)
+      end
+    end
+    context '#shelter_unregistration!' do
+      before { user.shelter_registration!(shelter) }
+      it 'false' do
+        user.shelter_unregistration!(shelter)
+        is_expected.to eq(false)
       end
     end
   end

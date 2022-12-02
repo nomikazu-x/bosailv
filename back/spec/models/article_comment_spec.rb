@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: article_comments
+# Table content: article_comments
 #
 #  id                  :bigint           not null, primary key
 #  content(内容)       :text(255)        not null
@@ -22,51 +22,38 @@
 require 'rails_helper'
 
 RSpec.describe ArticleComment, type: :model do
-  describe "correct_article_comment" do
-    let(:user) { create(:user) }
-    let(:article) { create(:article, user: user) }
-    let(:article_comment) { build(:article_comment, article: article, user: user) }
-
-    it "コメントが正しく作成されていること" do
+  # テスト内容（共通）
+  shared_examples_for 'Valid' do
+    it '保存できる' do
       expect(article_comment).to be_valid
     end
   end
-
-  describe "validate presence" do
-    context "contentがNULLの時" do
-      let(:article_comment) { build(:article_comment, content: nil) }
-      it "エラーメッセージが返る" do
-        article_comment.valid?
-        expect(article_comment).to be_invalid
-      end
-    end
-
-    context "userがNULLの時" do
-      let(:article_comment) { build(:article_comment, user: nil) }
-      it "エラーメッセージが返る" do
-        article_comment.valid?
-        expect(article_comment).to be_invalid
-      end
-    end
-
-    context "articleがNULLの時" do
-      let(:article_comment) { build(:article_comment, article: nil) }
-      it "エラーメッセージが返る" do
-        article_comment.valid?
-        expect(article_comment).to be_invalid
-      end
+  shared_examples_for 'InValid' do
+    it '保存できない' do
+      expect(article_comment).to be_invalid
     end
   end
 
-  describe "association" do
-    it "Userテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:user)
-      expect(rel.macro).to eq :belongs_to
-    end
+  # 内容
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   ない, 最大文字数と同じ, 最大文字数よりも多い
+  describe 'validates :content' do
+    let(:article_comment) { FactoryBot.build_stubbed(:article_comment, content: content) }
 
-    it "Articleテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:article)
-      expect(rel.macro).to eq :belongs_to
+    # テストケース
+    context 'ない' do
+      let(:content) { nil }
+      it_behaves_like 'InValid'
+    end
+    context '最大文字数と同じ' do
+      let(:content) { 'a' * Settings['article_comment_content_maximum'] }
+      it_behaves_like 'Valid'
+    end
+    context '最大文字数よりも多い' do
+      let(:content) { 'a' * (Settings['article_comment_content_maximum'] + 1) }
+      it_behaves_like 'InValid'
     end
   end
 end
