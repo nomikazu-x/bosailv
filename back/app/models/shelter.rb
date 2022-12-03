@@ -45,19 +45,4 @@ class Shelter < ApplicationRecord
 
     shelter
   }
-
-  validates :address, presence: true
-  validates :city_name, presence: true
-  validates :duplicate, presence: true
-  validates :earthquake, presence: true
-  validates :fire, presence: true
-  validates :flood, presence: true
-  validates :inland_flood, presence: true
-  validates :landslide, presence: true
-  validates :latitude, presence: true
-  validates :longitude, presence: true
-  validates :name, presence: true
-  validates :storm_surge, presence: true
-  validates :tsunami, presence: true
-  validates :volcano, presence: true
 end

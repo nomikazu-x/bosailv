@@ -24,12 +24,4 @@
 #
 class HazardMap < ApplicationRecord
   belongs_to :city
-
-  validates :flood, presence: true
-  validates :inland_flood, presence: true
-  validates :landslide, presence: true
-  validates :reservoir, presence: true
-  validates :storm_surge, presence: true
-  validates :tsunami, presence: true
-  validates :volcano, presence: true
 end

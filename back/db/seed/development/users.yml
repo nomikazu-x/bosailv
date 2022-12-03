@@ -1,4 +1,5 @@
 - id: 1
+  code: '000000000000001'
   username: '000000000000001'
   name: 'kazuki'
   email: 'user1@example.com'
@@ -10,6 +11,7 @@
   lifelong_point: 50
   point_to_next: 11
 - id: 2
+  code: '000000000000002'
   username: '000000000000002'
   name: 'daiki'
   email: 'user2@example.com'
@@ -20,6 +22,7 @@
   lifelong_point: 50
   point_to_next: 11
 - id: 3
+  code: '000000000000003'
   username: '000000000000003'
   name: 'tatsuru'
   email: 'user3@example.com'
@@ -30,6 +33,7 @@
   lifelong_point: 50
   point_to_next: 11
 - id: 4
+  code: '000000000000004'
   username: '000000000000004'
   name: 'yuuka'
   email: 'user4@example.com'
@@ -40,6 +44,7 @@
   lifelong_point: 50
   point_to_next: 11
 - id: 5
+  code: '000000000000005'
   username: '000000000000005'
   name: 'riho'
   email: 'user5@example.com'
