@@ -6,7 +6,7 @@ class Api::V1::Admin::UsersController < Api::V1::ApplicationController
   def index
     keyword = params[:keyword]&.slice(..(255 - 1))
 
-    @users = User.search(keyword).page(params[:page]).per(Settings['default_users_limit'])
+    @users = User.search(keyword).page(params[:page]).per(Settings['default_users_limit']).order(created_at: :desc, id: :desc)
     render './api/v1/users/index'
   end
 

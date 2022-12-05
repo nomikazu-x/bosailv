@@ -85,6 +85,8 @@ module.exports = {
   // 【家族ルール】
   // 家族ルール取得API
   familyRuleUrl: '/api/v1/family_rule.json',
+  // 家族ルール作成API
+  familyRuleCreateUrl: '/api/v1/family_rules/create.json',
   // 家族ルール更新API
   familyRuleUpdateUrl: '/api/v1/family_rules/update.json',
   // 家族ルールリセットAPI

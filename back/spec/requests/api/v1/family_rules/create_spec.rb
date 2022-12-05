@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::V1::FamilyRules', type: :request do
-  # POST /api/v1/family_rules/update (.json) 記事更新API(処理)
+  # POST /api/v1/family_rules/create (.json) 記事作成API(処理)
   # 前提条件
   #   なし
   # テストパターン
   #   未ログイン, ログイン中, APIログイン中, 管理者APIログイン中
   #   無効なパラメータ, 有効なパラメータ
-  describe 'POST #update' do
-    subject { post api_v1_update_family_rule_path(format: :json), params: attributes, headers: auth_headers }
+  describe 'POST #create' do
+    subject { post api_v1_create_family_rule_path(format: :json), params: attributes, headers: auth_headers }
     let!(:family_rule) { FactoryBot.create(:family_rule, user: user) }
     let(:valid_attributes) { { family_rule: { contact_means_memo: family_rule[:contact_means_memo], emergency_measure_memo: family_rule[:emergency_measure_memo], family_role_memo: family_rule[:family_role_memo], leave_home_memo: family_rule[:leave_home_memo], refuge_memo: family_rule[:refuge_memo] } } }
     let(:invalid_attributes) { { family_rule: { contact_means_memo: nil, emergency_measure_memo: nil, family_role_memo: nil, leave_home_memo: nil, refuge_memo: nil } } }
@@ -16,29 +16,14 @@ RSpec.describe 'Api::V1::FamilyRules', type: :request do
 
     # テスト内容
     shared_examples_for 'OK' do
-      it '更新される。' do
-        expect do
-          subject
-          target_family_rule = FamilyRule.find(family_rule.id)
-          expect(target_family_rule.contact_means_memo).to eq(attributes[:contact_means_memo])
-          expect(target_family_rule.emergency_measure_memo).to eq(attributes[:emergency_measure_memo])
-          expect(target_family_rule.family_role_memo).to eq(attributes[:family_role_memo])
-          expect(target_family_rule.leave_home_memo).to eq(attributes[:leave_home_memo])
-        end
+      it '作成される。' do
+        expect { subject }.to change(FamilyRule, :count).by(1) && change(PointRecord, :count).by(1)
       end
     end
 
     shared_examples_for 'NG' do
-      it '更新されない。' do
-        expect do
-          subject
-          target_family_rule = FamilyRule.find(family_rule.id)
-          expect(target_family_rule.contact_means_memo).to eq(family_rule.contact_means_memo)
-          expect(target_family_rule.emergency_measure_memo).to eq(family_rule.emergency_measure_memo)
-          expect(target_family_rule.family_role_memo).to eq(family_rule.family_role_memo)
-          expect(target_family_rule.family_role_memo).to eq(family_rule.family_role_memo)
-          expect(target_family_rule.leave_home_memo).to eq(family_rule.leave_home_memo)
-        end
+      it '作成されない。' do
+        expect { subject }.to change(FamilyRule, :count).by(0) && change(PointRecord, :count).by(0)
       end
     end
 
@@ -63,7 +48,7 @@ RSpec.describe 'Api::V1::FamilyRules', type: :request do
     shared_examples_for '[APIログイン中]無効なパラメータ' do
       let(:attributes) { invalid_attributes }
       it_behaves_like 'NG'
-      it_behaves_like 'ToMsg', 422, false, 'alert.family_rule.update', nil
+      it_behaves_like 'ToMsg', 422, false, 'alert.family_rule.create', nil
     end
 
     shared_examples_for '[未ログイン/ログイン中]有効なパラメータ' do
@@ -75,7 +60,7 @@ RSpec.describe 'Api::V1::FamilyRules', type: :request do
     shared_examples_for '[APIログイン中]有効なパラメータ' do
       let(:attributes) { valid_attributes }
       it_behaves_like 'OK'
-      it_behaves_like 'ToMsg', 200, true, nil, 'notice.family_rule.update'
+      it_behaves_like 'ToMsg', 200, true, nil, 'notice.family_rule.create'
     end
 
     context '未ログイン' do

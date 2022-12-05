@@ -76,9 +76,8 @@ class User < ActiveRecord::Base
   has_many :shelter_registrations, dependent: :destroy
   has_many :registered_shelters, through: :shelter_registrations, source: :shelter
 
-  default_scope { order(id: :desc) }
   # 獲得ポイント順に取得
-  scope :by_point_ranking, -> { order(lifelong_point: :desc) }
+  scope :by_point_ranking, -> { order(lifelong_point: :desc, id: :desc) }
   # ゲストで削除予定が過ぎているユーザーを取得
   scope :by_destroy_reserved, -> { where('destroy_schedule_at <= ?', Time.current) }
   # キーワードを含む記事一覧を取得
@@ -186,11 +185,6 @@ class User < ActiveRecord::Base
   # 防災タスクプロフィールデータがあれば、データを返し、なければbuildする
   def prepare_task_profile
     task_profile || build_task_profile
-  end
-
-  # 家族ルールデータがあれば、データを返し、なければbuildする
-  def prepare_family_rule
-    family_rule || build_family_rule
   end
 
   # 家族ルールタスクを達成しているか

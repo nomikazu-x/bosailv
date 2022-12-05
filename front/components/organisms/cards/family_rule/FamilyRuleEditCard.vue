@@ -2,7 +2,7 @@
   <v-row v-if="familyRule !== null" justify="center">
     <v-col cols="12">
       <BaseTitleCard title="おうち防災メモ用ページ" />
-      <FamilyRuleTaskEditForm
+      <FamilyRuleEditForm
         :family-rule="familyRule"
         :processing="processing"
         @family-rule-update="onFamilyRuleUpdate"
@@ -14,14 +14,14 @@
 <script>
 import Application from '~/plugins/application.js'
 import BaseTitleCard from '~/components/molecules/cards/BaseTitleCard.vue'
-import FamilyRuleTaskEditForm from '~/components/organisms/form/FamilyRuleTaskEditForm.vue'
+import FamilyRuleEditForm from '~/components/organisms/form/FamilyRuleEditForm.vue'
 
 export default {
-  name: 'FamilyRuleTaskEditCard',
+  name: 'FamilyRuleEditCard',
 
   components: {
     BaseTitleCard,
-    FamilyRuleTaskEditForm
+    FamilyRuleEditForm
   },
 
   mixins: [Application],
@@ -72,8 +72,6 @@ export default {
           if (response.data == null) {
             this.$toasted.error(this.$t('system.error'))
           } else {
-            this.$store.commit('user/setLevel', response.data.user.level, { root: true })
-            this.$auth.setUser(response.data.user)
             this.$toasted.error(response.data.alert)
             this.$toasted.success(response.data.notice)
             this.$router.push({ path: '/family_rule' })
