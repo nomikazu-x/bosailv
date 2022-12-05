@@ -12,7 +12,7 @@
 
     <template v-if="!loading" #left>
       <FamilyRuleIntroCard class="mb-5" />
-      <FamilyRuleTaskCard v-if="$auth.loggedIn && $auth.user.is_completed_family_rules_tasks" @alert="alert = $event" @notice="notice = $event" />
+      <FamilyRuleTaskCard v-if="$auth.loggedIn && $auth.user.is_completed_family_rule_task" @alert="alert = $event" @notice="notice = $event" />
     </template>
 
     <template v-if="!loading" #right>

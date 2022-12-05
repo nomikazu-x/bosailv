@@ -60,17 +60,17 @@ RSpec.describe 'Api::V1::Auth::Registrations', type: :request do
       it_behaves_like 'ToNG', 401
       it_behaves_like 'ToMsg', NilClass, 0, nil, nil, 'devise.failure.unauthenticated', nil
     end
-    # context 'ログイン中' do
-    #   include_context 'ログイン処理', nil, true
-    #   it_behaves_like 'NG'
-    #   it_behaves_like 'ToNG', 401
-    #   it_behaves_like 'ToMsg', NilClass, 0, nil, nil, 'devise.failure.unauthenticated', nil
-    # end
-    # context 'APIログイン中' do
-    #   include_context 'APIログイン処理', nil, true
-    #   it_behaves_like 'OK'
-    #   it_behaves_like 'ToOK'
-    #   it_behaves_like 'ToMsg', NilClass, 0, nil, nil, nil, 'notice.user.image_destroy'
-    # end
+    context 'ログイン中' do
+      include_context 'ログイン処理', nil, true
+      it_behaves_like 'NG'
+      it_behaves_like 'ToNG', 401
+      it_behaves_like 'ToMsg', NilClass, 0, nil, nil, 'devise.failure.unauthenticated', nil
+    end
+    context 'APIログイン中' do
+      include_context 'APIログイン処理', nil, true
+      it_behaves_like 'OK'
+      it_behaves_like 'ToOK'
+      it_behaves_like 'ToMsg', NilClass, 0, nil, nil, nil, 'notice.user.image_destroy'
+    end
   end
 end

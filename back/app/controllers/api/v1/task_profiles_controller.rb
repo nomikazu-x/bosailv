@@ -1,4 +1,5 @@
 class Api::V1::TaskProfilesController < Api::V1::ApplicationController
+  before_action :authenticate_user!, only: %i[show update destroy]
   before_action :set_task_profile, only: %i[show update destroy]
 
   # GET /api/v1/task_profile(.json) タスクプロフィール取得API
@@ -83,6 +84,8 @@ class Api::V1::TaskProfilesController < Api::V1::ApplicationController
 
   def set_task_profile
     @task_profile = current_user.prepare_task_profile
+
+    return head :not_found if @task_profile.blank?
   end
 
   def task_complete_point_record(obtained_point)

@@ -51,7 +51,7 @@ class Infomation < ApplicationRecord
 
   # 対象ユーザーかを返却
   def target_user?(current_user)
-    target.to_sym == :All || (target.to_sym == :User && user_id == current_user&.id)
+    target.to_sym == :all || (target.to_sym == :user && user_id == current_user&.id)
   end
 
   # アクションに応じたタイトルを返却

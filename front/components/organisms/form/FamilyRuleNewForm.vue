@@ -55,9 +55,9 @@
         </v-col>
         <div class="text-center">
           <OrangeBtn
-            id="task_update_btn"
+            id="task_create_btn"
             :disabled="invalid || processing"
-            @click="onFamilyRuleUpdate"
+            @click="onFamilyRuleCreate"
           >
             作成
           </OrangeBtn>
@@ -88,10 +88,6 @@ export default {
       type: Object,
       default: undefined
     },
-    familyRule: {
-      type: Object,
-      default: null
-    },
     processing: {
       type: Boolean,
       default: false
@@ -106,15 +102,8 @@ export default {
       leaveHomeMemo: ''
     }
   },
-  created () {
-    this.contactMeansMemo = this.contactMeansMemo || this.familyRule.contact_means_memo
-    this.refugeMemo = this.refugeMemo || this.familyRule.refuge_memo
-    this.familyRoleMemo = this.familyRoleMemo || this.familyRule.family_role_memo
-    this.emergencyMeasureMemo = this.emergencyMeasureMemo || this.familyRule.emergency_measure_memo
-    this.leaveHomeMemo = this.leaveHomeMemo || this.familyRule.leave_home_memo
-  },
   methods: {
-    onFamilyRuleUpdate () {
+    onFamilyRuleCreate () {
       const familyRuleInfo = {
         contact_means_memo: this.contactMeansMemo,
         refuge_memo: this.refugeMemo,
@@ -122,7 +111,7 @@ export default {
         emergency_measure_memo: this.emergencyMeasureMemo,
         leave_home_memo: this.leaveHomeMemo
       }
-      this.$emit('family-rule-update', familyRuleInfo)
+      this.$emit('family-rule-create', familyRuleInfo)
     }
   }
 }

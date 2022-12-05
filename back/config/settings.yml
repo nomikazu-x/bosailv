@@ -64,7 +64,7 @@ task_complete_obtained_point: 5
 # 緊急時連絡先追加時獲得ポイント
 emergency_contact_create_obtained_point: 5
 # 家族ルール作成時獲得ポイント
-family_rule_update_obtained_point: 5
+family_rule_create_obtained_point: 5
 # SNS関係防災タスク達成時獲得ポイント
 sns_task_complete_obtained_point: 1
 # 家庭関係防災タスク達成時獲得ポイント

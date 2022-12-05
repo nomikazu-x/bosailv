@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::Auth::PasswordsController, type: :routing do
   describe 'routing' do
-    it 'routes to #new' do
+    it 'routes to #create' do
       expect(post: '/api/v1/auth/password.json').to route_to('api/v1/auth/passwords#create', format: 'json')
     end
     it 'routes to #edit' do

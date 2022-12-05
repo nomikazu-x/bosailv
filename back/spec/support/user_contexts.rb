@@ -1,4 +1,5 @@
-shared_context '未ログイン処理' do
+shared_context '未ログイン処理' do |trait = nil, use_image = false|
+  include_context 'ユーザー作成', trait, use_image
   let(:auth_headers) { {} }
 end
 shared_context 'ログイン処理' do |trait = nil, use_image = false|
@@ -20,7 +21,8 @@ shared_context 'APIログイン処理' do |trait = nil, use_image = false|
 end
 
 shared_context 'ユーザー作成' do |trait, use_image|
-  let_it_be(:image) { use_image ? fixture_file_upload(TEST_IMAGE_FILE, TEST_IMAGE_TYPE) : nil }
+  let_it_be(:required_point) { FactoryBot.create(:required_point) }
+  let_it_be(:image) { use_image ? File.new(TEST_IMAGE_FILE) : nil }
   let_it_be(:user)  { FactoryBot.create(:user, trait, image: image) }
 end
 

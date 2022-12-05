@@ -70,7 +70,7 @@
             </v-list-item-content>
           </v-list-item>
           <div v-else class="text-center">
-            <GreenBtn to="family_rule/edit" class="my-2" large>
+            <GreenBtn :to="toFamilyRule" class="my-2" large>
               さっそくメモする
               <v-icon>mdi-chevron-right</v-icon>
             </GreenBtn>
@@ -106,6 +106,12 @@ export default {
 
   components: {
     GreenBtn
+  },
+
+  computed: {
+    toFamilyRule () {
+      return this.$auth.user.is_completed_family_rule_task ? 'family_rule/edit' : 'family_rule/new'
+    }
   }
 }
 </script>

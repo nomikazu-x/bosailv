@@ -20,45 +20,61 @@
 require 'rails_helper'
 
 RSpec.describe EmergencyContact, type: :model do
-  describe "correct_emergency_contact" do
-    let(:user) { create(:user) }
-    let(:emergency_contact) { build(:emergency_contact, user: user) }
-
-    it "緊急時連絡先が正しく作成されていること" do
+  # テスト内容（共通）
+  shared_examples_for 'Valid' do
+    it '保存できる' do
       expect(emergency_contact).to be_valid
     end
   end
-
-  describe "validate presence" do
-    context "nameがNULLの時" do
-      let(:emergency_contact) { build(:emergency_contact, name: nil) }
-      it "エラーメッセージが返る" do
-        emergency_contact.valid?
-        expect(emergency_contact).to be_invalid
-      end
-    end
-
-    context "phone_numberがNULLの時" do
-      let(:emergency_contact) { build(:emergency_contact, phone_number: nil) }
-      it "エラーメッセージが返る" do
-        emergency_contact.valid?
-        expect(emergency_contact).to be_invalid
-      end
-    end
-
-    context "userがNULLの時" do
-      let(:emergency_contact) { build(:emergency_contact, user: nil) }
-      it "エラーメッセージが返る" do
-        emergency_contact.valid?
-        expect(emergency_contact).to be_invalid
-      end
+  shared_examples_for 'InValid' do
+    it '保存できない' do
+      expect(emergency_contact).to be_invalid
     end
   end
 
-  describe "association" do
-    it "Userテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:user)
-      expect(rel.macro).to eq :belongs_to
+  # 連絡先名
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   ない, 最大文字数と同じ, 最大文字数よりも多い
+  describe 'validates :name' do
+    let(:emergency_contact) { FactoryBot.build_stubbed(:emergency_contact, name: name) }
+
+    # テストケース
+    context 'ない' do
+      let(:name) { nil }
+      it_behaves_like 'InValid'
+    end
+    context '最大文字数と同じ' do
+      let(:name) { 'a' * Settings['emergency_contact_name_maximum'] }
+      it_behaves_like 'Valid'
+    end
+    context '最大文字数よりも多い' do
+      let(:name) { 'a' * (Settings['emergency_contact_name_maximum'] + 1) }
+      it_behaves_like 'InValid'
+    end
+  end
+
+  # 電話番号
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   ない, 正規表現に一致していない, 正規表現に一致している
+  describe 'validates :phone_number' do
+    let(:emergency_contact) { FactoryBot.build_stubbed(:emergency_contact, phone_number: phone_number) }
+
+    # テストケース
+    context 'ない' do
+      let(:phone_number) { nil }
+      it_behaves_like 'InValid'
+    end
+    context '正規表現に一致していない' do
+      let(:phone_number) { '123456789' }
+      it_behaves_like 'InValid'
+    end
+    context '正規表現に一致している' do
+      let(:phone_number) { '090-1234-5678' }
+      it_behaves_like 'Valid'
     end
   end
 end

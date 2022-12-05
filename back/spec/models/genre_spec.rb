@@ -12,61 +12,97 @@
 require 'rails_helper'
 
 RSpec.describe Genre, type: :model do
-  describe "correct_genre" do
-    let(:genre) { build(:genre) }
-
-    it "ジャンルが正しく作成されていること" do
+  # テスト内容（共通）
+  shared_examples_for 'Valid' do
+    it '保存できる' do
       expect(genre).to be_valid
     end
   end
-
-  describe "validate length" do
-    context "nameの長さが11文字以上の時" do
-      let(:genre) { build(:genre, name: 'a' * 11) }
-      it "エラーメッセージが返る" do
-        genre.valid?
-        expect(genre).to be_invalid
-      end
+  shared_examples_for 'InValid' do
+    it '保存できない' do
+      expect(genre).to be_invalid
     end
   end
 
-  describe "validate presence" do
-    context "nameがNULLの時" do
-      let(:genre) { build(:genre, name: nil) }
-      it "エラーメッセージが返る" do
-        genre.valid?
-        expect(genre).to be_invalid
-      end
-    end
+  # ジャンル名
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   ない, 最大文字数と同じ, 最大文字数よりも多い
+  describe 'validates :name' do
+    let(:genre) { FactoryBot.build_stubbed(:genre, name: name) }
 
-    context "imageがNULLの時" do
-      let(:genre) { build(:genre, image: nil) }
-      it "エラーメッセージが返る" do
-        genre.valid?
-        expect(genre).to be_invalid
-      end
+    # テストケース
+    context 'ない' do
+      let(:name) { nil }
+      it_behaves_like 'InValid'
     end
-
-    context "descriptionがNULLの時" do
-      let(:genre) { build(:genre, description: nil) }
-      it "エラーメッセージが返る" do
-        genre.valid?
-        expect(genre).to be_invalid
-      end
+    context '最大文字数と同じ' do
+      let(:name) { 'a' * Settings['genre_name_maximum'] }
+      it_behaves_like 'Valid'
+    end
+    context '最大文字数よりも多い' do
+      let(:name) { 'a' * (Settings['genre_name_maximum'] + 1) }
+      it_behaves_like 'InValid'
     end
   end
 
-  describe "association" do
-    it "genreGenreRelationテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:article_genre_relations)
-      expect(rel.macro).to eq :has_many
-      expect(rel.options[:dependent]).to eq :destroy
+  # 説明文
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   ない, ある
+  describe 'validates :description' do
+    let(:genre) { FactoryBot.build_stubbed(:genre, description: description) }
+
+    # テストケース
+    context 'ない' do
+      let(:description) { nil }
+      it_behaves_like 'InValid'
+    end
+    context '最大文字数と同じ' do
+      let(:description) { 'a' * Settings['genre_description_maximum'] }
+      it_behaves_like 'Valid'
+    end
+    context '最大文字数よりも多い' do
+      let(:description) { 'a' * (Settings['genre_description_maximum'] + 1) }
+      it_behaves_like 'InValid'
+    end
+  end
+
+  # 画像URLを返却
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   画像: ある
+  #   large, xlarge, xxlarge, 未定義
+  describe '#image_url' do
+    subject { genre.image_url(version) }
+    let(:genre) { FactoryBot.create(:genre, image: image) }
+
+    # テスト内容
+    shared_examples_for 'OK' do |version|
+      let(:version) { version }
+      it 'デフォルトではないURL' do
+        is_expected.not_to be_blank
+        is_expected.not_to include('_noimage.jpeg')
+      end
+    end
+    shared_examples_for 'Not' do |version|
+      let(:version) { version }
+      it 'URLが返却されない' do
+        is_expected.to be_blank
+      end
     end
 
-    it "Genreテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:articles)
-      expect(rel.macro).to eq :has_many
-      expect(rel.options[:through]).to eq :article_genre_relations
+    # テストケース
+    context '画像がある' do
+      let_it_be(:image) { File.new(TEST_IMAGE_FILE) }
+      let_it_be(:genre)  { FactoryBot.create(:genre, image: image) }
+      it_behaves_like 'OK', :large, false
+      it_behaves_like 'OK', :xlarge, false
+      it_behaves_like 'OK', :xxlarge, false
+      it_behaves_like 'Not', nil
     end
   end
 end

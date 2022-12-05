@@ -12,8 +12,8 @@ json.articles do
     json.id article.id
     json.title article.title
     json.content article.content
-    json.created_at article.created_at
-    json.updated_at article.updated_at
+    json.created_at l(article.created_at, format: :json)
+    json.updated_at article.updated_at.present? ? l(article.updated_at, format: :json) : nil
     json.thumbnail_url do
       json.large "#{article.thumbnail_url(:large)}"
       json.xlarge "#{article.thumbnail_url(:xlarge)}"

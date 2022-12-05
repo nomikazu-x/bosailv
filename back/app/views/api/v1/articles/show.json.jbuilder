@@ -9,8 +9,8 @@ json.article do
     json.xlarge "#{@article.thumbnail_url(:xlarge)}"
     json.xxlarge "#{@article.thumbnail_url(:xxlarge)}"
   end
-  json.created_at @article.created_at
-  json.updated_at @article.updated_at
+  json.created_at l(@article.created_at, format: :json)
+  json.updated_at @article.updated_at.present? ? l(@article.updated_at, format: :json) : nil
   json.is_favorited current_user&.article_favorite?(@article)
   json.genres do
     json.array! @article.genres do |genre|

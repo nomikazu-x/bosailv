@@ -11,7 +11,7 @@
     </template>
 
     <template v-if="!loading" #left>
-      <FamilyRuleTaskEditCard v-if="$auth.loggedIn" @alert="alert = $event" @notice="notice = $event" />
+      <FamilyRuleEditCard v-if="$auth.loggedIn" @alert="alert = $event" @notice="notice = $event" />
     </template>
 
     <template v-if="!loading" #right>
@@ -25,7 +25,7 @@ import Application from '~/plugins/application.js'
 import TwoColumnContainer from '~/components/molecules/containers/TwoColumnContainer.vue'
 import TheLoading from '~/components/organisms/application/TheLoading.vue'
 import TheMessage from '~/components/organisms/application/TheMessage.vue'
-import FamilyRuleTaskEditCard from '~/components/organisms/cards/family_rule/FamilyRuleTaskEditCard.vue'
+import FamilyRuleEditCard from '~/components/organisms/cards/family_rule/FamilyRuleEditCard.vue'
 import DefaultRightColumnTemplate from '~/components/templates/DefaultRightColumnTemplate.vue'
 
 export default {
@@ -35,7 +35,7 @@ export default {
     TwoColumnContainer,
     TheLoading,
     TheMessage,
-    FamilyRuleTaskEditCard,
+    FamilyRuleEditCard,
     DefaultRightColumnTemplate
   },
 

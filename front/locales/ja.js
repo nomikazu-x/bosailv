@@ -18,5 +18,8 @@ module.exports = {
     admin_dedicated: '管理者専用ページです。管理者でログインしてください。',
     destroy_reserved: 'ゲストアカウントのため、この操作はできません。',
     not_permission: 'アクセスする権限がありません。'
+  },
+  task: {
+    already_completed: 'このタスクは既に達成しています。'
   }
 }

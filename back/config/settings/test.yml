@@ -9,3 +9,33 @@ default_unlock_success_url: ''
 mailer_from:
   name: '%{app_name}'
   email: 'noreply@localhost.test'
+
+## 共通
+# 一覧のデフォルト最大表示数
+default_index_limit: 4
+
+## お知らせ
+# 一覧のデフォルト最大表示件数
+default_infomations_limit: 4
+test_infomations:
+  all_forever_count: 1
+  all_future_count: 1
+  user_forever_count: 1
+  user_future_count: 1
+
+## 記事
+# 一覧のデフォルト最大表示件数
+default_articles_limit: 4
+test_articles:
+  genre_exist_count: 1
+  favorite_exist_count: 1
+
+## 避難所
+# 一覧のデフォルト最大表示件数
+default_shelters_limit: 4
+test_shelters:
+  favorite_exist_count: 1
+
+## ユーザー
+# 一覧のデフォルト最大表示件数
+default_users_limit: 4

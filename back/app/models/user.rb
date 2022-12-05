@@ -95,6 +95,7 @@ class User < ActiveRecord::Base
 
   VALID_USERNAME_REGEX = /\A[\w_]+\z/i
 
+  validates :name, presence: true
   validates :name, length: { in: Settings['user_name_minimum']..Settings['user_name_maximum'] }, if: proc { |user| user.name.present? }
   validates :username, presence: true
   validates :username, uniqueness: { case_sensitive: true }
@@ -184,11 +185,6 @@ class User < ActiveRecord::Base
   # 防災タスクプロフィールデータがあれば、データを返し、なければbuildする
   def prepare_task_profile
     task_profile || build_task_profile
-  end
-
-  # 家族ルールデータがあれば、データを返し、なければbuildする
-  def prepare_family_rule
-    family_rule || build_family_rule
   end
 
   # 家族ルールタスクを達成しているか

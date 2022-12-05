@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       # ユーザー
       get   'users',                      to: 'users#index',          as: 'users'
-      get   'users/:username',            to: 'users#show',           as: 'show_users'
+      get   'users/:username',            to: 'users#show',           as: 'user'
 
       # ユーザー防災タスクプロフィール
       get  'task_profile',             to: 'task_profiles#show',          as: 'task_profile'
@@ -15,13 +15,14 @@ Rails.application.routes.draw do
 
       # 家族会議
       get  'family_rule',             to: 'family_rules#show',          as: 'family_rule'
+      post 'family_rules/create',     to: 'family_rules#create',        as: 'create_family_rule'
       post 'family_rules/update',     to: 'family_rules#update',        as: 'update_family_rule'
       post 'family_rules/delete',     to: 'family_rules#destroy',       as: 'delete_family_rule'
 
       # 緊急連絡先
       get  'emergency_contacts',            to: 'emergency_contacts#index',        as: 'emergency_contacts'
       post 'emergency_contacts/create',     to: 'emergency_contacts#create',       as: 'create_emergency_contact'
-      post 'emergency_contacts/:id/delete', to: 'emergency_contacts#destroy',      as: 'destroy_emergency_contact'
+      post 'emergency_contacts/:id/delete', to: 'emergency_contacts#destroy',      as: 'delete_emergency_contact'
 
       # 家族構成
       get  'families',            to: 'families#index',         as: 'families'
@@ -36,7 +37,7 @@ Rails.application.routes.draw do
 
       # 避難所
       get  'shelters',              to: 'shelters#index',   as: 'shelters'
-      get  'shelters/:id',          to: 'shelters#show',    as: 'show_shelter'
+      get  'shelters/:id',          to: 'shelters#show',    as: 'shelter'
 
       # 避難所登録
       post 'shelters/:id/shelter_registrations/create', to: 'shelter_registrations#create',    as: 'registration_shelter'
@@ -52,7 +53,7 @@ Rails.application.routes.draw do
       # 記事コメント
       get  'articles/:article_id/article_comments',                to: 'article_comments#index',     as: 'comments'
       post 'articles/:article_id/article_comments/create',         to: 'article_comments#create',    as: 'create_comment'
-      post 'articles/:article_id/article_comments/:id/delete',       to: 'article_comments#destroy',   as: 'delete_comment'
+      post 'articles/:article_id/article_comments/:id/delete',       to: 'article_comments#destroy',   as: 'destroy_comment'
 
       # 記事お気に入り
       post 'articles/:id/article_favorites/create', to: 'article_favorites#create',    as: 'favorite_article'
@@ -60,7 +61,7 @@ Rails.application.routes.draw do
 
       # ジャンル
       get  'genres',              to: 'genres#index',   as: 'genres'
-      get  'genres/:id',          to: 'genres#show',    as: 'show_genre'
+      get  'genres/:id',          to: 'genres#show',    as: 'genre'
 
       # お知らせ
       get  'infomations',            to: 'infomations#index',     as: 'infomations'

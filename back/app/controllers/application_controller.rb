@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
 
   # 管理者でない場合、JSONでメッセージ返却
   def redirect_not_admin
-    return if current_user.is_admin?
+    return if current_user&.is_admin?
 
     render './api/v1/failure', locals: { alert: I18n.t('errors.messages.not_permission') }, status: :unauthorized
   end

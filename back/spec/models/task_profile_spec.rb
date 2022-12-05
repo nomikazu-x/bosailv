@@ -22,53 +22,56 @@
 require 'rails_helper'
 
 RSpec.describe TaskProfile, type: :model do
-  describe "correct_task_profile" do
-    let(:user) { create(:user) }
-    let(:task_profile) { build(:task_profile, user: user) }
-
-    it "ハザードマップが正しく作成されていること" do
+  # テスト内容（共通）
+  shared_examples_for 'Valid' do
+    it '保存できる' do
       expect(task_profile).to be_valid
     end
   end
+  shared_examples_for 'InValid' do
+    it '保存できない' do
+      expect(task_profile).to be_invalid
+    end
+  end
 
-  describe "validate presence" do
-    context "house_tasksがNULLの時" do
-      let(:task_profile) { build(:task_profile, house_tasks: nil) }
-      it "エラーメッセージが返る" do
-        task_profile.valid?
-        expect(task_profile).to be_invalid
+  # ハザードマップ確認済みか返却
+  # 前提条件
+  #   なし
+  # テストパターン
+  #   ハザードマップ確認日時: ない, ある
+  describe '#destroy_reserved?' do
+    subject { task_profile.hazard_map_confirmed? }
+    let(:task_profile) { FactoryBot.build_stubbed(:task_profile, hazard_map_confirmed_at: hazard_map_confirmed_at) }
+
+    context 'ハザードマップ確認日時がない' do
+      let(:hazard_map_confirmed_at) { nil }
+      it 'false' do
+        is_expected.to eq(false)
       end
     end
-
-    context "sns_tasksがNULLの時" do
-      let(:task_profile) { build(:task_profile, sns_tasks: nil) }
-      it "エラーメッセージが返る" do
-        task_profile.valid?
-        expect(task_profile).to be_invalid
-      end
-    end
-
-    context "stock_tasksがNULLの時" do
-      let(:task_profile) { build(:task_profile, stock_tasks: nil) }
-      it "エラーメッセージが返る" do
-        task_profile.valid?
-        expect(task_profile).to be_invalid
-      end
-    end
-
-    context "userがNULLの時" do
-      let(:task_profile) { build(:task_profile, user: nil) }
-      it "エラーメッセージが返る" do
-        task_profile.valid?
-        expect(task_profile).to be_invalid
+    context 'ハザードマップ確認日時日時がある' do
+      let(:hazard_map_confirmed_at) { Time.current }
+      it 'true' do
+        is_expected.to eq(true)
       end
     end
   end
 
-  describe "association" do
-    it "userテーブルに正しく紐づいていること" do
-      rel = described_class.reflect_on_association(:user)
-      expect(rel.macro).to eq :belongs_to
+  # ハザードマップ確認
+  # 前提条件
+  #   ハザードマップ確認日時なし
+  # テストパターン
+  #   なし
+  describe '#set_hazard_map_confirm' do
+    subject { task_profile.set_hazard_map_confirm }
+    let_it_be(:task_profile) { FactoryBot.create(:task_profile) }
+
+    context 'ハザードマップ確認日時' do
+      let!(:start_time) { Time.current.floor }
+      it 'ありに変更される' do
+        is_expected.to eq(true)
+        expect(task_profile.hazard_map_confirmed_at).to be_between(start_time, Time.current)
+      end
     end
   end
 end

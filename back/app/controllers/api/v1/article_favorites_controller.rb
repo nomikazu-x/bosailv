@@ -12,7 +12,7 @@ class Api::V1::ArticleFavoritesController < Api::V1::ApplicationController
         # 読者もポイント獲得
         PointRecorder.new(current_user).record(Settings['article_favorite_reader_obtained_point'])
         # 通知作成
-        Infomation.new(started_at: Time.current, target: :User, user_id: @article.user.id,
+        Infomation.new(started_at: Time.current, target: :user, user_id: @article.user.id,
                        action: 'ArticleFavorite', action_user_id: current_user.id, article_id: @article.id).save!
 
         render './api/v1/auth/success', locals: { notice: I18n.t('notice.article_favorite.create') }

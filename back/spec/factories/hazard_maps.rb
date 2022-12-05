@@ -24,13 +24,13 @@
 #
 FactoryBot.define do
   factory :hazard_map do
-    flood { 'flood' }
-    inland_flood { 'inland_flood' }
-    landslide { 'landslide' }
-    reservoir { 'reservoir' }
-    storm_surge { 'storm_surge' }
-    tsunami { 'tsunami' }
-    volcano { 'volcano' }
+    sequence(:flood) { |n| "flood(#{n})" }
+    sequence(:inland_flood) { |n| "inland_flood(#{n})" }
+    sequence(:landslide) { |n| "landslide(#{n})" }
+    sequence(:reservoir) { |n| "reservoir(#{n})" }
+    sequence(:storm_surge) { |n| "storm_surge(#{n})" }
+    sequence(:tsunami) { |n| "tsunami(#{n})" }
+    sequence(:volcano) { |n| "volcano(#{n})" }
     association :city
   end
 end

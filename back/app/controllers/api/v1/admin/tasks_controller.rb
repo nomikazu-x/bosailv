@@ -1,4 +1,5 @@
 class Api::V1::Admin::TasksController < Api::V1::ApplicationController
+  before_action :authenticate_user!, only: %i[create update destroy]
   before_action :redirect_not_admin, only: %i[create update destroy]
   before_action :set_task, only: %i[update destroy]
 

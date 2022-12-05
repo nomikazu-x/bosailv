@@ -1,6 +1,7 @@
 class Api::V1::StocksController < Api::V1::ApplicationController
   include Api::V1::StocksConcern
   before_action :set_stock_list, only: %i[index]
+  before_action :authenticate_user!, only: %i[index]
 
   # GET /api/v1/stocks(.json) 備蓄品一覧API
   def index
@@ -22,5 +23,4 @@ class Api::V1::StocksController < Api::V1::ApplicationController
     # 防災タスクの達成状況を確認するためにタスクプロフィール情報を返す
     @task_profile = current_user.prepare_task_profile
   end
-
 end
