@@ -63,7 +63,7 @@ class Api::V1::TaskProfilesController < Api::V1::ApplicationController
     when params[:house_task]
       task = @task_profile.house_tasks.unset(params[:house_task].to_sym) # Tips unsetメソッドの場合はシンボルにする必要がある。
       if @task_profile.update(params.permit(house_tasks: task))
-          task_complete_point_delete_record(Settings['house_task_complete_obtained_point'])
+        task_complete_point_delete_record(Settings['house_task_complete_obtained_point'])
       else
         render './api/v1/failure', locals: { alert: I18n.t('alert.task_profile.destroy') }, status: :unprocessable_entity
       end
