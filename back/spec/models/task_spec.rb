@@ -1,9 +1,11 @@
 # == Schema Information
 #
-# Table title: tasks
+# Table name: tasks
 #
 #  id              :bigint           not null, primary key
 #  body(本文)      :text(4294967295) not null
+#  icon(アイコン)  :string(255)      not null
+#  image(画像)     :text(65535)      not null
 #  summary(概要)   :string(50)       not null
 #  title(タイトル) :string(30)       not null
 #  created_at      :datetime         not null

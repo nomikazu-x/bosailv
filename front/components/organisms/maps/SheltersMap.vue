@@ -1,57 +1,15 @@
 <template>
   <v-card v-if="shelters.length > 0" outlined tile class="mt-4 py-2">
-    <GmapMap
-      map-type-id="roadmap"
-      :center="centerInfo(shelters)"
-      :zoom="14"
-      :options="{
-        zoomControl: true,
-        mapTypeControl: false,
-        scaleControl: false,
-        streetViewControl: false,
-        rotateControl: false,
-        fullscreenControl: true,
-      }"
-      style="width: 100%; height: 350px; margin: auto"
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.747798841979!2d139.74285797634224!3d35.65858483121676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bbd9009ec09%3A0x481a93f0d2a409dd!2z5p2x5Lqs44K_44Ov44O8!5e0!3m2!1sja!2sjp!4v1708950259061!5m2!1sja!2sjp"
+      width="100%"
+      height="350"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
     >
-      <GmapMarker
-        v-for="(shelter, index) in shelters"
-        :key="index"
-        :position="{ lat: parseFloat(shelter.latitude), lng: parseFloat(shelter.longitude) }"
-        :clickable="true"
-        @click="toggleInfoWindow(shelter, index)"
-      />
-      <GmapInfoWindow
-        :options="infoOptions"
-        :position="infoWindowPos"
-        :opened="infoWinOpen"
-        @closeClick="infoWinOpen = false"
-      >
-        <v-row>
-          <v-col cols="12">
-            <h3 class="main-heading font-weight-bold my-2" style="color: #117768;">
-              <NuxtLink :to="{ name: 'shelters-id___ja', params: { id: selectedShelter.id } }" class="text-decoration-none">
-                {{ selectedShelter.name }}
-              </NuxtLink>
-            </h3>
-            <div class="mb-2">{{ selectedShelter.address }}</div>
-            <v-divider />
-          </v-col>
-          <v-col cols="12">
-            <v-row no-gutters justify="center">
-              <v-col v-for="info in shelterInfo" :key="info.id" cols="1.5">
-                <div class="text-center">
-                  <v-icon class="mb-1" color="#117768">{{ info.icon }}</v-icon>
-                </div>
-                <div class="text-caption text-center">{{ info.type }}</div>
-                <div v-if="info.is_selected" class="text-caption text-center font-weight-bold">○</div>
-                <div v-else class="text-caption text-center">×</div>
-              </v-col>
-            </v-row>
-          </v-col>
-        </v-row>
-      </GmapInfoWindow>
-    </GmapMap>
+    </iframe>
   </v-card>
 </template>
 

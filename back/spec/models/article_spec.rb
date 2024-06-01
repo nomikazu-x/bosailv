@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table title: articles
+# Table name: articles
 #
 #  id                        :bigint           not null, primary key
 #  content(内容)             :text(4294967295) not null

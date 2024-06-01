@@ -11,7 +11,7 @@ ENV HOME=/usr/src/app \
 WORKDIR ${HOME}
 
 COPY ./ ./
-RUN apk update && apk add bash
+RUN apk add --update python3 make g++
 RUN yarn install
 
 CMD ["yarn", "run", "dev"]
