@@ -7,7 +7,7 @@ services:
     container_name: front
     # サービスのベースイメージにDockerfileを指定
     build: .
-    command: bash -c " yarn install && yarn run dev"
+    command: sh -c " yarn install && yarn dev"
     # 値を永続化
     volumes:
       - .:/usr/src/app

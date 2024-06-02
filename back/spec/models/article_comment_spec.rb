@@ -1,9 +1,9 @@
 # == Schema Information
 #
-# Table content: article_comments
+# Table name: article_comments
 #
 #  id                  :bigint           not null, primary key
-#  content(内容)       :text(255)        not null
+#  content(内容)       :text(65535)      not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  article_id(記事ID)  :bigint           not null
