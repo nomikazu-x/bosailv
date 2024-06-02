@@ -222,11 +222,7 @@ GEM
     multi_json (1.15.0)
     mysql2 (0.5.3)
     nio4r (2.5.8)
-    nokogiri (1.13.3-aarch64-linux)
-      racc (~> 1.4)
-    nokogiri (1.13.3-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.3-x86_64-linux)
+    nokogiri (1.16.5-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.22.1)
@@ -241,7 +237,7 @@ GEM
     public_suffix (4.0.6)
     puma (5.6.2)
       nio4r (~> 2.0)
-    racc (1.6.0)
+    racc (1.8.0)
     rack (2.2.3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
@@ -351,9 +347,7 @@ GEM
     zeitwerk (2.5.4)
 
 PLATFORMS
-  aarch64-linux-musl
-  x86_64-darwin-20
-  x86_64-linux-musl
+  ruby
 
 DEPENDENCIES
   active_flag

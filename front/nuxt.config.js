@@ -8,6 +8,11 @@ const envConfig = require(`./config/${environment}.js`)
 export default {
   publicRuntimeConfig: Object.assign(envConfig, commonConfig),
 
+  server: {
+    port: 4000, // デフォルト: 3000
+    host: '0.0.0.0' // デフォルト: localhost
+  },
+
   ssr: false,
   /*
   ** Headers of the page
