@@ -19,11 +19,11 @@
 <br />
 
 # URL
-~~https://app.bosailv.com~~<br>
-※2022/12/18に配信停止しました。Herokuにデプロイし直す予定です。
+https://bosailv.vercel.app/about<br>
+※2024-06-03にfly, vercelにデプロイし直しました。
 
-~~[こちら](https://app.bosailv.com/signup)のページにある【**ゲストログイン**】ボタンをクリックすると、ユーザー登録なしでログインできますので、試しにご利用ください。
-※ゲストユーザーは1日だけご利用いただけます。~~
+[こちら](https://bosailv.vercel.app/signup)のページにある【**ゲストログイン**】ボタンをクリックすると、ユーザー登録なしでログインできますので、試しにご利用ください。
+※ゲストユーザーは1日だけご利用いただけます。
 
 <br />
 
@@ -204,8 +204,8 @@
 
 ### 1. ポートフォリオの紹介 / 2.利用してもらった感想 と フィードバックによる改善
 
-[【完全SPA】独学・未経験者が「防災啓発」アプリを開発した話(1/2)【Rails/Nuxt.js/AWS/Docker/CircleCI/Terraform】](https://qiita.com/kazuki-ayimon/items/a1b0c76a634663654cbf)
+[【完全SPA】独学・未経験者が「防災啓発」アプリを開発した話(1/2)【Rails/Nuxt.js/AWS/Docker/CircleCI/Terraform】](https://qiita.com/nomikazu_x/items/a1b0c76a634663654cbf)
 
 ### 3.技術選定理由 と 使用した教材の紹介 / 4.反省 と 今後の課題
 
-[【完全SPA】独学・未経験者が「防災啓発」アプリを開発した話(2/2)【Rails/Nuxt.js/AWS/Docker/CircleCI/Terraform】](https://qiita.com/kazuki-ayimon/items/6b6c089cd5e1c631ef22)
+[【完全SPA】独学・未経験者が「防災啓発」アプリを開発した話(2/2)【Rails/Nuxt.js/AWS/Docker/CircleCI/Terraform】](https://qiita.com/nomikazu_x/items/6b6c089cd5e1c631ef22)
